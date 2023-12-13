@@ -60,7 +60,7 @@
     <!-- 'oxcAddDropDegreeExpenditure' optional, OXC add drop degree expenditure in W -->
     <!-- 'olaExpenditure' optional, Optical line amplifier expenditure in W -->
     <!-- 'spanSize' optional, size of a span, km -->
-    <physical-topology name="USANet" 
+    <physical-topology name="USANet"
         wavelengths="16"               
         mensageProcessingTime="1.0E-5" configurationTimeOXC="1.0E-5" propagationDelayTime="4.0E-4"
         switchTime="5.0E-4" oxcTransitionTime="4.5E-4" oxcSleepModeExpenditure="10.0"

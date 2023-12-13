@@ -62,7 +62,6 @@ public class Simulator {
         }
 
         try {
-
             long begin = System.currentTimeMillis();
 
             if (Simulator.verbose) {
@@ -76,7 +75,7 @@ public class Simulator {
             doc.getDocumentElement().normalize();
             
             if (!doc.getDocumentElement().hasAttribute("type")) {
-                System.out.println("Cannot find type attribute! [wdmsim | eonsim | eonsimBulk]");
+                System.out.println("Cannot find type attribute! [wdmsim]");
                 System.exit(0);
             } else {
                 // check the root TAG name and version
@@ -89,20 +88,8 @@ public class Simulator {
                         }
                         simType = 0;
                         break;
-                    case "eonsim":
-                        if (Simulator.verbose) {
-                            System.out.println("Simulation type: " + simName + " (Elastic)");
-                        }
-                        simType = 1;
-                        break;
-                    case "eonsimBulk":
-                        if (Simulator.verbose) {
-                            System.out.println("Simulation type: " + simName + " (Elastic with Bulks)");
-                        }
-                        simType = 2;
-                        break;
                     default:
-                        System.out.println("Root element of the simulation file is " + doc.getDocumentElement().getNodeName() + ", wdmsim, eonsim or eonsimBulk is expected!");
+                        System.out.println("Root element of the simulation file is " + doc.getDocumentElement().getNodeName() + ", wdmsim is expected!");
                         System.exit(0);
                 }
             }
@@ -128,26 +115,11 @@ public class Simulator {
             }
 
             PhysicalTopology pt;
-            PhysicalImpairments pi = null;
-            Modulation mod = null;
-            
-            if (simType == 0) {
-                pt = new WDMPhysicalTopology((Element) doc.getElementsByTagName("physical-topology").item(0));
-            } else {
-                if (((Element) doc.getElementsByTagName("physical-impairment").item(0)) == null) {
-                    pi = PhysicalImpairments.getPhysicalImpairmentsObject();
-                    mod = Modulation.getModulationObject();
-                } else {
-                    pi = PhysicalImpairments.getPhysicalImpairmentsObject((Element) doc.getElementsByTagName("physical-impairment").item(0));
-                    mod = Modulation.getModulationObject((Element) doc.getElementsByTagName("physical-impairment").item(0));
-                }
-                pt = new EONPhysicalTopology((Element) doc.getElementsByTagName("physical-topology").item(0), pi);
-                pi.setPT(pt);
-            }
+            pt = new WDMPhysicalTopology((Element) doc.getElementsByTagName("physical-topology").item(0));
 
-            if (Simulator.verbose) {
-                System.out.println(pt);
-            }
+//            if (Simulator.verbose) {
+//                System.out.println(pt);
+//            }
 
             if (Simulator.verbose) {
                 System.out.println("(1) Done. (" + Float.toString((float) ((float) (System.currentTimeMillis() - begin) / (float) 1000)) + " sec)\n");
@@ -163,12 +135,7 @@ public class Simulator {
 
             EventScheduler events = new EventScheduler();
             TrafficGenerator traffic = new TrafficGenerator((Element) doc.getElementsByTagName("traffic").item(0), forcedLoad, pt);
-            //For eonsimBulk
-            if(simType == 2) {
-                traffic.generateTraffic_eonsimBulk(pt, events, seed);
-            } else {
-                traffic.generateTraffic(pt, events, seed);
-            }
+            traffic.generateTraffic(pt, events, seed);
 
             if (Simulator.verbose) {
                 System.out.println("(2) Done. (" + Float.toString((float) ((float) (System.currentTimeMillis() - begin) / (float) 1000)) + " sec)\n");
@@ -218,13 +185,8 @@ public class Simulator {
             }
 
             VirtualTopology vt = new VirtualTopology((Element) doc.getElementsByTagName("virtual-topology").item(0), pt);
-            if (simType >= 1 && pi != null) {
-                pi.setVT(vt);
-            }
             if (Simulator.verbose) {
                 System.out.println(vt);
-            }
-            if (Simulator.verbose) {
                 System.out.println("(4) Done. (" + Float.toString((float) ((float) (System.currentTimeMillis() - begin) / (float) 1000)) + " sec)\n");
             }
 
@@ -261,11 +223,8 @@ public class Simulator {
                 System.out.println("RA module: " + raModule);
             }
             ControlPlane cp = null;
-            if(simType == 2) {
-                cp = new ControlPlane(raModule, pt, vt, events);
-            } else {
-                cp = new ControlPlane(raModule, pt, vt);
-            }
+            cp = new ControlPlane(raModule, pt, vt);
+
             if (Simulator.verbose) {
                 System.out.println("(5) Done. (" + Float.toString((float) ((float) (System.currentTimeMillis() - begin) / (float) 1000)) + " sec)\n");
             }

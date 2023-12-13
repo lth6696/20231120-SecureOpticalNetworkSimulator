@@ -123,24 +123,24 @@ public class ControlPlane implements ControlPlaneForRA { // RA is Routing Assign
             ra.flowDeparture(((FlowDepartureEvent) event).getID());
             removeFlow(((FlowDepartureEvent) event).getID());
             st.checkOXCState();
-        } else if (event instanceof BulkDataArrivalEvent) {
-            newBulkData(((BulkDataArrivalEvent) event).getBulkData());
-            long time = System.currentTimeMillis();
-            rabulk.bulkDataArrival(((BulkDataArrivalEvent) event).getBulkData());
-            st.setBulkArrivalTime(System.currentTimeMillis() - time);
-        } else if (event instanceof BulkDepartureEvent) {
-            rabulk.bulkDeparture(((BulkDepartureEvent) event).getID());
-            removeBulk(((BulkDepartureEvent) event).getID());
-            st.checkOXCState();
-        } else if (event instanceof BatchArrivalEvent) {
-            newBatch(((BatchArrivalEvent) event).getBatch());
-            long time = System.currentTimeMillis();
-            rabulk.batchArrival(((BatchArrivalEvent) event).getBatch());
-            st.setBatchArrivalTime(System.currentTimeMillis() - time);
-        } else if (event instanceof BatchDepartureEvent) {
-            rabulk.batchDeparture(((BatchDepartureEvent) event).getID());
-            removeBatch(((BatchDepartureEvent) event).getID());
-            st.checkOXCState();
+//        } else if (event instanceof BulkDataArrivalEvent) {
+//            newBulkData(((BulkDataArrivalEvent) event).getBulkData());
+//            long time = System.currentTimeMillis();
+//            rabulk.bulkDataArrival(((BulkDataArrivalEvent) event).getBulkData());
+//            st.setBulkArrivalTime(System.currentTimeMillis() - time);
+//        } else if (event instanceof BulkDepartureEvent) {
+//            rabulk.bulkDeparture(((BulkDepartureEvent) event).getID());
+//            removeBulk(((BulkDepartureEvent) event).getID());
+//            st.checkOXCState();
+//        } else if (event instanceof BatchArrivalEvent) {
+//            newBatch(((BatchArrivalEvent) event).getBatch());
+//            long time = System.currentTimeMillis();
+//            rabulk.batchArrival(((BatchArrivalEvent) event).getBatch());
+//            st.setBatchArrivalTime(System.currentTimeMillis() - time);
+//        } else if (event instanceof BatchDepartureEvent) {
+//            rabulk.batchDeparture(((BatchDepartureEvent) event).getID());
+//            removeBatch(((BatchDepartureEvent) event).getID());
+//            st.checkOXCState();
         } else if (event instanceof OrdinaryEvent) {
             switch (((OrdinaryEvent) event).getDescription()) {
                 case "start":

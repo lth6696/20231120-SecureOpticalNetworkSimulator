@@ -19,6 +19,7 @@ public class WDMPhysicalTopology extends PhysicalTopology {
             this.wavelengths = Integer.parseInt(xml.getAttribute("wavelengths"));
             // Process nodes
             NodeList nodelist = xml.getElementsByTagName("node");
+
             nodes = nodelist.getLength();
             if (Simulator.verbose) {
                 System.out.println(Integer.toString(nodes) + " nodes");
@@ -40,7 +41,6 @@ public class WDMPhysicalTopology extends PhysicalTopology {
                 } else {
                     group = -1; //dont have a group
                 }
-                
                 if(((Element) nodelist.item(i)).hasAttribute("wlconverters")) {
                     wvlConverters = Integer.parseInt(((Element) nodelist.item(i)).getAttribute("wlconverters"));
                 } else {

@@ -26,8 +26,8 @@ public class SimulationRunner {
             tr.add(event);
             if (event instanceof OrdinaryEvent) {
                 st.addOrdinaryEvent(event);
-            } else if (cp.getPT() instanceof EONPhysicalTopology) {
-                st.addEvent(event, ((EONPhysicalTopology) cp.getPT()).getAvailableSlots(), cp.getPT().getAllFreeGroomingInputPorts(), ((EONPhysicalTopology) cp.getPT()).getExFragmentation());
+//            } else if (cp.getPT() instanceof EONPhysicalTopology) {
+//                st.addEvent(event, ((EONPhysicalTopology) cp.getPT()).getAvailableSlots(), cp.getPT().getAllFreeGroomingInputPorts(), ((EONPhysicalTopology) cp.getPT()).getExFragmentation());
             } else {
                 st.addEvent(event, cp.getPT().getAllFreeGroomingInputPorts());
             }
