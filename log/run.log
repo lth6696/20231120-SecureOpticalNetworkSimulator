@@ -1,58 +1,32 @@
-12:20:18.938 TRACE vtm.Simulator [main] v.Simulator.activate(35) - SIMULATOR BEGIN on "EGDVTM".
-12:20:18.940 TRACE vtm.Simulator [main] v.Simulator.activate(37) - 1.Reading physical topology XML file "./topo/5NodePartialMeshNet.xml".
-12:20:18.943 TRACE vtm.Simulator [main] v.Simulator.activate(41) - 1.Read.
-12:20:18.943 TRACE vtm.Simulator [main] v.Simulator.activate(43) - 2.Constructing the physical topology.
-12:20:18.951 TRACE vtm.PhysicalTopology [main] v.PhysicalTopology.<init>(25) - 2.1.Physical topology uses 5PMNet topology.
-12:20:18.957 TRACE vtm.PhysicalTopology [main] v.PhysicalTopology.setNodes(42) - 2.2.Adding 5 nodes.
-12:20:18.960 TRACE vtm.PhysicalTopology [main] v.PhysicalTopology.setNodes(48) - 2.2.1.Node 0 is SROADM.
-12:20:18.961 TRACE vtm.PhysicalTopology [main] v.PhysicalTopology.setNodes(48) - 2.2.2.Node 1 is SROADM.
-12:20:18.961 TRACE vtm.PhysicalTopology [main] v.PhysicalTopology.setNodes(48) - 2.2.3.Node 2 is SROADM.
-12:20:18.961 TRACE vtm.PhysicalTopology [main] v.PhysicalTopology.setNodes(48) - 2.2.4.Node 3 is SROADM.
-12:20:18.961 TRACE vtm.PhysicalTopology [main] v.PhysicalTopology.setNodes(48) - 2.2.5.Node 4 is SROADM.
-12:20:18.961 TRACE vtm.PhysicalTopology [main] v.PhysicalTopology.setNodes(50) - 2.2.Added.
-12:20:18.961 TRACE vtm.PhysicalTopology [main] v.PhysicalTopology.setEdges(56) - 2.3.Adding 14 fibers.
-12:20:18.962 TRACE vtm.PhysicalTopology [main] v.PhysicalTopology.setEdges(64) - 2.3.1.Fiber 0 from node 0 to node 1 with 1000 Gbps.
-12:20:18.962 TRACE vtm.PhysicalTopology [main] v.PhysicalTopology.setEdges(64) - 2.3.2.Fiber 1 from node 0 to node 4 with 1000 Gbps.
-12:20:18.963 TRACE vtm.PhysicalTopology [main] v.PhysicalTopology.setEdges(64) - 2.3.3.Fiber 2 from node 1 to node 0 with 1000 Gbps.
-12:20:18.963 TRACE vtm.PhysicalTopology [main] v.PhysicalTopology.setEdges(64) - 2.3.4.Fiber 3 from node 1 to node 2 with 1000 Gbps.
-12:20:18.963 TRACE vtm.PhysicalTopology [main] v.PhysicalTopology.setEdges(64) - 2.3.5.Fiber 4 from node 1 to node 3 with 1000 Gbps.
-12:20:18.963 TRACE vtm.PhysicalTopology [main] v.PhysicalTopology.setEdges(64) - 2.3.6.Fiber 5 from node 2 to node 1 with 1000 Gbps.
-12:20:18.963 TRACE vtm.PhysicalTopology [main] v.PhysicalTopology.setEdges(64) - 2.3.7.Fiber 6 from node 2 to node 3 with 1000 Gbps.
-12:20:18.964 TRACE vtm.PhysicalTopology [main] v.PhysicalTopology.setEdges(64) - 2.3.8.Fiber 7 from node 2 to node 4 with 1000 Gbps.
-12:20:18.964 TRACE vtm.PhysicalTopology [main] v.PhysicalTopology.setEdges(64) - 2.3.9.Fiber 8 from node 3 to node 1 with 1000 Gbps.
-12:20:18.964 TRACE vtm.PhysicalTopology [main] v.PhysicalTopology.setEdges(64) - 2.3.10.Fiber 9 from node 3 to node 2 with 1000 Gbps.
-12:20:18.964 TRACE vtm.PhysicalTopology [main] v.PhysicalTopology.setEdges(64) - 2.3.11.Fiber 10 from node 3 to node 4 with 1000 Gbps.
-12:20:18.964 TRACE vtm.PhysicalTopology [main] v.PhysicalTopology.setEdges(64) - 2.3.12.Fiber 11 from node 4 to node 0 with 1000 Gbps.
-12:20:18.965 TRACE vtm.PhysicalTopology [main] v.PhysicalTopology.setEdges(64) - 2.3.13.Fiber 12 from node 4 to node 2 with 1000 Gbps.
-12:20:18.965 TRACE vtm.PhysicalTopology [main] v.PhysicalTopology.setEdges(64) - 2.3.14.Fiber 13 from node 4 to node 3 with 1000 Gbps.
-12:20:18.965 TRACE vtm.PhysicalTopology [main] v.PhysicalTopology.setEdges(72) - 2.3.Added.
-12:20:18.965 TRACE vtm.Simulator [main] v.Simulator.activate(45) - 2.Constructed.
-12:20:18.965 TRACE vtm.Simulator [main] v.Simulator.activate(47) - 3.Reading lightpath topology XML file "./topo/5NodePartialMeshNet.xml".
-12:20:18.967 TRACE vtm.Simulator [main] v.Simulator.activate(51) - 3.Read.
-12:20:18.967 TRACE vtm.Simulator [main] v.Simulator.activate(53) - 4.Constructing the lightpath topology.
-12:20:18.968 TRACE vtm.LightpathTopology [main] v.LightpathTopology.<init>(22) - 4.1.Lightpath topology uses 5PMNet topology.
-12:20:18.968 TRACE vtm.LightpathTopology [main] v.LightpathTopology.addNodes(33) - 4.2.Adding 5 nodes.
-12:20:18.968 TRACE vtm.LightpathTopology [main] v.LightpathTopology.addNodes(39) - 4.2.1.Node 0 is SROADM.
-12:20:18.969 TRACE vtm.LightpathTopology [main] v.LightpathTopology.addNodes(39) - 4.2.2.Node 1 is SROADM.
-12:20:18.969 TRACE vtm.LightpathTopology [main] v.LightpathTopology.addNodes(39) - 4.2.3.Node 2 is SROADM.
-12:20:18.969 TRACE vtm.LightpathTopology [main] v.LightpathTopology.addNodes(39) - 4.2.4.Node 3 is SROADM.
-12:20:18.969 TRACE vtm.LightpathTopology [main] v.LightpathTopology.addNodes(39) - 4.2.5.Node 4 is SROADM.
-12:20:18.969 TRACE vtm.LightpathTopology [main] v.LightpathTopology.addNodes(41) - 4.2.Added.
-12:20:18.969 TRACE vtm.LightpathTopology [main] v.LightpathTopology.addLightpaths(48) - 4.3.Adding 14 lightpaths.
-12:20:18.970 TRACE vtm.LightpathTopology [main] v.LightpathTopology.addLightpaths(57) - 4.3.1.Lightpath 0 from node 0 to node 1 with 1000 Gbps and security.
-12:20:18.970 TRACE vtm.LightpathTopology [main] v.LightpathTopology.addLightpaths(57) - 4.3.2.Lightpath 1 from node 0 to node 4 with 1000 Gbps and unsecurity.
-12:20:18.970 TRACE vtm.LightpathTopology [main] v.LightpathTopology.addLightpaths(57) - 4.3.3.Lightpath 2 from node 1 to node 0 with 1000 Gbps and unsecurity.
-12:20:18.970 TRACE vtm.LightpathTopology [main] v.LightpathTopology.addLightpaths(57) - 4.3.4.Lightpath 3 from node 1 to node 2 with 1000 Gbps and security.
-12:20:18.970 TRACE vtm.LightpathTopology [main] v.LightpathTopology.addLightpaths(57) - 4.3.5.Lightpath 4 from node 1 to node 3 with 1000 Gbps and security.
-12:20:18.970 TRACE vtm.LightpathTopology [main] v.LightpathTopology.addLightpaths(57) - 4.3.6.Lightpath 5 from node 2 to node 1 with 1000 Gbps and security.
-12:20:18.971 TRACE vtm.LightpathTopology [main] v.LightpathTopology.addLightpaths(57) - 4.3.7.Lightpath 6 from node 2 to node 3 with 1000 Gbps and security.
-12:20:18.971 TRACE vtm.LightpathTopology [main] v.LightpathTopology.addLightpaths(57) - 4.3.8.Lightpath 7 from node 2 to node 4 with 1000 Gbps and unsecurity.
-12:20:18.971 TRACE vtm.LightpathTopology [main] v.LightpathTopology.addLightpaths(57) - 4.3.9.Lightpath 8 from node 3 to node 1 with 1000 Gbps and security.
-12:20:18.971 TRACE vtm.LightpathTopology [main] v.LightpathTopology.addLightpaths(57) - 4.3.10.Lightpath 9 from node 3 to node 2 with 1000 Gbps and unsecurity.
-12:20:18.971 TRACE vtm.LightpathTopology [main] v.LightpathTopology.addLightpaths(57) - 4.3.11.Lightpath 10 from node 3 to node 4 with 1000 Gbps and security.
-12:20:18.971 TRACE vtm.LightpathTopology [main] v.LightpathTopology.addLightpaths(57) - 4.3.12.Lightpath 11 from node 4 to node 0 with 1000 Gbps and unsecurity.
-12:20:18.972 TRACE vtm.LightpathTopology [main] v.LightpathTopology.addLightpaths(57) - 4.3.13.Lightpath 12 from node 4 to node 2 with 1000 Gbps and security.
-12:20:18.972 TRACE vtm.LightpathTopology [main] v.LightpathTopology.addLightpaths(57) - 4.3.14.Lightpath 13 from node 4 to node 3 with 1000 Gbps and unsecurity.
-12:20:18.972 TRACE vtm.LightpathTopology [main] v.LightpathTopology.addLightpaths(66) - 4.3.Added.
-12:20:18.972 TRACE vtm.Simulator [main] v.Simulator.activate(55) - 4.Constructed.
-12:20:18.972 TRACE vtm.Simulator [main] v.Simulator.activate(57) - 5.Loading the virtual topology mapping algorithm.
+11:31:35.919 TRACE simulators.SurvivableRouting.Simulator [main] s.S.Simulator.activate(29) - SIMULATOR BEGIN on "ERSLG-Aware Survivable Routing".
+11:31:35.921 TRACE simulators.SurvivableRouting.Simulator [main] s.S.Simulator.activate(31) - 1.Reading physical topology XML file "./topo/5NodePartialMeshNet.xml".
+11:31:35.923 TRACE simulators.SurvivableRouting.Simulator [main] s.S.Simulator.activate(35) - 1.Read.
+11:31:35.924 TRACE simulators.SurvivableRouting.Simulator [main] s.S.Simulator.activate(37) - 2.Constructing the physical topology.
+11:31:35.931 TRACE simulators.SurvivableRouting.PhysicalTopology [main] s.S.PhysicalTopology.<init>(24) - 2.1.Physical topology uses 5PMNet topology.
+11:31:35.937 TRACE simulators.SurvivableRouting.PhysicalTopology [main] s.S.PhysicalTopology.setNodes(35) - 2.2.Adding 5 nodes.
+11:31:35.941 TRACE simulators.SurvivableRouting.PhysicalTopology [main] s.S.PhysicalTopology.setNodes(41) - 2.2.1.Node 0 is ROADM.
+11:31:35.942 TRACE simulators.SurvivableRouting.PhysicalTopology [main] s.S.PhysicalTopology.setNodes(41) - 2.2.2.Node 1 is ROADM.
+11:31:35.942 TRACE simulators.SurvivableRouting.PhysicalTopology [main] s.S.PhysicalTopology.setNodes(41) - 2.2.3.Node 2 is ROADM.
+11:31:35.942 TRACE simulators.SurvivableRouting.PhysicalTopology [main] s.S.PhysicalTopology.setNodes(41) - 2.2.4.Node 3 is ROADM.
+11:31:35.942 TRACE simulators.SurvivableRouting.PhysicalTopology [main] s.S.PhysicalTopology.setNodes(41) - 2.2.5.Node 4 is ROADM.
+11:31:35.942 TRACE simulators.SurvivableRouting.PhysicalTopology [main] s.S.PhysicalTopology.setNodes(43) - 2.2.Added.
+11:31:35.943 TRACE simulators.SurvivableRouting.PhysicalTopology [main] s.S.PhysicalTopology.setEdges(49) - 2.3.Adding 14 fibers.
+11:31:35.943 TRACE simulators.SurvivableRouting.PhysicalTopology [main] s.S.PhysicalTopology.setEdges(58) - 2.3.1.Fiber 0 from node 0 to node 1 with 400 Gbps.
+11:31:35.943 TRACE simulators.SurvivableRouting.PhysicalTopology [main] s.S.PhysicalTopology.setEdges(58) - 2.3.2.Fiber 1 from node 0 to node 4 with 400 Gbps.
+11:31:35.944 TRACE simulators.SurvivableRouting.PhysicalTopology [main] s.S.PhysicalTopology.setEdges(58) - 2.3.3.Fiber 2 from node 1 to node 0 with 400 Gbps.
+11:31:35.944 TRACE simulators.SurvivableRouting.PhysicalTopology [main] s.S.PhysicalTopology.setEdges(58) - 2.3.4.Fiber 3 from node 1 to node 2 with 400 Gbps.
+11:31:35.944 TRACE simulators.SurvivableRouting.PhysicalTopology [main] s.S.PhysicalTopology.setEdges(58) - 2.3.5.Fiber 4 from node 1 to node 3 with 400 Gbps.
+11:31:35.944 TRACE simulators.SurvivableRouting.PhysicalTopology [main] s.S.PhysicalTopology.setEdges(58) - 2.3.6.Fiber 5 from node 2 to node 1 with 400 Gbps.
+11:31:35.944 TRACE simulators.SurvivableRouting.PhysicalTopology [main] s.S.PhysicalTopology.setEdges(58) - 2.3.7.Fiber 6 from node 2 to node 3 with 400 Gbps.
+11:31:35.945 TRACE simulators.SurvivableRouting.PhysicalTopology [main] s.S.PhysicalTopology.setEdges(58) - 2.3.8.Fiber 7 from node 2 to node 4 with 400 Gbps.
+11:31:35.945 TRACE simulators.SurvivableRouting.PhysicalTopology [main] s.S.PhysicalTopology.setEdges(58) - 2.3.9.Fiber 8 from node 3 to node 1 with 400 Gbps.
+11:31:35.945 TRACE simulators.SurvivableRouting.PhysicalTopology [main] s.S.PhysicalTopology.setEdges(58) - 2.3.10.Fiber 9 from node 3 to node 2 with 400 Gbps.
+11:31:35.945 TRACE simulators.SurvivableRouting.PhysicalTopology [main] s.S.PhysicalTopology.setEdges(58) - 2.3.11.Fiber 10 from node 3 to node 4 with 400 Gbps.
+11:31:35.945 TRACE simulators.SurvivableRouting.PhysicalTopology [main] s.S.PhysicalTopology.setEdges(58) - 2.3.12.Fiber 11 from node 4 to node 0 with 400 Gbps.
+11:31:35.945 TRACE simulators.SurvivableRouting.PhysicalTopology [main] s.S.PhysicalTopology.setEdges(58) - 2.3.13.Fiber 12 from node 4 to node 2 with 400 Gbps.
+11:31:35.946 TRACE simulators.SurvivableRouting.PhysicalTopology [main] s.S.PhysicalTopology.setEdges(58) - 2.3.14.Fiber 13 from node 4 to node 3 with 400 Gbps.
+11:31:35.946 TRACE simulators.SurvivableRouting.PhysicalTopology [main] s.S.PhysicalTopology.setEdges(66) - 2.3.Added.
+11:31:35.946 TRACE simulators.SurvivableRouting.Simulator [main] s.S.Simulator.activate(39) - 2.Constructed.
+11:31:35.946 TRACE simulators.SurvivableRouting.Simulator [main] s.S.Simulator.activate(41) - 3.Initializing the eavesdropping risk link group.
+11:31:35.947 TRACE simulators.SurvivableRouting.EveasdroppingRisk [main] s.S.EveasdroppingRisk.<init>(10) - 3.1.risk
+11:31:35.947 TRACE simulators.SurvivableRouting.Simulator [main] s.S.Simulator.activate(43) - 3.Done.

@@ -16,29 +16,29 @@
     <!-- 'oxcAddDropDegreeExpenditure' optional, OXC add drop degree expenditure in W -->
     <!-- 'olaExpenditure' optional, Optical line amplifier expenditure in W -->
     <!-- 'spanSize' optional, size of a span, km -->
-    <topology name="5PMNet" wavelengths="4">
+    <topology name="5PMNet">
         <nodes>
-            <node id="0" type="SROADM"/>
-            <node id="1" type="SROADM"/>
-            <node id="2" type="SROADM"/>
-            <node id="3" type="SROADM"/>
-            <node id="4" type="SROADM"/>
+            <node id="0" type="ROADM"/>
+            <node id="1" type="ROADM"/>
+            <node id="2" type="ROADM"/>
+            <node id="3" type="ROADM"/>
+            <node id="4" type="ROADM"/>
         </nodes>
         <links>
-            <link id="0" source="0" destination="1" delay="4" weight="800" bandwidth="1000"/>
-            <link id="1" source="0" destination="4" delay="4" weight="800" bandwidth="1000"/>
-            <link id="2" source="1" destination="0" delay="4" weight="800" bandwidth="1000"/>
-            <link id="3" source="1" destination="2" delay="4" weight="800" bandwidth="1000"/>
-            <link id="4" source="1" destination="3" delay="4" weight="800" bandwidth="1000"/>
-            <link id="5" source="2" destination="1" delay="4" weight="800" bandwidth="1000"/>
-            <link id="6" source="2" destination="3" delay="4" weight="800" bandwidth="1000"/>
-            <link id="7" source="2" destination="4" delay="4" weight="800" bandwidth="1000"/>
-            <link id="8" source="3" destination="1" delay="4" weight="800" bandwidth="1000"/>
-            <link id="9" source="3" destination="2" delay="4" weight="800" bandwidth="1000"/>
-            <link id="10" source="3" destination="4" delay="4" weight="800" bandwidth="1000"/>
-            <link id="11" source="4" destination="0" delay="4" weight="800" bandwidth="1000"/>
-            <link id="12" source="4" destination="2" delay="4" weight="800" bandwidth="1000"/>
-            <link id="13" source="4" destination="3" delay="4" weight="800" bandwidth="1000"/>
+            <link id="0" source="0" destination="1" delay="4" weight="800" bandwidth="100" wavelengths="4"/>
+            <link id="1" source="0" destination="4" delay="4" weight="800" bandwidth="100" wavelengths="4"/>
+            <link id="2" source="1" destination="0" delay="4" weight="800" bandwidth="100" wavelengths="4"/>
+            <link id="3" source="1" destination="2" delay="4" weight="800" bandwidth="100" wavelengths="4"/>
+            <link id="4" source="1" destination="3" delay="4" weight="800" bandwidth="100" wavelengths="4"/>
+            <link id="5" source="2" destination="1" delay="4" weight="800" bandwidth="100" wavelengths="4"/>
+            <link id="6" source="2" destination="3" delay="4" weight="800" bandwidth="100" wavelengths="4"/>
+            <link id="7" source="2" destination="4" delay="4" weight="800" bandwidth="100" wavelengths="4"/>
+            <link id="8" source="3" destination="1" delay="4" weight="800" bandwidth="100" wavelengths="4"/>
+            <link id="9" source="3" destination="2" delay="4" weight="800" bandwidth="100" wavelengths="4"/>
+            <link id="10" source="3" destination="4" delay="4" weight="800" bandwidth="100" wavelengths="4"/>
+            <link id="11" source="4" destination="0" delay="4" weight="800" bandwidth="100" wavelengths="4"/>
+            <link id="12" source="4" destination="2" delay="4" weight="800" bandwidth="100" wavelengths="4"/>
+            <link id="13" source="4" destination="3" delay="4" weight="800" bandwidth="100" wavelengths="4"/>
         </links>
     </topology>
 </sonsim>

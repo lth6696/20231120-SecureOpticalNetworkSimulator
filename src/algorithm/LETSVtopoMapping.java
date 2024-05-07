@@ -5,7 +5,7 @@ import org.apache.logging.log4j.Logger;
 import org.jgrapht.Graph;
 import org.jgrapht.GraphPath;
 import org.jgrapht.alg.shortestpath.YenKShortestPath;
-import vtm.*;
+import simulators.TopologyMapping.*;
 
 public class LETSVtopoMapping extends Algorithm{
     private static final Logger logger = LogManager.getLogger(LETSVtopoMapping.class);
@@ -20,7 +20,7 @@ public class LETSVtopoMapping extends Algorithm{
         logger.trace("5.1.1.Iterate each lightpath.");
         for (Lightpath lightpath : lightpaths) {
             YenKShortestPath<ROADM,Fiber> KSP = new YenKShortestPath<>(G);
-            GraphPath<ROADM,Fiber> paths = KSP.getPaths()
+//            GraphPath<ROADM,Fiber> paths = KSP.getPaths();
         }
     }
 }

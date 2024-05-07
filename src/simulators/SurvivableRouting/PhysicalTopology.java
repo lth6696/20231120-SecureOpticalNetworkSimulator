@@ -1,4 +1,4 @@
-package vtm;
+package simulators.SurvivableRouting;
 
 import network.Topology;
 import org.apache.logging.log4j.LogManager;
@@ -9,7 +9,6 @@ import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
 public class PhysicalTopology extends Topology {
-    private int wavelength;
     private ROADM[] ROADMs;
     private Fiber[] Fibers;
     protected Graph<ROADM, Fiber> G = new DirectedMultigraph<>(Fiber.class);
@@ -28,12 +27,6 @@ public class PhysicalTopology extends Topology {
         NodeList edgeList = xml.getElementsByTagName("link");
         setNodes(nodeList);
         setEdges(edgeList);
-//        DijkstraShortestPath<Node, Edge> dijkstra = new DijkstraShortestPath<>(this.G);
-//        GraphPath<Node, Edge> path = dijkstra.getPath(NodeList[2], NodeList[0]);
-//        for (Edge e : path.getEdgeList())
-//        {
-//            logger.info("%s".formatted(e.toString()));
-//        }
     }
 
     private void setNodes(NodeList nodeList) {
@@ -59,14 +52,15 @@ public class PhysicalTopology extends Topology {
             int src = Integer.parseInt(((Element) edgeList.item(i)).getAttribute("source"));
             int dst = Integer.parseInt(((Element) edgeList.item(i)).getAttribute("destination"));
             int bandwidth = Integer.parseInt(((Element) edgeList.item(i)).getAttribute("bandwidth"));
-            this.Fibers[i] = new Fiber(id, src, dst, bandwidth);
+            int wavelength = Integer.parseInt(((Element) edgeList.item(i)).getAttribute("wavelengths"));
+            this.Fibers[i] = new Fiber(id, src, dst, bandwidth, wavelength);
             this.G.addEdge(this.ROADMs[src], this.ROADMs[dst], this.Fibers[i]);
             logger.trace("2.3.%s.Fiber %d from node %d to node %d with %d Gbps.".formatted(
                     Integer.toString(i+1),
                     id,
                     src,
                     dst,
-                    bandwidth
+                    bandwidth * wavelength
             ));
         }
         logger.trace("2.3.Added.");
