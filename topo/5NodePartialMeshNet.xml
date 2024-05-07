@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sonsim version="1.0" type="optical">
+    <!--module is the Routing Algorithm class in java-->
+    <ra module="None"/>
+
+    <traffic/>
+    <!-- 'wavelengths' Number wavelengths for all links -->
+    <!-- 'mensageProcessingTime' optional, mensage processing time in s -->
+    <!-- 'configurationTimeOXC' optional, configuration time OXC in s -->
+    <!-- 'propagationDelayTime' optional, propagation delay time in s -->
+    <!-- 'switchTime' optional, switch time in s -->
+    <!-- 'oxcTransitionTime' optional, OXC transition time (sleep/wake) in s -->
+    <!-- 'oxcSleepModeExpenditure' optional, OXC sleep mode expenditure in percent (%) -->
+    <!-- 'oxcOperationExpenditure' optional, OXC operation expenditure in W -->
+    <!-- 'oxcNodeDegreeExpenditure' optional, OXC node degree expenditure in W -->
+    <!-- 'oxcAddDropDegreeExpenditure' optional, OXC add drop degree expenditure in W -->
+    <!-- 'olaExpenditure' optional, Optical line amplifier expenditure in W -->
+    <!-- 'spanSize' optional, size of a span, km -->
+    <topology name="5PMNet" wavelengths="4">
+        <nodes>
+            <node id="0" type="SROADM"/>
+            <node id="1" type="SROADM"/>
+            <node id="2" type="SROADM"/>
+            <node id="3" type="SROADM"/>
+            <node id="4" type="SROADM"/>
+        </nodes>
+        <links>
+            <link id="0" source="0" destination="1" delay="4" weight="800" bandwidth="1000"/>
+            <link id="1" source="0" destination="4" delay="4" weight="800" bandwidth="1000"/>
+            <link id="2" source="1" destination="0" delay="4" weight="800" bandwidth="1000"/>
+            <link id="3" source="1" destination="2" delay="4" weight="800" bandwidth="1000"/>
+            <link id="4" source="1" destination="3" delay="4" weight="800" bandwidth="1000"/>
+            <link id="5" source="2" destination="1" delay="4" weight="800" bandwidth="1000"/>
+            <link id="6" source="2" destination="3" delay="4" weight="800" bandwidth="1000"/>
+            <link id="7" source="2" destination="4" delay="4" weight="800" bandwidth="1000"/>
+            <link id="8" source="3" destination="1" delay="4" weight="800" bandwidth="1000"/>
+            <link id="9" source="3" destination="2" delay="4" weight="800" bandwidth="1000"/>
+            <link id="10" source="3" destination="4" delay="4" weight="800" bandwidth="1000"/>
+            <link id="11" source="4" destination="0" delay="4" weight="800" bandwidth="1000"/>
+            <link id="12" source="4" destination="2" delay="4" weight="800" bandwidth="1000"/>
+            <link id="13" source="4" destination="3" delay="4" weight="800" bandwidth="1000"/>
+        </links>
+    </topology>
+</sonsim>
