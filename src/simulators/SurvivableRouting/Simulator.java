@@ -39,7 +39,7 @@ public class Simulator {
             logger.trace("2.Constructed.");
 
             logger.trace("3.Initializing the eavesdropping risk link group.");
-            new EveasdroppingRisk(pt);
+            new EavesdroppingRisk(pt);
             logger.trace("3.Done.");
 
 //            logger.trace("5.Loading the virtual topology mapping algorithm.");
