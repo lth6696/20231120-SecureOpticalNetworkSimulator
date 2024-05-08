@@ -42,10 +42,9 @@ public class Simulator {
             new EavesdroppingRisk(pt);
             logger.trace("3.Done.");
 
-//            logger.trace("5.Loading the virtual topology mapping algorithm.");
-//            LETSVtopoMapping algorithm = new LETSVtopoMapping();
-//            algorithm.run(lt.getLightpaths(), pt.G);
-//            logger.trace("5.Done.");
+            logger.trace("4.Loading the survivable routing algorithm.");
+            
+            logger.trace("4.Done.");
 
         } catch (Throwable t) {
             t.printStackTrace();

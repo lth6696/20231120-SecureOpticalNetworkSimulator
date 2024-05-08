@@ -6,7 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="43a3ca5a-f537-4707-8a42-1419963912f9" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/simulators/SurvivableRouting/EveasdroppingRisk.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/simulators/SurvivableRouting/EavesdroppingRisk.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/log/run.log" beforeDir="false" afterPath="$PROJECT_DIR$/log/run.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/simulators/SurvivableRouting/EavesdroppingRisk.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/simulators/SurvivableRouting/EavesdroppingRisk.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/simulators/SurvivableRouting/ROADM.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/simulators/SurvivableRouting/ROADM.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/simulators/SurvivableRouting/Simulator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/simulators/SurvivableRouting/Simulator.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -114,6 +116,11 @@
         <PinnedItemInfo parentTag="vtm.PhysicalTopology" memberName="Topology.nodes" />
       </pinned-members>
     </pin-to-top-manager>
+    <watches-manager>
+      <configuration name="Application">
+        <watch expression="risk_nodes" />
+      </configuration>
+    </watches-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
