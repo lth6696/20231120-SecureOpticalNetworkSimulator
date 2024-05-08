@@ -1,6 +1,5 @@
 package simulators.TopologyMapping;
 
-import algorithm.LETSVtopoMapping;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.w3c.dom.Document;
@@ -56,8 +55,8 @@ public class Simulator {
             logger.trace("4.Constructed.");
 
             logger.trace("5.Loading the virtual topology mapping algorithm.");
-            LETSVtopoMapping algorithm = new LETSVtopoMapping();
-            algorithm.run(lt.getLightpaths(), pt.G);
+//            LETSVtopoMapping algorithm = new LETSVtopoMapping();
+//            algorithm.run(lt.getLightpaths(), pt.G);
             logger.trace("5.Done.");
 
         } catch (Throwable t) {

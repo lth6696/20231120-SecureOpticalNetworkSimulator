@@ -1,5 +1,6 @@
 package simulators.SurvivableRouting;
 
+import algorithm.SuurballeSurvivableRoutingAlgorithm;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.w3c.dom.Document;
@@ -43,7 +44,8 @@ public class Simulator {
             logger.trace("3.Done.");
 
             logger.trace("4.Loading the survivable routing algorithm.");
-            
+            SuurballeSurvivableRoutingAlgorithm alg = new SuurballeSurvivableRoutingAlgorithm();
+            alg.run(pt);
             logger.trace("4.Done.");
 
         } catch (Throwable t) {
