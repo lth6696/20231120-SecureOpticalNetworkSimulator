@@ -1,6 +1,8 @@
 package simulators.SurvivableRouting;
 
 import algorithm.SuurballeSurvivableRoutingAlgorithm;
+import event.EventScheduler;
+import network.FlowGenerator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.w3c.dom.Document;
@@ -45,8 +47,15 @@ public class Simulator {
 
             logger.trace("4.Loading the survivable routing algorithm.");
             SuurballeSurvivableRoutingAlgorithm alg = new SuurballeSurvivableRoutingAlgorithm();
-            alg.run(pt);
             logger.trace("4.Done.");
+
+            EventScheduler evnt_scher = new EventScheduler();
+            ControlPlane ctrl_plane = new ControlPlane();
+            FlowGenerator flow_gen = new FlowGenerator();
+            flow_gen.generate(evnt_scher, pt);
+
+            SimulationRunner sim_runner = new SimulationRunner(ctrl_plane, evnt_scher);
+
 
         } catch (Throwable t) {
             t.printStackTrace();

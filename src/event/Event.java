@@ -1,7 +1,17 @@
 package event;
 
+import network.Flow;
+
 public class Event {
     private double time;
+    private Flow flow;
+    private String name;
+
+    public Event(String name, Flow flow, double time){
+        setName(name);
+        setFlow(flow);
+        setTime(time);
+    }
 
     /**
      * Sets a new time for the Event to happen.
@@ -20,4 +30,12 @@ public class Event {
     public double getTime() {
         return this.time;
     }
+
+    public void setFlow(Flow flow) { this.flow = flow; }
+
+    public Flow getFlow() { return this.flow; }
+
+    public void setName(String name) { this.name = name; }
+
+    public String getName() { return this.name; }
 }

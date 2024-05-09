@@ -16,7 +16,7 @@ public class SuurballeSurvivableRoutingAlgorithm extends Algorithm{
         this.AlgorithmName = "Suurballe's Survivable Routing Algorithm";
     }
 
-    public void run(PhysicalTopology pt){
+    public void routeFlow(PhysicalTopology pt){
         logger.trace("4.1.Routing working path and backup path for service request.");
         ROADM[] nodes = pt.getNodes();
         SuurballeKDisjointShortestPaths<ROADM, Fiber> a = new SuurballeKDisjointShortestPaths(pt.getGraph());
