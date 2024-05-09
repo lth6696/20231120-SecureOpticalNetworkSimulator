@@ -4,6 +4,7 @@ import event.Event;
 import event.EventScheduler;
 import util.Distribution;
 
+
 public class FlowGenerator {
     private int calls;
     private double load;
@@ -11,9 +12,10 @@ public class FlowGenerator {
     private double meanRate;
     private double meanHoldingTime;
 
-    public FlowGenerator(){
+    public FlowGenerator(Element xml){
         // 读取xml流量信息
         this.calls = 3;
+
     }
 
     public void generate(EventScheduler evnt_scher, Topology topology){

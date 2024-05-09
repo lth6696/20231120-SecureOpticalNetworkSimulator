@@ -1,6 +1,5 @@
 package simulators.SurvivableRouting;
 
-import algorithm.SuurballeSurvivableRoutingAlgorithm;
 import event.EventScheduler;
 import network.FlowGenerator;
 import org.apache.logging.log4j.LogManager;
@@ -45,17 +44,14 @@ public class Simulator {
             new EavesdroppingRisk(pt);
             logger.trace("3.Done.");
 
-            logger.trace("4.Loading the survivable routing algorithm.");
-            SuurballeSurvivableRoutingAlgorithm alg = new SuurballeSurvivableRoutingAlgorithm();
-            logger.trace("4.Done.");
-
+            logger.trace("4.Generating the traffic flow.");
             EventScheduler evnt_scher = new EventScheduler();
-            ControlPlane ctrl_plane = new ControlPlane();
-            FlowGenerator flow_gen = new FlowGenerator();
+            FlowGenerator flow_gen = new FlowGenerator((Element) ptdocument.getElementsByTagName("traffic").item(0));
             flow_gen.generate(evnt_scher, pt);
 
+            ControlPlane ctrl_plane = new ControlPlane();
             SimulationRunner sim_runner = new SimulationRunner(ctrl_plane, evnt_scher);
-
+            logger.trace("4.Done.");
 
         } catch (Throwable t) {
             t.printStackTrace();

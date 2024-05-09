@@ -24,6 +24,5 @@ public class SuurballeSurvivableRoutingAlgorithm extends Algorithm{
         allocateWavelength();
     }
 
-
     private void allocateWavelength(){}
 }

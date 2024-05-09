@@ -3,7 +3,20 @@
     <!--module is the Routing Algorithm class in java-->
     <ra module="None"/>
 
-    <traffic/>
+    <!-- 'calls' 业务流数量 -->
+    <!-- 'load' 业务负载 -->
+    <!-- 'max-rate=' 最高速率，用于结果统计 -->
+    <!-- 'statisticStart' 表示将从哪个业务开始收集统计信息 -->
+    <traffic calls="10" load="500" max-rate="10000" statisticStart="0">
+        <!-- 'holding-time' 业务持续时间，单位 second -->
+        <!-- 'rate' 业务速率，单位 Mbps 1000Mbps = 1Gbps -->
+        <calls holding-time="600" rate="1000"/>
+        <calls holding-time="600" rate="2000"/>
+        <calls holding-time="600" rate="4000"/>
+        <calls holding-time="600" rate="8000"/>
+        <calls holding-time="600" rate="10000"/>
+    </traffic>
+
     <!-- 'wavelengths' Number wavelengths for all links -->
     <!-- 'mensageProcessingTime' optional, mensage processing time in s -->
     <!-- 'configurationTimeOXC' optional, configuration time OXC in s -->
