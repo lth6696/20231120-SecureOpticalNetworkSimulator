@@ -7,14 +7,15 @@
     <!-- 'load' 业务负载 -->
     <!-- 'max-rate=' 最高速率，用于结果统计 -->
     <!-- 'statisticStart' 表示将从哪个业务开始收集统计信息 -->
-    <traffic calls="10" load="500" max-rate="10000" statisticStart="0">
+    <traffic calls="10" load="500" max-rate="100000" statisticStart="0">
         <!-- 'holding-time' 业务持续时间，单位 second -->
         <!-- 'rate' 业务速率，单位 Mbps 1000Mbps = 1Gbps -->
-        <calls holding-time="600" rate="1000"/>
-        <calls holding-time="600" rate="2000"/>
-        <calls holding-time="600" rate="4000"/>
-        <calls holding-time="600" rate="8000"/>
-        <calls holding-time="600" rate="10000"/>
+        <!-- 'weight' 不同业务的权重 -->
+        <calls holding-time="600" rate="1000" weight="9"/>
+        <calls holding-time="600" rate="2500" weight="5"/>
+        <calls holding-time="600" rate="10000" weight="2"/>
+        <calls holding-time="600" rate="40000" weight="1"/>
+        <calls holding-time="600" rate="100000" weight="1"/>
     </traffic>
 
     <!-- 'wavelengths' Number wavelengths for all links -->
