@@ -1,12 +1,13 @@
 package network;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.w3c.dom.*;
 import event.Event;
 import event.EventScheduler;
 import util.Distribution;
 
 import java.util.Arrays;
-
 
 public class FlowGenerator {
     private int calls;
@@ -18,6 +19,7 @@ public class FlowGenerator {
     private int TotalCallsWeight;
     private int[] callWeightsVector;
     private int numberCallsTypes;
+    private static final Logger logger = LogManager.getLogger(FlowGenerator.class);
 
     /**
      * Returns details about the network traffic: holding time, rate, class of
@@ -120,5 +122,7 @@ public class FlowGenerator {
             evnt_scher.addEvent(flow_arrive);
             evnt_scher.addEvent(flow_departure);
         }
+        logger.trace("%d flow have been generated.".formatted(this.calls));
+        logger.trace("%d events have been added to scheduler.".formatted(evnt_scher.numEvents()));
     }
 }

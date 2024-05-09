@@ -48,10 +48,11 @@ public class Simulator {
             EventScheduler evnt_scher = new EventScheduler();
             FlowGenerator flow_gen = new FlowGenerator((Element) ptdocument.getElementsByTagName("traffic").item(0));
             flow_gen.generate(evnt_scher, pt);
-
-            ControlPlane ctrl_plane = new ControlPlane();
-            SimulationRunner sim_runner = new SimulationRunner(ctrl_plane, evnt_scher);
             logger.trace("4.Done.");
+
+            logger.trace("5.Simulating the secure optical network.");
+            ControlPlane ctrl_plane = new ControlPlane((Element) ptdocument.getElementsByTagName("ra").item(0), pt);
+            SimulationRunner sim_runner = new SimulationRunner(ctrl_plane, evnt_scher);
 
         } catch (Throwable t) {
             t.printStackTrace();
