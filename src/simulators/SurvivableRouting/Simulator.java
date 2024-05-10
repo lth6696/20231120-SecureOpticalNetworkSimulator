@@ -54,6 +54,7 @@ public class Simulator {
             logger.trace("5.Simulating the secure optical network.");
             ControlPlane ctrl_plane = new ControlPlane((Element) ptdocument.getElementsByTagName("ra").item(0), pt);
             this.runSimulator(ctrl_plane, evnt_scher);
+            logger.trace("5.Done.");
 
         } catch (Throwable t) {
             t.printStackTrace();

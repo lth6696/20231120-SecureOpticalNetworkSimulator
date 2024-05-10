@@ -1,40 +1,49 @@
-11:35:40.109 TRACE simulators.SurvivableRouting.Simulator [main] s.S.Simulator.activate(32) - SIMULATOR BEGIN on "ERSLG-Aware Survivable Routing".
-11:35:40.111 TRACE simulators.SurvivableRouting.Simulator [main] s.S.Simulator.activate(34) - 1.Reading physical topology XML file "./topo/5NodePartialMeshNet.xml".
-11:35:40.114 TRACE simulators.SurvivableRouting.Simulator [main] s.S.Simulator.activate(38) - 1.Read.
-11:35:40.115 TRACE simulators.SurvivableRouting.Simulator [main] s.S.Simulator.activate(40) - 2.Constructing the physical topology.
-11:35:40.122 TRACE simulators.SurvivableRouting.PhysicalTopology [main] s.S.PhysicalTopology.<init>(24) - 2.1.Physical topology uses 5PMNet topology.
-11:35:40.129 TRACE simulators.SurvivableRouting.PhysicalTopology [main] s.S.PhysicalTopology.setNodes(35) - 2.2.Adding 5 nodes.
-11:35:40.132 TRACE simulators.SurvivableRouting.PhysicalTopology [main] s.S.PhysicalTopology.setNodes(41) - 2.2.1.Node 0 is ROADM.
-11:35:40.133 TRACE simulators.SurvivableRouting.PhysicalTopology [main] s.S.PhysicalTopology.setNodes(41) - 2.2.2.Node 1 is ROADM.
-11:35:40.133 TRACE simulators.SurvivableRouting.PhysicalTopology [main] s.S.PhysicalTopology.setNodes(41) - 2.2.3.Node 2 is ROADM.
-11:35:40.133 TRACE simulators.SurvivableRouting.PhysicalTopology [main] s.S.PhysicalTopology.setNodes(41) - 2.2.4.Node 3 is ROADM.
-11:35:40.133 TRACE simulators.SurvivableRouting.PhysicalTopology [main] s.S.PhysicalTopology.setNodes(41) - 2.2.5.Node 4 is ROADM.
-11:35:40.133 TRACE simulators.SurvivableRouting.PhysicalTopology [main] s.S.PhysicalTopology.setNodes(43) - 2.2.Added.
-11:35:40.133 TRACE simulators.SurvivableRouting.PhysicalTopology [main] s.S.PhysicalTopology.setEdges(49) - 2.3.Adding 14 fibers.
-11:35:40.134 TRACE simulators.SurvivableRouting.PhysicalTopology [main] s.S.PhysicalTopology.setEdges(58) - 2.3.1.Fiber 0 from node 0 to node 1 with 400 Gbps.
-11:35:40.134 TRACE simulators.SurvivableRouting.PhysicalTopology [main] s.S.PhysicalTopology.setEdges(58) - 2.3.2.Fiber 1 from node 0 to node 4 with 400 Gbps.
-11:35:40.135 TRACE simulators.SurvivableRouting.PhysicalTopology [main] s.S.PhysicalTopology.setEdges(58) - 2.3.3.Fiber 2 from node 1 to node 0 with 400 Gbps.
-11:35:40.135 TRACE simulators.SurvivableRouting.PhysicalTopology [main] s.S.PhysicalTopology.setEdges(58) - 2.3.4.Fiber 3 from node 1 to node 2 with 400 Gbps.
-11:35:40.135 TRACE simulators.SurvivableRouting.PhysicalTopology [main] s.S.PhysicalTopology.setEdges(58) - 2.3.5.Fiber 4 from node 1 to node 3 with 400 Gbps.
-11:35:40.135 TRACE simulators.SurvivableRouting.PhysicalTopology [main] s.S.PhysicalTopology.setEdges(58) - 2.3.6.Fiber 5 from node 2 to node 1 with 400 Gbps.
-11:35:40.135 TRACE simulators.SurvivableRouting.PhysicalTopology [main] s.S.PhysicalTopology.setEdges(58) - 2.3.7.Fiber 6 from node 2 to node 3 with 400 Gbps.
-11:35:40.136 TRACE simulators.SurvivableRouting.PhysicalTopology [main] s.S.PhysicalTopology.setEdges(58) - 2.3.8.Fiber 7 from node 2 to node 4 with 400 Gbps.
-11:35:40.136 TRACE simulators.SurvivableRouting.PhysicalTopology [main] s.S.PhysicalTopology.setEdges(58) - 2.3.9.Fiber 8 from node 3 to node 1 with 400 Gbps.
-11:35:40.136 TRACE simulators.SurvivableRouting.PhysicalTopology [main] s.S.PhysicalTopology.setEdges(58) - 2.3.10.Fiber 9 from node 3 to node 2 with 400 Gbps.
-11:35:40.136 TRACE simulators.SurvivableRouting.PhysicalTopology [main] s.S.PhysicalTopology.setEdges(58) - 2.3.11.Fiber 10 from node 3 to node 4 with 400 Gbps.
-11:35:40.136 TRACE simulators.SurvivableRouting.PhysicalTopology [main] s.S.PhysicalTopology.setEdges(58) - 2.3.12.Fiber 11 from node 4 to node 0 with 400 Gbps.
-11:35:40.137 TRACE simulators.SurvivableRouting.PhysicalTopology [main] s.S.PhysicalTopology.setEdges(58) - 2.3.13.Fiber 12 from node 4 to node 2 with 400 Gbps.
-11:35:40.137 TRACE simulators.SurvivableRouting.PhysicalTopology [main] s.S.PhysicalTopology.setEdges(58) - 2.3.14.Fiber 13 from node 4 to node 3 with 400 Gbps.
-11:35:40.137 TRACE simulators.SurvivableRouting.PhysicalTopology [main] s.S.PhysicalTopology.setEdges(66) - 2.3.Added.
-11:35:40.137 TRACE simulators.SurvivableRouting.Simulator [main] s.S.Simulator.activate(42) - 2.Constructed.
-11:35:40.137 TRACE simulators.SurvivableRouting.Simulator [main] s.S.Simulator.activate(44) - 3.Initializing the eavesdropping risk link group.
-11:35:40.139 TRACE simulators.SurvivableRouting.EavesdroppingRisk [main] s.S.EavesdroppingRisk.<init>(13) - 3.1.Randomly sampled eavesdropping nodes: [2]
-11:35:40.139 TRACE simulators.SurvivableRouting.Simulator [main] s.S.Simulator.activate(46) - 3.Done.
-11:35:40.139 TRACE simulators.SurvivableRouting.Simulator [main] s.S.Simulator.activate(48) - 4.Generating the traffic flow.
-11:35:40.143 TRACE network.FlowGenerator [main] n.FlowGenerator.generate(125) - 4 flow have been generated.
-11:35:40.143 TRACE network.FlowGenerator [main] n.FlowGenerator.generate(126) - 8 events have been added to scheduler.
-11:35:40.144 TRACE simulators.SurvivableRouting.Simulator [main] s.S.Simulator.activate(52) - 4.Done.
-11:35:40.144 TRACE simulators.SurvivableRouting.Simulator [main] s.S.Simulator.activate(54) - 5.Simulating the secure optical network.
-11:35:40.145 TRACE algorithm.SuurballeSurvivableRoutingAlgorithm [main] a.SuurballeSurvivableRoutingAlgorithm.<init>(18) - The "class algorithm.SuurballeSurvivableRoutingAlgorithm" has been loaded.
-11:35:40.145 TRACE simulators.SurvivableRouting.Simulator [main] s.S.Simulator.runSimulator(71) - The simulation running progress is 50%.
-11:35:40.145 TRACE simulators.SurvivableRouting.Simulator [main] s.S.Simulator.runSimulator(71) - The simulation running progress is 100%.
+23:46:19.480 TRACE simulators.SurvivableRouting.Simulator [main] s.S.Simulator.activate(32) - SIMULATOR BEGIN on "ERSLG-Aware Survivable Routing".
+23:46:19.483 TRACE simulators.SurvivableRouting.Simulator [main] s.S.Simulator.activate(34) - 1.Reading physical topology XML file "./topo/5NodePartialMeshNet.xml".
+23:46:19.488 TRACE simulators.SurvivableRouting.Simulator [main] s.S.Simulator.activate(38) - 1.Read.
+23:46:19.489 TRACE simulators.SurvivableRouting.Simulator [main] s.S.Simulator.activate(40) - 2.Constructing the physical topology.
+23:46:19.490 TRACE simulators.SurvivableRouting.PhysicalTopology [main] s.S.PhysicalTopology.<init>(21) - 2.1.Physical topology uses 5PMNet topology.
+23:46:19.510 TRACE simulators.SurvivableRouting.PhysicalTopology [main] s.S.PhysicalTopology.setNodes(33) - 2.2.Adding 5 nodes.
+23:46:19.514 TRACE simulators.SurvivableRouting.PhysicalTopology [main] s.S.PhysicalTopology.setNodes(39) - 2.2.1.Node 0 is ROADM.
+23:46:19.515 TRACE simulators.SurvivableRouting.PhysicalTopology [main] s.S.PhysicalTopology.setNodes(39) - 2.2.2.Node 1 is ROADM.
+23:46:19.515 TRACE simulators.SurvivableRouting.PhysicalTopology [main] s.S.PhysicalTopology.setNodes(39) - 2.2.3.Node 2 is ROADM.
+23:46:19.516 TRACE simulators.SurvivableRouting.PhysicalTopology [main] s.S.PhysicalTopology.setNodes(39) - 2.2.4.Node 3 is ROADM.
+23:46:19.516 TRACE simulators.SurvivableRouting.PhysicalTopology [main] s.S.PhysicalTopology.setNodes(39) - 2.2.5.Node 4 is ROADM.
+23:46:19.516 TRACE simulators.SurvivableRouting.PhysicalTopology [main] s.S.PhysicalTopology.setNodes(41) - 2.2.Added.
+23:46:19.516 TRACE simulators.SurvivableRouting.PhysicalTopology [main] s.S.PhysicalTopology.setEdges(47) - 2.3.Adding 14 fibers.
+23:46:19.518 TRACE simulators.SurvivableRouting.PhysicalTopology [main] s.S.PhysicalTopology.setEdges(56) - 2.3.1.Fiber 0 from node 0 to node 1 with 400000 Gbps.
+23:46:19.518 TRACE simulators.SurvivableRouting.PhysicalTopology [main] s.S.PhysicalTopology.setEdges(56) - 2.3.2.Fiber 1 from node 0 to node 4 with 400000 Gbps.
+23:46:19.519 TRACE simulators.SurvivableRouting.PhysicalTopology [main] s.S.PhysicalTopology.setEdges(56) - 2.3.3.Fiber 2 from node 1 to node 0 with 400000 Gbps.
+23:46:19.520 TRACE simulators.SurvivableRouting.PhysicalTopology [main] s.S.PhysicalTopology.setEdges(56) - 2.3.4.Fiber 3 from node 1 to node 2 with 400000 Gbps.
+23:46:19.520 TRACE simulators.SurvivableRouting.PhysicalTopology [main] s.S.PhysicalTopology.setEdges(56) - 2.3.5.Fiber 4 from node 1 to node 3 with 400000 Gbps.
+23:46:19.520 TRACE simulators.SurvivableRouting.PhysicalTopology [main] s.S.PhysicalTopology.setEdges(56) - 2.3.6.Fiber 5 from node 2 to node 1 with 400000 Gbps.
+23:46:19.521 TRACE simulators.SurvivableRouting.PhysicalTopology [main] s.S.PhysicalTopology.setEdges(56) - 2.3.7.Fiber 6 from node 2 to node 3 with 400000 Gbps.
+23:46:19.521 TRACE simulators.SurvivableRouting.PhysicalTopology [main] s.S.PhysicalTopology.setEdges(56) - 2.3.8.Fiber 7 from node 2 to node 4 with 400000 Gbps.
+23:46:19.521 TRACE simulators.SurvivableRouting.PhysicalTopology [main] s.S.PhysicalTopology.setEdges(56) - 2.3.9.Fiber 8 from node 3 to node 1 with 400000 Gbps.
+23:46:19.521 TRACE simulators.SurvivableRouting.PhysicalTopology [main] s.S.PhysicalTopology.setEdges(56) - 2.3.10.Fiber 9 from node 3 to node 2 with 400000 Gbps.
+23:46:19.522 TRACE simulators.SurvivableRouting.PhysicalTopology [main] s.S.PhysicalTopology.setEdges(56) - 2.3.11.Fiber 10 from node 3 to node 4 with 400000 Gbps.
+23:46:19.522 TRACE simulators.SurvivableRouting.PhysicalTopology [main] s.S.PhysicalTopology.setEdges(56) - 2.3.12.Fiber 11 from node 4 to node 0 with 400000 Gbps.
+23:46:19.522 TRACE simulators.SurvivableRouting.PhysicalTopology [main] s.S.PhysicalTopology.setEdges(56) - 2.3.13.Fiber 12 from node 4 to node 2 with 400000 Gbps.
+23:46:19.522 TRACE simulators.SurvivableRouting.PhysicalTopology [main] s.S.PhysicalTopology.setEdges(56) - 2.3.14.Fiber 13 from node 4 to node 3 with 400000 Gbps.
+23:46:19.522 TRACE simulators.SurvivableRouting.PhysicalTopology [main] s.S.PhysicalTopology.setEdges(64) - 2.3.Added.
+23:46:19.522 TRACE simulators.SurvivableRouting.Simulator [main] s.S.Simulator.activate(42) - 2.Constructed.
+23:46:19.522 TRACE simulators.SurvivableRouting.Simulator [main] s.S.Simulator.activate(44) - 3.Initializing the eavesdropping risk link group.
+23:46:19.524 TRACE simulators.SurvivableRouting.EavesdroppingRisk [main] s.S.EavesdroppingRisk.<init>(14) - 3.1.Randomly sampled eavesdropping nodes: [0]
+23:46:19.525 TRACE simulators.SurvivableRouting.Simulator [main] s.S.Simulator.activate(46) - 3.Done.
+23:46:19.525 TRACE simulators.SurvivableRouting.Simulator [main] s.S.Simulator.activate(48) - 4.Generating the traffic flow.
+23:46:19.531 TRACE network.FlowGenerator [main] n.FlowGenerator.generate(125) - 1000 flow have been generated.
+23:46:19.531 TRACE network.FlowGenerator [main] n.FlowGenerator.generate(126) - 2000 events have been added to scheduler.
+23:46:19.531 TRACE simulators.SurvivableRouting.Simulator [main] s.S.Simulator.activate(52) - 4.Done.
+23:46:19.531 TRACE simulators.SurvivableRouting.Simulator [main] s.S.Simulator.activate(54) - 5.Simulating the secure optical network.
+23:46:19.533 TRACE algorithm.SuurballeSurvivableRoutingAlgorithm [main] a.SuurballeSurvivableRoutingAlgorithm.<init>(20) - The "Suurballe's Survivable Routing Algorithm" has been loaded.
+23:46:20.856 TRACE simulators.SurvivableRouting.Simulator [main] s.S.Simulator.runSimulator(72) - The simulation running progress is 10%.
+23:46:20.991 TRACE simulators.SurvivableRouting.Simulator [main] s.S.Simulator.runSimulator(72) - The simulation running progress is 20%.
+23:46:21.126 TRACE simulators.SurvivableRouting.Simulator [main] s.S.Simulator.runSimulator(72) - The simulation running progress is 30%.
+23:46:21.261 TRACE simulators.SurvivableRouting.Simulator [main] s.S.Simulator.runSimulator(72) - The simulation running progress is 40%.
+23:46:21.393 TRACE simulators.SurvivableRouting.Simulator [main] s.S.Simulator.runSimulator(72) - The simulation running progress is 50%.
+23:46:21.528 TRACE simulators.SurvivableRouting.Simulator [main] s.S.Simulator.runSimulator(72) - The simulation running progress is 60%.
+23:46:21.652 TRACE simulators.SurvivableRouting.Simulator [main] s.S.Simulator.runSimulator(72) - The simulation running progress is 70%.
+23:46:21.796 TRACE simulators.SurvivableRouting.Simulator [main] s.S.Simulator.runSimulator(72) - The simulation running progress is 80%.
+23:46:21.921 TRACE simulators.SurvivableRouting.Simulator [main] s.S.Simulator.runSimulator(72) - The simulation running progress is 90%.
+23:46:22.046 TRACE simulators.SurvivableRouting.Simulator [main] s.S.Simulator.runSimulator(72) - The simulation running progress is 100%.
+23:47:05.597 TRACE simulators.SurvivableRouting.Simulator [main] s.S.Simulator.activate(57) - 5.Done.

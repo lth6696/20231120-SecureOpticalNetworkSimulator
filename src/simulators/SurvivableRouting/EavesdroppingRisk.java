@@ -1,5 +1,6 @@
 package simulators.SurvivableRouting;
 
+import network.Node;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -20,13 +21,13 @@ public class EavesdroppingRisk {
 
     private Set<Integer> setEavesdroppingRiskNodeRandom(PhysicalTopology pt){
         int num_nodes = pt.getNodesNum();
-        ROADM[] nodes = pt.getNodes();
+        Node[] nodes = pt.getNodes();
         Set<Integer> risk_nodes = new HashSet<>();
 
-        while (risk_nodes.size() < (int)(RiskNodeRatio*num_nodes)) {
-            int selected_node = (int)(Math.random()*num_nodes);
+        while (risk_nodes.size() < (int)(RiskNodeRatio * num_nodes)) {
+            int selected_node = (int)(Math.random() * num_nodes);
             risk_nodes.add(selected_node);
-            nodes[selected_node].eavesdropping_risk = true;
+            nodes[selected_node].setAttr("TappingRisk", 1);
         }
         return risk_nodes;
     }

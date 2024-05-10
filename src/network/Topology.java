@@ -1,12 +1,16 @@
 package network;
 
+import org.jgrapht.Graph;
 import org.w3c.dom.*;
 
 public abstract class Topology {
 
-    protected int nodes;
-    protected int links;
-    protected String topologyName;
+    public int numNodes;
+    public int numLinks;
+    public String topologyName;
+    public Node[] nodes;
+    public Link[] links;
+    public Graph<Node, Link> G;
 
     protected double mensageProcessingTime = 1.0E-5; //(in s)
     protected double configurationTimeOXC = 1.0E-5; //(in s)
@@ -78,14 +82,22 @@ public abstract class Topology {
     }
 
     public int getNodesNum() {
-        return this.nodes;
+        return this.numNodes;
     };
 
     public int getLinksNum() {
-        return this.links;
+        return this.numLinks;
     }
+
+    public Node[] getNodes() { return this.nodes; }
+
+    public Link[] getLinks() { return this.links; }
 
     public String getTopologyName() {
         return this.topologyName;
+    }
+
+    public Graph<Node, Link> getGraph() {
+        return this.G;
     }
 }

@@ -29,7 +29,7 @@ public class ControlPlane {
         switch (event.getName()) {
             case "FlowArrive":
 //                long time = System.currentTimeMillis();
-                this.algorithm.routeFlow(this.pt.G, event.getFlow());
+                this.algorithm.routeFlow(this.pt, event.getFlow());
                 break;
             case "FlowDeparture":
                 this.algorithm.removeFlow();

@@ -1,6 +1,6 @@
 package simulators.SurvivableRouting;
 
-import network.Topology;
+import network.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.jgrapht.Graph;
@@ -9,9 +9,6 @@ import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
 public class PhysicalTopology extends Topology {
-    private ROADM[] ROADMs;
-    private Fiber[] Fibers;
-    protected Graph<ROADM, Fiber> G = new DirectedMultigraph<>(Fiber.class);
     private static final Logger logger = LogManager.getLogger(PhysicalTopology.class);
 
     public PhysicalTopology(Element xml) throws Exception {
@@ -23,6 +20,7 @@ public class PhysicalTopology extends Topology {
         }
         logger.trace("2.1.Physical topology uses %s topology.".formatted(this.topologyName));
 
+        this.G = new DirectedMultigraph<>(Link.class);
         NodeList nodeList = xml.getElementsByTagName("node");
         NodeList edgeList = xml.getElementsByTagName("link");
         setNodes(nodeList);
@@ -30,31 +28,31 @@ public class PhysicalTopology extends Topology {
     }
 
     private void setNodes(NodeList nodeList) {
-        this.nodes = nodeList.getLength();
-        this.ROADMs = new ROADM[this.nodes];
-        logger.trace("2.2.Adding %d nodes.".formatted(this.nodes));
-        for (int i = 0; i < this.nodes; i++) {
+        this.numNodes = nodeList.getLength();
+        this.nodes = new Node[this.numNodes];
+        logger.trace("2.2.Adding %d nodes.".formatted(this.numNodes));
+        for (int i = 0; i < this.numNodes; i++) {
             int id = Integer.parseInt(((Element) nodeList.item(i)).getAttribute("id"));
             String type = ((Element) nodeList.item(i)).getAttribute("type");
-            this.ROADMs[i] = new ROADM(id, type);
-            this.G.addVertex(this.ROADMs[i]);
+            this.nodes[i] = new Node(id);
+            this.G.addVertex(this.nodes[i]);
             logger.trace("2.2.%s.Node %d is %s.".formatted(Integer.toString(i+1), id, type));
         }
         logger.trace("2.2.Added.");
     }
 
-    private void setEdges(NodeList edgeList) {
-        this.links = edgeList.getLength();
-        this.Fibers = new Fiber[this.links];
-        logger.trace("2.3.Adding %d fibers.".formatted(this.links));
-        for (int i = 0; i < this.links; i++) {
+    private void setEdges(NodeList edgeList) throws Exception {
+        this.numLinks = edgeList.getLength();
+        this.links = new Link[this.numLinks];
+        logger.trace("2.3.Adding %d fibers.".formatted(this.numLinks));
+        for (int i = 0; i < this.numLinks; i++) {
             int id = Integer.parseInt(((Element) edgeList.item(i)).getAttribute("id"));
             int src = Integer.parseInt(((Element) edgeList.item(i)).getAttribute("source"));
             int dst = Integer.parseInt(((Element) edgeList.item(i)).getAttribute("destination"));
             int bandwidth = Integer.parseInt(((Element) edgeList.item(i)).getAttribute("bandwidth"));
             int wavelength = Integer.parseInt(((Element) edgeList.item(i)).getAttribute("wavelengths"));
-            this.Fibers[i] = new Fiber(id, src, dst, bandwidth, wavelength);
-            this.G.addEdge(this.ROADMs[src], this.ROADMs[dst], this.Fibers[i]);
+            this.links[i] = new Link(id, src, dst, wavelength, bandwidth);
+            this.G.addEdge(this.nodes[src], this.nodes[dst], this.links[i]);
             logger.trace("2.3.%s.Fiber %d from node %d to node %d with %d Gbps.".formatted(
                     Integer.toString(i+1),
                     id,
@@ -64,17 +62,5 @@ public class PhysicalTopology extends Topology {
             ));
         }
         logger.trace("2.3.Added.");
-    }
-
-    public ROADM[] getNodes() {
-        return this.ROADMs;
-    }
-
-    public Fiber[] getFibers() {
-        return this.Fibers;
-    }
-
-    public Graph<ROADM, Fiber> getGraph() {
-        return this.G;
     }
 }
