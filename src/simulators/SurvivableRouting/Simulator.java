@@ -1,5 +1,6 @@
 package simulators.SurvivableRouting;
 
+import event.Event;
 import event.EventScheduler;
 import network.FlowGenerator;
 import org.apache.logging.log4j.LogManager;
@@ -52,10 +53,24 @@ public class Simulator {
 
             logger.trace("5.Simulating the secure optical network.");
             ControlPlane ctrl_plane = new ControlPlane((Element) ptdocument.getElementsByTagName("ra").item(0), pt);
-            SimulationRunner sim_runner = new SimulationRunner(ctrl_plane, evnt_scher);
+            this.runSimulator(ctrl_plane, evnt_scher);
 
         } catch (Throwable t) {
             t.printStackTrace();
+        }
+    }
+
+    private void runSimulator(ControlPlane cp, EventScheduler events){
+        Event event;
+        int numEvents = events.numEvents();
+        int aux = 0;
+        while ((event = events.popEvent()) != null) {
+            int progress = (int) (Math.round((1 - (double) events.numEvents() / numEvents) * 100));
+            if (progress % 10 == 0 && progress != aux) {
+                aux = progress;
+                logger.trace("The simulation running progress is %d%%.".formatted(progress));
+            }
+            cp.newEvent(event);
         }
     }
 }
