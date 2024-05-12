@@ -1,17 +1,17 @@
 package network;
 
-import org.jgrapht.Graph;
+import org.jgrapht.graph.WeightedMultigraph;
 import org.w3c.dom.*;
 
-public abstract class Topology {
 
-    public int numNodes;
-    public int numLinks;
+public class Topology {
+
+    public int numNodes = 0;
+    public int numLinks = 0;
     public String topologyName;
     public Node[] nodes;
     public Link[] links;
-    public Graph<Node, Link> G;
-
+    public WeightedMultigraph<Node, Link> G = new WeightedMultigraph<>(Link.class);
     protected double mensageProcessingTime = 1.0E-5; //(in s)
     protected double configurationTimeOXC = 1.0E-5; //(in s)
     protected double propagationDelayTime = 4.0E-4; //(in s)
@@ -81,13 +81,31 @@ public abstract class Topology {
         }
     }
 
+    public Topology(Node[] nodes, Link[] links, String topologyName) {
+        this.topologyName = topologyName;
+        this.numNodes = nodes.length;
+        this.numLinks = links.length;
+        this.nodes = new Node[this.numNodes];
+        this.links = new Link[this.numLinks];
+
+        for (int i = 0; i < this.numNodes; i++){
+            this.nodes[i] = nodes[i];
+            this.G.addVertex(nodes[i]);
+        }
+
+        for (int i = 0; i < this.numLinks; i++){
+            this.links[i] = links[i];
+            this.G.addEdge(nodes[links[i].src], nodes[links[i].dst]);
+        }
+    }
+
+    public void setLink(){}
+
     public int getNodesNum() {
         return this.numNodes;
-    };
-
-    public int getLinksNum() {
-        return this.numLinks;
     }
+
+    public int getLinksNum() { return this.numLinks; }
 
     public Node[] getNodes() { return this.nodes; }
 
@@ -97,7 +115,7 @@ public abstract class Topology {
         return this.topologyName;
     }
 
-    public Graph<Node, Link> getGraph() {
+    public WeightedMultigraph<Node, Link> getGraph() {
         return this.G;
     }
 }

@@ -5,6 +5,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.jgrapht.Graph;
 import org.jgrapht.graph.DirectedMultigraph;
+import org.jgrapht.graph.WeightedMultigraph;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
@@ -20,7 +21,7 @@ public class PhysicalTopology extends Topology {
         }
         logger.trace("2.1.Physical topology uses %s topology.".formatted(this.topologyName));
 
-        this.G = new DirectedMultigraph<>(Link.class);
+        this.G = new WeightedMultigraph<>(Link.class);
         NodeList nodeList = xml.getElementsByTagName("node");
         NodeList edgeList = xml.getElementsByTagName("link");
         setNodes(nodeList);

@@ -8,7 +8,7 @@ public abstract class Algorithm {
 
     public Algorithm() {}
 
-    public void routeFlow(Topology topology, Flow flow) {}
+    public abstract boolean routeFlow(Topology physicalTopology, Topology opticalTopology, Flow flow);
 
     public void removeFlow() {}
 
