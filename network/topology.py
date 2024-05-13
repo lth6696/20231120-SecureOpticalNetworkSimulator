@@ -1,3 +1,4 @@
+import logging
 import os.path
 import networkx as nx
 import xml.etree.ElementTree as et
@@ -17,6 +18,7 @@ class PhysicalTopology:
         # 检查输入
         if not os.path.exists(configFile):
             raise Exception("Config file does not exist.")
+        logging.info("{} - {} - Read the config file \"{}\".".format(__file__, __name__, configFile))
         xmlParser = et.parse(configFile)
         # 读取配置文件中的拓扑信息
         elementTopo = xmlParser.getroot().find(self._topologyInfoModuleName)
@@ -35,6 +37,7 @@ class PhysicalTopology:
                         self.G.add_edge(int(linkTag["source"]), int(linkTag["destination"]), **linkTag)
                     else:
                         raise Exception("Tag 'link' does not have source and destination nodes.")
+        logging.info("{} - {} - Add {} nodes and {} links.".format(__file__, __name__, len(self.G.nodes), len(self.G.edges)))
 
 
 class LightpathTopology:

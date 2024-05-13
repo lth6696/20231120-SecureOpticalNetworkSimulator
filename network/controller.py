@@ -4,6 +4,8 @@ from algorithm.benchmark import Benchmark
 
 import os.path
 import xml.etree.ElementTree as et
+import logging
+
 
 class ControlPlane:
     """
@@ -19,6 +21,8 @@ class ControlPlane:
     def run(self, scheduler: Scheduler, physicalTopology: PhysicalTopology, opticalTopology: LightpathTopology):
         while scheduler.getEventNum() != 0:
             (time, event) = scheduler.popEvent()
+            logging.info("{} - {} - The {} event processed on {} second origin from {} to {} with id {}."
+                         .format(__file__, __name__, event.type, time, event.call.sourceNode, event.call.destinationNode, event.id))
             if event.type == "callArrive":
                 self.algorithm.routeCall()
             elif event.type == "callDeparture":
@@ -40,3 +44,4 @@ class ControlPlane:
             self.algorithm = Benchmark()
         elif self.algorithmName == "EAST":
             self.algorithm = Benchmark()
+        logging.info("{} - {} - Load the {} algorithm.".format(__file__, __name__, self.algorithmName))

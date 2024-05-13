@@ -7,7 +7,7 @@
     <!-- 'load' 业务负载 -->
     <!-- 'max-rate=' 最高速率，用于结果统计 -->
     <!-- 'statisticStart' 表示将从哪个业务开始收集统计信息 -->
-    <traffic type="otn" calls="4" load="500" max-rate="100000" statisticStart="0">
+    <traffic type="otn" calls="50" load="500" max-rate="100000" statisticStart="0">
         <!-- 'holding-time' 业务持续时间，单位 second -->
         <!-- 'rate' 业务速率，单位 Mbps 1000Mbps = 1Gbps -->
         <!-- 'weight' 不同业务的权重 -->
