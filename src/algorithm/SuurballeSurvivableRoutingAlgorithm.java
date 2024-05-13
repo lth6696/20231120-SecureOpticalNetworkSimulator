@@ -6,10 +6,12 @@ import network.Node;
 import network.Topology;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.jgrapht.Graph;
 import org.jgrapht.GraphPath;
 import org.jgrapht.alg.shortestpath.DijkstraShortestPath;
+import org.jgrapht.graph.DefaultWeightedEdge;
 import org.jgrapht.graph.WeightedMultigraph;
+
+import java.util.Objects;
 
 
 public class SuurballeSurvivableRoutingAlgorithm extends Algorithm{
@@ -30,23 +32,29 @@ public class SuurballeSurvivableRoutingAlgorithm extends Algorithm{
         4. 更新窃听风险共享链路组。
         5. 若存在工作路径与保护路径，则输出并退出；若不存在，则锁定业务。
          */
-        GraphPath<Node, Link> workingPath = null;
-        GraphPath<Node, Link> backupPath = null;
-        workingPath = new DijkstraShortestPath<>(opticalTopology.G).getPath(opticalTopology.nodes[flow.SourceNode], opticalTopology.nodes[flow.DestinationNode]);
+        GraphPath<Node, DefaultWeightedEdge> workingPath = null;
+        GraphPath<Node, DefaultWeightedEdge> backupPath = null;
+        WeightedMultigraph<Node, DefaultWeightedEdge> tempOpticalG = this.constructTempG(opticalTopology.nodes, opticalTopology.links, "optical");
+        WeightedMultigraph<Node, DefaultWeightedEdge> tempPhysicalG = this.constructTempG(physicalTopology.nodes, physicalTopology.links, "physical");
+        DijkstraShortestPath<Node, DefaultWeightedEdge> shortestPathForOpticalG = new DijkstraShortestPath<>(tempOpticalG);
+        DijkstraShortestPath<Node, DefaultWeightedEdge> shortestPathForPhysicalG = new DijkstraShortestPath<>(tempPhysicalG);
+
+        workingPath = shortestPathForOpticalG.getPath(opticalTopology.nodes[flow.SourceNode], opticalTopology.nodes[flow.DestinationNode]);
         if (workingPath == null){
-            WeightedMultigraph<Node, Link> tempG = this.constructTempG(physicalTopology.nodes, physicalTopology.links);
-            workingPath = new DijkstraShortestPath<>(tempG).getPath(physicalTopology.nodes[flow.SourceNode], physicalTopology.nodes[flow.DestinationNode]);
+            workingPath = shortestPathForPhysicalG.getPath(physicalTopology.nodes[flow.SourceNode], physicalTopology.nodes[flow.DestinationNode]);
+        } else {
+            this.pruneWorkingPath(tempOpticalG, workingPath, opticalTopology.links, "optical");
         }
         if (workingPath == null){
             // block service
             return false;
+        } else {
+            this.pruneWorkingPath(tempPhysicalG, workingPath, physicalTopology.links, "physical");
         }
         // todo update link risk
-        Graph<Node, Link> tempG = new WeightedMultigraph<>(Link.class);
-        backupPath = new DijkstraShortestPath<>(tempG).getPath(opticalTopology.nodes[flow.SourceNode], opticalTopology.nodes[flow.DestinationNode]);
+        backupPath = shortestPathForOpticalG.getPath(opticalTopology.nodes[flow.SourceNode], opticalTopology.nodes[flow.DestinationNode]);
         if (backupPath == null){
-            tempG = new WeightedMultigraph<>(Link.class);
-            backupPath = new DijkstraShortestPath<>(tempG).getPath(physicalTopology.nodes[flow.SourceNode], physicalTopology.nodes[flow.DestinationNode]);
+            backupPath = shortestPathForPhysicalG.getPath(physicalTopology.nodes[flow.SourceNode], physicalTopology.nodes[flow.DestinationNode]);
         }
         if (backupPath == null){
             return false;
@@ -56,21 +64,45 @@ public class SuurballeSurvivableRoutingAlgorithm extends Algorithm{
         return true;
     }
 
-    private WeightedMultigraph<Node, Link> constructTempG(Node[] nodes, Link[] links){
-        WeightedMultigraph<Node, Link> tempG = new WeightedMultigraph<>(Link.class);
+    private WeightedMultigraph<Node, DefaultWeightedEdge> constructTempG(Node[] nodes, Link[] links, String type){
+        WeightedMultigraph<Node, DefaultWeightedEdge> tempG = new WeightedMultigraph<>(DefaultWeightedEdge.class);
         for (Node node : nodes){
             tempG.addVertex(node);
         }
-        for (Link link : links){
-            double weight = 1;
-            for (int i = 0; i < link.wavelength; i++){
-                if (!link.usedWavelength[i]){
-                    weight += 1;
+        if (Objects.equals(type, "physical")){
+            for (Link link : links){
+                double weight = 1;
+                for (int i = 0; i < link.wavelength; i++){
+                    if (!link.usedWavelength[i]){
+                        weight += 1;
+                    }
                 }
+                tempG.addEdge(nodes[link.src], nodes[link.dst]);
+                tempG.setEdgeWeight(nodes[link.src], nodes[link.dst], 1/weight);
             }
-            tempG.addEdge(nodes[link.src], nodes[link.dst]);
-            tempG.setEdgeWeight(nodes[link.src], nodes[link.dst], 1/weight);
+        } else if (Objects.equals(type, "optical")){
+            for (Link link : links){
+                tempG.addEdge(nodes[link.src], nodes[link.dst]);
+                tempG.setEdgeWeight(nodes[link.src], nodes[link.dst], 1/(double)link.bandwidth[0]);
+            }
         }
         return tempG;
+    }
+
+    private void pruneWorkingPath(WeightedMultigraph<Node, DefaultWeightedEdge> G, GraphPath<Node, DefaultWeightedEdge> workingPath, Link[] links, String type){
+        if (Objects.equals(type, "optical")){
+            for (DefaultWeightedEdge e : workingPath.getEdgeList()) {
+                G.removeEdge(e);
+            }
+        } else if (Objects.equals(type, "physical")){
+            for (DefaultWeightedEdge e : workingPath.getEdgeList()) {
+                double weight = G.getEdgeWeight(e);
+                if (weight == 1.0){
+                    G.removeEdge(e);
+                }else{
+                    G.setEdgeWeight(e, weight/(1-weight));
+                }
+            }
+        }
     }
 }

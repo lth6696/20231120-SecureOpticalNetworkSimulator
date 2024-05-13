@@ -7,12 +7,8 @@
     <list default="true" id="43a3ca5a-f537-4707-8a42-1419963912f9" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/log/run.log" beforeDir="false" afterPath="$PROJECT_DIR$/log/run.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/algorithm/Algorithm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/algorithm/Algorithm.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/algorithm/SuurballeSurvivableRoutingAlgorithm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/algorithm/SuurballeSurvivableRoutingAlgorithm.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/network/Link.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/network/Link.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/network/Topology.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/network/Topology.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/simulators/SurvivableRouting/ControlPlane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/simulators/SurvivableRouting/ControlPlane.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/simulators/SurvivableRouting/PhysicalTopology.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/simulators/SurvivableRouting/PhysicalTopology.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,7 +49,7 @@
     "project.structure.last.edited": "Libraries",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.pluginManager"
+    "settings.editor.selected.configurable": "editor.preferences.fonts.default"
   }
 }]]></component>
   <component name="RunManager">

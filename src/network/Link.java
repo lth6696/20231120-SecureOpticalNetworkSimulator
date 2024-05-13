@@ -36,4 +36,8 @@ public class Link {
         }
         this.attributes.put(attrName, attrValue);
     }
+
+    public String toString() {
+        return "(" + this.src + " : " + this.dst + ")";
+    }
 }
