@@ -33,6 +33,7 @@ class PhysicalTopology:
             elif element.tag == self._linkInfoModuleName:
                 for link in element:
                     linkTag = link.attrib
+                    linkTag["used-wavelength"] = []
                     if "source" in linkTag.keys() and "destination" in linkTag.keys():
                         self.G.add_edge(int(linkTag["source"]), int(linkTag["destination"]), **linkTag)
                     else:
@@ -46,3 +47,7 @@ class LightpathTopology:
     """
     def __init__(self):
         self.G = nx.MultiGraph()
+
+    def constructGraph(self, physicalTopology: PhysicalTopology):
+        self.G.add_nodes_from(physicalTopology.G.nodes)
+        logging.info("{} - {} - Add nodes from physical topology to lightpath topology.".format(__file__, __name__))

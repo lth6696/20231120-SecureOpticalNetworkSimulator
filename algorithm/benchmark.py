@@ -1,8 +1,14 @@
+import networkx as nx
+
+from network.topology import PhysicalTopology, LightpathTopology
+from event.event import Event
+
+
 class Benchmark:
     def __init__(self):
         self.algorithmName = "benchmark"
 
-    def routeCall(self):
+    def routeCall(self, physicalTopology: PhysicalTopology, opticalTopology: LightpathTopology, event: Event):
         """
         Algorithm pseudocode:
         1. 计算工作路径。若光路拓扑没有可用路径，则基于物理拓扑新建光路。对于物理拓扑，修建掉已占用的波长后，构建临时图。计算最短路径并基于FirstFit分配波长，更新光路拓扑。
@@ -12,7 +18,14 @@ class Benchmark:
         5. 若存在工作路径与保护路径，则输出并退出；若不存在，则锁定业务。
         :return:
         """
-        pass
+        sourceNode = event.call.sourceNode
+        destinationNode = event.call.destinationNode
+        workingPath = nx.dijkstra_path(opticalTopology, sourceNode, destinationNode)
+        if not workingPath:
+            tempG = nx.DiGraph()
+            tempG.add_nodes_from(physicalTopology.G.nodes)
+            for link in physicalTopology.G.edges:
+                pass
 
     def removeCall(self):
         pass

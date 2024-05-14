@@ -11,7 +11,7 @@ class EavesdroppingRisk:
     def __init__(self):
         pass
 
-    def setSharedRiskLinkGroup(self, physicalTopology: PhysicalTopology, ratio: float = 0.2):
+    def setRiskNodeRandomly(self, physicalTopology: PhysicalTopology, ratio: float = 0.2):
         nodes = physicalTopology.G.nodes
         nodesNum = len(nodes)
         riskNodesNum = int(nodesNum * ratio)
@@ -25,8 +25,9 @@ class EavesdroppingRisk:
             else:
                 physicalTopology.G.nodes[i]["risk"] = False
 
-    def setNodeRelevanceERSLG(self):
-        pass
-
     def setLinkRelevanceERSLG(self):
+        """
+        需要依据公式更新节点相关ESRLG和链路相关ESRLG
+        :return:
+        """
         pass

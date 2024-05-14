@@ -24,7 +24,7 @@ class ControlPlane:
             logging.info("{} - {} - The {} event processed on {} second origin from {} to {} with id {}."
                          .format(__file__, __name__, event.type, time, event.call.sourceNode, event.call.destinationNode, event.id))
             if event.type == "callArrive":
-                self.algorithm.routeCall()
+                self.algorithm.routeCall(physicalTopology, opticalTopology, event)
             elif event.type == "callDeparture":
                 self.algorithm.removeCall()
 
