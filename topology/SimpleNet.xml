@@ -39,7 +39,7 @@
             <node id="4"/>
         </nodes>
         <links>
-            <link id="0" source="0" destination="1" bandwidth="100000" wavelengths="4" />
+            <link id="0" source="0" destination="1" bandwidth="100000" wavelengths="4"/>
             <link id="1" source="0" destination="4" bandwidth="100000" wavelengths="4"/>
             <link id="2" source="1" destination="0" bandwidth="100000" wavelengths="4"/>
             <link id="3" source="1" destination="2" bandwidth="100000" wavelengths="4"/>

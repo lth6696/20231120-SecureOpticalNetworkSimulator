@@ -29,11 +29,13 @@ class PhysicalTopology:
             if element.tag == self._nodeInfoModuleName:
                 for id, node in enumerate(element):
                     nodeTag = node.attrib
+                    nodeTag["risk"] = False
                     self.G.add_node(id, **nodeTag)
             elif element.tag == self._linkInfoModuleName:
                 for link in element:
                     linkTag = link.attrib
                     linkTag["used-wavelength"] = []
+                    linkTag["risk"] = {}   # {1: [link_1_2, node_1]}
                     if "source" in linkTag.keys() and "destination" in linkTag.keys():
                         self.G.add_edge(int(linkTag["source"]), int(linkTag["destination"]), **linkTag)
                     else:
