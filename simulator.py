@@ -26,6 +26,7 @@ def simulator(configFile: str):
     # 生成光路拓扑
     logging.info("{} - {} - Construct the lightpath topology.".format(__file__, __name__))
     opticalTopology = network.topology.LightpathTopology()
+    opticalTopology.constructGraph(physicalTopology)
     logging.info("{} - {} - Done.".format(__file__, __name__))
     # 生成业务请求事件
     logging.info("{} - {} - Generate the traffic events.".format(__file__, __name__))
