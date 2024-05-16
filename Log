@@ -1,33 +1,18 @@
-2024-05-15 17:44:48,046 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\simulator.py - __main__ - Construct the physical topology.
-2024-05-15 17:44:48,046 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\network\topology.py - network.topology - Read the config file "./topology/SimpleNet.xml".
-2024-05-15 17:44:48,046 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\network\topology.py - network.topology - Add 5 nodes and 14 links.
-2024-05-15 17:44:48,046 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\simulator.py - __main__ - Done.
-2024-05-15 17:44:48,046 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\network\risk.py - network.risk - Set [3] eavesdropping risk nodes among 5 nodes.
-2024-05-15 17:44:48,046 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\simulator.py - __main__ - Construct the lightpath topology.
-2024-05-15 17:44:48,046 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\network\topology.py - network.topology - Add nodes from physical topology to lightpath topology.
-2024-05-15 17:44:48,047 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\simulator.py - __main__ - Done.
-2024-05-15 17:44:48,047 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\simulator.py - __main__ - Generate the traffic events.
-2024-05-15 17:44:48,047 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\network\generator.py - network.generator - Read the config file ./topology/SimpleNet.xml.
-2024-05-15 17:44:48,047 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\network\generator.py - network.generator - There are 5 kinds of calls.
-2024-05-15 17:44:48,047 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\network\generator.py - network.generator - Mean rate is 10083.333333333334 Mb/s, max rate is 100000 Mb/s, mean holding time is 600.0 second, mean arrival time is 0.12100000000000001 second.
-2024-05-15 17:44:48,048 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\network\generator.py - network.generator - Generate 50 calls and 100 events.
-2024-05-15 17:44:48,048 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\simulator.py - __main__ - Done.
-2024-05-15 17:44:48,048 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\simulator.py - __main__ - Start the control plane.
-2024-05-15 17:44:48,048 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\network\controller.py - network.controller - Load the Benchmark algorithm.
-2024-05-15 17:44:48,048 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\network\controller.py - network.controller - The callArrive event processed on 0.07349610443443301 second origin from 4 to 0 with id 0.
-2024-05-15 17:44:48,049 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\algorithm\benchmark.py - algorithm.benchmark - The 0 service is assigned the working path [4, 0] established new lightpath.
-2024-05-15 17:44:48,049 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\algorithm\benchmark.py - algorithm.benchmark - The 0 service is assigned the backup path [4, 2, 1, 0] established new lightpath.
-2024-05-15 17:44:48,049 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\network\controller.py - network.controller - The callArrive event processed on 0.2407025369670815 second origin from 0 to 2 with id 1.
-2024-05-15 17:44:48,049 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\algorithm\benchmark.py - algorithm.benchmark - The 1 service is assigned the working path [0, 1, 2] established new lightpath.
-2024-05-15 17:44:48,049 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\algorithm\benchmark.py - algorithm.benchmark - The 1 service is assigned the backup path [0, 4, 2] established new lightpath.
-2024-05-15 17:44:48,049 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\network\controller.py - network.controller - The callArrive event processed on 0.3392211197161005 second origin from 3 to 2 with id 2.
-2024-05-15 17:44:48,050 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\algorithm\benchmark.py - algorithm.benchmark - The 2 service is assigned the working path [3, 2] established new lightpath.
-2024-05-15 17:44:48,050 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\algorithm\benchmark.py - algorithm.benchmark - The 2 service is assigned the backup path [3, 1, 2] established new lightpath.
-2024-05-15 17:44:48,050 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\network\controller.py - network.controller - The callArrive event processed on 0.7713212237482597 second origin from 2 to 3 with id 3.
-2024-05-15 17:44:48,050 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\algorithm\benchmark.py - algorithm.benchmark - The 3 service is assigned the working path [2, 3] using exist lightpath.
-2024-05-15 17:44:48,050 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\algorithm\benchmark.py - algorithm.benchmark - The 3 service is assigned the backup path [2, 3] established new lightpath.
-2024-05-15 17:44:48,050 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\network\controller.py - network.controller - The callArrive event processed on 1.5597934492658676 second origin from 3 to 4 with id 4.
-2024-05-15 17:44:48,050 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\algorithm\benchmark.py - algorithm.benchmark - The 4 service is assigned the working path [3, 2, 0, 4] using exist lightpath.
-2024-05-15 17:44:48,050 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\algorithm\benchmark.py - algorithm.benchmark - The 4 service is assigned the backup path [3, 4] established new lightpath.
-2024-05-15 17:44:48,050 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\network\controller.py - network.controller - The callArrive event processed on 3.103790851833239 second origin from 0 to 2 with id 5.
-2024-05-15 17:44:48,050 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\algorithm\benchmark.py - algorithm.benchmark - The 5 service is assigned the working path [0, 2] using exist lightpath.
+2024-05-16 11:41:27,800 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\simulator.py - __main__ - Construct the physical topology.
+2024-05-16 11:41:27,800 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\network\topology.py - network.topology - Read the config file "./topology/SimpleNet.xml".
+2024-05-16 11:41:27,801 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\network\topology.py - network.topology - Add 5 nodes and 56 links.
+2024-05-16 11:41:27,801 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\simulator.py - __main__ - Done.
+2024-05-16 11:41:27,801 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\network\risk.py - network.risk - Set [3] eavesdropping risk nodes among 5 nodes.
+2024-05-16 11:41:27,801 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\simulator.py - __main__ - Construct the lightpath topology.
+2024-05-16 11:41:27,801 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\network\topology.py - network.topology - Add nodes from physical topology to lightpath topology.
+2024-05-16 11:41:27,802 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\simulator.py - __main__ - Done.
+2024-05-16 11:41:27,802 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\simulator.py - __main__ - Generate the traffic events.
+2024-05-16 11:41:27,802 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\network\generator.py - network.generator - Read the config file ./topology/SimpleNet.xml.
+2024-05-16 11:41:27,802 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\network\generator.py - network.generator - There are 5 kinds of calls.
+2024-05-16 11:41:27,802 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\network\generator.py - network.generator - Mean rate is 10083.333333333334 Mb/s, max rate is 100000 Mb/s, mean holding time is 600.0 second, mean arrival time is 0.12100000000000001 second.
+2024-05-16 11:41:27,804 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\network\generator.py - network.generator - Generate 50 calls and 100 events.
+2024-05-16 11:41:27,804 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\simulator.py - __main__ - Done.
+2024-05-16 11:41:27,804 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\simulator.py - __main__ - Start the control plane.
+2024-05-16 11:41:27,805 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\network\controller.py - network.controller - Load the Benchmark algorithm.
+2024-05-16 11:41:27,805 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\network\controller.py - network.controller - The callArrive event processed on 0.48138427333308564 second origin from 2 to 1 with id 0.
+2024-05-16 11:41:27,807 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\algorithm\benchmark.py - algorithm.benchmark - The 0 service is assigned the working path [(2, 1, 0)] established new lightpath.

@@ -38,21 +38,21 @@
             <node id="3"/>
             <node id="4"/>
         </nodes>
-        <links>
-            <link id="0" source="0" destination="1" bandwidth="100000" wavelengths="4"/>
-            <link id="1" source="0" destination="4" bandwidth="100000" wavelengths="4"/>
-            <link id="2" source="1" destination="0" bandwidth="100000" wavelengths="4"/>
-            <link id="3" source="1" destination="2" bandwidth="100000" wavelengths="4"/>
-            <link id="4" source="1" destination="3" bandwidth="100000" wavelengths="4"/>
-            <link id="5" source="2" destination="1" bandwidth="100000" wavelengths="4"/>
-            <link id="6" source="2" destination="3" bandwidth="100000" wavelengths="4"/>
-            <link id="7" source="2" destination="4" bandwidth="100000" wavelengths="4"/>
-            <link id="8" source="3" destination="1" bandwidth="100000" wavelengths="4"/>
-            <link id="9" source="3" destination="2" bandwidth="100000" wavelengths="4"/>
-            <link id="10" source="3" destination="4" bandwidth="100000" wavelengths="4"/>
-            <link id="11" source="4" destination="0" bandwidth="100000" wavelengths="4"/>
-            <link id="12" source="4" destination="2" bandwidth="100000" wavelengths="4"/>
-            <link id="13" source="4" destination="3" bandwidth="100000" wavelengths="4"/>
+        <links wavelengths="4">
+            <link id="0" source="0" destination="1" bandwidth="100000"/>
+            <link id="1" source="0" destination="4" bandwidth="100000"/>
+            <link id="2" source="1" destination="0" bandwidth="100000"/>
+            <link id="3" source="1" destination="2" bandwidth="100000"/>
+            <link id="4" source="1" destination="3" bandwidth="100000"/>
+            <link id="5" source="2" destination="1" bandwidth="100000"/>
+            <link id="6" source="2" destination="3" bandwidth="100000"/>
+            <link id="7" source="2" destination="4" bandwidth="100000"/>
+            <link id="8" source="3" destination="1" bandwidth="100000"/>
+            <link id="9" source="3" destination="2" bandwidth="100000"/>
+            <link id="10" source="3" destination="4" bandwidth="100000"/>
+            <link id="11" source="4" destination="0" bandwidth="100000"/>
+            <link id="12" source="4" destination="2" bandwidth="100000"/>
+            <link id="13" source="4" destination="3" bandwidth="100000"/>
         </links>
     </topology>
 </sonsim>

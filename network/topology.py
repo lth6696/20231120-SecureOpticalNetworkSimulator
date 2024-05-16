@@ -12,7 +12,8 @@ class PhysicalTopology:
         self._topologyInfoModuleName = "topology"
         self._nodeInfoModuleName = "nodes"
         self._linkInfoModuleName = "links"
-        self.G = nx.DiGraph()
+        self._infinitesimal = 1e-5
+        self.G = nx.MultiDiGraph()
 
     def constructGraph(self, configFile: str):
         # 检查输入
@@ -32,14 +33,20 @@ class PhysicalTopology:
                     nodeTag["risk"] = False
                     self.G.add_node(id, **nodeTag)
             elif element.tag == self._linkInfoModuleName:
+                wavelengths = int(element.attrib["wavelengths"])
                 for link in element:
-                    linkTag = link.attrib
-                    linkTag["used-wavelength"] = []
-                    linkTag["risk"] = {}   # {1: [link_1_2, node_1]}
-                    if "source" in linkTag.keys() and "destination" in linkTag.keys():
-                        self.G.add_edge(int(linkTag["source"]), int(linkTag["destination"]), **linkTag)
-                    else:
-                        raise Exception("Tag 'link' does not have source and destination nodes.")
+                    linkTag = {}
+                    # 设置链路属性
+                    if "bandwidth" in link.keys():
+                        linkTag["bandwidth"] = int(link.attrib["bandwidth"])
+                    linkTag["used"] = False
+                    linkTag["risk"] = False   # [link_1_2, node_1]
+                    linkTag["weight"] = 1 / (linkTag["bandwidth"] + self._infinitesimal)
+                    for i in range(wavelengths):
+                        if "source" in link.keys() and "destination" in link.keys():
+                            self.G.add_edge(int(link.attrib["source"]), int(link.attrib["destination"]), i, **linkTag)
+                        else:
+                            raise Exception("Tag 'link' does not have source and destination nodes.")
         logging.info("{} - {} - Add {} nodes and {} links.".format(__file__, __name__, len(self.G.nodes), len(self.G.edges)))
 
 
