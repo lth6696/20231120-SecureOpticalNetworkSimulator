@@ -18,12 +18,11 @@ class Benchmark:
         5. 若存在工作路径与保护路径，则输出并退出；若不存在，则锁定业务。
         :return:
         """
-        workingPath = {"physical": [], "optical": []}
-        backupPath = {"physical": [], "optical": []}
         nodeSrc = event.call.sourceNode
         nodeDst = event.call.destinationNode
+        workingPath = {"physical": [], "optical": []}
+        backupPath = {"physical": [], "optical": []}
         eavesdroppingRiskLinkGroup = []
-        availableWavelengths = {"work": None, "backup": None}
         try:
             # 光路拓扑计算可用工作路径
             path = nx.dijkstra_path(opticalTopology.G, nodeSrc, nodeDst, "weight")
@@ -49,84 +48,57 @@ class Benchmark:
 
         # 光路拓扑计算可用保护路径
         try:
-            auxG = self._constructAuxDiG(opticalTopology.G, risk=eavesdroppingRiskLinkGroup)
+            auxG = self._constructAuxMultiDiG(opticalTopology.G, risk=eavesdroppingRiskLinkGroup)
             path = nx.dijkstra_path(auxG, nodeSrc, nodeDst, "weight")
-            backupPath["optical"] = path
+            backupPath["optical"] = self._getAvailableLink(auxG, path, event.call.requestBandwidth)
         except:
             # 物理拓扑新建保护路径
             try:
-                tempG = nx.DiGraph()
-                tempG.add_nodes_from(physicalTopology.G.nodes)
-                # 建立临时图，临时图不包括所有已用波长、共享风险的波长
-                for link in physicalTopology.G.edges:
-                    start = link[0]
-                    end = link[1]
-                    if "link_"+str(start)+"_"+str(end) in eavesdroppingRiskLinkGroup:
-                        continue
-                    usedWavelength = physicalTopology.G[start][end]["used-wavelength"]
-                    wavelengths = int(physicalTopology.G[start][end]["wavelengths"])
-                    weight = 1 / (sum([1 for i in range(wavelengths) if i not in usedWavelength]) + self._infinitesimal)
-                    tempG.add_edge(start, end)
-                    tempG[start][end]["weight"] = weight
-                backupPath["new"] = nx.dijkstra_path(tempG, nodeSrc, nodeDst, "weight")
+                auxG = self._constructAuxMultiDiG(physicalTopology.G, risk=eavesdroppingRiskLinkGroup)
+                path = nx.dijkstra_path(auxG, nodeSrc, nodeDst, "weight")
+                backupPath["physical"] = self._getAvailableLink(auxG, path, event.call.requestBandwidth)
             except:
-                pass
-        if backupPath["exist"] is None and backupPath["new"] is None:
-            # 若不存在保护路径，则阻塞业务
-            logging.info("{} - {} - The {} service does not have backup path.".format(__file__, __name__, event.call.id))
-            return False
-        elif backupPath["exist"] is not None:
-            # 若存在保护路径，则更新光路拓扑，并设置SRLG
-            logging.info("{} - {} - The {} service is assigned the backup path {} using exist lightpath.".format(__file__, __name__, event.call.id, backupPath["exist"]))
-        elif backupPath["new"] is not None:
-            availableWavelengths["backup"] = set(i for i in range(48))
-            for (start, end) in zip(backupPath["new"][:-1], backupPath["new"][1:]):
-                usedWavelength = physicalTopology.G[start][end]["used-wavelength"]
-                wavelengths = int(physicalTopology.G[start][end]["wavelengths"])
-                availableWavelengths["backup"] = availableWavelengths["backup"] & set(i for i in range(wavelengths) if i not in usedWavelength)
-                eavesdroppingRiskLinkGroup.append("link_"+str(start)+"_"+str(end))
-            if len(availableWavelengths["backup"]) == 0:
+                # 若不存在保护路径，则阻塞业务
                 logging.info("{} - {} - The {} service does not have backup path.".format(__file__, __name__, event.call.id))
                 return False
-            logging.info("{} - {} - The {} service is assigned the backup path {} established new lightpath.".format(__file__, __name__, event.call.id, backupPath["new"]))
+        if backupPath["optical"]:
+            # 若存在保护路径，则更新光路拓扑，并设置SRLG
+            logging.info("{} - {} - The {} service is assigned the backup path {} using exist lightpath.".format(__file__, __name__, event.call.id, backupPath["optical"]))
+        elif backupPath["physical"]:
+            logging.info("{} - {} - The {} service is assigned the backup path {} established new lightpath.".format(__file__, __name__, event.call.id, backupPath["physical"]))
+        else:
+            logging.info("{} - {} - The {} service does not have backup path.".format(__file__, __name__, event.call.id))
+            return False
 
-        if workingPath["new"] is not None:
-            # 更新物理拓扑
-            availableBandwidth = []
-            risk = []
-            for (start, end) in zip(workingPath["new"][:-1], workingPath["new"][1:]):
-                physicalTopology.G[start][end]["used-wavelength"].append(list(availableWavelengths["work"])[0])
-                if event.call.requestSecurity == 0:
-                    risk.append("link_"+str(start)+"_"+str(end))
-                availableBandwidth.append(int(physicalTopology.G[start][end]["bandwidth"]))
-            # 更新光路拓扑
-            wavelength = list(availableWavelengths["work"])[0]
-            opticalTopology.G.add_edge(workingPath["new"][0], workingPath["new"][-1], wavelength)
-            opticalTopology.G[workingPath["new"][0]][workingPath["new"][-1]][wavelength]["used-wavelength"] = wavelength
-            opticalTopology.G[workingPath["new"][0]][workingPath["new"][-1]][wavelength]["bandwidth"] = min(availableBandwidth)
-            opticalTopology.G[workingPath["new"][0]][workingPath["new"][-1]][wavelength]["weight"] = 1 / min(availableBandwidth)
-            opticalTopology.G[workingPath["new"][0]][workingPath["new"][-1]][wavelength]["risk"] = risk
-        if backupPath["new"] is not None:
-            # 更新物理拓扑
-            availableBandwidth = []
-            risk = []
-            for (start, end) in zip(backupPath["new"][:-1], backupPath["new"][1:]):
-                physicalTopology.G[start][end]["used-wavelength"].append(list(availableWavelengths["backup"])[0])
-                if event.call.requestSecurity == 0:
-                    risk.append("link_" + str(start) + "_" + str(end))
-                availableBandwidth.append(int(physicalTopology.G[start][end]["bandwidth"]))
-            # 更新光路拓扑
-            wavelength = list(availableWavelengths["backup"])[0]
-            opticalTopology.G.add_edge(backupPath["new"][0], backupPath["new"][-1], wavelength)
-            opticalTopology.G[backupPath["new"][0]][backupPath["new"][-1]][wavelength]["used-wavelength"] = wavelength
-            opticalTopology.G[backupPath["new"][0]][backupPath["new"][-1]][wavelength]["bandwidth"] = min(availableBandwidth)
-            opticalTopology.G[backupPath["new"][0]][backupPath["new"][-1]][wavelength]["weight"] = 1 / min(availableBandwidth)
-            opticalTopology.G[backupPath["new"][0]][backupPath["new"][-1]][wavelength]["risk"] = risk
+        if workingPath["optical"]:
+            self._updateNetState(workingPath["optical"], opticalTopology.G, event)
+        elif workingPath["physical"]:
+            self._updateNetState(workingPath["physical"], physicalTopology.G, event)
+
+        if backupPath["optical"]:
+            self._updateNetState(backupPath["optical"], opticalTopology.G, event)
+        elif workingPath["physical"]:
+            self._updateNetState(backupPath["physical"], physicalTopology.G, event)
+
+            # availableBandwidth = []
+            # risk = []
+            # for (start, end) in zip(backupPath["new"][:-1], backupPath["new"][1:]):
+            #     physicalTopology.G[start][end]["used-wavelength"].append(list(availableWavelengths["backup"])[0])
+            #     if event.call.requestSecurity == 0:
+            #         risk.append("link_" + str(start) + "_" + str(end))
+            #     availableBandwidth.append(int(physicalTopology.G[start][end]["bandwidth"]))
+            # # 更新光路拓扑
+            # wavelength = list(availableWavelengths["backup"])[0]
+            # opticalTopology.G.add_edge(backupPath["new"][0], backupPath["new"][-1], wavelength)
+            # opticalTopology.G[backupPath["new"][0]][backupPath["new"][-1]][wavelength]["used-wavelength"] = wavelength
+            # opticalTopology.G[backupPath["new"][0]][backupPath["new"][-1]][wavelength]["bandwidth"] = min(availableBandwidth)
+            # opticalTopology.G[backupPath["new"][0]][backupPath["new"][-1]][wavelength]["weight"] = 1 / min(availableBandwidth)
+            # opticalTopology.G[backupPath["new"][0]][backupPath["new"][-1]][wavelength]["risk"] = risk
 
     def removeCall(self):
         pass
 
-    def _constructAuxDiG(self, G: nx.MultiDiGraph, **kargs):
+    def _constructAuxMultiDiG(self, G: nx.MultiDiGraph, **kargs):
         # 建立临时图
         auxG = nx.MultiDiGraph()
         auxG.add_nodes_from(G.nodes)
@@ -140,12 +112,13 @@ class Benchmark:
                 riskName = []
                 linkRisk = G[start][end][index]["risk"]
                 if type(linkRisk) == bool:
-                    riskName.append('_'.join(["link", start, end, index]))
+                    riskName.append('_'.join(["link", str(start), str(end), str(index)]))
                 elif type(linkRisk) == list:
                     riskName += linkRisk
                 if len(set(riskName) & set(kargs["risk"])) != 0:
                     continue
             auxG.add_edge(start, end, index)
+            auxG[start][end][index]["bandwidth"] = G[start][end][index]["bandwidth"]
         return auxG
 
     def _setEavesdroppingRiskSharedLinkGroup(self, G: nx.MultiDiGraph, path: list, ERSLG: list):
@@ -165,3 +138,20 @@ class Benchmark:
         if len(pathTuple) != len(path) - 1:
             return None
         return pathTuple
+
+    def _updateNetState(self, path: list, G: nx.MultiDiGraph, event: object):
+        risk = []
+        for (start, end, index) in path:
+            G[start][end][index]["used"] = index
+            if event.call.requestSecurity == 0:
+                risk.append("link_" + str(start) + "_" + str(end))
+            availableBandwidth.append(int(physicalTopology.G[start][end]["bandwidth"]))
+        # 更新光路拓扑
+        wavelength = list(availableWavelengths["work"])[0]
+        opticalTopology.G.add_edge(workingPath["new"][0], workingPath["new"][-1], wavelength)
+        opticalTopology.G[workingPath["new"][0]][workingPath["new"][-1]][wavelength]["used-wavelength"] = wavelength
+        opticalTopology.G[workingPath["new"][0]][workingPath["new"][-1]][wavelength]["bandwidth"] = min(
+            availableBandwidth)
+        opticalTopology.G[workingPath["new"][0]][workingPath["new"][-1]][wavelength]["weight"] = 1 / min(
+            availableBandwidth)
+        opticalTopology.G[workingPath["new"][0]][workingPath["new"][-1]][wavelength]["risk"] = risk

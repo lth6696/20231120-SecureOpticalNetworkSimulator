@@ -7,6 +7,13 @@ import xml.etree.ElementTree as et
 class PhysicalTopology:
     """
     由光纤和节点组成的物理拓扑
+    链路包含属性：
+     - bandwidth: int, 链路可用带宽
+     - used: bool, 链路是否被占用
+     - risk: str, 链路风险（非必要？）
+     - weight: float, 链路权重
+    节点包含属性:
+     - risk: int, 节点是否存在风险
     """
     def __init__(self):
         self._topologyInfoModuleName = "topology"
@@ -53,6 +60,10 @@ class PhysicalTopology:
 class LightpathTopology:
     """
     由光路和虚节点组成的光路拓扑
+    光路包含属性:
+     - used: int, 光路占用的波长号
+     - bandwidth: int, 光路可用带宽
+     - risk: list, 光路包含的风险["link_1_3", "node_1",...]
     """
     def __init__(self):
         self.G = nx.MultiGraph()
