@@ -64,6 +64,8 @@ class LightpathTopology:
      - used: int, 光路占用的波长号
      - bandwidth: int, 光路可用带宽
      - risk: list, 光路包含的风险["link_1_3", "node_1",...]
+     - calls: list, 光路上承载的业务
+     - weight: float, 光路权重
     """
     def __init__(self):
         self.G = nx.MultiGraph()

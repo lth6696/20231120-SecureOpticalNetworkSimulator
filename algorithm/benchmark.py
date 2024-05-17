@@ -140,9 +140,19 @@ class Benchmark:
         return pathTuple
 
     def _updateNetState(self, path: list, G: nx.MultiDiGraph, event: object):
-        risk = []
+        """
+        分为几种情况：1、新建光路：删除物理链路，新建光路，承载业务；2、已有光路：承载业务；3、拆除业务：光路释放业务，释放光路
+        :param path:
+        :param G:
+        :param event:
+        :return:
+        """
+        # 更新光路拓扑
         for (start, end, index) in path:
-            G[start][end][index]["used"] = index
+            G[start][end][index]["bandwidth"] -= event.call.requestBandwidth
+            G[start][end][index]["calls"].append(event.call)
+            G[start][end][index]["weight"] = 1 / (G[start][end][index]["bandwidth"] + self._infinitesimal)
+
             if event.call.requestSecurity == 0:
                 risk.append("link_" + str(start) + "_" + str(end))
             availableBandwidth.append(int(physicalTopology.G[start][end]["bandwidth"]))
