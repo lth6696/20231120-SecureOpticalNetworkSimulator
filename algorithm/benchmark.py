@@ -8,7 +8,7 @@ class Benchmark:
         self._infinitesimal = 1e-5
         self.algorithmName = "benchmark"
 
-    def routeCall(self, physicalTopology, opticalTopology, event):
+    def routeCall(self, physicalTopology, opticalTopology, event, routeTable):
         """
         Algorithm pseudocode:
         1. 计算工作路径。若光路拓扑没有可用路径，则基于物理拓扑新建光路。对于物理拓扑，修建掉已占用的波长后，构建临时图。计算最短路径并基于FirstFit分配波长，更新光路拓扑。
@@ -69,34 +69,33 @@ class Benchmark:
         else:
             logging.info("{} - {} - The {} service does not have backup path.".format(__file__, __name__, event.call.id))
             return False
+        # 更新拓扑信息
+        workingPath = self._updateNetState(workingPath, opticalTopology.G, physicalTopology.G, event)
+        backupPath = self._updateNetState(backupPath, opticalTopology.G, physicalTopology.G, event)
+        # 更新路由表
+        routeTable[event.call.id] = {"workingPath": workingPath, "backupPath": backupPath}
+        return True
 
-        if workingPath["optical"]:
-            self._updateNetState(workingPath["optical"], opticalTopology.G, event)
-        elif workingPath["physical"]:
-            self._updateNetState(workingPath["physical"], physicalTopology.G, event)
-
-        if backupPath["optical"]:
-            self._updateNetState(backupPath["optical"], opticalTopology.G, event)
-        elif workingPath["physical"]:
-            self._updateNetState(backupPath["physical"], physicalTopology.G, event)
-
-            # availableBandwidth = []
-            # risk = []
-            # for (start, end) in zip(backupPath["new"][:-1], backupPath["new"][1:]):
-            #     physicalTopology.G[start][end]["used-wavelength"].append(list(availableWavelengths["backup"])[0])
-            #     if event.call.requestSecurity == 0:
-            #         risk.append("link_" + str(start) + "_" + str(end))
-            #     availableBandwidth.append(int(physicalTopology.G[start][end]["bandwidth"]))
-            # # 更新光路拓扑
-            # wavelength = list(availableWavelengths["backup"])[0]
-            # opticalTopology.G.add_edge(backupPath["new"][0], backupPath["new"][-1], wavelength)
-            # opticalTopology.G[backupPath["new"][0]][backupPath["new"][-1]][wavelength]["used-wavelength"] = wavelength
-            # opticalTopology.G[backupPath["new"][0]][backupPath["new"][-1]][wavelength]["bandwidth"] = min(availableBandwidth)
-            # opticalTopology.G[backupPath["new"][0]][backupPath["new"][-1]][wavelength]["weight"] = 1 / min(availableBandwidth)
-            # opticalTopology.G[backupPath["new"][0]][backupPath["new"][-1]][wavelength]["risk"] = risk
-
-    def removeCall(self):
-        pass
+    def removeCall(self, physicalTopology, opticalTopology, event, routeTable):
+        if event.call.id not in routeTable.keys():
+            # 若业务被阻塞
+            return False
+        # 光路：删减业务、增加带宽、更新权重。
+        path = routeTable[event.call.id]
+        for pathType in path.keys():
+            for (start, end, index) in path[pathType]:
+                opticalTopology.G[start][end][index]["calls"] = [call for call in opticalTopology.G[start][end][index]["calls"] if call.id != event.call.id]
+                opticalTopology.G[start][end][index]["bandwidth"] += event.call.requestBandwidth
+                opticalTopology.G[start][end][index]["weight"] = 1 / (opticalTopology.G[start][end][index]["bandwidth"] + self._infinitesimal)
+                if not opticalTopology.G[start][end][index]["calls"]:
+                    # 拆除光路
+                    for (s, d, i) in opticalTopology.G[start][end][index]["link"]:
+                        physicalTopology.G.add_edge(s, d, i)
+                        physicalTopology.G[s][d][i]["bandwidth"] = physicalTopology.maxBandwidth
+                        # physicalTopology.G[start][end][index]["used"] = False
+                        physicalTopology.G[s][d][i]["weight"] = 1 / (physicalTopology.maxBandwidth + self._infinitesimal)
+                    opticalTopology.G.remove_edge(start, end, index)
+        return True
 
     def _constructAuxMultiDiG(self, G: nx.MultiDiGraph, **kargs):
         # 建立临时图
@@ -112,7 +111,7 @@ class Benchmark:
                 riskName = []
                 linkRisk = G[start][end][index]["risk"]
                 if type(linkRisk) == bool:
-                    riskName.append('_'.join(["link", str(start), str(end), str(index)]))
+                    riskName.append('_'.join(["link", str(start), str(end)]))
                 elif type(linkRisk) == list:
                     riskName += linkRisk
                 if len(set(riskName) & set(kargs["risk"])) != 0:
@@ -124,7 +123,7 @@ class Benchmark:
     def _setEavesdroppingRiskSharedLinkGroup(self, G: nx.MultiDiGraph, path: list, ERSLG: list):
         for (start, end, index) in path:
             if type(G[start][end][index]["risk"]) == bool:
-                ERSLG.append("link_"+str(start)+"_"+str(end)+"_"+str(index))
+                ERSLG.append("_".join(["link", str(start), str(end)]))
             elif type(G[start][end][index]["risk"]) == list:
                 ERSLG += G[start][end][index]["risk"]
 
@@ -139,29 +138,67 @@ class Benchmark:
             return None
         return pathTuple
 
-    def _updateNetState(self, path: list, G: nx.MultiDiGraph, event: object):
-        """
-        分为几种情况：1、新建光路：删除物理链路，新建光路，承载业务；2、已有光路：承载业务；3、拆除业务：光路释放业务，释放光路
-        :param path:
-        :param G:
-        :param event:
-        :return:
-        """
-        # 更新光路拓扑
-        for (start, end, index) in path:
-            G[start][end][index]["bandwidth"] -= event.call.requestBandwidth
-            G[start][end][index]["calls"].append(event.call)
-            G[start][end][index]["weight"] = 1 / (G[start][end][index]["bandwidth"] + self._infinitesimal)
-
-            if event.call.requestSecurity == 0:
-                risk.append("link_" + str(start) + "_" + str(end))
-            availableBandwidth.append(int(physicalTopology.G[start][end]["bandwidth"]))
-        # 更新光路拓扑
-        wavelength = list(availableWavelengths["work"])[0]
-        opticalTopology.G.add_edge(workingPath["new"][0], workingPath["new"][-1], wavelength)
-        opticalTopology.G[workingPath["new"][0]][workingPath["new"][-1]][wavelength]["used-wavelength"] = wavelength
-        opticalTopology.G[workingPath["new"][0]][workingPath["new"][-1]][wavelength]["bandwidth"] = min(
-            availableBandwidth)
-        opticalTopology.G[workingPath["new"][0]][workingPath["new"][-1]][wavelength]["weight"] = 1 / min(
-            availableBandwidth)
-        opticalTopology.G[workingPath["new"][0]][workingPath["new"][-1]][wavelength]["risk"] = risk
+    def _updateNetState(self, path: dict, opticalG: nx.MultiDiGraph, physicalG: nx.MultiDiGraph, event: object):
+        lightpathPath = []
+        if path["optical"]:
+            # 基于光路拓扑承载业务，仅需要更新光路信息
+            for (start, end, index) in path["optical"]:
+                if opticalG[start][end][index]["bandwidth"] >= event.call.requestBandwidth:
+                    opticalG[start][end][index]["bandwidth"] -= event.call.requestBandwidth
+                    opticalG[start][end][index]["calls"].append(event.call)
+                    opticalG[start][end][index]["weight"] = 1 / (opticalG[start][end][index]["bandwidth"] + self._infinitesimal)
+                    lightpathPath.append((start, end, index))
+                else:
+                    raise Exception("No enough bandwidth provided to service.")
+        elif path["physical"]:
+            # 基于物理拓扑承载业务，需要删除物理链路、新建光路、更新光路信息
+            wavelengthContinuous = [-1] + [i for (_, _, i) in path["physical"]] + [-1]
+            newLightpath = (-1, -1, -1)
+            bandwidth = 0
+            risk = []
+            usedLink = []
+            for i, (start, end, index) in enumerate(path["physical"]):
+                if index == wavelengthContinuous[i+2] and index != wavelengthContinuous[i]:
+                    # 前不后同：当前链路与后续链路组成光路
+                    newLightpath = (start, end, index)
+                    bandwidth = physicalG[start][end][index]["bandwidth"]
+                    risk.append("_".join(["link", str(start), str(end)]))
+                    usedLink.append((start, end, index))
+                    physicalG.remove_edge(start, end, index)
+                elif index == wavelengthContinuous[i+2] and index == wavelengthContinuous[i]:
+                    # 前同后同：当前链路与前后链路共同组成光路
+                    newLightpath = (newLightpath[0], end, index)
+                    bandwidth = min(bandwidth, physicalG[start][end][index]["bandwidth"])
+                    risk.append("_".join(["link", str(start), str(end)]))
+                    usedLink.append((start, end, index))
+                    physicalG.remove_edge(start, end, index)
+                elif index != wavelengthContinuous[i+2] and index == wavelengthContinuous[i]:
+                    # 前同后不：当前链路组成光路末端
+                    newLightpath = (newLightpath[0], end, index)
+                    bandwidth = min(bandwidth, physicalG[start][end][index]["bandwidth"])
+                    risk.append("_".join(["link", str(start), str(end)]))
+                    usedLink.append((start, end, index))
+                    physicalG.remove_edge(start, end, index)
+                    opticalG.add_edge(newLightpath[0], newLightpath[1])
+                    lightpathIndex = len(opticalG[newLightpath[0]][end]) - 1
+                    opticalG[newLightpath[0]][end][lightpathIndex]["bandwidth"] = bandwidth - event.call.requestBandwidth
+                    opticalG[newLightpath[0]][end][lightpathIndex]["used"] = index
+                    opticalG[newLightpath[0]][end][lightpathIndex]["risk"] = risk
+                    opticalG[newLightpath[0]][end][lightpathIndex]["calls"] = [event.call]
+                    opticalG[newLightpath[0]][end][lightpathIndex]["link"] = usedLink
+                    opticalG[newLightpath[0]][end][lightpathIndex]["weight"] = 1 / (bandwidth - event.call.requestBandwidth + self._infinitesimal)
+                    usedLink = []
+                    lightpathPath.append((newLightpath[0], end, lightpathIndex))
+                else:
+                    # 前不后不：链路单独组成光路
+                    opticalG.add_edge(start, end)
+                    lightpathIndex = len(opticalG[start][end]) - 1
+                    opticalG[start][end][lightpathIndex]["bandwidth"] = physicalG[start][end][index]["bandwidth"] - event.call.requestBandwidth
+                    opticalG[start][end][lightpathIndex]["used"] = index
+                    opticalG[start][end][lightpathIndex]["risk"] = ["_".join(["link", str(start), str(end)])]
+                    opticalG[start][end][lightpathIndex]["calls"] = [event.call]
+                    opticalG[start][end][lightpathIndex]["link"] = [(start, end, index)]
+                    opticalG[start][end][lightpathIndex]["weight"] = 1 / (physicalG[start][end][index]["bandwidth"] - event.call.requestBandwidth + self._infinitesimal)
+                    physicalG.remove_edge(start, end, index)
+                    lightpathPath.append((start, end, lightpathIndex))
+        return lightpathPath

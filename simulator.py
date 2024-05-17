@@ -6,9 +6,9 @@ import logging
 import logging.config
 import os.path
 
-import algorithm
 import event
 import network
+import result
 
 
 def simulator(configFile: str):
@@ -39,6 +39,7 @@ def simulator(configFile: str):
     controller = network.controller.ControlPlane(configFile)
     controller.run(scheduler, physicalTopology, opticalTopology)
     logging.info("{} - {} - Done.".format(__file__, __name__))
+    result.curve.PlotCurve.plotRealTimeCarriedServiceNum(controller.timeline, controller.carryServiceList)
 
 
 if __name__ == '__main__':

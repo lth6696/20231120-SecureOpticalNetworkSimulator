@@ -15,6 +15,10 @@ class ControlPlane:
         self.__algorithmInfoModuleName = "ra"
         self.algorithmName = ""
         self.algorithm = None
+        self.routeTable = {}    # {call_id: {"workingPath": [], "opticalPath": []}}
+        self.carryService = 0
+        self.carryServiceList = []
+        self.timeline = []
 
         self._setAlgorithm(configFile)
 
@@ -24,9 +28,13 @@ class ControlPlane:
             logging.info("{} - {} - The {} event processed on {} second origin from {} to {} with id {}."
                          .format(__file__, __name__, event.type, time, event.call.sourceNode, event.call.destinationNode, event.id))
             if event.type == "callArrive":
-                self.algorithm.routeCall(physicalTopology, opticalTopology, event)
+                if self.algorithm.routeCall(physicalTopology, opticalTopology, event, self.routeTable):
+                    self.carryService += 1
             elif event.type == "callDeparture":
-                self.algorithm.removeCall()
+                if self.algorithm.removeCall(physicalTopology, opticalTopology, event, self.routeTable):
+                    self.carryService -= 1
+            self.carryServiceList.append(self.carryService)
+            self.timeline.append(time)
 
     def _setAlgorithm(self, configFile: str):
         if not os.path.exists(configFile):

@@ -21,6 +21,7 @@ class PhysicalTopology:
         self._linkInfoModuleName = "links"
         self._infinitesimal = 1e-5
         self.G = nx.MultiDiGraph()
+        self.maxBandwidth = 100000
 
     def constructGraph(self, configFile: str):
         # 检查输入
@@ -66,9 +67,10 @@ class LightpathTopology:
      - risk: list, 光路包含的风险["link_1_3", "node_1",...]
      - calls: list, 光路上承载的业务
      - weight: float, 光路权重
+     - link: list, 构成光路的链路
     """
     def __init__(self):
-        self.G = nx.MultiGraph()
+        self.G = nx.MultiDiGraph()
 
     def constructGraph(self, physicalTopology: PhysicalTopology):
         self.G.add_nodes_from(physicalTopology.G.nodes)

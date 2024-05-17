@@ -78,7 +78,7 @@ class TrafficGenerator:
             startTime = np.random.exponential(self.meanArrivalTime, 1)[0] + time
             duration = np.random.exponential(nextCallType["holding-time"])
             endTime = startTime + duration
-            time += startTime
+            time = startTime
             call = OTNCalls(i, sourceNode, destinationNode, duration, nextCallType["rate"], requestSecurity)
             eventArrival = Event(i, "callArrive", startTime, call)
             eventDeparture = Event(i, "callDeparture", endTime, call)
