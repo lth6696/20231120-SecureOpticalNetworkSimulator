@@ -48,7 +48,7 @@ class PhysicalTopology:
                     if "bandwidth" in link.keys():
                         linkTag["bandwidth"] = int(link.attrib["bandwidth"])
                     linkTag["used"] = False
-                    linkTag["risk"] = False   # [link_1_2, node_1]
+                    linkTag["risk"] = []   # [link_1_2, node_1]
                     linkTag["weight"] = 1 / (linkTag["bandwidth"] + self._infinitesimal)
                     for i in range(wavelengths):
                         if "source" in link.keys() and "destination" in link.keys():

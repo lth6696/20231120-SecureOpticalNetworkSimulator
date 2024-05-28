@@ -22,7 +22,7 @@ def simulator(configFile: str):
     logging.info("{} - {} - Done.".format(__file__, __name__))
     # 初始化节点窃听风险
     ESRLG = network.risk.EavesdroppingRisk()
-    ESRLG.setRiskNodeRandomly(physicalTopology)
+    ESRLG.setLinkRelevanceERSLG(physicalTopology)
     # 生成光路拓扑
     logging.info("{} - {} - Construct the lightpath topology.".format(__file__, __name__))
     opticalTopology = network.topology.LightpathTopology()

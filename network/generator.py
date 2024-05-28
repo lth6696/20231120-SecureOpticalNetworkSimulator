@@ -70,7 +70,7 @@ class TrafficGenerator:
         time = 0.0
         for i in range(self.callsNum):
             nextCallType = self.callsType[np.random.choice(self.weightVector)]
-            requestSecurity = np.random.randint(1)
+            requestSecurity = np.random.randint(2)
             sourceNode = np.random.randint(nodesNum)
             destinationNode = np.random.randint(nodesNum)
             while (sourceNode == destinationNode):
