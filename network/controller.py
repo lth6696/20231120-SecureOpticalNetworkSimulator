@@ -1,6 +1,6 @@
+import algorithm
 from event.scheduler import Scheduler
 from network.topology import PhysicalTopology, LightpathTopology
-from algorithm.benchmark import Benchmark
 
 import os.path
 import xml.etree.ElementTree as et
@@ -49,7 +49,9 @@ class ControlPlane:
             raise Exception("Tag 'ra' does not include attribute 'module'.")
         # 实例化算法
         if self.algorithmName == "Benchmark":
-            self.algorithm = Benchmark()
-        elif self.algorithmName == "EAST":
-            self.algorithm = Benchmark()
+            self.algorithm = algorithm.benchmark.Benchmark()
+        elif self.algorithmName == "SFSR":
+            self.algorithm = algorithm.sfsr.SFSR()
+        elif self.algorithmName == "SOSR":
+            self.algorithm = algorithm.sosr.SOSR()
         logging.info("{} - {} - Load the {} algorithm.".format(__file__, __name__, self.algorithmName))
