@@ -47,6 +47,7 @@ class PhysicalTopology:
                     # 设置链路属性
                     if "bandwidth" in link.keys():
                         linkTag["bandwidth"] = int(link.attrib["bandwidth"])
+                        linkTag["max-bandwidth"] = linkTag["bandwidth"]
                     linkTag["used"] = False
                     linkTag["risk"] = []   # [link_1_2, node_1]
                     linkTag["weight"] = 1 / (linkTag["bandwidth"] + self._infinitesimal)

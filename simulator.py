@@ -34,12 +34,20 @@ def simulator(configFile: str):
     traffic = network.generator.TrafficGenerator()
     traffic.generate(configFile, physicalTopology, scheduler)
     logging.info("{} - {} - Done.".format(__file__, __name__))
+    # 加载数据统计模块
+    statistic = result.statistic.Statistic()
     # 启动管控平台
     logging.info("{} - {} - Start the control plane.".format(__file__, __name__))
     controller = network.controller.ControlPlane(configFile)
-    controller.run(scheduler, physicalTopology, opticalTopology)
+    controller.run(scheduler, physicalTopology, opticalTopology, statistic)
     logging.info("{} - {} - Done.".format(__file__, __name__))
-    result.curve.PlotCurve.plotRealTimeCarriedServiceNum(controller.timeline, controller.carryServiceList)
+    # 数据绘制
+    rp = result.curve.PlotCurve()
+    rp.plotRealTimeCarriedServiceNum(statistic.timeStamp, statistic.realTimeCallsCarried)
+    rp.plotRealTimeCarriedServiceNum(statistic.timeStamp, statistic.realTimeCallsBlocked)
+    rp.plotRealTimeCarriedServiceNum(statistic.timeStamp, statistic.realTimeSecurityCallsCarried)
+    rp.plotRealTimeCarriedServiceNum(statistic.timeStamp, statistic.realTimeSecurityCallsBlocked)
+    rp.plotRealTimeCarriedServiceNum(statistic.timeStamp, statistic.realTimeLinkUtilization)
 
 
 if __name__ == '__main__':

@@ -1,6 +1,7 @@
 import algorithm
 from event.scheduler import Scheduler
 from network.topology import PhysicalTopology, LightpathTopology
+from result.statistic import Statistic
 
 import os.path
 import xml.etree.ElementTree as et
@@ -16,25 +17,26 @@ class ControlPlane:
         self.algorithmName = ""
         self.algorithm = None
         self.routeTable = {}    # {call_id: {"workingPath": [], "opticalPath": []}}
-        self.carryService = 0
-        self.carryServiceList = []
-        self.timeline = []
+
+        # self.carryService = 0
+        # self.carryServiceList = []
+        # self.timeline = []
 
         self._setAlgorithm(configFile)
 
-    def run(self, scheduler: Scheduler, physicalTopology: PhysicalTopology, opticalTopology: LightpathTopology):
+    def run(self, scheduler: Scheduler, physicalTopology: PhysicalTopology, opticalTopology: LightpathTopology, statistic: Statistic):
         while scheduler.getEventNum() != 0:
             (time, event) = scheduler.popEvent()
             logging.info("{} - {} - The {} event processed on {} second origin from {} to {} with id {}."
                          .format(__file__, __name__, event.type, time, event.call.sourceNode, event.call.destinationNode, event.id))
+            status = None
             if event.type == "callArrive":
-                if self.algorithm.routeCall(physicalTopology, opticalTopology, event, self.routeTable):
-                    self.carryService += 1
+                status = self.algorithm.routeCall(physicalTopology, opticalTopology, event, self.routeTable)
             elif event.type == "callDeparture":
-                if self.algorithm.removeCall(physicalTopology, opticalTopology, event, self.routeTable):
-                    self.carryService -= 1
-            self.carryServiceList.append(self.carryService)
-            self.timeline.append(time)
+                status = self.algorithm.removeCall(physicalTopology, opticalTopology, event, self.routeTable)
+            statistic.snapshot(event, status, physicalTopology.G, self.routeTable)
+            # self.carryServiceList.append(self.carryService)
+            # self.timeline.append(time)
 
     def _setAlgorithm(self, configFile: str):
         if not os.path.exists(configFile):
