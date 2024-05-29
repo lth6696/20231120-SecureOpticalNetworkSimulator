@@ -18,10 +18,6 @@ class ControlPlane:
         self.algorithm = None
         self.routeTable = {}    # {call_id: {"workingPath": [], "opticalPath": []}}
 
-        # self.carryService = 0
-        # self.carryServiceList = []
-        # self.timeline = []
-
         self._setAlgorithm(configFile)
 
     def run(self, scheduler: Scheduler, physicalTopology: PhysicalTopology, opticalTopology: LightpathTopology, statistic: Statistic):
@@ -35,8 +31,6 @@ class ControlPlane:
             elif event.type == "callDeparture":
                 status = self.algorithm.removeCall(physicalTopology, opticalTopology, event, self.routeTable)
             statistic.snapshot(event, status, physicalTopology.G, self.routeTable)
-            # self.carryServiceList.append(self.carryService)
-            # self.timeline.append(time)
 
     def _setAlgorithm(self, configFile: str):
         if not os.path.exists(configFile):

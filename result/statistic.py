@@ -13,17 +13,20 @@ class Statistic:
         self.carriedCallsList = []      # 成功承载业务列表
         self.timeStamp = []                     # 时间戳
         self.currentCallsCarriedNum = 0         # 某时间点承载业务数量
-        self.currentSecurityCallsCarriedNum = 0 # 某时间点承载安全业务数量
         self.currentCallsBlockNum = 0           # 某时间点阻塞业务数量
+        self.currentSecurityCallsCarriedNum = 0 # 某时间点承载安全业务数量
         self.currentSecurityCallsBlockNum = 0   # 某时间点安全业务阻塞数量
+        self.currentNormalCallsCarriedNum = 0   # 某时间点承载普通业务数量
+        self.currentNormalCallsBlockNum = 0     # 某时间点承载阻塞业务数量
         self.realTimeCallsCarried = []          # 实时承载的业务数量
         self.realTimeCallsBlocked = []          # 实时拒绝业务数量
         self.realTimeSecurityCallsCarried = []  # 实时安全业务承载数量
         self.realTimeSecurityCallsBlocked = []  # 实时安全业务拒绝数量
+        self.realTimeNormalCallsCarried = []    # 实时普通业务承载数量
+        self.realTimeNormalCallsBlocked = []    # 实时普通业务阻塞数量
         self.realTimeLinkUtilization = []       # 实时平均链路利用率
 
     def snapshot(self, event: Event, status: bool, G: nx.MultiDiGraph, routeTable: dict):
-        self.timeStamp.append(event.time)
         if event.type == "callArrive":
             self.callsNum += 1
             if status:
@@ -38,37 +41,30 @@ class Statistic:
                         self.securityPathHop = np.mean([self.securityPathHop, len(routeTable[event.call.id]["workingPath"]), len(routeTable[event.call.id]["backupPath"])])
                     else:
                         self.securityPathHop = np.mean([len(routeTable[event.call.id]["workingPath"]), len(routeTable[event.call.id]["backupPath"])])
-                self.realTimeSecurityCallsCarried.append(self.currentSecurityCallsCarriedNum)
-                self.realTimeCallsCarried.append(self.currentCallsCarriedNum)
-                self.realTimeCallsBlocked.append(self.currentCallsBlockNum)
-                self.realTimeSecurityCallsBlocked.append(self.currentSecurityCallsBlockNum)
-                self.realTimeLinkUtilization.append(self._calLinkUtilization(G))
+                else:
+                    self.currentNormalCallsCarriedNum += 1
             else:
                 # 若业阻塞
                 self.currentCallsBlockNum += 1
                 self.currentSecurityCallsBlockNum += 1 if event.call.requestSecurity else 0
-                self.realTimeCallsCarried.append(self.currentCallsCarriedNum)
-                self.realTimeCallsBlocked.append(self.currentCallsBlockNum)
-                self.realTimeSecurityCallsCarried.append(self.currentSecurityCallsCarriedNum)
-                self.realTimeSecurityCallsBlocked.append(self.currentSecurityCallsBlockNum)
-                self.realTimeLinkUtilization.append(self._calLinkUtilization(G))
+                self.currentNormalCallsBlockNum += 1 if not event.call.requestSecurity else 0
         elif event.type == "callDeparture":
             if status:
                 # 若开通的业务离去
                 self.currentCallsCarriedNum -= 1
                 self.currentSecurityCallsCarriedNum -= 1 if event.call.requestSecurity else 0
-                self.realTimeCallsCarried.append(self.currentCallsCarriedNum)
-                self.realTimeCallsBlocked.append(self.currentCallsBlockNum)
-                self.realTimeSecurityCallsCarried.append(self.currentSecurityCallsCarriedNum)
-                self.realTimeSecurityCallsBlocked.append(self.currentSecurityCallsBlockNum)
-                self.realTimeLinkUtilization.append(self._calLinkUtilization(G))
+                self.currentNormalCallsCarriedNum -= 1 if not event.call.requestSecurity else 0
             else:
                 # 若阻塞业务离去
-                self.realTimeCallsCarried.append(self.currentCallsCarriedNum)
-                self.realTimeCallsBlocked.append(self.currentCallsBlockNum)
-                self.realTimeSecurityCallsCarried.append(self.currentSecurityCallsCarriedNum)
-                self.realTimeSecurityCallsBlocked.append(self.currentSecurityCallsBlockNum)
-                self.realTimeLinkUtilization.append(self._calLinkUtilization(G))
+                pass
+        self.timeStamp.append(event.time)
+        self.realTimeCallsCarried.append(self.currentCallsCarriedNum)
+        self.realTimeCallsBlocked.append(self.currentCallsBlockNum)
+        self.realTimeSecurityCallsCarried.append(self.currentSecurityCallsCarriedNum)
+        self.realTimeSecurityCallsBlocked.append(self.currentSecurityCallsBlockNum)
+        self.realTimeNormalCallsCarried.append(self.currentNormalCallsCarriedNum)
+        self.realTimeNormalCallsBlocked.append(self.currentNormalCallsBlockNum)
+        self.realTimeLinkUtilization.append(self._calLinkUtilization(G))
 
     def _calLinkUtilization(self, G: nx.MultiDiGraph):
         linkUtilization = 0

@@ -43,11 +43,9 @@ def simulator(configFile: str):
     logging.info("{} - {} - Done.".format(__file__, __name__))
     # 数据绘制
     rp = result.curve.PlotCurve()
-    rp.plotRealTimeCarriedServiceNum(statistic.timeStamp, statistic.realTimeCallsCarried)
-    rp.plotRealTimeCarriedServiceNum(statistic.timeStamp, statistic.realTimeCallsBlocked)
-    rp.plotRealTimeCarriedServiceNum(statistic.timeStamp, statistic.realTimeSecurityCallsCarried)
-    rp.plotRealTimeCarriedServiceNum(statistic.timeStamp, statistic.realTimeSecurityCallsBlocked)
-    rp.plotRealTimeCarriedServiceNum(statistic.timeStamp, statistic.realTimeLinkUtilization)
+    rp.plotMultiRealTime(statistic.timeStamp, statistic.realTimeCallsCarried, statistic.realTimeSecurityCallsCarried, statistic.realTimeNormalCallsCarried)
+    rp.plotMultiRealTime(statistic.timeStamp, statistic.realTimeCallsBlocked, statistic.realTimeSecurityCallsBlocked, statistic.realTimeNormalCallsBlocked)
+    rp.plotRealTime(statistic.timeStamp, statistic.realTimeLinkUtilization)
 
 
 if __name__ == '__main__':
