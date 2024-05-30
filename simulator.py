@@ -6,6 +6,8 @@ import logging
 import logging.config
 import os.path
 
+import numpy as np
+
 import event
 import network
 import result
@@ -42,10 +44,16 @@ def simulator(configFile: str):
     controller.run(scheduler, physicalTopology, opticalTopology, statistic)
     logging.info("{} - {} - Done.".format(__file__, __name__))
     # 数据绘制
-    rp = result.curve.PlotCurve()
-    rp.plotMultiRealTime(statistic.timeStamp, statistic.realTimeCallsCarried, statistic.realTimeSecurityCallsCarried, statistic.realTimeNormalCallsCarried)
-    rp.plotMultiRealTime(statistic.timeStamp, statistic.realTimeCallsBlocked, statistic.realTimeSecurityCallsBlocked, statistic.realTimeNormalCallsBlocked)
-    rp.plotRealTime(statistic.timeStamp, statistic.realTimeLinkUtilization)
+    # rp = result.curve.PlotCurve()
+    # rp.plotMultiRealTime(statistic.timeStamp, statistic.realTimeCallsCarried, statistic.realTimeSecurityCallsCarried, statistic.realTimeNormalCallsCarried)
+    # rp.plotMultiRealTime(statistic.timeStamp, statistic.realTimeCallsBlocked, statistic.realTimeSecurityCallsBlocked, statistic.realTimeNormalCallsBlocked)
+    # rp.plotRealTime(statistic.timeStamp, statistic.realTimeLinkUtilization)
+    print(np.mean(statistic.realTimeCallsCarried[5000:15000]))
+    print(np.mean(statistic.realTimeSecurityCallsCarried[5000:15000]))
+    print(np.mean(statistic.realTimeNormalCallsCarried[5000:15000]))
+    print(statistic.totalCarriedCallsNum / statistic.callsNum * 100)
+    print(statistic.pathHop)
+    print(statistic.securityPathHop)
 
 
 if __name__ == '__main__':
@@ -57,3 +65,14 @@ if __name__ == '__main__':
 
     # 开始仿真
     simulator(configFile)
+
+    """
+    sfsr
+    业务数量     负载      业务承载        安全业务承载     普通业务承载        成功率       跳数       安全业务跳数
+    20000       100      68.648         17.933          50.715          67.485      1.512       1.851
+    20000       120      85.958         25.986          59.973          71.325      1.051       1.626
+    20000       140      92.374         26.993          65.381          67.07       1.008       2.388
+    20000       160      112.725        37.304          75.422          68.61       1.750       1.995
+    sosr
+    20000       100      77.280         24.731          52.549          74.765      1.576       1.512
+    """
