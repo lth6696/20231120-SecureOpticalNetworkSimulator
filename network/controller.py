@@ -1,6 +1,6 @@
 import algorithm
 from event.scheduler import Scheduler
-from network.topology import PhysicalTopology, LightpathTopology
+from network.topology import PhysicalTopology
 from result.statistic import Statistic
 
 import os.path

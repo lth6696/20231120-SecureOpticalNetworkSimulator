@@ -22,14 +22,6 @@ def simulator(configFile: str):
     physicalTopology = network.topology.PhysicalTopology()
     physicalTopology.constructGraph(configFile)
     logging.info("{} - {} - Done.".format(__file__, __name__))
-    # 初始化节点窃听风险
-    ESRLG = network.risk.EavesdroppingRisk()
-    ESRLG.setLinkRelevanceERSLG(physicalTopology)
-    # 生成光路拓扑
-    # logging.info("{} - {} - Construct the lightpath topology.".format(__file__, __name__))
-    # opticalTopology = network.topology.LightpathTopology()
-    # opticalTopology.constructGraph(physicalTopology)
-    # logging.info("{} - {} - Done.".format(__file__, __name__))
     # 生成业务请求事件
     logging.info("{} - {} - Generate the traffic events.".format(__file__, __name__))
     scheduler = event.scheduler.Scheduler()

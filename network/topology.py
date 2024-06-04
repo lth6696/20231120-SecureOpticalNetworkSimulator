@@ -38,41 +38,25 @@ class PhysicalTopology:
             if element.tag == self._nodeInfoModuleName:
                 for id, node in enumerate(element):
                     nodeTag = node.attrib
-                    nodeTag["risk"] = False
                     self.G.add_node(id, **nodeTag)
             elif element.tag == self._linkInfoModuleName:
                 wavelengths = int(element.attrib["wavelengths"])
                 for link in element:
-                    linkTag = {}
+                    linkTag = link.attrib
                     # 设置链路属性
-                    if "bandwidth" in link.keys():
-                        linkTag["bandwidth"] = int(link.attrib["bandwidth"])
-                        linkTag["max-bandwidth"] = linkTag["bandwidth"]
+                    if "bandwidth" not in link.keys():
+                        raise Exception("Links have no bandwidth attribute.")
+                    linkTag["source"] = int(linkTag["source"])
+                    linkTag["destination"] = int(linkTag["destination"])
+                    linkTag["id"] = int(linkTag["id"])
+                    linkTag["bandwidth"] = float(linkTag["bandwidth"])
+                    linkTag["max-bandwidth"] = float(linkTag["max-bandwidth"])
                     linkTag["used"] = False
-                    linkTag["risk"] = []   # [link_1_2, node_1]
                     linkTag["weight"] = 1 / (linkTag["bandwidth"] + self._infinitesimal)
+                    linkTag["risk"] = linkTag["risk"].split("_")
                     for i in range(wavelengths):
                         if "source" in link.keys() and "destination" in link.keys():
                             self.G.add_edge(int(link.attrib["source"]), int(link.attrib["destination"]), i, **linkTag)
                         else:
                             raise Exception("Tag 'link' does not have source and destination nodes.")
         logging.info("{} - {} - Add {} nodes and {} links.".format(__file__, __name__, len(self.G.nodes), len(self.G.edges)))
-
-
-class LightpathTopology:
-    """
-    由光路和虚节点组成的光路拓扑
-    光路包含属性:
-     - used: int, 光路占用的波长号
-     - bandwidth: int, 光路可用带宽
-     - risk: list, 光路包含的风险["link_1_3", "node_1",...]
-     - calls: list, 光路上承载的业务
-     - weight: float, 光路权重
-     - link: list, 构成光路的链路
-    """
-    def __init__(self):
-        self.G = nx.MultiDiGraph()
-
-    def constructGraph(self, physicalTopology: PhysicalTopology):
-        self.G.add_nodes_from(physicalTopology.G.nodes)
-        logging.info("{} - {} - Add nodes from physical topology to lightpath topology.".format(__file__, __name__))
