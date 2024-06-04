@@ -14,24 +14,35 @@ class SOSR:
         self.isSymbiosis = defaultdict(bool)                    # 记录业务是否使用共生路径
         self._infinitesimal = 1e-5
 
-    def routeCall(self, physicalTopology, opticalTopology, event, routeTable):
+    def routeCall(self, physicalTopology, event, routeTable):
         nodeSrc = event.call.sourceNode
         nodeDst = event.call.destinationNode
         workingPath = None
         backupPath = None
+        availablePaths = None
+
+        # 计算多条路径
+        try:
+            availablePaths = [list(zip(path[:-1], path[1:])) for path in nx.node_disjoint_paths(physicalTopology.G, nodeSrc, nodeDst)]
+            availablePaths = self._allocateWavelength(physicalTopology.G, availablePaths)
+        except:
+            availablePaths = []
+
         if not event.call.requestSecurity:
             # 对于普通需求业务
-            if self.nomAvailableSymbiosisPaths[(nodeSrc, nodeDst)]:
+            if availablePaths:
+                # 优先建立新的传输路径
+                workingPath = self._choosePath(availablePaths, self._metricsHop)
+            elif self.nomAvailableSymbiosisPaths[(nodeSrc, nodeDst)]:
                 # 若原宿节点间存在共生路径，则占用
-                workingPath = self.nomAvailableSymbiosisPaths[(nodeSrc, nodeDst)][0]
+                workingPath = self._choosePath(self.nomAvailableSymbiosisPaths[(nodeSrc, nodeDst)], self._metricsHop)
             else:
-                # 若原宿节点间不存在，则路由新的路径
-                try:
-                    workingPath = nx.shortest_path(physicalTopology.G, nodeSrc, nodeDst, weight="weight")
-                except:
-                    return False
+                # 无法找到可用路径，阻塞业务
+                return False
         if event.call.requestSecurity:
             # 对于安全需求业务
+            if len(availablePaths) > 1:
+
             if self.secAvailableSymbiosisPaths[(nodeSrc, nodeDst)]:
                 # 若存在共生路径
                 backupPath = self.secAvailableSymbiosisPaths[(nodeSrc, nodeDst)][0]
@@ -106,7 +117,7 @@ class SOSR:
         routeTable[event.call.id] = {"workingPath": workingPath, "backupPath": backupPath}
         return True
 
-    def removeCall(self, physicalTopology, opticalTopology, event, routeTable):
+    def removeCall(self, physicalTopology, event, routeTable):
         if event.call.id not in routeTable:
             # 对于已阻塞业务
             return False
@@ -136,21 +147,53 @@ class SOSR:
             physicalTopology.G[start][end][index]["weight"] = 1 / (physicalTopology.G[start][end][index]["bandwidth"] + self._infinitesimal)
         return True
 
-    def _allocateWavelength(self, path, G):
-        usedWavelengths = []
-        for (start, end) in path:
-            for index in G[start][end]:
-                if G[start][end][index]["used"]:
-                    continue
-                else:
-                    usedWavelengths.append(index)
-                    break
-        if len(usedWavelengths) != len(path):
-            return []
-        return usedWavelengths
+    def _allocateWavelength(self, G: nx.MultiDiGraph, paths: list):
+        newPaths = []
+        for path in paths:
+            p = []
+            for (start, end) in path:
+                for index in G[start][end]:
+                    if G[start][end][index]["used"]:
+                        continue
+                    else:
+                        p.append((start, end, index))
+                        break
+            if len(p) == len(path):
+                newPaths.append(p)
+            else:
+                continue
+        return newPaths
 
     def _updateNetState(self, path, G, bandwidth):
         for (start, end, index) in path:
             G[start][end][index]["bandwidth"] -= bandwidth
             G[start][end][index]["used"] = True
             G[start][end][index]["weight"] = 1 / (bandwidth + self._infinitesimal)
+
+    def _choosePath(self, paths: list, metrics, *args):
+        """
+        从可选路径中依据指标选择一条路径
+        """
+        if not paths:
+            return []
+        metricsValue = metrics(paths, *args)
+        path = paths[metricsValue.index(min(metricsValue))]
+        if not path:
+            return []
+        return path
+
+    def _metricsHop(self, paths: list):
+        return [len(path) for path in paths]
+
+    def _metricsExEncryptTime(self, call1, callList, paths: list):
+        return []
+
+    def _metricsRiskLevel(self, paths: list, G: nx.MultiDiGraph):
+        for path in paths:
+            for (start, end, index) in path:
+                riskNum = G[start][end][index]["risk"]
+
+    def _metricsDisjoint(self, G: nx.MultiDiGraph, workingPath, paths):
+        pass
+
+    # 两个业务 两条路径 待选路径

@@ -26,10 +26,10 @@ def simulator(configFile: str):
     ESRLG = network.risk.EavesdroppingRisk()
     ESRLG.setLinkRelevanceERSLG(physicalTopology)
     # 生成光路拓扑
-    logging.info("{} - {} - Construct the lightpath topology.".format(__file__, __name__))
-    opticalTopology = network.topology.LightpathTopology()
-    opticalTopology.constructGraph(physicalTopology)
-    logging.info("{} - {} - Done.".format(__file__, __name__))
+    # logging.info("{} - {} - Construct the lightpath topology.".format(__file__, __name__))
+    # opticalTopology = network.topology.LightpathTopology()
+    # opticalTopology.constructGraph(physicalTopology)
+    # logging.info("{} - {} - Done.".format(__file__, __name__))
     # 生成业务请求事件
     logging.info("{} - {} - Generate the traffic events.".format(__file__, __name__))
     scheduler = event.scheduler.Scheduler()
@@ -41,7 +41,7 @@ def simulator(configFile: str):
     # 启动管控平台
     logging.info("{} - {} - Start the control plane.".format(__file__, __name__))
     controller = network.controller.ControlPlane(configFile)
-    controller.run(scheduler, physicalTopology, opticalTopology, statistic)
+    controller.run(scheduler, physicalTopology, statistic)
     logging.info("{} - {} - Done.".format(__file__, __name__))
     # 数据绘制
     # rp = result.curve.PlotCurve()
@@ -61,7 +61,7 @@ if __name__ == '__main__':
     logging.config.fileConfig('logconfig.ini')
 
     # 仿真配置文件
-    configFile = "./topology/SimpleNet.xml"
+    configFile = "./topology/NSFNet.xml"
 
     # 开始仿真
     simulator(configFile)
