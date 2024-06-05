@@ -36,10 +36,10 @@ def simulator(configFile: str):
     controller.run(scheduler, physicalTopology, statistic)
     logging.info("{} - {} - Done.".format(__file__, __name__))
     # 数据绘制
-    # rp = result.curve.PlotCurve()
-    # rp.plotMultiRealTime(statistic.timeStamp, statistic.realTimeCallsCarried, statistic.realTimeSecurityCallsCarried, statistic.realTimeNormalCallsCarried)
-    # rp.plotMultiRealTime(statistic.timeStamp, statistic.realTimeCallsBlocked, statistic.realTimeSecurityCallsBlocked, statistic.realTimeNormalCallsBlocked)
-    # rp.plotRealTime(statistic.timeStamp, statistic.realTimeLinkUtilization)
+    rp = result.curve.PlotCurve()
+    rp.plotMultiRealTime(statistic.timeStamp, statistic.realTimeCallsCarried, statistic.realTimeSecurityCallsCarried, statistic.realTimeNormalCallsCarried)
+    rp.plotMultiRealTime(statistic.timeStamp, statistic.realTimeCallsBlocked, statistic.realTimeSecurityCallsBlocked, statistic.realTimeNormalCallsBlocked)
+    rp.plotRealTime(statistic.timeStamp, statistic.realTimeLinkUtilization)
     print(np.mean(statistic.realTimeCallsCarried[5000:15000]))
     print(np.mean(statistic.realTimeSecurityCallsCarried[5000:15000]))
     print(np.mean(statistic.realTimeNormalCallsCarried[5000:15000]))
@@ -67,4 +67,18 @@ if __name__ == '__main__':
     20000       160      112.725        37.304          75.422          68.61       1.750       1.995
     sosr
     20000       100      77.280         24.731          52.549          74.765      1.576       1.512
+    
+    101.0938
+    50.5637
+    50.5301
+    100.0
+    3.3221752959352897
+    4.701233370588478
+    
+    101.6531
+    50.6456
+    51.0075
+    98.91
+    2.5591626933218317
+    3.349355183462787
     """
