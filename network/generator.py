@@ -62,10 +62,13 @@ class TrafficGenerator:
         # 生成业务事件
         self.weightVector = [aux for aux in self.callsType for _ in range(self.callsType[aux]["weight"])]
         self.meanRate = sum([self.callsType[aux]["rate"] * self.callsType[aux]["weight"] / self.totalWeight for aux in self.callsType])
+        # 注意，λ/μ<1
+        # 服务时间间隔μ
         self.meanHoldingTime  = sum([self.callsType[aux]["holding-time"] * self.callsType[aux]["weight"] / self.totalWeight for aux in self.callsType])
+        # 到达时间间隔λ
         self.meanArrivalTime = (self.meanHoldingTime * (self.meanRate / self.maxRate)) / self.load
-        logging.info("{} - {} - Mean rate is {} Mb/s, max rate is {} Mb/s, mean holding time is {} second, mean arrival time is {} second."
-                     .format(__file__, __name__, self.meanRate, self.maxRate, self.meanHoldingTime, self.meanArrivalTime))
+        logging.info("{} - {} - Mean arrival time (λ) is {} seconds, mean holding time (μ) is {} seconds, intensity (ρ) is {}."
+                     .format(__file__, __name__, self.meanArrivalTime, self.meanHoldingTime, self.meanArrivalTime / self.meanHoldingTime))
         nodesNum = len(topology.G.nodes)
         time = 0.0
         for i in range(self.callsNum):
