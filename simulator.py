@@ -47,7 +47,8 @@ def simulator(configFile: str):
     # print(np.mean(statistic.realTimeCallsCarried[5000:15000]))
     # print(np.mean(statistic.realTimeSecurityCallsCarried[5000:15000]))
     # print(np.mean(statistic.realTimeNormalCallsCarried[5000:15000]))
-    res = [
+    # 保存仿真结果
+    simRes = [
         np.divide(statistic.totalCarriedCallsNum, statistic.callsNum) * 100,
         np.divide(statistic.totalCarriedSecCallsNum, statistic.secCallsNum) * 100,
         np.divide(statistic.totalCarriedNomCallsNum, statistic.nomCallsNum) * 100,
@@ -57,9 +58,8 @@ def simulator(configFile: str):
         statistic.meanRiskLevel,
         statistic.meanJointRiskLevel
     ]
-    print(res)
-    logging.info("{} - {} - Numercial results are {}.".format(__file__, __name__, res))
-    res = pd.DataFrame(res).transpose()
+    logging.info("{} - {} - Numercial results are {}.".format(__file__, __name__, simRes))
+    res = pd.DataFrame(simRes).transpose()
     res.to_csv('result_Load.csv', mode='a', header=False, index=False)
 
 
@@ -69,27 +69,23 @@ if __name__ == '__main__':
 
     # 仿真配置文件
     configFile = "./topology/NSFNet.xml"
+    resultFile = "result_Load.csv"
 
-    processes = []
+    if os.path.exists(resultFile):
+        os.remove(resultFile)
+
     # 开始仿真
-    # for i in range(20):
-    #     logging.info("-" * 500)
-    #     logging.info("{} - {} - Starting the {}th round.".format(__file__, __name__, i))
-    #     process = multiprocessing.Process(target=simulator, args=(configFile, ))
-    #     processes.append(process)
-    #     process.start()
-    #
-    # for process in processes:
-    #     process.join()
+    processes = []
+    for i in range(20):
+        logging.info("-" * 500)
+        logging.info("{} - {} - Starting the {}th round.".format(__file__, __name__, i))
+        process = multiprocessing.Process(target=simulator, args=(configFile, ))
+        processes.append(process)
+        process.start()
 
-    res = [50, 150, 300, 400]
-    value = []
-    for r in res:
-        fileName = "result_Load" + str(r) + ".csv"
-        data = pd.read_csv(fileName)
-        value.append(list(data.mean(axis=0)))
-    print(value)
-    plt.plot(res, [col[7] for col in value])
-    # plt.plot(res, [col[4] for col in value])
-    # plt.plot(res, [col[2] for col in value])
-    plt.show()
+    for process in processes:
+        process.join()
+
+    data = pd.read_csv(resultFile)
+    for value in list(data.mean(axis=0)):
+        print(value)

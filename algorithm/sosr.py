@@ -51,8 +51,8 @@ class SOSR:
         if event.call.requestSecurity:
             # 对于安全需求业务
             if len(availablePaths) > 1:
-                workingPath = self._choosePath(availablePaths, self._metricsRiskLevel, physicalTopology.G)
-                backupPath = self._choosePath(availablePaths, self._metricsDisjoint, physicalTopology.G, workingPath)
+                workingPath = self._choosePath(availablePaths, self._metricsRiskDivers, physicalTopology.G)
+                backupPath = self._choosePath(availablePaths, self._metricsTotalRisk, physicalTopology.G, workingPath)
                 self.nomAvailableSymbiosisPaths[(nodeSrc, nodeDst)].append(event.call.id)
                 self._updateNetState(workingPath, physicalTopology.G, event.call.requestBandwidth)
                 self._updateNetState(backupPath, physicalTopology.G, event.call.requestBandwidth)
@@ -60,7 +60,7 @@ class SOSR:
                 # 若存在共生路径
                 workingPath = availablePaths.pop()
                 paths = [routeTable[id]["workingPath"] for id in self.secAvailableSymbiosisPaths[(nodeSrc, nodeDst)]]
-                backupPath = self._choosePath(paths, self._metricsDisjoint, physicalTopology.G, workingPath)
+                backupPath = self._choosePath(paths, self._metricsTotalRisk, physicalTopology.G, workingPath)
                 ID = [id for id in self.secAvailableSymbiosisPaths[(nodeSrc, nodeDst)] if routeTable[id]["workingPath"] == backupPath]
                 self.isSymbiosis.append((event.call.id, ID[0]))
                 self.secAvailableSymbiosisPaths[(nodeSrc, nodeDst)].remove(ID[0])
@@ -176,3 +176,15 @@ class SOSR:
                 aux += len([risk for risk in G[start][end][index]["risk"] if risk in pathRisk])
             disjointRisks.append(aux)
         return disjointRisks
+
+    def _metricsRiskDivers(self, paths: list, G: nx.MultiDiGraph):
+        hops = self._metricsHop(paths)
+        risks = self._metricsRiskLevel(paths, G)
+        metrics = [hops[i] / len(G.edges) + risks[i] / hops[i] for i in range(len(paths))]
+        return metrics
+
+    def _metricsTotalRisk(self, paths: list, G: nx.MultiDiGraph, workingPath: list):
+        risks = self._metricsRiskLevel(paths, G)
+        jointRisks = self._metricsDisjoint(paths, G, workingPath)
+        metrics = [risks[i] + jointRisks[i] for i in range(len(paths))]
+        return metrics
