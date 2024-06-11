@@ -54,10 +54,11 @@ def simulator(configFile: str):
         np.divide(statistic.totalCarriedNomCallsNum, statistic.nomCallsNum) * 100,
         statistic.pathHop,
         statistic.securityPathHop,
-        np.mean(statistic.realTimeLinkUtilization),
+        np.mean(statistic.realTimeLinkUtilization[int(len(statistic.realTimeLinkUtilization)/3): int(len(statistic.realTimeLinkUtilization)*2/3)]),
         statistic.meanRiskLevel,
         statistic.meanJointRiskLevel
     ]
+    # print(simRes)
     logging.info("{} - {} - Numercial results are {}.".format(__file__, __name__, simRes))
     res = pd.DataFrame(simRes).transpose()
     res.to_csv('result_Load.csv', mode='a', header=False, index=False)
@@ -75,6 +76,7 @@ if __name__ == '__main__':
         os.remove(resultFile)
 
     # 开始仿真
+    # simulator(configFile)
     processes = []
     for i in range(20):
         logging.info("-" * 500)

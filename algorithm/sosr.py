@@ -35,13 +35,17 @@ class SOSR:
             # 对于普通需求业务
             if availablePaths:
                 # 优先建立新的传输路径
-                workingPath = self._choosePath(availablePaths, self._metricsHop)
+                workingPath = self._choosePath(availablePaths, "min", self._metricsHop)
+                if not workingPath:
+                    return False
                 self.secAvailableSymbiosisPaths[(nodeSrc, nodeDst)].append(event.call.id)
                 self._updateNetState(workingPath, physicalTopology.G, event.call.requestBandwidth)
             elif self.nomAvailableSymbiosisPaths[(nodeSrc, nodeDst)]:
                 # 若原宿节点间存在共生路径，则占用
                 paths = [routeTable[id]["backupPath"] for id in self.nomAvailableSymbiosisPaths[(nodeSrc, nodeDst)]]
-                workingPath = self._choosePath(paths, self._metricsHop)
+                workingPath = self._choosePath(paths, "min", self._metricsHop)
+                if not workingPath:
+                    return False
                 ID = [id for id in self.nomAvailableSymbiosisPaths[(nodeSrc, nodeDst)] if routeTable[id]["backupPath"] == workingPath]
                 self.isSymbiosis.append((ID[0], event.call.id))
                 self.nomAvailableSymbiosisPaths[(nodeSrc, nodeDst)].remove(ID[0])
@@ -50,23 +54,34 @@ class SOSR:
                 return False
         if event.call.requestSecurity:
             # 对于安全需求业务
-            if len(availablePaths) > 1:
-                workingPath = self._choosePath(availablePaths, self._metricsRiskDivers, physicalTopology.G)
-                backupPath = self._choosePath(availablePaths, self._metricsTotalRisk, physicalTopology.G, workingPath)
-                self.nomAvailableSymbiosisPaths[(nodeSrc, nodeDst)].append(event.call.id)
-                self._updateNetState(workingPath, physicalTopology.G, event.call.requestBandwidth)
-                self._updateNetState(backupPath, physicalTopology.G, event.call.requestBandwidth)
-            elif self.secAvailableSymbiosisPaths[(nodeSrc, nodeDst)] and availablePaths:
+            if len(availablePaths) > 0:
+                if self.scheme == "utilization":
+                    workingPath = self._choosePath(availablePaths, "min", self._metricsRiskDivers, physicalTopology.G)
+                    backupPath = self._choosePath(availablePaths, "min", self._metricsTotalRisk, physicalTopology.G, workingPath)
+                elif self.scheme == "security":
+                    workingPath = self._choosePath(availablePaths, "zero", self._metricsRiskLevel, physicalTopology.G)
+                    backupPath = self._choosePath(availablePaths, "zero", self._metricsTotalRisk, physicalTopology.G, workingPath)
+                if not workingPath:
+                    return False
+                if backupPath:
+                    self.nomAvailableSymbiosisPaths[(nodeSrc, nodeDst)].append(event.call.id)
+                    self._updateNetState(workingPath, physicalTopology.G, event.call.requestBandwidth)
+                    self._updateNetState(backupPath, physicalTopology.G, event.call.requestBandwidth)
+            if self.secAvailableSymbiosisPaths[(nodeSrc, nodeDst)] and backupPath == []:
                 # 若存在共生路径
-                workingPath = availablePaths.pop()
                 paths = [routeTable[id]["workingPath"] for id in self.secAvailableSymbiosisPaths[(nodeSrc, nodeDst)]]
-                backupPath = self._choosePath(paths, self._metricsTotalRisk, physicalTopology.G, workingPath)
-                ID = [id for id in self.secAvailableSymbiosisPaths[(nodeSrc, nodeDst)] if routeTable[id]["workingPath"] == backupPath]
-                self.isSymbiosis.append((event.call.id, ID[0]))
-                self.secAvailableSymbiosisPaths[(nodeSrc, nodeDst)].remove(ID[0])
-                self._updateNetState(workingPath, physicalTopology.G, event.call.requestBandwidth)
-            else:
-                # 若不存在共生路径
+                if self.scheme == "utilization":
+                    backupPath = self._choosePath(paths, "min", self._metricsTotalRisk, physicalTopology.G, workingPath)
+                elif self.scheme == "security":
+                    backupPath = self._choosePath(paths, "zero", self._metricsTotalRisk, physicalTopology.G, workingPath)
+                if not backupPath:
+                    return False
+                else:
+                    ID = [id for id in self.secAvailableSymbiosisPaths[(nodeSrc, nodeDst)] if routeTable[id]["workingPath"] == backupPath]
+                    self.isSymbiosis.append((event.call.id, ID[0]))
+                    self.secAvailableSymbiosisPaths[(nodeSrc, nodeDst)].remove(ID[0])
+                    self._updateNetState(workingPath, physicalTopology.G, event.call.requestBandwidth)
+            if workingPath == [] or backupPath == []:
                 return False
         routeTable[event.call.id] = {"workingPath": workingPath, "backupPath": backupPath}
         return True
@@ -139,7 +154,7 @@ class SOSR:
             else:
                 raise Exception("There is no enough bandwidth.")
 
-    def _choosePath(self, paths: list, metrics, *args):
+    def _choosePath(self, paths: list, method: str, metrics, *args):
         """
         从可选路径中依据指标选择一条路径
         """
@@ -147,10 +162,13 @@ class SOSR:
             return []
         metricsValue = metrics(paths, *args)
         path = []
-        if self.scheme == "utilization":
+        if method == "min":
             path = paths.pop(metricsValue.index(min(metricsValue)))
-        elif self.scheme == "security":
-            pass
+        elif method == "zero":
+            for i, value in enumerate(metricsValue):
+                if value == 0:
+                    path = paths.pop(i)
+                    break
         else:
             return []
         return path
@@ -169,7 +187,7 @@ class SOSR:
 
     def _metricsDisjoint(self, paths: list, G: nx.MultiDiGraph, workingPath: list):
         disjointRisks = []
-        pathRisk = [G[start][end][index]["risk"] for (start, end, index) in workingPath]
+        pathRisk = [risk for (start, end, index) in workingPath for risk in G[start][end][index]["risk"]]
         for path in paths:
             aux = 0
             for (start, end, index) in path:

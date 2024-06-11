@@ -46,8 +46,8 @@ class ControlPlane:
         # 实例化算法
         if self.algorithmName == "Benchmark":
             self.algorithm = algorithm.benchmark.Benchmark()
-        elif self.algorithmName == "SFSR":
-            self.algorithm = algorithm.sfsr.SFSR()
-        elif self.algorithmName == "SOSR":
-            self.algorithm = algorithm.sosr.SOSR()
+        elif self.algorithmName == "SOSR-U":
+            self.algorithm = algorithm.sosr.SOSR("utilization")
+        elif self.algorithmName == "SOSR-S":
+            self.algorithm = algorithm.sosr.SOSR("security")
         logging.info("{} - {} - Load the {} algorithm.".format(__file__, __name__, self.algorithmName))
