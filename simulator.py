@@ -6,9 +6,7 @@ import logging
 import logging.config
 import os.path
 
-import matplotlib.pyplot as plt
 import numpy as np
-import threading
 import multiprocessing
 import pandas as pd
 
@@ -39,14 +37,6 @@ def simulator(configFile: str):
     controller = network.controller.ControlPlane(configFile)
     controller.run(scheduler, physicalTopology, statistic)
     logging.info("{} - {} - Done.".format(__file__, __name__))
-    # 数据绘制
-    # rp = result.curve.PlotCurve()
-    # rp.plotMultiRealTime(statistic.timeStamp, statistic.realTimeCallsCarried, statistic.realTimeSecurityCallsCarried, statistic.realTimeNormalCallsCarried)
-    # rp.plotMultiRealTime(statistic.timeStamp, statistic.realTimeCallsBlocked, statistic.realTimeSecurityCallsBlocked, statistic.realTimeNormalCallsBlocked)
-    # rp.plotRealTime(statistic.timeStamp, statistic.realTimeLinkUtilization)
-    # print(np.mean(statistic.realTimeCallsCarried[5000:15000]))
-    # print(np.mean(statistic.realTimeSecurityCallsCarried[5000:15000]))
-    # print(np.mean(statistic.realTimeNormalCallsCarried[5000:15000]))
     # 保存仿真结果
     simRes = [
         np.divide(statistic.totalCarriedCallsNum, statistic.callsNum) * 100,
@@ -70,24 +60,34 @@ if __name__ == '__main__':
 
     # 仿真配置文件
     configFile = "./topology/NSFNet.xml"
-    resultFile = "result_Load.csv"
+    eachRoundResultFile = "result_Load.csv"
+    allRoundResultFile = "results.xlsx"
 
-    if os.path.exists(resultFile):
-        os.remove(resultFile)
+    iterRound = 20
+    isSimulate = False
+
+    if os.path.exists(eachRoundResultFile):
+        os.remove(eachRoundResultFile)
 
     # 开始仿真
-    # simulator(configFile)
-    processes = []
-    for i in range(20):
-        logging.info("-" * 500)
-        logging.info("{} - {} - Starting the {}th round.".format(__file__, __name__, i))
-        process = multiprocessing.Process(target=simulator, args=(configFile, ))
-        processes.append(process)
-        process.start()
+    if isSimulate:
+        # simulator(configFile)
+        processes = [multiprocessing.Process(target=simulator, args=(configFile, )) for _ in range(iterRound)]
+        for pro in processes:
+            pro.start()
+        for pro in processes:
+            pro.join()
 
-    for process in processes:
-        process.join()
-
-    data = pd.read_csv(resultFile)
-    for value in list(data.mean(axis=0)):
-        print(value)
+        data = pd.read_csv(eachRoundResultFile)
+        for value in list(data.mean(axis=0)):
+            print(value)
+    else:
+        if not os.path.exists(allRoundResultFile):
+            raise Exception("File does not exist.")
+        data = pd.read_excel(allRoundResultFile)
+        x = [100 * (i + 1) for i in range(6)]
+        y = [list(data.iloc[0+i*6 : 6+i*6, 11])[::-1] for i in range(3)]
+        print(y)
+        label = ["SOSR-U", "SOSR-S", "Benchmark"]
+        pc = result.curve.PlotCurve()
+        pc.plotMultiRealTime(x, *y, label=label)

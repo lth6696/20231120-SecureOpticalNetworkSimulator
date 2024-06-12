@@ -19,6 +19,8 @@ def style(width, height, fontsize=8):
 class PlotCurve:
     def __init__(self):
         self.colors = ["#E1C855", "#E07B54", "#51B1B7"]
+        self.markers = ['o', 's', 'X', '*']
+        self.line_styles = ['-', '--', ':', '-.']
 
     @staticmethod
     def plotRealTime(timeStamp: list, serviceNumList: list):
@@ -29,8 +31,7 @@ class PlotCurve:
         plt.plot(timeStamp, serviceNumList)
         plt.show()
 
-    @staticmethod
-    def plotMultiRealTime(timeStamp: list, *args, width: float = 8.6, height: float = 6):
+    def plotMultiRealTime(self, timeStamp: list, *args, width: float = 8.6, height: float = 6, label: list = []):
         colors = ["#E1C855", "#E07B54", "#51B1B7"]
         if len(args) < 1:
             raise Exception("Need at least one data list.")
@@ -39,6 +40,9 @@ class PlotCurve:
                 raise Exception("Two list does not match!")
         style(width=width, height=height)
         for i, data in enumerate(args):
-            plt.plot(timeStamp, data, label="data"+str(i), color=colors[i])
-        plt.legend()
+            plt.plot(timeStamp, data,
+                     marker=self.markers[i], ms=2.0,  # set marker
+                     ls=self.line_styles[i], lw=0.5,  # set line
+                     color=colors[i])
+        plt.legend(label)
         plt.show()
