@@ -1,3 +1,5 @@
+import logging
+
 import networkx as nx
 from collections import defaultdict
 
@@ -23,12 +25,11 @@ class SOSR:
         workingPath = []
         backupPath = []
         availablePaths = []
-        tempUsedWavelength = []
 
         # 计算多条路径
         try:
             # availablePaths = [list(zip(path[:-1], path[1:])) for path in nx.node_disjoint_paths(physicalTopology.G, nodeSrc, nodeDst)]
-            availablePaths = [list(zip(path[:-1], path[1:])) for path in nx.all_simple_paths(nx.DiGraph(physicalTopology.G), nodeSrc, nodeDst, cutoff=5)]
+            availablePaths = [list(zip(path[:-1], path[1:])) for path in nx.all_simple_paths(nx.DiGraph(physicalTopology.G), nodeSrc, nodeDst, cutoff=6)]
             availablePaths = self._allocateWavelength(physicalTopology.G, availablePaths)
         except:
             pass
@@ -55,13 +56,18 @@ class SOSR:
             if availablePaths:
                 if self.scheme == "utilization":
                     workingPath = self._choosePath(availablePaths, "min", self._metricsRiskDivers, physicalTopology.G)
+                    availablePaths = [[(s, e) for (s, e, i) in path] for path in availablePaths]
+                    availablePaths = self._allocateWavelength(physicalTopology.G, availablePaths, workingPath)
                     backupPath = self._choosePath(availablePaths, "min", self._metricsTotalRisk, physicalTopology.G, workingPath)
                 elif self.scheme == "security":
                     workingPath = self._choosePath(availablePaths, "zero", self._metricsRiskLevel, physicalTopology.G)
+                    availablePaths = [[(s, e) for (s, e, i) in path] for path in availablePaths]
+                    availablePaths = self._allocateWavelength(physicalTopology.G, availablePaths, workingPath)
                     backupPath = self._choosePath(availablePaths, "zero", self._metricsTotalRisk, physicalTopology.G, workingPath)
                 if not workingPath:
                     return False
                 if backupPath:
+                    logging.info("working path is {}, backup path is {}".format(workingPath, backupPath))
                     self.nomAvailableSymbiosisPaths[(nodeSrc, nodeDst)].append(event.call.id)
                     self._updateNetState(workingPath, physicalTopology.G, event.call.requestBandwidth)
                     self._updateNetState(backupPath, physicalTopology.G, event.call.requestBandwidth)
@@ -75,6 +81,7 @@ class SOSR:
                 if not backupPath:
                     return False
                 else:
+                    logging.info("working path is {}, symbiosis backup path is {}".format(workingPath, backupPath))
                     ID = [id for id in self.secAvailableSymbiosisPaths[(nodeSrc, nodeDst)] if routeTable[id]["workingPath"] == backupPath]
                     self.isSymbiosis.append((event.call.id, ID[0]))
                     self.secAvailableSymbiosisPaths[(nodeSrc, nodeDst)].remove(ID[0])
@@ -122,7 +129,7 @@ class SOSR:
             physicalTopology.G[start][end][index]["weight"] = 1 / (physicalTopology.G[start][end][index]["bandwidth"] + self._infinitesimal)
         return True
 
-    def _allocateWavelength(self, G: nx.MultiDiGraph, paths: list):
+    def _allocateWavelength(self, G: nx.MultiDiGraph, paths: list, tempUsedLinks: list = []):
         """
         路径列表格式为 [[(0,1),(1,2)]], 不包含波长信息
         基于FirstFit分配波长
@@ -132,6 +139,8 @@ class SOSR:
             p = []
             for (start, end) in path:
                 for index in G[start][end]:
+                    if (start, end, index) in tempUsedLinks:
+                        continue
                     if G[start][end][index]["used"]:
                         continue
                     else:
@@ -159,9 +168,11 @@ class SOSR:
         if not paths:
             return []
         metricsValue = metrics(paths, *args)
+        logging.info("based on {}, the weight is {}.".format(metrics.__name__, metricsValue))
         path = []
         if method == "min":
             path = paths.pop(metricsValue.index(min(metricsValue)))
+            logging.info("choose the {} path.".format(metricsValue.index(min(metricsValue))+1))
         elif method == "zero":
             for i, value in enumerate(metricsValue):
                 if value == 0:
@@ -169,6 +180,7 @@ class SOSR:
                     break
         else:
             return []
+
         return path
 
     def _metricsHop(self, paths: list):
@@ -196,7 +208,7 @@ class SOSR:
     def _metricsRiskDivers(self, paths: list, G: nx.MultiDiGraph):
         hops = self._metricsHop(paths)
         risks = self._metricsRiskLevel(paths, G)
-        metrics = [hops[i] / len(G.edges) + risks[i] / hops[i] for i in range(len(paths))]
+        metrics = [hops[i] / max(hops) + risks[i] / hops[i] for i in range(len(paths))]
         return metrics
 
     def _metricsTotalRisk(self, paths: list, G: nx.MultiDiGraph, workingPath: list):

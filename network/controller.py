@@ -23,8 +23,8 @@ class ControlPlane:
     def run(self, scheduler: Scheduler, physicalTopology: PhysicalTopology, statistic: Statistic):
         while scheduler.getEventNum() != 0:
             (time, event) = scheduler.popEvent()
-            # logging.info("{} - {} - The {} event processed on {} second origin from {} to {} with id {}."
-            #              .format(__file__, __name__, event.type, time, event.call.sourceNode, event.call.destinationNode, event.id))
+            logging.info("{} - {} - The {} event processed on {} second origin from {} to {} with id {}."
+                         .format(__file__, __name__, event.type, time, event.call.sourceNode, event.call.destinationNode, event.id))
             status = None
             if event.type == "callArrive":
                 status = self.algorithm.routeCall(physicalTopology, event, self.routeTable)
