@@ -22,30 +22,28 @@ class SOSR:
         nodeDst = event.call.destinationNode
         workingPath = []
         backupPath = []
-        availablePaths = None
+        availablePaths = []
+        tempUsedWavelength = []
 
         # 计算多条路径
         try:
-            availablePaths = [list(zip(path[:-1], path[1:])) for path in nx.node_disjoint_paths(physicalTopology.G, nodeSrc, nodeDst)]
+            # availablePaths = [list(zip(path[:-1], path[1:])) for path in nx.node_disjoint_paths(physicalTopology.G, nodeSrc, nodeDst)]
+            availablePaths = [list(zip(path[:-1], path[1:])) for path in nx.all_simple_paths(nx.DiGraph(physicalTopology.G), nodeSrc, nodeDst, cutoff=5)]
             availablePaths = self._allocateWavelength(physicalTopology.G, availablePaths)
         except:
-            availablePaths = []
+            pass
 
         if not event.call.requestSecurity:
             # 对于普通需求业务
             if availablePaths:
                 # 优先建立新的传输路径
                 workingPath = self._choosePath(availablePaths, "min", self._metricsHop)
-                if not workingPath:
-                    return False
                 self.secAvailableSymbiosisPaths[(nodeSrc, nodeDst)].append(event.call.id)
                 self._updateNetState(workingPath, physicalTopology.G, event.call.requestBandwidth)
             elif self.nomAvailableSymbiosisPaths[(nodeSrc, nodeDst)]:
                 # 若原宿节点间存在共生路径，则占用
                 paths = [routeTable[id]["backupPath"] for id in self.nomAvailableSymbiosisPaths[(nodeSrc, nodeDst)]]
                 workingPath = self._choosePath(paths, "min", self._metricsHop)
-                if not workingPath:
-                    return False
                 ID = [id for id in self.nomAvailableSymbiosisPaths[(nodeSrc, nodeDst)] if routeTable[id]["backupPath"] == workingPath]
                 self.isSymbiosis.append((ID[0], event.call.id))
                 self.nomAvailableSymbiosisPaths[(nodeSrc, nodeDst)].remove(ID[0])
@@ -54,7 +52,7 @@ class SOSR:
                 return False
         if event.call.requestSecurity:
             # 对于安全需求业务
-            if len(availablePaths) > 0:
+            if availablePaths:
                 if self.scheme == "utilization":
                     workingPath = self._choosePath(availablePaths, "min", self._metricsRiskDivers, physicalTopology.G)
                     backupPath = self._choosePath(availablePaths, "min", self._metricsTotalRisk, physicalTopology.G, workingPath)

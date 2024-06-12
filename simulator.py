@@ -64,23 +64,23 @@ if __name__ == '__main__':
     allRoundResultFile = "results.xlsx"
 
     iterRound = 20
-    isSimulate = False
+    isSimulate = True
 
     if os.path.exists(eachRoundResultFile):
         os.remove(eachRoundResultFile)
 
     # 开始仿真
     if isSimulate:
-        # simulator(configFile)
-        processes = [multiprocessing.Process(target=simulator, args=(configFile, )) for _ in range(iterRound)]
-        for pro in processes:
-            pro.start()
-        for pro in processes:
-            pro.join()
-
-        data = pd.read_csv(eachRoundResultFile)
-        for value in list(data.mean(axis=0)):
-            print(value)
+        simulator(configFile)
+        # processes = [multiprocessing.Process(target=simulator, args=(configFile, )) for _ in range(iterRound)]
+        # for pro in processes:
+        #     pro.start()
+        # for pro in processes:
+        #     pro.join()
+        #
+        # data = pd.read_csv(eachRoundResultFile)
+        # for value in list(data.mean(axis=0)):
+        #     print(value)
     else:
         if not os.path.exists(allRoundResultFile):
             raise Exception("File does not exist.")
