@@ -6,85 +6,169 @@ import numpy as np
 
 class Statistic:
     def __init__(self):
-        self.callsNum = 0               # 业务需求总数
-        self.secCallsNum = 0
-        self.nomCallsNum = 0
-        self.totalCarriedCallsNum = 0   # 成功承载的业务总数
-        self.totalCarriedSecCallsNum = 0
-        self.totalCarriedNomCallsNum = 0
-        self.pathHop = None             # 平均路径跳数
-        self.securityPathHop = None     # 平均安全路径跳数
-        self.meanRiskLevel = None
-        self.meanJointRiskLevel = None
-        self.carriedCallsList = []      # 成功承载业务列表
-        self.timeStamp = []                     # 时间戳
-        self.currentCallsCarriedNum = 0         # 某时间点承载业务数量
-        self.currentCallsBlockNum = 0           # 某时间点阻塞业务数量
-        self.currentSecurityCallsCarriedNum = 0 # 某时间点承载安全业务数量
-        self.currentSecurityCallsBlockNum = 0   # 某时间点安全业务阻塞数量
-        self.currentNormalCallsCarriedNum = 0   # 某时间点承载普通业务数量
-        self.currentNormalCallsBlockNum = 0     # 某时间点承载阻塞业务数量
-        self.realTimeCallsCarried = []          # 实时承载的业务数量
-        self.realTimeCallsBlocked = []          # 实时拒绝业务数量
-        self.realTimeSecurityCallsCarried = []  # 实时安全业务承载数量
-        self.realTimeSecurityCallsBlocked = []  # 实时安全业务拒绝数量
-        self.realTimeNormalCallsCarried = []    # 实时普通业务承载数量
-        self.realTimeNormalCallsBlocked = []    # 实时普通业务阻塞数量
-        self.realTimeLinkUtilization = []       # 实时平均链路利用率
+        self.time_stamp = []                    # 时间戳
+
+        self.num_total_calls = 0                # 总业务数量
+        self.num_sec_req_calls = 0              # 安全需求业务数量
+        self.num_norm_req_calls = 0             # 普通需求业务数量
+        self.num_carried_calls = 0              # 成功路由业务总数
+        self.num_carried_sec_req_calls = 0      # 成功路由安全需求业务数
+        self.num_carried_norm_req_calls = 0     # 成功路由普通需求业务数
+        self.num_blocked_calls = 0              # 阻塞业务总数
+        self.num_blocked_sec_req_calls = 0      # 阻塞安全需求业务数
+        self.num_blocked_norm_req_calls = 0     # 阻塞普通需求业务数
+
+        self.success_rate_total_calls = 0.0     # 业务成功率
+        self.success_rate_sec_req_calls = 0.0   # 安全需求业务成功率
+        self.success_rate_norm_req_calls = 0.0  # 普通需求业务成功率
+        self.block_rate_total_calls = 0.0       # 业务阻塞率
+        self.block_rate_sec_req_calls = 0.0     # 安全需求业务阻塞率
+        self.block_rate_norm_req_calls = 0.0    # 普通需求业务阻塞率
+
+        self.mean_hop = 0.0                     # 平均路径跳数
+        self.mean_hop_sec_req_calls = 0.0       # 平均安全业务跳数
+        self.mean_hop_norm_req_calls = 0.0      # 平均普通业务跳数
+        self.mean_hop_working_path = 0.0        # 平均工作路径跳数
+        self.mean_hop_backup_path = 0.0         # 平均保护路径跳数
+        self.mean_hop_working_path_sec_req = 0.0# 平均安全业务工作路径跳数
+        self.mean_hop_backup_path_sec_req = 0.0 # 平均安全业务保护路径跳数
+        self.mean_hop_working_path_norm_req = 0.0# 平均普通业务工作路径跳数
+        self.mean_hop_backup_path_norm_req = 0.0# 平均普通业务保护路径跳数
+
+        self.mean_num_high_tapping_risk = 0.0       # 平均高窃听风险数量
+        self.mean_num_joint_tapping_risk = 0.0      # 平均共享窃听风险数量
+        self.mean_level_high_tapping_risk = 0.0     # 平均高窃听风险度（%）
+        self.mean_level_joint_taping_risk = 0.0     # 平均共享窃听度(%)
+
+        self.realtime_num_carried_calls = []        # 实时承载的业务数量
+        self.realtime_num_carried_sec_calls = []    # 实时安全业务承载数量
+        self.realtime_num_carried_norm_calls = []   # 实时普通业务承载数量
+
+        self.mean_link_utilization = []         # 平均链路利用率
 
     def snapshot(self, event: Event, status: bool, G: nx.MultiDiGraph, routeTable: dict):
+        self.time_stamp.append(event.time)
+        self._update_num_calls(event, status)
+        self._update_block_rate()
+
         if event.type == "callArrive":
-            self.callsNum += 1
             if status:
                 # 若业务成功开通
-                self.totalCarriedCallsNum += 1
-                self.pathHop = np.mean([self.pathHop, len(routeTable[event.call.id]["workingPath"])]) if self.pathHop else len(routeTable[event.call.id]["workingPath"])
-                self.carriedCallsList.append(event.call)
-                self.currentCallsCarriedNum += 1
+                self.mean_hop = np.mean([self.mean_hop, len(routeTable[event.call.id]["workingPath"])]) if self.mean_hop else len(routeTable[event.call.id]["workingPath"])
+                self.realtime_num_carried_calls += 1
                 if event.call.requestSecurity:
-                    self.secCallsNum += 1
-                    self.totalCarriedSecCallsNum += 1
-                    self.currentSecurityCallsCarriedNum += 1
-                    if self.meanRiskLevel:
-                        self.meanRiskLevel = np.mean([self.meanRiskLevel, self._calLinkRisky(G, routeTable[event.call.id]["workingPath"]), self._calLinkRisky(G, routeTable[event.call.id]["backupPath"])])
+                    self.realtime_num_carried_sec_calls += 1
+                    if self.mean_num_high_tapping_risk:
+                        self.mean_num_high_tapping_risk = np.mean([self.mean_num_high_tapping_risk, self._calLinkRisky(G, routeTable[event.call.id]["workingPath"]), self._calLinkRisky(G, routeTable[event.call.id]["backupPath"])])
                     else:
-                        self.meanRiskLevel = np.mean([self._calLinkRisky(G, routeTable[event.call.id]["workingPath"]), self._calLinkRisky(G, routeTable[event.call.id]["backupPath"])])
-                    if self.meanJointRiskLevel:
-                        self.meanJointRiskLevel = np.mean([self.meanJointRiskLevel, self._calJointRisk(G, routeTable[event.call.id]["workingPath"], routeTable[event.call.id]["backupPath"])])
+                        self.mean_num_high_tapping_risk = np.mean([self._calLinkRisky(G, routeTable[event.call.id]["workingPath"]), self._calLinkRisky(G, routeTable[event.call.id]["backupPath"])])
+                    if self.mean_num_joint_tapping_risk:
+                        self.mean_num_joint_tapping_risk = np.mean([self.mean_num_joint_tapping_risk, self._calJointRisk(G, routeTable[event.call.id]["workingPath"], routeTable[event.call.id]["backupPath"])])
                     else:
-                        self.meanJointRiskLevel = np.mean([self._calJointRisk(G, routeTable[event.call.id]["workingPath"], routeTable[event.call.id]["backupPath"])])
-                    if self.securityPathHop:
-                        self.securityPathHop = np.mean([self.securityPathHop, len(routeTable[event.call.id]["workingPath"]), len(routeTable[event.call.id]["backupPath"])])
+                        self.mean_num_joint_tapping_risk = np.mean([self._calJointRisk(G, routeTable[event.call.id]["workingPath"], routeTable[event.call.id]["backupPath"])])
+                    if self.mean_hop_sec_req_calls:
+                        self.mean_hop_sec_req_calls = np.mean([self.mean_hop_sec_req_calls, len(routeTable[event.call.id]["workingPath"]), len(routeTable[event.call.id]["backupPath"])])
                     else:
-                        self.securityPathHop = np.mean([len(routeTable[event.call.id]["workingPath"]), len(routeTable[event.call.id]["backupPath"])])
+                        self.mean_hop_sec_req_calls = np.mean([len(routeTable[event.call.id]["workingPath"]), len(routeTable[event.call.id]["backupPath"])])
                 else:
-                    self.nomCallsNum += 1
-                    self.totalCarriedNomCallsNum += 1
-                    self.currentNormalCallsCarriedNum += 1
+                    self.realtime_num_carried_norm_calls += 1
             else:
                 # 若业阻塞
-                self.secCallsNum += 1 if event.call.requestSecurity else 0
-                self.nomCallsNum += 0 if event.call.requestSecurity else 1
                 self.currentCallsBlockNum += 1
                 self.currentSecurityCallsBlockNum += 1 if event.call.requestSecurity else 0
                 self.currentNormalCallsBlockNum += 1 if not event.call.requestSecurity else 0
         elif event.type == "callDeparture":
             if status:
                 # 若开通的业务离去
-                self.currentCallsCarriedNum -= 1
-                self.currentSecurityCallsCarriedNum -= 1 if event.call.requestSecurity else 0
-                self.currentNormalCallsCarriedNum -= 1 if not event.call.requestSecurity else 0
+                self.realtime_num_carried_calls -= 1
+                self.realtime_num_carried_sec_calls -= 1 if event.call.requestSecurity else 0
+                self.realtime_num_carried_norm_calls -= 1 if not event.call.requestSecurity else 0
             else:
                 # 若阻塞业务离去
                 pass
-        self.timeStamp.append(event.time)
-        self.realTimeCallsCarried.append(self.currentCallsCarriedNum)
+        self.time_stamp.append(event.time)
+        self.realTimeCallsCarried.append(self.realtime_num_carried_calls)
         self.realTimeCallsBlocked.append(self.currentCallsBlockNum)
-        self.realTimeSecurityCallsCarried.append(self.currentSecurityCallsCarriedNum)
+        self.realTimeSecurityCallsCarried.append(self.realtime_num_carried_sec_calls)
         self.realTimeSecurityCallsBlocked.append(self.currentSecurityCallsBlockNum)
-        self.realTimeNormalCallsCarried.append(self.currentNormalCallsCarriedNum)
+        self.realTimeNormalCallsCarried.append(self.realtime_num_carried_norm_calls)
         self.realTimeNormalCallsBlocked.append(self.currentNormalCallsBlockNum)
-        self.realTimeLinkUtilization.append(self._calLinkUtilization(G))
+        self.mean_link_utilization.append(self._calLinkUtilization(G))
+
+    def show(self):
+        """
+        np.divide(statistic.totalCarriedCallsNum, statistic.callsNum) * 100,
+        np.divide(statistic.totalCarriedSecCallsNum, statistic.secCallsNum) * 100,
+        np.divide(statistic.totalCarriedNomCallsNum, statistic.nomCallsNum) * 100,
+        statistic.pathHop,
+        statistic.securityPathHop,
+        np.mean(statistic.realTimeLinkUtilization[int(len(statistic.realTimeLinkUtilization)/3): int(len(statistic.realTimeLinkUtilization)*2/3)]),
+        statistic.meanRiskLevel,
+        statistic.meanJointRiskLevel
+        """
+        pass
+
+    def _update_num_calls(self, event: Event, status: bool):
+        self.num_total_calls += 1
+        if status:
+            self.num_carried_calls += 1
+            if event.call.requestSecurity:
+                self.num_sec_req_calls += 1
+                self.num_carried_sec_req_calls += 1
+            else:
+                self.num_norm_req_calls += 1
+                self.num_carried_norm_req_calls += 1
+        else:
+            self.num_blocked_calls += 1
+            if event.call.requestSecurity:
+                self.num_sec_req_calls += 1
+                self.num_blocked_sec_req_calls += 1
+            else:
+                self.num_norm_req_calls += 1
+                self.num_blocked_norm_req_calls += 1
+        # 校验
+        if self.num_total_calls != self.num_carried_calls + self.num_blocked_calls:
+            raise Exception("The sum of blocking calls {} and carried calls {} "
+                            "is not equal to the total number of calls {}."
+                            .format(self.num_blocked_calls, self.num_carried_calls, self.num_total_calls))
+        if self.num_total_calls != self.num_sec_req_calls + self.num_norm_req_calls:
+            raise Exception("The sum of sec-required calls {} and norm-required calls {} "
+                            "is not equal to the total number of calls {}."
+                            .format(self.num_sec_req_calls, self.num_norm_req_calls, self.num_total_calls))
+        if self.num_carried_calls != self.num_carried_sec_req_calls + self.num_carried_norm_req_calls:
+            raise Exception("The number of sec-required carried calls {} and norm-required carried calls {} "
+                            "does not match the number of carried calls {}."
+                            .format(self.num_carried_sec_req_calls, self.num_carried_norm_req_calls,
+                                    self.num_carried_calls))
+        if self.num_blocked_calls != self.num_blocked_sec_req_calls + self.num_blocked_norm_req_calls:
+            raise Exception("The number of sec-required blocked calls {} and norm-required blocked calls {} "
+                            "does not match the number of blocked calls {}."
+                            .format(self.num_blocked_sec_req_calls, self.num_blocked_norm_req_calls,
+                                    self.num_blocked_calls))
+
+    def _update_block_rate(self):
+        if self.num_total_calls != 0:
+            self.success_rate_total_calls = self.num_carried_calls / self.num_total_calls * 100
+            self.block_rate_total_calls = self.num_blocked_calls / self.num_total_calls * 100
+        if self.num_sec_req_calls != 0:
+            self.success_rate_sec_req_calls = self.num_carried_sec_req_calls / self.num_sec_req_calls * 100
+            self.block_rate_sec_req_calls = self.num_blocked_sec_req_calls / self.num_sec_req_calls * 100
+        if self.num_norm_req_calls != 0:
+            self.success_rate_norm_req_calls = self.num_carried_norm_req_calls / self.num_norm_req_calls * 100
+            self.block_rate_norm_req_calls = self.num_blocked_norm_req_calls / self.num_norm_req_calls * 100
+        # 校验
+        if self.success_rate_total_calls + self.block_rate_total_calls != 100:
+            raise Exception("The sum of the success rate {} and the blocking rate {} is not 100%."
+                            .format(self.success_rate_total_calls, self.block_rate_total_calls))
+        if self.success_rate_sec_req_calls + self.block_rate_sec_req_calls != 100:
+            raise Exception("The sum of sec calls of the success rate {} and the blocking rate {} is not 100%."
+                            .format(self.success_rate_sec_req_calls, self.block_rate_sec_req_calls))
+        if self.success_rate_norm_req_calls + self.block_rate_norm_req_calls != 100:
+            raise Exception("The sum of norm calls of the success rate {} and the blocking rate {} is not 100%."
+                            .format(self.success_rate_norm_req_calls, self.block_rate_norm_req_calls))
+
+    def _update_hop(self):
+        pass
 
     def _calLinkUtilization(self, G: nx.MultiDiGraph):
         linkUtilization = 0

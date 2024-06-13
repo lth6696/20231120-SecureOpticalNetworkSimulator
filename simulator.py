@@ -37,16 +37,17 @@ def simulator(configFile: str):
     controller = network.controller.ControlPlane(configFile)
     controller.run(scheduler, physicalTopology, statistic)
     logging.info("{} - {} - Done.".format(__file__, __name__))
-    # 保存仿真结果
+    # 仿真结果
+    # statistic.show()
     simRes = [
-        np.divide(statistic.totalCarriedCallsNum, statistic.callsNum) * 100,
-        np.divide(statistic.totalCarriedSecCallsNum, statistic.secCallsNum) * 100,
-        np.divide(statistic.totalCarriedNomCallsNum, statistic.nomCallsNum) * 100,
-        statistic.pathHop,
-        statistic.securityPathHop,
-        np.mean(statistic.realTimeLinkUtilization[int(len(statistic.realTimeLinkUtilization)/3): int(len(statistic.realTimeLinkUtilization)*2/3)]),
-        statistic.meanRiskLevel,
-        statistic.meanJointRiskLevel
+        np.divide(statistic.num_carried_calls, statistic.num_total_calls) * 100,
+        np.divide(statistic.num_carried_sec_req_calls, statistic.num_sec_req_calls) * 100,
+        np.divide(statistic.num_carried_norm_req_calls, statistic.num_norm_req_calls) * 100,
+        statistic.mean_hop,
+        statistic.mean_hop_sec_req_calls,
+        np.mean(statistic.mean_link_utilization[int(len(statistic.mean_link_utilization) / 3): int(len(statistic.mean_link_utilization) * 2 / 3)]),
+        statistic.mean_num_high_tapping_risk,
+        statistic.mean_num_joint_tapping_risk
     ]
     # print(simRes)
     logging.info("{} - {} - Numercial results are {}.".format(__file__, __name__, simRes))
