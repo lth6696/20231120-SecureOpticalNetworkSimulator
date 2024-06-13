@@ -7,7 +7,7 @@
     <!-- 'load' 业务负载 100 200 300 400 500 600 | 12 6 4 3 2.4 2-->
     <!-- 'max-rate=' 最高速率，用于结果统计 -->
     <!-- 'statisticStart' 表示将从哪个业务开始收集统计信息 -->
-    <traffic type="otn" calls="10" load="50" max-rate="100000" statisticStart="0">
+    <traffic type="otn" calls="20000" load="100" max-rate="100000" statisticStart="0">
         <!-- 'holding-time' 业务持续时间，单位 second -->
         <!-- 'rate' 业务速率，单位 Mbps 1000Mbps = 1Gbps -->
         <!-- 'weight' 不同业务的权重 -->
@@ -46,7 +46,7 @@
 
             <link source="3" destination="1" id="9" bandwidth="100000" max-bandwidth="100000" risk="L2"/>
             <link source="3" destination="4" id="10" bandwidth="100000" max-bandwidth="100000" risk="L3"/>
-            <link source="3" destination="8" id="11" bandwidth="100000" max-bandwidth="100000" risk="H2"/>
+            <link source="3" destination="8" id="11" bandwidth="100000" max-bandwidth="100000" risk="L3"/>
 
             <link source="4" destination="3" id="12" bandwidth="100000" max-bandwidth="100000" risk="L3"/>
             <link source="4" destination="5" id="13" bandwidth="100000" max-bandwidth="100000" risk="H2"/>
@@ -64,7 +64,7 @@
             <link source="7" destination="5" id="22" bandwidth="100000" max-bandwidth="100000" risk="L7"/>
             <link source="7" destination="10" id="23" bandwidth="100000" max-bandwidth="100000" risk="L8"/>
 
-            <link source="8" destination="3" id="24" bandwidth="100000" max-bandwidth="100000" risk="H2"/>
+            <link source="8" destination="3" id="24" bandwidth="100000" max-bandwidth="100000" risk="L3"/>
             <link source="8" destination="11" id="25" bandwidth="100000" max-bandwidth="100000" risk="L11"/>
             <link source="8" destination="13" id="26" bandwidth="100000" max-bandwidth="100000" risk="L11"/>
 

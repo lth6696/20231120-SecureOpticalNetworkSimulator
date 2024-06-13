@@ -214,6 +214,10 @@ class Statistic:
                     self.realtime_num_carried_sec_calls.append(calls(self.realtime_num_carried_sec_calls) + 1)
                 else:
                     self.realtime_num_carried_norm_calls.append(calls(self.realtime_num_carried_norm_calls) + 1)
+            else:
+                self.realtime_num_carried_calls.append(calls(self.realtime_num_carried_calls))
+                self.realtime_num_carried_sec_calls.append(calls(self.realtime_num_carried_sec_calls))
+                self.realtime_num_carried_norm_calls.append(calls(self.realtime_num_carried_norm_calls))
         elif event.type == "callDeparture":
             if status:
                 self.realtime_num_carried_calls.append(calls(self.realtime_num_carried_calls) - 1)
@@ -221,6 +225,10 @@ class Statistic:
                     self.realtime_num_carried_sec_calls.append(calls(self.realtime_num_carried_sec_calls) - 1)
                 else:
                     self.realtime_num_carried_norm_calls.append(calls(self.realtime_num_carried_norm_calls) - 1)
+            else:
+                self.realtime_num_carried_calls.append(calls(self.realtime_num_carried_calls))
+                self.realtime_num_carried_sec_calls.append(calls(self.realtime_num_carried_sec_calls))
+                self.realtime_num_carried_norm_calls.append(calls(self.realtime_num_carried_norm_calls))
 
     def _mean(self, a, b):
         if a * b == 0:

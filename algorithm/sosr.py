@@ -60,14 +60,14 @@ class SOSR:
                     availablePaths = self._allocateWavelength(physicalTopology.G, availablePaths, workingPath)
                     backupPath = self._choosePath(availablePaths, "min", self._metricsTotalRisk, physicalTopology.G, workingPath)
                 elif self.scheme == "security":
-                    workingPath = self._choosePath(availablePaths, "zero", self._metricsRiskLevel, physicalTopology.G)
+                    workingPath = self._choosePath(availablePaths, "min", self._metricsRiskLevel, physicalTopology.G)
                     availablePaths = [[(s, e) for (s, e, i) in path] for path in availablePaths]
                     availablePaths = self._allocateWavelength(physicalTopology.G, availablePaths, workingPath)
-                    backupPath = self._choosePath(availablePaths, "zero", self._metricsTotalRisk, physicalTopology.G, workingPath)
+                    backupPath = self._choosePath(availablePaths, "min", self._metricsTotalRisk, physicalTopology.G, workingPath)
                 if not workingPath:
                     return False
                 if backupPath:
-                    logging.info("working path is {}, backup path is {}".format(workingPath, backupPath))
+                    # logging.info("working path is {}, backup path is {}".format(workingPath, backupPath))
                     self.nomAvailableSymbiosisPaths[(nodeSrc, nodeDst)].append(event.call.id)
                     self._updateNetState(workingPath, physicalTopology.G, event.call.requestBandwidth)
                     self._updateNetState(backupPath, physicalTopology.G, event.call.requestBandwidth)
@@ -81,7 +81,7 @@ class SOSR:
                 if not backupPath:
                     return False
                 else:
-                    logging.info("working path is {}, symbiosis backup path is {}".format(workingPath, backupPath))
+                    # logging.info("working path is {}, symbiosis backup path is {}".format(workingPath, backupPath))
                     ID = [id for id in self.secAvailableSymbiosisPaths[(nodeSrc, nodeDst)] if routeTable[id]["workingPath"] == backupPath]
                     self.isSymbiosis.append((event.call.id, ID[0]))
                     self.secAvailableSymbiosisPaths[(nodeSrc, nodeDst)].remove(ID[0])
@@ -168,11 +168,11 @@ class SOSR:
         if not paths:
             return []
         metricsValue = metrics(paths, *args)
-        logging.info("based on {}, the weight is {}.".format(metrics.__name__, metricsValue))
+        # logging.info("based on {}, the weight is {}.".format(metrics.__name__, metricsValue))
         path = []
         if method == "min":
             path = paths.pop(metricsValue.index(min(metricsValue)))
-            logging.info("choose the {} path.".format(metricsValue.index(min(metricsValue))+1))
+            # logging.info("choose the {} path.".format(metricsValue.index(min(metricsValue))+1))
         elif method == "zero":
             for i, value in enumerate(metricsValue):
                 if value == 0:

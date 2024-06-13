@@ -39,10 +39,8 @@ def simulator(configFile: str):
     logging.info("{} - {} - Done.".format(__file__, __name__))
     # 仿真结果
     statistic.show()
-
-    # logging.info("{} - {} - Numercial results are {}.".format(__file__, __name__, simRes))
-    # res = pd.DataFrame(simRes).transpose()
-    # res.to_csv('result_Load.csv', mode='a', header=False, index=False)
+    # a = result.curve.PlotCurve()
+    # a.plotRealTime(statistic.time_stamp, statistic.realtime_num_carried_calls)
 
 
 if __name__ == '__main__':
@@ -78,7 +76,6 @@ if __name__ == '__main__':
         data = pd.read_excel(allRoundResultFile)
         x = [100 * (i + 1) for i in range(6)]
         y = [list(data.iloc[0+i*6 : 6+i*6, 11])[::-1] for i in range(3)]
-        print(y)
         label = ["SOSR-U", "SOSR-S", "Benchmark"]
         pc = result.curve.PlotCurve()
         pc.plotMultiRealTime(x, *y, label=label)
