@@ -38,21 +38,11 @@ def simulator(configFile: str):
     controller.run(scheduler, physicalTopology, statistic)
     logging.info("{} - {} - Done.".format(__file__, __name__))
     # 仿真结果
-    # statistic.show()
-    simRes = [
-        np.divide(statistic.num_carried_calls, statistic.num_total_calls) * 100,
-        np.divide(statistic.num_carried_sec_req_calls, statistic.num_sec_req_calls) * 100,
-        np.divide(statistic.num_carried_norm_req_calls, statistic.num_norm_req_calls) * 100,
-        statistic.mean_hop,
-        statistic.mean_hop_sec_req_calls,
-        np.mean(statistic.mean_link_utilization[int(len(statistic.mean_link_utilization) / 3): int(len(statistic.mean_link_utilization) * 2 / 3)]),
-        statistic.mean_num_high_tapping_risk,
-        statistic.mean_num_joint_tapping_risk
-    ]
-    # print(simRes)
-    logging.info("{} - {} - Numercial results are {}.".format(__file__, __name__, simRes))
-    res = pd.DataFrame(simRes).transpose()
-    res.to_csv('result_Load.csv', mode='a', header=False, index=False)
+    statistic.show()
+
+    # logging.info("{} - {} - Numercial results are {}.".format(__file__, __name__, simRes))
+    # res = pd.DataFrame(simRes).transpose()
+    # res.to_csv('result_Load.csv', mode='a', header=False, index=False)
 
 
 if __name__ == '__main__':
@@ -72,16 +62,16 @@ if __name__ == '__main__':
 
     # 开始仿真
     if isSimulate:
-        # simulator(configFile)
-        processes = [multiprocessing.Process(target=simulator, args=(configFile, )) for _ in range(iterRound)]
-        for pro in processes:
-            pro.start()
-        for pro in processes:
-            pro.join()
-
-        data = pd.read_csv(eachRoundResultFile)
-        for value in list(data.mean(axis=0)):
-            print(value)
+        simulator(configFile)
+        # processes = [multiprocessing.Process(target=simulator, args=(configFile, )) for _ in range(iterRound)]
+        # for pro in processes:
+        #     pro.start()
+        # for pro in processes:
+        #     pro.join()
+        #
+        # data = pd.read_csv(eachRoundResultFile)
+        # for value in list(data.mean(axis=0)):
+        #     print(value)
     else:
         if not os.path.exists(allRoundResultFile):
             raise Exception("File does not exist.")

@@ -1,0 +1,54 @@
+2024-06-13 17:58:13,271 - INFO - D:\Codes\Java\20231120-SecureOpticalNetworkSimulator\simulator.py - __main__ - Construct the physical topology.
+2024-06-13 17:58:13,272 - INFO - D:\Codes\Java\20231120-SecureOpticalNetworkSimulator\network\topology.py - network.topology - Read the config file "./topology/NSFNet.xml".
+2024-06-13 17:58:13,276 - INFO - D:\Codes\Java\20231120-SecureOpticalNetworkSimulator\network\topology.py - network.topology - Add 14 nodes and 1680 links.
+2024-06-13 17:58:13,276 - INFO - D:\Codes\Java\20231120-SecureOpticalNetworkSimulator\simulator.py - __main__ - Done.
+2024-06-13 17:58:13,276 - INFO - D:\Codes\Java\20231120-SecureOpticalNetworkSimulator\simulator.py - __main__ - Generate the traffic events.
+2024-06-13 17:58:13,276 - INFO - D:\Codes\Java\20231120-SecureOpticalNetworkSimulator\network\generator.py - network.generator - Read the config file ./topology/NSFNet.xml.
+2024-06-13 17:58:13,276 - INFO - D:\Codes\Java\20231120-SecureOpticalNetworkSimulator\network\generator.py - network.generator - There are 1 kinds of calls.
+2024-06-13 17:58:13,276 - INFO - D:\Codes\Java\20231120-SecureOpticalNetworkSimulator\network\generator.py - network.generator - Mean arrival time (¦Ë) is 12.0 seconds, mean holding time (¦Ì) is 600.0 seconds, intensity (¦Ñ) is 0.02.
+2024-06-13 17:58:13,277 - INFO - D:\Codes\Java\20231120-SecureOpticalNetworkSimulator\network\generator.py - network.generator - Generate 10 calls and 20 events.
+2024-06-13 17:58:13,277 - INFO - D:\Codes\Java\20231120-SecureOpticalNetworkSimulator\simulator.py - __main__ - Done.
+2024-06-13 17:58:13,277 - INFO - D:\Codes\Java\20231120-SecureOpticalNetworkSimulator\simulator.py - __main__ - Start the control plane.
+2024-06-13 17:58:13,277 - INFO - D:\Codes\Java\20231120-SecureOpticalNetworkSimulator\network\controller.py - network.controller - Load the SOSR-S algorithm.
+2024-06-13 17:58:13,277 - INFO - D:\Codes\Java\20231120-SecureOpticalNetworkSimulator\network\controller.py - network.controller - The callArrive event processed on 0.865277676171136 second origin from 11 to 10 with id 0.
+2024-06-13 17:58:13,280 - INFO - based on _metricsHop, the weight is [6, 6, 6, 3, 6, 1, 6, 6, 4, 3].
+2024-06-13 17:58:13,280 - INFO - choose the 6 path.
+2024-06-13 17:58:13,282 - INFO - D:\Codes\Java\20231120-SecureOpticalNetworkSimulator\network\controller.py - network.controller - The callArrive event processed on 9.097922271976909 second origin from 7 to 11 with id 1.
+2024-06-13 17:58:13,284 - INFO - based on _metricsHop, the weight is [6, 5, 6, 6, 5, 5, 6, 5, 5, 2, 4, 4].
+2024-06-13 17:58:13,284 - INFO - choose the 10 path.
+2024-06-13 17:58:13,286 - INFO - D:\Codes\Java\20231120-SecureOpticalNetworkSimulator\network\controller.py - network.controller - The callArrive event processed on 10.991891772639514 second origin from 2 to 5 with id 2.
+2024-06-13 17:58:13,287 - INFO - based on _metricsRiskLevel, the weight is [3, 1, 1, 1, 1, 0, 1, 2].
+2024-06-13 17:58:13,288 - INFO - based on _metricsTotalRisk, the weight is [3, 2, 2, 1, 2, 6, 7].
+2024-06-13 17:58:13,290 - INFO - D:\Codes\Java\20231120-SecureOpticalNetworkSimulator\network\controller.py - network.controller - The callArrive event processed on 25.263503220137984 second origin from 10 to 5 with id 3.
+2024-06-13 17:58:13,291 - INFO - based on _metricsRiskLevel, the weight is [2, 2, 0, 1, 1, 2, 2, 3, 3].
+2024-06-13 17:58:13,292 - INFO - based on _metricsTotalRisk, the weight is [3, 3, 2, 1, 2, 2, 3, 3].
+2024-06-13 17:58:13,293 - INFO - D:\Codes\Java\20231120-SecureOpticalNetworkSimulator\network\controller.py - network.controller - The callArrive event processed on 27.74398272509879 second origin from 7 to 3 with id 4.
+2024-06-13 17:58:13,296 - INFO - based on _metricsHop, the weight is [6, 3, 4, 5, 3, 6, 6, 5, 4, 6, 6, 4, 6, 6].
+2024-06-13 17:58:13,296 - INFO - choose the 2 path.
+2024-06-13 17:58:13,298 - INFO - D:\Codes\Java\20231120-SecureOpticalNetworkSimulator\network\controller.py - network.controller - The callArrive event processed on 61.03259358490841 second origin from 8 to 12 with id 5.
+2024-06-13 17:58:13,299 - INFO - based on _metricsRiskLevel, the weight is [3, 1, 1, 0, 2, 1, 1, 2, 1].
+2024-06-13 17:58:13,299 - INFO - based on _metricsTotalRisk, the weight is [5, 3, 3, 4, 2, 6, 4, 2].
+2024-06-13 17:58:13,301 - INFO - D:\Codes\Java\20231120-SecureOpticalNetworkSimulator\network\controller.py - network.controller - The callArrive event processed on 61.316509057497136 second origin from 4 to 7 with id 6.
+2024-06-13 17:58:13,303 - INFO - based on _metricsRiskLevel, the weight is [1, 1, 1, 2, 1, 1, 1, 0, 1, 2].
+2024-06-13 17:58:13,303 - INFO - based on _metricsTotalRisk, the weight is [1, 1, 2, 3, 1, 2, 2, 5, 6].
+2024-06-13 17:58:13,304 - INFO - D:\Codes\Java\20231120-SecureOpticalNetworkSimulator\network\controller.py - network.controller - The callArrive event processed on 62.48444522581272 second origin from 5 to 10 with id 7.
+2024-06-13 17:58:13,307 - INFO - based on _metricsHop, the weight is [6, 5, 5, 6, 4, 5, 5, 6, 2].
+2024-06-13 17:58:13,307 - INFO - choose the 9 path.
+2024-06-13 17:58:13,309 - INFO - D:\Codes\Java\20231120-SecureOpticalNetworkSimulator\network\controller.py - network.controller - The callArrive event processed on 70.14794118195448 second origin from 7 to 5 with id 8.
+2024-06-13 17:58:13,310 - INFO - based on _metricsHop, the weight is [6, 5, 6, 5, 1, 5, 6, 6, 6, 6].
+2024-06-13 17:58:13,310 - INFO - choose the 5 path.
+2024-06-13 17:58:13,312 - INFO - D:\Codes\Java\20231120-SecureOpticalNetworkSimulator\network\controller.py - network.controller - The callArrive event processed on 70.95624846400493 second origin from 7 to 3 with id 9.
+2024-06-13 17:58:13,314 - INFO - based on _metricsRiskLevel, the weight is [1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 3, 2, 2, 4].
+2024-06-13 17:58:13,314 - INFO - based on _metricsTotalRisk, the weight is [3, 2, 3, 2, 1, 4, 3, 2, 4, 4, 3, 5, 5].
+2024-06-13 17:58:13,314 - INFO - based on _metricsTotalRisk, the weight is [2].
+2024-06-13 17:58:13,316 - INFO - D:\Codes\Java\20231120-SecureOpticalNetworkSimulator\network\controller.py - network.controller - The callDeparture event processed on 79.80902081890403 second origin from 8 to 12 with id 5.
+2024-06-13 17:58:13,318 - INFO - D:\Codes\Java\20231120-SecureOpticalNetworkSimulator\network\controller.py - network.controller - The callDeparture event processed on 141.8541725791866 second origin from 10 to 5 with id 3.
+2024-06-13 17:58:13,320 - INFO - D:\Codes\Java\20231120-SecureOpticalNetworkSimulator\network\controller.py - network.controller - The callDeparture event processed on 271.4688734738355 second origin from 7 to 5 with id 8.
+2024-06-13 17:58:13,322 - INFO - D:\Codes\Java\20231120-SecureOpticalNetworkSimulator\network\controller.py - network.controller - The callDeparture event processed on 306.0642851875386 second origin from 11 to 10 with id 0.
+2024-06-13 17:58:13,324 - INFO - D:\Codes\Java\20231120-SecureOpticalNetworkSimulator\network\controller.py - network.controller - The callDeparture event processed on 370.588242930432 second origin from 7 to 3 with id 4.
+2024-06-13 17:58:13,326 - INFO - D:\Codes\Java\20231120-SecureOpticalNetworkSimulator\network\controller.py - network.controller - The callDeparture event processed on 450.2674720651925 second origin from 2 to 5 with id 2.
+2024-06-13 17:58:13,328 - INFO - D:\Codes\Java\20231120-SecureOpticalNetworkSimulator\network\controller.py - network.controller - The callDeparture event processed on 953.1892292157564 second origin from 5 to 10 with id 7.
+2024-06-13 17:58:13,330 - INFO - D:\Codes\Java\20231120-SecureOpticalNetworkSimulator\network\controller.py - network.controller - The callDeparture event processed on 1057.8592134248124 second origin from 7 to 3 with id 9.
+2024-06-13 17:58:13,331 - INFO - D:\Codes\Java\20231120-SecureOpticalNetworkSimulator\network\controller.py - network.controller - The callDeparture event processed on 1227.6217518069861 second origin from 4 to 7 with id 6.
+2024-06-13 17:58:13,333 - INFO - D:\Codes\Java\20231120-SecureOpticalNetworkSimulator\network\controller.py - network.controller - The callDeparture event processed on 1829.2025573497137 second origin from 7 to 11 with id 1.
+2024-06-13 17:58:13,335 - INFO - D:\Codes\Java\20231120-SecureOpticalNetworkSimulator\simulator.py - __main__ - Done.
