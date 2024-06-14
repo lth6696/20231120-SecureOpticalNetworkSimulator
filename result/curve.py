@@ -31,7 +31,9 @@ class PlotCurve:
         plt.plot(timeStamp, serviceNumList)
         plt.show()
 
-    def plotMultiRealTime(self, timeStamp: list, *args, width: float = 8.6, height: float = 6, label: list = [], axis_name: list = None):
+    def plotMultiRealTime(self, timeStamp: list, *args,
+                          width: float = 8.6, height: float = 6,
+                          legend: list = None, label: list = None):
         colors = ["#E1C855", "#E07B54", "#51B1B7"]
         if len(args) < 1:
             raise Exception("Need at least one data list.")
@@ -44,9 +46,12 @@ class PlotCurve:
                      marker=self.markers[i], ms=2.0,  # set marker
                      ls=self.line_styles[i], lw=0.5,  # set line
                      color=colors[i])
-        if axis_name:
-            plt.xlabel(axis_name[0])
-            plt.ylabel(axis_name[1])
-        # plt.yticks([0.5*i for i in range(8)])
-        plt.legend(label)
+        if label:
+            plt.xlabel(label[0])
+            plt.ylabel(label[1])
+        # plt.yticks([20*i for i in range(6)])
+        plt.grid(True, ls=':', lw=0.5, c='#d5d6d8')
+        plt.tight_layout()
+        if legend:
+            plt.legend(legend)
         plt.show()

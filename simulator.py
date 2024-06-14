@@ -87,6 +87,6 @@ if __name__ == '__main__':
         col = 12
         x = [100 * (i + 1) for i in range(6)]
         y = [list(data.iloc[0+i*6 : 6+i*6, col])[::-1] for i in range(3)]
-        label = ["SOSR-U", "SOSR-S", "Benchmark"]
+        legend = ["SOSR-U", "SOSR-S", "Benchmark"]
         pc = result.curve.PlotCurve()
-        pc.plotMultiRealTime(x, *y, label=label, axis_name=["load (in Erlang)", title[col]])
+        pc.plotMultiRealTime(x, *y, legend=legend, label=["load (in Erlang)", title[col]])
