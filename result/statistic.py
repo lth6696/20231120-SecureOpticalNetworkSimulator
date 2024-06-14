@@ -76,6 +76,12 @@ class Statistic:
         ser = pd.Series(results, index=self.content_displayable_results)
         print(ser)
 
+    def get(self):
+        results = []
+        for attr in self.content_displayable_results:
+            results.append(getattr(self, attr))
+        return results
+
     def _update_num_calls(self, event: Event, status: bool):
         self.num_total_calls += 1
         if status:

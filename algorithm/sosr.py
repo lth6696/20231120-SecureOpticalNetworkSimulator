@@ -60,10 +60,10 @@ class SOSR:
                     availablePaths = self._allocateWavelength(physicalTopology.G, availablePaths, workingPath)
                     backupPath = self._choosePath(availablePaths, "min", self._metricsTotalRisk, physicalTopology.G, workingPath)
                 elif self.scheme == "security":
-                    workingPath = self._choosePath(availablePaths, "min", self._metricsRiskLevel, physicalTopology.G)
+                    workingPath = self._choosePath(availablePaths, "zero", self._metricsRiskLevel, physicalTopology.G)
                     availablePaths = [[(s, e) for (s, e, i) in path] for path in availablePaths]
                     availablePaths = self._allocateWavelength(physicalTopology.G, availablePaths, workingPath)
-                    backupPath = self._choosePath(availablePaths, "min", self._metricsTotalRisk, physicalTopology.G, workingPath)
+                    backupPath = self._choosePath(availablePaths, "zero", self._metricsTotalRisk, physicalTopology.G, workingPath)
                 if not workingPath:
                     return False
                 if backupPath:
