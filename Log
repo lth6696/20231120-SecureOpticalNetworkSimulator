@@ -1,0 +1,13 @@
+2024-06-17 19:01:27,623 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\simulator.py - __main__ - Construct the physical topology.
+2024-06-17 19:01:27,623 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\network\topology.py - network.topology - Read the config file "./topology/NSFNet.xml".
+2024-06-17 19:01:27,627 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\network\topology.py - network.topology - Add 14 nodes and 1680 links.
+2024-06-17 19:01:27,627 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\simulator.py - __main__ - Done.
+2024-06-17 19:01:27,627 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\simulator.py - __main__ - Generate the traffic events.
+2024-06-17 19:01:27,627 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\network\generator.py - network.generator - Read the config file ./topology/NSFNet.xml.
+2024-06-17 19:01:27,628 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\network\generator.py - network.generator - There are 1 kinds of calls.
+2024-06-17 19:01:27,628 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\network\generator.py - network.generator - Mean arrival time (¦Ë) is 3.0 seconds, mean holding time (¦Ì) is 600.0 seconds, intensity (¦Ñ) is 0.005.
+2024-06-17 19:01:28,695 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\network\generator.py - network.generator - Generate 50000 calls and 100000 events.
+2024-06-17 19:01:28,695 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\simulator.py - __main__ - Done.
+2024-06-17 19:01:28,695 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\simulator.py - __main__ - Load the statistic module.
+2024-06-17 19:01:28,695 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\simulator.py - __main__ - Start the control plane.
+2024-06-17 19:01:28,695 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\network\controller.py - network.controller - Load the SOSR-U algorithm.

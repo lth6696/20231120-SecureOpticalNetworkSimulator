@@ -6,6 +6,17 @@ import networkx as nx
 import numpy as np
 
 
+class MeanList:
+    def __init__(self):
+        self.real_time_list = []
+
+    def add(self, value: float):
+        self.real_time_list.append(value)
+
+    def get(self):
+        return np.mean(self.real_time_list)
+
+
 class Statistic:
     def __init__(self):
         self.time_stamp = []                    # 时间戳
@@ -27,24 +38,25 @@ class Statistic:
         self.block_rate_sec_req_calls = 0.0     # 安全需求业务阻塞率
         self.block_rate_norm_req_calls = 0.0    # 普通需求业务阻塞率
 
-        self.mean_hop = 0.0                         # 平均路径跳数
-        self.mean_hop_sec_req_calls = 0.0           # 平均安全业务跳数
-        self.mean_hop_norm_req_calls = 0.0          # 平均普通业务跳数
-        self.mean_hop_working_path = 0.0            # 平均工作路径跳数
-        self.mean_hop_backup_path = 0.0             # 平均保护路径跳数
-        self.mean_hop_working_path_sec_req = 0.0    # 平均安全业务工作路径跳数
-        self.mean_hop_backup_path_sec_req = 0.0     # 平均安全业务保护路径跳数
-        self.mean_hop_working_path_norm_req = 0.0   # 平均普通业务工作路径跳数
-        self.mean_hop_backup_path_norm_req = 0.0    # 平均普通业务保护路径跳数
+        self.mean_hop = MeanList()                      # 平均路径跳数
+        self.mean_hop_sec_req_calls = MeanList()        # 平均安全业务跳数
+        self.mean_hop_norm_req_calls = MeanList()       # 平均普通业务跳数
+        self.mean_hop_working_path = MeanList()         # 平均工作路径跳数
+        self.mean_hop_backup_path = MeanList()          # 平均保护路径跳数
+        self.mean_hop_working_path_sec_req = MeanList() # 平均安全业务工作路径跳数
+        self.mean_hop_backup_path_sec_req = MeanList()  # 平均安全业务保护路径跳数
+        self.mean_hop_working_path_norm_req = MeanList()# 平均普通业务工作路径跳数
+        self.mean_hop_backup_path_norm_req = MeanList() # 平均普通业务保护路径跳数
 
-        self.mean_num_high_tapping_risk = 0.0       # 平均高窃听风险数量
-        self.mean_num_joint_tapping_risk = 0.0      # 平均共享窃听风险数量
-        self.mean_level_high_tapping_risk = 0.0     # 平均高窃听风险度（%）
-        self.mean_level_joint_taping_risk = 0.0     # 平均共享窃听度(%)
+        self.mean_num_high_tapping_risk = MeanList()    # 平均高窃听风险数量
+        self.mean_num_joint_tapping_risk = MeanList()   # 平均共享窃听风险数量
+        self.mean_level_high_tapping_risk = MeanList()  # 平均高窃听风险度（%）
+        self.mean_level_joint_taping_risk = MeanList()  # 平均共享窃听度(%)
 
         self.realtime_num_carried_calls = []        # 实时承载的业务数量
         self.realtime_num_carried_sec_calls = []    # 实时安全业务承载数量
         self.realtime_num_carried_norm_calls = []   # 实时普通业务承载数量
+        self.realtime_link_utilization = []
 
         self.mean_link_utilization = 0.0            # 平均链路利用率
 
@@ -79,7 +91,10 @@ class Statistic:
     def get(self):
         results = []
         for attr in self.content_displayable_results:
-            results.append(getattr(self, attr))
+            if isinstance(getattr(self, attr), MeanList):
+                results.append(getattr(self, attr).get())
+            else:
+                results.append(getattr(self, attr))
         return results
 
     def _update_num_calls(self, event: Event, status: bool):
@@ -145,17 +160,19 @@ class Statistic:
             hop_working_path = len(routing_table[event.call.id]["workingPath"])
             hop_backup_path = len(routing_table[event.call.id]['backupPath'])
             mean_hop_call = self._mean(hop_working_path, hop_backup_path)
-            self.mean_hop = self._mean(self.mean_hop, mean_hop_call)
-            self.mean_hop_working_path = self._mean(self.mean_hop_working_path, hop_working_path)
-            self.mean_hop_backup_path = self._mean(self.mean_hop_backup_path, hop_backup_path)
+            self.mean_hop.add(mean_hop_call)
+            self.mean_hop_working_path.add(hop_working_path)
+            if hop_backup_path != 0:
+                # 在1-1方案下的普通业务不存在保护路径
+                self.mean_hop_backup_path.add(hop_backup_path)
             if event.call.requestSecurity:
-                self.mean_hop_sec_req_calls = self._mean(self.mean_hop_sec_req_calls, mean_hop_call)
-                self.mean_hop_working_path_sec_req = self._mean(self.mean_hop_working_path_sec_req, hop_working_path)
-                self.mean_hop_backup_path_sec_req = self._mean(self.mean_hop_backup_path_sec_req, hop_backup_path)
+                self.mean_hop_sec_req_calls.add(mean_hop_call)
+                self.mean_hop_working_path_sec_req.add(hop_working_path)
+                self.mean_hop_backup_path_sec_req.add(hop_backup_path)
             else:
-                self.mean_hop_norm_req_calls = self._mean(self.mean_hop_norm_req_calls, mean_hop_call)
-                self.mean_hop_working_path_norm_req = self._mean(self.mean_hop_working_path_norm_req, hop_working_path)
-                self.mean_hop_backup_path_norm_req = self._mean(self.mean_hop_backup_path_norm_req, hop_backup_path)
+                self.mean_hop_norm_req_calls.add(mean_hop_call)
+                self.mean_hop_working_path_norm_req.add(hop_working_path)
+                self.mean_hop_backup_path_norm_req.add(hop_backup_path)
         else:
             pass
 
@@ -185,11 +202,10 @@ class Statistic:
                 mean_tapping_risk_level = self._mean(tapping_risk_working_path / len(working_path) * 100,
                                                      tapping_risk_backup_path / len(backup_path) * 100)
 
-                self.mean_num_high_tapping_risk = self._mean(self.mean_num_high_tapping_risk, mean_tapping_risk)
-                self.mean_level_high_tapping_risk = self._mean(self.mean_level_high_tapping_risk, mean_tapping_risk_level)
-                self.mean_num_joint_tapping_risk = self._mean(self.mean_num_joint_tapping_risk, joint_tapping_risk)
-                self.mean_level_joint_taping_risk = self._mean(self.mean_level_joint_taping_risk,
-                                                               joint_tapping_risk / (len(working_path) + len(backup_path)) * 100)
+                self.mean_num_high_tapping_risk.add(mean_tapping_risk)
+                self.mean_level_high_tapping_risk.add(mean_tapping_risk_level)
+                self.mean_num_joint_tapping_risk.add(joint_tapping_risk)
+                self.mean_level_joint_taping_risk.add(joint_tapping_risk / (len(working_path) + len(backup_path)) * 100)
             else:
                 pass
         else:
@@ -200,7 +216,8 @@ class Statistic:
         for (start, end, index) in G.edges:
             lu += (1 - G[start][end][index]["bandwidth"] / G[start][end][index]["max-bandwidth"]) * 100
         lu = lu / len(G.edges)
-        self.mean_link_utilization = self._mean(self.mean_link_utilization, lu)
+        self.realtime_link_utilization.append(lu)
+        self.mean_link_utilization = np.mean(self.realtime_link_utilization)
         # 校验
         if 100 < self.mean_link_utilization < 0:
             raise Exception("The value of the average of link utilization {} is invalidation."

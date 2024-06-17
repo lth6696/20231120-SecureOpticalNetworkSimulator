@@ -42,6 +42,11 @@ def simulator(configFile: str):
     controller.run(scheduler, physicalTopology, statistic)
     logging.info("{} - {} - Done.".format(__file__, __name__))
     # 返回仿真结果
+    try:
+        result.curve.PlotCurve.plotRealTime(statistic.time_stamp, statistic.realtime_num_carried_calls)
+        result.curve.PlotCurve.plotRealTime(statistic.time_stamp, statistic.realtime_link_utilization)
+    except:
+        pass
     return statistic.content_displayable_results, statistic.get()
 
 
@@ -52,22 +57,15 @@ if __name__ == '__main__':
     # 仿真配置文件
     configFile = "./topology/NSFNet.xml"
     ResultFile = "results.xlsx"
-    iterRound = 20
-    isSimulate = False
+    iterRound = 5
+    isSimulate = True
     collector = {"title": [], "results": []}
 
     # 开始仿真
     if isSimulate:
-        with multiprocessing.Pool(processes=iterRound) as pool:
-            for _ in range(iterRound):
-                title, result = pool.apply_async(simulator, (configFile, )).get()
-                if not collector["title"]:
-                    collector["title"] = title
-                collector["results"].append(result)
-            pool.close()
-            pool.join()
-        df = pd.DataFrame(collector["results"], columns=collector["title"])
-        print(df.mean())
+        title, result = simulator(configFile)
+        df = pd.Series(result, index=title)
+        print(df)
     else:
         if not os.path.exists(ResultFile):
             raise Exception("File does not exist.")

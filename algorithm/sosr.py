@@ -25,12 +25,10 @@ class SOSR:
         workingPath = []
         backupPath = []
         availablePaths = []
-
         # 计算多条路径
         try:
-            # availablePaths = [list(zip(path[:-1], path[1:])) for path in nx.node_disjoint_paths(physicalTopology.G, nodeSrc, nodeDst)]
-            availablePaths = [list(zip(path[:-1], path[1:])) for path in nx.all_simple_paths(nx.DiGraph(physicalTopology.G), nodeSrc, nodeDst, cutoff=6)]
-            availablePaths = self._allocateWavelength(physicalTopology.G, availablePaths)
+            kPaths = nx.edge_disjoint_paths(nx.DiGraph(physicalTopology.G), nodeSrc, nodeDst)
+            availablePaths = self._allocateWavelength(physicalTopology.G, kPaths)
         except:
             pass
 
@@ -56,21 +54,16 @@ class SOSR:
             if availablePaths:
                 if self.scheme == "utilization":
                     workingPath = self._choosePath(availablePaths, "min", self._metricsRiskDivers, physicalTopology.G)
-                    availablePaths = [[(s, e) for (s, e, i) in path] for path in availablePaths]
-                    availablePaths = self._allocateWavelength(physicalTopology.G, availablePaths, workingPath)
                     backupPath = self._choosePath(availablePaths, "min", self._metricsTotalRisk, physicalTopology.G, workingPath)
                 elif self.scheme == "security":
                     workingPath = self._choosePath(availablePaths, "zero", self._metricsRiskLevel, physicalTopology.G)
-                    availablePaths = [[(s, e) for (s, e, i) in path] for path in availablePaths]
-                    availablePaths = self._allocateWavelength(physicalTopology.G, availablePaths, workingPath)
                     backupPath = self._choosePath(availablePaths, "zero", self._metricsTotalRisk, physicalTopology.G, workingPath)
-                if not workingPath:
-                    return False
-                if backupPath:
-                    # logging.info("working path is {}, backup path is {}".format(workingPath, backupPath))
-                    self.nomAvailableSymbiosisPaths[(nodeSrc, nodeDst)].append(event.call.id)
-                    self._updateNetState(workingPath, physicalTopology.G, event.call.requestBandwidth)
-                    self._updateNetState(backupPath, physicalTopology.G, event.call.requestBandwidth)
+            if not workingPath:
+                return False
+            if workingPath and backupPath:
+                self.nomAvailableSymbiosisPaths[(nodeSrc, nodeDst)].append(event.call.id)
+                self._updateNetState(workingPath, physicalTopology.G, event.call.requestBandwidth)
+                self._updateNetState(backupPath, physicalTopology.G, event.call.requestBandwidth)
             if self.secAvailableSymbiosisPaths[(nodeSrc, nodeDst)] and backupPath == []:
                 # 若存在共生路径
                 paths = [routeTable[id]["workingPath"] for id in self.secAvailableSymbiosisPaths[(nodeSrc, nodeDst)]]
@@ -107,11 +100,14 @@ class SOSR:
                 # 安全业务先离去
                 self.isSymbiosis.remove(symbiosisRelation[0])
                 backupPath = []
+                self.secAvailableSymbiosisPaths[(event.call.sourceNode, event.call.destinationNode)].append(symbioNormalID)
             elif event.call.id == symbioNormalID:
                 # 普通业务先离去
                 self.isSymbiosis.remove(symbiosisRelation[0])
                 workingPath = []
-                backupPath = []
+                if backupPath:
+                    raise Exception("In 1-1 protection, the backup path should not exist.")
+                self.nomAvailableSymbiosisPaths[(event.call.sourceNode, event.call.destinationNode)].append(symbioSecurityID)
             else:
                 pass
         elif len(symbiosisRelation) > 1:
@@ -129,24 +125,22 @@ class SOSR:
             physicalTopology.G[start][end][index]["weight"] = 1 / (physicalTopology.G[start][end][index]["bandwidth"] + self._infinitesimal)
         return True
 
-    def _allocateWavelength(self, G: nx.MultiDiGraph, paths: list, tempUsedLinks: list = []):
+    def _allocateWavelength(self, G: nx.MultiDiGraph, paths: list):
         """
-        路径列表格式为 [[(0,1),(1,2)]], 不包含波长信息
+        路径列表格式为 [[0, 1]], 不包含波长信息
         基于FirstFit分配波长
         """
         newPaths = []
         for path in paths:
             p = []
-            for (start, end) in path:
+            for (start, end) in zip(path[:-1], path[1:]):
                 for index in G[start][end]:
-                    if (start, end, index) in tempUsedLinks:
-                        continue
                     if G[start][end][index]["used"]:
                         continue
                     else:
                         p.append((start, end, index))
                         break
-            if len(p) == len(path):
+            if len(p) == len(path) - 1:
                 newPaths.append(p)
             else:
                 continue
