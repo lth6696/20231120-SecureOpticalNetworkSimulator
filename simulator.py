@@ -43,6 +43,8 @@ def simulator(configFile: str):
     logging.info("{} - {} - Done.".format(__file__, __name__))
     # 返回仿真结果
     try:
+        print(sum([len(controller.algorithm.secAvailableSymbiosisPaths[key]) for key in controller.algorithm.secAvailableSymbiosisPaths]))
+        print(sum([len(controller.algorithm.nomAvailableSymbiosisPaths[key]) for key in controller.algorithm.nomAvailableSymbiosisPaths]))
         result.curve.PlotCurve.plotRealTime(statistic.time_stamp, statistic.realtime_num_carried_calls)
         result.curve.PlotCurve.plotRealTime(statistic.time_stamp, statistic.realtime_link_utilization)
     except:

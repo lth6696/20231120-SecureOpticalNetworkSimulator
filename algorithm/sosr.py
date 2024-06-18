@@ -92,7 +92,7 @@ class SOSR:
         workingPath = routeTable[event.call.id]["workingPath"]
         backupPath = routeTable[event.call.id]["backupPath"]
         symbiosisRelation = [smbo for smbo in self.isSymbiosis if event.call.id == smbo[0] or event.call.id == smbo[1]]
-
+        # 解决共生关系
         if len(symbiosisRelation) == 1:
             symbioSecurityID = symbiosisRelation[0][0]
             symbioNormalID = symbiosisRelation[0][1]
@@ -114,7 +114,11 @@ class SOSR:
             raise Exception("Two more calls symbiosis one.")
         else:
             pass
-
+        # 去掉可共生记录
+        if event.call.requestSecurity and event.call.id in self.nomAvailableSymbiosisPaths[(event.call.sourceNode, event.call.destinationNode)]:
+            self.nomAvailableSymbiosisPaths[(event.call.sourceNode, event.call.destinationNode)].remove(event.call.id)
+        if event.call.requestSecurity == 0 and event.call.id in self.secAvailableSymbiosisPaths[(event.call.sourceNode, event.call.destinationNode)]:
+            self.secAvailableSymbiosisPaths[(event.call.sourceNode, event.call.destinationNode)].remove(event.call.id)
         for (start, end, index) in workingPath:
             physicalTopology.G[start][end][index]["bandwidth"] += event.call.requestBandwidth
             physicalTopology.G[start][end][index]["used"] = False
