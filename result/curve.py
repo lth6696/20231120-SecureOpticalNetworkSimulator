@@ -49,6 +49,7 @@ class PlotCurve:
         if label:
             plt.xlabel(label[0])
             plt.ylabel(label[1])
+        plt.xticks([100*(i+1) for i in range(9)])
         # plt.yticks([20*i for i in range(6)])
         plt.grid(True, ls=':', lw=0.5, c='#d5d6d8')
         plt.tight_layout()

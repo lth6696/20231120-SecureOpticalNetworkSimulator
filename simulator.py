@@ -43,8 +43,8 @@ def simulator(configFile: str):
     logging.info("{} - {} - Done.".format(__file__, __name__))
     # 返回仿真结果
     try:
-        print(sum([len(controller.algorithm.secAvailableSymbiosisPaths[key]) for key in controller.algorithm.secAvailableSymbiosisPaths]))
-        print(sum([len(controller.algorithm.nomAvailableSymbiosisPaths[key]) for key in controller.algorithm.nomAvailableSymbiosisPaths]))
+        # print(sum([len(controller.algorithm.secAvailableSymbiosisPaths[key]) for key in controller.algorithm.secAvailableSymbiosisPaths]))
+        # print(sum([len(controller.algorithm.nomAvailableSymbiosisPaths[key]) for key in controller.algorithm.nomAvailableSymbiosisPaths]))
         result.curve.PlotCurve.plotRealTime(statistic.time_stamp, statistic.realtime_num_carried_calls)
         result.curve.PlotCurve.plotRealTime(statistic.time_stamp, statistic.realtime_link_utilization)
     except:
@@ -59,8 +59,7 @@ if __name__ == '__main__':
     # 仿真配置文件
     configFile = "./topology/NSFNet.xml"
     ResultFile = "results.xlsx"
-    iterRound = 5
-    isSimulate = True
+    isSimulate = False
     collector = {"title": [], "results": []}
 
     # 开始仿真
@@ -73,20 +72,20 @@ if __name__ == '__main__':
             raise Exception("File does not exist.")
         data = pd.read_excel(ResultFile)
         title = {
-            3: "success rate (%)",
-            4: "success rate of security calls (%)",
-            5: "success rate of normal calls (%)",
+            3: "blocking rate (%)",
+            4: "blocking rate of security calls (%)",
+            5: "blocking rate of normal calls (%)",
             6: "the number of hops",
             7: "the number of hops of security calls",
             8: "the number of hops of normal calls",
             9: "link utilization (%)",
             10: "path risk level (%)",
             11: "the number of path risk",
-            12: "the number of joint risk"
+            12: "joint risk level (%)"
         }
         col = 12
-        x = [100 * (i + 1) for i in range(6)]
-        y = [list(data.iloc[0+i*6 : 6+i*6, col])[::-1] for i in range(3)]
+        x = [100 * (i + 1) for i in range(9)]
+        y = [list(data.iloc[0+i*9 : 9+i*9, col])[::-1] for i in range(3)]
         legend = ["SOSR-U", "SOSR-S", "Benchmark"]
         pc = result.curve.PlotCurve()
         pc.plotMultiRealTime(x, *y, legend=legend, label=["load (in Erlang)", title[col]])

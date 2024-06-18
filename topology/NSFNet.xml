@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <sonsim version="1.0" type="optical">
     <!--module is the Routing Algorithm class in java-->
-    <ra module="Benchmark"/>
+    <ra module="SOSR-U"/>
 
     <!-- 'calls' 业务流数量 -->
     <!-- 'load' 业务负载 100 200 300 400 500 600 | 12 6 4 3 2.4 2-->
     <!-- 'max-rate=' 最高速率，用于结果统计 -->
     <!-- 'statisticStart' 表示将从哪个业务开始收集统计信息 -->
-    <traffic type="otn" calls="50000" load="100" max-rate="100000" statisticStart="0">
+    <traffic type="otn" calls="50000" load="900" max-rate="100000" statisticStart="0">
         <!-- 'holding-time' 业务持续时间，单位 second -->
         <!-- 'rate' 业务速率，单位 Mbps 1000Mbps = 1Gbps -->
         <!-- 'weight' 不同业务的权重 -->
