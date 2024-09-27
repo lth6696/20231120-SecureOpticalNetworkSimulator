@@ -6,7 +6,6 @@ import logging
 import logging.config
 import os.path
 
-import multiprocessing
 import pandas as pd
 
 import event
@@ -27,12 +26,14 @@ def simulator(configFile: str):
     physicalTopology = network.topology.PhysicalTopology()
     physicalTopology.constructGraph(configFile)
     logging.info("{} - {} - Done.".format(__file__, __name__))
-    # 生成业务请求事件
+    # 生成静态业务
     logging.info("{} - {} - Generate the traffic events.".format(__file__, __name__))
     scheduler = event.scheduler.Scheduler()
     traffic = network.generator.TrafficGenerator()
     traffic.generate(configFile, physicalTopology, scheduler)
     logging.info("{} - {} - Done.".format(__file__, __name__))
+    # todo 生成动态攻击
+
     # 加载数据统计模块
     logging.info("{} - {} - Load the statistic module.".format(__file__, __name__))
     statistic = result.statistic.Statistic()
@@ -59,7 +60,7 @@ if __name__ == '__main__':
     # 仿真配置文件
     configFile = "./topology/NSFNet.xml"
     ResultFile = "results.xlsx"
-    isSimulate = False
+    isSimulate = True
     collector = {"title": [], "results": []}
 
     # 开始仿真
