@@ -16,77 +16,176 @@
 
     <topology name="NSFNet">
         <nodes>
-            <node id="0"/>
-            <node id="1"/>
-            <node id="2"/>
-            <node id="3"/>
-            <node id="4"/>
-            <node id="5"/>
-            <node id="6"/>
-            <node id="7"/>
-            <node id="8"/>
-            <node id="9"/>
-            <node id="10"/>
-            <node id="11"/>
-            <node id="12"/>
-            <node id="13"/>
+            <node type="int">0</node>
+            <node type="int">1</node>
+            <node type="int">2</node>
+            <node type="int">3</node>
+            <node type="int">4</node>
+            <node type="int">5</node>
+            <node type="int">6</node>
+            <node type="int">7</node>
+            <node type="int">8</node>
+            <node type="int">9</node>
+            <node type="int">10</node>
+            <node type="int">11</node>
+            <node type="int">12</node>
+            <node type="int">13</node>
         </nodes>
-        <links wavelengths="40">
-            <link source="0" destination="1" id="0" bandwidth="100000" max-bandwidth="100000" risk="H1"/>
-            <link source="0" destination="2" id="1" bandwidth="100000" max-bandwidth="100000" risk="H1"/>
-            <link source="0" destination="7" id="2" bandwidth="100000" max-bandwidth="100000" risk="L6"/>
-
-            <link source="1" destination="0" id="3" bandwidth="100000" max-bandwidth="100000" risk="H1"/>
-            <link source="1" destination="2" id="4" bandwidth="100000" max-bandwidth="100000" risk="L1"/>
-            <link source="1" destination="3" id="5" bandwidth="100000" max-bandwidth="100000" risk="L2"/>
-
-            <link source="2" destination="0" id="6" bandwidth="100000" max-bandwidth="100000" risk="H1"/>
-            <link source="2" destination="1" id="7" bandwidth="100000" max-bandwidth="100000" risk="L1"/>
-            <link source="2" destination="6" id="8" bandwidth="100000" max-bandwidth="100000" risk="L5"/>
-
-            <link source="3" destination="1" id="9" bandwidth="100000" max-bandwidth="100000" risk="L2"/>
-            <link source="3" destination="4" id="10" bandwidth="100000" max-bandwidth="100000" risk="L3"/>
-            <link source="3" destination="8" id="11" bandwidth="100000" max-bandwidth="100000" risk="L3"/>
-
-            <link source="4" destination="3" id="12" bandwidth="100000" max-bandwidth="100000" risk="L3"/>
-            <link source="4" destination="5" id="13" bandwidth="100000" max-bandwidth="100000" risk="H2"/>
-            <link source="4" destination="6" id="14" bandwidth="100000" max-bandwidth="100000" risk="L4"/>
-
-            <link source="5" destination="4" id="15" bandwidth="100000" max-bandwidth="100000" risk="H2"/>
-            <link source="5" destination="7" id="16" bandwidth="100000" max-bandwidth="100000" risk="L7"/>
-
-            <link source="6" destination="2" id="17" bandwidth="100000" max-bandwidth="100000" risk="L5"/>
-            <link source="6" destination="4" id="18" bandwidth="100000" max-bandwidth="100000" risk="L4"/>
-            <link source="6" destination="9" id="19" bandwidth="100000" max-bandwidth="100000" risk="L10"/>
-            <link source="6" destination="12" id="20" bandwidth="100000" max-bandwidth="100000" risk="L9_L10"/>
-
-            <link source="7" destination="0" id="21" bandwidth="100000" max-bandwidth="100000" risk="L6"/>
-            <link source="7" destination="5" id="22" bandwidth="100000" max-bandwidth="100000" risk="L7"/>
-            <link source="7" destination="10" id="23" bandwidth="100000" max-bandwidth="100000" risk="L8"/>
-
-            <link source="8" destination="3" id="24" bandwidth="100000" max-bandwidth="100000" risk="L3"/>
-            <link source="8" destination="11" id="25" bandwidth="100000" max-bandwidth="100000" risk="L11"/>
-            <link source="8" destination="13" id="26" bandwidth="100000" max-bandwidth="100000" risk="L11"/>
-
-            <link source="9" destination="6" id="27" bandwidth="100000" max-bandwidth="100000" risk="L10"/>
-            <link source="9" destination="10" id="28" bandwidth="100000" max-bandwidth="100000" risk="L9"/>
-
-            <link source="10" destination="7" id="29" bandwidth="100000" max-bandwidth="100000" risk="L8"/>
-            <link source="10" destination="9" id="30" bandwidth="100000" max-bandwidth="100000" risk="L9"/>
-            <link source="10" destination="11" id="31" bandwidth="100000" max-bandwidth="100000" risk="L11"/>
-            <link source="10" destination="13" id="32" bandwidth="100000" max-bandwidth="100000" risk="H3"/>
-
-            <link source="11" destination="8" id="33" bandwidth="100000" max-bandwidth="100000" risk="L11"/>
-            <link source="11" destination="10" id="34" bandwidth="100000" max-bandwidth="100000" risk="L11"/>
-            <link source="11" destination="12" id="35" bandwidth="100000" max-bandwidth="100000" risk="H3"/>
-
-            <link source="12" destination="6" id="36" bandwidth="100000" max-bandwidth="100000" risk="L9_L10"/>
-            <link source="12" destination="11" id="37" bandwidth="100000" max-bandwidth="100000" risk="H3"/>
-            <link source="12" destination="13" id="38" bandwidth="100000" max-bandwidth="100000" risk="H3"/>
-
-            <link source="13" destination="8" id="39" bandwidth="100000" max-bandwidth="100000" risk="L11"/>
-            <link source="13" destination="10" id="40" bandwidth="100000" max-bandwidth="100000" risk="H3"/>
-            <link source="13" destination="12" id="41" bandwidth="100000" max-bandwidth="100000" risk="H3"/>
+        <links type="undirected">
+            <link>
+                <node type="int">0</node>
+                <node type="int">1</node>
+                <wavelength type="int">40</wavelength>
+                <bandwidth type="int">100000</bandwidth>
+                <area type="str">Seattle,Palo</area>
+            </link>
+            <link>
+                <node type="int">0</node>
+                <node type="int">2</node>
+                <wavelength type="int">40</wavelength>
+                <bandwidth type="int">100000</bandwidth>
+                <area type="string">Seattle,Palo</area>
+            </link>
+            <link>
+                <node type="int">0</node>
+                <node type="int">7</node>
+                <wavelength type="int">40</wavelength>
+                <bandwidth type="int">100000</bandwidth>
+                <area type="string">Seattle,Palo</area>
+            </link>
+            <link>
+                <node type="int">1</node>
+                <node type="int">7</node>
+                <wavelength type="int">40</wavelength>
+                <bandwidth type="int">100000</bandwidth>
+                <area type="string">Seattle,Palo</area>
+            </link>
+            <link>
+                <node type="int">1</node>
+                <node type="int">2</node>
+                <wavelength type="int">40</wavelength>
+                <bandwidth type="int">100000</bandwidth>
+                <area type="string">Seattle,Palo</area>
+            </link>
+            <link>
+                <node type="int">1</node>
+                <node type="int">3</node>
+                <wavelength type="int">40</wavelength>
+                <bandwidth type="int">100000</bandwidth>
+                <area type="string">Seattle,Palo</area>
+            </link>
+            <link>
+                <node type="int">2</node>
+                <node type="int">6</node>
+                <wavelength type="int">40</wavelength>
+                <bandwidth type="int">100000</bandwidth>
+                <area type="string">Seattle,Palo</area>
+            </link>
+            <link>
+                <node type="int">3</node>
+                <node type="int">4</node>
+                <wavelength type="int">40</wavelength>
+                <bandwidth type="int">100000</bandwidth>
+                <area type="string">Seattle,Palo</area>
+            </link>
+            <link>
+                <node type="int">3</node>
+                <node type="int">8</node>
+                <wavelength type="int">40</wavelength>
+                <bandwidth type="int">100000</bandwidth>
+                <area type="string">Seattle,Palo</area>
+            </link>
+            <link>
+                <node type="int">4</node>
+                <node type="int">5</node>
+                <wavelength type="int">40</wavelength>
+                <bandwidth type="int">100000</bandwidth>
+                <area type="string">Seattle,Palo</area>
+            </link>
+            <link>
+                <node type="int">4</node>
+                <node type="int">6</node>
+                <wavelength type="int">40</wavelength>
+                <bandwidth type="int">100000</bandwidth>
+                <area type="string">Seattle,Palo</area>
+            </link>
+            <link>
+                <node type="int">5</node>
+                <node type="int">7</node>
+                <wavelength type="int">40</wavelength>
+                <bandwidth type="int">100000</bandwidth>
+                <area type="string">Seattle,Palo</area>
+            </link>
+            <link>
+                <node type="int">6</node>
+                <node type="int">9</node>
+                <wavelength type="int">40</wavelength>
+                <bandwidth type="int">100000</bandwidth>
+                <area type="string">Seattle,Palo</area>
+            </link>
+            <link>
+                <node type="int">6</node>
+                <node type="int">12</node>
+                <wavelength type="int">40</wavelength>
+                <bandwidth type="int">100000</bandwidth>
+                <area type="string">Seattle,Palo</area>
+            </link>
+            <link>
+                <node type="int">7</node>
+                <node type="int">10</node>
+                <wavelength type="int">40</wavelength>
+                <bandwidth type="int">100000</bandwidth>
+                <area type="string">Seattle,Palo</area>
+            </link>
+            <link>
+                <node type="int">8</node>
+                <node type="int">11</node>
+                <wavelength type="int">40</wavelength>
+                <bandwidth type="int">100000</bandwidth>
+                <area type="string">Seattle,Palo</area>
+            </link>
+            <link>
+                <node type="int">8</node>
+                <node type="int">13</node>
+                <wavelength type="int">40</wavelength>
+                <bandwidth type="int">100000</bandwidth>
+                <area type="string">Seattle,Palo</area>
+            </link>
+            <link>
+                <node type="int">9</node>
+                <node type="int">10</node>
+                <wavelength type="int">40</wavelength>
+                <bandwidth type="int">100000</bandwidth>
+                <area type="string">Seattle,Palo</area>
+            </link>
+            <link>
+                <node type="int">10</node>
+                <node type="int">11</node>
+                <wavelength type="int">40</wavelength>
+                <bandwidth type="int">100000</bandwidth>
+                <area type="string">Seattle,Palo</area>
+            </link>
+            <link>
+                <node type="int">10</node>
+                <node type="int">13</node>
+                <wavelength type="int">40</wavelength>
+                <bandwidth type="int">100000</bandwidth>
+                <area type="string">Seattle,Palo</area>
+            </link>
+            <link>
+                <node type="int">11</node>
+                <node type="int">12</node>
+                <wavelength type="int">40</wavelength>
+                <bandwidth type="int">100000</bandwidth>
+                <area type="string">Seattle,Palo</area>
+            </link>
+            <link>
+                <node type="int">12</node>
+                <node type="int">13</node>
+                <wavelength type="int">40</wavelength>
+                <bandwidth type="int">100000</bandwidth>
+                <area type="string">Seattle,Palo</area>
+            </link>
         </links>
     </topology>
 </sonsim>
