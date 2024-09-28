@@ -26,13 +26,14 @@ def simulator(configFile: str):
     physicalTopology = network.topology.PhysicalTopology()
     physicalTopology.constructGraph(configFile)
     logging.info("{} - {} - Done.".format(__file__, __name__))
-    # 生成业务
-    logging.info("{} - {} - Generate the traffic events.".format(__file__, __name__))
+    # 生成离散事件器
     scheduler = event.scheduler.Scheduler()
-    traffic = network.generator.TrafficGenerator()
-    traffic.generate(configFile, physicalTopology, scheduler)
+    # 生成攻击事件
+    logging.info("{} - {} - Generate the attack events.".format(__file__, __name__))
+    atks = network.generator.Generator()
+    atks.generate(configFile, scheduler)
     logging.info("{} - {} - Done.".format(__file__, __name__))
-    # todo 生成攻击
+    # 生成流量
 
     # # 加载数据统计模块
     # logging.info("{} - {} - Load the statistic module.".format(__file__, __name__))

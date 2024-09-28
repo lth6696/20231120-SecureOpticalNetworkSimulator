@@ -1,4 +1,4 @@
 from . import topology
-from . import traffic
+from . import attack
 from . import generator
 from . import controller

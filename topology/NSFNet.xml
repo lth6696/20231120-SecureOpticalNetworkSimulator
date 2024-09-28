@@ -1,17 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <sonsim version="1.0" type="optical">
     <!--module is the Routing Algorithm class in java-->
-    <ra module="SOSR-U"/>
+    <ra module="CAR"/>
 
     <!-- 'calls' 业务流数量 -->
     <!-- 'load' 业务负载 100 200 300 400 500 600 | 12 6 4 3 2.4 2-->
     <!-- 'max-rate=' 最高速率，用于结果统计 -->
     <!-- 'statisticStart' 表示将从哪个业务开始收集统计信息 -->
-    <traffic type="otn" calls="50000" load="900" max-rate="100000" statisticStart="0">
+    <events num="10" load="1">
         <!-- 'holding-time' 业务持续时间，单位 second -->
-        <!-- 'rate' 业务速率，单位 Mbps 1000Mbps = 1Gbps -->
         <!-- 'weight' 不同业务的权重 -->
-        <calls holding-time="600" rate="100000" weight="1"/>
+        <event holding-time="20" weight="1"/>
+    </events>
+
+    <traffic>
+        <bandwidth type="int">10000</bandwidth>
+        <num type="int">50</num>
     </traffic>
 
     <topology name="NSFNet">
@@ -77,154 +81,154 @@
             <link>
                 <u_node type="int">0</u_node>
                 <v_node type="int">1</v_node>
-                <wavelength type="int">40</wavelength>
+                <wavelength type="int">8</wavelength>
                 <bandwidth type="int">100000</bandwidth>
                 <area type="str">WA,OR,CA</area>
             </link>
             <link>
                 <u_node type="int">0</u_node>
                 <v_node type="int">2</v_node>
-                <wavelength type="int">40</wavelength>
+                <wavelength type="int">8</wavelength>
                 <bandwidth type="int">100000</bandwidth>
                 <area type="str">WA,OR,CA</area>
             </link>
             <link>
                 <u_node type="int">0</u_node>
                 <v_node type="int">7</v_node>
-                <wavelength type="int">40</wavelength>
+                <wavelength type="int">8</wavelength>
                 <bandwidth type="int">100000</bandwidth>
                 <area type="str">WA,ID,MT,ND,MN,WI,IL</area>
             </link>
             <link>
                 <u_node type="int">1</u_node>
                 <v_node type="int">7</v_node>
-                <wavelength type="int">40</wavelength>
+                <wavelength type="int">8</wavelength>
                 <bandwidth type="int">100000</bandwidth>
                 <area type="str">CA,NV,UT,CO,NF,IA,IL</area>
             </link>
             <link>
                 <u_node type="int">1</u_node>
                 <v_node type="int">2</v_node>
-                <wavelength type="int">40</wavelength>
+                <wavelength type="int">8</wavelength>
                 <bandwidth type="int">100000</bandwidth>
                 <area type="str">CA</area>
             </link>
             <link>
                 <u_node type="int">1</u_node>
                 <v_node type="int">3</v_node>
-                <wavelength type="int">40</wavelength>
+                <wavelength type="int">8</wavelength>
                 <bandwidth type="int">100000</bandwidth>
                 <area type="str">CA,NV,UT</area>
             </link>
             <link>
                 <u_node type="int">2</u_node>
                 <v_node type="int">6</v_node>
-                <wavelength type="int">40</wavelength>
+                <wavelength type="int">8</wavelength>
                 <bandwidth type="int">100000</bandwidth>
                 <area type="str">CA,AX,NM,TX</area>
             </link>
             <link>
                 <u_node type="int">3</u_node>
                 <v_node type="int">4</v_node>
-                <wavelength type="int">40</wavelength>
+                <wavelength type="int">8</wavelength>
                 <bandwidth type="int">100000</bandwidth>
                 <area type="str">UT,CO</area>
             </link>
             <link>
                 <u_node type="int">3</u_node>
                 <v_node type="int">8</v_node>
-                <wavelength type="int">40</wavelength>
+                <wavelength type="int">8</wavelength>
                 <bandwidth type="int">100000</bandwidth>
                 <area type="str">UT,CO,NF,IA,IL,MI</area>
             </link>
             <link>
                 <u_node type="int">4</u_node>
                 <v_node type="int">5</v_node>
-                <wavelength type="int">40</wavelength>
+                <wavelength type="int">8</wavelength>
                 <bandwidth type="int">100000</bandwidth>
                 <area type="str">CO,NF</area>
             </link>
             <link>
                 <u_node type="int">4</u_node>
                 <v_node type="int">6</v_node>
-                <wavelength type="int">40</wavelength>
+                <wavelength type="int">8</wavelength>
                 <bandwidth type="int">100000</bandwidth>
                 <area type="str">CO,NF,IA,IL,MO,AR,TX</area>
             </link>
             <link>
                 <u_node type="int">5</u_node>
                 <v_node type="int">7</v_node>
-                <wavelength type="int">40</wavelength>
+                <wavelength type="int">8</wavelength>
                 <bandwidth type="int">100000</bandwidth>
                 <area type="str">NF,IA,IL</area>
             </link>
             <link>
                 <u_node type="int">6</u_node>
                 <v_node type="int">9</v_node>
-                <wavelength type="int">40</wavelength>
+                <wavelength type="int">8</wavelength>
                 <bandwidth type="int">100000</bandwidth>
                 <area type="str">TX,LA,MS,AL</area>
             </link>
             <link>
                 <u_node type="int">6</u_node>
                 <v_node type="int">12</v_node>
-                <wavelength type="int">40</wavelength>
+                <wavelength type="int">8</wavelength>
                 <bandwidth type="int">100000</bandwidth>
                 <area type="str">TX,LA,MS,AL,GA,SC,NC,MD</area>
             </link>
             <link>
                 <u_node type="int">7</u_node>
                 <v_node type="int">10</v_node>
-                <wavelength type="int">40</wavelength>
+                <wavelength type="int">8</wavelength>
                 <bandwidth type="int">100000</bandwidth>
                 <area type="str">IL,MI,RA</area>
             </link>
             <link>
                 <u_node type="int">8</u_node>
                 <v_node type="int">11</v_node>
-                <wavelength type="int">40</wavelength>
+                <wavelength type="int">8</wavelength>
                 <bandwidth type="int">100000</bandwidth>
                 <area type="str">MI,NY</area>
             </link>
             <link>
                 <u_node type="int">8</u_node>
                 <v_node type="int">13</v_node>
-                <wavelength type="int">40</wavelength>
+                <wavelength type="int">8</wavelength>
                 <bandwidth type="int">100000</bandwidth>
                 <area type="str">MI,NY,NJ</area>
             </link>
             <link>
                 <u_node type="int">9</u_node>
                 <v_node type="int">10</v_node>
-                <wavelength type="int">40</wavelength>
+                <wavelength type="int">8</wavelength>
                 <bandwidth type="int">100000</bandwidth>
                 <area type="str">TN,KY,RA</area>
             </link>
             <link>
                 <u_node type="int">10</u_node>
                 <v_node type="int">11</v_node>
-                <wavelength type="int">40</wavelength>
+                <wavelength type="int">8</wavelength>
                 <bandwidth type="int">100000</bandwidth>
                 <area type="str">RA,NY</area>
             </link>
             <link>
                 <u_node type="int">10</u_node>
                 <v_node type="int">13</v_node>
-                <wavelength type="int">40</wavelength>
+                <wavelength type="int">8</wavelength>
                 <bandwidth type="int">100000</bandwidth>
                 <area type="str">RA,PA,NJ</area>
             </link>
             <link>
                 <u_node type="int">11</u_node>
                 <v_node type="int">12</v_node>
-                <wavelength type="int">40</wavelength>
+                <wavelength type="int">8</wavelength>
                 <bandwidth type="int">100000</bandwidth>
                 <area type="str">NY,RA,MD</area>
             </link>
             <link>
                 <u_node type="int">12</u_node>
                 <v_node type="int">13</v_node>
-                <wavelength type="int">40</wavelength>
+                <wavelength type="int">8</wavelength>
                 <bandwidth type="int">100000</bandwidth>
                 <area type="str">MD,PA,NJ</area>
             </link>
