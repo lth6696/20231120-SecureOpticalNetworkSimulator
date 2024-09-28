@@ -26,31 +26,31 @@ def simulator(configFile: str):
     physicalTopology = network.topology.PhysicalTopology()
     physicalTopology.constructGraph(configFile)
     logging.info("{} - {} - Done.".format(__file__, __name__))
-    # 生成静态业务
+    # 生成业务
     logging.info("{} - {} - Generate the traffic events.".format(__file__, __name__))
     scheduler = event.scheduler.Scheduler()
     traffic = network.generator.TrafficGenerator()
     traffic.generate(configFile, physicalTopology, scheduler)
     logging.info("{} - {} - Done.".format(__file__, __name__))
-    # todo 生成动态攻击
+    # todo 生成攻击
 
-    # 加载数据统计模块
-    logging.info("{} - {} - Load the statistic module.".format(__file__, __name__))
-    statistic = result.statistic.Statistic()
-    # 启动管控平台
-    logging.info("{} - {} - Start the control plane.".format(__file__, __name__))
-    controller = network.controller.ControlPlane(configFile)
-    controller.run(scheduler, physicalTopology, statistic)
-    logging.info("{} - {} - Done.".format(__file__, __name__))
-    # 返回仿真结果
-    try:
-        # print(sum([len(controller.algorithm.secAvailableSymbiosisPaths[key]) for key in controller.algorithm.secAvailableSymbiosisPaths]))
-        # print(sum([len(controller.algorithm.nomAvailableSymbiosisPaths[key]) for key in controller.algorithm.nomAvailableSymbiosisPaths]))
-        result.curve.PlotCurve.plotRealTime(statistic.time_stamp, statistic.realtime_num_carried_calls)
-        result.curve.PlotCurve.plotRealTime(statistic.time_stamp, statistic.realtime_link_utilization)
-    except:
-        pass
-    return statistic.content_displayable_results, statistic.get()
+    # # 加载数据统计模块
+    # logging.info("{} - {} - Load the statistic module.".format(__file__, __name__))
+    # statistic = result.statistic.Statistic()
+    # # 启动管控平台
+    # logging.info("{} - {} - Start the control plane.".format(__file__, __name__))
+    # controller = network.controller.ControlPlane(configFile)
+    # controller.run(scheduler, physicalTopology, statistic)
+    # logging.info("{} - {} - Done.".format(__file__, __name__))
+    # # 返回仿真结果
+    # try:
+    #     # print(sum([len(controller.algorithm.secAvailableSymbiosisPaths[key]) for key in controller.algorithm.secAvailableSymbiosisPaths]))
+    #     # print(sum([len(controller.algorithm.nomAvailableSymbiosisPaths[key]) for key in controller.algorithm.nomAvailableSymbiosisPaths]))
+    #     result.curve.PlotCurve.plotRealTime(statistic.time_stamp, statistic.realtime_num_carried_calls)
+    #     result.curve.PlotCurve.plotRealTime(statistic.time_stamp, statistic.realtime_link_utilization)
+    # except:
+    #     pass
+    # return statistic.content_displayable_results, statistic.get()
 
 
 if __name__ == '__main__':
@@ -65,9 +65,9 @@ if __name__ == '__main__':
 
     # 开始仿真
     if isSimulate:
-        title, result = simulator(configFile)
-        df = pd.Series(result, index=title)
-        print(df)
+        simulator(configFile)
+        # df = pd.Series(result, index=title)
+        # print(df)
     else:
         if not os.path.exists(ResultFile):
             raise Exception("File does not exist.")

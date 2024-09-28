@@ -16,175 +16,217 @@
 
     <topology name="NSFNet">
         <nodes>
-            <node type="int">0</node>
-            <node type="int">1</node>
-            <node type="int">2</node>
-            <node type="int">3</node>
-            <node type="int">4</node>
-            <node type="int">5</node>
-            <node type="int">6</node>
-            <node type="int">7</node>
-            <node type="int">8</node>
-            <node type="int">9</node>
-            <node type="int">10</node>
-            <node type="int">11</node>
-            <node type="int">12</node>
-            <node type="int">13</node>
+            <node>
+                <id type="int">0</id>
+                <area type="str">WA</area>
+            </node>
+            <node>
+                <id type="int">1</id>
+                <area type="str">CA</area>
+            </node>
+            <node>
+                <id type="int">2</id>
+                <area type="str">CA</area>
+            </node>
+            <node>
+                <id type="int">3</id>
+                <area type="str">UT</area>
+            </node>
+            <node>
+                <id type="int">4</id>
+                <area type="str">CO</area>
+            </node>
+            <node>
+                <id type="int">5</id>
+                <area type="str">NE</area>
+            </node>
+            <node>
+                <id type="int">6</id>
+                <area type="str">TX</area>
+            </node>
+            <node>
+                <id type="int">7</id>
+                <area type="str">IL</area>
+            </node>
+            <node>
+                <id type="int">8</id>
+                <area type="str">MI</area>
+            </node>
+            <node>
+                <id type="int">9</id>
+                <area type="str">GA</area>
+            </node>
+            <node>
+                <id type="int">10</id>
+                <area type="str">RA</area>
+            </node>
+            <node>
+                <id type="int">11</id>
+                <area type="str">NY</area>
+            </node>
+            <node>
+                <id type="int">12</id>
+                <area type="str">MD</area>
+            </node>
+            <node>
+                <id type="int">13</id>
+                <area type="str">NJ</area>
+            </node>
         </nodes>
         <links type="undirected">
             <link>
-                <node type="int">0</node>
-                <node type="int">1</node>
+                <u_node type="int">0</u_node>
+                <v_node type="int">1</v_node>
                 <wavelength type="int">40</wavelength>
                 <bandwidth type="int">100000</bandwidth>
-                <area type="str">Seattle,Palo</area>
+                <area type="str">WA,OR,CA</area>
             </link>
             <link>
-                <node type="int">0</node>
-                <node type="int">2</node>
+                <u_node type="int">0</u_node>
+                <v_node type="int">2</v_node>
                 <wavelength type="int">40</wavelength>
                 <bandwidth type="int">100000</bandwidth>
-                <area type="string">Seattle,Palo</area>
+                <area type="str">WA,OR,CA</area>
             </link>
             <link>
-                <node type="int">0</node>
-                <node type="int">7</node>
+                <u_node type="int">0</u_node>
+                <v_node type="int">7</v_node>
                 <wavelength type="int">40</wavelength>
                 <bandwidth type="int">100000</bandwidth>
-                <area type="string">Seattle,Palo</area>
+                <area type="str">WA,ID,MT,ND,MN,WI,IL</area>
             </link>
             <link>
-                <node type="int">1</node>
-                <node type="int">7</node>
+                <u_node type="int">1</u_node>
+                <v_node type="int">7</v_node>
                 <wavelength type="int">40</wavelength>
                 <bandwidth type="int">100000</bandwidth>
-                <area type="string">Seattle,Palo</area>
+                <area type="str">CA,NV,UT,CO,NF,IA,IL</area>
             </link>
             <link>
-                <node type="int">1</node>
-                <node type="int">2</node>
+                <u_node type="int">1</u_node>
+                <v_node type="int">2</v_node>
                 <wavelength type="int">40</wavelength>
                 <bandwidth type="int">100000</bandwidth>
-                <area type="string">Seattle,Palo</area>
+                <area type="str">CA</area>
             </link>
             <link>
-                <node type="int">1</node>
-                <node type="int">3</node>
+                <u_node type="int">1</u_node>
+                <v_node type="int">3</v_node>
                 <wavelength type="int">40</wavelength>
                 <bandwidth type="int">100000</bandwidth>
-                <area type="string">Seattle,Palo</area>
+                <area type="str">CA,NV,UT</area>
             </link>
             <link>
-                <node type="int">2</node>
-                <node type="int">6</node>
+                <u_node type="int">2</u_node>
+                <v_node type="int">6</v_node>
                 <wavelength type="int">40</wavelength>
                 <bandwidth type="int">100000</bandwidth>
-                <area type="string">Seattle,Palo</area>
+                <area type="str">CA,AX,NM,TX</area>
             </link>
             <link>
-                <node type="int">3</node>
-                <node type="int">4</node>
+                <u_node type="int">3</u_node>
+                <v_node type="int">4</v_node>
                 <wavelength type="int">40</wavelength>
                 <bandwidth type="int">100000</bandwidth>
-                <area type="string">Seattle,Palo</area>
+                <area type="str">UT,CO</area>
             </link>
             <link>
-                <node type="int">3</node>
-                <node type="int">8</node>
+                <u_node type="int">3</u_node>
+                <v_node type="int">8</v_node>
                 <wavelength type="int">40</wavelength>
                 <bandwidth type="int">100000</bandwidth>
-                <area type="string">Seattle,Palo</area>
+                <area type="str">UT,CO,NF,IA,IL,MI</area>
             </link>
             <link>
-                <node type="int">4</node>
-                <node type="int">5</node>
+                <u_node type="int">4</u_node>
+                <v_node type="int">5</v_node>
                 <wavelength type="int">40</wavelength>
                 <bandwidth type="int">100000</bandwidth>
-                <area type="string">Seattle,Palo</area>
+                <area type="str">CO,NF</area>
             </link>
             <link>
-                <node type="int">4</node>
-                <node type="int">6</node>
+                <u_node type="int">4</u_node>
+                <v_node type="int">6</v_node>
                 <wavelength type="int">40</wavelength>
                 <bandwidth type="int">100000</bandwidth>
-                <area type="string">Seattle,Palo</area>
+                <area type="str">CO,NF,IA,IL,MO,AR,TX</area>
             </link>
             <link>
-                <node type="int">5</node>
-                <node type="int">7</node>
+                <u_node type="int">5</u_node>
+                <v_node type="int">7</v_node>
                 <wavelength type="int">40</wavelength>
                 <bandwidth type="int">100000</bandwidth>
-                <area type="string">Seattle,Palo</area>
+                <area type="str">NF,IA,IL</area>
             </link>
             <link>
-                <node type="int">6</node>
-                <node type="int">9</node>
+                <u_node type="int">6</u_node>
+                <v_node type="int">9</v_node>
                 <wavelength type="int">40</wavelength>
                 <bandwidth type="int">100000</bandwidth>
-                <area type="string">Seattle,Palo</area>
+                <area type="str">TX,LA,MS,AL</area>
             </link>
             <link>
-                <node type="int">6</node>
-                <node type="int">12</node>
+                <u_node type="int">6</u_node>
+                <v_node type="int">12</v_node>
                 <wavelength type="int">40</wavelength>
                 <bandwidth type="int">100000</bandwidth>
-                <area type="string">Seattle,Palo</area>
+                <area type="str">TX,LA,MS,AL,GA,SC,NC,MD</area>
             </link>
             <link>
-                <node type="int">7</node>
-                <node type="int">10</node>
+                <u_node type="int">7</u_node>
+                <v_node type="int">10</v_node>
                 <wavelength type="int">40</wavelength>
                 <bandwidth type="int">100000</bandwidth>
-                <area type="string">Seattle,Palo</area>
+                <area type="str">IL,MI,RA</area>
             </link>
             <link>
-                <node type="int">8</node>
-                <node type="int">11</node>
+                <u_node type="int">8</u_node>
+                <v_node type="int">11</v_node>
                 <wavelength type="int">40</wavelength>
                 <bandwidth type="int">100000</bandwidth>
-                <area type="string">Seattle,Palo</area>
+                <area type="str">MI,NY</area>
             </link>
             <link>
-                <node type="int">8</node>
-                <node type="int">13</node>
+                <u_node type="int">8</u_node>
+                <v_node type="int">13</v_node>
                 <wavelength type="int">40</wavelength>
                 <bandwidth type="int">100000</bandwidth>
-                <area type="string">Seattle,Palo</area>
+                <area type="str">MI,NY,NJ</area>
             </link>
             <link>
-                <node type="int">9</node>
-                <node type="int">10</node>
+                <u_node type="int">9</u_node>
+                <v_node type="int">10</v_node>
                 <wavelength type="int">40</wavelength>
                 <bandwidth type="int">100000</bandwidth>
-                <area type="string">Seattle,Palo</area>
+                <area type="str">TN,KY,RA</area>
             </link>
             <link>
-                <node type="int">10</node>
-                <node type="int">11</node>
+                <u_node type="int">10</u_node>
+                <v_node type="int">11</v_node>
                 <wavelength type="int">40</wavelength>
                 <bandwidth type="int">100000</bandwidth>
-                <area type="string">Seattle,Palo</area>
+                <area type="str">RA,NY</area>
             </link>
             <link>
-                <node type="int">10</node>
-                <node type="int">13</node>
+                <u_node type="int">10</u_node>
+                <v_node type="int">13</v_node>
                 <wavelength type="int">40</wavelength>
                 <bandwidth type="int">100000</bandwidth>
-                <area type="string">Seattle,Palo</area>
+                <area type="str">RA,PA,NJ</area>
             </link>
             <link>
-                <node type="int">11</node>
-                <node type="int">12</node>
+                <u_node type="int">11</u_node>
+                <v_node type="int">12</v_node>
                 <wavelength type="int">40</wavelength>
                 <bandwidth type="int">100000</bandwidth>
-                <area type="string">Seattle,Palo</area>
+                <area type="str">NY,RA,MD</area>
             </link>
             <link>
-                <node type="int">12</node>
-                <node type="int">13</node>
+                <u_node type="int">12</u_node>
+                <v_node type="int">13</v_node>
                 <wavelength type="int">40</wavelength>
                 <bandwidth type="int">100000</bandwidth>
-                <area type="string">Seattle,Palo</area>
+                <area type="str">MD,PA,NJ</area>
             </link>
         </links>
     </topology>

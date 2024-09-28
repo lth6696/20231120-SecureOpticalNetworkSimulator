@@ -1,0 +1,3 @@
+2024-09-28 12:22:34,762 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\simulator.py - __main__ - Construct the physical topology.
+2024-09-28 12:22:34,762 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\network\topology.py - network.topology - Read the config file "./topology/NSFNet.xml".
+2024-09-28 12:22:34,765 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\network\topology.py - network.topology - Add 14 nodes and 22 links.
