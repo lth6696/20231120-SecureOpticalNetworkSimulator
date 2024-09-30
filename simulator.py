@@ -34,7 +34,8 @@ def simulator(configFile: str):
     atks.generate(configFile, scheduler)
     logging.info("{} - {} - Done.".format(__file__, __name__))
     # 生成流量
-
+    tfc_gen = network.traffic.TrafficGenerator(configFile)
+    tfc_gen.set_static_traffic()
     # # 加载数据统计模块
     # logging.info("{} - {} - Load the statistic module.".format(__file__, __name__))
     # statistic = result.statistic.Statistic()
