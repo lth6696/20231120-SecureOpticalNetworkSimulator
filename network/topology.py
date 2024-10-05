@@ -42,3 +42,13 @@ class PhysicalTopology:
             attr['area'] = attr['area'].split(',')
             self.G.add_edge(attr['u_node'], attr['v_node'], **attr)
         logging.info("{} - {} - Add {} nodes and {} links.".format(__file__, __name__, len(self.G.nodes), len(self.G.edges)))
+
+    def route(self, calls: list):
+        for call in calls:
+            try:
+                path = nx.shortest_path(self.G, call.src, call.dst)
+            except:
+                path = []
+            if not path:
+                continue
+            call.path = path

@@ -26,9 +26,9 @@ class ControlPlane:
             # logging.info("{} - {} - The {} event processed on {} second origin from {} to {} with id {}."
             #              .format(__file__, __name__, event.type, time, event.call.sourceNode, event.call.destinationNode, event.id))
             status = None
-            if event.type == "callArrive":
+            if event.type == "eventArrive":
                 status = self.algorithm.routeCall(physicalTopology, event, self.routeTable)
-            elif event.type == "callDeparture":
+            elif event.type == "eventDeparture":
                 status = self.algorithm.removeCall(physicalTopology, event, self.routeTable)
             statistic.snapshot(event, status, physicalTopology.G, self.routeTable)
 
@@ -50,4 +50,6 @@ class ControlPlane:
             self.algorithm = algorithm.sosr.SOSR("utilization")
         elif self.algorithmName == "SOSR-S":
             self.algorithm = algorithm.sosr.SOSR("security")
+        elif self.algorithmName == "CAR":
+            self.algorithm = algorithm.car.CAR()
         logging.info("{} - {} - Load the {} algorithm.".format(__file__, __name__, self.algorithmName))

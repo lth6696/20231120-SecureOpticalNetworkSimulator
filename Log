@@ -1,10 +1,13 @@
-2024-09-30 17:11:14,459 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\simulator.py - __main__ - Construct the physical topology.
-2024-09-30 17:11:14,459 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\network\topology.py - network.topology - Read the config file "./topology/NSFNet.xml".
-2024-09-30 17:11:14,461 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\network\topology.py - network.topology - Add 14 nodes and 22 links.
-2024-09-30 17:11:14,461 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\simulator.py - __main__ - Done.
-2024-09-30 17:11:14,462 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\simulator.py - __main__ - Generate the attack events.
-2024-09-30 17:11:14,462 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\network\generator.py - network.generator - Read the config file ./topology/NSFNet.xml.
-2024-09-30 17:11:14,462 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\network\generator.py - network.generator - There are 1 kinds of events.
-2024-09-30 17:11:14,462 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\network\generator.py - network.generator - Mean arrival time (¦Ë) is 20.0 seconds, mean holding time (¦Ì) is 20.0 seconds, intensity (¦Ñ) is 1.0.
-2024-09-30 17:11:14,463 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\network\generator.py - network.generator - Generate 20 events.
-2024-09-30 17:11:14,463 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\simulator.py - __main__ - Done.
+2024-10-01 12:50:09,189 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\simulator.py - __main__ - Construct the physical topology.
+2024-10-01 12:50:09,189 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\network\topology.py - network.topology - Read the config file "./topology/NSFNet.xml".
+2024-10-01 12:50:09,192 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\network\topology.py - network.topology - Add 14 nodes and 22 links.
+2024-10-01 12:50:09,192 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\simulator.py - __main__ - Done.
+2024-10-01 12:50:09,192 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\simulator.py - __main__ - Generate the attack events.
+2024-10-01 12:50:09,192 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\network\generator.py - network.generator - Read the config file ./topology/NSFNet.xml.
+2024-10-01 12:50:09,193 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\network\generator.py - network.generator - There are 1 kinds of events.
+2024-10-01 12:50:09,193 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\network\generator.py - network.generator - Mean arrival time (¦Ë) is 20.0 seconds, mean holding time (¦Ì) is 20.0 seconds, intensity (¦Ñ) is 1.0.
+2024-10-01 12:50:09,193 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\network\generator.py - network.generator - Generate 20 events.
+2024-10-01 12:50:09,193 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\simulator.py - __main__ - Done.
+2024-10-01 12:50:09,197 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\simulator.py - __main__ - Load the statistic module.
+2024-10-01 12:50:09,197 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\simulator.py - __main__ - Start the control plane.
+2024-10-01 12:50:09,197 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\network\controller.py - network.controller - Load the CAR algorithm.

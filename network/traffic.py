@@ -8,7 +8,7 @@ class Traffic:
         self.src = src
         self.dst = dst
         self.rate = rate
-        self.path = {}
+        self.path = None
 
     def set_path(self, path: dict):
         self.path = path
@@ -20,13 +20,13 @@ class TrafficGenerator:
         self.traffic_rate = 0
         self.node_num = 0
         self.configFile = configFile
+        self.calls = []
 
     def set_static_traffic(self):
         self._read_config()
         for i in range(self.num):
-            node_pair = np.random.choice(list(range(self.node_num)), 2)
-            # call = Traffic()
-            pass
+            [src, dst] = np.random.choice(list(range(self.node_num)), 2)
+            self.calls.append(Traffic(i, src, dst, self.traffic_rate))
 
     def _read_config(self):
         xmlParser = et.parse(self.configFile)
