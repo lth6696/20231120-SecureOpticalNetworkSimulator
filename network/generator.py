@@ -61,24 +61,17 @@ class Generator:
         logging.info("{} - {} - Mean arrival time (λ) is {} seconds, mean holding time (μ) is {} seconds, intensity (ρ) is {}."
                      .format(__file__, __name__, self.meanArrivalTime, self.meanHoldingTime, self.meanArrivalTime / self.meanHoldingTime))
         time = 0.0
-        node_num = len(root.find(self._topologyInfoModuleName).find(self._nodeInfoModuleName).findall('node'))
         for i in range(self.eventNum):
             nextEventType = self.eventsType[np.random.choice(self.weightVector)]
-            atk_target = self._get_atk_target("random", node_num, 0)
             startTime = np.random.exponential(self.meanArrivalTime, 1)[0] + time
             duration = np.random.exponential(nextEventType["holding-time"])
             endTime = startTime + duration
             time = startTime
-            atk = Attack(i, 0, atk_target, duration)
+            atk = Attack()
+            atk_area = atk.atk_area("random")
+            atk.set(i, atk_area, duration)
             eventArrival = Event(i, "eventArrive", startTime, atk)
             eventDeparture = Event(i, "eventDeparture", endTime, atk)
             scheduler.addEvent(eventArrival)
             scheduler.addEvent(eventDeparture)
         logging.info("{} - {} - Generate {} events.".format(__file__, __name__, scheduler.getEventNum()))
-
-    def _get_atk_target(self, strategy, *args):
-        if strategy == "random":
-            return self._load_random_atk_strategy(*args)
-
-    def _load_random_atk_strategy(self, node_num, link_num):
-        return np.random.randint(0, node_num)

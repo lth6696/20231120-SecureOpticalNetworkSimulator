@@ -37,6 +37,7 @@ def simulator(configFile: str):
     tfc_gen = network.traffic.TrafficGenerator(configFile)
     tfc_gen.set_static_traffic()
     physicalTopology.route(tfc_gen.calls)
+    physicalTopology.calls = tfc_gen.calls
     # 加载数据统计模块
     logging.info("{} - {} - Load the statistic module.".format(__file__, __name__))
     statistic = result.statistic.Statistic()
@@ -45,7 +46,7 @@ def simulator(configFile: str):
     controller = network.controller.ControlPlane(configFile)
     controller.run(scheduler, physicalTopology, statistic)
     logging.info("{} - {} - Done.".format(__file__, __name__))
-    # # 返回仿真结果
+    # 返回仿真结果
     # try:
     #     # print(sum([len(controller.algorithm.secAvailableSymbiosisPaths[key]) for key in controller.algorithm.secAvailableSymbiosisPaths]))
     #     # print(sum([len(controller.algorithm.nomAvailableSymbiosisPaths[key]) for key in controller.algorithm.nomAvailableSymbiosisPaths]))
@@ -54,12 +55,11 @@ def simulator(configFile: str):
     # except:
     #     pass
     # return statistic.content_displayable_results, statistic.get()
-    pass
+
 
 if __name__ == '__main__':
     # 配置日志文件
     logging.config.fileConfig('logconfig.ini')
-
     # 仿真配置文件
     configFile = "./topology/NSFNet.xml"
     ResultFile = "results.xlsx"

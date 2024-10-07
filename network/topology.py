@@ -22,6 +22,7 @@ class PhysicalTopology:
         self._infinitesimal = 1e-5
         self.G = nx.Graph()
         self.maxBandwidth = 100000
+        self.calls = []
 
     def constructGraph(self, configFile: str):
         # 检查输入
@@ -34,7 +35,6 @@ class PhysicalTopology:
         def get_attr(element):
             attr = {child.tag: eval(child.attrib['type'])(child.text) for child in element}
             return attr
-
         for id, node in enumerate(root.find(self._topologyInfoModuleName).find(self._nodeInfoModuleName)):
             self.G.add_node(id, **get_attr(node))
         for link in root.find(self._topologyInfoModuleName).find(self._linkInfoModuleName):
