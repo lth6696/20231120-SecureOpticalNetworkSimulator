@@ -9,6 +9,7 @@ class Traffic:
         self.dst = dst
         self.rate = rate
         self.path = None
+        self.restore_times = 0
 
     def set_path(self, path: dict):
         self.path = path

@@ -47,14 +47,9 @@ def simulator(configFile: str):
     controller.run(scheduler, physicalTopology, statistic)
     logging.info("{} - {} - Done.".format(__file__, __name__))
     # 返回仿真结果
-    # try:
-    #     # print(sum([len(controller.algorithm.secAvailableSymbiosisPaths[key]) for key in controller.algorithm.secAvailableSymbiosisPaths]))
-    #     # print(sum([len(controller.algorithm.nomAvailableSymbiosisPaths[key]) for key in controller.algorithm.nomAvailableSymbiosisPaths]))
-    #     result.curve.PlotCurve.plotRealTime(statistic.time_stamp, statistic.realtime_num_carried_calls)
-    #     result.curve.PlotCurve.plotRealTime(statistic.time_stamp, statistic.realtime_link_utilization)
-    # except:
-    #     pass
-    # return statistic.content_displayable_results, statistic.get()
+    # result.curve.PlotCurve.plotRealTime(statistic.time_stamp, statistic.realtime_num_blocked_calls)
+    # result.curve.PlotCurve.plotRealTime(statistic.time_stamp, statistic.realtime_attacks)
+    return statistic.content_displayable_results, statistic.get()
 
 
 if __name__ == '__main__':
@@ -68,9 +63,9 @@ if __name__ == '__main__':
 
     # 开始仿真
     if isSimulate:
-        simulator(configFile)
-        # df = pd.Series(result, index=title)
-        # print(df)
+        title, result = simulator(configFile)
+        df = pd.Series(result, index=title)
+        print(df)
     else:
         if not os.path.exists(ResultFile):
             raise Exception("File does not exist.")

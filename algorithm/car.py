@@ -33,6 +33,8 @@ class CAR:
                 call.path = reroute
             except:
                 call.path = None
+            finally:
+                call.restore_times += 1
 
     def removeCall(self, physicalTopology, event, routeTable):
         pass
