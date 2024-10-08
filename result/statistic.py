@@ -68,7 +68,7 @@ class Statistic:
             "mean_link_utilization"
         ]
 
-    def snapshot(self, event: Event, status: bool, G: nx.MultiDiGraph, routeTable: dict):
+    def snapshot(self, event: Event, G: nx.MultiDiGraph, calls: dict):
         self.time_stamp.append(event.time)
         self._update_real_time_calls(event, status)
         self._update_link_utilization(G)

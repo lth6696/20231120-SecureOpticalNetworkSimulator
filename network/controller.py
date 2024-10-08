@@ -27,10 +27,10 @@ class ControlPlane:
             #              .format(__file__, __name__, event.type, time, event.call.sourceNode, event.call.destinationNode, event.id))
             status = None
             if event.type == "eventArrive":
-                status = self.algorithm.routeCall(physicalTopology, event, self.routeTable)
+                self.algorithm.routeCall(physicalTopology, event, self.routeTable)
             elif event.type == "eventDeparture":
-                status = self.algorithm.removeCall(physicalTopology, event, self.routeTable)
-            # statistic.snapshot(event, status, physicalTopology.G, self.routeTable)
+                self.algorithm.removeCall(physicalTopology, event, self.routeTable)
+            statistic.snapshot(event, physicalTopology.G, physicalTopology.calls)
 
     def _setAlgorithm(self, configFile: str):
         if not os.path.exists(configFile):
