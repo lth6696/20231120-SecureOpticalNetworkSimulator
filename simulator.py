@@ -28,16 +28,17 @@ def simulator(configFile: str):
     logging.info("{} - {} - Done.".format(__file__, __name__))
     # 生成离散事件器
     scheduler = event.scheduler.Scheduler()
-    # 生成攻击事件
-    logging.info("{} - {} - Generate the attack events.".format(__file__, __name__))
-    atks = network.generator.Generator()
-    atks.generate(configFile, scheduler)
-    logging.info("{} - {} - Done.".format(__file__, __name__))
     # 生成流量
     tfc_gen = network.traffic.TrafficGenerator(configFile)
     tfc_gen.set_static_traffic()
     physicalTopology.route(tfc_gen.calls)
     physicalTopology.calls = tfc_gen.calls
+    # 生成攻击事件
+    logging.info("{} - {} - Generate the attack events.".format(__file__, __name__))
+    area_info = physicalTopology.get_area_info()
+    atks = network.generator.Generator()
+    atks.generate(configFile, scheduler, area_info)
+    logging.info("{} - {} - Done.".format(__file__, __name__))
     # 加载数据统计模块
     logging.info("{} - {} - Load the statistic module.".format(__file__, __name__))
     statistic = result.statistic.Statistic()

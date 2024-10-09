@@ -10,7 +10,7 @@ class CAR:
     def __init__(self):
         self.algorithmName = "CAR"
         self.states = []
-        self.factors = ["service_num", "node_num", "node_degree" "link_num", "link_distance"]
+        self.factors = ["service_num", "node_num", "node_degree", "link_num", "link_distance"]
         self.trans_matrix = None
         self.sim_step = 4
 
@@ -19,7 +19,7 @@ class CAR:
             self.states = event.event.Available_Attack_Areas
         # 计算转移概率
         if self.trans_matrix is None:
-            self.trans_matrix = self._calculate_transition_matrix()
+            self.trans_matrix = self._calculate_transition_matrix(physicalTopology.get_area_info())
         # 计算攻击战略
         atk_area = event.event.target
         atk_tactics = self._trace_atk_tactics(atk_area)
@@ -39,22 +39,21 @@ class CAR:
     def removeCall(self, physicalTopology, event, routeTable):
         pass
 
-    def _evaluate_attack_probabilities(self):
+    def _evaluate_attack_probabilities(self, area_info: dict):
         fuzzy = Fuzzy()
         fuzzy.init_fuzzy_evaluation(self.states, self.factors)
         for grade in self.states:
             for factor in self.factors:
-                # todo
-                fuzzy.add_evaluation(grade, factor, np.random.random(1))
+                fuzzy.add_evaluation(grade, factor, area_info[grade][factor])
         prob = fuzzy.evaluate()
         return prob
 
-    def _calculate_transition_matrix(self):
+    def _calculate_transition_matrix(self, area_info: dict):
         markov = Markov()
         markov.add_states(self.states)
         markov.init_trans_prob()
         for row, _ in enumerate(self.states):
-            trans_prob = self._evaluate_attack_probabilities()
+            trans_prob = self._evaluate_attack_probabilities(area_info)
             for col, value in enumerate(trans_prob):
                 markov.set_prob(row, col, value)
         return markov.trans_prob

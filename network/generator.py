@@ -25,7 +25,7 @@ class Generator:
         self.totalWeight = 0
         self.weightVector = []
 
-    def generate(self, configFile: str, scheduler: Scheduler):
+    def generate(self, configFile: str, scheduler: Scheduler, *args):
         # 参数合法检测
         if not os.path.exists(configFile):
             raise Exception("Config file does not exist.")
@@ -68,7 +68,7 @@ class Generator:
             endTime = startTime + duration
             time = startTime
             atk = Attack()
-            atk_area = atk.atk_area("random")
+            atk_area = atk.atk_area("degree", *args)
             atk.set(i, atk_area, duration)
             eventArrival = Event(i, "eventArrive", startTime, atk)
             eventDeparture = Event(i, "eventDeparture", endTime, atk)
