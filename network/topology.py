@@ -15,7 +15,7 @@ class PhysicalTopology:
     节点包含属性:
      - area: str
     """
-    AreaInfoType = ["service_num", "node_num", "node_degree", "link_num", "link_distance"]
+    AreaInfoType = ["service_num", "node_num", "node_degree", "link_num", "attack_num", "span_length"]
     Areas = [
         'AL', 'AR', 'AX', 'CA', 'CO', 'GA', 'IA', 'ID', 'IL', 'KY',
         'LA', 'MD', 'MI', 'MN', 'MO', 'MS', 'MT', 'NC', 'ND', 'NE', 'NF',
@@ -62,7 +62,6 @@ class PhysicalTopology:
             call.path = path
 
     def get_area_info(self):
-        # "service_num", "node_num", "node_degree" "link_num", "link_distance"
         area_info = {area: {info: 0 for info in self.AreaInfoType} for area in self.Areas}
         # 计算节点信息
         node_degree = dict(self.G.degree())

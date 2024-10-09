@@ -68,10 +68,16 @@ class Generator:
             endTime = startTime + duration
             time = startTime
             atk = Attack()
-            atk_area = atk.atk_area("service", *args)
+            atk_area = atk.atk_area("degree", *args)
             atk.set(i, atk_area, duration)
+            self._update_area_info(atk_area, *args)
             eventArrival = Event(i, "eventArrive", startTime, atk)
             eventDeparture = Event(i, "eventDeparture", endTime, atk)
             scheduler.addEvent(eventArrival)
             scheduler.addEvent(eventDeparture)
         logging.info("{} - {} - Generate {} events.".format(__file__, __name__, scheduler.getEventNum()))
+
+    def _update_area_info(self, atk_area, area_info):
+        areas = sorted([area for area in area_info.keys()])
+        for area in area_info.keys():
+            area_info[area]["span_length"] = len(areas) - abs(areas.index(area) - areas.index(atk_area))

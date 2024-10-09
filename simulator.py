@@ -48,7 +48,7 @@ def simulator(configFile: str):
     controller.run(scheduler, physicalTopology, statistic)
     logging.info("{} - {} - Done.".format(__file__, __name__))
     # 返回仿真结果
-    # result.curve.PlotCurve.plotRealTime(statistic.time_stamp, statistic.realtime_num_blocked_calls)
+    result.curve.PlotCurve.plotRealTime(statistic.time_stamp, statistic.realtime_num_carried_calls)
     # result.curve.PlotCurve.plotRealTime(statistic.time_stamp, statistic.realtime_attacks)
     return statistic.content_displayable_results, statistic.get()
 

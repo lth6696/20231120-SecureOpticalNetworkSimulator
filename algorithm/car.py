@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
 import networkx as nx
 import numpy as np
+import logging
 
 from .fuzzy import Fuzzy
 from .markov import Markov
@@ -10,34 +11,96 @@ class CAR:
     def __init__(self):
         self.algorithmName = "CAR"
         self.states = []
-        self.factors = ["service_num", "node_num", "node_degree", "link_num", "link_distance"]
+        self.factors = ["service_num", "node_num", "node_degree", "link_num", "attack_num", "span_length"]
+        self.area_info = None
         self.trans_matrix = None
         self.sim_step = 4
+        self.unable_areas = []
+        self.potential_areas = []
 
     def routeCall(self, physicalTopology, event, routeTable):
         if not self.states:
             self.states = event.event.Available_Attack_Areas
-        # 计算转移概率
-        if self.trans_matrix is None:
-            self.trans_matrix = self._calculate_transition_matrix(physicalTopology.get_area_info())
-        # 计算攻击战略
+        if self.area_info is None:
+            self.area_info = physicalTopology.get_area_info()
         atk_area = event.event.target
-        atk_tactics = self._trace_atk_tactics(atk_area)
-        # 减除概率攻击地域
-        prune_topo = self._prune_graph(physicalTopology.G, atk_tactics)
-        # 重路由
-        break_calls = self._find_calls(physicalTopology.G, physicalTopology.calls, atk_tactics)
+        self.unable_areas.append(atk_area)
+        self.area_info[atk_area]["attack_num"] += 1
+        # 恢复
+        prune_topo = self._prune_graph(physicalTopology.G, self.unable_areas)
+        logging.info("Prune topology has {} nodes.".format(prune_topo.nodes))
+        break_calls = self._find_calls(physicalTopology.G, physicalTopology.calls, self.unable_areas)
         for call in break_calls:
             try:
                 reroute = nx.shortest_path(prune_topo, call.src, call.dst)
                 call.path = reroute
+                logging.info("The {} call is restored.".format(call.id))
             except:
                 call.path = None
+                logging.info("The {} call is blocked.".format(call.id))
             finally:
                 call.restore_times += 1
+        # 计算转移概率
+        self._update_area_info(atk_area, prune_topo, physicalTopology.calls)
+        self.trans_matrix = self._calculate_transition_matrix(self.area_info)
+        # 计算攻击战略
+        atk_tactics = self._trace_atk_tactics(atk_area)
+        self.potential_areas = list(set(atk_tactics))
+        logging.info("Attacked areas: {}".format(self.unable_areas))
+        logging.info("Potential areas: {}".format(self.potential_areas))
+        # 调整
+        prune_topo = self._prune_graph(physicalTopology.G, self.potential_areas+self.unable_areas)
+        break_calls = self._find_calls(physicalTopology.G, physicalTopology.calls, self.potential_areas)
+        for call in break_calls:
+            try:
+                reroute = nx.shortest_path(prune_topo, call.src, call.dst)
+                call.path = reroute
+                logging.info("The {} call is changed.".format(call.id))
+            except:
+                pass
 
     def removeCall(self, physicalTopology, event, routeTable):
-        pass
+        self.unable_areas.remove(event.event.target)
+        logging.info("After departure event {}, unable areas have {}.".format(event.event.id, self.unable_areas))
+        # 拓扑剪枝
+        prune_topo = self._prune_graph(physicalTopology.G, self.unable_areas+self.potential_areas)
+        for call in physicalTopology.calls:
+            if call.path:
+                continue
+            try:
+                reroute = nx.shortest_path(prune_topo, call.src, call.dst)
+                call.path = reroute
+                logging.info("The {} call find path.".format(call.id))
+            except:
+                pass
+
+    def _update_area_info(self, atk_area, prune_topo=None, calls=None):
+        areas = sorted([area for area in self.area_info.keys()])
+        for area in self.area_info.keys():
+            self.area_info[area]["span_length"] = max(0, self.sim_step - abs(areas.index(atk_area) - areas.index(area)) + 1)
+        if prune_topo is None and calls is None:
+            return self.area_info
+        for area in self.area_info.keys():
+            self.area_info[area]["link_num"] = 0
+            self.area_info[area]["node_degree"] = 0
+            self.area_info[area]["node_num"] = 0
+            self.area_info[area]["service_num"] = 0
+        # 计算节点信息
+        node_degree = dict(prune_topo.degree())
+        for node in node_degree:
+            self.area_info[prune_topo.nodes[node]["area"]]["node_degree"] += node_degree[node]
+            self.area_info[prune_topo.nodes[node]["area"]]["node_num"] += 1
+        # 计算链路信息
+        for u, v, data in prune_topo.edges(data=True):
+            for area in data["area"]:
+                self.area_info[area]["link_num"] += 1
+        # 计算业务信息
+        for call in calls:
+            if call.path is None:
+                continue
+            for node in call.path:
+                self.area_info[prune_topo.nodes[node]["area"]]["service_num"] += 1
+        return self.area_info
 
     def _evaluate_attack_probabilities(self, area_info: dict):
         fuzzy = Fuzzy()
@@ -52,7 +115,8 @@ class CAR:
         markov = Markov()
         markov.add_states(self.states)
         markov.init_trans_prob()
-        for row, _ in enumerate(self.states):
+        for row, atk in enumerate(self.states):
+            self._update_area_info(atk)
             trans_prob = self._evaluate_attack_probabilities(area_info)
             for col, value in enumerate(trans_prob):
                 markov.set_prob(row, col, value)
@@ -64,7 +128,8 @@ class CAR:
         chain.add_node("final", id=root)
         self._build_tree(chain, "root", self.sim_step, self.states)
         path = nx.shortest_path(chain, source="root", target="final", weight="weight")
-        trace = [chain.nodes[i]["id"] for i in path[:-1]]
+        trace = [chain.nodes[i]["id"] for i in path[1:-1] if chain.nodes[i]["id"] != root]
+        print(trace)
         return trace
 
     def _build_tree(self, chain, node, depth, children):
@@ -99,4 +164,5 @@ class CAR:
             traverse_link = [area for (u, v) in zip(call.path[:-1], call.path[1:]) for area in G[u][v]["area"]]
             if set(traverse_node+traverse_link) & set(target):
                 target_calls.append(call)
+                logging.info("The {} call passes areas: {}".format(call.id, set(traverse_node + traverse_link)))
         return target_calls

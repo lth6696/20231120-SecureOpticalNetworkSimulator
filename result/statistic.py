@@ -25,8 +25,8 @@ class Statistic:
         self.num_carried_calls = 0              # 成功路由业务总数
         self.num_blocked_calls = 0              # 阻塞业务总数
 
-        self.success_rate_total_calls = 0.0     # 业务成功率
-        self.block_rate_total_calls = 0.0       # 业务阻塞率
+        self.success_rate = MeanList()          # 业务成功率
+        self.block_rate = MeanList()            # 业务阻塞率
 
         self.mean_hop = MeanList()              # 平均路径跳数
 
@@ -40,8 +40,8 @@ class Statistic:
         self.mean_link_utilization = 0.0        # 平均链路利用率
 
         self.content_displayable_results = [
-            "success_rate_total_calls",
-            "block_rate_total_calls",
+            "success_rate",
+            "block_rate",
             "mean_hop",
             "mean_link_utilization",
             "mean_restore_times"
@@ -85,12 +85,10 @@ class Statistic:
             self.realtime_num_blocked_calls.append(self.num_blocked_calls)
 
     def _update_block_rate(self):
-        if self.num_total_calls != 0:
-            self.success_rate_total_calls = self.num_carried_calls / self.num_total_calls * 100
-            self.block_rate_total_calls = self.num_blocked_calls / self.num_total_calls * 100
-            if round(self.success_rate_total_calls + self.block_rate_total_calls) != 100:
-                raise Exception("The sum of the success rate {} and the blocking rate {} is not 100%."
-                                .format(self.success_rate_total_calls, self.block_rate_total_calls))
+        if not self.num_total_calls:
+            return
+        self.success_rate.add(self.num_carried_calls / self.num_total_calls * 100)
+        self.block_rate.add(self.num_blocked_calls / self.num_total_calls * 100)
 
     def _update_hop(self, calls: list):
         hops = []

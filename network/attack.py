@@ -36,19 +36,19 @@ class Attack:
         return np.random.choice(self.Available_Attack_Areas)
 
     def _degree(self, area_info: dict):
-        node_degree = [(area, area_info[area]["node_degree"]) for area in area_info]
+        node_degree = [(area, area_info[area]["node_degree"]+area_info[area]["span_length"]) for area in area_info]
         degree_sum = sum([val[1] for val in node_degree])
         node_degree = [(area, degree/degree_sum) for (area, degree) in node_degree]
         return np.random.choice([area for (area, degree) in node_degree], p=[degree for (area, degree) in node_degree])
 
     def _service(self, area_info: dict):
-        service_num = [(area, area_info[area]["service_num"]) for area in area_info]
+        service_num = [(area, area_info[area]["service_num"]+area_info[area]["span_length"]) for area in area_info]
         degree_sum = sum([val[1] for val in service_num])
         node_degree = [(area, degree / degree_sum) for (area, degree) in service_num]
         return np.random.choice([area for (area, degree) in node_degree], p=[degree for (area, degree) in node_degree])
 
     def _number(self, area_info: dict):
-        num = [(area, area_info[area]["node_num"]+area_info[area]["link_num"]) for area in area_info]
+        num = [(area, area_info[area]["node_num"]+area_info[area]["link_num"]+area_info[area]["span_length"]) for area in area_info]
         degree_sum = sum([val[1] for val in num])
         node_degree = [(area, degree / degree_sum) for (area, degree) in num]
         return np.random.choice([area for (area, degree) in node_degree], p=[degree for (area, degree) in node_degree])

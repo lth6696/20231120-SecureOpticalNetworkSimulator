@@ -71,7 +71,15 @@ class Fuzzy:
             self.set_weight(weights)
         if not self.weights:
             self.weights = [1 for _ in self.factors]
-        fuzzy_matrix = self.build_fuzzy_matrix()
+        fuzzy_matrix = self._normalization(self.build_fuzzy_matrix())
         fuzzy_scores = np.dot(np.array(self.weights), np.array(fuzzy_matrix))
         evaluation_probabilities = fuzzy_scores / np.sum(fuzzy_scores) * 100
         return evaluation_probabilities
+
+    @staticmethod
+    def _normalization(data):
+        norm_data = np.zeros(shape=data.shape)
+        for i, row in enumerate(data):
+            _range = np.max(row) - np.min(row)
+            norm_data[i] = (row - np.min(row)) / _range
+        return norm_data

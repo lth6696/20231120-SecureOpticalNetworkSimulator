@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <sonsim version="1.0" type="optical">
     <!--module is the Routing Algorithm class in java-->
-    <ra module="Benchmark"/>
+    <ra module="CAR"/>
 
     <!-- 'calls' 业务流数量 -->
     <!-- 'load' 业务负载 100 200 300 400 500 600 | 12 6 4 3 2.4 2-->
@@ -12,6 +12,43 @@
         <!-- 'weight' 不同业务的权重 -->
         <event holding-time="20" weight="1"/>
     </events>
+
+    <areas>
+        <area type="str">AL</area>
+        <area type="str">AR</area>
+        <area type="str">AX</area>
+        <area type="str">CA</area>
+        <area type="str">CO</area>
+        <area type="str">GA</area>
+        <area type="str">IA</area>
+        <area type="str">ID</area>
+        <area type="str">IL</area>
+        <area type="str">KY</area>
+        <area type="str">LA</area>
+        <area type="str">MD</area>
+        <area type="str">MI</area>
+        <area type="str">MN</area>
+        <area type="str">MO</area>
+        <area type="str">MS</area>
+        <area type="str">MT</area>
+        <area type="str">NC</area>
+        <area type="str">ND</area>
+        <area type="str">NE</area>
+        <area type="str">NF</area>
+        <area type="str">NJ</area>
+        <area type="str">NM</area>
+        <area type="str">NV</area>
+        <area type="str">NY</area>
+        <area type="str">OR</area>
+        <area type="str">PA</area>
+        <area type="str">RA</area>
+        <area type="str">SC</area>
+        <area type="str">TN</area>
+        <area type="str">TX</area>
+        <area type="str">UT</area>
+        <area type="str">WA</area>
+        <area type="str">WI</area>
+    </areas>
 
     <traffic>
         <bandwidth type="int">10000</bandwidth>
