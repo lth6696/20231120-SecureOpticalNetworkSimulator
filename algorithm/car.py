@@ -24,7 +24,7 @@ class CAR:
         atk_area = event.event.target
         atk_tactics = self._trace_atk_tactics(atk_area)
         # 减除概率攻击地域
-        prune_topo = self._prune_graph(physicalTopology.G, atk_area)
+        prune_topo = self._prune_graph(physicalTopology.G, atk_tactics)
         # 重路由
         break_calls = self._find_calls(physicalTopology.G, physicalTopology.calls, atk_tactics)
         for call in break_calls:
@@ -79,13 +79,13 @@ class CAR:
             self._build_tree(chain, next, depth-1, children)
 
     @staticmethod
-    def _prune_graph(G: nx.Graph, prune_loc: str):
+    def _prune_graph(G: nx.Graph, prune_loc: list):
         prune_topo = G.copy()
         # 剪掉指定归属地的节点
-        nodes_to_remove = [node for node, data in prune_topo.nodes(data=True) if prune_loc == data['area']]
+        nodes_to_remove = [node for node, data in prune_topo.nodes(data=True) if set(data['area']) & set(prune_loc)]
         prune_topo.remove_nodes_from(nodes_to_remove)
         # 剪掉指定归属地的链路
-        edges_to_remove = [(u, v) for u, v, data in prune_topo.edges(data=True) if prune_loc in data['area']]
+        edges_to_remove = [(u, v) for u, v, data in prune_topo.edges(data=True) if set(data['area']) & set(prune_loc)]
         prune_topo.remove_edges_from(edges_to_remove)
         return prune_topo
 

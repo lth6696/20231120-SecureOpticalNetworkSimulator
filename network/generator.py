@@ -68,7 +68,7 @@ class Generator:
             endTime = startTime + duration
             time = startTime
             atk = Attack()
-            atk_area = atk.atk_area("degree", *args)
+            atk_area = atk.atk_area("service", *args)
             atk.set(i, atk_area, duration)
             eventArrival = Event(i, "eventArrive", startTime, atk)
             eventDeparture = Event(i, "eventDeparture", endTime, atk)

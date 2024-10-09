@@ -9,8 +9,10 @@ class Benchmark:
         self.algorithmName = "benchmark"
 
     def routeCall(self, physicalTopology, event, routeTable):
+        # 拓扑剪枝
+        prune_topo = self._prune_graph(physicalTopology.G, event.event.target)
         # 重路由
-        break_calls = self._find_calls(physicalTopology.G, physicalTopology.calls)
+        break_calls = self._find_calls(physicalTopology.G, physicalTopology.calls, [event.event.target])
         for call in break_calls:
             try:
                 reroute = nx.shortest_path(prune_topo, call.src, call.dst)
@@ -34,3 +36,14 @@ class Benchmark:
             if set(traverse_node + traverse_link) & set(target):
                 target_calls.append(call)
         return target_calls
+
+    @staticmethod
+    def _prune_graph(G: nx.Graph, prune_loc: str):
+        prune_topo = G.copy()
+        # 剪掉指定归属地的节点
+        nodes_to_remove = [node for node, data in prune_topo.nodes(data=True) if prune_loc == data['area']]
+        prune_topo.remove_nodes_from(nodes_to_remove)
+        # 剪掉指定归属地的链路
+        edges_to_remove = [(u, v) for u, v, data in prune_topo.edges(data=True) if prune_loc in data['area']]
+        prune_topo.remove_edges_from(edges_to_remove)
+        return prune_topo
