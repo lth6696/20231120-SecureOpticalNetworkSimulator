@@ -13,7 +13,7 @@
         <event holding-time="20" weight="1"/>
     </events>
 
-    <areas>
+    <areas info="service_num,node_num,node_degree,link_num,attack_num,span_length">
         <area type="str">AL</area>
         <area type="str">AR</area>
         <area type="str">AX</area>
@@ -118,156 +118,156 @@
             <link>
                 <u_node type="int">0</u_node>
                 <v_node type="int">1</v_node>
-                <wavelength type="int">8</wavelength>
                 <bandwidth type="int">100000</bandwidth>
                 <area type="str">WA,OR,CA</area>
+                <weight type="float">1e-5</weight>
             </link>
             <link>
                 <u_node type="int">0</u_node>
                 <v_node type="int">2</v_node>
-                <wavelength type="int">8</wavelength>
                 <bandwidth type="int">100000</bandwidth>
                 <area type="str">WA,OR,CA</area>
+                <weight type="float">1e-5</weight>
             </link>
             <link>
                 <u_node type="int">0</u_node>
                 <v_node type="int">7</v_node>
-                <wavelength type="int">8</wavelength>
                 <bandwidth type="int">100000</bandwidth>
                 <area type="str">WA,ID,MT,ND,MN,WI,IL</area>
+                <weight type="float">1e-5</weight>
             </link>
             <link>
                 <u_node type="int">1</u_node>
                 <v_node type="int">7</v_node>
-                <wavelength type="int">8</wavelength>
                 <bandwidth type="int">100000</bandwidth>
                 <area type="str">CA,NV,UT,CO,NF,IA,IL</area>
+                <weight type="float">1e-5</weight>
             </link>
             <link>
                 <u_node type="int">1</u_node>
                 <v_node type="int">2</v_node>
-                <wavelength type="int">8</wavelength>
                 <bandwidth type="int">100000</bandwidth>
                 <area type="str">CA</area>
+                <weight type="float">1e-5</weight>
             </link>
             <link>
                 <u_node type="int">1</u_node>
                 <v_node type="int">3</v_node>
-                <wavelength type="int">8</wavelength>
                 <bandwidth type="int">100000</bandwidth>
                 <area type="str">CA,NV,UT</area>
+                <weight type="float">1e-5</weight>
             </link>
             <link>
                 <u_node type="int">2</u_node>
                 <v_node type="int">6</v_node>
-                <wavelength type="int">8</wavelength>
                 <bandwidth type="int">100000</bandwidth>
                 <area type="str">CA,AX,NM,TX</area>
+                <weight type="float">1e-5</weight>
             </link>
             <link>
                 <u_node type="int">3</u_node>
                 <v_node type="int">4</v_node>
-                <wavelength type="int">8</wavelength>
                 <bandwidth type="int">100000</bandwidth>
                 <area type="str">UT,CO</area>
+                <weight type="float">1e-5</weight>
             </link>
             <link>
                 <u_node type="int">3</u_node>
                 <v_node type="int">8</v_node>
-                <wavelength type="int">8</wavelength>
                 <bandwidth type="int">100000</bandwidth>
                 <area type="str">UT,CO,NF,IA,IL,MI</area>
+                <weight type="float">1e-5</weight>
             </link>
             <link>
                 <u_node type="int">4</u_node>
                 <v_node type="int">5</v_node>
-                <wavelength type="int">8</wavelength>
                 <bandwidth type="int">100000</bandwidth>
                 <area type="str">CO,NF</area>
+                <weight type="float">1e-5</weight>
             </link>
             <link>
                 <u_node type="int">4</u_node>
                 <v_node type="int">6</v_node>
-                <wavelength type="int">8</wavelength>
                 <bandwidth type="int">100000</bandwidth>
                 <area type="str">CO,NF,IA,IL,MO,AR,TX</area>
+                <weight type="float">1e-5</weight>
             </link>
             <link>
                 <u_node type="int">5</u_node>
                 <v_node type="int">7</v_node>
-                <wavelength type="int">8</wavelength>
                 <bandwidth type="int">100000</bandwidth>
                 <area type="str">NF,IA,IL</area>
+                <weight type="float">1e-5</weight>
             </link>
             <link>
                 <u_node type="int">6</u_node>
                 <v_node type="int">9</v_node>
-                <wavelength type="int">8</wavelength>
                 <bandwidth type="int">100000</bandwidth>
                 <area type="str">TX,LA,MS,AL</area>
+                <weight type="float">1e-5</weight>
             </link>
             <link>
                 <u_node type="int">6</u_node>
                 <v_node type="int">12</v_node>
-                <wavelength type="int">8</wavelength>
                 <bandwidth type="int">100000</bandwidth>
                 <area type="str">TX,LA,MS,AL,GA,SC,NC,MD</area>
+                <weight type="float">1e-5</weight>
             </link>
             <link>
                 <u_node type="int">7</u_node>
                 <v_node type="int">10</v_node>
-                <wavelength type="int">8</wavelength>
                 <bandwidth type="int">100000</bandwidth>
                 <area type="str">IL,MI,RA</area>
+                <weight type="float">1e-5</weight>
             </link>
             <link>
                 <u_node type="int">8</u_node>
                 <v_node type="int">11</v_node>
-                <wavelength type="int">8</wavelength>
                 <bandwidth type="int">100000</bandwidth>
                 <area type="str">MI,NY</area>
+                <weight type="float">1e-5</weight>
             </link>
             <link>
                 <u_node type="int">8</u_node>
                 <v_node type="int">13</v_node>
-                <wavelength type="int">8</wavelength>
                 <bandwidth type="int">100000</bandwidth>
                 <area type="str">MI,NY,NJ</area>
+                <weight type="float">1e-5</weight>
             </link>
             <link>
                 <u_node type="int">9</u_node>
                 <v_node type="int">10</v_node>
-                <wavelength type="int">8</wavelength>
                 <bandwidth type="int">100000</bandwidth>
                 <area type="str">TN,KY,RA</area>
+                <weight type="float">1e-5</weight>
             </link>
             <link>
                 <u_node type="int">10</u_node>
                 <v_node type="int">11</v_node>
-                <wavelength type="int">8</wavelength>
                 <bandwidth type="int">100000</bandwidth>
                 <area type="str">RA,NY</area>
+                <weight type="float">1e-5</weight>
             </link>
             <link>
                 <u_node type="int">10</u_node>
                 <v_node type="int">13</v_node>
-                <wavelength type="int">8</wavelength>
                 <bandwidth type="int">100000</bandwidth>
                 <area type="str">RA,PA,NJ</area>
+                <weight type="float">1e-5</weight>
             </link>
             <link>
                 <u_node type="int">11</u_node>
                 <v_node type="int">12</v_node>
-                <wavelength type="int">8</wavelength>
                 <bandwidth type="int">100000</bandwidth>
                 <area type="str">NY,RA,MD</area>
+                <weight type="float">1e-5</weight>
             </link>
             <link>
                 <u_node type="int">12</u_node>
                 <v_node type="int">13</v_node>
-                <wavelength type="int">8</wavelength>
                 <bandwidth type="int">100000</bandwidth>
                 <area type="str">MD,PA,NJ</area>
+                <weight type="float">1e-5</weight>
             </link>
         </links>
     </topology>

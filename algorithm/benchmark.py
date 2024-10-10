@@ -11,7 +11,7 @@ class Benchmark:
 
     def routeCall(self, physicalTopology, event, routeTable):
         self.unable_areas.append(event.event.target)
-        logging.info("Attacked areas: ", self.unable_areas)
+        logging.info("Attacked areas: {}".format(self.unable_areas))
         # 拓扑剪枝
         prune_topo = self._prune_graph(physicalTopology.G, self.unable_areas)
         # 重路由
@@ -19,7 +19,8 @@ class Benchmark:
         for call in break_calls:
             try:
                 reroute = nx.shortest_path(prune_topo, call.src, call.dst)
-                call.path = reroute
+                if physicalTopology.reserve(prune_topo, reroute, call.rate):
+                    call.path = reroute
             except:
                 call.path = None
                 # pass
@@ -35,7 +36,8 @@ class Benchmark:
                 continue
             try:
                 reroute = nx.shortest_path(prune_topo, call.src, call.dst)
-                call.path = reroute
+                if physicalTopology.reserve(prune_topo, reroute, call.rate):
+                    call.path = reroute
             except:
                 pass
 

@@ -5,7 +5,6 @@
 import logging
 import logging.config
 import os.path
-
 import pandas as pd
 
 import event
@@ -21,23 +20,23 @@ def simulator(configFile: str):
     # 检查输入
     if not os.path.exists(configFile):
         raise Exception("Config file does not exist.")
+    # 生成流量
+    tfc_gen = network.traffic.TrafficGenerator(configFile)
+    tfc_gen.set_static_traffic()
     # 生成物理拓扑
     logging.info("{} - {} - Construct the physical topology.".format(__file__, __name__))
     physicalTopology = network.topology.PhysicalTopology()
     physicalTopology.constructGraph(configFile)
+    physicalTopology.route(tfc_gen.calls, weight="weight")
     logging.info("{} - {} - Done.".format(__file__, __name__))
     # 生成离散事件器
     scheduler = event.scheduler.Scheduler()
-    # 生成流量
-    tfc_gen = network.traffic.TrafficGenerator(configFile)
-    tfc_gen.set_static_traffic()
-    physicalTopology.route(tfc_gen.calls)
-    physicalTopology.calls = tfc_gen.calls
     # 生成攻击事件
     logging.info("{} - {} - Generate the attack events.".format(__file__, __name__))
-    area_info = physicalTopology.get_area_info()
+    ai = network.info.AreaInfo(configFile)
+    area_info = ai.get(physicalTopology)
     atks = network.generator.Generator()
-    atks.generate(configFile, scheduler, area_info)
+    atks.generate(configFile, scheduler, ai, "service")
     logging.info("{} - {} - Done.".format(__file__, __name__))
     # 加载数据统计模块
     logging.info("{} - {} - Load the statistic module.".format(__file__, __name__))
@@ -45,10 +44,10 @@ def simulator(configFile: str):
     # 启动管控平台
     logging.info("{} - {} - Start the control plane.".format(__file__, __name__))
     controller = network.controller.ControlPlane(configFile)
-    controller.run(scheduler, physicalTopology, statistic)
+    controller.run(scheduler, physicalTopology, ai, statistic)
     logging.info("{} - {} - Done.".format(__file__, __name__))
     # 返回仿真结果
-    result.curve.PlotCurve.plotRealTime(statistic.time_stamp, statistic.realtime_num_carried_calls)
+    # result.curve.PlotCurve.plotRealTime(statistic.time_stamp, statistic.realtime_num_carried_calls)
     # result.curve.PlotCurve.plotRealTime(statistic.time_stamp, statistic.realtime_attacks)
     return statistic.content_displayable_results, statistic.get()
 

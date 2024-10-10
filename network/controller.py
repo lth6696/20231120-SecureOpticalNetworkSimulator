@@ -1,6 +1,7 @@
 import algorithm
 from event.scheduler import Scheduler
 from network.topology import PhysicalTopology
+from network.info import AreaInfo
 from result.statistic import Statistic
 
 import os.path
@@ -20,16 +21,16 @@ class ControlPlane:
 
         self._setAlgorithm(configFile)
 
-    def run(self, scheduler: Scheduler, physicalTopology: PhysicalTopology, statistic: Statistic):
+    def run(self, scheduler: Scheduler, physicalTopology: PhysicalTopology, ai: AreaInfo, statistic: Statistic):
         while scheduler.getEventNum() != 0:
             (time, event) = scheduler.popEvent()
             # logging.info("{} - {} - The {} event processed on {} second origin from {} to {} with id {}."
             #              .format(__file__, __name__, event.type, time, event.call.sourceNode, event.call.destinationNode, event.id))
             status = None
             if event.type == "eventArrive":
-                self.algorithm.routeCall(physicalTopology, event, self.routeTable)
+                self.algorithm.routeCall(physicalTopology, event, ai)
             elif event.type == "eventDeparture":
-                self.algorithm.removeCall(physicalTopology, event, self.routeTable)
+                self.algorithm.removeCall(physicalTopology, event, ai)
             statistic.snapshot(event, physicalTopology.G, physicalTopology.calls)
 
     def _setAlgorithm(self, configFile: str):

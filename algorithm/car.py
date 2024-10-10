@@ -6,6 +6,8 @@ import logging
 from .fuzzy import Fuzzy
 from .markov import Markov
 
+from network.info import AreaInfo
+
 
 class CAR:
     def __init__(self):
@@ -17,12 +19,13 @@ class CAR:
         self.sim_step = 4
         self.unable_areas = []
         self.potential_areas = []
+        self._infinity = 1e-5
 
-    def routeCall(self, physicalTopology, event, routeTable):
+    def routeCall(self, physicalTopology, event, ai: AreaInfo):
         if not self.states:
-            self.states = event.event.Available_Attack_Areas
+            self.states = ai.areas
         if self.area_info is None:
-            self.area_info = physicalTopology.get_area_info()
+            self.area_info = ai.area_info
         atk_area = event.event.target
         self.unable_areas.append(atk_area)
         self.area_info[atk_area]["attack_num"] += 1
@@ -33,7 +36,8 @@ class CAR:
         for call in break_calls:
             try:
                 reroute = nx.shortest_path(prune_topo, call.src, call.dst)
-                call.path = reroute
+                if physicalTopology.reserve(prune_topo, reroute, call.rate):
+                    call.path = reroute
                 logging.info("The {} call is restored.".format(call.id))
             except:
                 call.path = None
@@ -41,7 +45,7 @@ class CAR:
             finally:
                 call.restore_times += 1
         # 计算转移概率
-        self._update_area_info(atk_area, prune_topo, physicalTopology.calls)
+        self._update_area_info(atk_area, prune_topo, physicalTopology.G, physicalTopology.calls)
         self.trans_matrix = self._calculate_transition_matrix(self.area_info)
         # 计算攻击战略
         atk_tactics = self._trace_atk_tactics(atk_area)
@@ -54,7 +58,8 @@ class CAR:
         for call in break_calls:
             try:
                 reroute = nx.shortest_path(prune_topo, call.src, call.dst)
-                call.path = reroute
+                if physicalTopology.reserve(prune_topo, reroute, call.rate):
+                    call.path = reroute
                 logging.info("The {} call is changed.".format(call.id))
             except:
                 pass
@@ -63,18 +68,19 @@ class CAR:
         self.unable_areas.remove(event.event.target)
         logging.info("After departure event {}, unable areas have {}.".format(event.event.id, self.unable_areas))
         # 拓扑剪枝
-        prune_topo = self._prune_graph(physicalTopology.G, self.unable_areas+self.potential_areas)
+        prune_topo = self._prune_graph(physicalTopology.G, self.unable_areas)
         for call in physicalTopology.calls:
             if call.path:
                 continue
             try:
                 reroute = nx.shortest_path(prune_topo, call.src, call.dst)
-                call.path = reroute
+                if physicalTopology.reserve(prune_topo, reroute, call.rate):
+                    call.path = reroute
                 logging.info("The {} call find path.".format(call.id))
             except:
                 pass
 
-    def _update_area_info(self, atk_area, prune_topo=None, calls=None):
+    def _update_area_info(self, atk_area, prune_topo=None, G=None, calls=None):
         areas = sorted([area for area in self.area_info.keys()])
         for area in self.area_info.keys():
             self.area_info[area]["span_length"] = max(0, self.sim_step - abs(areas.index(atk_area) - areas.index(area)) + 1)
@@ -99,7 +105,7 @@ class CAR:
             if call.path is None:
                 continue
             for node in call.path:
-                self.area_info[prune_topo.nodes[node]["area"]]["service_num"] += 1
+                self.area_info[G.nodes[node]["area"]]["service_num"] += 1
         return self.area_info
 
     def _evaluate_attack_probabilities(self, area_info: dict):
@@ -126,10 +132,11 @@ class CAR:
         chain = nx.DiGraph()
         chain.add_node("root", id=root)
         chain.add_node("final", id=root)
-        self._build_tree(chain, "root", self.sim_step, self.states)
+        self._build_tree(chain, "root", self.sim_step, [area for area in self.states if area != root])
+        # nx.draw(chain, with_labels=True)
+        # plt.show()
         path = nx.shortest_path(chain, source="root", target="final", weight="weight")
         trace = [chain.nodes[i]["id"] for i in path[1:-1] if chain.nodes[i]["id"] != root]
-        print(trace)
         return trace
 
     def _build_tree(self, chain, node, depth, children):
@@ -137,11 +144,11 @@ class CAR:
             chain.add_edge(node, "final", weight=0)
             return
         for child in children:
-            next = str(self.sim_step - depth)+str(child)
-            weight = 1 / self.trans_matrix[children.index(chain.nodes[node]["id"])][children.index(child)]
+            next = str(self.sim_step - depth)+str(node)+str(child)
+            weight = 1 / (self.trans_matrix[self.states.index(chain.nodes[node]["id"])][self.states.index(child)] + self._infinity)
             chain.add_node(next, id=child)
             chain.add_edge(node, next, weight=weight)
-            self._build_tree(chain, next, depth-1, children)
+            self._build_tree(chain, next, depth-1, [area for area in children if area != child])
 
     @staticmethod
     def _prune_graph(G: nx.Graph, prune_loc: list):

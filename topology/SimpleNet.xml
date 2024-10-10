@@ -1,54 +1,110 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <sonsim version="1.0" type="optical">
-    <!--module is the Routing Algorithm class in java-->
-    <ra module="SOSR-U"/>
+    <ra module="CAR"/>
 
-    <!-- 'calls' 业务流数量 -->
-    <!-- 'load' 业务负载 -->
-    <!-- 'max-rate=' 最高速率，用于结果统计 -->
-    <!-- 'statisticStart' 表示将从哪个业务开始收集统计信息 -->
-    <traffic type="otn" calls="20000" load="100" max-rate="100000" statisticStart="0">
-        <!-- 'holding-time' 业务持续时间，单位 second -->
-        <!-- 'rate' 业务速率，单位 Mbps 1000Mbps = 1Gbps -->
-        <!-- 'weight' 不同业务的权重 -->
-        <calls holding-time="600" rate="100000" weight="1"/>
+    <events num="5" load="1">
+        <event holding-time="20" weight="1"/>
+    </events>
+
+    <areas info="service_num,node_num,node_degree,link_num,attack_num,span_length">
+        <area type="str">A</area>
+        <area type="str">B</area>
+        <area type="str">C</area>
+        <area type="str">D</area>
+        <area type="str">E</area>
+        <area type="str">F</area>
+    </areas>
+
+    <traffic>
+        <bandwidth type="int">10000</bandwidth>
+        <num type="int">50</num>
     </traffic>
 
-    <!-- 'wavelengths' Number wavelengths for all links -->
-    <!-- 'mensageProcessingTime' optional, mensage processing time in s -->
-    <!-- 'configurationTimeOXC' optional, configuration time OXC in s -->
-    <!-- 'propagationDelayTime' optional, propagation delay time in s -->
-    <!-- 'switchTime' optional, switch time in s -->
-    <!-- 'oxcTransitionTime' optional, OXC transition time (sleep/wake) in s -->
-    <!-- 'oxcSleepModeExpenditure' optional, OXC sleep mode expenditure in percent (%) -->
-    <!-- 'oxcOperationExpenditure' optional, OXC operation expenditure in W -->
-    <!-- 'oxcNodeDegreeExpenditure' optional, OXC node degree expenditure in W -->
-    <!-- 'oxcAddDropDegreeExpenditure' optional, OXC add drop degree expenditure in W -->
-    <!-- 'olaExpenditure' optional, Optical line amplifier expenditure in W -->
-    <!-- 'spanSize' optional, size of a span, km -->
     <topology name="SimpleNet">
         <nodes>
-            <node id="0"/>
-            <node id="1"/>
-            <node id="2"/>
-            <node id="3"/>
-            <node id="4"/>
+            <node>
+                <id type="int">0</id>
+                <area type="str">A</area>
+            </node>
+            <node>
+                <id type="int">1</id>
+                <area type="str">B</area>
+            </node>
+            <node>
+                <id type="int">2</id>
+                <area type="str">C</area>
+            </node>
+            <node>
+                <id type="int">3</id>
+                <area type="str">D</area>
+            </node>
+            <node>
+                <id type="int">4</id>
+                <area type="str">E</area>
+            </node>
+            <node>
+                <id type="int">5</id>
+                <area type="str">F</area>
+            </node>
         </nodes>
-        <links wavelengths="32">
-            <link id="0" source="0" destination="1" bandwidth="100000"/>
-            <link id="1" source="0" destination="4" bandwidth="100000"/>
-            <link id="2" source="1" destination="0" bandwidth="100000"/>
-            <link id="3" source="1" destination="2" bandwidth="100000"/>
-            <link id="4" source="1" destination="3" bandwidth="100000"/>
-            <link id="5" source="2" destination="1" bandwidth="100000"/>
-            <link id="6" source="2" destination="3" bandwidth="100000"/>
-            <link id="7" source="2" destination="4" bandwidth="100000"/>
-            <link id="8" source="3" destination="1" bandwidth="100000"/>
-            <link id="9" source="3" destination="2" bandwidth="100000"/>
-            <link id="10" source="3" destination="4" bandwidth="100000"/>
-            <link id="11" source="4" destination="0" bandwidth="100000"/>
-            <link id="12" source="4" destination="2" bandwidth="100000"/>
-            <link id="13" source="4" destination="3" bandwidth="100000"/>
+
+        <links type="undirected">
+            <link>
+                <u_node type="int">0</u_node>
+                <v_node type="int">1</v_node>
+                <bandwidth type="int">100000</bandwidth>
+                <area type="str">A,B</area>
+                <weight type="float">1e-5</weight>
+            </link>
+            <link>
+                <u_node type="int">0</u_node>
+                <v_node type="int">3</v_node>
+                <bandwidth type="int">100000</bandwidth>
+                <area type="str">A,D</area>
+                <weight type="float">1e-5</weight>
+            </link>
+            <link>
+                <u_node type="int">1</u_node>
+                <v_node type="int">2</v_node>
+                <bandwidth type="int">100000</bandwidth>
+                <area type="str">B,C</area>
+                <weight type="float">1e-5</weight>
+            </link>
+            <link>
+                <u_node type="int">1</u_node>
+                <v_node type="int">3</v_node>
+                <bandwidth type="int">100000</bandwidth>
+                <area type="str">B,D</area>
+                <weight type="float">1e-5</weight>
+            </link>
+            <link>
+                <u_node type="int">2</u_node>
+                <v_node type="int">4</v_node>
+                <bandwidth type="int">100000</bandwidth>
+                <area type="str">C,E</area>
+                <weight type="float">1e-5</weight>
+            </link>
+            <link>
+                <u_node type="int">2</u_node>
+                <v_node type="int">5</v_node>
+                <bandwidth type="int">100000</bandwidth>
+                <area type="str">C,F</area>
+                <weight type="float">1e-5</weight>
+            </link>
+            <link>
+                <u_node type="int">3</u_node>
+                <v_node type="int">4</v_node>
+                <bandwidth type="int">100000</bandwidth>
+                <area type="str">D,E</area>
+                <weight type="float">1e-5</weight>
+            </link>
+            <link>
+                <u_node type="int">4</u_node>
+                <v_node type="int">5</v_node>
+                <bandwidth type="int">100000</bandwidth>
+                <area type="str">E,F</area>
+                <weight type="float">1e-5</weight>
+            </link>
         </links>
     </topology>
 </sonsim>

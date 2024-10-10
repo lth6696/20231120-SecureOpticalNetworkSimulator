@@ -4,6 +4,7 @@ import numpy as np
 import logging
 
 from network.attack import Attack
+from network.info import AreaInfo
 from event.event import Event
 from event.scheduler import Scheduler
 
@@ -25,7 +26,7 @@ class Generator:
         self.totalWeight = 0
         self.weightVector = []
 
-    def generate(self, configFile: str, scheduler: Scheduler, *args):
+    def generate(self, configFile: str, scheduler: Scheduler, ai: AreaInfo, strategy: str):
         # 参数合法检测
         if not os.path.exists(configFile):
             raise Exception("Config file does not exist.")
@@ -68,16 +69,12 @@ class Generator:
             endTime = startTime + duration
             time = startTime
             atk = Attack()
-            atk_area = atk.atk_area("degree", *args)
+            atk_area = atk.atk_area(strategy, ai.area_info)
             atk.set(i, atk_area, duration)
-            self._update_area_info(atk_area, *args)
+            ai.update(atk_area)
             eventArrival = Event(i, "eventArrive", startTime, atk)
             eventDeparture = Event(i, "eventDeparture", endTime, atk)
             scheduler.addEvent(eventArrival)
             scheduler.addEvent(eventDeparture)
         logging.info("{} - {} - Generate {} events.".format(__file__, __name__, scheduler.getEventNum()))
 
-    def _update_area_info(self, atk_area, area_info):
-        areas = sorted([area for area in area_info.keys()])
-        for area in area_info.keys():
-            area_info[area]["span_length"] = len(areas) - abs(areas.index(area) - areas.index(atk_area))
