@@ -7,7 +7,7 @@
     <!-- 'load' 业务负载 100 200 300 400 500 600 | 12 6 4 3 2.4 2-->
     <!-- 'max-rate=' 最高速率，用于结果统计 -->
     <!-- 'statisticStart' 表示将从哪个业务开始收集统计信息 -->
-    <events num="10" load="1">
+    <events num="20" load="1">
         <!-- 'holding-time' 业务持续时间，单位 second -->
         <!-- 'weight' 不同业务的权重 -->
         <event holding-time="20" weight="1"/>

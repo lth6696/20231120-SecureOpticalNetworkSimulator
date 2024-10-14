@@ -5,6 +5,8 @@
 import logging
 import logging.config
 import os.path
+
+import numpy as np
 import pandas as pd
 
 import event
@@ -36,7 +38,7 @@ def simulator(configFile: str):
     ai = network.info.AreaInfo(configFile)
     area_info = ai.get(physicalTopology)
     atks = network.generator.Generator()
-    atks.generate(configFile, scheduler, ai, "service")
+    atks.generate(configFile, scheduler, ai, "random")
     logging.info("{} - {} - Done.".format(__file__, __name__))
     # 加载数据统计模块
     logging.info("{} - {} - Load the statistic module.".format(__file__, __name__))
@@ -63,8 +65,17 @@ if __name__ == '__main__':
 
     # 开始仿真
     if isSimulate:
-        title, result = simulator(configFile)
-        df = pd.Series(result, index=title)
+        all_res = []
+        title = None
+        for i in range(10):
+            try:
+                title, res = simulator(configFile)
+                all_res.append(res)
+                print(res)
+            except:
+                continue
+        data = np.array(all_res).mean(axis=0)
+        df = pd.Series(data, index=title)
         print(df)
     else:
         if not os.path.exists(ResultFile):

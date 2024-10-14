@@ -1,400 +1,1364 @@
-2024-10-10 17:26:42,372 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\simulator.py - __main__ - Construct the physical topology.
-2024-10-10 17:26:42,372 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\network\topology.py - network.topology - Read the config file "./topology/NSFNet.xml".
-2024-10-10 17:26:42,374 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\network\topology.py - network.topology - Add 14 nodes and 22 links.
-2024-10-10 17:26:42,375 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\simulator.py - __main__ - Done.
-2024-10-10 17:26:42,375 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\simulator.py - __main__ - Generate the attack events.
-2024-10-10 17:26:42,376 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\network\generator.py - network.generator - Read the config file ./topology/NSFNet.xml.
-2024-10-10 17:26:42,377 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\network\generator.py - network.generator - There are 1 kinds of events.
-2024-10-10 17:26:42,377 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\network\generator.py - network.generator - Mean arrival time (¦Ë) is 20.0 seconds, mean holding time (¦Ì) is 20.0 seconds, intensity (¦Ñ) is 1.0.
-2024-10-10 17:26:42,406 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\network\generator.py - network.generator - Generate 20 events.
-2024-10-10 17:26:42,406 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\simulator.py - __main__ - Done.
-2024-10-10 17:26:42,406 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\simulator.py - __main__ - Load the statistic module.
-2024-10-10 17:26:42,406 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\simulator.py - __main__ - Start the control plane.
-2024-10-10 17:26:42,406 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\network\controller.py - network.controller - Load the CAR algorithm.
-2024-10-10 17:26:42,407 - INFO - Prune topology has [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13] nodes.
-2024-10-10 17:26:42,407 - INFO - The 4 call passes areas: {'MS', 'AL', 'TX', 'AR', 'IL', 'NY', 'NC', 'LA', 'NF', 'IA', 'CO', 'MO', 'RA', 'MD', 'GA', 'SC'}
-2024-10-10 17:26:42,407 - INFO - The 6 call passes areas: {'MI', 'TX', 'AR', 'IL', 'NF', 'IA', 'CO', 'MO', 'UT'}
-2024-10-10 17:26:42,407 - INFO - The 7 call passes areas: {'TX', 'AX', 'NM', 'CA', 'OR', 'WA'}
-2024-10-10 17:26:42,407 - INFO - The 10 call passes areas: {'MS', 'AL', 'TX', 'AX', 'LA', 'NM', 'CA', 'GA'}
-2024-10-10 17:26:42,407 - INFO - The 12 call passes areas: {'MS', 'AL', 'TN', 'TX', 'LA', 'GA', 'RA', 'KY'}
-2024-10-10 17:26:42,407 - INFO - The 13 call passes areas: {'MS', 'AL', 'TX', 'NC', 'LA', 'MD', 'GA', 'SC'}
-2024-10-10 17:26:42,407 - INFO - The 16 call passes areas: {'MS', 'AL', 'TX', 'AR', 'IL', 'LA', 'NF', 'IA', 'CO', 'MO', 'GA'}
-2024-10-10 17:26:42,407 - INFO - The 18 call passes areas: {'MS', 'AL', 'TX', 'PA', 'NJ', 'LA', 'NC', 'MD', 'GA', 'SC'}
-2024-10-10 17:26:42,407 - INFO - The 24 call passes areas: {'MS', 'AL', 'TX', 'AX', 'LA', 'NM', 'CA', 'GA'}
-2024-10-10 17:26:42,407 - INFO - The 31 call passes areas: {'MS', 'AL', 'TX', 'AX', 'NC', 'LA', 'NM', 'GA', 'MD', 'CA', 'OR', 'WA', 'SC'}
-2024-10-10 17:26:42,408 - INFO - The 34 call passes areas: {'MS', 'AL', 'TX', 'AR', 'IL', 'LA', 'NF', 'NE', 'CO', 'IA', 'MO', 'GA'}
-2024-10-10 17:26:42,408 - INFO - The 36 call passes areas: {'MS', 'AL', 'TX', 'AR', 'IL', 'LA', 'NF', 'IA', 'CO', 'GA', 'MO', 'UT'}
-2024-10-10 17:26:42,408 - INFO - The 38 call passes areas: {'MS', 'AL', 'TX', 'LA', 'GA'}
-2024-10-10 17:26:42,408 - INFO - The 42 call passes areas: {'TX', 'AX', 'AR', 'IL', 'NM', 'NF', 'IA', 'CO', 'MO', 'CA'}
-2024-10-10 17:26:42,408 - INFO - The 43 call passes areas: {'MS', 'AL', 'TX', 'NC', 'LA', 'MD', 'GA', 'SC'}
-2024-10-10 17:26:42,408 - INFO - The 48 call passes areas: {'MS', 'AL', 'TX', 'AX', 'NY', 'NC', 'NM', 'LA', 'RA', 'MD', 'CA', 'GA', 'SC'}
-2024-10-10 17:26:42,408 - INFO - The 4 call is restored.
-2024-10-10 17:26:42,408 - INFO - The 6 call is blocked.
-2024-10-10 17:26:42,408 - INFO - The 7 call is blocked.
-2024-10-10 17:26:42,408 - INFO - The 10 call is restored.
-2024-10-10 17:26:42,408 - INFO - The 12 call is blocked.
-2024-10-10 17:26:42,408 - INFO - The 13 call is restored.
-2024-10-10 17:26:42,408 - INFO - The 16 call is restored.
-2024-10-10 17:26:42,408 - INFO - The 18 call is blocked.
-2024-10-10 17:26:42,408 - INFO - The 24 call is restored.
-2024-10-10 17:26:42,408 - INFO - The 31 call is restored.
-2024-10-10 17:26:42,408 - INFO - The 34 call is restored.
-2024-10-10 17:26:42,408 - INFO - The 36 call is restored.
-2024-10-10 17:26:42,408 - INFO - The 38 call is blocked.
-2024-10-10 17:26:42,408 - INFO - The 42 call is restored.
-2024-10-10 17:26:42,408 - INFO - The 43 call is blocked.
-2024-10-10 17:26:42,408 - INFO - The 48 call is restored.
-2024-10-10 17:26:55,834 - INFO - Attacked areas: ['TX']
-2024-10-10 17:26:55,834 - INFO - Potential areas: ['CO', 'CA', 'IL', 'RA']
-2024-10-10 17:26:55,834 - INFO - The 0 call passes areas: {'IL', 'NY', 'MI', 'RA'}
-2024-10-10 17:26:55,834 - INFO - The 1 call passes areas: {'NV', 'CO', 'UT', 'CA', 'OR', 'WA'}
-2024-10-10 17:26:55,834 - INFO - The 2 call passes areas: {'MI', 'TN', 'IL', 'KY', 'RA', 'GA'}
-2024-10-10 17:26:55,834 - INFO - The 3 call passes areas: {'CO', 'NF', 'NE'}
-2024-10-10 17:26:55,834 - INFO - The 4 call passes areas: {'MI', 'IL', 'NY', 'NF', 'IA', 'CO', 'UT'}
-2024-10-10 17:26:55,834 - INFO - The 5 call passes areas: {'MD', 'NJ', 'PA', 'RA'}
-2024-10-10 17:26:55,834 - INFO - The 8 call passes areas: {'CA', 'OR', 'WA'}
-2024-10-10 17:26:55,834 - INFO - The 9 call passes areas: {'NJ', 'PA', 'RA'}
-2024-10-10 17:26:55,834 - INFO - The 10 call passes areas: {'MS', 'AL', 'TX', 'AX', 'LA', 'NM', 'CA', 'GA'}
-2024-10-10 17:26:55,834 - INFO - The 11 call passes areas: {'MN', 'MI', 'IL', 'ID', 'WI', 'RA', 'MT', 'ND', 'WA'}
-2024-10-10 17:26:55,834 - INFO - The 13 call passes areas: {'TN', 'NY', 'KY', 'RA', 'MD', 'GA'}
-2024-10-10 17:26:55,834 - INFO - The 14 call passes areas: {'MD', 'NY', 'RA'}
-2024-10-10 17:26:55,834 - INFO - The 15 call passes areas: {'TN', 'MI', 'NY', 'KY', 'RA', 'GA'}
-2024-10-10 17:26:55,835 - INFO - The 16 call passes areas: {'MS', 'AL', 'TX', 'AR', 'IL', 'LA', 'NF', 'IA', 'CO', 'MO', 'GA'}
-2024-10-10 17:26:55,835 - INFO - The 17 call passes areas: {'TN', 'PA', 'NJ', 'KY', 'RA', 'GA'}
-2024-10-10 17:26:55,835 - INFO - The 19 call passes areas: {'MI', 'PA', 'IL', 'NJ', 'RA'}
-2024-10-10 17:26:55,835 - INFO - The 20 call passes areas: {'IL', 'MI', 'RA'}
-2024-10-10 17:26:55,835 - INFO - The 21 call passes areas: {'MD', 'NY', 'RA'}
-2024-10-10 17:26:55,835 - INFO - The 22 call passes areas: {'IL', 'NF', 'IA', 'NE'}
-2024-10-10 17:26:55,835 - INFO - The 23 call passes areas: {'IL', 'NY', 'MI', 'RA'}
-2024-10-10 17:26:55,835 - INFO - The 24 call passes areas: {'MS', 'AL', 'TX', 'AX', 'LA', 'NM', 'CA', 'GA'}
-2024-10-10 17:26:55,835 - INFO - The 25 call passes areas: {'NV', 'MI', 'IL', 'NF', 'IA', 'CO', 'CA', 'UT'}
-2024-10-10 17:26:55,835 - INFO - The 26 call passes areas: {'NV', 'MI', 'IL', 'NF', 'IA', 'CO', 'RA', 'CA', 'UT'}
-2024-10-10 17:26:55,835 - INFO - The 27 call passes areas: {'CA', 'OR', 'WA'}
-2024-10-10 17:26:55,835 - INFO - The 28 call passes areas: {'MI', 'TN', 'IL', 'KY', 'RA', 'GA'}
-2024-10-10 17:26:55,835 - INFO - The 30 call passes areas: {'CA', 'OR', 'WA'}
-2024-10-10 17:26:55,835 - INFO - The 31 call passes areas: {'MS', 'AL', 'TX', 'AX', 'NC', 'LA', 'NM', 'GA', 'MD', 'CA', 'OR', 'WA', 'SC'}
-2024-10-10 17:26:55,835 - INFO - The 32 call passes areas: {'MN', 'IL', 'ID', 'NF', 'NE', 'CO', 'IA', 'WI', 'MT', 'ND', 'WA'}
-2024-10-10 17:26:55,835 - INFO - The 33 call passes areas: {'CO', 'UT'}
-2024-10-10 17:26:55,835 - INFO - The 34 call passes areas: {'MS', 'AL', 'TX', 'AR', 'IL', 'LA', 'NF', 'NE', 'CO', 'IA', 'MO', 'GA'}
-2024-10-10 17:26:55,835 - INFO - The 35 call passes areas: {'IL'}
-2024-10-10 17:26:55,835 - INFO - The 36 call passes areas: {'MS', 'AL', 'TX', 'AR', 'IL', 'LA', 'NF', 'IA', 'CO', 'GA', 'MO', 'UT'}
-2024-10-10 17:26:55,835 - INFO - The 37 call passes areas: {'MI', 'IL', 'NY', 'NJ', 'NF', 'IA', 'UT', 'CO', 'CA', 'NV'}
-2024-10-10 17:26:55,835 - INFO - The 39 call passes areas: {'CA'}
-2024-10-10 17:26:55,835 - INFO - The 41 call passes areas: {'MI', 'TN', 'IL', 'KY', 'RA', 'GA'}
-2024-10-10 17:26:55,835 - INFO - The 42 call passes areas: {'CO', 'CA', 'UT', 'NV'}
-2024-10-10 17:26:55,835 - INFO - The 44 call passes areas: {'MI', 'IL', 'NF', 'IA', 'CO', 'UT'}
-2024-10-10 17:26:55,835 - INFO - The 45 call passes areas: {'NV', 'MI', 'IL', 'NY', 'NF', 'IA', 'CO', 'CA', 'UT'}
-2024-10-10 17:26:55,835 - INFO - The 46 call passes areas: {'CO', 'CA', 'UT', 'NV'}
-2024-10-10 17:26:55,835 - INFO - The 48 call passes areas: {'MS', 'AL', 'TX', 'AX', 'NY', 'NC', 'NM', 'LA', 'RA', 'MD', 'CA', 'GA', 'SC'}
-2024-10-10 17:26:55,835 - INFO - The 49 call passes areas: {'NV', 'MI', 'IL', 'WA', 'NF', 'IA', 'CO', 'CA', 'OR', 'UT'}
-2024-10-10 17:26:55,835 - INFO - The 14 call is changed.
-2024-10-10 17:26:55,836 - INFO - The 21 call is changed.
-2024-10-10 17:26:55,836 - INFO - The 35 call is changed.
-2024-10-10 17:26:55,836 - INFO - The 39 call is changed.
-2024-10-10 17:26:55,836 - INFO - After departure event 0, unable areas have [].
-2024-10-10 17:26:55,836 - INFO - The 6 call find path.
-2024-10-10 17:26:55,836 - INFO - The 7 call find path.
-2024-10-10 17:26:55,836 - INFO - The 12 call find path.
-2024-10-10 17:26:55,836 - INFO - The 18 call find path.
-2024-10-10 17:26:55,836 - INFO - The 38 call find path.
-2024-10-10 17:26:55,836 - INFO - The 43 call find path.
-2024-10-10 17:26:55,836 - INFO - Prune topology has [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13] nodes.
-2024-10-10 17:26:55,836 - INFO - The 3 call passes areas: {'CO', 'NF', 'NE'}
-2024-10-10 17:26:55,837 - INFO - The 22 call passes areas: {'IL', 'NF', 'IA', 'NE'}
-2024-10-10 17:26:55,837 - INFO - The 32 call passes areas: {'MN', 'IL', 'ID', 'NF', 'NE', 'CO', 'IA', 'WI', 'MT', 'ND', 'WA'}
-2024-10-10 17:26:55,837 - INFO - The 34 call passes areas: {'MS', 'AL', 'TX', 'AR', 'IL', 'LA', 'NF', 'NE', 'CO', 'IA', 'MO', 'GA'}
-2024-10-10 17:26:55,837 - INFO - The 40 call passes areas: {'NE'}
-2024-10-10 17:26:55,837 - INFO - The 3 call is restored.
-2024-10-10 17:26:55,837 - INFO - The 22 call is restored.
-2024-10-10 17:26:55,837 - INFO - The 32 call is restored.
-2024-10-10 17:26:55,837 - INFO - The 34 call is restored.
-2024-10-10 17:26:55,837 - INFO - The 40 call is restored.
-2024-10-10 17:27:07,417 - INFO - Attacked areas: ['NE']
-2024-10-10 17:27:07,417 - INFO - Potential areas: ['CO', 'CA', 'TX', 'UT']
-2024-10-10 17:27:07,418 - INFO - The 1 call passes areas: {'NV', 'CO', 'UT', 'CA', 'OR', 'WA'}
-2024-10-10 17:27:07,418 - INFO - The 3 call passes areas: {'CO', 'NF', 'NE'}
-2024-10-10 17:27:07,418 - INFO - The 4 call passes areas: {'MI', 'IL', 'NY', 'NF', 'IA', 'CO', 'UT'}
-2024-10-10 17:27:07,418 - INFO - The 6 call passes areas: {'MI', 'TX', 'AR', 'IL', 'NF', 'IA', 'CO', 'MO', 'UT'}
-2024-10-10 17:27:07,418 - INFO - The 7 call passes areas: {'TX', 'AX', 'NM', 'CA', 'OR', 'WA'}
-2024-10-10 17:27:07,418 - INFO - The 8 call passes areas: {'CA', 'OR', 'WA'}
-2024-10-10 17:27:07,418 - INFO - The 10 call passes areas: {'MS', 'AL', 'TX', 'AX', 'LA', 'NM', 'CA', 'GA'}
-2024-10-10 17:27:07,418 - INFO - The 12 call passes areas: {'MS', 'AL', 'TN', 'TX', 'LA', 'GA', 'RA', 'KY'}
-2024-10-10 17:27:07,418 - INFO - The 16 call passes areas: {'MS', 'AL', 'TX', 'AR', 'IL', 'LA', 'NF', 'IA', 'CO', 'MO', 'GA'}
-2024-10-10 17:27:07,418 - INFO - The 18 call passes areas: {'MS', 'AL', 'TX', 'PA', 'NJ', 'LA', 'NC', 'MD', 'GA', 'SC'}
-2024-10-10 17:27:07,418 - INFO - The 24 call passes areas: {'MS', 'AL', 'TX', 'AX', 'LA', 'NM', 'CA', 'GA'}
-2024-10-10 17:27:07,418 - INFO - The 25 call passes areas: {'NV', 'MI', 'IL', 'NF', 'IA', 'CO', 'CA', 'UT'}
-2024-10-10 17:27:07,418 - INFO - The 26 call passes areas: {'NV', 'MI', 'IL', 'NF', 'IA', 'CO', 'RA', 'CA', 'UT'}
-2024-10-10 17:27:07,418 - INFO - The 27 call passes areas: {'CA', 'OR', 'WA'}
-2024-10-10 17:27:07,418 - INFO - The 30 call passes areas: {'CA', 'OR', 'WA'}
-2024-10-10 17:27:07,418 - INFO - The 31 call passes areas: {'MS', 'AL', 'TX', 'AX', 'NC', 'LA', 'NM', 'GA', 'MD', 'CA', 'OR', 'WA', 'SC'}
-2024-10-10 17:27:07,418 - INFO - The 32 call passes areas: {'NV', 'WA', 'CO', 'CA', 'OR', 'UT'}
-2024-10-10 17:27:07,418 - INFO - The 33 call passes areas: {'CO', 'UT'}
-2024-10-10 17:27:07,418 - INFO - The 34 call passes areas: {'MS', 'AL', 'TX', 'AR', 'IL', 'LA', 'NF', 'NE', 'CO', 'IA', 'MO', 'GA'}
-2024-10-10 17:27:07,418 - INFO - The 36 call passes areas: {'MS', 'AL', 'TX', 'AR', 'IL', 'LA', 'NF', 'IA', 'CO', 'GA', 'MO', 'UT'}
-2024-10-10 17:27:07,418 - INFO - The 37 call passes areas: {'MI', 'IL', 'NY', 'NJ', 'NF', 'IA', 'UT', 'CO', 'CA', 'NV'}
-2024-10-10 17:27:07,418 - INFO - The 39 call passes areas: {'CA'}
-2024-10-10 17:27:07,418 - INFO - The 42 call passes areas: {'CO', 'CA', 'UT', 'NV'}
-2024-10-10 17:27:07,419 - INFO - The 43 call passes areas: {'MS', 'AL', 'TX', 'NC', 'LA', 'MD', 'GA', 'SC'}
-2024-10-10 17:27:07,419 - INFO - The 44 call passes areas: {'MI', 'IL', 'NF', 'IA', 'CO', 'UT'}
-2024-10-10 17:27:07,419 - INFO - The 45 call passes areas: {'NV', 'MI', 'IL', 'NY', 'NF', 'IA', 'CO', 'CA', 'UT'}
-2024-10-10 17:27:07,419 - INFO - The 46 call passes areas: {'CO', 'CA', 'UT', 'NV'}
-2024-10-10 17:27:07,419 - INFO - The 48 call passes areas: {'MS', 'AL', 'TX', 'AX', 'NY', 'NC', 'NM', 'LA', 'RA', 'MD', 'CA', 'GA', 'SC'}
-2024-10-10 17:27:07,419 - INFO - The 49 call passes areas: {'NV', 'MI', 'IL', 'WA', 'NF', 'IA', 'CO', 'CA', 'OR', 'UT'}
-2024-10-10 17:27:07,419 - INFO - The 25 call is changed.
-2024-10-10 17:27:07,419 - INFO - The 31 call is changed.
-2024-10-10 17:27:07,419 - INFO - The 34 call is changed.
-2024-10-10 17:27:07,419 - INFO - The 39 call is changed.
-2024-10-10 17:27:07,419 - INFO - The 45 call is changed.
-2024-10-10 17:27:07,419 - INFO - The 49 call is changed.
-2024-10-10 17:27:07,419 - INFO - Prune topology has [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13] nodes.
-2024-10-10 17:27:07,419 - INFO - The 3 call passes areas: {'CO', 'NF', 'NE'}
-2024-10-10 17:27:07,420 - INFO - The 11 call passes areas: {'MN', 'MI', 'IL', 'ID', 'WI', 'RA', 'MT', 'ND', 'WA'}
-2024-10-10 17:27:07,420 - INFO - The 22 call passes areas: {'IL', 'NF', 'IA', 'NE'}
-2024-10-10 17:27:07,420 - INFO - The 34 call passes areas: {'MS', 'AL', 'TX', 'AR', 'IL', 'LA', 'NF', 'NE', 'CO', 'IA', 'MO', 'GA'}
-2024-10-10 17:27:07,420 - INFO - The 40 call passes areas: {'NE'}
-2024-10-10 17:27:07,420 - INFO - The 3 call is restored.
-2024-10-10 17:27:07,420 - INFO - The 11 call is restored.
-2024-10-10 17:27:07,420 - INFO - The 22 call is restored.
-2024-10-10 17:27:07,420 - INFO - The 34 call is restored.
-2024-10-10 17:27:07,420 - INFO - The 40 call is restored.
-2024-10-10 17:27:17,674 - INFO - Attacked areas: ['NE', 'ND']
-2024-10-10 17:27:17,674 - INFO - Potential areas: ['CO', 'CA', 'TX', 'UT']
-2024-10-10 17:27:17,674 - INFO - The 1 call passes areas: {'NV', 'CO', 'UT', 'CA', 'OR', 'WA'}
-2024-10-10 17:27:17,674 - INFO - The 3 call passes areas: {'CO', 'NF', 'NE'}
-2024-10-10 17:27:17,674 - INFO - The 4 call passes areas: {'MI', 'IL', 'NY', 'NF', 'IA', 'CO', 'UT'}
-2024-10-10 17:27:17,674 - INFO - The 6 call passes areas: {'MI', 'TX', 'AR', 'IL', 'NF', 'IA', 'CO', 'MO', 'UT'}
-2024-10-10 17:27:17,674 - INFO - The 7 call passes areas: {'TX', 'AX', 'NM', 'CA', 'OR', 'WA'}
-2024-10-10 17:27:17,674 - INFO - The 8 call passes areas: {'CA', 'OR', 'WA'}
-2024-10-10 17:27:17,674 - INFO - The 10 call passes areas: {'MS', 'AL', 'TX', 'AX', 'LA', 'NM', 'CA', 'GA'}
-2024-10-10 17:27:17,674 - INFO - The 12 call passes areas: {'MS', 'AL', 'TN', 'TX', 'LA', 'GA', 'RA', 'KY'}
-2024-10-10 17:27:17,674 - INFO - The 16 call passes areas: {'MS', 'AL', 'TX', 'AR', 'IL', 'LA', 'NF', 'IA', 'CO', 'MO', 'GA'}
-2024-10-10 17:27:17,675 - INFO - The 18 call passes areas: {'MS', 'AL', 'TX', 'PA', 'NJ', 'LA', 'NC', 'MD', 'GA', 'SC'}
-2024-10-10 17:27:17,675 - INFO - The 24 call passes areas: {'MS', 'AL', 'TX', 'AX', 'LA', 'NM', 'CA', 'GA'}
-2024-10-10 17:27:17,675 - INFO - The 25 call passes areas: {'NV', 'MI', 'IL', 'NF', 'IA', 'CO', 'CA', 'UT'}
-2024-10-10 17:27:17,675 - INFO - The 26 call passes areas: {'NV', 'MI', 'IL', 'NF', 'IA', 'CO', 'RA', 'CA', 'UT'}
-2024-10-10 17:27:17,675 - INFO - The 27 call passes areas: {'CA', 'OR', 'WA'}
-2024-10-10 17:27:17,675 - INFO - The 30 call passes areas: {'CA', 'OR', 'WA'}
-2024-10-10 17:27:17,675 - INFO - The 31 call passes areas: {'MS', 'AL', 'TX', 'AX', 'NC', 'LA', 'NM', 'GA', 'MD', 'CA', 'OR', 'WA', 'SC'}
-2024-10-10 17:27:17,675 - INFO - The 32 call passes areas: {'NV', 'WA', 'CO', 'CA', 'OR', 'UT'}
-2024-10-10 17:27:17,675 - INFO - The 33 call passes areas: {'CO', 'UT'}
-2024-10-10 17:27:17,675 - INFO - The 34 call passes areas: {'MS', 'AL', 'TX', 'AR', 'IL', 'LA', 'NF', 'NE', 'CO', 'IA', 'MO', 'GA'}
-2024-10-10 17:27:17,675 - INFO - The 36 call passes areas: {'MS', 'AL', 'TX', 'AR', 'IL', 'LA', 'NF', 'IA', 'CO', 'GA', 'MO', 'UT'}
-2024-10-10 17:27:17,675 - INFO - The 37 call passes areas: {'MI', 'IL', 'NY', 'NJ', 'NF', 'IA', 'UT', 'CO', 'CA', 'NV'}
-2024-10-10 17:27:17,675 - INFO - The 39 call passes areas: {'CA'}
-2024-10-10 17:27:17,675 - INFO - The 42 call passes areas: {'CO', 'CA', 'UT', 'NV'}
-2024-10-10 17:27:17,675 - INFO - The 43 call passes areas: {'MS', 'AL', 'TX', 'NC', 'LA', 'MD', 'GA', 'SC'}
-2024-10-10 17:27:17,675 - INFO - The 44 call passes areas: {'MI', 'IL', 'NF', 'IA', 'CO', 'UT'}
-2024-10-10 17:27:17,675 - INFO - The 45 call passes areas: {'NV', 'MI', 'IL', 'NY', 'NF', 'IA', 'CO', 'CA', 'UT'}
-2024-10-10 17:27:17,675 - INFO - The 46 call passes areas: {'CO', 'CA', 'UT', 'NV'}
-2024-10-10 17:27:17,675 - INFO - The 48 call passes areas: {'MS', 'AL', 'TX', 'AX', 'NY', 'NC', 'NM', 'LA', 'RA', 'MD', 'CA', 'GA', 'SC'}
-2024-10-10 17:27:17,675 - INFO - The 49 call passes areas: {'NV', 'MI', 'IL', 'WA', 'NF', 'IA', 'CO', 'CA', 'OR', 'UT'}
-2024-10-10 17:27:17,676 - INFO - The 25 call is changed.
-2024-10-10 17:27:17,676 - INFO - The 34 call is changed.
-2024-10-10 17:27:17,676 - INFO - The 39 call is changed.
-2024-10-10 17:27:17,676 - INFO - The 45 call is changed.
-2024-10-10 17:27:17,676 - INFO - After departure event 2, unable areas have ['NE'].
-2024-10-10 17:27:17,676 - INFO - The 38 call find path.
-2024-10-10 17:27:17,676 - INFO - After departure event 1, unable areas have [].
-2024-10-10 17:27:17,677 - INFO - Prune topology has [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13] nodes.
-2024-10-10 17:27:17,677 - INFO - The 2 call passes areas: {'MI', 'TN', 'IL', 'KY', 'RA', 'GA'}
-2024-10-10 17:27:17,677 - INFO - The 10 call passes areas: {'MS', 'AL', 'TX', 'AX', 'LA', 'NM', 'CA', 'GA'}
-2024-10-10 17:27:17,677 - INFO - The 12 call passes areas: {'MS', 'AL', 'TN', 'TX', 'LA', 'GA', 'RA', 'KY'}
-2024-10-10 17:27:17,677 - INFO - The 13 call passes areas: {'TN', 'NY', 'KY', 'RA', 'MD', 'GA'}
-2024-10-10 17:27:17,677 - INFO - The 15 call passes areas: {'TN', 'MI', 'NY', 'KY', 'RA', 'GA'}
-2024-10-10 17:27:17,677 - INFO - The 16 call passes areas: {'MS', 'AL', 'TX', 'AR', 'IL', 'LA', 'NF', 'IA', 'CO', 'MO', 'GA'}
-2024-10-10 17:27:17,677 - INFO - The 17 call passes areas: {'TN', 'PA', 'NJ', 'KY', 'RA', 'GA'}
-2024-10-10 17:27:17,677 - INFO - The 18 call passes areas: {'MS', 'AL', 'TX', 'PA', 'NJ', 'LA', 'NC', 'MD', 'GA', 'SC'}
-2024-10-10 17:27:17,677 - INFO - The 24 call passes areas: {'MS', 'AL', 'TX', 'AX', 'LA', 'NM', 'CA', 'GA'}
-2024-10-10 17:27:17,677 - INFO - The 28 call passes areas: {'MI', 'TN', 'IL', 'KY', 'RA', 'GA'}
-2024-10-10 17:27:17,677 - INFO - The 31 call passes areas: {'MS', 'AL', 'TX', 'AX', 'NC', 'LA', 'NM', 'GA', 'MD', 'CA', 'OR', 'WA', 'SC'}
-2024-10-10 17:27:17,677 - INFO - The 34 call passes areas: {'MS', 'AL', 'TX', 'AR', 'IL', 'LA', 'NF', 'NE', 'CO', 'IA', 'MO', 'GA'}
-2024-10-10 17:27:17,677 - INFO - The 36 call passes areas: {'MS', 'AL', 'TX', 'AR', 'IL', 'LA', 'NF', 'IA', 'CO', 'GA', 'MO', 'UT'}
-2024-10-10 17:27:17,677 - INFO - The 38 call passes areas: {'MS', 'AL', 'TX', 'LA', 'GA'}
-2024-10-10 17:27:17,677 - INFO - The 41 call passes areas: {'MI', 'TN', 'IL', 'KY', 'RA', 'GA'}
-2024-10-10 17:27:17,677 - INFO - The 43 call passes areas: {'MS', 'AL', 'TX', 'NC', 'LA', 'MD', 'GA', 'SC'}
-2024-10-10 17:27:17,678 - INFO - The 48 call passes areas: {'MS', 'AL', 'TX', 'AX', 'NY', 'NC', 'NM', 'LA', 'RA', 'MD', 'CA', 'GA', 'SC'}
-2024-10-10 17:27:17,678 - INFO - The 2 call is restored.
-2024-10-10 17:27:17,678 - INFO - The 10 call is restored.
-2024-10-10 17:27:17,678 - INFO - The 12 call is restored.
-2024-10-10 17:27:17,678 - INFO - The 13 call is restored.
-2024-10-10 17:27:17,678 - INFO - The 15 call is restored.
-2024-10-10 17:27:17,678 - INFO - The 16 call is restored.
-2024-10-10 17:27:17,678 - INFO - The 17 call is restored.
-2024-10-10 17:27:17,678 - INFO - The 18 call is restored.
-2024-10-10 17:27:17,678 - INFO - The 24 call is restored.
-2024-10-10 17:27:17,678 - INFO - The 28 call is restored.
-2024-10-10 17:27:17,678 - INFO - The 31 call is restored.
-2024-10-10 17:27:17,678 - INFO - The 34 call is restored.
-2024-10-10 17:27:17,678 - INFO - The 36 call is restored.
-2024-10-10 17:27:17,678 - INFO - The 38 call is restored.
-2024-10-10 17:27:17,678 - INFO - The 41 call is restored.
-2024-10-10 17:27:17,678 - INFO - The 43 call is restored.
-2024-10-10 17:27:17,678 - INFO - The 48 call is restored.
-2024-10-10 17:27:27,553 - INFO - Attacked areas: ['GA']
-2024-10-10 17:27:27,553 - INFO - Potential areas: ['CO', 'CA', 'TX', 'UT']
-2024-10-10 17:27:27,554 - INFO - The 1 call passes areas: {'NV', 'CO', 'UT', 'CA', 'OR', 'WA'}
-2024-10-10 17:27:27,554 - INFO - The 3 call passes areas: {'CO', 'NF', 'NE'}
-2024-10-10 17:27:27,554 - INFO - The 4 call passes areas: {'MI', 'IL', 'NY', 'NF', 'IA', 'CO', 'UT'}
-2024-10-10 17:27:27,554 - INFO - The 6 call passes areas: {'MI', 'TX', 'AR', 'IL', 'NF', 'IA', 'CO', 'MO', 'UT'}
-2024-10-10 17:27:27,554 - INFO - The 7 call passes areas: {'TX', 'AX', 'NM', 'CA', 'OR', 'WA'}
-2024-10-10 17:27:27,554 - INFO - The 8 call passes areas: {'CA', 'OR', 'WA'}
-2024-10-10 17:27:27,554 - INFO - The 10 call passes areas: {'MS', 'AL', 'TX', 'AX', 'LA', 'NM', 'CA', 'GA'}
-2024-10-10 17:27:27,554 - INFO - The 12 call passes areas: {'MS', 'AL', 'TN', 'TX', 'LA', 'GA', 'RA', 'KY'}
-2024-10-10 17:27:27,554 - INFO - The 16 call passes areas: {'MS', 'AL', 'TX', 'AR', 'IL', 'LA', 'NF', 'IA', 'CO', 'MO', 'GA'}
-2024-10-10 17:27:27,554 - INFO - The 18 call passes areas: {'MS', 'AL', 'TX', 'PA', 'NJ', 'LA', 'NC', 'MD', 'GA', 'SC'}
-2024-10-10 17:27:27,554 - INFO - The 24 call passes areas: {'MS', 'AL', 'TX', 'AX', 'LA', 'NM', 'CA', 'GA'}
-2024-10-10 17:27:27,554 - INFO - The 25 call passes areas: {'NV', 'MI', 'IL', 'NF', 'IA', 'CO', 'CA', 'UT'}
-2024-10-10 17:27:27,554 - INFO - The 26 call passes areas: {'NV', 'MI', 'IL', 'NF', 'IA', 'CO', 'RA', 'CA', 'UT'}
-2024-10-10 17:27:27,554 - INFO - The 27 call passes areas: {'CA', 'OR', 'WA'}
-2024-10-10 17:27:27,554 - INFO - The 30 call passes areas: {'CA', 'OR', 'WA'}
-2024-10-10 17:27:27,554 - INFO - The 31 call passes areas: {'MS', 'AL', 'TX', 'AX', 'NC', 'LA', 'NM', 'GA', 'MD', 'CA', 'OR', 'WA', 'SC'}
-2024-10-10 17:27:27,555 - INFO - The 32 call passes areas: {'NV', 'WA', 'CO', 'CA', 'OR', 'UT'}
-2024-10-10 17:27:27,555 - INFO - The 33 call passes areas: {'CO', 'UT'}
-2024-10-10 17:27:27,555 - INFO - The 34 call passes areas: {'MS', 'AL', 'TX', 'AR', 'IL', 'LA', 'NF', 'NE', 'CO', 'IA', 'MO', 'GA'}
-2024-10-10 17:27:27,555 - INFO - The 36 call passes areas: {'MS', 'AL', 'TX', 'AR', 'IL', 'LA', 'NF', 'IA', 'CO', 'GA', 'MO', 'UT'}
-2024-10-10 17:27:27,555 - INFO - The 37 call passes areas: {'MI', 'IL', 'NY', 'NJ', 'NF', 'IA', 'UT', 'CO', 'CA', 'NV'}
-2024-10-10 17:27:27,555 - INFO - The 38 call passes areas: {'MS', 'AL', 'TX', 'LA', 'GA'}
-2024-10-10 17:27:27,555 - INFO - The 39 call passes areas: {'CA'}
-2024-10-10 17:27:27,555 - INFO - The 42 call passes areas: {'CO', 'CA', 'UT', 'NV'}
-2024-10-10 17:27:27,555 - INFO - The 43 call passes areas: {'MS', 'AL', 'TX', 'NC', 'LA', 'MD', 'GA', 'SC'}
-2024-10-10 17:27:27,555 - INFO - The 44 call passes areas: {'MI', 'IL', 'NF', 'IA', 'CO', 'UT'}
-2024-10-10 17:27:27,555 - INFO - The 45 call passes areas: {'NV', 'MI', 'IL', 'NY', 'NF', 'IA', 'CO', 'CA', 'UT'}
-2024-10-10 17:27:27,555 - INFO - The 46 call passes areas: {'CO', 'CA', 'UT', 'NV'}
-2024-10-10 17:27:27,555 - INFO - The 48 call passes areas: {'MI', 'IL', 'NY', 'NF', 'IA', 'UT', 'CO', 'CA', 'NV'}
-2024-10-10 17:27:27,555 - INFO - The 49 call passes areas: {'NV', 'MI', 'IL', 'WA', 'NF', 'IA', 'CO', 'CA', 'OR', 'UT'}
-2024-10-10 17:27:27,555 - INFO - The 25 call is changed.
-2024-10-10 17:27:27,555 - INFO - The 31 call is changed.
-2024-10-10 17:27:27,556 - INFO - The 34 call is changed.
-2024-10-10 17:27:27,556 - INFO - The 39 call is changed.
-2024-10-10 17:27:27,556 - INFO - The 45 call is changed.
-2024-10-10 17:27:27,556 - INFO - The 49 call is changed.
-2024-10-10 17:27:27,556 - INFO - After departure event 3, unable areas have [].
-2024-10-10 17:27:27,557 - INFO - Prune topology has [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13] nodes.
-2024-10-10 17:27:27,557 - INFO - The 2 call passes areas: {'MI', 'TN', 'IL', 'KY', 'RA', 'GA'}
-2024-10-10 17:27:27,557 - INFO - The 12 call passes areas: {'MS', 'AL', 'TN', 'TX', 'LA', 'GA', 'RA', 'KY'}
-2024-10-10 17:27:27,557 - INFO - The 13 call passes areas: {'TN', 'NY', 'KY', 'RA', 'MD', 'GA'}
-2024-10-10 17:27:27,557 - INFO - The 15 call passes areas: {'TN', 'MI', 'NY', 'KY', 'RA', 'GA'}
-2024-10-10 17:27:27,557 - INFO - The 17 call passes areas: {'TN', 'PA', 'NJ', 'KY', 'RA', 'GA'}
-2024-10-10 17:27:27,557 - INFO - The 28 call passes areas: {'MI', 'TN', 'IL', 'KY', 'RA', 'GA'}
-2024-10-10 17:27:27,557 - INFO - The 41 call passes areas: {'MI', 'TN', 'IL', 'KY', 'RA', 'GA'}
-2024-10-10 17:27:27,558 - INFO - The 2 call is restored.
-2024-10-10 17:27:27,558 - INFO - The 12 call is restored.
-2024-10-10 17:27:27,558 - INFO - The 13 call is restored.
-2024-10-10 17:27:27,558 - INFO - The 15 call is restored.
-2024-10-10 17:27:27,558 - INFO - The 17 call is restored.
-2024-10-10 17:27:27,558 - INFO - The 28 call is restored.
-2024-10-10 17:27:27,558 - INFO - The 41 call is restored.
-2024-10-10 17:27:39,154 - INFO - Attacked areas: ['KY']
-2024-10-10 17:27:39,154 - INFO - Potential areas: ['CO', 'IL', 'TX', 'CA']
-2024-10-10 17:27:39,154 - INFO - The 0 call passes areas: {'IL', 'NY', 'MI', 'RA'}
-2024-10-10 17:27:39,154 - INFO - The 1 call passes areas: {'NV', 'CO', 'UT', 'CA', 'OR', 'WA'}
-2024-10-10 17:27:39,154 - INFO - The 2 call passes areas: {'MN', 'MS', 'AL', 'TX', 'AX', 'IL', 'ID', 'NM', 'LA', 'GA', 'WI', 'MT', 'CA', 'OR', 'ND', 'WA'}
-2024-10-10 17:27:39,154 - INFO - The 3 call passes areas: {'CO', 'NF', 'NE'}
-2024-10-10 17:27:39,154 - INFO - The 4 call passes areas: {'MI', 'IL', 'NY', 'NF', 'IA', 'CO', 'UT'}
-2024-10-10 17:27:39,154 - INFO - The 6 call passes areas: {'MI', 'TX', 'AR', 'IL', 'NF', 'IA', 'CO', 'MO', 'UT'}
-2024-10-10 17:27:39,154 - INFO - The 7 call passes areas: {'TX', 'AX', 'NM', 'CA', 'OR', 'WA'}
-2024-10-10 17:27:39,154 - INFO - The 8 call passes areas: {'CA', 'OR', 'WA'}
-2024-10-10 17:27:39,154 - INFO - The 10 call passes areas: {'MS', 'AL', 'TX', 'AX', 'LA', 'NM', 'CA', 'GA'}
-2024-10-10 17:27:39,154 - INFO - The 11 call passes areas: {'MN', 'MI', 'IL', 'ID', 'WI', 'RA', 'MT', 'ND', 'WA'}
-2024-10-10 17:27:39,154 - INFO - The 12 call passes areas: {'MS', 'AL', 'TX', 'NY', 'NC', 'LA', 'RA', 'MD', 'GA', 'SC'}
-2024-10-10 17:27:39,154 - INFO - The 16 call passes areas: {'MS', 'AL', 'TX', 'AR', 'IL', 'LA', 'NF', 'IA', 'CO', 'MO', 'GA'}
-2024-10-10 17:27:39,155 - INFO - The 18 call passes areas: {'MS', 'AL', 'TX', 'PA', 'NJ', 'LA', 'NC', 'MD', 'GA', 'SC'}
-2024-10-10 17:27:39,155 - INFO - The 19 call passes areas: {'MI', 'PA', 'IL', 'NJ', 'RA'}
-2024-10-10 17:27:39,155 - INFO - The 20 call passes areas: {'IL', 'MI', 'RA'}
-2024-10-10 17:27:39,155 - INFO - The 22 call passes areas: {'IL', 'NF', 'IA', 'NE'}
-2024-10-10 17:27:39,155 - INFO - The 23 call passes areas: {'IL', 'NY', 'MI', 'RA'}
-2024-10-10 17:27:39,155 - INFO - The 24 call passes areas: {'MS', 'AL', 'TX', 'AX', 'LA', 'NM', 'CA', 'GA'}
-2024-10-10 17:27:39,155 - INFO - The 25 call passes areas: {'NV', 'MI', 'IL', 'NF', 'IA', 'CO', 'CA', 'UT'}
-2024-10-10 17:27:39,155 - INFO - The 26 call passes areas: {'NV', 'MI', 'IL', 'NF', 'IA', 'CO', 'RA', 'CA', 'UT'}
-2024-10-10 17:27:39,155 - INFO - The 27 call passes areas: {'CA', 'OR', 'WA'}
-2024-10-10 17:27:39,155 - INFO - The 28 call passes areas: {'MI', 'TN', 'IL', 'KY', 'RA', 'GA'}
-2024-10-10 17:27:39,155 - INFO - The 30 call passes areas: {'CA', 'OR', 'WA'}
-2024-10-10 17:27:39,155 - INFO - The 31 call passes areas: {'MS', 'AL', 'TX', 'AX', 'NC', 'LA', 'NM', 'GA', 'MD', 'CA', 'OR', 'WA', 'SC'}
-2024-10-10 17:27:39,155 - INFO - The 32 call passes areas: {'NV', 'WA', 'CO', 'CA', 'OR', 'UT'}
-2024-10-10 17:27:39,155 - INFO - The 33 call passes areas: {'CO', 'UT'}
-2024-10-10 17:27:39,155 - INFO - The 34 call passes areas: {'MS', 'AL', 'TX', 'AR', 'IL', 'LA', 'NF', 'NE', 'CO', 'IA', 'MO', 'GA'}
-2024-10-10 17:27:39,155 - INFO - The 35 call passes areas: {'IL'}
-2024-10-10 17:27:39,155 - INFO - The 36 call passes areas: {'MS', 'AL', 'TX', 'AR', 'IL', 'LA', 'NF', 'IA', 'CO', 'GA', 'MO', 'UT'}
-2024-10-10 17:27:39,155 - INFO - The 37 call passes areas: {'MI', 'IL', 'NY', 'NJ', 'NF', 'IA', 'UT', 'CO', 'CA', 'NV'}
-2024-10-10 17:27:39,155 - INFO - The 38 call passes areas: {'MS', 'AL', 'TX', 'LA', 'GA'}
-2024-10-10 17:27:39,155 - INFO - The 39 call passes areas: {'CA'}
-2024-10-10 17:27:39,155 - INFO - The 41 call passes areas: {'MI', 'TN', 'IL', 'KY', 'RA', 'GA'}
-2024-10-10 17:27:39,155 - INFO - The 42 call passes areas: {'CO', 'CA', 'UT', 'NV'}
-2024-10-10 17:27:39,155 - INFO - The 43 call passes areas: {'MS', 'AL', 'TX', 'NC', 'LA', 'MD', 'GA', 'SC'}
-2024-10-10 17:27:39,155 - INFO - The 44 call passes areas: {'MI', 'IL', 'NF', 'IA', 'CO', 'UT'}
-2024-10-10 17:27:39,155 - INFO - The 45 call passes areas: {'NV', 'MI', 'IL', 'NY', 'NF', 'IA', 'CO', 'CA', 'UT'}
-2024-10-10 17:27:39,155 - INFO - The 46 call passes areas: {'CO', 'CA', 'UT', 'NV'}
-2024-10-10 17:27:39,155 - INFO - The 48 call passes areas: {'MI', 'IL', 'NY', 'NF', 'IA', 'UT', 'CO', 'CA', 'NV'}
-2024-10-10 17:27:39,155 - INFO - The 49 call passes areas: {'NV', 'MI', 'IL', 'WA', 'NF', 'IA', 'CO', 'CA', 'OR', 'UT'}
-2024-10-10 17:27:39,156 - INFO - The 35 call is changed.
-2024-10-10 17:27:39,156 - INFO - The 39 call is changed.
-2024-10-10 17:27:39,156 - INFO - After departure event 4, unable areas have [].
-2024-10-10 17:27:39,156 - INFO - Prune topology has [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13] nodes.
-2024-10-10 17:27:39,156 - INFO - The 6 call passes areas: {'MI', 'TX', 'AR', 'IL', 'NF', 'IA', 'CO', 'MO', 'UT'}
-2024-10-10 17:27:39,156 - INFO - The 16 call passes areas: {'MS', 'AL', 'TX', 'AR', 'IL', 'LA', 'NF', 'IA', 'CO', 'MO', 'GA'}
-2024-10-10 17:27:39,156 - INFO - The 34 call passes areas: {'MS', 'AL', 'TX', 'AR', 'IL', 'LA', 'NF', 'NE', 'CO', 'IA', 'MO', 'GA'}
-2024-10-10 17:27:39,156 - INFO - The 36 call passes areas: {'MS', 'AL', 'TX', 'AR', 'IL', 'LA', 'NF', 'IA', 'CO', 'GA', 'MO', 'UT'}
-2024-10-10 17:27:39,156 - INFO - The 6 call is restored.
-2024-10-10 17:27:39,156 - INFO - The 16 call is restored.
-2024-10-10 17:27:39,156 - INFO - The 34 call is restored.
-2024-10-10 17:27:39,157 - INFO - The 36 call is restored.
-2024-10-10 17:27:48,814 - INFO - Attacked areas: ['MO']
-2024-10-10 17:27:48,814 - INFO - Potential areas: ['CA', 'TX', 'UT', 'GA']
-2024-10-10 17:27:48,814 - INFO - The 1 call passes areas: {'NV', 'CO', 'UT', 'CA', 'OR', 'WA'}
-2024-10-10 17:27:48,814 - INFO - The 2 call passes areas: {'MN', 'MS', 'AL', 'TX', 'AX', 'IL', 'ID', 'NM', 'LA', 'GA', 'WI', 'MT', 'CA', 'OR', 'ND', 'WA'}
-2024-10-10 17:27:48,814 - INFO - The 4 call passes areas: {'MI', 'IL', 'NY', 'NF', 'IA', 'CO', 'UT'}
-2024-10-10 17:27:48,814 - INFO - The 6 call passes areas: {'MS', 'AL', 'MI', 'TX', 'NY', 'NC', 'LA', 'RA', 'MD', 'GA', 'SC'}
-2024-10-10 17:27:48,815 - INFO - The 7 call passes areas: {'TX', 'AX', 'NM', 'CA', 'OR', 'WA'}
-2024-10-10 17:27:48,815 - INFO - The 8 call passes areas: {'CA', 'OR', 'WA'}
-2024-10-10 17:27:48,815 - INFO - The 10 call passes areas: {'MS', 'AL', 'TX', 'AX', 'LA', 'NM', 'CA', 'GA'}
-2024-10-10 17:27:48,815 - INFO - The 12 call passes areas: {'MS', 'AL', 'TX', 'NY', 'NC', 'LA', 'RA', 'MD', 'GA', 'SC'}
-2024-10-10 17:27:48,815 - INFO - The 13 call passes areas: {'TN', 'NY', 'KY', 'RA', 'MD', 'GA'}
-2024-10-10 17:27:48,815 - INFO - The 15 call passes areas: {'TN', 'MI', 'NY', 'KY', 'RA', 'GA'}
-2024-10-10 17:27:48,815 - INFO - The 16 call passes areas: {'MS', 'AL', 'TX', 'AR', 'IL', 'LA', 'NF', 'IA', 'CO', 'MO', 'GA'}
-2024-10-10 17:27:48,815 - INFO - The 17 call passes areas: {'TN', 'PA', 'NJ', 'KY', 'RA', 'GA'}
-2024-10-10 17:27:48,815 - INFO - The 18 call passes areas: {'MS', 'AL', 'TX', 'PA', 'NJ', 'LA', 'NC', 'MD', 'GA', 'SC'}
-2024-10-10 17:27:48,815 - INFO - The 24 call passes areas: {'MS', 'AL', 'TX', 'AX', 'LA', 'NM', 'CA', 'GA'}
-2024-10-10 17:27:48,815 - INFO - The 25 call passes areas: {'NV', 'MI', 'IL', 'NF', 'IA', 'CO', 'CA', 'UT'}
-2024-10-10 17:27:48,815 - INFO - The 26 call passes areas: {'NV', 'MI', 'IL', 'NF', 'IA', 'CO', 'RA', 'CA', 'UT'}
-2024-10-10 17:27:48,815 - INFO - The 27 call passes areas: {'CA', 'OR', 'WA'}
-2024-10-10 17:27:48,815 - INFO - The 28 call passes areas: {'MI', 'TN', 'IL', 'KY', 'RA', 'GA'}
-2024-10-10 17:27:48,815 - INFO - The 30 call passes areas: {'CA', 'OR', 'WA'}
-2024-10-10 17:27:48,815 - INFO - The 31 call passes areas: {'MS', 'AL', 'TX', 'AX', 'NC', 'LA', 'NM', 'GA', 'MD', 'CA', 'OR', 'WA', 'SC'}
-2024-10-10 17:27:48,815 - INFO - The 32 call passes areas: {'NV', 'WA', 'CO', 'CA', 'OR', 'UT'}
-2024-10-10 17:27:48,815 - INFO - The 33 call passes areas: {'CO', 'UT'}
-2024-10-10 17:27:48,815 - INFO - The 34 call passes areas: {'MS', 'AL', 'TX', 'AR', 'IL', 'LA', 'NF', 'NE', 'CO', 'IA', 'MO', 'GA'}
-2024-10-10 17:27:48,815 - INFO - The 36 call passes areas: {'MS', 'AL', 'TX', 'AR', 'IL', 'LA', 'NF', 'IA', 'CO', 'GA', 'MO', 'UT'}
-2024-10-10 17:27:48,815 - INFO - The 37 call passes areas: {'MI', 'IL', 'NY', 'NJ', 'NF', 'IA', 'UT', 'CO', 'CA', 'NV'}
-2024-10-10 17:27:48,815 - INFO - The 38 call passes areas: {'MS', 'AL', 'TX', 'LA', 'GA'}
-2024-10-10 17:27:48,815 - INFO - The 39 call passes areas: {'CA'}
-2024-10-10 17:27:48,815 - INFO - The 41 call passes areas: {'MI', 'TN', 'IL', 'KY', 'RA', 'GA'}
-2024-10-10 17:27:48,815 - INFO - The 42 call passes areas: {'CO', 'CA', 'UT', 'NV'}
-2024-10-10 17:27:48,815 - INFO - The 43 call passes areas: {'MS', 'AL', 'TX', 'NC', 'LA', 'MD', 'GA', 'SC'}
-2024-10-10 17:27:48,815 - INFO - The 44 call passes areas: {'MI', 'IL', 'NF', 'IA', 'CO', 'UT'}
-2024-10-10 17:27:48,815 - INFO - The 45 call passes areas: {'NV', 'MI', 'IL', 'NY', 'NF', 'IA', 'CO', 'CA', 'UT'}
-2024-10-10 17:27:48,816 - INFO - The 46 call passes areas: {'CO', 'CA', 'UT', 'NV'}
-2024-10-10 17:27:48,816 - INFO - The 48 call passes areas: {'MI', 'IL', 'NY', 'NF', 'IA', 'UT', 'CO', 'CA', 'NV'}
-2024-10-10 17:27:48,816 - INFO - The 49 call passes areas: {'NV', 'MI', 'IL', 'WA', 'NF', 'IA', 'CO', 'CA', 'OR', 'UT'}
-2024-10-10 17:27:48,816 - INFO - The 1 call is changed.
-2024-10-10 17:27:48,816 - INFO - The 2 call is changed.
-2024-10-10 17:27:48,816 - INFO - The 4 call is changed.
-2024-10-10 17:27:48,816 - INFO - The 13 call is changed.
-2024-10-10 17:27:48,816 - INFO - The 15 call is changed.
-2024-10-10 17:27:48,816 - INFO - The 16 call is changed.
-2024-10-10 17:27:48,816 - INFO - The 17 call is changed.
-2024-10-10 17:27:48,816 - INFO - The 25 call is changed.
-2024-10-10 17:27:48,816 - INFO - The 28 call is changed.
-2024-10-10 17:27:48,816 - INFO - The 31 call is changed.
-2024-10-10 17:27:48,816 - INFO - The 32 call is changed.
-2024-10-10 17:27:48,816 - INFO - The 34 call is changed.
-2024-10-10 17:27:48,816 - INFO - The 39 call is changed.
-2024-10-10 17:27:48,816 - INFO - The 41 call is changed.
-2024-10-10 17:27:48,816 - INFO - The 45 call is changed.
-2024-10-10 17:27:48,816 - INFO - The 49 call is changed.
-2024-10-10 17:27:48,817 - INFO - Prune topology has [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13] nodes.
-2024-10-10 17:27:48,817 - INFO - The 16 call passes areas: {'MS', 'AL', 'TX', 'AR', 'IL', 'LA', 'NF', 'IA', 'CO', 'MO', 'GA'}
-2024-10-10 17:27:48,817 - INFO - The 34 call passes areas: {'MS', 'AL', 'TX', 'AR', 'IL', 'LA', 'NF', 'NE', 'CO', 'IA', 'MO', 'GA'}
-2024-10-10 17:27:48,817 - INFO - The 36 call passes areas: {'MS', 'AL', 'TX', 'AR', 'IL', 'LA', 'NF', 'IA', 'CO', 'GA', 'MO', 'UT'}
-2024-10-10 17:27:48,817 - INFO - The 16 call is restored.
-2024-10-10 17:27:48,817 - INFO - The 34 call is restored.
-2024-10-10 17:27:48,817 - INFO - The 36 call is restored.
+2024-10-14 10:13:57,823 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\simulator.py - __main__ - Construct the physical topology.
+2024-10-14 10:13:57,824 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\network\topology.py - network.topology - Read the config file "./topology/NSFNet.xml".
+2024-10-14 10:13:57,825 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\network\topology.py - network.topology - Add 14 nodes and 22 links.
+2024-10-14 10:13:57,827 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\simulator.py - __main__ - Done.
+2024-10-14 10:13:57,827 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\simulator.py - __main__ - Generate the attack events.
+2024-10-14 10:13:57,827 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\network\generator.py - network.generator - Read the config file ./topology/NSFNet.xml.
+2024-10-14 10:13:57,828 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\network\generator.py - network.generator - There are 1 kinds of events.
+2024-10-14 10:13:57,828 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\network\generator.py - network.generator - Mean arrival time (¦Ë) is 20.0 seconds, mean holding time (¦Ì) is 20.0 seconds, intensity (¦Ñ) is 1.0.
+2024-10-14 10:13:57,829 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\network\generator.py - network.generator - Generate 40 events.
+2024-10-14 10:13:57,829 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\simulator.py - __main__ - Done.
+2024-10-14 10:13:57,829 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\simulator.py - __main__ - Load the statistic module.
+2024-10-14 10:13:57,829 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\simulator.py - __main__ - Start the control plane.
+2024-10-14 10:13:57,829 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\network\controller.py - network.controller - Load the CAR algorithm.
+2024-10-14 10:13:57,829 - INFO - Prune topology has [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13] nodes.
+2024-10-14 10:13:57,830 - INFO - The 1 call passes areas: {'CA', 'NM', 'TX', 'MS', 'AL', 'WA', 'GA', 'OR', 'LA', 'AX'}
+2024-10-14 10:13:57,830 - INFO - The 10 call passes areas: {'IL', 'TX', 'CO', 'NF', 'MS', 'AL', 'NC', 'NE', 'IA', 'GA', 'SC', 'LA', 'AR', 'MD', 'MO'}
+2024-10-14 10:13:57,830 - INFO - The 11 call passes areas: {'RA', 'TX', 'MS', 'AL', 'GA', 'LA', 'KY', 'TN'}
+2024-10-14 10:13:57,830 - INFO - The 17 call passes areas: {'RA', 'NY', 'CA', 'TX', 'NM', 'MS', 'AL', 'NC', 'AX', 'GA', 'SC', 'LA', 'MD'}
+2024-10-14 10:13:57,830 - INFO - The 18 call passes areas: {'IL', 'TX', 'CO', 'NF', 'MS', 'AL', 'NC', 'IA', 'UT', 'GA', 'SC', 'LA', 'AR', 'MD', 'MO'}
+2024-10-14 10:13:57,830 - INFO - The 20 call passes areas: {'TX', 'MS', 'AL', 'NC', 'GA', 'SC', 'LA', 'MD'}
+2024-10-14 10:13:57,830 - INFO - The 32 call passes areas: {'TX', 'MS', 'AL', 'NC', 'GA', 'SC', 'LA', 'MD'}
+2024-10-14 10:13:57,830 - INFO - The 35 call passes areas: {'IL', 'TX', 'CO', 'NF', 'MS', 'AL', 'NC', 'NE', 'IA', 'GA', 'SC', 'LA', 'AR', 'MD', 'MO'}
+2024-10-14 10:13:57,830 - INFO - The 49 call passes areas: {'CA', 'NM', 'TX', 'MS', 'AL', 'PA', 'NJ', 'NC', 'GA', 'SC', 'LA', 'AX', 'MD'}
+2024-10-14 10:13:57,830 - INFO - The 1 call is restored.
+2024-10-14 10:13:57,830 - INFO - The 10 call is restored.
+2024-10-14 10:13:57,830 - INFO - The 11 call is restored.
+2024-10-14 10:13:57,830 - INFO - The 17 call is restored.
+2024-10-14 10:13:57,830 - INFO - The 18 call is restored.
+2024-10-14 10:13:57,830 - INFO - The 20 call is restored.
+2024-10-14 10:13:57,830 - INFO - The 32 call is restored.
+2024-10-14 10:13:57,830 - INFO - The 35 call is restored.
+2024-10-14 10:13:57,830 - INFO - The 49 call is restored.
+2024-10-14 10:14:10,076 - INFO - Attacked areas: ['LA']
+2024-10-14 10:14:10,090 - INFO - Potential areas: ['IL', 'RA', 'CA', 'CO']
+2024-10-14 10:14:10,090 - INFO - The 0 call passes areas: {'IL', 'TX', 'CO', 'NF', 'IA', 'MO', 'AR'}
+2024-10-14 10:14:10,090 - INFO - The 1 call passes areas: {'IL', 'ID', 'RA', 'MN', 'WA', 'MT', 'MI', 'ND', 'GA', 'KY', 'TN', 'WI'}
+2024-10-14 10:14:10,091 - INFO - The 2 call passes areas: {'MI', 'RA', 'NY', 'MD'}
+2024-10-14 10:14:10,091 - INFO - The 3 call passes areas: {'CA', 'WA', 'OR'}
+2024-10-14 10:14:10,091 - INFO - The 4 call passes areas: {'CA'}
+2024-10-14 10:14:10,091 - INFO - The 5 call passes areas: {'IL', 'CA', 'CO', 'NF', 'NE', 'IA', 'UT', 'NV'}
+2024-10-14 10:14:10,091 - INFO - The 6 call passes areas: {'IL', 'CA', 'NY', 'CO', 'NF', 'NJ', 'IA', 'MI', 'UT', 'NV'}
+2024-10-14 10:14:10,091 - INFO - The 7 call passes areas: {'PA', 'RA', 'NJ', 'MD'}
+2024-10-14 10:14:10,091 - INFO - The 8 call passes areas: {'IL', 'MI', 'RA', 'NY'}
+2024-10-14 10:14:10,091 - INFO - The 9 call passes areas: {'IL', 'CA', 'CO', 'NF', 'NE', 'IA', 'UT', 'NV'}
+2024-10-14 10:14:10,091 - INFO - The 10 call passes areas: {'IL', 'RA', 'NY', 'NF', 'NE', 'IA', 'MI', 'MD'}
+2024-10-14 10:14:10,091 - INFO - The 11 call passes areas: {'RA', 'TX', 'MS', 'AL', 'GA', 'LA', 'KY', 'TN'}
+2024-10-14 10:14:10,091 - INFO - The 12 call passes areas: {'MI', 'RA', 'NY'}
+2024-10-14 10:14:10,091 - INFO - The 13 call passes areas: {'IL', 'CA', 'NY', 'CO', 'NF', 'NJ', 'IA', 'UT', 'MI', 'NV'}
+2024-10-14 10:14:10,091 - INFO - The 14 call passes areas: {'CA', 'WA', 'OR'}
+2024-10-14 10:14:10,091 - INFO - The 15 call passes areas: {'MI', 'RA', 'NY', 'MD'}
+2024-10-14 10:14:10,091 - INFO - The 16 call passes areas: {'CA', 'NM', 'TX', 'WA', 'OR', 'AX'}
+2024-10-14 10:14:10,091 - INFO - The 17 call passes areas: {'RA', 'NY', 'CA', 'TX', 'NM', 'MS', 'AL', 'NC', 'AX', 'GA', 'SC', 'LA', 'MD'}
+2024-10-14 10:14:10,091 - INFO - The 18 call passes areas: {'IL', 'RA', 'NY', 'CO', 'NF', 'IA', 'MI', 'UT', 'MD'}
+2024-10-14 10:14:10,091 - INFO - The 19 call passes areas: {'IL', 'NF', 'NE', 'IA'}
+2024-10-14 10:14:10,091 - INFO - The 20 call passes areas: {'IL', 'RA', 'NY', 'TX', 'CO', 'NF', 'IA', 'MI', 'UT', 'MO', 'AR', 'MD'}
+2024-10-14 10:14:10,091 - INFO - The 22 call passes areas: {'NF', 'NE', 'CO'}
+2024-10-14 10:14:10,091 - INFO - The 23 call passes areas: {'PA', 'RA', 'NJ'}
+2024-10-14 10:14:10,091 - INFO - The 24 call passes areas: {'CA', 'NM', 'TX', 'WA', 'OR', 'AX'}
+2024-10-14 10:14:10,092 - INFO - The 25 call passes areas: {'CA', 'CO', 'WA', 'UT', 'OR', 'NV'}
+2024-10-14 10:14:10,092 - INFO - The 26 call passes areas: {'IL', 'RA', 'NF', 'NE', 'IA', 'MI', 'GA', 'KY', 'TN'}
+2024-10-14 10:14:10,092 - INFO - The 27 call passes areas: {'CA', 'WA', 'UT', 'OR', 'NV'}
+2024-10-14 10:14:10,092 - INFO - The 28 call passes areas: {'UT', 'CO'}
+2024-10-14 10:14:10,092 - INFO - The 29 call passes areas: {'IL', 'ID', 'RA', 'MN', 'NJ', 'WA', 'MT', 'MI', 'ND', 'PA', 'WI'}
+2024-10-14 10:14:10,092 - INFO - The 30 call passes areas: {'IL', 'RA', 'CA', 'CO', 'NF', 'IA', 'UT', 'MI', 'NV'}
+2024-10-14 10:14:10,092 - INFO - The 31 call passes areas: {'IL', 'CO', 'NF', 'NE', 'IA'}
+2024-10-14 10:14:10,092 - INFO - The 32 call passes areas: {'RA', 'NY', 'GA', 'KY', 'TN', 'MD'}
+2024-10-14 10:14:10,092 - INFO - The 33 call passes areas: {'RA', 'NY'}
+2024-10-14 10:14:10,092 - INFO - The 34 call passes areas: {'IL', 'CA', 'NM', 'TX', 'CO', 'NF', 'IA', 'UT', 'AX', 'NV'}
+2024-10-14 10:14:10,092 - INFO - The 35 call passes areas: {'IL', 'TX', 'CO', 'NF', 'MS', 'AL', 'NC', 'NE', 'IA', 'GA', 'SC', 'LA', 'AR', 'MD', 'MO'}
+2024-10-14 10:14:10,092 - INFO - The 36 call passes areas: {'UT', 'CA', 'NV'}
+2024-10-14 10:14:10,092 - INFO - The 38 call passes areas: {'IL', 'NF', 'NE', 'IA'}
+2024-10-14 10:14:10,092 - INFO - The 40 call passes areas: {'IL', 'ID', 'RA', 'MN', 'WA', 'MT', 'MI', 'ND', 'GA', 'KY', 'TN', 'WI'}
+2024-10-14 10:14:10,092 - INFO - The 41 call passes areas: {'IL', 'ID', 'RA', 'MN', 'WA', 'MT', 'MI', 'ND', 'WI'}
+2024-10-14 10:14:10,092 - INFO - The 42 call passes areas: {'IL', 'TX', 'CO', 'NF', 'IA', 'MO', 'AR'}
+2024-10-14 10:14:10,092 - INFO - The 43 call passes areas: {'IL', 'CA', 'CO', 'NF', 'NE', 'IA', 'UT', 'NV'}
+2024-10-14 10:14:10,092 - INFO - The 44 call passes areas: {'UT', 'NV', 'CA', 'CO'}
+2024-10-14 10:14:10,092 - INFO - The 45 call passes areas: {'CA', 'WA', 'OR'}
+2024-10-14 10:14:10,092 - INFO - The 46 call passes areas: {'RA', 'NY'}
+2024-10-14 10:14:10,092 - INFO - The 47 call passes areas: {'IL', 'RA', 'NY', 'NJ', 'MI', 'PA'}
+2024-10-14 10:14:10,092 - INFO - The 48 call passes areas: {'NF', 'UT', 'NE', 'CO'}
+2024-10-14 10:14:10,092 - INFO - The 49 call passes areas: {'CA', 'NM', 'TX', 'MS', 'AL', 'PA', 'NJ', 'NC', 'GA', 'SC', 'LA', 'AX', 'MD'}
+2024-10-14 10:14:10,092 - INFO - The 2 call is changed.
+2024-10-14 10:14:10,092 - INFO - The 4 call is changed.
+2024-10-14 10:14:10,092 - INFO - The 15 call is changed.
+2024-10-14 10:14:10,096 - INFO - After departure event 0, unable areas have [].
+2024-10-14 10:14:10,096 - INFO - Prune topology has [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13] nodes.
+2024-10-14 10:14:10,096 - INFO - The 5 call passes areas: {'IL', 'CA', 'CO', 'NF', 'NE', 'IA', 'UT', 'NV'}
+2024-10-14 10:14:10,096 - INFO - The 6 call passes areas: {'IL', 'CA', 'NY', 'CO', 'NF', 'NJ', 'IA', 'MI', 'UT', 'NV'}
+2024-10-14 10:14:10,097 - INFO - The 9 call passes areas: {'IL', 'CA', 'CO', 'NF', 'NE', 'IA', 'UT', 'NV'}
+2024-10-14 10:14:10,097 - INFO - The 13 call passes areas: {'IL', 'CA', 'NY', 'CO', 'NF', 'NJ', 'IA', 'UT', 'MI', 'NV'}
+2024-10-14 10:14:10,097 - INFO - The 25 call passes areas: {'CA', 'CO', 'WA', 'UT', 'OR', 'NV'}
+2024-10-14 10:14:10,097 - INFO - The 27 call passes areas: {'CA', 'WA', 'UT', 'OR', 'NV'}
+2024-10-14 10:14:10,097 - INFO - The 30 call passes areas: {'IL', 'RA', 'CA', 'CO', 'NF', 'IA', 'UT', 'MI', 'NV'}
+2024-10-14 10:14:10,097 - INFO - The 34 call passes areas: {'IL', 'CA', 'NM', 'TX', 'CO', 'NF', 'IA', 'UT', 'AX', 'NV'}
+2024-10-14 10:14:10,097 - INFO - The 36 call passes areas: {'UT', 'CA', 'NV'}
+2024-10-14 10:14:10,097 - INFO - The 43 call passes areas: {'IL', 'CA', 'CO', 'NF', 'NE', 'IA', 'UT', 'NV'}
+2024-10-14 10:14:10,097 - INFO - The 44 call passes areas: {'UT', 'NV', 'CA', 'CO'}
+2024-10-14 10:14:10,097 - INFO - The 5 call is restored.
+2024-10-14 10:14:10,097 - INFO - The 6 call is restored.
+2024-10-14 10:14:10,097 - INFO - The 9 call is restored.
+2024-10-14 10:14:10,097 - INFO - The 13 call is restored.
+2024-10-14 10:14:10,097 - INFO - The 25 call is restored.
+2024-10-14 10:14:10,097 - INFO - The 27 call is restored.
+2024-10-14 10:14:10,097 - INFO - The 30 call is restored.
+2024-10-14 10:14:10,097 - INFO - The 34 call is restored.
+2024-10-14 10:14:10,097 - INFO - The 36 call is restored.
+2024-10-14 10:14:10,097 - INFO - The 43 call is restored.
+2024-10-14 10:14:10,097 - INFO - The 44 call is restored.
+2024-10-14 10:14:21,421 - INFO - Attacked areas: ['NV']
+2024-10-14 10:14:21,421 - INFO - Potential areas: ['RA', 'NY', 'CA', 'CO']
+2024-10-14 10:14:21,422 - INFO - The 0 call passes areas: {'IL', 'TX', 'CO', 'NF', 'IA', 'MO', 'AR'}
+2024-10-14 10:14:21,422 - INFO - The 1 call passes areas: {'IL', 'ID', 'RA', 'MN', 'WA', 'MT', 'MI', 'ND', 'GA', 'KY', 'TN', 'WI'}
+2024-10-14 10:14:21,422 - INFO - The 2 call passes areas: {'NY', 'NJ', 'MI', 'PA', 'MD'}
+2024-10-14 10:14:21,422 - INFO - The 3 call passes areas: {'CA', 'WA', 'OR'}
+2024-10-14 10:14:21,422 - INFO - The 4 call passes areas: {'CA'}
+2024-10-14 10:14:21,422 - INFO - The 5 call passes areas: {'IL', 'CA', 'NM', 'TX', 'CO', 'NF', 'NE', 'IA', 'MO', 'AR', 'AX'}
+2024-10-14 10:14:21,422 - INFO - The 6 call passes areas: {'IL', 'ID', 'RA', 'CA', 'MN', 'NJ', 'WA', 'MT', 'MI', 'ND', 'OR', 'PA', 'WI'}
+2024-10-14 10:14:21,422 - INFO - The 7 call passes areas: {'PA', 'RA', 'NJ', 'MD'}
+2024-10-14 10:14:21,422 - INFO - The 8 call passes areas: {'IL', 'MI', 'RA', 'NY'}
+2024-10-14 10:14:21,422 - INFO - The 9 call passes areas: {'IL', 'ID', 'CA', 'MN', 'NF', 'WA', 'NE', 'MT', 'IA', 'ND', 'OR', 'WI'}
+2024-10-14 10:14:21,422 - INFO - The 10 call passes areas: {'IL', 'RA', 'NY', 'NF', 'NE', 'IA', 'MI', 'MD'}
+2024-10-14 10:14:21,422 - INFO - The 11 call passes areas: {'RA', 'TX', 'MS', 'AL', 'GA', 'LA', 'KY', 'TN'}
+2024-10-14 10:14:21,422 - INFO - The 12 call passes areas: {'MI', 'RA', 'NY'}
+2024-10-14 10:14:21,422 - INFO - The 13 call passes areas: {'IL', 'ID', 'RA', 'CA', 'MN', 'WA', 'NJ', 'MT', 'MI', 'ND', 'OR', 'PA', 'WI'}
+2024-10-14 10:14:21,422 - INFO - The 14 call passes areas: {'CA', 'WA', 'OR'}
+2024-10-14 10:14:21,422 - INFO - The 15 call passes areas: {'NY', 'NJ', 'MI', 'PA', 'MD'}
+2024-10-14 10:14:21,422 - INFO - The 16 call passes areas: {'CA', 'NM', 'TX', 'WA', 'OR', 'AX'}
+2024-10-14 10:14:21,422 - INFO - The 17 call passes areas: {'RA', 'NY', 'CA', 'TX', 'NM', 'MS', 'AL', 'NC', 'AX', 'GA', 'SC', 'LA', 'MD'}
+2024-10-14 10:14:21,422 - INFO - The 18 call passes areas: {'IL', 'RA', 'NY', 'CO', 'NF', 'IA', 'MI', 'UT', 'MD'}
+2024-10-14 10:14:21,422 - INFO - The 20 call passes areas: {'IL', 'RA', 'NY', 'TX', 'CO', 'NF', 'IA', 'MI', 'UT', 'MO', 'AR', 'MD'}
+2024-10-14 10:14:21,422 - INFO - The 22 call passes areas: {'NF', 'NE', 'CO'}
+2024-10-14 10:14:21,422 - INFO - The 23 call passes areas: {'PA', 'RA', 'NJ'}
+2024-10-14 10:14:21,422 - INFO - The 24 call passes areas: {'CA', 'NM', 'TX', 'WA', 'OR', 'AX'}
+2024-10-14 10:14:21,422 - INFO - The 25 call passes areas: {'IL', 'ID', 'MN', 'CO', 'NF', 'WA', 'NE', 'MT', 'IA', 'ND', 'WI'}
+2024-10-14 10:14:21,422 - INFO - The 26 call passes areas: {'IL', 'RA', 'NF', 'NE', 'IA', 'MI', 'GA', 'KY', 'TN'}
+2024-10-14 10:14:21,422 - INFO - The 27 call passes areas: {'IL', 'CA', 'NM', 'TX', 'CO', 'NF', 'WA', 'IA', 'UT', 'OR', 'MO', 'AR', 'AX'}
+2024-10-14 10:14:21,422 - INFO - The 28 call passes areas: {'UT', 'CO'}
+2024-10-14 10:14:21,423 - INFO - The 29 call passes areas: {'IL', 'ID', 'RA', 'MN', 'NJ', 'WA', 'MT', 'MI', 'ND', 'PA', 'WI'}
+2024-10-14 10:14:21,423 - INFO - The 30 call passes areas: {'IL', 'RA', 'CA', 'CO', 'NF', 'IA', 'UT', 'MI', 'NV'}
+2024-10-14 10:14:21,423 - INFO - The 31 call passes areas: {'IL', 'CO', 'NF', 'NE', 'IA'}
+2024-10-14 10:14:21,423 - INFO - The 32 call passes areas: {'RA', 'NY', 'GA', 'KY', 'TN', 'MD'}
+2024-10-14 10:14:21,423 - INFO - The 33 call passes areas: {'RA', 'NY'}
+2024-10-14 10:14:21,423 - INFO - The 34 call passes areas: {'IL', 'ID', 'CA', 'NM', 'TX', 'MN', 'WA', 'MT', 'ND', 'OR', 'AX', 'WI'}
+2024-10-14 10:14:21,423 - INFO - The 35 call passes areas: {'IL', 'TX', 'CO', 'NF', 'MS', 'AL', 'NC', 'NE', 'IA', 'GA', 'SC', 'LA', 'AR', 'MD', 'MO'}
+2024-10-14 10:14:21,423 - INFO - The 36 call passes areas: {'UT', 'CA', 'NV'}
+2024-10-14 10:14:21,423 - INFO - The 37 call passes areas: {'MI', 'NY', 'NJ'}
+2024-10-14 10:14:21,423 - INFO - The 39 call passes areas: {'NY'}
+2024-10-14 10:14:21,423 - INFO - The 40 call passes areas: {'IL', 'ID', 'RA', 'MN', 'WA', 'MT', 'MI', 'ND', 'GA', 'KY', 'TN', 'WI'}
+2024-10-14 10:14:21,423 - INFO - The 41 call passes areas: {'IL', 'ID', 'RA', 'MN', 'WA', 'MT', 'MI', 'ND', 'WI'}
+2024-10-14 10:14:21,423 - INFO - The 42 call passes areas: {'IL', 'TX', 'CO', 'NF', 'IA', 'MO', 'AR'}
+2024-10-14 10:14:21,423 - INFO - The 43 call passes areas: {'IL', 'CA', 'CO', 'NF', 'NE', 'IA', 'UT', 'NV'}
+2024-10-14 10:14:21,423 - INFO - The 44 call passes areas: {'UT', 'NV', 'CA', 'CO'}
+2024-10-14 10:14:21,423 - INFO - The 45 call passes areas: {'CA', 'WA', 'OR'}
+2024-10-14 10:14:21,423 - INFO - The 46 call passes areas: {'RA', 'NY'}
+2024-10-14 10:14:21,423 - INFO - The 47 call passes areas: {'IL', 'RA', 'NY', 'NJ', 'MI', 'PA'}
+2024-10-14 10:14:21,423 - INFO - The 48 call passes areas: {'NF', 'UT', 'NE', 'CO'}
+2024-10-14 10:14:21,423 - INFO - The 49 call passes areas: {'CA', 'NM', 'TX', 'MS', 'AL', 'PA', 'NJ', 'NC', 'GA', 'SC', 'LA', 'AX', 'MD'}
+2024-10-14 10:14:21,423 - INFO - The 4 call is changed.
+2024-10-14 10:14:21,423 - INFO - The 20 call is changed.
+2024-10-14 10:14:21,423 - INFO - The 32 call is changed.
+2024-10-14 10:14:21,423 - INFO - The 39 call is changed.
+2024-10-14 10:14:21,424 - INFO - After departure event 1, unable areas have [].
+2024-10-14 10:14:21,424 - INFO - Prune topology has [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13] nodes.
+2024-10-14 10:14:21,424 - INFO - The 5 call passes areas: {'IL', 'CA', 'NM', 'TX', 'CO', 'NF', 'NE', 'IA', 'MO', 'AR', 'AX'}
+2024-10-14 10:14:21,424 - INFO - The 16 call passes areas: {'CA', 'NM', 'TX', 'WA', 'OR', 'AX'}
+2024-10-14 10:14:21,424 - INFO - The 17 call passes areas: {'RA', 'NY', 'CA', 'TX', 'NM', 'MS', 'AL', 'NC', 'AX', 'GA', 'SC', 'LA', 'MD'}
+2024-10-14 10:14:21,424 - INFO - The 24 call passes areas: {'CA', 'NM', 'TX', 'WA', 'OR', 'AX'}
+2024-10-14 10:14:21,425 - INFO - The 27 call passes areas: {'IL', 'CA', 'NM', 'TX', 'CO', 'NF', 'WA', 'IA', 'UT', 'OR', 'MO', 'AR', 'AX'}
+2024-10-14 10:14:21,425 - INFO - The 34 call passes areas: {'IL', 'ID', 'CA', 'NM', 'TX', 'MN', 'WA', 'MT', 'ND', 'OR', 'AX', 'WI'}
+2024-10-14 10:14:21,425 - INFO - The 49 call passes areas: {'CA', 'NM', 'TX', 'MS', 'AL', 'PA', 'NJ', 'NC', 'GA', 'SC', 'LA', 'AX', 'MD'}
+2024-10-14 10:14:21,425 - INFO - The 5 call is restored.
+2024-10-14 10:14:21,425 - INFO - The 16 call is restored.
+2024-10-14 10:14:21,425 - INFO - The 17 call is restored.
+2024-10-14 10:14:21,425 - INFO - The 24 call is restored.
+2024-10-14 10:14:21,425 - INFO - The 27 call is restored.
+2024-10-14 10:14:21,425 - INFO - The 34 call is restored.
+2024-10-14 10:14:21,425 - INFO - The 49 call is restored.
+2024-10-14 10:14:32,179 - INFO - Attacked areas: ['NM']
+2024-10-14 10:14:32,179 - INFO - Potential areas: ['IL', 'RA', 'CA', 'CO']
+2024-10-14 10:14:32,179 - INFO - The 0 call passes areas: {'IL', 'TX', 'CO', 'NF', 'IA', 'MO', 'AR'}
+2024-10-14 10:14:32,179 - INFO - The 1 call passes areas: {'IL', 'ID', 'RA', 'MN', 'WA', 'MT', 'MI', 'ND', 'GA', 'KY', 'TN', 'WI'}
+2024-10-14 10:14:32,180 - INFO - The 3 call passes areas: {'CA', 'WA', 'OR'}
+2024-10-14 10:14:32,180 - INFO - The 4 call passes areas: {'CA'}
+2024-10-14 10:14:32,180 - INFO - The 5 call passes areas: {'IL', 'ID', 'CA', 'MN', 'NF', 'WA', 'NE', 'MT', 'IA', 'ND', 'OR', 'WI'}
+2024-10-14 10:14:32,180 - INFO - The 6 call passes areas: {'IL', 'ID', 'RA', 'CA', 'MN', 'NJ', 'WA', 'MT', 'MI', 'ND', 'OR', 'PA', 'WI'}
+2024-10-14 10:14:32,180 - INFO - The 7 call passes areas: {'PA', 'RA', 'NJ', 'MD'}
+2024-10-14 10:14:32,180 - INFO - The 8 call passes areas: {'IL', 'MI', 'RA', 'NY'}
+2024-10-14 10:14:32,180 - INFO - The 9 call passes areas: {'IL', 'ID', 'CA', 'MN', 'NF', 'WA', 'NE', 'MT', 'IA', 'ND', 'OR', 'WI'}
+2024-10-14 10:14:32,180 - INFO - The 10 call passes areas: {'IL', 'RA', 'NY', 'NF', 'NE', 'IA', 'MI', 'MD'}
+2024-10-14 10:14:32,180 - INFO - The 11 call passes areas: {'RA', 'TX', 'MS', 'AL', 'GA', 'LA', 'KY', 'TN'}
+2024-10-14 10:14:32,180 - INFO - The 12 call passes areas: {'MI', 'RA', 'NY'}
+2024-10-14 10:14:32,180 - INFO - The 13 call passes areas: {'IL', 'ID', 'RA', 'CA', 'MN', 'WA', 'NJ', 'MT', 'MI', 'ND', 'OR', 'PA', 'WI'}
+2024-10-14 10:14:32,180 - INFO - The 14 call passes areas: {'CA', 'WA', 'OR'}
+2024-10-14 10:14:32,180 - INFO - The 16 call passes areas: {'IL', 'CA', 'TX', 'CO', 'NF', 'WA', 'IA', 'UT', 'OR', 'MO', 'AR', 'NV'}
+2024-10-14 10:14:32,180 - INFO - The 17 call passes areas: {'IL', 'ID', 'RA', 'NY', 'CA', 'MN', 'WA', 'MT', 'MI', 'ND', 'OR', 'WI'}
+2024-10-14 10:14:32,180 - INFO - The 18 call passes areas: {'IL', 'RA', 'NY', 'CO', 'NF', 'IA', 'MI', 'UT', 'MD'}
+2024-10-14 10:14:32,180 - INFO - The 19 call passes areas: {'IL', 'NF', 'NE', 'IA'}
+2024-10-14 10:14:32,180 - INFO - The 22 call passes areas: {'NF', 'NE', 'CO'}
+2024-10-14 10:14:32,180 - INFO - The 23 call passes areas: {'PA', 'RA', 'NJ'}
+2024-10-14 10:14:32,180 - INFO - The 24 call passes areas: {'IL', 'CA', 'TX', 'CO', 'NF', 'WA', 'IA', 'UT', 'OR', 'MO', 'AR', 'NV'}
+2024-10-14 10:14:32,180 - INFO - The 25 call passes areas: {'IL', 'ID', 'MN', 'CO', 'NF', 'WA', 'NE', 'MT', 'IA', 'ND', 'WI'}
+2024-10-14 10:14:32,180 - INFO - The 26 call passes areas: {'IL', 'RA', 'NF', 'NE', 'IA', 'MI', 'GA', 'KY', 'TN'}
+2024-10-14 10:14:32,180 - INFO - The 27 call passes areas: {'CA', 'WA', 'UT', 'OR', 'NV'}
+2024-10-14 10:14:32,180 - INFO - The 28 call passes areas: {'UT', 'CO'}
+2024-10-14 10:14:32,180 - INFO - The 29 call passes areas: {'IL', 'ID', 'RA', 'MN', 'NJ', 'WA', 'MT', 'MI', 'ND', 'PA', 'WI'}
+2024-10-14 10:14:32,180 - INFO - The 30 call passes areas: {'IL', 'RA', 'CA', 'CO', 'NF', 'IA', 'UT', 'MI', 'NV'}
+2024-10-14 10:14:32,180 - INFO - The 31 call passes areas: {'IL', 'CO', 'NF', 'NE', 'IA'}
+2024-10-14 10:14:32,180 - INFO - The 33 call passes areas: {'RA', 'NY'}
+2024-10-14 10:14:32,180 - INFO - The 34 call passes areas: {'IL', 'TX', 'CO', 'NF', 'NE', 'IA', 'MO', 'AR'}
+2024-10-14 10:14:32,180 - INFO - The 35 call passes areas: {'IL', 'TX', 'CO', 'NF', 'MS', 'AL', 'NC', 'NE', 'IA', 'GA', 'SC', 'LA', 'AR', 'MD', 'MO'}
+2024-10-14 10:14:32,180 - INFO - The 36 call passes areas: {'UT', 'CA', 'NV'}
+2024-10-14 10:14:32,180 - INFO - The 38 call passes areas: {'IL', 'NF', 'NE', 'IA'}
+2024-10-14 10:14:32,181 - INFO - The 40 call passes areas: {'IL', 'ID', 'RA', 'MN', 'WA', 'MT', 'MI', 'ND', 'GA', 'KY', 'TN', 'WI'}
+2024-10-14 10:14:32,181 - INFO - The 41 call passes areas: {'IL', 'ID', 'RA', 'MN', 'WA', 'MT', 'MI', 'ND', 'WI'}
+2024-10-14 10:14:32,181 - INFO - The 42 call passes areas: {'IL', 'TX', 'CO', 'NF', 'IA', 'MO', 'AR'}
+2024-10-14 10:14:32,181 - INFO - The 43 call passes areas: {'IL', 'CA', 'CO', 'NF', 'NE', 'IA', 'UT', 'NV'}
+2024-10-14 10:14:32,181 - INFO - The 44 call passes areas: {'UT', 'NV', 'CA', 'CO'}
+2024-10-14 10:14:32,181 - INFO - The 45 call passes areas: {'CA', 'WA', 'OR'}
+2024-10-14 10:14:32,181 - INFO - The 46 call passes areas: {'RA', 'NY'}
+2024-10-14 10:14:32,181 - INFO - The 47 call passes areas: {'IL', 'RA', 'NY', 'NJ', 'MI', 'PA'}
+2024-10-14 10:14:32,181 - INFO - The 48 call passes areas: {'NF', 'UT', 'NE', 'CO'}
+2024-10-14 10:14:32,181 - INFO - The 49 call passes areas: {'IL', 'ID', 'RA', 'CA', 'MN', 'WA', 'NJ', 'MT', 'MI', 'ND', 'OR', 'PA', 'WI'}
+2024-10-14 10:14:32,181 - INFO - The 4 call is changed.
+2024-10-14 10:14:32,181 - INFO - After departure event 2, unable areas have [].
+2024-10-14 10:14:32,182 - INFO - Prune topology has [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13] nodes.
+2024-10-14 10:14:32,182 - INFO - The 16 call passes areas: {'IL', 'CA', 'TX', 'CO', 'NF', 'WA', 'IA', 'UT', 'OR', 'MO', 'AR', 'NV'}
+2024-10-14 10:14:32,182 - INFO - The 18 call passes areas: {'IL', 'RA', 'NY', 'CO', 'NF', 'IA', 'MI', 'UT', 'MD'}
+2024-10-14 10:14:32,182 - INFO - The 24 call passes areas: {'IL', 'CA', 'TX', 'CO', 'NF', 'WA', 'IA', 'UT', 'OR', 'MO', 'AR', 'NV'}
+2024-10-14 10:14:32,182 - INFO - The 27 call passes areas: {'CA', 'WA', 'UT', 'OR', 'NV'}
+2024-10-14 10:14:32,182 - INFO - The 28 call passes areas: {'UT', 'CO'}
+2024-10-14 10:14:32,182 - INFO - The 30 call passes areas: {'IL', 'RA', 'CA', 'CO', 'NF', 'IA', 'UT', 'MI', 'NV'}
+2024-10-14 10:14:32,182 - INFO - The 36 call passes areas: {'UT', 'CA', 'NV'}
+2024-10-14 10:14:32,182 - INFO - The 43 call passes areas: {'IL', 'CA', 'CO', 'NF', 'NE', 'IA', 'UT', 'NV'}
+2024-10-14 10:14:32,182 - INFO - The 44 call passes areas: {'UT', 'NV', 'CA', 'CO'}
+2024-10-14 10:14:32,182 - INFO - The 48 call passes areas: {'NF', 'UT', 'NE', 'CO'}
+2024-10-14 10:14:32,182 - INFO - The 16 call is restored.
+2024-10-14 10:14:32,182 - INFO - The 18 call is blocked.
+2024-10-14 10:14:32,182 - INFO - The 24 call is restored.
+2024-10-14 10:14:32,182 - INFO - The 27 call is blocked.
+2024-10-14 10:14:32,182 - INFO - The 28 call is blocked.
+2024-10-14 10:14:32,182 - INFO - The 30 call is restored.
+2024-10-14 10:14:32,182 - INFO - The 36 call is blocked.
+2024-10-14 10:14:32,182 - INFO - The 43 call is restored.
+2024-10-14 10:14:32,182 - INFO - The 44 call is restored.
+2024-10-14 10:14:32,182 - INFO - The 48 call is blocked.
+2024-10-14 10:14:42,534 - INFO - Attacked areas: ['UT']
+2024-10-14 10:14:42,535 - INFO - Potential areas: ['RA', 'CA', 'WA', 'TX']
+2024-10-14 10:14:42,535 - INFO - The 0 call passes areas: {'IL', 'TX', 'CO', 'NF', 'IA', 'MO', 'AR'}
+2024-10-14 10:14:42,535 - INFO - The 1 call passes areas: {'IL', 'ID', 'RA', 'MN', 'WA', 'MT', 'MI', 'ND', 'GA', 'KY', 'TN', 'WI'}
+2024-10-14 10:14:42,535 - INFO - The 3 call passes areas: {'CA', 'WA', 'OR'}
+2024-10-14 10:14:42,535 - INFO - The 4 call passes areas: {'CA'}
+2024-10-14 10:14:42,535 - INFO - The 5 call passes areas: {'IL', 'ID', 'CA', 'MN', 'NF', 'WA', 'NE', 'MT', 'IA', 'ND', 'OR', 'WI'}
+2024-10-14 10:14:42,535 - INFO - The 6 call passes areas: {'IL', 'ID', 'RA', 'CA', 'MN', 'NJ', 'WA', 'MT', 'MI', 'ND', 'OR', 'PA', 'WI'}
+2024-10-14 10:14:42,535 - INFO - The 7 call passes areas: {'PA', 'RA', 'NJ', 'MD'}
+2024-10-14 10:14:42,535 - INFO - The 8 call passes areas: {'IL', 'MI', 'RA', 'NY'}
+2024-10-14 10:14:42,535 - INFO - The 9 call passes areas: {'IL', 'ID', 'CA', 'MN', 'NF', 'WA', 'NE', 'MT', 'IA', 'ND', 'OR', 'WI'}
+2024-10-14 10:14:42,535 - INFO - The 10 call passes areas: {'IL', 'RA', 'NY', 'NF', 'NE', 'IA', 'MI', 'MD'}
+2024-10-14 10:14:42,535 - INFO - The 11 call passes areas: {'RA', 'TX', 'MS', 'AL', 'GA', 'LA', 'KY', 'TN'}
+2024-10-14 10:14:42,535 - INFO - The 12 call passes areas: {'MI', 'RA', 'NY'}
+2024-10-14 10:14:42,535 - INFO - The 13 call passes areas: {'IL', 'ID', 'RA', 'CA', 'MN', 'WA', 'NJ', 'MT', 'MI', 'ND', 'OR', 'PA', 'WI'}
+2024-10-14 10:14:42,535 - INFO - The 14 call passes areas: {'CA', 'WA', 'OR'}
+2024-10-14 10:14:42,535 - INFO - The 16 call passes areas: {'CA', 'NM', 'TX', 'WA', 'OR', 'AX'}
+2024-10-14 10:14:42,535 - INFO - The 17 call passes areas: {'IL', 'ID', 'RA', 'NY', 'CA', 'MN', 'WA', 'MT', 'MI', 'ND', 'OR', 'WI'}
+2024-10-14 10:14:42,535 - INFO - The 20 call passes areas: {'TX', 'MS', 'AL', 'NC', 'GA', 'SC', 'LA', 'MD'}
+2024-10-14 10:14:42,536 - INFO - The 23 call passes areas: {'PA', 'RA', 'NJ'}
+2024-10-14 10:14:42,536 - INFO - The 24 call passes areas: {'CA', 'NM', 'TX', 'WA', 'OR', 'AX'}
+2024-10-14 10:14:42,536 - INFO - The 25 call passes areas: {'IL', 'ID', 'MN', 'CO', 'NF', 'WA', 'NE', 'MT', 'IA', 'ND', 'WI'}
+2024-10-14 10:14:42,536 - INFO - The 26 call passes areas: {'IL', 'RA', 'NF', 'NE', 'IA', 'MI', 'GA', 'KY', 'TN'}
+2024-10-14 10:14:42,536 - INFO - The 29 call passes areas: {'IL', 'ID', 'RA', 'MN', 'NJ', 'WA', 'MT', 'MI', 'ND', 'PA', 'WI'}
+2024-10-14 10:14:42,536 - INFO - The 30 call passes areas: {'IL', 'ID', 'RA', 'CA', 'MN', 'WA', 'MT', 'MI', 'ND', 'OR', 'WI'}
+2024-10-14 10:14:42,536 - INFO - The 32 call passes areas: {'TX', 'MS', 'AL', 'NC', 'GA', 'SC', 'LA', 'MD'}
+2024-10-14 10:14:42,536 - INFO - The 33 call passes areas: {'RA', 'NY'}
+2024-10-14 10:14:42,536 - INFO - The 34 call passes areas: {'IL', 'TX', 'CO', 'NF', 'NE', 'IA', 'MO', 'AR'}
+2024-10-14 10:14:42,536 - INFO - The 35 call passes areas: {'IL', 'TX', 'CO', 'NF', 'MS', 'AL', 'NC', 'NE', 'IA', 'GA', 'SC', 'LA', 'AR', 'MD', 'MO'}
+2024-10-14 10:14:42,536 - INFO - The 40 call passes areas: {'IL', 'ID', 'RA', 'MN', 'WA', 'MT', 'MI', 'ND', 'GA', 'KY', 'TN', 'WI'}
+2024-10-14 10:14:42,536 - INFO - The 41 call passes areas: {'IL', 'ID', 'RA', 'MN', 'WA', 'MT', 'MI', 'ND', 'WI'}
+2024-10-14 10:14:42,536 - INFO - The 42 call passes areas: {'IL', 'TX', 'CO', 'NF', 'IA', 'MO', 'AR'}
+2024-10-14 10:14:42,536 - INFO - The 43 call passes areas: {'IL', 'ID', 'CA', 'MN', 'NF', 'WA', 'NE', 'MT', 'IA', 'ND', 'OR', 'WI'}
+2024-10-14 10:14:42,536 - INFO - The 44 call passes areas: {'IL', 'CA', 'NM', 'TX', 'CO', 'NF', 'IA', 'MO', 'AR', 'AX'}
+2024-10-14 10:14:42,536 - INFO - The 45 call passes areas: {'CA', 'WA', 'OR'}
+2024-10-14 10:14:42,536 - INFO - The 46 call passes areas: {'RA', 'NY'}
+2024-10-14 10:14:42,536 - INFO - The 47 call passes areas: {'IL', 'RA', 'NY', 'NJ', 'MI', 'PA'}
+2024-10-14 10:14:42,536 - INFO - The 49 call passes areas: {'IL', 'ID', 'RA', 'CA', 'MN', 'WA', 'NJ', 'MT', 'MI', 'ND', 'OR', 'PA', 'WI'}
+2024-10-14 10:14:42,536 - INFO - The 4 call is changed.
+2024-10-14 10:14:42,537 - INFO - After departure event 3, unable areas have [].
+2024-10-14 10:14:42,537 - INFO - The 18 call find path.
+2024-10-14 10:14:42,537 - INFO - The 27 call find path.
+2024-10-14 10:14:42,537 - INFO - The 28 call find path.
+2024-10-14 10:14:42,537 - INFO - The 36 call find path.
+2024-10-14 10:14:42,537 - INFO - The 48 call find path.
+2024-10-14 10:14:42,537 - INFO - Prune topology has [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13] nodes.
+2024-10-14 10:14:42,537 - INFO - The 1 call passes areas: {'IL', 'ID', 'RA', 'MN', 'WA', 'MT', 'MI', 'ND', 'GA', 'KY', 'TN', 'WI'}
+2024-10-14 10:14:42,537 - INFO - The 5 call passes areas: {'IL', 'ID', 'CA', 'MN', 'NF', 'WA', 'NE', 'MT', 'IA', 'ND', 'OR', 'WI'}
+2024-10-14 10:14:42,537 - INFO - The 6 call passes areas: {'IL', 'ID', 'RA', 'CA', 'MN', 'NJ', 'WA', 'MT', 'MI', 'ND', 'OR', 'PA', 'WI'}
+2024-10-14 10:14:42,537 - INFO - The 9 call passes areas: {'IL', 'ID', 'CA', 'MN', 'NF', 'WA', 'NE', 'MT', 'IA', 'ND', 'OR', 'WI'}
+2024-10-14 10:14:42,537 - INFO - The 13 call passes areas: {'IL', 'ID', 'RA', 'CA', 'MN', 'WA', 'NJ', 'MT', 'MI', 'ND', 'OR', 'PA', 'WI'}
+2024-10-14 10:14:42,537 - INFO - The 17 call passes areas: {'IL', 'ID', 'RA', 'NY', 'CA', 'MN', 'WA', 'MT', 'MI', 'ND', 'OR', 'WI'}
+2024-10-14 10:14:42,537 - INFO - The 25 call passes areas: {'IL', 'ID', 'MN', 'CO', 'NF', 'WA', 'NE', 'MT', 'IA', 'ND', 'WI'}
+2024-10-14 10:14:42,538 - INFO - The 29 call passes areas: {'IL', 'ID', 'RA', 'MN', 'NJ', 'WA', 'MT', 'MI', 'ND', 'PA', 'WI'}
+2024-10-14 10:14:42,538 - INFO - The 30 call passes areas: {'IL', 'ID', 'RA', 'CA', 'MN', 'WA', 'MT', 'MI', 'ND', 'OR', 'WI'}
+2024-10-14 10:14:42,538 - INFO - The 40 call passes areas: {'IL', 'ID', 'RA', 'MN', 'WA', 'MT', 'MI', 'ND', 'GA', 'KY', 'TN', 'WI'}
+2024-10-14 10:14:42,538 - INFO - The 41 call passes areas: {'IL', 'ID', 'RA', 'MN', 'WA', 'MT', 'MI', 'ND', 'WI'}
+2024-10-14 10:14:42,538 - INFO - The 43 call passes areas: {'IL', 'ID', 'CA', 'MN', 'NF', 'WA', 'NE', 'MT', 'IA', 'ND', 'OR', 'WI'}
+2024-10-14 10:14:42,538 - INFO - The 49 call passes areas: {'IL', 'ID', 'RA', 'CA', 'MN', 'WA', 'NJ', 'MT', 'MI', 'ND', 'OR', 'PA', 'WI'}
+2024-10-14 10:14:42,538 - INFO - The 1 call is restored.
+2024-10-14 10:14:42,538 - INFO - The 5 call is restored.
+2024-10-14 10:14:42,538 - INFO - The 6 call is restored.
+2024-10-14 10:14:42,538 - INFO - The 9 call is restored.
+2024-10-14 10:14:42,538 - INFO - The 13 call is restored.
+2024-10-14 10:14:42,538 - INFO - The 17 call is restored.
+2024-10-14 10:14:42,538 - INFO - The 25 call is restored.
+2024-10-14 10:14:42,538 - INFO - The 29 call is restored.
+2024-10-14 10:14:42,538 - INFO - The 30 call is restored.
+2024-10-14 10:14:42,538 - INFO - The 40 call is restored.
+2024-10-14 10:14:42,538 - INFO - The 41 call is restored.
+2024-10-14 10:14:42,538 - INFO - The 43 call is restored.
+2024-10-14 10:14:42,538 - INFO - The 49 call is restored.
+2024-10-14 10:14:53,094 - INFO - Attacked areas: ['MT']
+2024-10-14 10:14:53,094 - INFO - Potential areas: ['UT', 'CA', 'TX', 'CO']
+2024-10-14 10:14:53,094 - INFO - The 0 call passes areas: {'IL', 'TX', 'CO', 'NF', 'IA', 'MO', 'AR'}
+2024-10-14 10:14:53,095 - INFO - The 1 call passes areas: {'CA', 'NM', 'TX', 'MS', 'AL', 'WA', 'GA', 'OR', 'LA', 'AX'}
+2024-10-14 10:14:53,095 - INFO - The 3 call passes areas: {'CA', 'WA', 'OR'}
+2024-10-14 10:14:53,095 - INFO - The 4 call passes areas: {'CA'}
+2024-10-14 10:14:53,095 - INFO - The 5 call passes areas: {'IL', 'CA', 'NM', 'TX', 'CO', 'NF', 'NE', 'IA', 'MO', 'AR', 'AX'}
+2024-10-14 10:14:53,095 - INFO - The 6 call passes areas: {'IL', 'CA', 'NY', 'CO', 'NF', 'NJ', 'IA', 'MI', 'UT', 'NV'}
+2024-10-14 10:14:53,095 - INFO - The 9 call passes areas: {'IL', 'CA', 'CO', 'NF', 'NE', 'IA', 'UT', 'NV'}
+2024-10-14 10:14:53,095 - INFO - The 11 call passes areas: {'RA', 'TX', 'MS', 'AL', 'GA', 'LA', 'KY', 'TN'}
+2024-10-14 10:14:53,095 - INFO - The 13 call passes areas: {'IL', 'CA', 'NY', 'CO', 'NF', 'NJ', 'IA', 'UT', 'MI', 'NV'}
+2024-10-14 10:14:53,095 - INFO - The 14 call passes areas: {'CA', 'WA', 'OR'}
+2024-10-14 10:14:53,095 - INFO - The 16 call passes areas: {'CA', 'NM', 'TX', 'WA', 'OR', 'AX'}
+2024-10-14 10:14:53,095 - INFO - The 17 call passes areas: {'RA', 'NY', 'CA', 'TX', 'NM', 'MS', 'AL', 'NC', 'AX', 'GA', 'SC', 'LA', 'MD'}
+2024-10-14 10:14:53,095 - INFO - The 18 call passes areas: {'IL', 'TX', 'CO', 'NF', 'MS', 'AL', 'NC', 'IA', 'UT', 'GA', 'SC', 'LA', 'AR', 'MD', 'MO'}
+2024-10-14 10:14:53,095 - INFO - The 20 call passes areas: {'TX', 'MS', 'AL', 'NC', 'GA', 'SC', 'LA', 'MD'}
+2024-10-14 10:14:53,095 - INFO - The 22 call passes areas: {'NF', 'NE', 'CO'}
+2024-10-14 10:14:53,095 - INFO - The 24 call passes areas: {'CA', 'NM', 'TX', 'WA', 'OR', 'AX'}
+2024-10-14 10:14:53,095 - INFO - The 25 call passes areas: {'CA', 'CO', 'WA', 'UT', 'OR', 'NV'}
+2024-10-14 10:14:53,095 - INFO - The 27 call passes areas: {'CA', 'WA', 'UT', 'OR', 'NV'}
+2024-10-14 10:14:53,095 - INFO - The 28 call passes areas: {'UT', 'CO'}
+2024-10-14 10:14:53,096 - INFO - The 30 call passes areas: {'IL', 'RA', 'CA', 'CO', 'NF', 'IA', 'UT', 'MI', 'NV'}
+2024-10-14 10:14:53,096 - INFO - The 31 call passes areas: {'IL', 'CO', 'NF', 'NE', 'IA'}
+2024-10-14 10:14:53,096 - INFO - The 32 call passes areas: {'TX', 'MS', 'AL', 'NC', 'GA', 'SC', 'LA', 'MD'}
+2024-10-14 10:14:53,096 - INFO - The 34 call passes areas: {'IL', 'TX', 'CO', 'NF', 'NE', 'IA', 'MO', 'AR'}
+2024-10-14 10:14:53,096 - INFO - The 35 call passes areas: {'IL', 'TX', 'CO', 'NF', 'MS', 'AL', 'NC', 'NE', 'IA', 'GA', 'SC', 'LA', 'AR', 'MD', 'MO'}
+2024-10-14 10:14:53,096 - INFO - The 36 call passes areas: {'UT', 'CA', 'NV'}
+2024-10-14 10:14:53,096 - INFO - The 41 call passes areas: {'IL', 'RA', 'CA', 'CO', 'NF', 'WA', 'IA', 'MI', 'UT', 'OR', 'NV'}
+2024-10-14 10:14:53,096 - INFO - The 42 call passes areas: {'IL', 'TX', 'CO', 'NF', 'IA', 'MO', 'AR'}
+2024-10-14 10:14:53,096 - INFO - The 43 call passes areas: {'IL', 'CA', 'CO', 'NF', 'NE', 'IA', 'UT', 'NV'}
+2024-10-14 10:14:53,096 - INFO - The 44 call passes areas: {'IL', 'CA', 'NM', 'TX', 'CO', 'NF', 'IA', 'MO', 'AR', 'AX'}
+2024-10-14 10:14:53,096 - INFO - The 45 call passes areas: {'CA', 'WA', 'OR'}
+2024-10-14 10:14:53,096 - INFO - The 48 call passes areas: {'NF', 'UT', 'NE', 'CO'}
+2024-10-14 10:14:53,096 - INFO - The 49 call passes areas: {'IL', 'ID', 'RA', 'CA', 'MN', 'WA', 'NJ', 'MT', 'MI', 'ND', 'OR', 'PA', 'WI'}
+2024-10-14 10:14:53,096 - INFO - The 4 call is changed.
+2024-10-14 10:14:53,096 - INFO - The 32 call is changed.
+2024-10-14 10:14:53,096 - INFO - The 35 call is changed.
+2024-10-14 10:14:53,097 - INFO - Prune topology has [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13] nodes.
+2024-10-14 10:14:53,097 - INFO - The 1 call passes areas: {'CA', 'NM', 'TX', 'MS', 'AL', 'WA', 'GA', 'OR', 'LA', 'AX'}
+2024-10-14 10:14:53,097 - INFO - The 11 call passes areas: {'RA', 'TX', 'MS', 'AL', 'GA', 'LA', 'KY', 'TN'}
+2024-10-14 10:14:53,097 - INFO - The 17 call passes areas: {'RA', 'NY', 'CA', 'TX', 'NM', 'MS', 'AL', 'NC', 'AX', 'GA', 'SC', 'LA', 'MD'}
+2024-10-14 10:14:53,097 - INFO - The 18 call passes areas: {'IL', 'TX', 'CO', 'NF', 'MS', 'AL', 'NC', 'IA', 'UT', 'GA', 'SC', 'LA', 'AR', 'MD', 'MO'}
+2024-10-14 10:14:53,097 - INFO - The 20 call passes areas: {'TX', 'MS', 'AL', 'NC', 'GA', 'SC', 'LA', 'MD'}
+2024-10-14 10:14:53,097 - INFO - The 29 call passes areas: {'IL', 'ID', 'RA', 'MN', 'NJ', 'WA', 'MT', 'MI', 'ND', 'PA', 'WI'}
+2024-10-14 10:14:53,097 - INFO - The 40 call passes areas: {'IL', 'ID', 'RA', 'MN', 'WA', 'MT', 'MI', 'ND', 'GA', 'KY', 'TN', 'WI'}
+2024-10-14 10:14:53,097 - INFO - The 49 call passes areas: {'IL', 'ID', 'RA', 'CA', 'MN', 'WA', 'NJ', 'MT', 'MI', 'ND', 'OR', 'PA', 'WI'}
+2024-10-14 10:14:53,098 - INFO - The 1 call is restored.
+2024-10-14 10:14:53,098 - INFO - The 11 call is restored.
+2024-10-14 10:14:53,098 - INFO - The 17 call is restored.
+2024-10-14 10:14:53,098 - INFO - The 18 call is restored.
+2024-10-14 10:14:53,098 - INFO - The 20 call is restored.
+2024-10-14 10:14:53,098 - INFO - The 29 call is restored.
+2024-10-14 10:14:53,098 - INFO - The 40 call is restored.
+2024-10-14 10:14:53,098 - INFO - The 49 call is restored.
+2024-10-14 10:15:03,673 - INFO - Attacked areas: ['MT', 'AL']
+2024-10-14 10:15:03,673 - INFO - Potential areas: ['UT', 'RA', 'CA', 'CO']
+2024-10-14 10:15:03,674 - INFO - The 0 call passes areas: {'IL', 'TX', 'CO', 'NF', 'IA', 'MO', 'AR'}
+2024-10-14 10:15:03,674 - INFO - The 1 call passes areas: {'IL', 'RA', 'CA', 'CO', 'NF', 'WA', 'IA', 'MI', 'UT', 'GA', 'OR', 'KY', 'TN', 'NV'}
+2024-10-14 10:15:03,674 - INFO - The 3 call passes areas: {'CA', 'WA', 'OR'}
+2024-10-14 10:15:03,674 - INFO - The 4 call passes areas: {'CA'}
+2024-10-14 10:15:03,674 - INFO - The 5 call passes areas: {'IL', 'CA', 'NM', 'TX', 'CO', 'NF', 'NE', 'IA', 'MO', 'AR', 'AX'}
+2024-10-14 10:15:03,674 - INFO - The 6 call passes areas: {'IL', 'CA', 'NY', 'CO', 'NF', 'NJ', 'IA', 'MI', 'UT', 'NV'}
+2024-10-14 10:15:03,674 - INFO - The 7 call passes areas: {'PA', 'RA', 'NJ', 'MD'}
+2024-10-14 10:15:03,674 - INFO - The 8 call passes areas: {'IL', 'MI', 'RA', 'NY'}
+2024-10-14 10:15:03,674 - INFO - The 9 call passes areas: {'IL', 'CA', 'CO', 'NF', 'NE', 'IA', 'UT', 'NV'}
+2024-10-14 10:15:03,674 - INFO - The 10 call passes areas: {'IL', 'RA', 'NY', 'NF', 'NE', 'IA', 'MI', 'MD'}
+2024-10-14 10:15:03,674 - INFO - The 11 call passes areas: {'IL', 'RA', 'CA', 'NM', 'TX', 'CO', 'NF', 'IA', 'UT', 'MI', 'AX', 'NV'}
+2024-10-14 10:15:03,674 - INFO - The 12 call passes areas: {'MI', 'RA', 'NY'}
+2024-10-14 10:15:03,674 - INFO - The 13 call passes areas: {'IL', 'CA', 'NY', 'CO', 'NF', 'NJ', 'IA', 'UT', 'MI', 'NV'}
+2024-10-14 10:15:03,674 - INFO - The 14 call passes areas: {'CA', 'WA', 'OR'}
+2024-10-14 10:15:03,674 - INFO - The 16 call passes areas: {'CA', 'NM', 'TX', 'WA', 'OR', 'AX'}
+2024-10-14 10:15:03,674 - INFO - The 17 call passes areas: {'RA', 'NY', 'CA', 'TX', 'NM', 'MS', 'AL', 'NC', 'AX', 'GA', 'SC', 'LA', 'MD'}
+2024-10-14 10:15:03,674 - INFO - The 18 call passes areas: {'IL', 'RA', 'NY', 'CO', 'NF', 'IA', 'MI', 'UT', 'MD'}
+2024-10-14 10:15:03,674 - INFO - The 20 call passes areas: {'IL', 'RA', 'NY', 'TX', 'CO', 'NF', 'IA', 'MI', 'UT', 'MO', 'AR', 'MD'}
+2024-10-14 10:15:03,674 - INFO - The 22 call passes areas: {'NF', 'NE', 'CO'}
+2024-10-14 10:15:03,674 - INFO - The 23 call passes areas: {'PA', 'RA', 'NJ'}
+2024-10-14 10:15:03,674 - INFO - The 24 call passes areas: {'CA', 'NM', 'TX', 'WA', 'OR', 'AX'}
+2024-10-14 10:15:03,674 - INFO - The 25 call passes areas: {'CA', 'CO', 'WA', 'UT', 'OR', 'NV'}
+2024-10-14 10:15:03,674 - INFO - The 26 call passes areas: {'IL', 'RA', 'NF', 'NE', 'IA', 'MI', 'GA', 'KY', 'TN'}
+2024-10-14 10:15:03,674 - INFO - The 27 call passes areas: {'CA', 'WA', 'UT', 'OR', 'NV'}
+2024-10-14 10:15:03,674 - INFO - The 28 call passes areas: {'UT', 'CO'}
+2024-10-14 10:15:03,675 - INFO - The 29 call passes areas: {'IL', 'CA', 'NY', 'CO', 'NF', 'NJ', 'WA', 'IA', 'MI', 'UT', 'OR', 'NV'}
+2024-10-14 10:15:03,675 - INFO - The 30 call passes areas: {'IL', 'RA', 'CA', 'CO', 'NF', 'IA', 'UT', 'MI', 'NV'}
+2024-10-14 10:15:03,675 - INFO - The 31 call passes areas: {'IL', 'CO', 'NF', 'NE', 'IA'}
+2024-10-14 10:15:03,675 - INFO - The 32 call passes areas: {'RA', 'NY', 'GA', 'KY', 'TN', 'MD'}
+2024-10-14 10:15:03,675 - INFO - The 33 call passes areas: {'RA', 'NY'}
+2024-10-14 10:15:03,675 - INFO - The 34 call passes areas: {'IL', 'TX', 'CO', 'NF', 'NE', 'IA', 'MO', 'AR'}
+2024-10-14 10:15:03,675 - INFO - The 35 call passes areas: {'IL', 'RA', 'NY', 'NF', 'NE', 'IA', 'MI', 'MD'}
+2024-10-14 10:15:03,675 - INFO - The 36 call passes areas: {'UT', 'CA', 'NV'}
+2024-10-14 10:15:03,675 - INFO - The 40 call passes areas: {'IL', 'ID', 'RA', 'MN', 'WA', 'MT', 'MI', 'ND', 'GA', 'KY', 'TN', 'WI'}
+2024-10-14 10:15:03,675 - INFO - The 41 call passes areas: {'IL', 'RA', 'CA', 'CO', 'NF', 'WA', 'IA', 'MI', 'UT', 'OR', 'NV'}
+2024-10-14 10:15:03,675 - INFO - The 42 call passes areas: {'IL', 'TX', 'CO', 'NF', 'IA', 'MO', 'AR'}
+2024-10-14 10:15:03,675 - INFO - The 43 call passes areas: {'IL', 'CA', 'CO', 'NF', 'NE', 'IA', 'UT', 'NV'}
+2024-10-14 10:15:03,675 - INFO - The 44 call passes areas: {'IL', 'CA', 'NM', 'TX', 'CO', 'NF', 'IA', 'MO', 'AR', 'AX'}
+2024-10-14 10:15:03,675 - INFO - The 45 call passes areas: {'CA', 'WA', 'OR'}
+2024-10-14 10:15:03,675 - INFO - The 46 call passes areas: {'RA', 'NY'}
+2024-10-14 10:15:03,675 - INFO - The 47 call passes areas: {'IL', 'RA', 'NY', 'NJ', 'MI', 'PA'}
+2024-10-14 10:15:03,675 - INFO - The 48 call passes areas: {'NF', 'UT', 'NE', 'CO'}
+2024-10-14 10:15:03,675 - INFO - The 49 call passes areas: {'IL', 'ID', 'RA', 'CA', 'MN', 'WA', 'NJ', 'MT', 'MI', 'ND', 'OR', 'PA', 'WI'}
+2024-10-14 10:15:03,675 - INFO - The 4 call is changed.
+2024-10-14 10:15:03,676 - INFO - After departure event 4, unable areas have ['AL'].
+2024-10-14 10:15:03,676 - INFO - Prune topology has [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13] nodes.
+2024-10-14 10:15:03,676 - INFO - The 1 call passes areas: {'IL', 'RA', 'CA', 'CO', 'NF', 'WA', 'IA', 'MI', 'UT', 'GA', 'OR', 'KY', 'TN', 'NV'}
+2024-10-14 10:15:03,676 - INFO - The 17 call passes areas: {'RA', 'NY', 'CA', 'TX', 'NM', 'MS', 'AL', 'NC', 'AX', 'GA', 'SC', 'LA', 'MD'}
+2024-10-14 10:15:03,676 - INFO - The 26 call passes areas: {'IL', 'RA', 'NF', 'NE', 'IA', 'MI', 'GA', 'KY', 'TN'}
+2024-10-14 10:15:03,676 - INFO - The 32 call passes areas: {'RA', 'NY', 'GA', 'KY', 'TN', 'MD'}
+2024-10-14 10:15:03,677 - INFO - The 40 call passes areas: {'IL', 'ID', 'RA', 'MN', 'WA', 'MT', 'MI', 'ND', 'GA', 'KY', 'TN', 'WI'}
+2024-10-14 10:15:03,677 - INFO - The 1 call is restored.
+2024-10-14 10:15:03,677 - INFO - The 17 call is restored.
+2024-10-14 10:15:03,677 - INFO - The 26 call is restored.
+2024-10-14 10:15:03,677 - INFO - The 32 call is restored.
+2024-10-14 10:15:03,677 - INFO - The 40 call is restored.
+2024-10-14 10:15:13,638 - INFO - Attacked areas: ['AL', 'GA']
+2024-10-14 10:15:13,638 - INFO - Potential areas: ['IL', 'UT', 'CA', 'CO']
+2024-10-14 10:15:13,638 - INFO - The 0 call passes areas: {'IL', 'TX', 'CO', 'NF', 'IA', 'MO', 'AR'}
+2024-10-14 10:15:13,638 - INFO - The 1 call passes areas: {'IL', 'ID', 'RA', 'MN', 'WA', 'MT', 'MI', 'ND', 'GA', 'KY', 'TN', 'WI'}
+2024-10-14 10:15:13,638 - INFO - The 3 call passes areas: {'CA', 'WA', 'OR'}
+2024-10-14 10:15:13,638 - INFO - The 4 call passes areas: {'CA'}
+2024-10-14 10:15:13,638 - INFO - The 5 call passes areas: {'IL', 'CA', 'NM', 'TX', 'CO', 'NF', 'NE', 'IA', 'MO', 'AR', 'AX'}
+2024-10-14 10:15:13,638 - INFO - The 6 call passes areas: {'IL', 'CA', 'NY', 'CO', 'NF', 'NJ', 'IA', 'MI', 'UT', 'NV'}
+2024-10-14 10:15:13,638 - INFO - The 8 call passes areas: {'IL', 'MI', 'RA', 'NY'}
+2024-10-14 10:15:13,638 - INFO - The 9 call passes areas: {'IL', 'CA', 'CO', 'NF', 'NE', 'IA', 'UT', 'NV'}
+2024-10-14 10:15:13,638 - INFO - The 10 call passes areas: {'IL', 'RA', 'NY', 'NF', 'NE', 'IA', 'MI', 'MD'}
+2024-10-14 10:15:13,639 - INFO - The 11 call passes areas: {'IL', 'RA', 'CA', 'NM', 'TX', 'CO', 'NF', 'IA', 'UT', 'MI', 'AX', 'NV'}
+2024-10-14 10:15:13,639 - INFO - The 13 call passes areas: {'IL', 'CA', 'NY', 'CO', 'NF', 'NJ', 'IA', 'UT', 'MI', 'NV'}
+2024-10-14 10:15:13,639 - INFO - The 14 call passes areas: {'CA', 'WA', 'OR'}
+2024-10-14 10:15:13,639 - INFO - The 16 call passes areas: {'CA', 'NM', 'TX', 'WA', 'OR', 'AX'}
+2024-10-14 10:15:13,639 - INFO - The 17 call passes areas: {'IL', 'ID', 'RA', 'NY', 'CA', 'MN', 'WA', 'MT', 'MI', 'ND', 'OR', 'WI'}
+2024-10-14 10:15:13,639 - INFO - The 18 call passes areas: {'IL', 'RA', 'NY', 'CO', 'NF', 'IA', 'MI', 'UT', 'MD'}
+2024-10-14 10:15:13,639 - INFO - The 19 call passes areas: {'IL', 'NF', 'NE', 'IA'}
+2024-10-14 10:15:13,639 - INFO - The 20 call passes areas: {'IL', 'RA', 'NY', 'TX', 'CO', 'NF', 'IA', 'MI', 'UT', 'MO', 'AR', 'MD'}
+2024-10-14 10:15:13,639 - INFO - The 22 call passes areas: {'NF', 'NE', 'CO'}
+2024-10-14 10:15:13,639 - INFO - The 24 call passes areas: {'CA', 'NM', 'TX', 'WA', 'OR', 'AX'}
+2024-10-14 10:15:13,639 - INFO - The 25 call passes areas: {'CA', 'CO', 'WA', 'UT', 'OR', 'NV'}
+2024-10-14 10:15:13,639 - INFO - The 26 call passes areas: {'IL', 'RA', 'NF', 'NE', 'IA', 'MI', 'GA', 'KY', 'TN'}
+2024-10-14 10:15:13,639 - INFO - The 27 call passes areas: {'CA', 'WA', 'UT', 'OR', 'NV'}
+2024-10-14 10:15:13,639 - INFO - The 28 call passes areas: {'UT', 'CO'}
+2024-10-14 10:15:13,639 - INFO - The 29 call passes areas: {'IL', 'CA', 'NY', 'CO', 'NF', 'NJ', 'WA', 'IA', 'MI', 'UT', 'OR', 'NV'}
+2024-10-14 10:15:13,639 - INFO - The 30 call passes areas: {'IL', 'RA', 'CA', 'CO', 'NF', 'IA', 'UT', 'MI', 'NV'}
+2024-10-14 10:15:13,639 - INFO - The 31 call passes areas: {'IL', 'CO', 'NF', 'NE', 'IA'}
+2024-10-14 10:15:13,639 - INFO - The 34 call passes areas: {'IL', 'TX', 'CO', 'NF', 'NE', 'IA', 'MO', 'AR'}
+2024-10-14 10:15:13,639 - INFO - The 35 call passes areas: {'IL', 'RA', 'NY', 'NF', 'NE', 'IA', 'MI', 'MD'}
+2024-10-14 10:15:13,639 - INFO - The 36 call passes areas: {'UT', 'CA', 'NV'}
+2024-10-14 10:15:13,639 - INFO - The 38 call passes areas: {'IL', 'NF', 'NE', 'IA'}
+2024-10-14 10:15:13,639 - INFO - The 40 call passes areas: {'IL', 'ID', 'RA', 'MN', 'WA', 'MT', 'MI', 'ND', 'GA', 'KY', 'TN', 'WI'}
+2024-10-14 10:15:13,639 - INFO - The 41 call passes areas: {'IL', 'RA', 'CA', 'CO', 'NF', 'WA', 'IA', 'MI', 'UT', 'OR', 'NV'}
+2024-10-14 10:15:13,639 - INFO - The 42 call passes areas: {'IL', 'TX', 'CO', 'NF', 'IA', 'MO', 'AR'}
+2024-10-14 10:15:13,639 - INFO - The 43 call passes areas: {'IL', 'CA', 'CO', 'NF', 'NE', 'IA', 'UT', 'NV'}
+2024-10-14 10:15:13,639 - INFO - The 44 call passes areas: {'IL', 'CA', 'NM', 'TX', 'CO', 'NF', 'IA', 'MO', 'AR', 'AX'}
+2024-10-14 10:15:13,639 - INFO - The 45 call passes areas: {'CA', 'WA', 'OR'}
+2024-10-14 10:15:13,639 - INFO - The 47 call passes areas: {'IL', 'RA', 'NY', 'NJ', 'MI', 'PA'}
+2024-10-14 10:15:13,639 - INFO - The 48 call passes areas: {'NF', 'UT', 'NE', 'CO'}
+2024-10-14 10:15:13,639 - INFO - The 49 call passes areas: {'IL', 'ID', 'RA', 'CA', 'MN', 'WA', 'NJ', 'MT', 'MI', 'ND', 'OR', 'PA', 'WI'}
+2024-10-14 10:15:13,640 - INFO - The 4 call is changed.
+2024-10-14 10:15:13,640 - INFO - Prune topology has [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13] nodes.
+2024-10-14 10:15:13,640 - INFO - The 1 call passes areas: {'IL', 'ID', 'RA', 'MN', 'WA', 'MT', 'MI', 'ND', 'GA', 'KY', 'TN', 'WI'}
+2024-10-14 10:15:13,640 - INFO - The 17 call passes areas: {'IL', 'ID', 'RA', 'NY', 'CA', 'MN', 'WA', 'MT', 'MI', 'ND', 'OR', 'WI'}
+2024-10-14 10:15:13,640 - INFO - The 26 call passes areas: {'IL', 'RA', 'NF', 'NE', 'IA', 'MI', 'GA', 'KY', 'TN'}
+2024-10-14 10:15:13,640 - INFO - The 32 call passes areas: {'RA', 'NY', 'GA', 'KY', 'TN', 'MD'}
+2024-10-14 10:15:13,640 - INFO - The 40 call passes areas: {'IL', 'ID', 'RA', 'MN', 'WA', 'MT', 'MI', 'ND', 'GA', 'KY', 'TN', 'WI'}
+2024-10-14 10:15:13,640 - INFO - The 49 call passes areas: {'IL', 'ID', 'RA', 'CA', 'MN', 'WA', 'NJ', 'MT', 'MI', 'ND', 'OR', 'PA', 'WI'}
+2024-10-14 10:15:13,640 - INFO - The 1 call is restored.
+2024-10-14 10:15:13,641 - INFO - The 17 call is restored.
+2024-10-14 10:15:13,641 - INFO - The 26 call is restored.
+2024-10-14 10:15:13,641 - INFO - The 32 call is restored.
+2024-10-14 10:15:13,641 - INFO - The 40 call is restored.
+2024-10-14 10:15:13,641 - INFO - The 49 call is restored.
+2024-10-14 10:15:24,304 - INFO - Attacked areas: ['AL', 'GA', 'ID']
+2024-10-14 10:15:24,305 - INFO - Potential areas: ['IL', 'UT', 'CA', 'CO']
+2024-10-14 10:15:24,305 - INFO - The 0 call passes areas: {'IL', 'TX', 'CO', 'NF', 'IA', 'MO', 'AR'}
+2024-10-14 10:15:24,305 - INFO - The 1 call passes areas: {'IL', 'RA', 'CA', 'CO', 'NF', 'WA', 'IA', 'MI', 'UT', 'GA', 'OR', 'KY', 'TN', 'NV'}
+2024-10-14 10:15:24,305 - INFO - The 3 call passes areas: {'CA', 'WA', 'OR'}
+2024-10-14 10:15:24,305 - INFO - The 4 call passes areas: {'CA'}
+2024-10-14 10:15:24,305 - INFO - The 5 call passes areas: {'IL', 'CA', 'NM', 'TX', 'CO', 'NF', 'NE', 'IA', 'MO', 'AR', 'AX'}
+2024-10-14 10:15:24,305 - INFO - The 6 call passes areas: {'IL', 'CA', 'NY', 'CO', 'NF', 'NJ', 'IA', 'MI', 'UT', 'NV'}
+2024-10-14 10:15:24,305 - INFO - The 8 call passes areas: {'IL', 'MI', 'RA', 'NY'}
+2024-10-14 10:15:24,305 - INFO - The 9 call passes areas: {'IL', 'CA', 'CO', 'NF', 'NE', 'IA', 'UT', 'NV'}
+2024-10-14 10:15:24,305 - INFO - The 10 call passes areas: {'IL', 'RA', 'NY', 'NF', 'NE', 'IA', 'MI', 'MD'}
+2024-10-14 10:15:24,305 - INFO - The 11 call passes areas: {'IL', 'RA', 'CA', 'NM', 'TX', 'CO', 'NF', 'IA', 'UT', 'MI', 'AX', 'NV'}
+2024-10-14 10:15:24,305 - INFO - The 13 call passes areas: {'IL', 'CA', 'NY', 'CO', 'NF', 'NJ', 'IA', 'UT', 'MI', 'NV'}
+2024-10-14 10:15:24,305 - INFO - The 14 call passes areas: {'CA', 'WA', 'OR'}
+2024-10-14 10:15:24,305 - INFO - The 16 call passes areas: {'CA', 'NM', 'TX', 'WA', 'OR', 'AX'}
+2024-10-14 10:15:24,305 - INFO - The 17 call passes areas: {'IL', 'RA', 'NY', 'CA', 'CO', 'NF', 'IA', 'MI', 'UT', 'NV'}
+2024-10-14 10:15:24,305 - INFO - The 18 call passes areas: {'IL', 'RA', 'NY', 'CO', 'NF', 'IA', 'MI', 'UT', 'MD'}
+2024-10-14 10:15:24,305 - INFO - The 19 call passes areas: {'IL', 'NF', 'NE', 'IA'}
+2024-10-14 10:15:24,305 - INFO - The 20 call passes areas: {'IL', 'RA', 'NY', 'TX', 'CO', 'NF', 'IA', 'MI', 'UT', 'MO', 'AR', 'MD'}
+2024-10-14 10:15:24,305 - INFO - The 22 call passes areas: {'NF', 'NE', 'CO'}
+2024-10-14 10:15:24,305 - INFO - The 24 call passes areas: {'CA', 'NM', 'TX', 'WA', 'OR', 'AX'}
+2024-10-14 10:15:24,305 - INFO - The 25 call passes areas: {'CA', 'CO', 'WA', 'UT', 'OR', 'NV'}
+2024-10-14 10:15:24,306 - INFO - The 26 call passes areas: {'IL', 'RA', 'NF', 'NE', 'IA', 'MI', 'GA', 'KY', 'TN'}
+2024-10-14 10:15:24,306 - INFO - The 27 call passes areas: {'CA', 'WA', 'UT', 'OR', 'NV'}
+2024-10-14 10:15:24,306 - INFO - The 28 call passes areas: {'UT', 'CO'}
+2024-10-14 10:15:24,306 - INFO - The 29 call passes areas: {'IL', 'CA', 'NY', 'CO', 'NF', 'NJ', 'WA', 'IA', 'MI', 'UT', 'OR', 'NV'}
+2024-10-14 10:15:24,306 - INFO - The 30 call passes areas: {'IL', 'RA', 'CA', 'CO', 'NF', 'IA', 'UT', 'MI', 'NV'}
+2024-10-14 10:15:24,306 - INFO - The 31 call passes areas: {'IL', 'CO', 'NF', 'NE', 'IA'}
+2024-10-14 10:15:24,306 - INFO - The 34 call passes areas: {'IL', 'TX', 'CO', 'NF', 'NE', 'IA', 'MO', 'AR'}
+2024-10-14 10:15:24,306 - INFO - The 35 call passes areas: {'IL', 'RA', 'NY', 'NF', 'NE', 'IA', 'MI', 'MD'}
+2024-10-14 10:15:24,306 - INFO - The 36 call passes areas: {'UT', 'CA', 'NV'}
+2024-10-14 10:15:24,306 - INFO - The 38 call passes areas: {'IL', 'NF', 'NE', 'IA'}
+2024-10-14 10:15:24,306 - INFO - The 40 call passes areas: {'IL', 'ID', 'RA', 'MN', 'WA', 'MT', 'MI', 'ND', 'GA', 'KY', 'TN', 'WI'}
+2024-10-14 10:15:24,306 - INFO - The 41 call passes areas: {'IL', 'RA', 'CA', 'CO', 'NF', 'WA', 'IA', 'MI', 'UT', 'OR', 'NV'}
+2024-10-14 10:15:24,306 - INFO - The 42 call passes areas: {'IL', 'TX', 'CO', 'NF', 'IA', 'MO', 'AR'}
+2024-10-14 10:15:24,306 - INFO - The 43 call passes areas: {'IL', 'CA', 'CO', 'NF', 'NE', 'IA', 'UT', 'NV'}
+2024-10-14 10:15:24,306 - INFO - The 44 call passes areas: {'IL', 'CA', 'NM', 'TX', 'CO', 'NF', 'IA', 'MO', 'AR', 'AX'}
+2024-10-14 10:15:24,306 - INFO - The 45 call passes areas: {'CA', 'WA', 'OR'}
+2024-10-14 10:15:24,306 - INFO - The 47 call passes areas: {'IL', 'RA', 'NY', 'NJ', 'MI', 'PA'}
+2024-10-14 10:15:24,306 - INFO - The 48 call passes areas: {'NF', 'UT', 'NE', 'CO'}
+2024-10-14 10:15:24,306 - INFO - The 49 call passes areas: {'IL', 'ID', 'RA', 'CA', 'MN', 'WA', 'NJ', 'MT', 'MI', 'ND', 'OR', 'PA', 'WI'}
+2024-10-14 10:15:24,306 - INFO - The 4 call is changed.
+2024-10-14 10:15:24,307 - INFO - After departure event 6, unable areas have ['AL', 'ID'].
+2024-10-14 10:15:24,307 - INFO - After departure event 5, unable areas have ['ID'].
+2024-10-14 10:15:24,307 - INFO - Prune topology has [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13] nodes.
+2024-10-14 10:15:24,307 - INFO - The 2 call passes areas: {'NY', 'NJ', 'MI', 'PA', 'MD'}
+2024-10-14 10:15:24,307 - INFO - The 6 call passes areas: {'IL', 'CA', 'NY', 'CO', 'NF', 'NJ', 'IA', 'MI', 'UT', 'NV'}
+2024-10-14 10:15:24,307 - INFO - The 8 call passes areas: {'IL', 'MI', 'RA', 'NY'}
+2024-10-14 10:15:24,307 - INFO - The 10 call passes areas: {'IL', 'RA', 'NY', 'NF', 'NE', 'IA', 'MI', 'MD'}
+2024-10-14 10:15:24,307 - INFO - The 12 call passes areas: {'MI', 'RA', 'NY'}
+2024-10-14 10:15:24,307 - INFO - The 13 call passes areas: {'IL', 'CA', 'NY', 'CO', 'NF', 'NJ', 'IA', 'UT', 'MI', 'NV'}
+2024-10-14 10:15:24,308 - INFO - The 15 call passes areas: {'NY', 'NJ', 'MI', 'PA', 'MD'}
+2024-10-14 10:15:24,308 - INFO - The 17 call passes areas: {'IL', 'RA', 'NY', 'CA', 'CO', 'NF', 'IA', 'MI', 'UT', 'NV'}
+2024-10-14 10:15:24,308 - INFO - The 18 call passes areas: {'IL', 'RA', 'NY', 'CO', 'NF', 'IA', 'MI', 'UT', 'MD'}
+2024-10-14 10:15:24,308 - INFO - The 20 call passes areas: {'IL', 'RA', 'NY', 'TX', 'CO', 'NF', 'IA', 'MI', 'UT', 'MO', 'AR', 'MD'}
+2024-10-14 10:15:24,308 - INFO - The 29 call passes areas: {'IL', 'CA', 'NY', 'CO', 'NF', 'NJ', 'WA', 'IA', 'MI', 'UT', 'OR', 'NV'}
+2024-10-14 10:15:24,308 - INFO - The 32 call passes areas: {'RA', 'NY', 'GA', 'KY', 'TN', 'MD'}
+2024-10-14 10:15:24,308 - INFO - The 33 call passes areas: {'RA', 'NY'}
+2024-10-14 10:15:24,308 - INFO - The 35 call passes areas: {'IL', 'RA', 'NY', 'NF', 'NE', 'IA', 'MI', 'MD'}
+2024-10-14 10:15:24,308 - INFO - The 37 call passes areas: {'MI', 'NY', 'NJ'}
+2024-10-14 10:15:24,308 - INFO - The 39 call passes areas: {'NY'}
+2024-10-14 10:15:24,308 - INFO - The 40 call passes areas: {'IL', 'ID', 'RA', 'MN', 'WA', 'MT', 'MI', 'ND', 'GA', 'KY', 'TN', 'WI'}
+2024-10-14 10:15:24,308 - INFO - The 46 call passes areas: {'RA', 'NY'}
+2024-10-14 10:15:24,308 - INFO - The 47 call passes areas: {'IL', 'RA', 'NY', 'NJ', 'MI', 'PA'}
+2024-10-14 10:15:24,308 - INFO - The 49 call passes areas: {'IL', 'ID', 'RA', 'CA', 'MN', 'WA', 'NJ', 'MT', 'MI', 'ND', 'OR', 'PA', 'WI'}
+2024-10-14 10:15:24,308 - INFO - The 2 call is restored.
+2024-10-14 10:15:24,309 - INFO - The 6 call is restored.
+2024-10-14 10:15:24,309 - INFO - The 8 call is blocked.
+2024-10-14 10:15:24,309 - INFO - The 10 call is restored.
+2024-10-14 10:15:24,309 - INFO - The 12 call is restored.
+2024-10-14 10:15:24,309 - INFO - The 13 call is restored.
+2024-10-14 10:15:24,309 - INFO - The 15 call is restored.
+2024-10-14 10:15:24,309 - INFO - The 17 call is blocked.
+2024-10-14 10:15:24,309 - INFO - The 18 call is restored.
+2024-10-14 10:15:24,309 - INFO - The 20 call is restored.
+2024-10-14 10:15:24,309 - INFO - The 29 call is restored.
+2024-10-14 10:15:24,309 - INFO - The 32 call is restored.
+2024-10-14 10:15:24,309 - INFO - The 33 call is blocked.
+2024-10-14 10:15:24,309 - INFO - The 35 call is restored.
+2024-10-14 10:15:24,309 - INFO - The 37 call is restored.
+2024-10-14 10:15:24,309 - INFO - The 39 call is restored.
+2024-10-14 10:15:24,309 - INFO - The 40 call is restored.
+2024-10-14 10:15:24,309 - INFO - The 46 call is blocked.
+2024-10-14 10:15:24,310 - INFO - The 47 call is restored.
+2024-10-14 10:15:24,310 - INFO - The 49 call is restored.
+2024-10-14 10:15:34,144 - INFO - Attacked areas: ['ID', 'NY']
+2024-10-14 10:15:34,145 - INFO - Potential areas: ['UT', 'CA', 'TX', 'CO']
+2024-10-14 10:15:34,145 - INFO - The 0 call passes areas: {'IL', 'TX', 'CO', 'NF', 'IA', 'MO', 'AR'}
+2024-10-14 10:15:34,145 - INFO - The 1 call passes areas: {'IL', 'RA', 'CA', 'CO', 'NF', 'WA', 'IA', 'MI', 'UT', 'GA', 'OR', 'KY', 'TN', 'NV'}
+2024-10-14 10:15:34,145 - INFO - The 2 call passes areas: {'IL', 'TX', 'CO', 'NF', 'MS', 'AL', 'SC', 'NC', 'IA', 'MI', 'UT', 'GA', 'MO', 'LA', 'AR', 'MD'}
+2024-10-14 10:15:34,145 - INFO - The 3 call passes areas: {'CA', 'WA', 'OR'}
+2024-10-14 10:15:34,145 - INFO - The 4 call passes areas: {'CA'}
+2024-10-14 10:15:34,145 - INFO - The 5 call passes areas: {'IL', 'CA', 'NM', 'TX', 'CO', 'NF', 'NE', 'IA', 'MO', 'AR', 'AX'}
+2024-10-14 10:15:34,145 - INFO - The 6 call passes areas: {'IL', 'RA', 'CA', 'CO', 'NF', 'NJ', 'IA', 'MI', 'UT', 'PA', 'NV'}
+2024-10-14 10:15:34,145 - INFO - The 9 call passes areas: {'IL', 'CA', 'CO', 'NF', 'NE', 'IA', 'UT', 'NV'}
+2024-10-14 10:15:34,145 - INFO - The 10 call passes areas: {'IL', 'TX', 'CO', 'NF', 'MS', 'AL', 'NC', 'NE', 'IA', 'GA', 'SC', 'LA', 'AR', 'MD', 'MO'}
+2024-10-14 10:15:34,145 - INFO - The 11 call passes areas: {'IL', 'RA', 'CA', 'NM', 'TX', 'CO', 'NF', 'IA', 'UT', 'MI', 'AX', 'NV'}
+2024-10-14 10:15:34,145 - INFO - The 12 call passes areas: {'IL', 'RA', 'CA', 'CO', 'NF', 'IA', 'UT', 'MI', 'NV'}
+2024-10-14 10:15:34,145 - INFO - The 13 call passes areas: {'IL', 'CA', 'NY', 'CO', 'NF', 'NJ', 'IA', 'UT', 'MI', 'NV'}
+2024-10-14 10:15:34,145 - INFO - The 14 call passes areas: {'CA', 'WA', 'OR'}
+2024-10-14 10:15:34,145 - INFO - The 16 call passes areas: {'CA', 'NM', 'TX', 'WA', 'OR', 'AX'}
+2024-10-14 10:15:34,145 - INFO - The 18 call passes areas: {'IL', 'RA', 'NY', 'CO', 'NF', 'IA', 'MI', 'UT', 'MD'}
+2024-10-14 10:15:34,145 - INFO - The 20 call passes areas: {'IL', 'RA', 'NY', 'TX', 'CO', 'NF', 'IA', 'MI', 'UT', 'MO', 'AR', 'MD'}
+2024-10-14 10:15:34,145 - INFO - The 22 call passes areas: {'NF', 'NE', 'CO'}
+2024-10-14 10:15:34,145 - INFO - The 24 call passes areas: {'CA', 'NM', 'TX', 'WA', 'OR', 'AX'}
+2024-10-14 10:15:34,145 - INFO - The 25 call passes areas: {'CA', 'CO', 'WA', 'UT', 'OR', 'NV'}
+2024-10-14 10:15:34,145 - INFO - The 27 call passes areas: {'CA', 'WA', 'UT', 'OR', 'NV'}
+2024-10-14 10:15:34,145 - INFO - The 28 call passes areas: {'UT', 'CO'}
+2024-10-14 10:15:34,146 - INFO - The 29 call passes areas: {'IL', 'CA', 'NY', 'CO', 'NF', 'NJ', 'WA', 'IA', 'MI', 'UT', 'OR', 'NV'}
+2024-10-14 10:15:34,146 - INFO - The 30 call passes areas: {'IL', 'RA', 'CA', 'CO', 'NF', 'IA', 'UT', 'MI', 'NV'}
+2024-10-14 10:15:34,146 - INFO - The 31 call passes areas: {'IL', 'CO', 'NF', 'NE', 'IA'}
+2024-10-14 10:15:34,146 - INFO - The 34 call passes areas: {'IL', 'TX', 'CO', 'NF', 'NE', 'IA', 'MO', 'AR'}
+2024-10-14 10:15:34,146 - INFO - The 36 call passes areas: {'UT', 'CA', 'NV'}
+2024-10-14 10:15:34,146 - INFO - The 40 call passes areas: {'CA', 'NM', 'TX', 'MS', 'AL', 'WA', 'GA', 'OR', 'LA', 'AX'}
+2024-10-14 10:15:34,146 - INFO - The 41 call passes areas: {'IL', 'RA', 'CA', 'CO', 'NF', 'WA', 'IA', 'MI', 'UT', 'OR', 'NV'}
+2024-10-14 10:15:34,146 - INFO - The 42 call passes areas: {'IL', 'TX', 'CO', 'NF', 'IA', 'MO', 'AR'}
+2024-10-14 10:15:34,146 - INFO - The 43 call passes areas: {'IL', 'CA', 'CO', 'NF', 'NE', 'IA', 'UT', 'NV'}
+2024-10-14 10:15:34,146 - INFO - The 44 call passes areas: {'IL', 'CA', 'NM', 'TX', 'CO', 'NF', 'IA', 'MO', 'AR', 'AX'}
+2024-10-14 10:15:34,146 - INFO - The 45 call passes areas: {'CA', 'WA', 'OR'}
+2024-10-14 10:15:34,146 - INFO - The 47 call passes areas: {'IL', 'CA', 'CO', 'NF', 'IA', 'UT', 'MI', 'NV'}
+2024-10-14 10:15:34,146 - INFO - The 48 call passes areas: {'NF', 'UT', 'NE', 'CO'}
+2024-10-14 10:15:34,146 - INFO - The 49 call passes areas: {'IL', 'ID', 'RA', 'CA', 'MN', 'WA', 'NJ', 'MT', 'MI', 'ND', 'OR', 'PA', 'WI'}
+2024-10-14 10:15:34,146 - INFO - The 4 call is changed.
+2024-10-14 10:15:34,146 - INFO - The 10 call is changed.
+2024-10-14 10:15:34,147 - INFO - Prune topology has [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13] nodes.
+2024-10-14 10:15:34,147 - INFO - The 0 call passes areas: {'IL', 'TX', 'CO', 'NF', 'IA', 'MO', 'AR'}
+2024-10-14 10:15:34,147 - INFO - The 1 call passes areas: {'IL', 'RA', 'CA', 'CO', 'NF', 'WA', 'IA', 'MI', 'UT', 'GA', 'OR', 'KY', 'TN', 'NV'}
+2024-10-14 10:15:34,147 - INFO - The 2 call passes areas: {'IL', 'TX', 'CO', 'NF', 'MS', 'AL', 'SC', 'NC', 'IA', 'MI', 'UT', 'GA', 'MO', 'LA', 'AR', 'MD'}
+2024-10-14 10:15:34,147 - INFO - The 5 call passes areas: {'IL', 'CA', 'NM', 'TX', 'CO', 'NF', 'NE', 'IA', 'MO', 'AR', 'AX'}
+2024-10-14 10:15:34,147 - INFO - The 6 call passes areas: {'IL', 'RA', 'CA', 'CO', 'NF', 'NJ', 'IA', 'MI', 'UT', 'PA', 'NV'}
+2024-10-14 10:15:34,147 - INFO - The 9 call passes areas: {'IL', 'CA', 'CO', 'NF', 'NE', 'IA', 'UT', 'NV'}
+2024-10-14 10:15:34,147 - INFO - The 10 call passes areas: {'IL', 'RA', 'NF', 'NJ', 'NE', 'IA', 'MI', 'PA', 'MD'}
+2024-10-14 10:15:34,147 - INFO - The 11 call passes areas: {'IL', 'RA', 'CA', 'NM', 'TX', 'CO', 'NF', 'IA', 'UT', 'MI', 'AX', 'NV'}
+2024-10-14 10:15:34,147 - INFO - The 12 call passes areas: {'IL', 'RA', 'CA', 'CO', 'NF', 'IA', 'UT', 'MI', 'NV'}
+2024-10-14 10:15:34,147 - INFO - The 13 call passes areas: {'IL', 'CA', 'NY', 'CO', 'NF', 'NJ', 'IA', 'UT', 'MI', 'NV'}
+2024-10-14 10:15:34,147 - INFO - The 15 call passes areas: {'NY', 'NJ', 'MI', 'PA', 'MD'}
+2024-10-14 10:15:34,147 - INFO - The 18 call passes areas: {'IL', 'RA', 'NY', 'CO', 'NF', 'IA', 'MI', 'UT', 'MD'}
+2024-10-14 10:15:34,147 - INFO - The 19 call passes areas: {'IL', 'NF', 'NE', 'IA'}
+2024-10-14 10:15:34,147 - INFO - The 20 call passes areas: {'IL', 'RA', 'NY', 'TX', 'CO', 'NF', 'IA', 'MI', 'UT', 'MO', 'AR', 'MD'}
+2024-10-14 10:15:34,147 - INFO - The 26 call passes areas: {'IL', 'RA', 'NF', 'NE', 'IA', 'MI', 'GA', 'KY', 'TN'}
+2024-10-14 10:15:34,147 - INFO - The 29 call passes areas: {'IL', 'CA', 'NY', 'CO', 'NF', 'NJ', 'WA', 'IA', 'MI', 'UT', 'OR', 'NV'}
+2024-10-14 10:15:34,147 - INFO - The 30 call passes areas: {'IL', 'RA', 'CA', 'CO', 'NF', 'IA', 'UT', 'MI', 'NV'}
+2024-10-14 10:15:34,147 - INFO - The 31 call passes areas: {'IL', 'CO', 'NF', 'NE', 'IA'}
+2024-10-14 10:15:34,147 - INFO - The 32 call passes areas: {'RA', 'NY', 'GA', 'KY', 'TN', 'MD'}
+2024-10-14 10:15:34,147 - INFO - The 34 call passes areas: {'IL', 'TX', 'CO', 'NF', 'NE', 'IA', 'MO', 'AR'}
+2024-10-14 10:15:34,147 - INFO - The 35 call passes areas: {'IL', 'RA', 'NY', 'NF', 'NE', 'IA', 'MI', 'MD'}
+2024-10-14 10:15:34,147 - INFO - The 37 call passes areas: {'MI', 'NY', 'NJ'}
+2024-10-14 10:15:34,147 - INFO - The 38 call passes areas: {'IL', 'NF', 'NE', 'IA'}
+2024-10-14 10:15:34,147 - INFO - The 39 call passes areas: {'NY'}
+2024-10-14 10:15:34,147 - INFO - The 41 call passes areas: {'IL', 'RA', 'CA', 'CO', 'NF', 'WA', 'IA', 'MI', 'UT', 'OR', 'NV'}
+2024-10-14 10:15:34,148 - INFO - The 42 call passes areas: {'IL', 'TX', 'CO', 'NF', 'IA', 'MO', 'AR'}
+2024-10-14 10:15:34,148 - INFO - The 43 call passes areas: {'IL', 'CA', 'CO', 'NF', 'NE', 'IA', 'UT', 'NV'}
+2024-10-14 10:15:34,148 - INFO - The 44 call passes areas: {'IL', 'CA', 'NM', 'TX', 'CO', 'NF', 'IA', 'MO', 'AR', 'AX'}
+2024-10-14 10:15:34,148 - INFO - The 47 call passes areas: {'IL', 'CA', 'CO', 'NF', 'IA', 'UT', 'MI', 'NV'}
+2024-10-14 10:15:34,148 - INFO - The 49 call passes areas: {'IL', 'ID', 'RA', 'CA', 'MN', 'WA', 'NJ', 'MT', 'MI', 'ND', 'OR', 'PA', 'WI'}
+2024-10-14 10:15:34,148 - INFO - The 0 call is restored.
+2024-10-14 10:15:34,148 - INFO - The 1 call is restored.
+2024-10-14 10:15:34,148 - INFO - The 2 call is blocked.
+2024-10-14 10:15:34,148 - INFO - The 5 call is restored.
+2024-10-14 10:15:34,148 - INFO - The 6 call is restored.
+2024-10-14 10:15:34,148 - INFO - The 9 call is restored.
+2024-10-14 10:15:34,148 - INFO - The 10 call is restored.
+2024-10-14 10:15:34,148 - INFO - The 11 call is restored.
+2024-10-14 10:15:34,148 - INFO - The 12 call is blocked.
+2024-10-14 10:15:34,148 - INFO - The 13 call is restored.
+2024-10-14 10:15:34,148 - INFO - The 15 call is blocked.
+2024-10-14 10:15:34,148 - INFO - The 18 call is restored.
+2024-10-14 10:15:34,148 - INFO - The 19 call is restored.
+2024-10-14 10:15:34,148 - INFO - The 20 call is restored.
+2024-10-14 10:15:34,148 - INFO - The 26 call is restored.
+2024-10-14 10:15:34,148 - INFO - The 29 call is restored.
+2024-10-14 10:15:34,148 - INFO - The 30 call is restored.
+2024-10-14 10:15:34,148 - INFO - The 31 call is restored.
+2024-10-14 10:15:34,148 - INFO - The 32 call is restored.
+2024-10-14 10:15:34,148 - INFO - The 34 call is restored.
+2024-10-14 10:15:34,148 - INFO - The 35 call is restored.
+2024-10-14 10:15:34,149 - INFO - The 37 call is blocked.
+2024-10-14 10:15:34,149 - INFO - The 38 call is restored.
+2024-10-14 10:15:34,149 - INFO - The 39 call is restored.
+2024-10-14 10:15:34,149 - INFO - The 41 call is restored.
+2024-10-14 10:15:34,149 - INFO - The 42 call is restored.
+2024-10-14 10:15:34,149 - INFO - The 43 call is restored.
+2024-10-14 10:15:34,149 - INFO - The 44 call is restored.
+2024-10-14 10:15:34,149 - INFO - The 47 call is blocked.
+2024-10-14 10:15:34,149 - INFO - The 49 call is restored.
+2024-10-14 10:15:44,435 - INFO - Attacked areas: ['ID', 'NY', 'IA']
+2024-10-14 10:15:44,435 - INFO - Potential areas: ['UT', 'CA', 'TX', 'GA']
+2024-10-14 10:15:44,436 - INFO - The 0 call passes areas: {'CA', 'NM', 'TX', 'CO', 'UT', 'AX', 'NV'}
+2024-10-14 10:15:44,436 - INFO - The 1 call passes areas: {'CA', 'NM', 'TX', 'MS', 'AL', 'WA', 'GA', 'OR', 'LA', 'AX'}
+2024-10-14 10:15:44,436 - INFO - The 3 call passes areas: {'CA', 'WA', 'OR'}
+2024-10-14 10:15:44,436 - INFO - The 4 call passes areas: {'CA'}
+2024-10-14 10:15:44,436 - INFO - The 5 call passes areas: {'CA', 'CO', 'NF', 'NE', 'UT', 'NV'}
+2024-10-14 10:15:44,436 - INFO - The 6 call passes areas: {'CA', 'NM', 'TX', 'MS', 'AL', 'NJ', 'NC', 'LA', 'AX', 'GA', 'SC', 'PA', 'MD'}
+2024-10-14 10:15:44,436 - INFO - The 9 call passes areas: {'CA', 'CO', 'NF', 'NE', 'UT', 'NV'}
+2024-10-14 10:15:44,436 - INFO - The 11 call passes areas: {'RA', 'TX', 'MS', 'AL', 'GA', 'LA', 'KY', 'TN'}
+2024-10-14 10:15:44,436 - INFO - The 13 call passes areas: {'IL', 'CA', 'NY', 'CO', 'NF', 'NJ', 'IA', 'UT', 'MI', 'NV'}
+2024-10-14 10:15:44,436 - INFO - The 14 call passes areas: {'CA', 'WA', 'OR'}
+2024-10-14 10:15:44,436 - INFO - The 16 call passes areas: {'CA', 'NM', 'TX', 'WA', 'OR', 'AX'}
+2024-10-14 10:15:44,437 - INFO - The 18 call passes areas: {'IL', 'RA', 'NY', 'CO', 'NF', 'IA', 'MI', 'UT', 'MD'}
+2024-10-14 10:15:44,437 - INFO - The 20 call passes areas: {'TX', 'MS', 'AL', 'NC', 'GA', 'SC', 'LA', 'MD'}
+2024-10-14 10:15:44,437 - INFO - The 24 call passes areas: {'CA', 'NM', 'TX', 'WA', 'OR', 'AX'}
+2024-10-14 10:15:44,437 - INFO - The 25 call passes areas: {'CA', 'CO', 'WA', 'UT', 'OR', 'NV'}
+2024-10-14 10:15:44,437 - INFO - The 26 call passes areas: {'IL', 'RA', 'NF', 'NE', 'IA', 'MI', 'GA', 'KY', 'TN'}
+2024-10-14 10:15:44,437 - INFO - The 27 call passes areas: {'CA', 'WA', 'UT', 'OR', 'NV'}
+2024-10-14 10:15:44,437 - INFO - The 28 call passes areas: {'UT', 'CO'}
+2024-10-14 10:15:44,437 - INFO - The 29 call passes areas: {'IL', 'CA', 'NY', 'CO', 'NF', 'NJ', 'WA', 'IA', 'MI', 'UT', 'OR', 'NV'}
+2024-10-14 10:15:44,437 - INFO - The 30 call passes areas: {'IL', 'RA', 'CA', 'CO', 'NF', 'IA', 'UT', 'MI', 'NV'}
+2024-10-14 10:15:44,437 - INFO - The 32 call passes areas: {'RA', 'NY', 'GA', 'KY', 'TN', 'MD'}
+2024-10-14 10:15:44,437 - INFO - The 34 call passes areas: {'IL', 'RA', 'TX', 'MS', 'AL', 'MI', 'GA', 'LA', 'KY', 'TN'}
+2024-10-14 10:15:44,437 - INFO - The 36 call passes areas: {'UT', 'CA', 'NV'}
+2024-10-14 10:15:44,437 - INFO - The 40 call passes areas: {'CA', 'NM', 'TX', 'MS', 'AL', 'WA', 'GA', 'OR', 'LA', 'AX'}
+2024-10-14 10:15:44,437 - INFO - The 41 call passes areas: {'IL', 'RA', 'CA', 'CO', 'NF', 'WA', 'IA', 'MI', 'UT', 'OR', 'NV'}
+2024-10-14 10:15:44,437 - INFO - The 42 call passes areas: {'IL', 'TX', 'CO', 'NF', 'IA', 'MO', 'AR'}
+2024-10-14 10:15:44,437 - INFO - The 43 call passes areas: {'IL', 'CA', 'CO', 'NF', 'NE', 'IA', 'UT', 'NV'}
+2024-10-14 10:15:44,437 - INFO - The 44 call passes areas: {'IL', 'CA', 'NM', 'TX', 'CO', 'NF', 'IA', 'MO', 'AR', 'AX'}
+2024-10-14 10:15:44,437 - INFO - The 45 call passes areas: {'CA', 'WA', 'OR'}
+2024-10-14 10:15:44,437 - INFO - The 48 call passes areas: {'NF', 'UT', 'NE', 'CO'}
+2024-10-14 10:15:44,437 - INFO - The 49 call passes areas: {'IL', 'ID', 'RA', 'CA', 'MN', 'WA', 'NJ', 'MT', 'MI', 'ND', 'OR', 'PA', 'WI'}
+2024-10-14 10:15:44,438 - INFO - The 4 call is changed.
+2024-10-14 10:15:44,438 - INFO - The 32 call is changed.
+2024-10-14 10:15:44,438 - INFO - After departure event 9, unable areas have ['ID', 'NY'].
+2024-10-14 10:15:44,439 - INFO - The 2 call find path.
+2024-10-14 10:15:44,439 - INFO - The 12 call find path.
+2024-10-14 10:15:44,439 - INFO - The 15 call find path.
+2024-10-14 10:15:44,439 - INFO - The 37 call find path.
+2024-10-14 10:15:44,439 - INFO - The 47 call find path.
+2024-10-14 10:15:44,440 - INFO - Prune topology has [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13] nodes.
+2024-10-14 10:15:44,440 - INFO - The 0 call passes areas: {'CA', 'NM', 'TX', 'CO', 'UT', 'AX', 'NV'}
+2024-10-14 10:15:44,440 - INFO - The 1 call passes areas: {'CA', 'NM', 'TX', 'MS', 'AL', 'WA', 'GA', 'OR', 'LA', 'AX'}
+2024-10-14 10:15:44,440 - INFO - The 6 call passes areas: {'CA', 'NM', 'TX', 'MS', 'AL', 'NJ', 'NC', 'LA', 'AX', 'GA', 'SC', 'PA', 'MD'}
+2024-10-14 10:15:44,440 - INFO - The 13 call passes areas: {'IL', 'CA', 'NY', 'CO', 'NF', 'NJ', 'IA', 'UT', 'MI', 'NV'}
+2024-10-14 10:15:44,440 - INFO - The 16 call passes areas: {'CA', 'NM', 'TX', 'WA', 'OR', 'AX'}
+2024-10-14 10:15:44,440 - INFO - The 18 call passes areas: {'IL', 'RA', 'NY', 'CO', 'NF', 'IA', 'MI', 'UT', 'MD'}
+2024-10-14 10:15:44,440 - INFO - The 24 call passes areas: {'CA', 'NM', 'TX', 'WA', 'OR', 'AX'}
+2024-10-14 10:15:44,440 - INFO - The 29 call passes areas: {'IL', 'CA', 'NY', 'CO', 'NF', 'NJ', 'WA', 'IA', 'MI', 'UT', 'OR', 'NV'}
+2024-10-14 10:15:44,440 - INFO - The 35 call passes areas: {'IL', 'RA', 'NY', 'NF', 'NE', 'IA', 'MI', 'MD'}
+2024-10-14 10:15:44,440 - INFO - The 39 call passes areas: {'NY'}
+2024-10-14 10:15:44,441 - INFO - The 40 call passes areas: {'CA', 'NM', 'TX', 'MS', 'AL', 'WA', 'GA', 'OR', 'LA', 'AX'}
+2024-10-14 10:15:44,441 - INFO - The 44 call passes areas: {'IL', 'CA', 'NM', 'TX', 'CO', 'NF', 'IA', 'MO', 'AR', 'AX'}
+2024-10-14 10:15:44,441 - INFO - The 49 call passes areas: {'IL', 'ID', 'RA', 'CA', 'MN', 'WA', 'NJ', 'MT', 'MI', 'ND', 'OR', 'PA', 'WI'}
+2024-10-14 10:15:44,441 - INFO - The 0 call is restored.
+2024-10-14 10:15:44,441 - INFO - The 1 call is restored.
+2024-10-14 10:15:44,441 - INFO - The 6 call is restored.
+2024-10-14 10:15:44,441 - INFO - The 13 call is restored.
+2024-10-14 10:15:44,441 - INFO - The 16 call is restored.
+2024-10-14 10:15:44,441 - INFO - The 18 call is restored.
+2024-10-14 10:15:44,441 - INFO - The 24 call is restored.
+2024-10-14 10:15:44,441 - INFO - The 29 call is restored.
+2024-10-14 10:15:44,441 - INFO - The 35 call is restored.
+2024-10-14 10:15:44,441 - INFO - The 39 call is restored.
+2024-10-14 10:15:44,441 - INFO - The 40 call is restored.
+2024-10-14 10:15:44,441 - INFO - The 44 call is restored.
+2024-10-14 10:15:44,442 - INFO - The 49 call is restored.
+2024-10-14 10:15:54,324 - INFO - Attacked areas: ['ID', 'NY', 'AX']
+2024-10-14 10:15:54,324 - INFO - Potential areas: ['UT', 'CA', 'GA', 'CO']
+2024-10-14 10:15:54,324 - INFO - The 0 call passes areas: {'IL', 'TX', 'CO', 'NF', 'IA', 'MO', 'AR'}
+2024-10-14 10:15:54,324 - INFO - The 1 call passes areas: {'IL', 'RA', 'CA', 'CO', 'NF', 'WA', 'IA', 'MI', 'UT', 'GA', 'OR', 'KY', 'TN', 'NV'}
+2024-10-14 10:15:54,324 - INFO - The 2 call passes areas: {'IL', 'TX', 'CO', 'NF', 'MS', 'AL', 'SC', 'NC', 'IA', 'MI', 'UT', 'GA', 'MO', 'LA', 'AR', 'MD'}
+2024-10-14 10:15:54,324 - INFO - The 3 call passes areas: {'CA', 'WA', 'OR'}
+2024-10-14 10:15:54,324 - INFO - The 4 call passes areas: {'CA'}
+2024-10-14 10:15:54,324 - INFO - The 5 call passes areas: {'CA', 'CO', 'NF', 'NE', 'UT', 'NV'}
+2024-10-14 10:15:54,324 - INFO - The 6 call passes areas: {'IL', 'RA', 'CA', 'CO', 'NF', 'NJ', 'IA', 'MI', 'UT', 'PA', 'NV'}
+2024-10-14 10:15:54,324 - INFO - The 9 call passes areas: {'CA', 'CO', 'NF', 'NE', 'UT', 'NV'}
+2024-10-14 10:15:54,325 - INFO - The 11 call passes areas: {'RA', 'TX', 'MS', 'AL', 'GA', 'LA', 'KY', 'TN'}
+2024-10-14 10:15:54,325 - INFO - The 12 call passes areas: {'IL', 'RA', 'CA', 'CO', 'NF', 'IA', 'UT', 'MI', 'NV'}
+2024-10-14 10:15:54,325 - INFO - The 13 call passes areas: {'IL', 'CA', 'NY', 'CO', 'NF', 'NJ', 'IA', 'UT', 'MI', 'NV'}
+2024-10-14 10:15:54,325 - INFO - The 14 call passes areas: {'CA', 'WA', 'OR'}
+2024-10-14 10:15:54,325 - INFO - The 15 call passes areas: {'IL', 'TX', 'CO', 'NF', 'MS', 'AL', 'NC', 'IA', 'UT', 'MI', 'GA', 'SC', 'LA', 'AR', 'MD', 'MO'}
+2024-10-14 10:15:54,325 - INFO - The 16 call passes areas: {'IL', 'CA', 'TX', 'CO', 'NF', 'WA', 'IA', 'UT', 'OR', 'MO', 'AR', 'NV'}
+2024-10-14 10:15:54,325 - INFO - The 18 call passes areas: {'IL', 'TX', 'CO', 'NF', 'MS', 'AL', 'NC', 'IA', 'UT', 'GA', 'SC', 'LA', 'AR', 'MD', 'MO'}
+2024-10-14 10:15:54,325 - INFO - The 20 call passes areas: {'TX', 'MS', 'AL', 'NC', 'GA', 'SC', 'LA', 'MD'}
+2024-10-14 10:15:54,325 - INFO - The 22 call passes areas: {'NF', 'NE', 'CO'}
+2024-10-14 10:15:54,325 - INFO - The 24 call passes areas: {'IL', 'CA', 'TX', 'CO', 'NF', 'WA', 'IA', 'UT', 'OR', 'MO', 'AR', 'NV'}
+2024-10-14 10:15:54,325 - INFO - The 25 call passes areas: {'CA', 'CO', 'WA', 'UT', 'OR', 'NV'}
+2024-10-14 10:15:54,325 - INFO - The 26 call passes areas: {'IL', 'RA', 'NF', 'NE', 'IA', 'MI', 'GA', 'KY', 'TN'}
+2024-10-14 10:15:54,325 - INFO - The 27 call passes areas: {'CA', 'WA', 'UT', 'OR', 'NV'}
+2024-10-14 10:15:54,325 - INFO - The 28 call passes areas: {'UT', 'CO'}
+2024-10-14 10:15:54,325 - INFO - The 29 call passes areas: {'IL', 'CA', 'NY', 'CO', 'NF', 'NJ', 'WA', 'IA', 'MI', 'UT', 'OR', 'NV'}
+2024-10-14 10:15:54,325 - INFO - The 30 call passes areas: {'IL', 'RA', 'CA', 'CO', 'NF', 'IA', 'UT', 'MI', 'NV'}
+2024-10-14 10:15:54,325 - INFO - The 31 call passes areas: {'IL', 'CO', 'NF', 'NE', 'IA'}
+2024-10-14 10:15:54,325 - INFO - The 32 call passes areas: {'RA', 'NJ', 'GA', 'PA', 'KY', 'TN', 'MD'}
+2024-10-14 10:15:54,325 - INFO - The 34 call passes areas: {'IL', 'RA', 'TX', 'MS', 'AL', 'MI', 'GA', 'LA', 'KY', 'TN'}
+2024-10-14 10:15:54,325 - INFO - The 36 call passes areas: {'UT', 'CA', 'NV'}
+2024-10-14 10:15:54,325 - INFO - The 37 call passes areas: {'IL', 'RA', 'CA', 'CO', 'NF', 'NJ', 'IA', 'MI', 'UT', 'PA', 'NV'}
+2024-10-14 10:15:54,325 - INFO - The 40 call passes areas: {'CA', 'NM', 'TX', 'MS', 'AL', 'WA', 'GA', 'OR', 'LA', 'AX'}
+2024-10-14 10:15:54,325 - INFO - The 41 call passes areas: {'IL', 'RA', 'CA', 'CO', 'NF', 'WA', 'IA', 'MI', 'UT', 'OR', 'NV'}
+2024-10-14 10:15:54,326 - INFO - The 42 call passes areas: {'IL', 'TX', 'CO', 'NF', 'IA', 'MO', 'AR'}
+2024-10-14 10:15:54,326 - INFO - The 43 call passes areas: {'IL', 'CA', 'CO', 'NF', 'NE', 'IA', 'UT', 'NV'}
+2024-10-14 10:15:54,326 - INFO - The 44 call passes areas: {'UT', 'NV', 'CA', 'CO'}
+2024-10-14 10:15:54,326 - INFO - The 45 call passes areas: {'CA', 'WA', 'OR'}
+2024-10-14 10:15:54,326 - INFO - The 47 call passes areas: {'IL', 'CA', 'CO', 'NF', 'IA', 'UT', 'MI', 'NV'}
+2024-10-14 10:15:54,326 - INFO - The 48 call passes areas: {'NF', 'UT', 'NE', 'CO'}
+2024-10-14 10:15:54,326 - INFO - The 49 call passes areas: {'IL', 'ID', 'RA', 'CA', 'MN', 'WA', 'NJ', 'MT', 'MI', 'ND', 'OR', 'PA', 'WI'}
+2024-10-14 10:15:54,326 - INFO - The 4 call is changed.
+2024-10-14 10:15:54,326 - INFO - The 11 call is changed.
+2024-10-14 10:15:54,326 - INFO - The 20 call is changed.
+2024-10-14 10:15:54,326 - INFO - The 26 call is changed.
+2024-10-14 10:15:54,326 - INFO - The 32 call is changed.
+2024-10-14 10:15:54,326 - INFO - The 34 call is changed.
+2024-10-14 10:15:54,326 - INFO - After departure event 10, unable areas have ['ID', 'NY'].
+2024-10-14 10:15:54,327 - INFO - After departure event 8, unable areas have ['ID'].
+2024-10-14 10:15:54,327 - INFO - The 8 call find path.
+2024-10-14 10:15:54,327 - INFO - The 17 call find path.
+2024-10-14 10:15:54,327 - INFO - The 33 call find path.
+2024-10-14 10:15:54,327 - INFO - The 46 call find path.
+2024-10-14 10:15:54,327 - INFO - After departure event 7, unable areas have [].
+2024-10-14 10:15:54,327 - INFO - Prune topology has [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13] nodes.
+2024-10-14 10:15:54,327 - INFO - The 2 call passes areas: {'IL', 'TX', 'CO', 'NF', 'MS', 'AL', 'SC', 'NC', 'IA', 'MI', 'UT', 'GA', 'MO', 'LA', 'AR', 'MD'}
+2024-10-14 10:15:54,327 - INFO - The 11 call passes areas: {'RA', 'TX', 'MS', 'AL', 'GA', 'LA', 'KY', 'TN'}
+2024-10-14 10:15:54,327 - INFO - The 15 call passes areas: {'IL', 'TX', 'CO', 'NF', 'MS', 'AL', 'NC', 'IA', 'UT', 'MI', 'GA', 'SC', 'LA', 'AR', 'MD', 'MO'}
+2024-10-14 10:15:54,327 - INFO - The 17 call passes areas: {'RA', 'NY', 'CA', 'TX', 'NM', 'MS', 'AL', 'NC', 'AX', 'GA', 'SC', 'LA', 'MD'}
+2024-10-14 10:15:54,327 - INFO - The 18 call passes areas: {'IL', 'TX', 'CO', 'NF', 'MS', 'AL', 'NC', 'IA', 'UT', 'GA', 'SC', 'LA', 'AR', 'MD', 'MO'}
+2024-10-14 10:15:54,327 - INFO - The 20 call passes areas: {'RA', 'TX', 'MS', 'AL', 'NJ', 'LA', 'GA', 'PA', 'KY', 'TN', 'MD'}
+2024-10-14 10:15:54,328 - INFO - The 34 call passes areas: {'IL', 'RA', 'TX', 'MS', 'AL', 'MI', 'GA', 'LA', 'KY', 'TN'}
+2024-10-14 10:15:54,328 - INFO - The 40 call passes areas: {'CA', 'NM', 'TX', 'MS', 'AL', 'WA', 'GA', 'OR', 'LA', 'AX'}
+2024-10-14 10:15:54,328 - INFO - The 2 call is restored.
+2024-10-14 10:15:54,328 - INFO - The 11 call is restored.
+2024-10-14 10:15:54,328 - INFO - The 15 call is restored.
+2024-10-14 10:15:54,328 - INFO - The 17 call is restored.
+2024-10-14 10:15:54,328 - INFO - The 18 call is restored.
+2024-10-14 10:15:54,328 - INFO - The 20 call is restored.
+2024-10-14 10:15:54,328 - INFO - The 34 call is restored.
+2024-10-14 10:15:54,328 - INFO - The 40 call is restored.
+2024-10-14 10:16:05,352 - INFO - Attacked areas: ['AL']
+2024-10-14 10:16:05,352 - INFO - Potential areas: ['IL', 'UT', 'CA', 'CO']
+2024-10-14 10:16:05,352 - INFO - The 0 call passes areas: {'IL', 'TX', 'CO', 'NF', 'IA', 'MO', 'AR'}
+2024-10-14 10:16:05,352 - INFO - The 1 call passes areas: {'IL', 'RA', 'CA', 'CO', 'NF', 'WA', 'IA', 'MI', 'UT', 'GA', 'OR', 'KY', 'TN', 'NV'}
+2024-10-14 10:16:05,352 - INFO - The 3 call passes areas: {'CA', 'WA', 'OR'}
+2024-10-14 10:16:05,352 - INFO - The 4 call passes areas: {'CA'}
+2024-10-14 10:16:05,352 - INFO - The 5 call passes areas: {'CA', 'CO', 'NF', 'NE', 'UT', 'NV'}
+2024-10-14 10:16:05,352 - INFO - The 6 call passes areas: {'IL', 'RA', 'CA', 'CO', 'NF', 'NJ', 'IA', 'MI', 'UT', 'PA', 'NV'}
+2024-10-14 10:16:05,352 - INFO - The 8 call passes areas: {'IL', 'MI', 'RA', 'NY'}
+2024-10-14 10:16:05,352 - INFO - The 9 call passes areas: {'CA', 'CO', 'NF', 'NE', 'UT', 'NV'}
+2024-10-14 10:16:05,352 - INFO - The 10 call passes areas: {'IL', 'RA', 'NF', 'NJ', 'NE', 'IA', 'MI', 'PA', 'MD'}
+2024-10-14 10:16:05,352 - INFO - The 11 call passes areas: {'IL', 'ID', 'RA', 'CA', 'NM', 'TX', 'MN', 'WA', 'MT', 'MI', 'ND', 'OR', 'AX', 'WI'}
+2024-10-14 10:16:05,353 - INFO - The 12 call passes areas: {'IL', 'RA', 'CA', 'CO', 'NF', 'IA', 'UT', 'MI', 'NV'}
+2024-10-14 10:16:05,353 - INFO - The 13 call passes areas: {'IL', 'CA', 'NY', 'CO', 'NF', 'NJ', 'IA', 'UT', 'MI', 'NV'}
+2024-10-14 10:16:05,353 - INFO - The 14 call passes areas: {'CA', 'WA', 'OR'}
+2024-10-14 10:16:05,353 - INFO - The 16 call passes areas: {'IL', 'CA', 'TX', 'CO', 'NF', 'WA', 'IA', 'UT', 'OR', 'MO', 'AR', 'NV'}
+2024-10-14 10:16:05,353 - INFO - The 17 call passes areas: {'IL', 'ID', 'RA', 'NY', 'CA', 'MN', 'WA', 'MT', 'MI', 'ND', 'OR', 'WI'}
+2024-10-14 10:16:05,353 - INFO - The 18 call passes areas: {'IL', 'RA', 'NY', 'CO', 'NF', 'IA', 'MI', 'UT', 'MD'}
+2024-10-14 10:16:05,353 - INFO - The 19 call passes areas: {'IL', 'NF', 'NE', 'IA'}
+2024-10-14 10:16:05,353 - INFO - The 20 call passes areas: {'IL', 'RA', 'NY', 'TX', 'CO', 'NF', 'IA', 'MI', 'UT', 'MO', 'AR', 'MD'}
+2024-10-14 10:16:05,353 - INFO - The 22 call passes areas: {'NF', 'NE', 'CO'}
+2024-10-14 10:16:05,353 - INFO - The 24 call passes areas: {'IL', 'CA', 'TX', 'CO', 'NF', 'WA', 'IA', 'UT', 'OR', 'MO', 'AR', 'NV'}
+2024-10-14 10:16:05,353 - INFO - The 25 call passes areas: {'CA', 'CO', 'WA', 'UT', 'OR', 'NV'}
+2024-10-14 10:16:05,353 - INFO - The 26 call passes areas: {'IL', 'RA', 'NF', 'NE', 'IA', 'MI', 'GA', 'KY', 'TN'}
+2024-10-14 10:16:05,353 - INFO - The 27 call passes areas: {'CA', 'WA', 'UT', 'OR', 'NV'}
+2024-10-14 10:16:05,353 - INFO - The 28 call passes areas: {'UT', 'CO'}
+2024-10-14 10:16:05,353 - INFO - The 29 call passes areas: {'IL', 'CA', 'NY', 'CO', 'NF', 'NJ', 'WA', 'IA', 'MI', 'UT', 'OR', 'NV'}
+2024-10-14 10:16:05,353 - INFO - The 30 call passes areas: {'IL', 'RA', 'CA', 'CO', 'NF', 'IA', 'UT', 'MI', 'NV'}
+2024-10-14 10:16:05,353 - INFO - The 31 call passes areas: {'IL', 'CO', 'NF', 'NE', 'IA'}
+2024-10-14 10:16:05,353 - INFO - The 34 call passes areas: {'IL', 'ID', 'CA', 'NM', 'TX', 'MN', 'WA', 'MT', 'ND', 'OR', 'AX', 'WI'}
+2024-10-14 10:16:05,353 - INFO - The 35 call passes areas: {'IL', 'RA', 'NY', 'NF', 'NE', 'IA', 'MI', 'MD'}
+2024-10-14 10:16:05,353 - INFO - The 36 call passes areas: {'UT', 'CA', 'NV'}
+2024-10-14 10:16:05,353 - INFO - The 37 call passes areas: {'IL', 'RA', 'CA', 'CO', 'NF', 'NJ', 'IA', 'MI', 'UT', 'PA', 'NV'}
+2024-10-14 10:16:05,353 - INFO - The 38 call passes areas: {'IL', 'NF', 'NE', 'IA'}
+2024-10-14 10:16:05,353 - INFO - The 40 call passes areas: {'CA', 'NM', 'TX', 'MS', 'AL', 'WA', 'GA', 'OR', 'LA', 'AX'}
+2024-10-14 10:16:05,353 - INFO - The 41 call passes areas: {'IL', 'RA', 'CA', 'CO', 'NF', 'WA', 'IA', 'MI', 'UT', 'OR', 'NV'}
+2024-10-14 10:16:05,353 - INFO - The 42 call passes areas: {'IL', 'TX', 'CO', 'NF', 'IA', 'MO', 'AR'}
+2024-10-14 10:16:05,353 - INFO - The 43 call passes areas: {'IL', 'CA', 'CO', 'NF', 'NE', 'IA', 'UT', 'NV'}
+2024-10-14 10:16:05,353 - INFO - The 44 call passes areas: {'UT', 'NV', 'CA', 'CO'}
+2024-10-14 10:16:05,353 - INFO - The 45 call passes areas: {'CA', 'WA', 'OR'}
+2024-10-14 10:16:05,353 - INFO - The 47 call passes areas: {'IL', 'CA', 'CO', 'NF', 'IA', 'UT', 'MI', 'NV'}
+2024-10-14 10:16:05,353 - INFO - The 48 call passes areas: {'NF', 'UT', 'NE', 'CO'}
+2024-10-14 10:16:05,353 - INFO - The 49 call passes areas: {'IL', 'ID', 'RA', 'CA', 'MN', 'WA', 'NJ', 'MT', 'MI', 'ND', 'OR', 'PA', 'WI'}
+2024-10-14 10:16:05,354 - INFO - The 4 call is changed.
+2024-10-14 10:16:05,354 - INFO - The 12 call is changed.
+2024-10-14 10:16:05,354 - INFO - The 37 call is changed.
+2024-10-14 10:16:05,354 - INFO - After departure event 11, unable areas have [].
+2024-10-14 10:16:05,354 - INFO - Prune topology has [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13] nodes.
+2024-10-14 10:16:05,354 - INFO - The 0 call passes areas: {'IL', 'TX', 'CO', 'NF', 'IA', 'MO', 'AR'}
+2024-10-14 10:16:05,354 - INFO - The 1 call passes areas: {'IL', 'RA', 'CA', 'CO', 'NF', 'WA', 'IA', 'MI', 'UT', 'GA', 'OR', 'KY', 'TN', 'NV'}
+2024-10-14 10:16:05,355 - INFO - The 5 call passes areas: {'CA', 'CO', 'NF', 'NE', 'UT', 'NV'}
+2024-10-14 10:16:05,355 - INFO - The 6 call passes areas: {'IL', 'RA', 'CA', 'CO', 'NF', 'NJ', 'IA', 'MI', 'UT', 'PA', 'NV'}
+2024-10-14 10:16:05,355 - INFO - The 9 call passes areas: {'CA', 'CO', 'NF', 'NE', 'UT', 'NV'}
+2024-10-14 10:16:05,355 - INFO - The 10 call passes areas: {'IL', 'RA', 'NF', 'NJ', 'NE', 'IA', 'MI', 'PA', 'MD'}
+2024-10-14 10:16:05,355 - INFO - The 13 call passes areas: {'IL', 'CA', 'NY', 'CO', 'NF', 'NJ', 'IA', 'UT', 'MI', 'NV'}
+2024-10-14 10:16:05,355 - INFO - The 16 call passes areas: {'IL', 'CA', 'TX', 'CO', 'NF', 'WA', 'IA', 'UT', 'OR', 'MO', 'AR', 'NV'}
+2024-10-14 10:16:05,355 - INFO - The 18 call passes areas: {'IL', 'RA', 'NY', 'CO', 'NF', 'IA', 'MI', 'UT', 'MD'}
+2024-10-14 10:16:05,355 - INFO - The 19 call passes areas: {'IL', 'NF', 'NE', 'IA'}
+2024-10-14 10:16:05,355 - INFO - The 20 call passes areas: {'IL', 'RA', 'NY', 'TX', 'CO', 'NF', 'IA', 'MI', 'UT', 'MO', 'AR', 'MD'}
+2024-10-14 10:16:05,355 - INFO - The 22 call passes areas: {'NF', 'NE', 'CO'}
+2024-10-14 10:16:05,355 - INFO - The 24 call passes areas: {'IL', 'CA', 'TX', 'CO', 'NF', 'WA', 'IA', 'UT', 'OR', 'MO', 'AR', 'NV'}
+2024-10-14 10:16:05,355 - INFO - The 26 call passes areas: {'IL', 'RA', 'NF', 'NE', 'IA', 'MI', 'GA', 'KY', 'TN'}
+2024-10-14 10:16:05,355 - INFO - The 29 call passes areas: {'IL', 'CA', 'NY', 'CO', 'NF', 'NJ', 'WA', 'IA', 'MI', 'UT', 'OR', 'NV'}
+2024-10-14 10:16:05,355 - INFO - The 30 call passes areas: {'IL', 'RA', 'CA', 'CO', 'NF', 'IA', 'UT', 'MI', 'NV'}
+2024-10-14 10:16:05,355 - INFO - The 31 call passes areas: {'IL', 'CO', 'NF', 'NE', 'IA'}
+2024-10-14 10:16:05,355 - INFO - The 35 call passes areas: {'IL', 'RA', 'NY', 'NF', 'NE', 'IA', 'MI', 'MD'}
+2024-10-14 10:16:05,355 - INFO - The 38 call passes areas: {'IL', 'NF', 'NE', 'IA'}
+2024-10-14 10:16:05,355 - INFO - The 41 call passes areas: {'IL', 'RA', 'CA', 'CO', 'NF', 'WA', 'IA', 'MI', 'UT', 'OR', 'NV'}
+2024-10-14 10:16:05,355 - INFO - The 42 call passes areas: {'IL', 'TX', 'CO', 'NF', 'IA', 'MO', 'AR'}
+2024-10-14 10:16:05,355 - INFO - The 43 call passes areas: {'IL', 'CA', 'CO', 'NF', 'NE', 'IA', 'UT', 'NV'}
+2024-10-14 10:16:05,355 - INFO - The 47 call passes areas: {'IL', 'CA', 'CO', 'NF', 'IA', 'UT', 'MI', 'NV'}
+2024-10-14 10:16:05,355 - INFO - The 48 call passes areas: {'NF', 'UT', 'NE', 'CO'}
+2024-10-14 10:16:05,355 - INFO - The 0 call is restored.
+2024-10-14 10:16:05,355 - INFO - The 1 call is restored.
+2024-10-14 10:16:05,355 - INFO - The 5 call is blocked.
+2024-10-14 10:16:05,355 - INFO - The 6 call is restored.
+2024-10-14 10:16:05,355 - INFO - The 9 call is blocked.
+2024-10-14 10:16:05,356 - INFO - The 10 call is blocked.
+2024-10-14 10:16:05,356 - INFO - The 13 call is restored.
+2024-10-14 10:16:05,356 - INFO - The 16 call is restored.
+2024-10-14 10:16:05,356 - INFO - The 18 call is restored.
+2024-10-14 10:16:05,356 - INFO - The 19 call is blocked.
+2024-10-14 10:16:05,356 - INFO - The 20 call is restored.
+2024-10-14 10:16:05,356 - INFO - The 22 call is blocked.
+2024-10-14 10:16:05,356 - INFO - The 24 call is restored.
+2024-10-14 10:16:05,356 - INFO - The 26 call is blocked.
+2024-10-14 10:16:05,356 - INFO - The 29 call is restored.
+2024-10-14 10:16:05,356 - INFO - The 30 call is restored.
+2024-10-14 10:16:05,356 - INFO - The 31 call is restored.
+2024-10-14 10:16:05,356 - INFO - The 35 call is blocked.
+2024-10-14 10:16:05,356 - INFO - The 38 call is blocked.
+2024-10-14 10:16:05,356 - INFO - The 41 call is restored.
+2024-10-14 10:16:05,356 - INFO - The 42 call is restored.
+2024-10-14 10:16:05,356 - INFO - The 43 call is blocked.
+2024-10-14 10:16:05,356 - INFO - The 47 call is restored.
+2024-10-14 10:16:05,356 - INFO - The 48 call is blocked.
+2024-10-14 10:16:14,858 - INFO - Attacked areas: ['NF']
+2024-10-14 10:16:14,858 - INFO - Potential areas: ['RA', 'NY', 'NJ', 'CA']
+2024-10-14 10:16:14,859 - INFO - The 0 call passes areas: {'CA', 'NM', 'TX', 'CO', 'UT', 'AX', 'NV'}
+2024-10-14 10:16:14,859 - INFO - The 1 call passes areas: {'CA', 'NM', 'TX', 'MS', 'AL', 'WA', 'GA', 'OR', 'LA', 'AX'}
+2024-10-14 10:16:14,859 - INFO - The 2 call passes areas: {'MI', 'RA', 'NY', 'MD'}
+2024-10-14 10:16:14,859 - INFO - The 3 call passes areas: {'CA', 'WA', 'OR'}
+2024-10-14 10:16:14,859 - INFO - The 4 call passes areas: {'CA'}
+2024-10-14 10:16:14,859 - INFO - The 6 call passes areas: {'IL', 'ID', 'RA', 'CA', 'MN', 'NJ', 'WA', 'MT', 'MI', 'ND', 'OR', 'PA', 'WI'}
+2024-10-14 10:16:14,859 - INFO - The 7 call passes areas: {'PA', 'RA', 'NJ', 'MD'}
+2024-10-14 10:16:14,859 - INFO - The 8 call passes areas: {'IL', 'MI', 'RA', 'NY'}
+2024-10-14 10:16:14,859 - INFO - The 11 call passes areas: {'IL', 'ID', 'RA', 'CA', 'NM', 'TX', 'MN', 'WA', 'MT', 'MI', 'ND', 'OR', 'AX', 'WI'}
+2024-10-14 10:16:14,859 - INFO - The 12 call passes areas: {'MI', 'RA', 'NY'}
+2024-10-14 10:16:14,859 - INFO - The 13 call passes areas: {'IL', 'ID', 'RA', 'CA', 'MN', 'WA', 'NJ', 'MT', 'MI', 'ND', 'OR', 'PA', 'WI'}
+2024-10-14 10:16:14,859 - INFO - The 14 call passes areas: {'CA', 'WA', 'OR'}
+2024-10-14 10:16:14,859 - INFO - The 15 call passes areas: {'MI', 'RA', 'NY', 'MD'}
+2024-10-14 10:16:14,859 - INFO - The 16 call passes areas: {'CA', 'NM', 'TX', 'WA', 'OR', 'AX'}
+2024-10-14 10:16:14,859 - INFO - The 17 call passes areas: {'IL', 'ID', 'RA', 'NY', 'CA', 'MN', 'WA', 'MT', 'MI', 'ND', 'OR', 'WI'}
+2024-10-14 10:16:14,859 - INFO - The 18 call passes areas: {'IL', 'RA', 'NY', 'CO', 'NF', 'IA', 'MI', 'UT', 'MD'}
+2024-10-14 10:16:14,859 - INFO - The 23 call passes areas: {'PA', 'RA', 'NJ'}
+2024-10-14 10:16:14,859 - INFO - The 24 call passes areas: {'IL', 'CA', 'TX', 'CO', 'NF', 'WA', 'IA', 'UT', 'OR', 'MO', 'AR', 'NV'}
+2024-10-14 10:16:14,859 - INFO - The 25 call passes areas: {'CA', 'CO', 'WA', 'UT', 'OR', 'NV'}
+2024-10-14 10:16:14,859 - INFO - The 27 call passes areas: {'CA', 'WA', 'UT', 'OR', 'NV'}
+2024-10-14 10:16:14,859 - INFO - The 29 call passes areas: {'IL', 'CA', 'NY', 'CO', 'NF', 'NJ', 'WA', 'IA', 'MI', 'UT', 'OR', 'NV'}
+2024-10-14 10:16:14,859 - INFO - The 30 call passes areas: {'IL', 'RA', 'CA', 'CO', 'NF', 'IA', 'UT', 'MI', 'NV'}
+2024-10-14 10:16:14,859 - INFO - The 31 call passes areas: {'IL', 'ID', 'WI', 'CA', 'MN', 'CO', 'WA', 'MT', 'UT', 'ND', 'OR', 'NV'}
+2024-10-14 10:16:14,859 - INFO - The 32 call passes areas: {'RA', 'NJ', 'GA', 'PA', 'KY', 'TN', 'MD'}
+2024-10-14 10:16:14,859 - INFO - The 33 call passes areas: {'RA', 'NY'}
+2024-10-14 10:16:14,860 - INFO - The 34 call passes areas: {'IL', 'ID', 'CA', 'NM', 'TX', 'MN', 'WA', 'MT', 'ND', 'OR', 'AX', 'WI'}
+2024-10-14 10:16:14,860 - INFO - The 36 call passes areas: {'UT', 'CA', 'NV'}
+2024-10-14 10:16:14,860 - INFO - The 37 call passes areas: {'MI', 'NY', 'NJ'}
+2024-10-14 10:16:14,860 - INFO - The 39 call passes areas: {'NY'}
+2024-10-14 10:16:14,860 - INFO - The 40 call passes areas: {'CA', 'NM', 'TX', 'MS', 'AL', 'WA', 'GA', 'OR', 'LA', 'AX'}
+2024-10-14 10:16:14,860 - INFO - The 41 call passes areas: {'IL', 'RA', 'CA', 'CO', 'NF', 'WA', 'IA', 'MI', 'UT', 'OR', 'NV'}
+2024-10-14 10:16:14,860 - INFO - The 44 call passes areas: {'UT', 'NV', 'CA', 'CO'}
+2024-10-14 10:16:14,860 - INFO - The 45 call passes areas: {'CA', 'WA', 'OR'}
+2024-10-14 10:16:14,860 - INFO - The 46 call passes areas: {'RA', 'NY'}
+2024-10-14 10:16:14,860 - INFO - The 47 call passes areas: {'IL', 'CA', 'CO', 'NF', 'IA', 'UT', 'MI', 'NV'}
+2024-10-14 10:16:14,860 - INFO - The 49 call passes areas: {'IL', 'ID', 'RA', 'CA', 'MN', 'WA', 'NJ', 'MT', 'MI', 'ND', 'OR', 'PA', 'WI'}
+2024-10-14 10:16:14,860 - INFO - The 4 call is changed.
+2024-10-14 10:16:14,860 - INFO - The 32 call is changed.
+2024-10-14 10:16:14,860 - INFO - The 39 call is changed.
+2024-10-14 10:16:14,860 - INFO - Prune topology has [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13] nodes.
+2024-10-14 10:16:14,860 - INFO - The 0 call passes areas: {'CA', 'NM', 'TX', 'CO', 'UT', 'AX', 'NV'}
+2024-10-14 10:16:14,861 - INFO - The 18 call passes areas: {'IL', 'RA', 'NY', 'CO', 'NF', 'IA', 'MI', 'UT', 'MD'}
+2024-10-14 10:16:14,861 - INFO - The 24 call passes areas: {'IL', 'CA', 'TX', 'CO', 'NF', 'WA', 'IA', 'UT', 'OR', 'MO', 'AR', 'NV'}
+2024-10-14 10:16:14,861 - INFO - The 25 call passes areas: {'CA', 'CO', 'WA', 'UT', 'OR', 'NV'}
+2024-10-14 10:16:14,861 - INFO - The 28 call passes areas: {'UT', 'CO'}
+2024-10-14 10:16:14,861 - INFO - The 29 call passes areas: {'IL', 'CA', 'NY', 'CO', 'NF', 'NJ', 'WA', 'IA', 'MI', 'UT', 'OR', 'NV'}
+2024-10-14 10:16:14,861 - INFO - The 30 call passes areas: {'IL', 'RA', 'CA', 'CO', 'NF', 'IA', 'UT', 'MI', 'NV'}
+2024-10-14 10:16:14,861 - INFO - The 31 call passes areas: {'IL', 'ID', 'WI', 'CA', 'MN', 'CO', 'WA', 'MT', 'UT', 'ND', 'OR', 'NV'}
+2024-10-14 10:16:14,861 - INFO - The 41 call passes areas: {'IL', 'RA', 'CA', 'CO', 'NF', 'WA', 'IA', 'MI', 'UT', 'OR', 'NV'}
+2024-10-14 10:16:14,861 - INFO - The 42 call passes areas: {'IL', 'TX', 'CO', 'NF', 'IA', 'MO', 'AR'}
+2024-10-14 10:16:14,861 - INFO - The 44 call passes areas: {'UT', 'NV', 'CA', 'CO'}
+2024-10-14 10:16:14,861 - INFO - The 47 call passes areas: {'IL', 'CA', 'CO', 'NF', 'IA', 'UT', 'MI', 'NV'}
+2024-10-14 10:16:14,861 - INFO - The 0 call is blocked.
+2024-10-14 10:16:14,861 - INFO - The 18 call is restored.
+2024-10-14 10:16:14,861 - INFO - The 24 call is restored.
+2024-10-14 10:16:14,861 - INFO - The 25 call is blocked.
+2024-10-14 10:16:14,861 - INFO - The 28 call is blocked.
+2024-10-14 10:16:14,861 - INFO - The 29 call is restored.
+2024-10-14 10:16:14,861 - INFO - The 30 call is restored.
+2024-10-14 10:16:14,861 - INFO - The 31 call is blocked.
+2024-10-14 10:16:14,861 - INFO - The 41 call is restored.
+2024-10-14 10:16:14,861 - INFO - The 42 call is blocked.
+2024-10-14 10:16:14,861 - INFO - The 44 call is blocked.
+2024-10-14 10:16:14,861 - INFO - The 47 call is restored.
+2024-10-14 10:16:24,964 - INFO - Attacked areas: ['NF', 'CO']
+2024-10-14 10:16:24,964 - INFO - Potential areas: ['NY', 'RA', 'CA', 'WA']
+2024-10-14 10:16:24,964 - INFO - The 1 call passes areas: {'CA', 'NM', 'TX', 'MS', 'AL', 'WA', 'GA', 'OR', 'LA', 'AX'}
+2024-10-14 10:16:24,964 - INFO - The 2 call passes areas: {'MI', 'RA', 'NY', 'MD'}
+2024-10-14 10:16:24,964 - INFO - The 3 call passes areas: {'CA', 'WA', 'OR'}
+2024-10-14 10:16:24,964 - INFO - The 4 call passes areas: {'CA'}
+2024-10-14 10:16:24,964 - INFO - The 6 call passes areas: {'IL', 'ID', 'RA', 'CA', 'MN', 'NJ', 'WA', 'MT', 'MI', 'ND', 'OR', 'PA', 'WI'}
+2024-10-14 10:16:24,964 - INFO - The 7 call passes areas: {'PA', 'RA', 'NJ', 'MD'}
+2024-10-14 10:16:24,964 - INFO - The 8 call passes areas: {'IL', 'MI', 'RA', 'NY'}
+2024-10-14 10:16:24,964 - INFO - The 11 call passes areas: {'IL', 'ID', 'RA', 'CA', 'NM', 'TX', 'MN', 'WA', 'MT', 'MI', 'ND', 'OR', 'AX', 'WI'}
+2024-10-14 10:16:24,964 - INFO - The 12 call passes areas: {'MI', 'RA', 'NY'}
+2024-10-14 10:16:24,964 - INFO - The 13 call passes areas: {'IL', 'ID', 'RA', 'CA', 'MN', 'WA', 'NJ', 'MT', 'MI', 'ND', 'OR', 'PA', 'WI'}
+2024-10-14 10:16:24,964 - INFO - The 14 call passes areas: {'CA', 'WA', 'OR'}
+2024-10-14 10:16:24,964 - INFO - The 15 call passes areas: {'MI', 'RA', 'NY', 'MD'}
+2024-10-14 10:16:24,964 - INFO - The 16 call passes areas: {'CA', 'NM', 'TX', 'WA', 'OR', 'AX'}
+2024-10-14 10:16:24,964 - INFO - The 17 call passes areas: {'IL', 'ID', 'RA', 'NY', 'CA', 'MN', 'WA', 'MT', 'MI', 'ND', 'OR', 'WI'}
+2024-10-14 10:16:24,964 - INFO - The 18 call passes areas: {'CA', 'NM', 'TX', 'MS', 'AL', 'NC', 'UT', 'AX', 'GA', 'SC', 'LA', 'MD', 'NV'}
+2024-10-14 10:16:24,965 - INFO - The 23 call passes areas: {'PA', 'RA', 'NJ'}
+2024-10-14 10:16:24,965 - INFO - The 24 call passes areas: {'CA', 'NM', 'TX', 'WA', 'OR', 'AX'}
+2024-10-14 10:16:24,965 - INFO - The 27 call passes areas: {'CA', 'WA', 'UT', 'OR', 'NV'}
+2024-10-14 10:16:24,965 - INFO - The 29 call passes areas: {'IL', 'ID', 'RA', 'MN', 'NJ', 'WA', 'MT', 'MI', 'ND', 'PA', 'WI'}
+2024-10-14 10:16:24,965 - INFO - The 30 call passes areas: {'IL', 'ID', 'RA', 'CA', 'MN', 'WA', 'MT', 'MI', 'ND', 'OR', 'WI'}
+2024-10-14 10:16:24,965 - INFO - The 33 call passes areas: {'RA', 'NY'}
+2024-10-14 10:16:24,965 - INFO - The 34 call passes areas: {'IL', 'ID', 'CA', 'NM', 'TX', 'MN', 'WA', 'MT', 'ND', 'OR', 'AX', 'WI'}
+2024-10-14 10:16:24,965 - INFO - The 36 call passes areas: {'UT', 'CA', 'NV'}
+2024-10-14 10:16:24,965 - INFO - The 37 call passes areas: {'MI', 'NY', 'NJ'}
+2024-10-14 10:16:24,965 - INFO - The 39 call passes areas: {'NY'}
+2024-10-14 10:16:24,965 - INFO - The 40 call passes areas: {'CA', 'NM', 'TX', 'MS', 'AL', 'WA', 'GA', 'OR', 'LA', 'AX'}
+2024-10-14 10:16:24,965 - INFO - The 41 call passes areas: {'IL', 'RA', 'CA', 'CO', 'NF', 'WA', 'IA', 'MI', 'UT', 'OR', 'NV'}
+2024-10-14 10:16:24,965 - INFO - The 45 call passes areas: {'CA', 'WA', 'OR'}
+2024-10-14 10:16:24,965 - INFO - The 46 call passes areas: {'RA', 'NY'}
+2024-10-14 10:16:24,965 - INFO - The 47 call passes areas: {'IL', 'CA', 'CO', 'NF', 'IA', 'UT', 'MI', 'NV'}
+2024-10-14 10:16:24,965 - INFO - The 49 call passes areas: {'IL', 'ID', 'RA', 'CA', 'MN', 'WA', 'NJ', 'MT', 'MI', 'ND', 'OR', 'PA', 'WI'}
+2024-10-14 10:16:24,965 - INFO - The 4 call is changed.
+2024-10-14 10:16:24,965 - INFO - The 39 call is changed.
+2024-10-14 10:16:24,965 - INFO - After departure event 13, unable areas have ['NF'].
+2024-10-14 10:16:24,966 - INFO - The 0 call find path.
+2024-10-14 10:16:24,966 - INFO - The 25 call find path.
+2024-10-14 10:16:24,966 - INFO - The 28 call find path.
+2024-10-14 10:16:24,966 - INFO - The 31 call find path.
+2024-10-14 10:16:24,966 - INFO - The 42 call find path.
+2024-10-14 10:16:24,966 - INFO - The 44 call find path.
+2024-10-14 10:16:24,966 - INFO - Prune topology has [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13] nodes.
+2024-10-14 10:16:24,966 - INFO - The 6 call passes areas: {'IL', 'ID', 'RA', 'CA', 'MN', 'NJ', 'WA', 'MT', 'MI', 'ND', 'OR', 'PA', 'WI'}
+2024-10-14 10:16:24,966 - INFO - The 11 call passes areas: {'IL', 'ID', 'RA', 'CA', 'NM', 'TX', 'MN', 'WA', 'MT', 'MI', 'ND', 'OR', 'AX', 'WI'}
+2024-10-14 10:16:24,966 - INFO - The 13 call passes areas: {'IL', 'ID', 'RA', 'CA', 'MN', 'WA', 'NJ', 'MT', 'MI', 'ND', 'OR', 'PA', 'WI'}
+2024-10-14 10:16:24,966 - INFO - The 17 call passes areas: {'IL', 'ID', 'RA', 'NY', 'CA', 'MN', 'WA', 'MT', 'MI', 'ND', 'OR', 'WI'}
+2024-10-14 10:16:24,966 - INFO - The 29 call passes areas: {'IL', 'ID', 'RA', 'MN', 'NJ', 'WA', 'MT', 'MI', 'ND', 'PA', 'WI'}
+2024-10-14 10:16:24,966 - INFO - The 30 call passes areas: {'IL', 'ID', 'RA', 'CA', 'MN', 'WA', 'MT', 'MI', 'ND', 'OR', 'WI'}
+2024-10-14 10:16:24,966 - INFO - The 31 call passes areas: {'IL', 'ID', 'WI', 'CA', 'MN', 'CO', 'WA', 'MT', 'UT', 'ND', 'OR', 'NV'}
+2024-10-14 10:16:24,966 - INFO - The 34 call passes areas: {'IL', 'ID', 'CA', 'NM', 'TX', 'MN', 'WA', 'MT', 'ND', 'OR', 'AX', 'WI'}
+2024-10-14 10:16:24,967 - INFO - The 41 call passes areas: {'IL', 'RA', 'CA', 'CO', 'NF', 'WA', 'IA', 'MI', 'UT', 'OR', 'NV'}
+2024-10-14 10:16:24,967 - INFO - The 47 call passes areas: {'IL', 'CA', 'CO', 'NF', 'IA', 'UT', 'MI', 'NV'}
+2024-10-14 10:16:24,967 - INFO - The 49 call passes areas: {'IL', 'ID', 'RA', 'CA', 'MN', 'WA', 'NJ', 'MT', 'MI', 'ND', 'OR', 'PA', 'WI'}
+2024-10-14 10:16:24,967 - INFO - The 6 call is restored.
+2024-10-14 10:16:24,967 - INFO - The 11 call is restored.
+2024-10-14 10:16:24,967 - INFO - The 13 call is restored.
+2024-10-14 10:16:24,967 - INFO - The 17 call is restored.
+2024-10-14 10:16:24,967 - INFO - The 29 call is restored.
+2024-10-14 10:16:24,967 - INFO - The 30 call is restored.
+2024-10-14 10:16:24,967 - INFO - The 31 call is restored.
+2024-10-14 10:16:24,967 - INFO - The 34 call is restored.
+2024-10-14 10:16:24,967 - INFO - The 41 call is restored.
+2024-10-14 10:16:24,967 - INFO - The 47 call is restored.
+2024-10-14 10:16:24,967 - INFO - The 49 call is restored.
+2024-10-14 10:16:36,762 - INFO - Attacked areas: ['NF', 'WI']
+2024-10-14 10:16:36,762 - INFO - Potential areas: ['UT', 'RA', 'CA', 'TX']
+2024-10-14 10:16:36,763 - INFO - The 0 call passes areas: {'CA', 'NM', 'TX', 'CO', 'UT', 'AX', 'NV'}
+2024-10-14 10:16:36,763 - INFO - The 1 call passes areas: {'CA', 'NM', 'TX', 'MS', 'AL', 'WA', 'GA', 'OR', 'LA', 'AX'}
+2024-10-14 10:16:36,764 - INFO - The 2 call passes areas: {'MI', 'RA', 'NY', 'MD'}
+2024-10-14 10:16:36,764 - INFO - The 3 call passes areas: {'CA', 'WA', 'OR'}
+2024-10-14 10:16:36,764 - INFO - The 4 call passes areas: {'CA'}
+2024-10-14 10:16:36,764 - INFO - The 6 call passes areas: {'CA', 'NM', 'TX', 'MS', 'AL', 'NJ', 'NC', 'LA', 'AX', 'GA', 'SC', 'PA', 'MD'}
+2024-10-14 10:16:36,764 - INFO - The 7 call passes areas: {'PA', 'RA', 'NJ', 'MD'}
+2024-10-14 10:16:36,764 - INFO - The 8 call passes areas: {'IL', 'MI', 'RA', 'NY'}
+2024-10-14 10:16:36,764 - INFO - The 11 call passes areas: {'RA', 'TX', 'MS', 'AL', 'GA', 'LA', 'KY', 'TN'}
+2024-10-14 10:16:36,764 - INFO - The 12 call passes areas: {'MI', 'RA', 'NY'}
+2024-10-14 10:16:36,764 - INFO - The 13 call passes areas: {'CA', 'NM', 'TX', 'MS', 'AL', 'PA', 'NJ', 'NC', 'GA', 'SC', 'LA', 'AX', 'MD'}
+2024-10-14 10:16:36,764 - INFO - The 14 call passes areas: {'CA', 'WA', 'OR'}
+2024-10-14 10:16:36,764 - INFO - The 15 call passes areas: {'MI', 'RA', 'NY', 'MD'}
+2024-10-14 10:16:36,764 - INFO - The 16 call passes areas: {'CA', 'NM', 'TX', 'WA', 'OR', 'AX'}
+2024-10-14 10:16:36,764 - INFO - The 17 call passes areas: {'IL', 'ID', 'RA', 'NY', 'CA', 'MN', 'WA', 'MT', 'MI', 'ND', 'OR', 'WI'}
+2024-10-14 10:16:36,764 - INFO - The 18 call passes areas: {'CA', 'NM', 'TX', 'MS', 'AL', 'NC', 'UT', 'AX', 'GA', 'SC', 'LA', 'MD', 'NV'}
+2024-10-14 10:16:36,764 - INFO - The 20 call passes areas: {'TX', 'MS', 'AL', 'NC', 'GA', 'SC', 'LA', 'MD'}
+2024-10-14 10:16:36,764 - INFO - The 23 call passes areas: {'PA', 'RA', 'NJ'}
+2024-10-14 10:16:36,764 - INFO - The 24 call passes areas: {'CA', 'NM', 'TX', 'WA', 'OR', 'AX'}
+2024-10-14 10:16:36,764 - INFO - The 25 call passes areas: {'CA', 'CO', 'WA', 'UT', 'OR', 'NV'}
+2024-10-14 10:16:36,764 - INFO - The 27 call passes areas: {'CA', 'WA', 'UT', 'OR', 'NV'}
+2024-10-14 10:16:36,764 - INFO - The 28 call passes areas: {'UT', 'CO'}
+2024-10-14 10:16:36,764 - INFO - The 29 call passes areas: {'IL', 'ID', 'RA', 'MN', 'NJ', 'WA', 'MT', 'MI', 'ND', 'PA', 'WI'}
+2024-10-14 10:16:36,764 - INFO - The 30 call passes areas: {'RA', 'CA', 'NM', 'TX', 'MS', 'AL', 'GA', 'LA', 'KY', 'TN', 'AX'}
+2024-10-14 10:16:36,765 - INFO - The 31 call passes areas: {'IL', 'ID', 'WI', 'CA', 'MN', 'CO', 'WA', 'MT', 'UT', 'ND', 'OR', 'NV'}
+2024-10-14 10:16:36,765 - INFO - The 32 call passes areas: {'TX', 'MS', 'AL', 'NC', 'GA', 'SC', 'LA', 'MD'}
+2024-10-14 10:16:36,765 - INFO - The 33 call passes areas: {'RA', 'NY'}
+2024-10-14 10:16:36,765 - INFO - The 34 call passes areas: {'IL', 'RA', 'TX', 'MS', 'AL', 'MI', 'GA', 'LA', 'KY', 'TN'}
+2024-10-14 10:16:36,765 - INFO - The 36 call passes areas: {'UT', 'CA', 'NV'}
+2024-10-14 10:16:36,765 - INFO - The 40 call passes areas: {'CA', 'NM', 'TX', 'MS', 'AL', 'WA', 'GA', 'OR', 'LA', 'AX'}
+2024-10-14 10:16:36,765 - INFO - The 41 call passes areas: {'IL', 'RA', 'CA', 'CO', 'NF', 'WA', 'IA', 'MI', 'UT', 'OR', 'NV'}
+2024-10-14 10:16:36,765 - INFO - The 45 call passes areas: {'CA', 'WA', 'OR'}
+2024-10-14 10:16:36,765 - INFO - The 46 call passes areas: {'RA', 'NY'}
+2024-10-14 10:16:36,765 - INFO - The 47 call passes areas: {'IL', 'MI', 'RA', 'NY'}
+2024-10-14 10:16:36,765 - INFO - The 49 call passes areas: {'IL', 'ID', 'RA', 'CA', 'MN', 'WA', 'NJ', 'MT', 'MI', 'ND', 'OR', 'PA', 'WI'}
+2024-10-14 10:16:36,765 - INFO - The 2 call is changed.
+2024-10-14 10:16:36,765 - INFO - The 4 call is changed.
+2024-10-14 10:16:36,765 - INFO - The 15 call is changed.
+2024-10-14 10:16:36,766 - INFO - Prune topology has [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13] nodes.
+2024-10-14 10:16:36,766 - INFO - The 17 call passes areas: {'IL', 'ID', 'RA', 'NY', 'CA', 'MN', 'WA', 'MT', 'MI', 'ND', 'OR', 'WI'}
+2024-10-14 10:16:36,766 - INFO - The 29 call passes areas: {'IL', 'ID', 'RA', 'MN', 'NJ', 'WA', 'MT', 'MI', 'ND', 'PA', 'WI'}
+2024-10-14 10:16:36,766 - INFO - The 31 call passes areas: {'IL', 'ID', 'WI', 'CA', 'MN', 'CO', 'WA', 'MT', 'UT', 'ND', 'OR', 'NV'}
+2024-10-14 10:16:36,766 - INFO - The 41 call passes areas: {'IL', 'RA', 'CA', 'CO', 'NF', 'WA', 'IA', 'MI', 'UT', 'OR', 'NV'}
+2024-10-14 10:16:36,766 - INFO - The 49 call passes areas: {'IL', 'ID', 'RA', 'CA', 'MN', 'WA', 'NJ', 'MT', 'MI', 'ND', 'OR', 'PA', 'WI'}
+2024-10-14 10:16:36,766 - INFO - The 17 call is restored.
+2024-10-14 10:16:36,766 - INFO - The 29 call is restored.
+2024-10-14 10:16:36,766 - INFO - The 31 call is restored.
+2024-10-14 10:16:36,766 - INFO - The 41 call is restored.
+2024-10-14 10:16:36,766 - INFO - The 49 call is restored.
+2024-10-14 10:16:52,049 - INFO - Attacked areas: ['NF', 'WI', 'MT']
+2024-10-14 10:16:52,061 - INFO - Potential areas: ['NY', 'RA', 'CA', 'TX']
+2024-10-14 10:16:52,066 - INFO - The 0 call passes areas: {'CA', 'NM', 'TX', 'CO', 'UT', 'AX', 'NV'}
+2024-10-14 10:16:52,066 - INFO - The 1 call passes areas: {'CA', 'NM', 'TX', 'MS', 'AL', 'WA', 'GA', 'OR', 'LA', 'AX'}
+2024-10-14 10:16:52,066 - INFO - The 2 call passes areas: {'NY', 'NJ', 'MI', 'PA', 'MD'}
+2024-10-14 10:16:52,066 - INFO - The 3 call passes areas: {'CA', 'WA', 'OR'}
+2024-10-14 10:16:52,066 - INFO - The 4 call passes areas: {'CA'}
+2024-10-14 10:16:52,066 - INFO - The 6 call passes areas: {'CA', 'NM', 'TX', 'MS', 'AL', 'NJ', 'NC', 'LA', 'AX', 'GA', 'SC', 'PA', 'MD'}
+2024-10-14 10:16:52,066 - INFO - The 7 call passes areas: {'PA', 'RA', 'NJ', 'MD'}
+2024-10-14 10:16:52,066 - INFO - The 8 call passes areas: {'IL', 'MI', 'RA', 'NY'}
+2024-10-14 10:16:52,066 - INFO - The 11 call passes areas: {'RA', 'TX', 'MS', 'AL', 'GA', 'LA', 'KY', 'TN'}
+2024-10-14 10:16:52,066 - INFO - The 12 call passes areas: {'MI', 'RA', 'NY'}
+2024-10-14 10:16:52,066 - INFO - The 13 call passes areas: {'CA', 'NM', 'TX', 'MS', 'AL', 'PA', 'NJ', 'NC', 'GA', 'SC', 'LA', 'AX', 'MD'}
+2024-10-14 10:16:52,066 - INFO - The 14 call passes areas: {'CA', 'WA', 'OR'}
+2024-10-14 10:16:52,066 - INFO - The 15 call passes areas: {'NY', 'NJ', 'MI', 'PA', 'MD'}
+2024-10-14 10:16:52,066 - INFO - The 16 call passes areas: {'CA', 'NM', 'TX', 'WA', 'OR', 'AX'}
+2024-10-14 10:16:52,066 - INFO - The 17 call passes areas: {'RA', 'NY', 'CA', 'TX', 'NM', 'MS', 'AL', 'NC', 'AX', 'GA', 'SC', 'LA', 'MD'}
+2024-10-14 10:16:52,067 - INFO - The 18 call passes areas: {'CA', 'NM', 'TX', 'MS', 'AL', 'NC', 'UT', 'AX', 'GA', 'SC', 'LA', 'MD', 'NV'}
+2024-10-14 10:16:52,067 - INFO - The 20 call passes areas: {'TX', 'MS', 'AL', 'NC', 'GA', 'SC', 'LA', 'MD'}
+2024-10-14 10:16:52,067 - INFO - The 23 call passes areas: {'PA', 'RA', 'NJ'}
+2024-10-14 10:16:52,067 - INFO - The 24 call passes areas: {'CA', 'NM', 'TX', 'WA', 'OR', 'AX'}
+2024-10-14 10:16:52,067 - INFO - The 25 call passes areas: {'CA', 'CO', 'WA', 'UT', 'OR', 'NV'}
+2024-10-14 10:16:52,067 - INFO - The 27 call passes areas: {'CA', 'WA', 'UT', 'OR', 'NV'}
+2024-10-14 10:16:52,067 - INFO - The 29 call passes areas: {'CA', 'NM', 'TX', 'MS', 'AL', 'WA', 'NJ', 'NC', 'LA', 'AX', 'GA', 'OR', 'SC', 'PA', 'MD'}
+2024-10-14 10:16:52,067 - INFO - The 30 call passes areas: {'RA', 'CA', 'NM', 'TX', 'MS', 'AL', 'GA', 'LA', 'KY', 'TN', 'AX'}
+2024-10-14 10:16:52,067 - INFO - The 31 call passes areas: {'IL', 'RA', 'CA', 'NM', 'TX', 'CO', 'MS', 'AL', 'UT', 'MI', 'GA', 'LA', 'KY', 'TN', 'AX', 'NV'}
+2024-10-14 10:16:52,067 - INFO - The 32 call passes areas: {'TX', 'MS', 'AL', 'NC', 'GA', 'SC', 'LA', 'MD'}
+2024-10-14 10:16:52,067 - INFO - The 33 call passes areas: {'RA', 'NY'}
+2024-10-14 10:16:52,067 - INFO - The 34 call passes areas: {'IL', 'RA', 'TX', 'MS', 'AL', 'MI', 'GA', 'LA', 'KY', 'TN'}
+2024-10-14 10:16:52,067 - INFO - The 36 call passes areas: {'UT', 'CA', 'NV'}
+2024-10-14 10:16:52,067 - INFO - The 37 call passes areas: {'MI', 'NY', 'NJ'}
+2024-10-14 10:16:52,067 - INFO - The 39 call passes areas: {'NY'}
+2024-10-14 10:16:52,067 - INFO - The 40 call passes areas: {'CA', 'NM', 'TX', 'MS', 'AL', 'WA', 'GA', 'OR', 'LA', 'AX'}
+2024-10-14 10:16:52,067 - INFO - The 41 call passes areas: {'IL', 'RA', 'CA', 'CO', 'NF', 'WA', 'IA', 'MI', 'UT', 'OR', 'NV'}
+2024-10-14 10:16:52,067 - INFO - The 45 call passes areas: {'CA', 'WA', 'OR'}
+2024-10-14 10:16:52,068 - INFO - The 46 call passes areas: {'RA', 'NY'}
+2024-10-14 10:16:52,068 - INFO - The 47 call passes areas: {'IL', 'MI', 'RA', 'NY'}
+2024-10-14 10:16:52,068 - INFO - The 49 call passes areas: {'IL', 'ID', 'RA', 'CA', 'MN', 'WA', 'NJ', 'MT', 'MI', 'ND', 'OR', 'PA', 'WI'}
+2024-10-14 10:16:52,068 - INFO - The 4 call is changed.
+2024-10-14 10:16:52,068 - INFO - The 39 call is changed.
+2024-10-14 10:16:52,095 - INFO - Prune topology has [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13] nodes.
+2024-10-14 10:16:52,096 - INFO - The 41 call passes areas: {'IL', 'RA', 'CA', 'CO', 'NF', 'WA', 'IA', 'MI', 'UT', 'OR', 'NV'}
+2024-10-14 10:16:52,096 - INFO - The 49 call passes areas: {'IL', 'ID', 'RA', 'CA', 'MN', 'WA', 'NJ', 'MT', 'MI', 'ND', 'OR', 'PA', 'WI'}
+2024-10-14 10:16:52,096 - INFO - The 41 call is restored.
+2024-10-14 10:16:52,096 - INFO - The 49 call is restored.
+2024-10-14 10:17:02,650 - INFO - Attacked areas: ['NF', 'WI', 'MT', 'NE']
+2024-10-14 10:17:02,651 - INFO - Potential areas: ['RA', 'NY', 'NJ', 'CA']
+2024-10-14 10:17:02,651 - INFO - The 0 call passes areas: {'CA', 'NM', 'TX', 'CO', 'UT', 'AX', 'NV'}
+2024-10-14 10:17:02,651 - INFO - The 1 call passes areas: {'CA', 'NM', 'TX', 'MS', 'AL', 'WA', 'GA', 'OR', 'LA', 'AX'}
+2024-10-14 10:17:02,651 - INFO - The 2 call passes areas: {'NY', 'NJ', 'MI', 'PA', 'MD'}
+2024-10-14 10:17:02,651 - INFO - The 3 call passes areas: {'CA', 'WA', 'OR'}
+2024-10-14 10:17:02,651 - INFO - The 4 call passes areas: {'CA'}
+2024-10-14 10:17:02,651 - INFO - The 6 call passes areas: {'CA', 'NM', 'TX', 'MS', 'AL', 'NJ', 'NC', 'LA', 'AX', 'GA', 'SC', 'PA', 'MD'}
+2024-10-14 10:17:02,651 - INFO - The 7 call passes areas: {'PA', 'RA', 'NJ', 'MD'}
+2024-10-14 10:17:02,651 - INFO - The 8 call passes areas: {'IL', 'MI', 'RA', 'NY'}
+2024-10-14 10:17:02,651 - INFO - The 11 call passes areas: {'RA', 'TX', 'MS', 'AL', 'GA', 'LA', 'KY', 'TN'}
+2024-10-14 10:17:02,651 - INFO - The 12 call passes areas: {'MI', 'RA', 'NY'}
+2024-10-14 10:17:02,651 - INFO - The 13 call passes areas: {'CA', 'NM', 'TX', 'MS', 'AL', 'PA', 'NJ', 'NC', 'GA', 'SC', 'LA', 'AX', 'MD'}
+2024-10-14 10:17:02,651 - INFO - The 14 call passes areas: {'CA', 'WA', 'OR'}
+2024-10-14 10:17:02,651 - INFO - The 15 call passes areas: {'NY', 'NJ', 'MI', 'PA', 'MD'}
+2024-10-14 10:17:02,651 - INFO - The 16 call passes areas: {'CA', 'NM', 'TX', 'WA', 'OR', 'AX'}
+2024-10-14 10:17:02,651 - INFO - The 17 call passes areas: {'RA', 'NY', 'CA', 'TX', 'NM', 'MS', 'AL', 'NC', 'AX', 'GA', 'SC', 'LA', 'MD'}
+2024-10-14 10:17:02,651 - INFO - The 18 call passes areas: {'CA', 'NM', 'TX', 'MS', 'AL', 'NC', 'UT', 'AX', 'GA', 'SC', 'LA', 'MD', 'NV'}
+2024-10-14 10:17:02,651 - INFO - The 23 call passes areas: {'PA', 'RA', 'NJ'}
+2024-10-14 10:17:02,651 - INFO - The 24 call passes areas: {'CA', 'NM', 'TX', 'WA', 'OR', 'AX'}
+2024-10-14 10:17:02,651 - INFO - The 25 call passes areas: {'CA', 'CO', 'WA', 'UT', 'OR', 'NV'}
+2024-10-14 10:17:02,651 - INFO - The 27 call passes areas: {'CA', 'WA', 'UT', 'OR', 'NV'}
+2024-10-14 10:17:02,651 - INFO - The 29 call passes areas: {'CA', 'NM', 'TX', 'MS', 'AL', 'WA', 'NJ', 'NC', 'LA', 'AX', 'GA', 'OR', 'SC', 'PA', 'MD'}
+2024-10-14 10:17:02,651 - INFO - The 30 call passes areas: {'RA', 'CA', 'NM', 'TX', 'MS', 'AL', 'GA', 'LA', 'KY', 'TN', 'AX'}
+2024-10-14 10:17:02,651 - INFO - The 31 call passes areas: {'IL', 'RA', 'CA', 'NM', 'TX', 'CO', 'MS', 'AL', 'UT', 'MI', 'GA', 'LA', 'KY', 'TN', 'AX', 'NV'}
+2024-10-14 10:17:02,652 - INFO - The 33 call passes areas: {'RA', 'NY'}
+2024-10-14 10:17:02,652 - INFO - The 34 call passes areas: {'IL', 'RA', 'TX', 'MS', 'AL', 'MI', 'GA', 'LA', 'KY', 'TN'}
+2024-10-14 10:17:02,652 - INFO - The 36 call passes areas: {'UT', 'CA', 'NV'}
+2024-10-14 10:17:02,652 - INFO - The 37 call passes areas: {'MI', 'NY', 'NJ'}
+2024-10-14 10:17:02,652 - INFO - The 39 call passes areas: {'NY'}
+2024-10-14 10:17:02,652 - INFO - The 40 call passes areas: {'CA', 'NM', 'TX', 'MS', 'AL', 'WA', 'GA', 'OR', 'LA', 'AX'}
+2024-10-14 10:17:02,652 - INFO - The 41 call passes areas: {'RA', 'CA', 'NM', 'TX', 'MS', 'AL', 'WA', 'GA', 'OR', 'LA', 'KY', 'TN', 'AX'}
+2024-10-14 10:17:02,652 - INFO - The 45 call passes areas: {'CA', 'WA', 'OR'}
+2024-10-14 10:17:02,652 - INFO - The 46 call passes areas: {'RA', 'NY'}
+2024-10-14 10:17:02,652 - INFO - The 47 call passes areas: {'IL', 'MI', 'RA', 'NY'}
+2024-10-14 10:17:02,652 - INFO - The 49 call passes areas: {'CA', 'NM', 'TX', 'MS', 'AL', 'PA', 'NJ', 'NC', 'GA', 'SC', 'LA', 'AX', 'MD'}
+2024-10-14 10:17:02,652 - INFO - The 4 call is changed.
+2024-10-14 10:17:02,652 - INFO - The 39 call is changed.
+2024-10-14 10:17:02,652 - INFO - After departure event 14, unable areas have ['NF', 'MT', 'NE'].
+2024-10-14 10:17:02,652 - INFO - The 42 call find path.
+2024-10-14 10:17:02,653 - INFO - The 44 call find path.
+2024-10-14 10:17:02,653 - INFO - After departure event 12, unable areas have ['MT', 'NE'].
+2024-10-14 10:17:02,653 - INFO - The 5 call find path.
+2024-10-14 10:17:02,653 - INFO - The 9 call find path.
+2024-10-14 10:17:02,653 - INFO - The 10 call find path.
+2024-10-14 10:17:02,653 - INFO - The 19 call find path.
+2024-10-14 10:17:02,653 - INFO - The 22 call find path.
+2024-10-14 10:17:02,653 - INFO - The 26 call find path.
+2024-10-14 10:17:02,653 - INFO - The 35 call find path.
+2024-10-14 10:17:02,653 - INFO - The 38 call find path.
+2024-10-14 10:17:02,653 - INFO - The 43 call find path.
+2024-10-14 10:17:02,653 - INFO - The 48 call find path.
+2024-10-14 10:17:02,653 - INFO - After departure event 16, unable areas have ['MT'].
+2024-10-14 10:17:02,653 - INFO - The 35 call find path.
+2024-10-14 10:17:02,653 - INFO - The 38 call find path.
+2024-10-14 10:17:02,653 - INFO - The 43 call find path.
+2024-10-14 10:17:02,653 - INFO - The 48 call find path.
+2024-10-14 10:17:02,654 - INFO - Prune topology has [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13] nodes.
+2024-10-14 10:17:13,148 - INFO - Attacked areas: ['MT', 'ND']
+2024-10-14 10:17:13,149 - INFO - Potential areas: ['UT', 'CA', 'TX', 'CO']
+2024-10-14 10:17:13,149 - INFO - The 0 call passes areas: {'CA', 'NM', 'TX', 'CO', 'UT', 'AX', 'NV'}
+2024-10-14 10:17:13,149 - INFO - The 1 call passes areas: {'CA', 'NM', 'TX', 'MS', 'AL', 'WA', 'GA', 'OR', 'LA', 'AX'}
+2024-10-14 10:17:13,149 - INFO - The 3 call passes areas: {'CA', 'WA', 'OR'}
+2024-10-14 10:17:13,149 - INFO - The 4 call passes areas: {'CA'}
+2024-10-14 10:17:13,149 - INFO - The 5 call passes areas: {'IL', 'CA', 'NM', 'TX', 'CO', 'NF', 'NE', 'IA', 'MO', 'AR', 'AX'}
+2024-10-14 10:17:13,149 - INFO - The 6 call passes areas: {'CA', 'NM', 'TX', 'MS', 'AL', 'NJ', 'NC', 'LA', 'AX', 'GA', 'SC', 'PA', 'MD'}
+2024-10-14 10:17:13,149 - INFO - The 9 call passes areas: {'IL', 'CA', 'CO', 'NF', 'NE', 'IA', 'UT', 'NV'}
+2024-10-14 10:17:13,149 - INFO - The 10 call passes areas: {'IL', 'TX', 'CO', 'NF', 'MS', 'AL', 'NC', 'NE', 'IA', 'GA', 'SC', 'LA', 'AR', 'MD', 'MO'}
+2024-10-14 10:17:13,149 - INFO - The 11 call passes areas: {'RA', 'TX', 'MS', 'AL', 'GA', 'LA', 'KY', 'TN'}
+2024-10-14 10:17:13,149 - INFO - The 13 call passes areas: {'CA', 'NM', 'TX', 'MS', 'AL', 'PA', 'NJ', 'NC', 'GA', 'SC', 'LA', 'AX', 'MD'}
+2024-10-14 10:17:13,149 - INFO - The 14 call passes areas: {'CA', 'WA', 'OR'}
+2024-10-14 10:17:13,149 - INFO - The 16 call passes areas: {'CA', 'NM', 'TX', 'WA', 'OR', 'AX'}
+2024-10-14 10:17:13,149 - INFO - The 17 call passes areas: {'RA', 'NY', 'CA', 'TX', 'NM', 'MS', 'AL', 'NC', 'AX', 'GA', 'SC', 'LA', 'MD'}
+2024-10-14 10:17:13,149 - INFO - The 18 call passes areas: {'CA', 'NM', 'TX', 'MS', 'AL', 'NC', 'UT', 'AX', 'GA', 'SC', 'LA', 'MD', 'NV'}
+2024-10-14 10:17:13,149 - INFO - The 20 call passes areas: {'TX', 'MS', 'AL', 'NC', 'GA', 'SC', 'LA', 'MD'}
+2024-10-14 10:17:13,149 - INFO - The 22 call passes areas: {'NF', 'NE', 'CO'}
+2024-10-14 10:17:13,149 - INFO - The 24 call passes areas: {'CA', 'NM', 'TX', 'WA', 'OR', 'AX'}
+2024-10-14 10:17:13,150 - INFO - The 25 call passes areas: {'CA', 'CO', 'WA', 'UT', 'OR', 'NV'}
+2024-10-14 10:17:13,150 - INFO - The 26 call passes areas: {'IL', 'TX', 'CO', 'NF', 'MS', 'AL', 'NE', 'IA', 'GA', 'MO', 'LA', 'AR'}
+2024-10-14 10:17:13,150 - INFO - The 27 call passes areas: {'CA', 'WA', 'UT', 'OR', 'NV'}
+2024-10-14 10:17:13,150 - INFO - The 28 call passes areas: {'UT', 'CO'}
+2024-10-14 10:17:13,150 - INFO - The 29 call passes areas: {'CA', 'NM', 'TX', 'MS', 'AL', 'WA', 'NJ', 'NC', 'LA', 'AX', 'GA', 'OR', 'SC', 'PA', 'MD'}
+2024-10-14 10:17:13,150 - INFO - The 30 call passes areas: {'RA', 'CA', 'NM', 'TX', 'MS', 'AL', 'GA', 'LA', 'KY', 'TN', 'AX'}
+2024-10-14 10:17:13,150 - INFO - The 31 call passes areas: {'IL', 'RA', 'CA', 'NM', 'TX', 'CO', 'MS', 'AL', 'UT', 'MI', 'GA', 'LA', 'KY', 'TN', 'AX', 'NV'}
+2024-10-14 10:17:13,150 - INFO - The 32 call passes areas: {'TX', 'MS', 'AL', 'NC', 'GA', 'SC', 'LA', 'MD'}
+2024-10-14 10:17:13,150 - INFO - The 34 call passes areas: {'IL', 'RA', 'TX', 'MS', 'AL', 'MI', 'GA', 'LA', 'KY', 'TN'}
+2024-10-14 10:17:13,150 - INFO - The 35 call passes areas: {'IL', 'TX', 'CO', 'NF', 'MS', 'AL', 'NC', 'NE', 'IA', 'GA', 'SC', 'LA', 'AR', 'MD', 'MO'}
+2024-10-14 10:17:13,150 - INFO - The 36 call passes areas: {'UT', 'CA', 'NV'}
+2024-10-14 10:17:13,150 - INFO - The 40 call passes areas: {'CA', 'NM', 'TX', 'MS', 'AL', 'WA', 'GA', 'OR', 'LA', 'AX'}
+2024-10-14 10:17:13,150 - INFO - The 41 call passes areas: {'RA', 'CA', 'NM', 'TX', 'MS', 'AL', 'WA', 'GA', 'OR', 'LA', 'KY', 'TN', 'AX'}
+2024-10-14 10:17:13,150 - INFO - The 42 call passes areas: {'CA', 'NM', 'TX', 'CO', 'UT', 'AX', 'NV'}
+2024-10-14 10:17:13,150 - INFO - The 43 call passes areas: {'IL', 'CA', 'CO', 'NF', 'NE', 'IA', 'UT', 'NV'}
+2024-10-14 10:17:13,150 - INFO - The 44 call passes areas: {'UT', 'NV', 'CA', 'CO'}
+2024-10-14 10:17:13,150 - INFO - The 45 call passes areas: {'CA', 'WA', 'OR'}
+2024-10-14 10:17:13,150 - INFO - The 48 call passes areas: {'NF', 'UT', 'NE', 'CO'}
+2024-10-14 10:17:13,150 - INFO - The 49 call passes areas: {'CA', 'NM', 'TX', 'MS', 'AL', 'PA', 'NJ', 'NC', 'GA', 'SC', 'LA', 'AX', 'MD'}
+2024-10-14 10:17:13,150 - INFO - The 4 call is changed.
+2024-10-14 10:17:13,150 - INFO - The 10 call is changed.
+2024-10-14 10:17:13,151 - INFO - The 26 call is changed.
+2024-10-14 10:17:13,151 - INFO - The 32 call is changed.
+2024-10-14 10:17:13,151 - INFO - The 35 call is changed.
+2024-10-14 10:17:13,151 - INFO - After departure event 17, unable areas have ['MT'].
+2024-10-14 10:17:13,151 - INFO - After departure event 15, unable areas have [].
+2024-10-14 10:17:13,151 - INFO - Prune topology has [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13] nodes.
+2024-10-14 10:17:13,151 - INFO - The 5 call passes areas: {'IL', 'CA', 'NM', 'TX', 'CO', 'NF', 'NE', 'IA', 'MO', 'AR', 'AX'}
+2024-10-14 10:17:13,151 - INFO - The 9 call passes areas: {'IL', 'CA', 'CO', 'NF', 'NE', 'IA', 'UT', 'NV'}
+2024-10-14 10:17:13,151 - INFO - The 10 call passes areas: {'IL', 'RA', 'NY', 'NF', 'NE', 'IA', 'MI', 'MD'}
+2024-10-14 10:17:13,152 - INFO - The 19 call passes areas: {'IL', 'NF', 'NE', 'IA'}
+2024-10-14 10:17:13,152 - INFO - The 22 call passes areas: {'NF', 'NE', 'CO'}
+2024-10-14 10:17:13,152 - INFO - The 26 call passes areas: {'IL', 'RA', 'NF', 'NE', 'IA', 'MI', 'GA', 'KY', 'TN'}
+2024-10-14 10:17:13,152 - INFO - The 35 call passes areas: {'IL', 'TX', 'CO', 'NF', 'MS', 'AL', 'NC', 'NE', 'IA', 'GA', 'SC', 'LA', 'AR', 'MD', 'MO'}
+2024-10-14 10:17:13,152 - INFO - The 38 call passes areas: {'IL', 'NF', 'NE', 'IA'}
+2024-10-14 10:17:13,152 - INFO - The 43 call passes areas: {'IL', 'CA', 'CO', 'NF', 'NE', 'IA', 'UT', 'NV'}
+2024-10-14 10:17:13,152 - INFO - The 48 call passes areas: {'NF', 'UT', 'NE', 'CO'}
+2024-10-14 10:17:13,152 - INFO - The 5 call is restored.
+2024-10-14 10:17:13,152 - INFO - The 9 call is restored.
+2024-10-14 10:17:13,152 - INFO - The 10 call is restored.
+2024-10-14 10:17:13,152 - INFO - The 19 call is restored.
+2024-10-14 10:17:13,152 - INFO - The 22 call is restored.
+2024-10-14 10:17:13,152 - INFO - The 26 call is restored.
+2024-10-14 10:17:13,152 - INFO - The 35 call is restored.
+2024-10-14 10:17:13,152 - INFO - The 38 call is restored.
+2024-10-14 10:17:13,152 - INFO - The 43 call is restored.
+2024-10-14 10:17:13,152 - INFO - The 48 call is restored.
+2024-10-14 10:17:23,013 - INFO - Attacked areas: ['NE']
+2024-10-14 10:17:23,013 - INFO - Potential areas: ['UT', 'CA', 'TX', 'CO']
+2024-10-14 10:17:23,013 - INFO - The 0 call passes areas: {'CA', 'NM', 'TX', 'CO', 'UT', 'AX', 'NV'}
+2024-10-14 10:17:23,013 - INFO - The 1 call passes areas: {'CA', 'NM', 'TX', 'MS', 'AL', 'WA', 'GA', 'OR', 'LA', 'AX'}
+2024-10-14 10:17:23,013 - INFO - The 3 call passes areas: {'CA', 'WA', 'OR'}
+2024-10-14 10:17:23,013 - INFO - The 4 call passes areas: {'CA'}
+2024-10-14 10:17:23,014 - INFO - The 5 call passes areas: {'IL', 'CA', 'NM', 'TX', 'CO', 'NF', 'NE', 'IA', 'MO', 'AR', 'AX'}
+2024-10-14 10:17:23,014 - INFO - The 6 call passes areas: {'CA', 'NM', 'TX', 'MS', 'AL', 'NJ', 'NC', 'LA', 'AX', 'GA', 'SC', 'PA', 'MD'}
+2024-10-14 10:17:23,014 - INFO - The 9 call passes areas: {'IL', 'CA', 'CO', 'NF', 'NE', 'IA', 'UT', 'NV'}
+2024-10-14 10:17:23,014 - INFO - The 10 call passes areas: {'IL', 'TX', 'CO', 'NF', 'MS', 'AL', 'NC', 'NE', 'IA', 'GA', 'SC', 'LA', 'AR', 'MD', 'MO'}
+2024-10-14 10:17:23,014 - INFO - The 11 call passes areas: {'RA', 'TX', 'MS', 'AL', 'GA', 'LA', 'KY', 'TN'}
+2024-10-14 10:17:23,014 - INFO - The 13 call passes areas: {'CA', 'NM', 'TX', 'MS', 'AL', 'PA', 'NJ', 'NC', 'GA', 'SC', 'LA', 'AX', 'MD'}
+2024-10-14 10:17:23,014 - INFO - The 14 call passes areas: {'CA', 'WA', 'OR'}
+2024-10-14 10:17:23,014 - INFO - The 16 call passes areas: {'CA', 'NM', 'TX', 'WA', 'OR', 'AX'}
+2024-10-14 10:17:23,014 - INFO - The 17 call passes areas: {'RA', 'NY', 'CA', 'TX', 'NM', 'MS', 'AL', 'NC', 'AX', 'GA', 'SC', 'LA', 'MD'}
+2024-10-14 10:17:23,014 - INFO - The 18 call passes areas: {'CA', 'NM', 'TX', 'MS', 'AL', 'NC', 'UT', 'AX', 'GA', 'SC', 'LA', 'MD', 'NV'}
+2024-10-14 10:17:23,014 - INFO - The 20 call passes areas: {'TX', 'MS', 'AL', 'NC', 'GA', 'SC', 'LA', 'MD'}
+2024-10-14 10:17:23,014 - INFO - The 22 call passes areas: {'NF', 'NE', 'CO'}
+2024-10-14 10:17:23,014 - INFO - The 24 call passes areas: {'CA', 'NM', 'TX', 'WA', 'OR', 'AX'}
+2024-10-14 10:17:23,014 - INFO - The 25 call passes areas: {'CA', 'CO', 'WA', 'UT', 'OR', 'NV'}
+2024-10-14 10:17:23,014 - INFO - The 26 call passes areas: {'IL', 'TX', 'CO', 'NF', 'MS', 'AL', 'NE', 'IA', 'GA', 'MO', 'LA', 'AR'}
+2024-10-14 10:17:23,014 - INFO - The 27 call passes areas: {'CA', 'WA', 'UT', 'OR', 'NV'}
+2024-10-14 10:17:23,014 - INFO - The 28 call passes areas: {'UT', 'CO'}
+2024-10-14 10:17:23,014 - INFO - The 29 call passes areas: {'CA', 'NM', 'TX', 'MS', 'AL', 'WA', 'NJ', 'NC', 'LA', 'AX', 'GA', 'OR', 'SC', 'PA', 'MD'}
+2024-10-14 10:17:23,014 - INFO - The 30 call passes areas: {'RA', 'CA', 'NM', 'TX', 'MS', 'AL', 'GA', 'LA', 'KY', 'TN', 'AX'}
+2024-10-14 10:17:23,014 - INFO - The 31 call passes areas: {'IL', 'RA', 'CA', 'NM', 'TX', 'CO', 'MS', 'AL', 'UT', 'MI', 'GA', 'LA', 'KY', 'TN', 'AX', 'NV'}
+2024-10-14 10:17:23,014 - INFO - The 34 call passes areas: {'IL', 'RA', 'TX', 'MS', 'AL', 'MI', 'GA', 'LA', 'KY', 'TN'}
+2024-10-14 10:17:23,014 - INFO - The 35 call passes areas: {'IL', 'TX', 'CO', 'NF', 'MS', 'AL', 'NC', 'NE', 'IA', 'GA', 'SC', 'LA', 'AR', 'MD', 'MO'}
+2024-10-14 10:17:23,014 - INFO - The 36 call passes areas: {'UT', 'CA', 'NV'}
+2024-10-14 10:17:23,014 - INFO - The 40 call passes areas: {'CA', 'NM', 'TX', 'MS', 'AL', 'WA', 'GA', 'OR', 'LA', 'AX'}
+2024-10-14 10:17:23,014 - INFO - The 41 call passes areas: {'RA', 'CA', 'NM', 'TX', 'MS', 'AL', 'WA', 'GA', 'OR', 'LA', 'KY', 'TN', 'AX'}
+2024-10-14 10:17:23,015 - INFO - The 42 call passes areas: {'CA', 'NM', 'TX', 'CO', 'UT', 'AX', 'NV'}
+2024-10-14 10:17:23,015 - INFO - The 43 call passes areas: {'IL', 'CA', 'CO', 'NF', 'NE', 'IA', 'UT', 'NV'}
+2024-10-14 10:17:23,015 - INFO - The 44 call passes areas: {'UT', 'NV', 'CA', 'CO'}
+2024-10-14 10:17:23,015 - INFO - The 45 call passes areas: {'CA', 'WA', 'OR'}
+2024-10-14 10:17:23,015 - INFO - The 48 call passes areas: {'NF', 'UT', 'NE', 'CO'}
+2024-10-14 10:17:23,015 - INFO - The 49 call passes areas: {'CA', 'NM', 'TX', 'MS', 'AL', 'PA', 'NJ', 'NC', 'GA', 'SC', 'LA', 'AX', 'MD'}
+2024-10-14 10:17:23,015 - INFO - The 1 call is changed.
+2024-10-14 10:17:23,015 - INFO - The 4 call is changed.
+2024-10-14 10:17:23,015 - INFO - The 10 call is changed.
+2024-10-14 10:17:23,015 - INFO - The 26 call is changed.
+2024-10-14 10:17:23,015 - INFO - The 29 call is changed.
+2024-10-14 10:17:23,015 - INFO - The 35 call is changed.
+2024-10-14 10:17:23,015 - INFO - The 40 call is changed.
+2024-10-14 10:17:23,015 - INFO - The 41 call is changed.
+2024-10-14 10:17:23,016 - INFO - Prune topology has [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13] nodes.
+2024-10-14 10:17:23,016 - INFO - The 0 call passes areas: {'CA', 'NM', 'TX', 'CO', 'UT', 'AX', 'NV'}
+2024-10-14 10:17:23,016 - INFO - The 3 call passes areas: {'CA', 'WA', 'OR'}
+2024-10-14 10:17:23,016 - INFO - The 4 call passes areas: {'CA'}
+2024-10-14 10:17:23,016 - INFO - The 5 call passes areas: {'IL', 'CA', 'NM', 'TX', 'CO', 'NF', 'NE', 'IA', 'MO', 'AR', 'AX'}
+2024-10-14 10:17:23,016 - INFO - The 6 call passes areas: {'CA', 'NM', 'TX', 'MS', 'AL', 'NJ', 'NC', 'LA', 'AX', 'GA', 'SC', 'PA', 'MD'}
+2024-10-14 10:17:23,016 - INFO - The 9 call passes areas: {'IL', 'CA', 'CO', 'NF', 'NE', 'IA', 'UT', 'NV'}
+2024-10-14 10:17:23,016 - INFO - The 10 call passes areas: {'IL', 'RA', 'NY', 'NF', 'NE', 'IA', 'MI', 'MD'}
+2024-10-14 10:17:23,016 - INFO - The 13 call passes areas: {'CA', 'NM', 'TX', 'MS', 'AL', 'PA', 'NJ', 'NC', 'GA', 'SC', 'LA', 'AX', 'MD'}
+2024-10-14 10:17:23,016 - INFO - The 14 call passes areas: {'CA', 'WA', 'OR'}
+2024-10-14 10:17:23,016 - INFO - The 16 call passes areas: {'CA', 'NM', 'TX', 'WA', 'OR', 'AX'}
+2024-10-14 10:17:23,016 - INFO - The 17 call passes areas: {'RA', 'NY', 'CA', 'TX', 'NM', 'MS', 'AL', 'NC', 'AX', 'GA', 'SC', 'LA', 'MD'}
+2024-10-14 10:17:23,016 - INFO - The 18 call passes areas: {'CA', 'NM', 'TX', 'MS', 'AL', 'NC', 'UT', 'AX', 'GA', 'SC', 'LA', 'MD', 'NV'}
+2024-10-14 10:17:23,016 - INFO - The 19 call passes areas: {'IL', 'NF', 'NE', 'IA'}
+2024-10-14 10:17:23,016 - INFO - The 22 call passes areas: {'NF', 'NE', 'CO'}
+2024-10-14 10:17:23,016 - INFO - The 24 call passes areas: {'CA', 'NM', 'TX', 'WA', 'OR', 'AX'}
+2024-10-14 10:17:23,016 - INFO - The 25 call passes areas: {'CA', 'CO', 'WA', 'UT', 'OR', 'NV'}
+2024-10-14 10:17:23,016 - INFO - The 26 call passes areas: {'IL', 'TX', 'CO', 'NF', 'MS', 'AL', 'NE', 'IA', 'GA', 'MO', 'LA', 'AR'}
+2024-10-14 10:17:23,016 - INFO - The 27 call passes areas: {'CA', 'WA', 'UT', 'OR', 'NV'}
+2024-10-14 10:17:23,016 - INFO - The 29 call passes areas: {'CA', 'NM', 'TX', 'MS', 'AL', 'WA', 'NJ', 'NC', 'LA', 'AX', 'GA', 'OR', 'SC', 'PA', 'MD'}
+2024-10-14 10:17:23,016 - INFO - The 30 call passes areas: {'RA', 'CA', 'NM', 'TX', 'MS', 'AL', 'GA', 'LA', 'KY', 'TN', 'AX'}
+2024-10-14 10:17:23,016 - INFO - The 31 call passes areas: {'IL', 'RA', 'CA', 'NM', 'TX', 'CO', 'MS', 'AL', 'UT', 'MI', 'GA', 'LA', 'KY', 'TN', 'AX', 'NV'}
+2024-10-14 10:17:23,016 - INFO - The 35 call passes areas: {'IL', 'TX', 'CO', 'NF', 'MS', 'AL', 'NC', 'NE', 'IA', 'GA', 'SC', 'LA', 'AR', 'MD', 'MO'}
+2024-10-14 10:17:23,016 - INFO - The 36 call passes areas: {'UT', 'CA', 'NV'}
+2024-10-14 10:17:23,016 - INFO - The 38 call passes areas: {'IL', 'NF', 'NE', 'IA'}
+2024-10-14 10:17:23,016 - INFO - The 40 call passes areas: {'CA', 'NM', 'TX', 'MS', 'AL', 'WA', 'GA', 'OR', 'LA', 'AX'}
+2024-10-14 10:17:23,017 - INFO - The 41 call passes areas: {'RA', 'CA', 'NM', 'TX', 'MS', 'AL', 'WA', 'GA', 'OR', 'LA', 'KY', 'TN', 'AX'}
+2024-10-14 10:17:23,017 - INFO - The 42 call passes areas: {'CA', 'NM', 'TX', 'CO', 'UT', 'AX', 'NV'}
+2024-10-14 10:17:23,017 - INFO - The 43 call passes areas: {'IL', 'CA', 'CO', 'NF', 'NE', 'IA', 'UT', 'NV'}
+2024-10-14 10:17:23,017 - INFO - The 44 call passes areas: {'UT', 'NV', 'CA', 'CO'}
+2024-10-14 10:17:23,017 - INFO - The 45 call passes areas: {'CA', 'WA', 'OR'}
+2024-10-14 10:17:23,017 - INFO - The 48 call passes areas: {'NF', 'UT', 'NE', 'CO'}
+2024-10-14 10:17:23,017 - INFO - The 49 call passes areas: {'CA', 'NM', 'TX', 'MS', 'AL', 'PA', 'NJ', 'NC', 'GA', 'SC', 'LA', 'AX', 'MD'}
+2024-10-14 10:17:23,017 - INFO - The 0 call is restored.
+2024-10-14 10:17:23,017 - INFO - The 3 call is blocked.
+2024-10-14 10:17:23,017 - INFO - The 4 call is restored.
+2024-10-14 10:17:23,017 - INFO - The 5 call is blocked.
+2024-10-14 10:17:23,017 - INFO - The 6 call is blocked.
+2024-10-14 10:17:23,017 - INFO - The 9 call is blocked.
+2024-10-14 10:17:23,017 - INFO - The 10 call is restored.
+2024-10-14 10:17:23,017 - INFO - The 13 call is blocked.
+2024-10-14 10:17:23,017 - INFO - The 14 call is blocked.
+2024-10-14 10:17:23,017 - INFO - The 16 call is restored.
+2024-10-14 10:17:23,017 - INFO - The 17 call is blocked.
+2024-10-14 10:17:23,017 - INFO - The 18 call is restored.
+2024-10-14 10:17:23,017 - INFO - The 19 call is restored.
+2024-10-14 10:17:23,017 - INFO - The 22 call is restored.
+2024-10-14 10:17:23,017 - INFO - The 24 call is restored.
+2024-10-14 10:17:23,018 - INFO - The 25 call is restored.
+2024-10-14 10:17:23,018 - INFO - The 26 call is restored.
+2024-10-14 10:17:23,018 - INFO - The 27 call is restored.
+2024-10-14 10:17:23,018 - INFO - The 29 call is restored.
+2024-10-14 10:17:23,018 - INFO - The 30 call is blocked.
+2024-10-14 10:17:23,018 - INFO - The 31 call is restored.
+2024-10-14 10:17:23,018 - INFO - The 35 call is restored.
+2024-10-14 10:17:23,018 - INFO - The 36 call is blocked.
+2024-10-14 10:17:23,018 - INFO - The 38 call is restored.
+2024-10-14 10:17:23,018 - INFO - The 40 call is restored.
+2024-10-14 10:17:23,018 - INFO - The 41 call is restored.
+2024-10-14 10:17:23,018 - INFO - The 42 call is restored.
+2024-10-14 10:17:23,018 - INFO - The 43 call is blocked.
+2024-10-14 10:17:23,018 - INFO - The 44 call is blocked.
+2024-10-14 10:17:23,018 - INFO - The 45 call is blocked.
+2024-10-14 10:17:23,018 - INFO - The 48 call is restored.
+2024-10-14 10:17:23,018 - INFO - The 49 call is blocked.
