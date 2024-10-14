@@ -38,7 +38,7 @@ def simulator(configFile: str):
     ai = network.info.AreaInfo(configFile)
     area_info = ai.get(physicalTopology)
     atks = network.generator.Generator()
-    atks.generate(configFile, scheduler, ai, "random")
+    atks.generate(configFile, scheduler, ai, "degree")
     logging.info("{} - {} - Done.".format(__file__, __name__))
     # 加载数据统计模块
     logging.info("{} - {} - Load the statistic module.".format(__file__, __name__))
@@ -82,20 +82,14 @@ if __name__ == '__main__':
             raise Exception("File does not exist.")
         data = pd.read_excel(ResultFile)
         title = {
-            3: "blocking rate (%)",
-            4: "blocking rate of security calls (%)",
-            5: "blocking rate of normal calls (%)",
-            6: "the number of hops",
-            7: "the number of hops of security calls",
-            8: "the number of hops of normal calls",
-            9: "link utilization (%)",
-            10: "path risk level (%)",
-            11: "the number of path risk",
-            12: "joint risk level (%)"
+            5: "blocking rate (%)",
+            6: "success rate (%)",
+            7: "the number of hops",
+            8: "restore times (%)"
         }
-        col = 12
-        x = [100 * (i + 1) for i in range(9)]
-        y = [list(data.iloc[0+i*9 : 9+i*9, col])[::-1] for i in range(3)]
-        legend = ["SOSR-U", "SOSR-S", "Benchmark"]
+        col = 8
+        x = [5, 10, 15, 20, 25]
+        y = [list(data.iloc[i*len(x): len(x)*(1+i), col])[::-1] for i in [0, 1, 2, 6]]
+        legend = ["CAR-degree", "CAR-service", "CAR-random", "Benchmark"]
         pc = result.curve.PlotCurve()
-        pc.plotMultiRealTime(x, *y, legend=legend, label=["load (in Erlang)", title[col]])
+        pc.plotMultiRealTime(x, *y, legend=legend, label=["The Number of Attacks", title[col]])
