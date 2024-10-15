@@ -67,7 +67,7 @@ if __name__ == '__main__':
     if isSimulate:
         all_res = []
         title = None
-        for i in range(10):
+        for i in range(30):
             try:
                 title, res = simulator(configFile)
                 all_res.append(res)
@@ -85,11 +85,12 @@ if __name__ == '__main__':
             5: "blocking rate (%)",
             6: "success rate (%)",
             7: "the number of hops",
-            8: "restore times (%)"
+            8: "restore times"
         }
         col = 8
         x = [5, 10, 15, 20, 25]
-        y = [list(data.iloc[i*len(x): len(x)*(1+i), col])[::-1] for i in [0, 1, 2, 6]]
-        legend = ["CAR-degree", "CAR-service", "CAR-random", "Benchmark"]
+        y = [list(data.iloc[i*len(x): len(x)*(1+i), col]) for i in [0, 7, 8, 9]]
+        print(y)
+        legend = ["CAR-4", "CAR-3", "CAR-2", "CAR-1"]
         pc = result.curve.PlotCurve()
         pc.plotMultiRealTime(x, *y, legend=legend, label=["The Number of Attacks", title[col]])
