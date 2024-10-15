@@ -32,7 +32,7 @@ class PlotCurve:
         plt.show()
 
     def plotMultiRealTime(self, timeStamp: list, *args,
-                          width: float = 8.6, height: float = 6,
+                          width: float = 6, height: float = 4.2,
                           legend: list = None, label: list = None):
         colors = ["#E1C855", "#E07B54", "#51B1B7", "#E1C855", "#E07B54", "#51B1B7"]
         if len(args) < 1:

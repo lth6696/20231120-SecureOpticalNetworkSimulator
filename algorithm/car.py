@@ -16,7 +16,7 @@ class CAR:
         self.factors = ["service_num", "node_num", "node_degree", "link_num", "attack_num", "span_length"]
         self.area_info = None
         self.trans_matrix = None
-        self.sim_step = 1
+        self.sim_step = 4
         self.unable_areas = []
         self.potential_areas = []
         self._infinity = 1e-5

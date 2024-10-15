@@ -38,7 +38,7 @@ def simulator(configFile: str):
     ai = network.info.AreaInfo(configFile)
     area_info = ai.get(physicalTopology)
     atks = network.generator.Generator()
-    atks.generate(configFile, scheduler, ai, "degree")
+    atks.generate(configFile, scheduler, ai, "random")
     logging.info("{} - {} - Done.".format(__file__, __name__))
     # 加载数据统计模块
     logging.info("{} - {} - Load the statistic module.".format(__file__, __name__))
@@ -60,7 +60,7 @@ if __name__ == '__main__':
     # 仿真配置文件
     configFile = "./topology/NSFNet.xml"
     ResultFile = "results.xlsx"
-    isSimulate = True
+    isSimulate = False
     collector = {"title": [], "results": []}
 
     # 开始仿真
@@ -83,14 +83,12 @@ if __name__ == '__main__':
         data = pd.read_excel(ResultFile)
         title = {
             5: "blocking rate (%)",
-            6: "success rate (%)",
-            7: "the number of hops",
-            8: "restore times"
+            6: "restore times"
         }
-        col = 8
+        col = 6
         x = [5, 10, 15, 20, 25]
-        y = [list(data.iloc[i*len(x): len(x)*(1+i), col]) for i in [0, 7, 8, 9]]
-        print(y)
-        legend = ["CAR-4", "CAR-3", "CAR-2", "CAR-1"]
+        y = [list(data.iloc[i*len(x): len(x)*(1+i), col]) for i in [0, 4, 5, 6, 3]]
+        legend = ["CAR-4", "CAR-3", "CAR-2", "CAR-1", "Benchmark"]
+        # legend = ["CAR-degree", "CAR-service", "CAR-random", "Benchmark"]
         pc = result.curve.PlotCurve()
-        pc.plotMultiRealTime(x, *y, legend=legend, label=["The Number of Attacks", title[col]])
+        pc.plotMultiRealTime(x, *y, legend=legend, label=["the number of attacks", title[col]])
