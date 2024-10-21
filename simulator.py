@@ -83,12 +83,13 @@ if __name__ == '__main__':
         data = pd.read_excel(ResultFile)
         title = {
             5: "blocking rate (%)",
-            6: "restore times"
+            6: "restore times",
+            7: "probability of attack hitting (%)"
         }
-        col = 6
+        col = 7
         x = [5, 10, 15, 20, 25]
-        y = [list(data.iloc[i*len(x): len(x)*(1+i), col]) for i in [0, 4, 5, 6, 3]]
-        legend = ["CAR-4", "CAR-3", "CAR-2", "CAR-1", "Benchmark"]
-        # legend = ["CAR-degree", "CAR-service", "CAR-random", "Benchmark"]
+        y = [list(data.iloc[i*len(x): len(x)*(1+i), col]) for i in [0, 4, 5, 6]]
+        # legend = ["Benchmark", "CAR k=1", "CAR k=2", "CAR k=3", "CAR k=4"]
+        legend = ["Benchmark", "CAR-degree", "CAR-service", "CAR-random"]
         pc = result.curve.PlotCurve()
         pc.plotMultiRealTime(x, *y, legend=legend, label=["the number of attacks", title[col]])
