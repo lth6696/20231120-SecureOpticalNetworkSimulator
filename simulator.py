@@ -82,14 +82,14 @@ if __name__ == '__main__':
             raise Exception("File does not exist.")
         data = pd.read_excel(ResultFile)
         title = {
-            5: "blocking rate (%)",
-            6: "restore times",
-            7: "probability of attack hitting (%)"
+            5: "BR (%)",
+            6: "RT",
+            7: "PAH (%)"
         }
         col = 7
         x = [5, 10, 15, 20, 25]
-        y = [list(data.iloc[i*len(x): len(x)*(1+i), col]) for i in [0, 4, 5, 6]]
-        # legend = ["Benchmark", "CAR k=1", "CAR k=2", "CAR k=3", "CAR k=4"]
-        legend = ["Benchmark", "CAR-degree", "CAR-service", "CAR-random"]
+        y = [list(data.iloc[i*len(x): len(x)*(1+i), col]) for i in [0, 1, 2, 3, 4]]
+        legend = ["Benchmark", "PRACA k=1", "PRACA k=2", "PRACA k=3", "PRACA k=4"]
+        # legend = ["Benchmark", "PRACA-degree", "PRACA-service", "PRACA-random"]
         pc = result.curve.PlotCurve()
         pc.plotMultiRealTime(x, *y, legend=legend, label=["the number of attacks", title[col]])

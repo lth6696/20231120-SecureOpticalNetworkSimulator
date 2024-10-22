@@ -32,7 +32,7 @@ class PlotCurve:
         plt.show()
 
     def plotMultiRealTime(self, timeStamp: list, *args,
-                          width: float = 5.3*1.3, height: float = 3.7*1.3,
+                          width: float = 5.3*1.3, height: float = 3.3*1.3,
                           legend: list = None, label: list = None):
         # colors = ["#E1C855", "#E07B54", "#51B1B7", "#E1C855", "#E07B54", "#51B1B7"]
         if len(args) < 1:
@@ -55,5 +55,5 @@ class PlotCurve:
         plt.grid(True, ls=':', lw=0.5, c='#d5d6d8')
         plt.tight_layout()
         if legend:
-            plt.legend(legend, ncol = 2)
+            plt.legend(legend, ncol=2)
         plt.show()
