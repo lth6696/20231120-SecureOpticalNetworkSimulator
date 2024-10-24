@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<sonsim version="1.0" type="optical">
+<simulator version="2.0">
     <!--module is the Routing Algorithm class in java-->
     <ra module="CAR"/>
 
@@ -271,4 +271,4 @@
             </link>
         </links>
     </topology>
-</sonsim>
+</simulator>
