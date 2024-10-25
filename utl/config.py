@@ -8,7 +8,7 @@ class Config:
     读取配置文件，存储字条信息
     """
     def __init__(self):
-        self.config: cfg.ConfigParser = cfg.ConfigParser()
+        self.config = cfg.ConfigParser()
 
     def read(self, config_file: str):
         """
@@ -19,16 +19,10 @@ class Config:
         # 检查输入
         if not os.path.exists(config_file):
             raise Exception("Config file does not exist.")
-        self.tree = ET.parse(config_file)
-        root = self.tree.getroot()
-        if root.tag.lower() != self.CONFIG_NAME and root.attrib['version'] != self.SIMULATOR_VERSION:
-            raise AttributeError
-        # 读取属性
-        setting_names = [child.tag for child in root]
-        if input(f"Do you want to set {setting_names}?[Y/n]\n") != "Y":
-            sys.exit()
-        for name in setting_names:
-            self._set()
+        self.config.read(config_file)
 
-    def _set(self):
-        pass
+        # 读取属性
+        sections = self.config.sections()
+        if input(f"Do you want to set {sections}?[Y/n]\n") != "Y":
+            sys.exit()
+        return self.config

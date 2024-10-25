@@ -23,11 +23,10 @@ def simulator(config_file: str):
     # 检查输入
     if not os.path.exists(config_file):
         raise Exception("Config file does not exist.")
-    configer = utl.config.Config()
-    configer.read(config_file)
-    # # 生成流量
-    # tfc_gen = network.traffic.TrafficGenerator(config_file)
-    # tfc_gen.set_static_traffic()
+    configer = utl.config.Config().read(config_file)
+    # 生成流量
+    tfc_gen = network.traffic.TrafficGenerator(config_file)
+    tfc_gen.set_static_traffic()
     # # 生成物理拓扑
     # logging.info("{} - {} - Construct the physical topology.".format(__file__, __name__))
     # physicalTopology = network.topology.PhysicalTopology()
@@ -61,7 +60,7 @@ if __name__ == '__main__':
     # 配置日志文件
     logging.config.fileConfig('logconfig.ini')
     # 仿真配置文件
-    configFile = "./topology/NSFNet.xml"
+    configFile = "simconfig.ini"
     ResultFile = "results.xlsx"
     isSimulate = True
     collector = {"title": [], "results": []}
