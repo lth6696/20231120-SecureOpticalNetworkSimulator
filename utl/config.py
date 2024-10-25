@@ -1,16 +1,14 @@
 import os
 import sys
-import xml.etree.ElementTree as ET
+import configparser as cfg
 
 
 class Config:
-    CONFIG_NAME = "simulator"
-    SIMULATOR_VERSION = "2.0"
     """
     读取配置文件，存储字条信息
     """
     def __init__(self):
-        self.tree: ET.ElementTree = ET.ElementTree()
+        self.config: cfg.ConfigParser = cfg.ConfigParser()
 
     def read(self, config_file: str):
         """

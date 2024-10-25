@@ -68,15 +68,8 @@ if __name__ == '__main__':
 
     # 开始仿真
     if isSimulate:
-        all_res = []
-        title = None
-        for i in range(1):
-            try:
-                title, res = simulator(configFile)
-                all_res.append(res)
-                print(res)
-            except:
-                continue
+        simulator(configFile)
+
         # data = np.array(all_res).mean(axis=0)
         # df = pd.Series(data, index=title)
         # print(df)
