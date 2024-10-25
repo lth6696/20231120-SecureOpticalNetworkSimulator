@@ -1,11 +1,13 @@
-
 class Call:
     def __init__(self, **kwargs):
-        self.id = ""
-        self.src = -1
-        self.dst = -1
-        self.rate = 0
-        self.path = None
+        self.id: int = -1
+        self.src: any = -1
+        self.dst: any = -1
+        self.rate: float = 0
+        self.path: list = []
 
-    def set_path(self, path: dict):
-        self.path = path
+        self.set(**kwargs)
+
+    def set(self, **kwargs):
+        for key in kwargs:
+            setattr(self, key, kwargs[key])

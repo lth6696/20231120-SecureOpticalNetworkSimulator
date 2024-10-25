@@ -1,6 +1,6 @@
 import pandas as pd
 
-from event.event import Event
+from utl.event import Event
 
 import networkx as nx
 import numpy as np

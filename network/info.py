@@ -1,8 +1,6 @@
 import os
 import xml.etree.ElementTree as et
 
-from network import topology
-
 
 class AreaInfo:
     def __init__(self, configFile: str):
@@ -24,7 +22,7 @@ class AreaInfo:
         for node in root.find(self._areaModuleName).findall(self._areaNodeName):
             self.areas.append(eval(node.attrib['type'])(node.text))
 
-    def get(self, topo: topology.PhysicalTopology):
+    def get(self, topo):
         self.area_info = {area: {info: 0 for info in self.info} for area in self.areas}
         # 计算节点信息
         node_degree = dict(topo.G.degree())

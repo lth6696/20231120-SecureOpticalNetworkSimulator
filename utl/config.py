@@ -22,7 +22,7 @@ class Config:
         self.config.read(config_file)
 
         # 读取属性
-        sections = self.config.sections()
-        if input(f"Do you want to set {sections}?[Y/n]\n") != "Y":
-            sys.exit()
+        # sections = self.config.sections()
+        # if input(f"Do you want to set {sections}?[Y/n]\n") != "Y":
+        #     sys.exit()
         return self.config
