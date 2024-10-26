@@ -1,10 +1,7 @@
 import algorithm
-from network.scheduler import Scheduler
-from network.info import AreaInfo
-from result.statistic import Statistic
+import network
+import result
 
-import os.path
-import xml.etree.ElementTree as et
 import logging
 
 
@@ -12,44 +9,36 @@ class ControlPlane:
     """
     仿真管控平台，用于管理业务事件到达后路由、业务事件离去后资源释放功能
     """
-    def __init__(self, configFile: str):
-        self.__algorithmInfoModuleName = "ra"
-        self.algorithmName = ""
+    def __init__(self):
         self.algorithm = None
-        self.routeTable = {}    # {call_id: {"workingPath": [], "opticalPath": []}}
 
-        self._setAlgorithm(configFile)
-
-    def run(self, scheduler: Scheduler, physicalTopology, ai: AreaInfo, statistic: Statistic):
+    def run(self,
+            algorithm: str,
+            scheduler: network.scheduler.Scheduler,
+            topo_gen: network.generator.TopoGen,
+            tfk_gen: network.generator.CallsGen,
+            net_state: network.state.NetState,
+            statistic: result.statistic.Statistic):
+        self._set_algorithm(algorithm)
+        attacked_regions = []
         while scheduler.getEventNum() != 0:
             (time, event) = scheduler.popEvent()
             # logging.info("{} - {} - The {} event processed on {} second origin from {} to {} with id {}."
             #              .format(__file__, __name__, event.type, time, event.call.sourceNode, event.call.destinationNode, event.id))
-            status = None
+            attacked_regions.append(event.event.target)
             if event.type == "eventArrive":
-                self.algorithm.routeCall(physicalTopology, event, ai)
+                self.algorithm.routeCall(topo_gen.G, event, net_state)
             elif event.type == "eventDeparture":
-                self.algorithm.removeCall(physicalTopology, event, ai)
-            statistic.snapshot(event, physicalTopology.G, physicalTopology.calls)
+                self.algorithm.removeCall(topo_gen.G, event, net_state)
+            net_state.update(topo_gen.G, tfk_gen.calls, attacked_regions)
+            statistic.snapshot(event, topo_gen.G, tfk_gen.calls)
 
-    def _setAlgorithm(self, configFile: str):
-        if not os.path.exists(configFile):
-            raise Exception("Config file does not exist.")
-        elementRa = et.parse(configFile).getroot().find(self.__algorithmInfoModuleName)
-        if elementRa is None:
-            raise Exception("Config file does not include the topology information.")
-        # 加载算法名称
-        try:
-            self.algorithmName = elementRa.attrib["module"]
-        except:
-            raise Exception("Tag 'ra' does not include attribute 'module'.")
+    def _set_algorithm(self, name: str):
         # 实例化算法
-        if self.algorithmName == "Benchmark":
+        if name.lower() == "benchmark":
             self.algorithm = algorithm.benchmark.Benchmark()
-        elif self.algorithmName == "SOSR-U":
-            self.algorithm = algorithm.sosr.SOSR("utilization")
-        elif self.algorithmName == "SOSR-S":
-            self.algorithm = algorithm.sosr.SOSR("security")
-        elif self.algorithmName == "CAR":
+        elif name.lower() == "CAR":
             self.algorithm = algorithm.car.CAR()
-        logging.info("{} - {} - Load the {} algorithm.".format(__file__, __name__, self.algorithmName))
+        else:
+            raise ValueError
+        logging.info(f"{__file__} - {__name__} - Load the {name} algorithm.")

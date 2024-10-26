@@ -9,6 +9,7 @@ import sys
 import numpy as np
 import pandas as pd
 
+import algorithm.static_spf
 import utl
 import network
 import result
@@ -26,50 +27,42 @@ def simulator(config_file: str):
     topo_gen = network.generator.TopoGen()
     tfc_gen = network.generator.CallsGen()
     atk_gen = network.generator.EventGen()
+    net_state = network.state.NetState()
+    scheduler = network.scheduler.Scheduler()
+    res = result.statistic.Statistic()
     # 生成配置
     for section in configer.sections():
+        kargs = dict(configer[section])
         if section == "topology":
-            kargs = dict(configer[section])
+            # 生成物理拓扑
             topo_gen.generate(**kargs)
+        elif section == "link" or section == "node":
+            # 设置节点或链路属性
+            topo_gen.set(section, **kargs)
         elif section == "call":
+            # 生成业务
             nodes = list(topo_gen.G.nodes.keys())
-            kargs = dict(configer[section])
             tfc_gen.generate(nodes, **kargs)
+            algorithm.static_spf.StaticSPF.route(topo_gen.G, tfc_gen.calls)
+        elif section == "states":
+            # 获取网络状态
+            net_state.get(topo_gen.G, tfc_gen.calls, **kargs)
         elif section == "algorithm":
             algorithm_name = configer[section]["name"]
-        elif section == "markov":
-            pass
         elif section == "events":
-            kargs = dict(configer[section])
-            atk_gen.generate(**kargs)
+            # 生成离散事件
+            atk_gen.generate(scheduler, net_state, **kargs)
+            net_state.update(topo_gen.G, tfc_gen.calls, atk_gen.attacked_regions)
         elif section == "result":
             pass
         else:
             pass
 
-    # # 生成物理拓扑
-    # physicalTopology.route(tfc_gen.calls, weight="weight")
-    # # 生成离散事件器
-    # scheduler = event.scheduler.Scheduler()
-    # # 生成攻击事件
-    # logging.info("{} - {} - Generate the attack events.".format(__file__, __name__))
-    # ai = network.info.AreaInfo(config_file)
-    # area_info = ai.get(physicalTopology)
-    # atks = network.generator.Generator()
-    # atks.generate(config_file, scheduler, ai, "random")
-    # logging.info("{} - {} - Done.".format(__file__, __name__))
-    # # 加载数据统计模块
-    # logging.info("{} - {} - Load the statistic module.".format(__file__, __name__))
-    # statistic = result.statistic.Statistic()
-    # # 启动管控平台
-    # logging.info("{} - {} - Start the control plane.".format(__file__, __name__))
-    # controller = network.controller.ControlPlane(config_file)
-    # controller.run(scheduler, physicalTopology, ai, statistic)
-    # logging.info("{} - {} - Done.".format(__file__, __name__))
-    # # 返回仿真结果
-    # # result.curve.PlotCurve.plotRealTime(statistic.time_stamp, statistic.realtime_num_carried_calls)
-    # # result.curve.PlotCurve.plotRealTime(statistic.time_stamp, statistic.realtime_attacks)
-    # return statistic.content_displayable_results, statistic.get()
+    # 启动管控平台
+    logging.info("{} - {} - Start the control plane.".format(__file__, __name__))
+    controller = network.controller.ControlPlane()
+    controller.run(algorithm_name, scheduler, topo_gen, tfc_gen, net_state, res)
+    logging.info(f"{__file__} - {__name__} - Done.")
 
 
 if __name__ == '__main__':
@@ -80,7 +73,6 @@ if __name__ == '__main__':
     # 开始仿真
     if input("Do you want to start simulation?") == "":
         simulator(configFile)
-
         # data = np.array(all_res).mean(axis=0)
         # df = pd.Series(data, index=title)
         # print(df)

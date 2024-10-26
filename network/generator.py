@@ -4,9 +4,8 @@ import logging
 
 import utl
 from network.attack import Attack
-from network.info import AreaInfo
-from utl.event import Event
 from network.scheduler import Scheduler
+from network.state import NetState
 
 
 class CallsGen:
@@ -31,37 +30,27 @@ class TopoGen:
         self.G = nx.Graph()
 
     def generate(self, path_gml: str, path_graphml: str):
-        if path_gml != "None":
+        # 生成拓扑
+        if path_gml != "None" and path_graphml != "None":
+            raise ValueError
+        elif path_gml != "None":
             self.G = nx.read_gml(path_gml)
         elif path_graphml != "None":
             self.G = nx.read_graphml(path_graphml)
         else:
             raise ValueError
 
-    # def route(self, calls: list, weight: str = None):
-    #     for call in calls:
-    #         try:
-    #             path = nx.shortest_path(self.G, call.src, call.dst, weight=weight)
-    #             if self.reserve(self.G, path, call.rate):
-    #                 call.path = path
-    #         except:
-    #             pass
-    #     self.calls = [call for call in calls if call.path is not None]
-    #
-    # def reserve(self, G, path, rate):
-    #     if len(path) <= 1:
-    #         return True
-    #     u_node = path[0]
-    #     v_node = path[1]
-    #     if G[u_node][v_node]["bandwidth"] > rate:
-    #         if self.reserve(G, path[1:], rate):
-    #             G[u_node][v_node]["bandwidth"] -= rate
-    #             G[u_node][v_node]["weight"] = 1 / G[u_node][v_node]["bandwidth"]
-    #             return True
-    #         else:
-    #             return False
-    #     else:
-    #         return False
+    def set(self, _type: str, **kwargs):
+        # 设置链路和节点属性
+        for attr, val in kwargs.items():
+            if _type == "node":
+                for node in self.G.nodes:
+                    self.G.nodes[node][attr] = utl.config.convert(val)
+            elif _type == "link":
+                for u_node, v_node in self.G.edges:
+                    self.G[u_node][v_node][attr] = utl.config.convert(val)
+            else:
+                raise ValueError
 
 
 class EventGen:
@@ -69,58 +58,29 @@ class EventGen:
     业务生成器
     """
     def __init__(self):
-        self._eventsInfoModuleName = "events"
-        self._topologyInfoModuleName = "topology"
-        self._nodeInfoModuleName = "nodes"
-        self._linkInfoModuleName = "links"
-        self.eventNum = None
-        self.load = None
-        self.meanHoldingTime = 0.0
-        self.meanArrivalTime = 0.0
-        self.eventsType = {}
-        self.totalWeight = 0
-        self.weightVector = []
+        self.attacked_regions = []
 
-    def generate(self, scheduler: Scheduler, ai: AreaInfo, strategy: str):
+    def generate(self, scheduler: Scheduler, net_state: NetState, number: int, load: int, holding_time: float, strategy: str):
+        number = utl.config.convert(number)
+        load = utl.config.convert(load)
+        holding_time = utl.config.convert(holding_time)
         # 读取配置文件
-        logging.info("{} - {} - Read the config file {}.".format(__file__, __name__, configFile))
-        # self.eventNum = int(element_attr["num"])
-        # self.load = int(element_attr["load"])
-        # 读取事件类型
-        # for i, event_type in enumerate(element):
-        #     event_attr = event_type.attrib
-        #     try:
-        #         self.eventsType[i] = {
-        #             "holding-time": int(event_attr["holding-time"]),
-        #             "weight": int(event_attr["weight"])
-        #         }
-        #     except:
-        #         raise Exception("Call's information missing.")
-        #     self.totalWeight += int(event_attr["weight"])
-        logging.info("{} - {} - There are {} kinds of events.".format(__file__, __name__, len(self.eventsType)))
-        # 生成业务事件
-        self.weightVector = [aux for aux in self.eventsType for _ in range(self.eventsType[aux]["weight"])]
-        # 注意，λ/μ<1
-        # 服务时间间隔μ
-        self.meanHoldingTime  = sum([self.eventsType[aux]["holding-time"] * self.eventsType[aux]["weight"] / self.totalWeight for aux in self.eventsType])
-        # 到达时间间隔λ
-        self.meanArrivalTime = self.meanHoldingTime / self.load
-        logging.info("{} - {} - Mean arrival time (λ) is {} seconds, mean holding time (μ) is {} seconds, intensity (ρ) is {}."
-                     .format(__file__, __name__, self.meanArrivalTime, self.meanHoldingTime, self.meanArrivalTime / self.meanHoldingTime))
+        logging.info(f"{__file__} - {__name__} - Generate {number} events in {load} with {holding_time} time.")
+        # 服务时间间隔μ, 到达时间间隔λ, 注意: λ/μ<1
+        arrival_time = holding_time / load
+        logging.info(f"{__file__} - {__name__} - Arrival time (λ) is {arrival_time}, holding time (μ) is {holding_time}, intensity (ρ) is {arrival_time / holding_time}.")
         time = 0.0
-        for i in range(self.eventNum):
-            nextEventType = self.eventsType[np.random.choice(self.weightVector)]
-            startTime = np.random.exponential(self.meanArrivalTime, 1)[0] + time
-            duration = np.random.exponential(nextEventType["holding-time"])
-            endTime = startTime + duration
-            time = startTime
-            atk = Attack()
-            atk_area = atk.atk_area(strategy, ai.area_info)
-            atk.set(i, atk_area, duration)
-            ai.update(atk_area)
-            eventArrival = Event(i, "eventArrive", startTime, atk)
-            eventDeparture = Event(i, "eventDeparture", endTime, atk)
-            scheduler.addEvent(eventArrival)
-            scheduler.addEvent(eventDeparture)
-        logging.info("{} - {} - Generate {} events.".format(__file__, __name__, scheduler.getEventNum()))
-
+        for i in range(number):
+            # 设置时刻
+            start_time = np.random.exponential(arrival_time, 1)[0] + time
+            duration = np.random.exponential(holding_time)
+            end_time = start_time + duration
+            time = start_time
+            # 生成事件
+            atk_event = Attack().set(id=i, duration=duration, strategy=strategy, net_state=net_state, attacked_regions=self.attacked_regions)
+            self.attacked_regions.append(atk_event.target)
+            event_arrival = utl.event.Event(i, "eventArrive", start_time, atk_event)
+            event_departure = utl.event.Event(i, "eventDeparture", end_time, atk_event)
+            scheduler.addEvent(event_arrival)
+            scheduler.addEvent(event_departure)
+        logging.info(f"{__file__} - {__name__} - Generate {scheduler.getEventNum()} events.")

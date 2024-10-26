@@ -1,6 +1,16 @@
 import os
-import sys
+import re
 import configparser as cfg
+
+
+def convert(value: any):
+    # 使用正则表达式检测数字格式
+    if re.fullmatch(r'-?\d+', value):  # 匹配整数
+        return int(value)
+    elif re.fullmatch(r'-?\d*\.\d+', value):  # 匹配浮点数
+        return float(value)
+    else:
+        return value  # 如果不是数字，返回原始字符串
 
 
 class Config:

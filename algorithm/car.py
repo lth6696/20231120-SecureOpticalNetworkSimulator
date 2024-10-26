@@ -6,8 +6,6 @@ import logging
 from .fuzzy import Fuzzy
 from .markov import Markov
 
-from network.info import AreaInfo
-
 
 class CAR:
     def __init__(self):
@@ -21,11 +19,11 @@ class CAR:
         self.potential_areas = []
         self._infinity = 1e-5
 
-    def routeCall(self, physicalTopology, event, ai: AreaInfo):
+    def routeCall(self, physicalTopology, event, ai):
         if not self.states:
             self.states = ai.areas
         if self.area_info is None:
-            self.area_info = ai.area_info
+            self.area_info = ai.net_state
         atk_area = event.event.target
         self.unable_areas.append(atk_area)
         self.area_info[atk_area]["attack_num"] += 1
