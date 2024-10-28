@@ -13,13 +13,14 @@ class ControlPlane:
         self.algorithm = None
 
     def run(self,
-            algorithm: str,
             scheduler: network.scheduler.Scheduler,
             topo_gen: network.generator.TopoGen,
             tfk_gen: network.generator.CallsGen,
             net_state: network.state.NetState,
-            statistic: result.statistic.Statistic):
-        self._set_algorithm(algorithm)
+            statistic: result.statistic.Statistic,
+            algo_name: str,
+            **kargs):
+        self._set_algorithm(algo_name)
         attacked_regions = []
         while scheduler.getEventNum() != 0:
             (time, event) = scheduler.popEvent()
@@ -27,9 +28,9 @@ class ControlPlane:
             #              .format(__file__, __name__, event.type, time, event.call.sourceNode, event.call.destinationNode, event.id))
             attacked_regions.append(event.event.target)
             if event.type == "eventArrive":
-                self.algorithm.routeCall(topo_gen.G, event, net_state)
+                self.algorithm.route(event, topo_gen, tfk_gen, net_state, **kargs)
             elif event.type == "eventDeparture":
-                self.algorithm.removeCall(topo_gen.G, event, net_state)
+                self.algorithm.remove(topo_gen.G, event, net_state)
             net_state.update(topo_gen.G, tfk_gen.calls, attacked_regions)
             statistic.snapshot(event, topo_gen.G, tfk_gen.calls)
 
@@ -37,8 +38,8 @@ class ControlPlane:
         # 实例化算法
         if name.lower() == "benchmark":
             self.algorithm = algorithm.benchmark.Benchmark()
-        elif name.lower() == "CAR":
-            self.algorithm = algorithm.car.CAR()
+        elif name.lower() == "praca":
+            self.algorithm = algorithm.dynamic_praca.PRACA()
         else:
             raise ValueError
         logging.info(f"{__file__} - {__name__} - Load the {name} algorithm.")

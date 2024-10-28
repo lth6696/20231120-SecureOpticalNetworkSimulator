@@ -9,7 +9,7 @@ class Benchmark:
         self.algorithmName = "benchmark"
         self.unable_areas = []
 
-    def routeCall(self, physicalTopology, event, routeTable):
+    def route(self, physicalTopology, event, routeTable):
         self.unable_areas.append(event.event.target)
         logging.info("Attacked areas: {}".format(self.unable_areas))
         # 拓扑剪枝
@@ -27,7 +27,7 @@ class Benchmark:
             finally:
                 call.restore_times += 1
 
-    def removeCall(self, physicalTopology, event, routeTable):
+    def remove(self, physicalTopology, event, routeTable):
         self.unable_areas.remove(event.event.target)
         # 拓扑剪枝
         prune_topo = self._prune_graph(physicalTopology.G, self.unable_areas)

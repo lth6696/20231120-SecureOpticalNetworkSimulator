@@ -1,40 +1,33 @@
-import matplotlib.pyplot as plt
 import networkx as nx
-import numpy as np
 import logging
 
 from .fuzzy import Fuzzy
 from .markov import Markov
+from network.generator import TopoGen, CallsGen
+from network.state import NetState
+from utl.event import Event
 
 
-class CAR:
+class PRACA:
     def __init__(self):
-        self.algorithmName = "CAR"
-        self.states = []
-        self.factors = ["service_num", "node_num", "node_degree", "link_num", "attack_num", "span_length"]
-        self.area_info = None
         self.trans_matrix = None
-        self.sim_step = 4
         self.unable_areas = []
         self.potential_areas = []
         self._infinity = 1e-5
 
-    def routeCall(self, physicalTopology, event, ai):
-        if not self.states:
-            self.states = ai.areas
-        if self.area_info is None:
-            self.area_info = ai.net_state
+    def route(self, event: Event, topo_gen: TopoGen, tfk_gen: CallsGen, net_state: NetState, depth: int):
+        depth = int(depth)
+        net_state = net_state.net_state
         atk_area = event.event.target
         self.unable_areas.append(atk_area)
-        self.area_info[atk_area]["attack_num"] += 1
         # 恢复
-        prune_topo = self._prune_graph(physicalTopology.G, self.unable_areas)
+        prune_topo = self._prune_graph(topo_gen.G, self.unable_areas)
         logging.info("Prune topology has {} nodes.".format(prune_topo.nodes))
-        break_calls = self._find_calls(physicalTopology.G, physicalTopology.calls, self.unable_areas)
+        break_calls = self._find_calls(topo_gen.G, tfk_gen.calls, self.unable_areas)
         for call in break_calls:
             try:
                 reroute = nx.shortest_path(prune_topo, call.src, call.dst)
-                if physicalTopology.reserve(prune_topo, reroute, call.rate):
+                if topo_gen.reserve(prune_topo, reroute, call.rate):
                     call.path = reroute
                 logging.info("The {} call is restored.".format(call.id))
             except:
@@ -43,26 +36,26 @@ class CAR:
             finally:
                 call.restore_times += 1
         # 计算转移概率
-        self._update_area_info(atk_area, prune_topo, physicalTopology.G, physicalTopology.calls)
-        self.trans_matrix = self._calculate_transition_matrix(self.area_info)
+        self._update_area_info(atk_area, prune_topo, topo_gen.G, tfk_gen.calls)
+        self.trans_matrix = self._calculate_transition_matrix(net_state.regions)
         # 计算攻击战略
         atk_tactics = self._trace_atk_tactics(atk_area)
         self.potential_areas = list(set(atk_tactics))
         logging.info("Attacked areas: {}".format(self.unable_areas))
         logging.info("Potential areas: {}".format(self.potential_areas))
         # 调整
-        prune_topo = self._prune_graph(physicalTopology.G, self.potential_areas+self.unable_areas)
-        break_calls = self._find_calls(physicalTopology.G, physicalTopology.calls, self.potential_areas)
+        prune_topo = self._prune_graph(topo_gen.G, self.potential_areas+self.unable_areas)
+        break_calls = self._find_calls(topo_gen.G, tfk_gen.calls, self.potential_areas)
         for call in break_calls:
             try:
                 reroute = nx.shortest_path(prune_topo, call.src, call.dst)
-                if physicalTopology.reserve(prune_topo, reroute, call.rate):
+                if topo_gen.reserve(prune_topo, reroute, call.rate):
                     call.path = reroute
                 logging.info("The {} call is changed.".format(call.id))
             except:
                 pass
 
-    def removeCall(self, physicalTopology, event, routeTable):
+    def remove(self, physicalTopology, event, routeTable):
         self.unable_areas.remove(event.event.target)
         logging.info("After departure event {}, unable areas have {}.".format(event.event.id, self.unable_areas))
         # 拓扑剪枝

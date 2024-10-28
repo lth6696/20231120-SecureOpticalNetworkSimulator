@@ -23,7 +23,7 @@ def simulator(config_file: str):
     # 读取配置
     configer = utl.config.Config().read(config_file)
 
-    algorithm_name = ""
+    algo_set = {}
     topo_gen = network.generator.TopoGen()
     tfc_gen = network.generator.CallsGen()
     atk_gen = network.generator.EventGen()
@@ -48,7 +48,7 @@ def simulator(config_file: str):
             # 获取网络状态
             net_state.get(topo_gen.G, tfc_gen.calls, **kargs)
         elif section == "algorithm":
-            algorithm_name = configer[section]["name"]
+            algo_set = kargs
         elif section == "events":
             # 生成离散事件
             atk_gen.generate(scheduler, net_state, **kargs)
@@ -61,7 +61,7 @@ def simulator(config_file: str):
     # 启动管控平台
     logging.info("{} - {} - Start the control plane.".format(__file__, __name__))
     controller = network.controller.ControlPlane()
-    controller.run(algorithm_name, scheduler, topo_gen, tfc_gen, net_state, res)
+    controller.run(scheduler, topo_gen, tfc_gen, net_state, res, **algo_set)
     logging.info(f"{__file__} - {__name__} - Done.")
 
 
