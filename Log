@@ -1,5 +1,5 @@
-2024-10-28 12:00:29,926 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\network\generator.py - network.generator - Generate 5 events in 1 with 20 time.
-2024-10-28 12:00:29,926 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\network\generator.py - network.generator - Arrival time (¦Ë) is 20.0, holding time (¦Ì) is 20, intensity (¦Ñ) is 1.0.
-2024-10-28 12:00:29,927 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\network\generator.py - network.generator - Generate 10 events.
-2024-10-28 12:00:29,927 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\simulator.py - __main__ - Start the control plane.
-2024-10-28 12:00:29,927 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\network\controller.py - network.controller - Load the PRACA algorithm.
+2024-10-28 16:25:27,052 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\network\generator.py - network.generator - Generate 5 events in 1 with 20 time.
+2024-10-28 16:25:27,052 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\network\generator.py - network.generator - Arrival time (¦Ë) is 20.0, holding time (¦Ì) is 20, intensity (¦Ñ) is 1.0.
+2024-10-28 16:25:27,052 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\network\generator.py - network.generator - Generate 10 events.
+2024-10-28 16:25:27,053 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\simulator.py - __main__ - Start the control plane.
+2024-10-28 16:25:27,053 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\network\controller.py - network.controller - Load the PRACA algorithm.

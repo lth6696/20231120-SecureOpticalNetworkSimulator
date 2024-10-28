@@ -45,10 +45,10 @@ class TopoGen:
         for attr, val in kwargs.items():
             if _type == "node":
                 for node in self.G.nodes:
-                    self.G.nodes[node][attr] = utl.config.convert(val)
+                    self.G.nodes[node][attr] = val
             elif _type == "link":
                 for u_node, v_node in self.G.edges:
-                    self.G[u_node][v_node][attr] = utl.config.convert(val)
+                    self.G[u_node][v_node][attr] = val
             else:
                 raise ValueError
 
@@ -61,9 +61,6 @@ class EventGen:
         self.attacked_regions = []
 
     def generate(self, scheduler: Scheduler, net_state: NetState, number: int, load: int, holding_time: float, strategy: str):
-        number = utl.config.convert(number)
-        load = utl.config.convert(load)
-        holding_time = utl.config.convert(holding_time)
         # 读取配置文件
         logging.info(f"{__file__} - {__name__} - Generate {number} events in {load} with {holding_time} time.")
         # 服务时间间隔μ, 到达时间间隔λ, 注意: λ/μ<1

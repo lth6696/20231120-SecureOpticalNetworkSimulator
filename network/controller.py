@@ -27,11 +27,11 @@ class ControlPlane:
             # logging.info("{} - {} - The {} event processed on {} second origin from {} to {} with id {}."
             #              .format(__file__, __name__, event.type, time, event.call.sourceNode, event.call.destinationNode, event.id))
             attacked_regions.append(event.event.target)
+            net_state.update(topo_gen.G, tfk_gen.calls, attacked_regions)
             if event.type == "eventArrive":
                 self.algorithm.route(event, topo_gen, tfk_gen, net_state, **kargs)
             elif event.type == "eventDeparture":
                 self.algorithm.remove(topo_gen.G, event, net_state)
-            net_state.update(topo_gen.G, tfk_gen.calls, attacked_regions)
             statistic.snapshot(event, topo_gen.G, tfk_gen.calls)
 
     def _set_algorithm(self, name: str):

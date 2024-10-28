@@ -1,8 +1,8 @@
 import networkx as nx
 import logging
+import numpy as np
 
 from .fuzzy import Fuzzy
-from .markov import Markov
 from network.generator import TopoGen, CallsGen
 from network.state import NetState
 from utl.event import Event
@@ -16,116 +16,77 @@ class PRACA:
         self._infinity = 1e-5
 
     def route(self, event: Event, topo_gen: TopoGen, tfk_gen: CallsGen, net_state: NetState, depth: int):
-        depth = int(depth)
-        net_state = net_state.net_state
         atk_area = event.event.target
         self.unable_areas.append(atk_area)
         # 恢复
-        prune_topo = self._prune_graph(topo_gen.G, self.unable_areas)
-        logging.info("Prune topology has {} nodes.".format(prune_topo.nodes))
-        break_calls = self._find_calls(topo_gen.G, tfk_gen.calls, self.unable_areas)
-        for call in break_calls:
-            try:
-                reroute = nx.shortest_path(prune_topo, call.src, call.dst)
-                if topo_gen.reserve(prune_topo, reroute, call.rate):
-                    call.path = reroute
-                logging.info("The {} call is restored.".format(call.id))
-            except:
-                call.path = None
-                logging.info("The {} call is blocked.".format(call.id))
-            finally:
-                call.restore_times += 1
-        # 计算转移概率
-        self._update_area_info(atk_area, prune_topo, topo_gen.G, tfk_gen.calls)
-        self.trans_matrix = self._calculate_transition_matrix(net_state.regions)
-        # 计算攻击战略
-        atk_tactics = self._trace_atk_tactics(atk_area)
-        self.potential_areas = list(set(atk_tactics))
-        logging.info("Attacked areas: {}".format(self.unable_areas))
-        logging.info("Potential areas: {}".format(self.potential_areas))
+        self._restore_services_under_attack(topo_gen.G, tfk_gen.calls)
         # 调整
-        prune_topo = self._prune_graph(topo_gen.G, self.potential_areas+self.unable_areas)
-        break_calls = self._find_calls(topo_gen.G, tfk_gen.calls, self.potential_areas)
-        for call in break_calls:
-            try:
-                reroute = nx.shortest_path(prune_topo, call.src, call.dst)
-                if topo_gen.reserve(prune_topo, reroute, call.rate):
-                    call.path = reroute
-                logging.info("The {} call is changed.".format(call.id))
-            except:
-                pass
+        self._adjust_services_potentially_under_attack(topo_gen.G, tfk_gen.calls, net_state, depth)
 
-    def remove(self, physicalTopology, event, routeTable):
+    def remove(self, event: Event, topo_gen: TopoGen, tfk_gen: CallsGen, **kwargs):
         self.unable_areas.remove(event.event.target)
         logging.info("After departure event {}, unable areas have {}.".format(event.event.id, self.unable_areas))
         # 拓扑剪枝
-        prune_topo = self._prune_graph(physicalTopology.G, self.unable_areas)
-        for call in physicalTopology.calls:
-            if call.path:
-                continue
-            try:
-                reroute = nx.shortest_path(prune_topo, call.src, call.dst)
-                if physicalTopology.reserve(prune_topo, reroute, call.rate):
-                    call.path = reroute
-                logging.info("The {} call find path.".format(call.id))
-            except:
-                pass
+        prune_G = self._prune_graph(topo_gen.G, self.unable_areas)
+        blocked_calls = [call for call in tfk_gen.calls if call.path == []]
+        self._reroute(prune_G, blocked_calls, restore_or_adjust=False)
 
-    def _update_area_info(self, atk_area, prune_topo=None, G=None, calls=None):
-        areas = sorted([area for area in self.area_info.keys()])
-        for area in self.area_info.keys():
-            self.area_info[area]["span_length"] = max(0, self.sim_step - abs(areas.index(atk_area) - areas.index(area)) + 1)
-        if prune_topo is None and calls is None:
-            return self.area_info
-        for area in self.area_info.keys():
-            self.area_info[area]["link_num"] = 0
-            self.area_info[area]["node_degree"] = 0
-            self.area_info[area]["node_num"] = 0
-            self.area_info[area]["service_num"] = 0
-        # 计算节点信息
-        node_degree = dict(prune_topo.degree())
-        for node in node_degree:
-            self.area_info[prune_topo.nodes[node]["area"]]["node_degree"] += node_degree[node]
-            self.area_info[prune_topo.nodes[node]["area"]]["node_num"] += 1
-        # 计算链路信息
-        for u, v, data in prune_topo.edges(data=True):
-            for area in data["area"]:
-                self.area_info[area]["link_num"] += 1
-        # 计算业务信息
-        for call in calls:
-            if call.path is None:
-                continue
-            for node in call.path:
-                self.area_info[G.nodes[node]["area"]]["service_num"] += 1
-        return self.area_info
+    def _restore_services_under_attack(self, G: nx.Graph, calls: list):
+        """
+        输入：受到攻击前的拓扑，所有业务，攻击导致不可用区域
+        输出：为所有受到攻击的业务寻找恢复路径
+        基于拓扑剪枝算法，删除受攻击链路节点，寻找受攻击业务，重路由业务路径
+        """
+        # 拓扑剪枝
+        prune_G = self._prune_graph(G, self.unable_areas)
+        # 寻找业务
+        break_calls = self._find_calls(G, calls, self.unable_areas)
+        # 重路由
+        self._reroute(prune_G, break_calls, True)
 
-    def _evaluate_attack_probabilities(self, area_info: dict):
+    def _adjust_services_potentially_under_attack(self, G: nx.Graph, calls: list, net_state: NetState, depth: int):
+        """
+        输入：攻击前的拓扑，所有业务，攻击导致不可用区域，网络状态，预测长度
+        输出：为潜在可能受到攻击的业务寻找恢复路径
+        构建k-Markov攻击转移模型，删除潜在攻击链路节点，寻找受影响业务，重路由业务路径
+        """
+        # 计算转移概率
+        net_state.update(G, calls, self.unable_areas)
+        self.trans_matrix = self._calculate_transition_matrix(net_state.net_state)
+        # 计算攻击战略
+        atk_tactics = self._trace_atk_tactics(net_state.regions, depth)
+        self.potential_areas += atk_tactics
+        logging.info("Attacked areas: {}".format(self.unable_areas))
+        logging.info("Potential areas: {}".format(self.potential_areas))
+        # 重路由
+        prune_G = self._prune_graph(G, self.potential_areas + self.unable_areas)
+        break_calls = self._find_calls(G, calls, self.potential_areas)
+        self._reroute(prune_G, break_calls, False)
+
+    def _evaluate_attack_probabilities(self, net_state: NetState):
         fuzzy = Fuzzy()
-        fuzzy.init_fuzzy_evaluation(self.states, self.factors)
-        for grade in self.states:
-            for factor in self.factors:
-                fuzzy.add_evaluation(grade, factor, area_info[grade][factor])
+        fuzzy.init_fuzzy_evaluation(net_state.regions, net_state.used_states)
+        for grade in net_state.regions:
+            for factor in net_state.used_states:
+                fuzzy.add_evaluation(grade, factor, net_state.net_state[grade][factor])
         prob = fuzzy.evaluate()
         return prob
 
-    def _calculate_transition_matrix(self, area_info: dict):
-        markov = Markov()
-        markov.add_states(self.states)
-        markov.init_trans_prob()
-        for row, atk in enumerate(self.states):
-            self._update_area_info(atk)
-            trans_prob = self._evaluate_attack_probabilities(area_info)
-            for col, value in enumerate(trans_prob):
-                markov.set_prob(row, col, value)
-        return markov.trans_prob
+    def _calculate_transition_matrix(self, net_state: NetState):
+        num_region = len(net_state.regions)
+        prob_matrix = np.zeros((num_region, num_region))
+        for row, atk in enumerate(net_state.regions):
+            probabilities = self._evaluate_attack_probabilities(net_state)
+            for col, value in enumerate(probabilities):
+                prob_matrix[row][col] = value
+        return prob_matrix
 
-    def _trace_atk_tactics(self, root: str):
+    def _trace_atk_tactics(self, regions: list, depth: int):
+        root = self.unable_areas[-1]
         chain = nx.DiGraph()
         chain.add_node("root", id=root)
         chain.add_node("final", id=root)
-        self._build_tree(chain, "root", self.sim_step, [area for area in self.states if area != root])
-        # nx.draw(chain, with_labels=True)
-        # plt.show()
+        self._build_tree(chain, "root", depth, [area for area in regions if area != root])
         path = nx.shortest_path(chain, source="root", target="final", weight="weight")
         trace = [chain.nodes[i]["id"] for i in path[1:-1] if chain.nodes[i]["id"] != root]
         return trace
@@ -135,7 +96,7 @@ class PRACA:
             chain.add_edge(node, "final", weight=0)
             return
         for child in children:
-            next = str(self.sim_step - depth)+str(node)+str(child)
+            next = str(depth)+str(node)+str(child)
             weight = 1 / (self.trans_matrix[self.states.index(chain.nodes[node]["id"])][self.states.index(child)] + self._infinity)
             chain.add_node(next, id=child)
             chain.add_edge(node, next, weight=weight)
@@ -164,3 +125,41 @@ class PRACA:
                 target_calls.append(call)
                 logging.info("The {} call passes areas: {}".format(call.id, set(traverse_node + traverse_link)))
         return target_calls
+
+    def _reserve(self, G: nx.Graph, path: list, rate: float):
+        if len(path) <= 1:
+            return True
+        u_node = path[0]
+        v_node = path[1]
+        if G[u_node][v_node]["bandwidth"] > rate:
+            if self._reserve(G, path[1:], rate):
+                G[u_node][v_node]["bandwidth"] -= rate
+                G[u_node][v_node]["weight"] = 1 / G[u_node][v_node]["bandwidth"]
+                return True
+            else:
+                return False
+        else:
+            return False
+
+    def _reroute(self, G: nx.Graph, calls: list, restore_or_adjust: bool):
+        """
+                 恢复                  调整
+        成功      set路径和恢复次数      set路径
+        失败      set路径和恢复次数      set
+        """
+        for call in calls:
+            try:    # 成功
+                reroute = nx.shortest_path(G, call.src, call.dst)
+                if not self._reserve(G, reroute, call.rate):
+                    raise Exception
+                call.path = reroute
+                if restore_or_adjust:
+                    call.restoration += 1
+            except: # 失败
+                if restore_or_adjust:
+                    # 若恢复
+                    call.path = []
+                    call.restoration += 1
+                else:
+                    # 若调整
+                    pass

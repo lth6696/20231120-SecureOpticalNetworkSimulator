@@ -32,7 +32,7 @@ def simulator(config_file: str):
     res = result.statistic.Statistic()
     # 生成配置
     for section in configer.sections():
-        kargs = dict(configer[section])
+        kargs = {key: utl.config.convert(configer[section][key]) for key in configer[section]}
         if section == "topology":
             # 生成物理拓扑
             topo_gen.generate(**kargs)
