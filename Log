@@ -1,5 +1,220 @@
-2024-10-28 16:25:27,052 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\network\generator.py - network.generator - Generate 5 events in 1 with 20 time.
-2024-10-28 16:25:27,052 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\network\generator.py - network.generator - Arrival time (¦Ë) is 20.0, holding time (¦Ì) is 20, intensity (¦Ñ) is 1.0.
-2024-10-28 16:25:27,052 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\network\generator.py - network.generator - Generate 10 events.
-2024-10-28 16:25:27,053 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\simulator.py - __main__ - Start the control plane.
-2024-10-28 16:25:27,053 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\network\controller.py - network.controller - Load the PRACA algorithm.
+2024-11-01 18:12:13,559 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\network\generator.py - network.generator - Generate 5 events in 1 with 20 time.
+2024-11-01 18:12:13,559 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\network\generator.py - network.generator - Arrival time (¦Ë) is 20.0, holding time (¦Ì) is 20, intensity (¦Ñ) is 1.0.
+2024-11-01 18:12:13,559 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\network\generator.py - network.generator - Generate 10 events.
+2024-11-01 18:12:13,559 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\simulator.py - __main__ - Start the control plane.
+2024-11-01 18:12:13,559 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\network\controller.py - network.controller - Load the PRACA algorithm.
+2024-11-01 18:12:13,559 - INFO - The 2 call passes areas: {'Denver', 'Kansas City', 'Indianapolis', 'Sunnyvale', 'United States'}
+2024-11-01 18:12:13,559 - INFO - The 4 call passes areas: {'Denver', 'Sunnyvale', 'United States'}
+2024-11-01 18:12:13,559 - INFO - The 5 call passes areas: {'United States', 'Sunnyvale', 'Los Angeles', 'Seattle', 'Houston'}
+2024-11-01 18:12:13,559 - INFO - The 7 call passes areas: {'Los Angeles', 'Denver', 'Sunnyvale', 'United States'}
+2024-11-01 18:12:13,559 - INFO - The 13 call passes areas: {'United States', 'Sunnyvale', 'Los Angeles', 'Seattle', 'Houston'}
+2024-11-01 18:12:13,560 - INFO - The 16 call passes areas: {'Kansas City', 'Denver', 'Sunnyvale', 'United States'}
+2024-11-01 18:12:13,560 - INFO - The 17 call passes areas: {'United States', 'Sunnyvale', 'Los Angeles', 'Atlanta', 'Seattle', 'Houston'}
+2024-11-01 18:12:13,560 - INFO - The 19 call passes areas: {'Chicago', 'Denver', 'Kansas City', 'Indianapolis', 'Sunnyvale', 'New York', 'United States'}
+2024-11-01 18:12:13,560 - INFO - The 27 call passes areas: {'United States', 'Sunnyvale', 'Los Angeles', 'Seattle', 'Houston'}
+2024-11-01 18:12:13,560 - INFO - The 28 call passes areas: {'Sunnyvale', 'Los Angeles', 'Seattle', 'United States'}
+2024-11-01 18:12:13,560 - INFO - The 30 call passes areas: {'Seattle', 'Sunnyvale', 'United States'}
+2024-11-01 18:12:13,560 - INFO - The 31 call passes areas: {'Chicago', 'Denver', 'Kansas City', 'Indianapolis', 'Sunnyvale', 'United States'}
+2024-11-01 18:12:13,560 - INFO - The 35 call passes areas: {'United States', 'Los Angeles', 'Sunnyvale', 'Atlanta', 'Houston'}
+2024-11-01 18:12:13,560 - INFO - The 43 call passes areas: {'United States', 'Los Angeles', 'Sunnyvale', 'Atlanta', 'Washington DC', 'Houston'}
+2024-11-01 18:12:13,560 - INFO - The 44 call passes areas: {'Los Angeles', 'Denver', 'Sunnyvale', 'United States'}
+2024-11-01 18:12:13,560 - INFO - The 47 call passes areas: {'Los Angeles', 'Denver', 'Sunnyvale', 'United States'}
+2024-11-01 18:12:13,560 - INFO - The 48 call passes areas: {'Los Angeles', 'Sunnyvale', 'United States'}
+2024-11-01 18:12:13,564 - INFO - Attacked areas: ['Sunnyvale']
+2024-11-01 18:12:13,564 - INFO - Potential areas: ['Houston', 'Kansas City']
+2024-11-01 18:12:13,564 - INFO - The 0 call passes areas: {'United States', 'Denver', 'Kansas City', 'Atlanta', 'Houston'}
+2024-11-01 18:12:13,564 - INFO - The 1 call passes areas: {'Kansas City', 'Houston', 'United States'}
+2024-11-01 18:12:13,564 - INFO - The 3 call passes areas: {'Denver', 'Kansas City', 'Indianapolis', 'Seattle', 'United States'}
+2024-11-01 18:12:13,564 - INFO - The 5 call passes areas: {'United States', 'Denver', 'Kansas City', 'Seattle', 'Houston'}
+2024-11-01 18:12:13,564 - INFO - The 7 call passes areas: {'United States', 'Denver', 'Kansas City', 'Los Angeles', 'Houston'}
+2024-11-01 18:12:13,564 - INFO - The 8 call passes areas: {'Chicago', 'Denver', 'Kansas City', 'Indianapolis', 'New York', 'United States'}
+2024-11-01 18:12:13,564 - INFO - The 9 call passes areas: {'United States', 'New York', 'Los Angeles', 'Washington DC', 'Atlanta', 'Houston'}
+2024-11-01 18:12:13,564 - INFO - The 10 call passes areas: {'Chicago', 'Denver', 'Kansas City', 'Indianapolis', 'New York', 'Seattle', 'United States'}
+2024-11-01 18:12:13,564 - INFO - The 13 call passes areas: {'United States', 'Denver', 'Kansas City', 'Seattle', 'Houston'}
+2024-11-01 18:12:13,565 - INFO - The 14 call passes areas: {'Indianapolis', 'Atlanta', 'Houston', 'United States'}
+2024-11-01 18:12:13,565 - INFO - The 15 call passes areas: {'United States', 'Atlanta', 'Washington DC', 'New York', 'Houston'}
+2024-11-01 18:12:13,565 - INFO - The 17 call passes areas: {'United States', 'Denver', 'Kansas City', 'Atlanta', 'Seattle', 'Houston'}
+2024-11-01 18:12:13,565 - INFO - The 18 call passes areas: {'Atlanta', 'Houston', 'United States'}
+2024-11-01 18:12:13,565 - INFO - The 20 call passes areas: {'Atlanta', 'Houston', 'United States'}
+2024-11-01 18:12:13,565 - INFO - The 21 call passes areas: {'United States', 'Kansas City', 'Indianapolis', 'Los Angeles', 'Houston'}
+2024-11-01 18:12:13,565 - INFO - The 22 call passes areas: {'Chicago', 'Denver', 'Kansas City', 'Indianapolis', 'New York', 'Seattle', 'United States'}
+2024-11-01 18:12:13,565 - INFO - The 23 call passes areas: {'Kansas City', 'Houston', 'United States'}
+2024-11-01 18:12:13,565 - INFO - The 26 call passes areas: {'Indianapolis', 'Atlanta', 'Houston', 'United States'}
+2024-11-01 18:12:13,565 - INFO - The 27 call passes areas: {'United States', 'Denver', 'Kansas City', 'Seattle', 'Houston'}
+2024-11-01 18:12:13,565 - INFO - The 28 call passes areas: {'United States', 'Denver', 'Kansas City', 'Los Angeles', 'Seattle', 'Houston'}
+2024-11-01 18:12:13,565 - INFO - The 29 call passes areas: {'Atlanta', 'Houston', 'United States'}
+2024-11-01 18:12:13,565 - INFO - The 32 call passes areas: {'Chicago', 'Denver', 'Kansas City', 'Indianapolis', 'New York', 'Seattle', 'United States'}
+2024-11-01 18:12:13,565 - INFO - The 36 call passes areas: {'Kansas City', 'Indianapolis', 'United States'}
+2024-11-01 18:12:13,565 - INFO - The 38 call passes areas: {'Denver', 'Kansas City', 'Indianapolis', 'Washington DC', 'Atlanta', 'Seattle', 'United States'}
+2024-11-01 18:12:13,565 - INFO - The 42 call passes areas: {'Chicago', 'Kansas City', 'Indianapolis', 'New York', 'United States'}
+2024-11-01 18:12:13,565 - INFO - The 44 call passes areas: {'United States', 'Denver', 'Kansas City', 'Los Angeles', 'Houston'}
+2024-11-01 18:12:13,565 - INFO - The 45 call passes areas: {'United States', 'Denver', 'Kansas City', 'Atlanta', 'Seattle', 'Houston'}
+2024-11-01 18:12:13,565 - INFO - The 47 call passes areas: {'United States', 'Denver', 'Kansas City', 'Los Angeles', 'Houston'}
+2024-11-01 18:12:13,565 - INFO - The 49 call passes areas: {'Kansas City', 'Indianapolis', 'Denver', 'United States'}
+2024-11-01 18:12:13,566 - INFO - After departure event 0, unable areas have [].
+2024-11-01 18:12:13,566 - INFO - The 0 call passes areas: {'United States', 'Denver', 'Kansas City', 'Atlanta', 'Houston'}
+2024-11-01 18:12:13,566 - INFO - The 2 call passes areas: {'Denver', 'Kansas City', 'Indianapolis', 'Sunnyvale', 'United States'}
+2024-11-01 18:12:13,566 - INFO - The 3 call passes areas: {'Denver', 'Kansas City', 'Indianapolis', 'Seattle', 'United States'}
+2024-11-01 18:12:13,566 - INFO - The 4 call passes areas: {'Denver', 'Sunnyvale', 'United States'}
+2024-11-01 18:12:13,566 - INFO - The 5 call passes areas: {'United States', 'Denver', 'Kansas City', 'Seattle', 'Houston'}
+2024-11-01 18:12:13,566 - INFO - The 7 call passes areas: {'United States', 'Denver', 'Kansas City', 'Los Angeles', 'Houston'}
+2024-11-01 18:12:13,566 - INFO - The 8 call passes areas: {'Chicago', 'Denver', 'Kansas City', 'Indianapolis', 'New York', 'United States'}
+2024-11-01 18:12:13,566 - INFO - The 10 call passes areas: {'Chicago', 'Denver', 'Kansas City', 'Indianapolis', 'New York', 'Seattle', 'United States'}
+2024-11-01 18:12:13,566 - INFO - The 13 call passes areas: {'United States', 'Denver', 'Kansas City', 'Seattle', 'Houston'}
+2024-11-01 18:12:13,566 - INFO - The 16 call passes areas: {'Kansas City', 'Denver', 'Sunnyvale', 'United States'}
+2024-11-01 18:12:13,567 - INFO - The 17 call passes areas: {'United States', 'Denver', 'Kansas City', 'Atlanta', 'Seattle', 'Houston'}
+2024-11-01 18:12:13,567 - INFO - The 19 call passes areas: {'Chicago', 'Denver', 'Kansas City', 'Indianapolis', 'Sunnyvale', 'New York', 'United States'}
+2024-11-01 18:12:13,567 - INFO - The 22 call passes areas: {'Chicago', 'Denver', 'Kansas City', 'Indianapolis', 'New York', 'Seattle', 'United States'}
+2024-11-01 18:12:13,567 - INFO - The 27 call passes areas: {'United States', 'Denver', 'Kansas City', 'Seattle', 'Houston'}
+2024-11-01 18:12:13,567 - INFO - The 28 call passes areas: {'United States', 'Denver', 'Kansas City', 'Los Angeles', 'Seattle', 'Houston'}
+2024-11-01 18:12:13,567 - INFO - The 31 call passes areas: {'Chicago', 'Denver', 'Kansas City', 'Indianapolis', 'Sunnyvale', 'United States'}
+2024-11-01 18:12:13,567 - INFO - The 32 call passes areas: {'Chicago', 'Denver', 'Kansas City', 'Indianapolis', 'New York', 'Seattle', 'United States'}
+2024-11-01 18:12:13,567 - INFO - The 33 call passes areas: {'Denver', 'Seattle', 'United States'}
+2024-11-01 18:12:13,567 - INFO - The 38 call passes areas: {'Denver', 'Kansas City', 'Indianapolis', 'Washington DC', 'Atlanta', 'Seattle', 'United States'}
+2024-11-01 18:12:13,567 - INFO - The 44 call passes areas: {'United States', 'Denver', 'Kansas City', 'Los Angeles', 'Houston'}
+2024-11-01 18:12:13,567 - INFO - The 45 call passes areas: {'United States', 'Denver', 'Kansas City', 'Atlanta', 'Seattle', 'Houston'}
+2024-11-01 18:12:13,567 - INFO - The 46 call passes areas: {'Denver', 'Seattle', 'United States'}
+2024-11-01 18:12:13,567 - INFO - The 47 call passes areas: {'United States', 'Denver', 'Kansas City', 'Los Angeles', 'Houston'}
+2024-11-01 18:12:13,567 - INFO - The 49 call passes areas: {'Kansas City', 'Indianapolis', 'Denver', 'United States'}
+2024-11-01 18:12:13,570 - INFO - Attacked areas: ['Denver']
+2024-11-01 18:12:13,570 - INFO - Potential areas: ['Houston', 'Kansas City', 'Atlanta', 'Houston']
+2024-11-01 18:12:13,570 - INFO - The 1 call passes areas: {'Kansas City', 'Houston', 'United States'}
+2024-11-01 18:12:13,570 - INFO - The 2 call passes areas: {'United States', 'Kansas City', 'Indianapolis', 'Los Angeles', 'Sunnyvale', 'Houston'}
+2024-11-01 18:12:13,571 - INFO - The 3 call passes areas: {'United States', 'Kansas City', 'Indianapolis', 'Sunnyvale', 'Los Angeles', 'Seattle', 'Houston'}
+2024-11-01 18:12:13,571 - INFO - The 5 call passes areas: {'United States', 'Sunnyvale', 'Los Angeles', 'Seattle', 'Houston'}
+2024-11-01 18:12:13,571 - INFO - The 9 call passes areas: {'United States', 'New York', 'Los Angeles', 'Washington DC', 'Atlanta', 'Houston'}
+2024-11-01 18:12:13,571 - INFO - The 10 call passes areas: {'Washington DC', 'United States', 'New York', 'Sunnyvale', 'Los Angeles', 'Atlanta', 'Seattle', 'Houston'}
+2024-11-01 18:12:13,571 - INFO - The 13 call passes areas: {'United States', 'Sunnyvale', 'Los Angeles', 'Seattle', 'Houston'}
+2024-11-01 18:12:13,571 - INFO - The 14 call passes areas: {'Indianapolis', 'Atlanta', 'Houston', 'United States'}
+2024-11-01 18:12:13,571 - INFO - The 15 call passes areas: {'United States', 'Atlanta', 'Washington DC', 'New York', 'Houston'}
+2024-11-01 18:12:13,571 - INFO - The 16 call passes areas: {'United States', 'Kansas City', 'Los Angeles', 'Sunnyvale', 'Houston'}
+2024-11-01 18:12:13,571 - INFO - The 17 call passes areas: {'United States', 'Sunnyvale', 'Los Angeles', 'Atlanta', 'Seattle', 'Houston'}
+2024-11-01 18:12:13,571 - INFO - The 18 call passes areas: {'Atlanta', 'Houston', 'United States'}
+2024-11-01 18:12:13,571 - INFO - The 19 call passes areas: {'United States', 'New York', 'Los Angeles', 'Sunnyvale', 'Atlanta', 'Washington DC', 'Houston'}
+2024-11-01 18:12:13,571 - INFO - The 20 call passes areas: {'Atlanta', 'Houston', 'United States'}
+2024-11-01 18:12:13,571 - INFO - The 21 call passes areas: {'United States', 'Kansas City', 'Indianapolis', 'Los Angeles', 'Houston'}
+2024-11-01 18:12:13,571 - INFO - The 22 call passes areas: {'Washington DC', 'United States', 'New York', 'Sunnyvale', 'Los Angeles', 'Atlanta', 'Seattle', 'Houston'}
+2024-11-01 18:12:13,571 - INFO - The 23 call passes areas: {'Kansas City', 'Houston', 'United States'}
+2024-11-01 18:12:13,571 - INFO - The 24 call passes areas: {'Indianapolis', 'Atlanta', 'United States'}
+2024-11-01 18:12:13,571 - INFO - The 26 call passes areas: {'Indianapolis', 'Atlanta', 'Houston', 'United States'}
+2024-11-01 18:12:13,571 - INFO - The 27 call passes areas: {'United States', 'Sunnyvale', 'Los Angeles', 'Seattle', 'Houston'}
+2024-11-01 18:12:13,571 - INFO - The 29 call passes areas: {'Atlanta', 'Houston', 'United States'}
+2024-11-01 18:12:13,571 - INFO - The 31 call passes areas: {'Chicago', 'United States', 'Kansas City', 'Indianapolis', 'Los Angeles', 'Sunnyvale', 'Houston'}
+2024-11-01 18:12:13,571 - INFO - The 32 call passes areas: {'United States', 'New York', 'Los Angeles', 'Washington DC', 'Sunnyvale', 'Atlanta', 'Seattle', 'Houston'}
+2024-11-01 18:12:13,571 - INFO - The 34 call passes areas: {'Atlanta', 'Washington DC', 'United States'}
+2024-11-01 18:12:13,571 - INFO - The 35 call passes areas: {'United States', 'Los Angeles', 'Sunnyvale', 'Atlanta', 'Houston'}
+2024-11-01 18:12:13,571 - INFO - The 36 call passes areas: {'Kansas City', 'Indianapolis', 'United States'}
+2024-11-01 18:12:13,571 - INFO - The 38 call passes areas: {'United States', 'Los Angeles', 'Washington DC', 'Sunnyvale', 'Atlanta', 'Seattle', 'Houston'}
+2024-11-01 18:12:13,571 - INFO - The 39 call passes areas: {'Atlanta', 'Washington DC', 'United States'}
+2024-11-01 18:12:13,571 - INFO - The 42 call passes areas: {'Chicago', 'Kansas City', 'Indianapolis', 'New York', 'United States'}
+2024-11-01 18:12:13,571 - INFO - The 43 call passes areas: {'United States', 'Los Angeles', 'Sunnyvale', 'Atlanta', 'Washington DC', 'Houston'}
+2024-11-01 18:12:13,571 - INFO - The 45 call passes areas: {'United States', 'Sunnyvale', 'Los Angeles', 'Atlanta', 'Seattle', 'Houston'}
+2024-11-01 18:12:13,572 - INFO - After departure event 1, unable areas have [].
+2024-11-01 18:12:13,572 - INFO - The 0 call passes areas: {'United States', 'Denver', 'Kansas City', 'Atlanta', 'Houston'}
+2024-11-01 18:12:13,572 - INFO - The 1 call passes areas: {'Kansas City', 'Houston', 'United States'}
+2024-11-01 18:12:13,572 - INFO - The 2 call passes areas: {'United States', 'Kansas City', 'Indianapolis', 'Los Angeles', 'Sunnyvale', 'Houston'}
+2024-11-01 18:12:13,572 - INFO - The 3 call passes areas: {'United States', 'Kansas City', 'Indianapolis', 'Sunnyvale', 'Los Angeles', 'Seattle', 'Houston'}
+2024-11-01 18:12:13,572 - INFO - The 8 call passes areas: {'Chicago', 'Denver', 'Kansas City', 'Indianapolis', 'New York', 'United States'}
+2024-11-01 18:12:13,572 - INFO - The 16 call passes areas: {'United States', 'Kansas City', 'Los Angeles', 'Sunnyvale', 'Houston'}
+2024-11-01 18:12:13,572 - INFO - The 21 call passes areas: {'United States', 'Kansas City', 'Indianapolis', 'Los Angeles', 'Houston'}
+2024-11-01 18:12:13,572 - INFO - The 23 call passes areas: {'Kansas City', 'Houston', 'United States'}
+2024-11-01 18:12:13,572 - INFO - The 31 call passes areas: {'Chicago', 'United States', 'Kansas City', 'Indianapolis', 'Los Angeles', 'Sunnyvale', 'Houston'}
+2024-11-01 18:12:13,572 - INFO - The 36 call passes areas: {'Kansas City', 'Indianapolis', 'United States'}
+2024-11-01 18:12:13,572 - INFO - The 42 call passes areas: {'Chicago', 'Kansas City', 'Indianapolis', 'New York', 'United States'}
+2024-11-01 18:12:13,572 - INFO - The 49 call passes areas: {'Kansas City', 'Indianapolis', 'Denver', 'United States'}
+2024-11-01 18:12:13,575 - INFO - Attacked areas: ['Kansas City']
+2024-11-01 18:12:13,575 - INFO - Potential areas: ['Houston', 'Kansas City', 'Atlanta', 'Houston', 'Sunnyvale', 'Atlanta']
+2024-11-01 18:12:13,576 - INFO - The 0 call passes areas: {'United States', 'Denver', 'Sunnyvale', 'Los Angeles', 'Atlanta', 'Houston'}
+2024-11-01 18:12:13,576 - INFO - The 2 call passes areas: {'United States', 'Indianapolis', 'Los Angeles', 'Sunnyvale', 'Atlanta', 'Houston'}
+2024-11-01 18:12:13,576 - INFO - The 3 call passes areas: {'United States', 'Indianapolis', 'Sunnyvale', 'Los Angeles', 'Atlanta', 'Seattle', 'Houston'}
+2024-11-01 18:12:13,576 - INFO - The 4 call passes areas: {'Denver', 'Sunnyvale', 'United States'}
+2024-11-01 18:12:13,576 - INFO - The 5 call passes areas: {'United States', 'Sunnyvale', 'Los Angeles', 'Seattle', 'Houston'}
+2024-11-01 18:12:13,576 - INFO - The 7 call passes areas: {'Los Angeles', 'Denver', 'Sunnyvale', 'United States'}
+2024-11-01 18:12:13,576 - INFO - The 8 call passes areas: {'United States', 'Denver', 'New York', 'Los Angeles', 'Sunnyvale', 'Atlanta', 'Washington DC', 'Houston'}
+2024-11-01 18:12:13,576 - INFO - The 9 call passes areas: {'United States', 'New York', 'Los Angeles', 'Washington DC', 'Atlanta', 'Houston'}
+2024-11-01 18:12:13,576 - INFO - The 10 call passes areas: {'Washington DC', 'United States', 'New York', 'Sunnyvale', 'Los Angeles', 'Atlanta', 'Seattle', 'Houston'}
+2024-11-01 18:12:13,576 - INFO - The 13 call passes areas: {'United States', 'Sunnyvale', 'Los Angeles', 'Seattle', 'Houston'}
+2024-11-01 18:12:13,576 - INFO - The 14 call passes areas: {'Indianapolis', 'Atlanta', 'Houston', 'United States'}
+2024-11-01 18:12:13,576 - INFO - The 15 call passes areas: {'United States', 'Atlanta', 'Washington DC', 'New York', 'Houston'}
+2024-11-01 18:12:13,576 - INFO - The 17 call passes areas: {'United States', 'Sunnyvale', 'Los Angeles', 'Atlanta', 'Seattle', 'Houston'}
+2024-11-01 18:12:13,576 - INFO - The 18 call passes areas: {'Atlanta', 'Houston', 'United States'}
+2024-11-01 18:12:13,576 - INFO - The 19 call passes areas: {'United States', 'New York', 'Los Angeles', 'Sunnyvale', 'Atlanta', 'Washington DC', 'Houston'}
+2024-11-01 18:12:13,576 - INFO - The 20 call passes areas: {'Atlanta', 'Houston', 'United States'}
+2024-11-01 18:12:13,576 - INFO - The 21 call passes areas: {'United States', 'Indianapolis', 'Los Angeles', 'Atlanta', 'Houston'}
+2024-11-01 18:12:13,576 - INFO - The 22 call passes areas: {'Washington DC', 'United States', 'New York', 'Sunnyvale', 'Los Angeles', 'Atlanta', 'Seattle', 'Houston'}
+2024-11-01 18:12:13,576 - INFO - The 24 call passes areas: {'Indianapolis', 'Atlanta', 'United States'}
+2024-11-01 18:12:13,576 - INFO - The 26 call passes areas: {'Indianapolis', 'Atlanta', 'Houston', 'United States'}
+2024-11-01 18:12:13,576 - INFO - The 27 call passes areas: {'United States', 'Sunnyvale', 'Los Angeles', 'Seattle', 'Houston'}
+2024-11-01 18:12:13,576 - INFO - The 28 call passes areas: {'Sunnyvale', 'Los Angeles', 'Seattle', 'United States'}
+2024-11-01 18:12:13,576 - INFO - The 29 call passes areas: {'Atlanta', 'Houston', 'United States'}
+2024-11-01 18:12:13,576 - INFO - The 30 call passes areas: {'Seattle', 'Sunnyvale', 'United States'}
+2024-11-01 18:12:13,576 - INFO - The 31 call passes areas: {'Chicago', 'United States', 'Indianapolis', 'Los Angeles', 'Sunnyvale', 'Atlanta', 'Houston'}
+2024-11-01 18:12:13,576 - INFO - The 32 call passes areas: {'United States', 'New York', 'Los Angeles', 'Washington DC', 'Sunnyvale', 'Atlanta', 'Seattle', 'Houston'}
+2024-11-01 18:12:13,576 - INFO - The 34 call passes areas: {'Atlanta', 'Washington DC', 'United States'}
+2024-11-01 18:12:13,576 - INFO - The 35 call passes areas: {'United States', 'Los Angeles', 'Sunnyvale', 'Atlanta', 'Houston'}
+2024-11-01 18:12:13,577 - INFO - The 38 call passes areas: {'United States', 'Los Angeles', 'Washington DC', 'Sunnyvale', 'Atlanta', 'Seattle', 'Houston'}
+2024-11-01 18:12:13,577 - INFO - The 39 call passes areas: {'Atlanta', 'Washington DC', 'United States'}
+2024-11-01 18:12:13,577 - INFO - The 43 call passes areas: {'United States', 'Los Angeles', 'Sunnyvale', 'Atlanta', 'Washington DC', 'Houston'}
+2024-11-01 18:12:13,577 - INFO - The 44 call passes areas: {'Los Angeles', 'Denver', 'Sunnyvale', 'United States'}
+2024-11-01 18:12:13,577 - INFO - The 45 call passes areas: {'United States', 'Sunnyvale', 'Los Angeles', 'Atlanta', 'Seattle', 'Houston'}
+2024-11-01 18:12:13,577 - INFO - The 47 call passes areas: {'Los Angeles', 'Denver', 'Sunnyvale', 'United States'}
+2024-11-01 18:12:13,577 - INFO - The 48 call passes areas: {'Los Angeles', 'Sunnyvale', 'United States'}
+2024-11-01 18:12:13,577 - INFO - The 49 call passes areas: {'United States', 'Denver', 'Indianapolis', 'Los Angeles', 'Sunnyvale', 'Atlanta', 'Houston'}
+2024-11-01 18:12:13,577 - INFO - The 0 call passes areas: {'United States', 'Denver', 'Sunnyvale', 'Los Angeles', 'Atlanta', 'Houston'}
+2024-11-01 18:12:13,577 - INFO - The 2 call passes areas: {'United States', 'Indianapolis', 'Los Angeles', 'Sunnyvale', 'Atlanta', 'Houston'}
+2024-11-01 18:12:13,577 - INFO - The 3 call passes areas: {'United States', 'Indianapolis', 'Sunnyvale', 'Los Angeles', 'Atlanta', 'Seattle', 'Houston'}
+2024-11-01 18:12:13,577 - INFO - The 5 call passes areas: {'United States', 'Sunnyvale', 'Los Angeles', 'Seattle', 'Houston'}
+2024-11-01 18:12:13,577 - INFO - The 8 call passes areas: {'United States', 'Denver', 'New York', 'Los Angeles', 'Sunnyvale', 'Atlanta', 'Washington DC', 'Houston'}
+2024-11-01 18:12:13,577 - INFO - The 9 call passes areas: {'United States', 'New York', 'Los Angeles', 'Washington DC', 'Atlanta', 'Houston'}
+2024-11-01 18:12:13,577 - INFO - The 10 call passes areas: {'Washington DC', 'United States', 'New York', 'Sunnyvale', 'Los Angeles', 'Atlanta', 'Seattle', 'Houston'}
+2024-11-01 18:12:13,577 - INFO - The 13 call passes areas: {'United States', 'Sunnyvale', 'Los Angeles', 'Seattle', 'Houston'}
+2024-11-01 18:12:13,577 - INFO - The 14 call passes areas: {'Indianapolis', 'Atlanta', 'Houston', 'United States'}
+2024-11-01 18:12:13,577 - INFO - The 15 call passes areas: {'United States', 'Atlanta', 'Washington DC', 'New York', 'Houston'}
+2024-11-01 18:12:13,578 - INFO - The 17 call passes areas: {'United States', 'Sunnyvale', 'Los Angeles', 'Atlanta', 'Seattle', 'Houston'}
+2024-11-01 18:12:13,578 - INFO - The 18 call passes areas: {'Atlanta', 'Houston', 'United States'}
+2024-11-01 18:12:13,578 - INFO - The 19 call passes areas: {'United States', 'New York', 'Los Angeles', 'Sunnyvale', 'Atlanta', 'Washington DC', 'Houston'}
+2024-11-01 18:12:13,578 - INFO - The 20 call passes areas: {'Atlanta', 'Houston', 'United States'}
+2024-11-01 18:12:13,578 - INFO - The 21 call passes areas: {'United States', 'Indianapolis', 'Los Angeles', 'Atlanta', 'Houston'}
+2024-11-01 18:12:13,578 - INFO - The 22 call passes areas: {'Washington DC', 'United States', 'New York', 'Sunnyvale', 'Los Angeles', 'Atlanta', 'Seattle', 'Houston'}
+2024-11-01 18:12:13,578 - INFO - The 26 call passes areas: {'Indianapolis', 'Atlanta', 'Houston', 'United States'}
+2024-11-01 18:12:13,578 - INFO - The 27 call passes areas: {'United States', 'Sunnyvale', 'Los Angeles', 'Seattle', 'Houston'}
+2024-11-01 18:12:13,578 - INFO - The 29 call passes areas: {'Atlanta', 'Houston', 'United States'}
+2024-11-01 18:12:13,578 - INFO - The 31 call passes areas: {'Chicago', 'United States', 'Indianapolis', 'Los Angeles', 'Sunnyvale', 'Atlanta', 'Houston'}
+2024-11-01 18:12:13,578 - INFO - The 32 call passes areas: {'United States', 'New York', 'Los Angeles', 'Washington DC', 'Sunnyvale', 'Atlanta', 'Seattle', 'Houston'}
+2024-11-01 18:12:13,578 - INFO - The 35 call passes areas: {'United States', 'Los Angeles', 'Sunnyvale', 'Atlanta', 'Houston'}
+2024-11-01 18:12:13,578 - INFO - The 38 call passes areas: {'United States', 'Los Angeles', 'Washington DC', 'Sunnyvale', 'Atlanta', 'Seattle', 'Houston'}
+2024-11-01 18:12:13,578 - INFO - The 43 call passes areas: {'United States', 'Los Angeles', 'Sunnyvale', 'Atlanta', 'Washington DC', 'Houston'}
+2024-11-01 18:12:13,578 - INFO - The 45 call passes areas: {'United States', 'Sunnyvale', 'Los Angeles', 'Atlanta', 'Seattle', 'Houston'}
+2024-11-01 18:12:13,578 - INFO - The 49 call passes areas: {'United States', 'Denver', 'Indianapolis', 'Los Angeles', 'Sunnyvale', 'Atlanta', 'Houston'}
+2024-11-01 18:12:13,581 - INFO - Attacked areas: ['Kansas City', 'Houston']
+2024-11-01 18:12:13,582 - INFO - Potential areas: ['Houston', 'Kansas City', 'Atlanta', 'Houston', 'Sunnyvale', 'Atlanta', 'Sunnyvale', 'Denver']
+2024-11-01 18:12:13,582 - INFO - The 4 call passes areas: {'Denver', 'Sunnyvale', 'United States'}
+2024-11-01 18:12:13,582 - INFO - The 7 call passes areas: {'Los Angeles', 'Denver', 'Sunnyvale', 'United States'}
+2024-11-01 18:12:13,582 - INFO - The 24 call passes areas: {'Indianapolis', 'Atlanta', 'United States'}
+2024-11-01 18:12:13,582 - INFO - The 28 call passes areas: {'Sunnyvale', 'Los Angeles', 'Seattle', 'United States'}
+2024-11-01 18:12:13,582 - INFO - The 30 call passes areas: {'Seattle', 'Sunnyvale', 'United States'}
+2024-11-01 18:12:13,582 - INFO - The 33 call passes areas: {'Denver', 'Seattle', 'United States'}
+2024-11-01 18:12:13,582 - INFO - The 34 call passes areas: {'Atlanta', 'Washington DC', 'United States'}
+2024-11-01 18:12:13,582 - INFO - The 39 call passes areas: {'Atlanta', 'Washington DC', 'United States'}
+2024-11-01 18:12:13,582 - INFO - The 44 call passes areas: {'Los Angeles', 'Denver', 'Sunnyvale', 'United States'}
+2024-11-01 18:12:13,582 - INFO - The 46 call passes areas: {'Denver', 'Seattle', 'United States'}
+2024-11-01 18:12:13,582 - INFO - The 47 call passes areas: {'Los Angeles', 'Denver', 'Sunnyvale', 'United States'}
+2024-11-01 18:12:13,582 - INFO - The 48 call passes areas: {'Los Angeles', 'Sunnyvale', 'United States'}
+2024-11-01 18:12:13,583 - INFO - The 24 call passes areas: {'Indianapolis', 'Atlanta', 'United States'}
+2024-11-01 18:12:13,583 - INFO - The 34 call passes areas: {'Atlanta', 'Washington DC', 'United States'}
+2024-11-01 18:12:13,583 - INFO - The 39 call passes areas: {'Atlanta', 'Washington DC', 'United States'}
+2024-11-01 18:12:13,586 - INFO - Attacked areas: ['Kansas City', 'Houston', 'Atlanta']
+2024-11-01 18:12:13,586 - INFO - Potential areas: ['Houston', 'Kansas City', 'Atlanta', 'Houston', 'Sunnyvale', 'Atlanta', 'Sunnyvale', 'Denver', 'Sunnyvale', 'Denver']
+2024-11-01 18:12:13,586 - INFO - The 4 call passes areas: {'Denver', 'Sunnyvale', 'United States'}
+2024-11-01 18:12:13,586 - INFO - The 7 call passes areas: {'Los Angeles', 'Denver', 'Sunnyvale', 'United States'}
+2024-11-01 18:12:13,586 - INFO - The 28 call passes areas: {'Sunnyvale', 'Los Angeles', 'Seattle', 'United States'}
+2024-11-01 18:12:13,586 - INFO - The 30 call passes areas: {'Seattle', 'Sunnyvale', 'United States'}
+2024-11-01 18:12:13,586 - INFO - The 33 call passes areas: {'Denver', 'Seattle', 'United States'}
+2024-11-01 18:12:13,586 - INFO - The 44 call passes areas: {'Los Angeles', 'Denver', 'Sunnyvale', 'United States'}
+2024-11-01 18:12:13,586 - INFO - The 46 call passes areas: {'Denver', 'Seattle', 'United States'}
+2024-11-01 18:12:13,586 - INFO - The 47 call passes areas: {'Los Angeles', 'Denver', 'Sunnyvale', 'United States'}
+2024-11-01 18:12:13,586 - INFO - The 48 call passes areas: {'Los Angeles', 'Sunnyvale', 'United States'}
+2024-11-01 18:12:13,586 - INFO - After departure event 2, unable areas have ['Houston', 'Atlanta'].
+2024-11-01 18:12:13,587 - INFO - After departure event 3, unable areas have ['Atlanta'].
+2024-11-01 18:12:13,587 - INFO - After departure event 4, unable areas have [].
+2024-11-01 18:12:13,588 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\simulator.py - __main__ - Done.

@@ -58,7 +58,10 @@ class Statistic:
     def show(self):
         results = []
         for attr in self.content_displayable_results:
-            results.append(getattr(self, attr))
+            if isinstance(getattr(self, attr), MeanList):
+                results.append(getattr(self, attr).get())
+            else:
+                results.append(getattr(self, attr))
         ser = pd.Series(results, index=self.content_displayable_results)
         print(ser)
 
@@ -122,5 +125,6 @@ class Statistic:
         if event.type == "eventArrive":
             restore_times = []
             for call in calls:
-                restore_times.append(call.restore_times)
+                restore_times.append(call.restoration)
+            print(np.sum(restore_times))
             self.mean_restore_times.add(np.mean(restore_times))

@@ -62,6 +62,7 @@ def simulator(config_file: str):
     logging.info("{} - {} - Start the control plane.".format(__file__, __name__))
     controller = network.controller.ControlPlane()
     controller.run(scheduler, topo_gen, tfc_gen, net_state, res, **algo_set)
+    print(res.show())
     logging.info(f"{__file__} - {__name__} - Done.")
 
 

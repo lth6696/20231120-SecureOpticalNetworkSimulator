@@ -9,6 +9,7 @@ class Fuzzy:
         self.factors = []
         self.fuzzy_evaluation = {}
         self.weights = []
+        self._inf = 1e-5
 
     def add_grade(self, grade: str):
         self.grades.append(grade)
@@ -80,8 +81,9 @@ class Fuzzy:
 
     @staticmethod
     def _normalization(data):
+        _inf = 1e-5
         norm_data = np.zeros(shape=data.shape)
         for i, row in enumerate(data):
             _range = np.max(row) - np.min(row)
-            norm_data[i] = (row - np.min(row)) / _range
+            norm_data[i] = (row - np.min(row)) / (_range + _inf)
         return norm_data

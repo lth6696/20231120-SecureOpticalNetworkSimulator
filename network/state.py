@@ -46,9 +46,13 @@ class NetState:
             if node not in self.regions:
                 self.regions.append(node)
 
-    def update(self, G: nx.Graph, calls: list, attacked_regions: list):
-        self.net_state = {region: {state: 0 for state in self.used_states} for region in self.regions}
-        for state in self.used_states:
+    def update(self, G: nx.Graph, calls: list, attacked_regions: list, specify: str = None):
+        if specify is not None and specify in self.used_states:
+            states = [specify]
+        else:
+            states = self.used_states
+            self.net_state = {region: {state: 0 for state in self.used_states} for region in self.regions}
+        for state in states:
             if state == "amount_node":
                 for node in G.nodes:
                     self.net_state[node][state] += 1

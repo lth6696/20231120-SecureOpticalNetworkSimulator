@@ -31,7 +31,7 @@ class ControlPlane:
             if event.type == "eventArrive":
                 self.algorithm.route(event, topo_gen, tfk_gen, net_state, **kargs)
             elif event.type == "eventDeparture":
-                self.algorithm.remove(topo_gen.G, event, net_state)
+                self.algorithm.remove(event, topo_gen, tfk_gen)
             statistic.snapshot(event, topo_gen.G, tfk_gen.calls)
 
     def _set_algorithm(self, name: str):
