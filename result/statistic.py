@@ -126,5 +126,5 @@ class Statistic:
             restore_times = []
             for call in calls:
                 restore_times.append(call.restoration)
-            print(np.average(restore_times), len([1 for call in calls if call.restoration > 2]))
+            # print(np.average(restore_times), len([1 for call in calls if call.restoration > 2]))
             self.mean_restore_times.add(np.mean(restore_times))

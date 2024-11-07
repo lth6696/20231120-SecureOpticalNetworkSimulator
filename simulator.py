@@ -2,12 +2,14 @@
 离散事件仿真入口：
 输入：仿真配置文件（拓扑、流量、算法）
 """
+import configparser
 import logging
 import logging.config
 import sys
 
 import numpy as np
 import pandas as pd
+import scipy.stats as st
 
 import algorithm.static_spf
 import utl
@@ -19,10 +21,7 @@ pd.set_option('display.max_columns', None)
 pd.set_option('display.width', None)
 
 
-def simulator(config_file: str):
-    # 读取配置
-    configer = utl.config.Config().read(config_file)
-
+def simulator(configer: configparser.ConfigParser):
     algo_set = {}
     topo_gen = network.generator.TopoGen()
     tfc_gen = network.generator.CallsGen()
@@ -62,22 +61,46 @@ def simulator(config_file: str):
     logging.info("{} - {} - Start the control plane.".format(__file__, __name__))
     controller = network.controller.ControlPlane()
     controller.run(scheduler, topo_gen, tfc_gen, net_state, res, **algo_set)
-    print(res.show())
+    # print(res.show())
     logging.info(f"{__file__} - {__name__} - Done.")
+    return res.get()
 
 
 if __name__ == '__main__':
     # 配置日志文件
     logging.config.fileConfig('logconfig.ini')
     # 仿真配置文件
-    configFile = "simconfig.ini"
+    config_file = "simconfig.ini"
+    configer = utl.config.Config().read(config_file)
     # 开始仿真
     if input("Do you want to start simulation?") == "":
-        simulator(configFile)
+        simulator(configer)
         # data = np.array(all_res).mean(axis=0)
         # df = pd.Series(data, index=title)
         # print(df)
     elif input("Do you want to show results?") == "":
+        a = []
+        for _ in range(int(configer["result"]["iter_round"])):
+            res = simulator(configer)
+            a.append(res[-1])
+        confidence_level = 0.99
+        b = st.t.interval(confidence_level, df=len(a)-1, loc=np.mean(a), scale=st.sem(a))
+        print(np.mean(a), b)
+
+        # node
+        # 1 1.54305 (1.467573225752915, 1.618526774247085)
+        # 2 1.48225 (1.4272658613839426, 1.5372341386160575)
+        # 3 1.4943 (1.430776569913386, 1.5578234300866138)
+        # 4 1.48345 (1.4221433530150465, 1.5447566469849534)
+        # random
+        # 1 0.8745499999999999 (0.7429207459364495, 1.0061792540635504)
+        # 2 0.9243500000000001 (0.7549721574100385, 1.0937278425899617)
+        # link
+        # 1 1.67175 (1.5580507694846828, 1.7854492305153173)
+        # 2 1.63679 (1.5369389944660492, 1.7366610055339504)
+        # 3 1.67595 (1.603390805334344, 1.7485091946656557)
+        # 4 1.57645 (1.508901619660383, 1.6439983803396168)
+
         # if not os.path.exists(ResultFile):
         #     raise Exception("File does not exist.")
         # data = pd.read_excel(ResultFile)
@@ -93,6 +116,5 @@ if __name__ == '__main__':
         # # legend = ["Benchmark", "PRACA-degree", "PRACA-service", "PRACA-random"]
         # pc = result.curve.PlotCurve()
         # pc.plotMultiRealTime(x, *y, legend=legend, label=["the number of attacks", title[col]])
-        print("no")
     else:
         sys.exit()
