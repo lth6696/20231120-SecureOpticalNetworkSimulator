@@ -8,6 +8,9 @@ class Call:
 
         self.set(**kwargs)
 
+    def __str__(self):
+        return f"Call {self.id} from \'{self.src}\' to \'{self.dst}\' require {self.rate}Mbps routing to the path: {self.path}."
+
     def set(self, **kwargs):
         for key in kwargs:
             setattr(self, key, kwargs[key])

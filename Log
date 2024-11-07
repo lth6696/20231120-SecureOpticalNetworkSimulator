@@ -1,220 +1,716 @@
-2024-11-01 18:12:13,559 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\network\generator.py - network.generator - Generate 5 events in 1 with 20 time.
-2024-11-01 18:12:13,559 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\network\generator.py - network.generator - Arrival time (¦Ë) is 20.0, holding time (¦Ì) is 20, intensity (¦Ñ) is 1.0.
-2024-11-01 18:12:13,559 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\network\generator.py - network.generator - Generate 10 events.
-2024-11-01 18:12:13,559 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\simulator.py - __main__ - Start the control plane.
-2024-11-01 18:12:13,559 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\network\controller.py - network.controller - Load the PRACA algorithm.
-2024-11-01 18:12:13,559 - INFO - The 2 call passes areas: {'Denver', 'Kansas City', 'Indianapolis', 'Sunnyvale', 'United States'}
-2024-11-01 18:12:13,559 - INFO - The 4 call passes areas: {'Denver', 'Sunnyvale', 'United States'}
-2024-11-01 18:12:13,559 - INFO - The 5 call passes areas: {'United States', 'Sunnyvale', 'Los Angeles', 'Seattle', 'Houston'}
-2024-11-01 18:12:13,559 - INFO - The 7 call passes areas: {'Los Angeles', 'Denver', 'Sunnyvale', 'United States'}
-2024-11-01 18:12:13,559 - INFO - The 13 call passes areas: {'United States', 'Sunnyvale', 'Los Angeles', 'Seattle', 'Houston'}
-2024-11-01 18:12:13,560 - INFO - The 16 call passes areas: {'Kansas City', 'Denver', 'Sunnyvale', 'United States'}
-2024-11-01 18:12:13,560 - INFO - The 17 call passes areas: {'United States', 'Sunnyvale', 'Los Angeles', 'Atlanta', 'Seattle', 'Houston'}
-2024-11-01 18:12:13,560 - INFO - The 19 call passes areas: {'Chicago', 'Denver', 'Kansas City', 'Indianapolis', 'Sunnyvale', 'New York', 'United States'}
-2024-11-01 18:12:13,560 - INFO - The 27 call passes areas: {'United States', 'Sunnyvale', 'Los Angeles', 'Seattle', 'Houston'}
-2024-11-01 18:12:13,560 - INFO - The 28 call passes areas: {'Sunnyvale', 'Los Angeles', 'Seattle', 'United States'}
-2024-11-01 18:12:13,560 - INFO - The 30 call passes areas: {'Seattle', 'Sunnyvale', 'United States'}
-2024-11-01 18:12:13,560 - INFO - The 31 call passes areas: {'Chicago', 'Denver', 'Kansas City', 'Indianapolis', 'Sunnyvale', 'United States'}
-2024-11-01 18:12:13,560 - INFO - The 35 call passes areas: {'United States', 'Los Angeles', 'Sunnyvale', 'Atlanta', 'Houston'}
-2024-11-01 18:12:13,560 - INFO - The 43 call passes areas: {'United States', 'Los Angeles', 'Sunnyvale', 'Atlanta', 'Washington DC', 'Houston'}
-2024-11-01 18:12:13,560 - INFO - The 44 call passes areas: {'Los Angeles', 'Denver', 'Sunnyvale', 'United States'}
-2024-11-01 18:12:13,560 - INFO - The 47 call passes areas: {'Los Angeles', 'Denver', 'Sunnyvale', 'United States'}
-2024-11-01 18:12:13,560 - INFO - The 48 call passes areas: {'Los Angeles', 'Sunnyvale', 'United States'}
-2024-11-01 18:12:13,564 - INFO - Attacked areas: ['Sunnyvale']
-2024-11-01 18:12:13,564 - INFO - Potential areas: ['Houston', 'Kansas City']
-2024-11-01 18:12:13,564 - INFO - The 0 call passes areas: {'United States', 'Denver', 'Kansas City', 'Atlanta', 'Houston'}
-2024-11-01 18:12:13,564 - INFO - The 1 call passes areas: {'Kansas City', 'Houston', 'United States'}
-2024-11-01 18:12:13,564 - INFO - The 3 call passes areas: {'Denver', 'Kansas City', 'Indianapolis', 'Seattle', 'United States'}
-2024-11-01 18:12:13,564 - INFO - The 5 call passes areas: {'United States', 'Denver', 'Kansas City', 'Seattle', 'Houston'}
-2024-11-01 18:12:13,564 - INFO - The 7 call passes areas: {'United States', 'Denver', 'Kansas City', 'Los Angeles', 'Houston'}
-2024-11-01 18:12:13,564 - INFO - The 8 call passes areas: {'Chicago', 'Denver', 'Kansas City', 'Indianapolis', 'New York', 'United States'}
-2024-11-01 18:12:13,564 - INFO - The 9 call passes areas: {'United States', 'New York', 'Los Angeles', 'Washington DC', 'Atlanta', 'Houston'}
-2024-11-01 18:12:13,564 - INFO - The 10 call passes areas: {'Chicago', 'Denver', 'Kansas City', 'Indianapolis', 'New York', 'Seattle', 'United States'}
-2024-11-01 18:12:13,564 - INFO - The 13 call passes areas: {'United States', 'Denver', 'Kansas City', 'Seattle', 'Houston'}
-2024-11-01 18:12:13,565 - INFO - The 14 call passes areas: {'Indianapolis', 'Atlanta', 'Houston', 'United States'}
-2024-11-01 18:12:13,565 - INFO - The 15 call passes areas: {'United States', 'Atlanta', 'Washington DC', 'New York', 'Houston'}
-2024-11-01 18:12:13,565 - INFO - The 17 call passes areas: {'United States', 'Denver', 'Kansas City', 'Atlanta', 'Seattle', 'Houston'}
-2024-11-01 18:12:13,565 - INFO - The 18 call passes areas: {'Atlanta', 'Houston', 'United States'}
-2024-11-01 18:12:13,565 - INFO - The 20 call passes areas: {'Atlanta', 'Houston', 'United States'}
-2024-11-01 18:12:13,565 - INFO - The 21 call passes areas: {'United States', 'Kansas City', 'Indianapolis', 'Los Angeles', 'Houston'}
-2024-11-01 18:12:13,565 - INFO - The 22 call passes areas: {'Chicago', 'Denver', 'Kansas City', 'Indianapolis', 'New York', 'Seattle', 'United States'}
-2024-11-01 18:12:13,565 - INFO - The 23 call passes areas: {'Kansas City', 'Houston', 'United States'}
-2024-11-01 18:12:13,565 - INFO - The 26 call passes areas: {'Indianapolis', 'Atlanta', 'Houston', 'United States'}
-2024-11-01 18:12:13,565 - INFO - The 27 call passes areas: {'United States', 'Denver', 'Kansas City', 'Seattle', 'Houston'}
-2024-11-01 18:12:13,565 - INFO - The 28 call passes areas: {'United States', 'Denver', 'Kansas City', 'Los Angeles', 'Seattle', 'Houston'}
-2024-11-01 18:12:13,565 - INFO - The 29 call passes areas: {'Atlanta', 'Houston', 'United States'}
-2024-11-01 18:12:13,565 - INFO - The 32 call passes areas: {'Chicago', 'Denver', 'Kansas City', 'Indianapolis', 'New York', 'Seattle', 'United States'}
-2024-11-01 18:12:13,565 - INFO - The 36 call passes areas: {'Kansas City', 'Indianapolis', 'United States'}
-2024-11-01 18:12:13,565 - INFO - The 38 call passes areas: {'Denver', 'Kansas City', 'Indianapolis', 'Washington DC', 'Atlanta', 'Seattle', 'United States'}
-2024-11-01 18:12:13,565 - INFO - The 42 call passes areas: {'Chicago', 'Kansas City', 'Indianapolis', 'New York', 'United States'}
-2024-11-01 18:12:13,565 - INFO - The 44 call passes areas: {'United States', 'Denver', 'Kansas City', 'Los Angeles', 'Houston'}
-2024-11-01 18:12:13,565 - INFO - The 45 call passes areas: {'United States', 'Denver', 'Kansas City', 'Atlanta', 'Seattle', 'Houston'}
-2024-11-01 18:12:13,565 - INFO - The 47 call passes areas: {'United States', 'Denver', 'Kansas City', 'Los Angeles', 'Houston'}
-2024-11-01 18:12:13,565 - INFO - The 49 call passes areas: {'Kansas City', 'Indianapolis', 'Denver', 'United States'}
-2024-11-01 18:12:13,566 - INFO - After departure event 0, unable areas have [].
-2024-11-01 18:12:13,566 - INFO - The 0 call passes areas: {'United States', 'Denver', 'Kansas City', 'Atlanta', 'Houston'}
-2024-11-01 18:12:13,566 - INFO - The 2 call passes areas: {'Denver', 'Kansas City', 'Indianapolis', 'Sunnyvale', 'United States'}
-2024-11-01 18:12:13,566 - INFO - The 3 call passes areas: {'Denver', 'Kansas City', 'Indianapolis', 'Seattle', 'United States'}
-2024-11-01 18:12:13,566 - INFO - The 4 call passes areas: {'Denver', 'Sunnyvale', 'United States'}
-2024-11-01 18:12:13,566 - INFO - The 5 call passes areas: {'United States', 'Denver', 'Kansas City', 'Seattle', 'Houston'}
-2024-11-01 18:12:13,566 - INFO - The 7 call passes areas: {'United States', 'Denver', 'Kansas City', 'Los Angeles', 'Houston'}
-2024-11-01 18:12:13,566 - INFO - The 8 call passes areas: {'Chicago', 'Denver', 'Kansas City', 'Indianapolis', 'New York', 'United States'}
-2024-11-01 18:12:13,566 - INFO - The 10 call passes areas: {'Chicago', 'Denver', 'Kansas City', 'Indianapolis', 'New York', 'Seattle', 'United States'}
-2024-11-01 18:12:13,566 - INFO - The 13 call passes areas: {'United States', 'Denver', 'Kansas City', 'Seattle', 'Houston'}
-2024-11-01 18:12:13,566 - INFO - The 16 call passes areas: {'Kansas City', 'Denver', 'Sunnyvale', 'United States'}
-2024-11-01 18:12:13,567 - INFO - The 17 call passes areas: {'United States', 'Denver', 'Kansas City', 'Atlanta', 'Seattle', 'Houston'}
-2024-11-01 18:12:13,567 - INFO - The 19 call passes areas: {'Chicago', 'Denver', 'Kansas City', 'Indianapolis', 'Sunnyvale', 'New York', 'United States'}
-2024-11-01 18:12:13,567 - INFO - The 22 call passes areas: {'Chicago', 'Denver', 'Kansas City', 'Indianapolis', 'New York', 'Seattle', 'United States'}
-2024-11-01 18:12:13,567 - INFO - The 27 call passes areas: {'United States', 'Denver', 'Kansas City', 'Seattle', 'Houston'}
-2024-11-01 18:12:13,567 - INFO - The 28 call passes areas: {'United States', 'Denver', 'Kansas City', 'Los Angeles', 'Seattle', 'Houston'}
-2024-11-01 18:12:13,567 - INFO - The 31 call passes areas: {'Chicago', 'Denver', 'Kansas City', 'Indianapolis', 'Sunnyvale', 'United States'}
-2024-11-01 18:12:13,567 - INFO - The 32 call passes areas: {'Chicago', 'Denver', 'Kansas City', 'Indianapolis', 'New York', 'Seattle', 'United States'}
-2024-11-01 18:12:13,567 - INFO - The 33 call passes areas: {'Denver', 'Seattle', 'United States'}
-2024-11-01 18:12:13,567 - INFO - The 38 call passes areas: {'Denver', 'Kansas City', 'Indianapolis', 'Washington DC', 'Atlanta', 'Seattle', 'United States'}
-2024-11-01 18:12:13,567 - INFO - The 44 call passes areas: {'United States', 'Denver', 'Kansas City', 'Los Angeles', 'Houston'}
-2024-11-01 18:12:13,567 - INFO - The 45 call passes areas: {'United States', 'Denver', 'Kansas City', 'Atlanta', 'Seattle', 'Houston'}
-2024-11-01 18:12:13,567 - INFO - The 46 call passes areas: {'Denver', 'Seattle', 'United States'}
-2024-11-01 18:12:13,567 - INFO - The 47 call passes areas: {'United States', 'Denver', 'Kansas City', 'Los Angeles', 'Houston'}
-2024-11-01 18:12:13,567 - INFO - The 49 call passes areas: {'Kansas City', 'Indianapolis', 'Denver', 'United States'}
-2024-11-01 18:12:13,570 - INFO - Attacked areas: ['Denver']
-2024-11-01 18:12:13,570 - INFO - Potential areas: ['Houston', 'Kansas City', 'Atlanta', 'Houston']
-2024-11-01 18:12:13,570 - INFO - The 1 call passes areas: {'Kansas City', 'Houston', 'United States'}
-2024-11-01 18:12:13,570 - INFO - The 2 call passes areas: {'United States', 'Kansas City', 'Indianapolis', 'Los Angeles', 'Sunnyvale', 'Houston'}
-2024-11-01 18:12:13,571 - INFO - The 3 call passes areas: {'United States', 'Kansas City', 'Indianapolis', 'Sunnyvale', 'Los Angeles', 'Seattle', 'Houston'}
-2024-11-01 18:12:13,571 - INFO - The 5 call passes areas: {'United States', 'Sunnyvale', 'Los Angeles', 'Seattle', 'Houston'}
-2024-11-01 18:12:13,571 - INFO - The 9 call passes areas: {'United States', 'New York', 'Los Angeles', 'Washington DC', 'Atlanta', 'Houston'}
-2024-11-01 18:12:13,571 - INFO - The 10 call passes areas: {'Washington DC', 'United States', 'New York', 'Sunnyvale', 'Los Angeles', 'Atlanta', 'Seattle', 'Houston'}
-2024-11-01 18:12:13,571 - INFO - The 13 call passes areas: {'United States', 'Sunnyvale', 'Los Angeles', 'Seattle', 'Houston'}
-2024-11-01 18:12:13,571 - INFO - The 14 call passes areas: {'Indianapolis', 'Atlanta', 'Houston', 'United States'}
-2024-11-01 18:12:13,571 - INFO - The 15 call passes areas: {'United States', 'Atlanta', 'Washington DC', 'New York', 'Houston'}
-2024-11-01 18:12:13,571 - INFO - The 16 call passes areas: {'United States', 'Kansas City', 'Los Angeles', 'Sunnyvale', 'Houston'}
-2024-11-01 18:12:13,571 - INFO - The 17 call passes areas: {'United States', 'Sunnyvale', 'Los Angeles', 'Atlanta', 'Seattle', 'Houston'}
-2024-11-01 18:12:13,571 - INFO - The 18 call passes areas: {'Atlanta', 'Houston', 'United States'}
-2024-11-01 18:12:13,571 - INFO - The 19 call passes areas: {'United States', 'New York', 'Los Angeles', 'Sunnyvale', 'Atlanta', 'Washington DC', 'Houston'}
-2024-11-01 18:12:13,571 - INFO - The 20 call passes areas: {'Atlanta', 'Houston', 'United States'}
-2024-11-01 18:12:13,571 - INFO - The 21 call passes areas: {'United States', 'Kansas City', 'Indianapolis', 'Los Angeles', 'Houston'}
-2024-11-01 18:12:13,571 - INFO - The 22 call passes areas: {'Washington DC', 'United States', 'New York', 'Sunnyvale', 'Los Angeles', 'Atlanta', 'Seattle', 'Houston'}
-2024-11-01 18:12:13,571 - INFO - The 23 call passes areas: {'Kansas City', 'Houston', 'United States'}
-2024-11-01 18:12:13,571 - INFO - The 24 call passes areas: {'Indianapolis', 'Atlanta', 'United States'}
-2024-11-01 18:12:13,571 - INFO - The 26 call passes areas: {'Indianapolis', 'Atlanta', 'Houston', 'United States'}
-2024-11-01 18:12:13,571 - INFO - The 27 call passes areas: {'United States', 'Sunnyvale', 'Los Angeles', 'Seattle', 'Houston'}
-2024-11-01 18:12:13,571 - INFO - The 29 call passes areas: {'Atlanta', 'Houston', 'United States'}
-2024-11-01 18:12:13,571 - INFO - The 31 call passes areas: {'Chicago', 'United States', 'Kansas City', 'Indianapolis', 'Los Angeles', 'Sunnyvale', 'Houston'}
-2024-11-01 18:12:13,571 - INFO - The 32 call passes areas: {'United States', 'New York', 'Los Angeles', 'Washington DC', 'Sunnyvale', 'Atlanta', 'Seattle', 'Houston'}
-2024-11-01 18:12:13,571 - INFO - The 34 call passes areas: {'Atlanta', 'Washington DC', 'United States'}
-2024-11-01 18:12:13,571 - INFO - The 35 call passes areas: {'United States', 'Los Angeles', 'Sunnyvale', 'Atlanta', 'Houston'}
-2024-11-01 18:12:13,571 - INFO - The 36 call passes areas: {'Kansas City', 'Indianapolis', 'United States'}
-2024-11-01 18:12:13,571 - INFO - The 38 call passes areas: {'United States', 'Los Angeles', 'Washington DC', 'Sunnyvale', 'Atlanta', 'Seattle', 'Houston'}
-2024-11-01 18:12:13,571 - INFO - The 39 call passes areas: {'Atlanta', 'Washington DC', 'United States'}
-2024-11-01 18:12:13,571 - INFO - The 42 call passes areas: {'Chicago', 'Kansas City', 'Indianapolis', 'New York', 'United States'}
-2024-11-01 18:12:13,571 - INFO - The 43 call passes areas: {'United States', 'Los Angeles', 'Sunnyvale', 'Atlanta', 'Washington DC', 'Houston'}
-2024-11-01 18:12:13,571 - INFO - The 45 call passes areas: {'United States', 'Sunnyvale', 'Los Angeles', 'Atlanta', 'Seattle', 'Houston'}
-2024-11-01 18:12:13,572 - INFO - After departure event 1, unable areas have [].
-2024-11-01 18:12:13,572 - INFO - The 0 call passes areas: {'United States', 'Denver', 'Kansas City', 'Atlanta', 'Houston'}
-2024-11-01 18:12:13,572 - INFO - The 1 call passes areas: {'Kansas City', 'Houston', 'United States'}
-2024-11-01 18:12:13,572 - INFO - The 2 call passes areas: {'United States', 'Kansas City', 'Indianapolis', 'Los Angeles', 'Sunnyvale', 'Houston'}
-2024-11-01 18:12:13,572 - INFO - The 3 call passes areas: {'United States', 'Kansas City', 'Indianapolis', 'Sunnyvale', 'Los Angeles', 'Seattle', 'Houston'}
-2024-11-01 18:12:13,572 - INFO - The 8 call passes areas: {'Chicago', 'Denver', 'Kansas City', 'Indianapolis', 'New York', 'United States'}
-2024-11-01 18:12:13,572 - INFO - The 16 call passes areas: {'United States', 'Kansas City', 'Los Angeles', 'Sunnyvale', 'Houston'}
-2024-11-01 18:12:13,572 - INFO - The 21 call passes areas: {'United States', 'Kansas City', 'Indianapolis', 'Los Angeles', 'Houston'}
-2024-11-01 18:12:13,572 - INFO - The 23 call passes areas: {'Kansas City', 'Houston', 'United States'}
-2024-11-01 18:12:13,572 - INFO - The 31 call passes areas: {'Chicago', 'United States', 'Kansas City', 'Indianapolis', 'Los Angeles', 'Sunnyvale', 'Houston'}
-2024-11-01 18:12:13,572 - INFO - The 36 call passes areas: {'Kansas City', 'Indianapolis', 'United States'}
-2024-11-01 18:12:13,572 - INFO - The 42 call passes areas: {'Chicago', 'Kansas City', 'Indianapolis', 'New York', 'United States'}
-2024-11-01 18:12:13,572 - INFO - The 49 call passes areas: {'Kansas City', 'Indianapolis', 'Denver', 'United States'}
-2024-11-01 18:12:13,575 - INFO - Attacked areas: ['Kansas City']
-2024-11-01 18:12:13,575 - INFO - Potential areas: ['Houston', 'Kansas City', 'Atlanta', 'Houston', 'Sunnyvale', 'Atlanta']
-2024-11-01 18:12:13,576 - INFO - The 0 call passes areas: {'United States', 'Denver', 'Sunnyvale', 'Los Angeles', 'Atlanta', 'Houston'}
-2024-11-01 18:12:13,576 - INFO - The 2 call passes areas: {'United States', 'Indianapolis', 'Los Angeles', 'Sunnyvale', 'Atlanta', 'Houston'}
-2024-11-01 18:12:13,576 - INFO - The 3 call passes areas: {'United States', 'Indianapolis', 'Sunnyvale', 'Los Angeles', 'Atlanta', 'Seattle', 'Houston'}
-2024-11-01 18:12:13,576 - INFO - The 4 call passes areas: {'Denver', 'Sunnyvale', 'United States'}
-2024-11-01 18:12:13,576 - INFO - The 5 call passes areas: {'United States', 'Sunnyvale', 'Los Angeles', 'Seattle', 'Houston'}
-2024-11-01 18:12:13,576 - INFO - The 7 call passes areas: {'Los Angeles', 'Denver', 'Sunnyvale', 'United States'}
-2024-11-01 18:12:13,576 - INFO - The 8 call passes areas: {'United States', 'Denver', 'New York', 'Los Angeles', 'Sunnyvale', 'Atlanta', 'Washington DC', 'Houston'}
-2024-11-01 18:12:13,576 - INFO - The 9 call passes areas: {'United States', 'New York', 'Los Angeles', 'Washington DC', 'Atlanta', 'Houston'}
-2024-11-01 18:12:13,576 - INFO - The 10 call passes areas: {'Washington DC', 'United States', 'New York', 'Sunnyvale', 'Los Angeles', 'Atlanta', 'Seattle', 'Houston'}
-2024-11-01 18:12:13,576 - INFO - The 13 call passes areas: {'United States', 'Sunnyvale', 'Los Angeles', 'Seattle', 'Houston'}
-2024-11-01 18:12:13,576 - INFO - The 14 call passes areas: {'Indianapolis', 'Atlanta', 'Houston', 'United States'}
-2024-11-01 18:12:13,576 - INFO - The 15 call passes areas: {'United States', 'Atlanta', 'Washington DC', 'New York', 'Houston'}
-2024-11-01 18:12:13,576 - INFO - The 17 call passes areas: {'United States', 'Sunnyvale', 'Los Angeles', 'Atlanta', 'Seattle', 'Houston'}
-2024-11-01 18:12:13,576 - INFO - The 18 call passes areas: {'Atlanta', 'Houston', 'United States'}
-2024-11-01 18:12:13,576 - INFO - The 19 call passes areas: {'United States', 'New York', 'Los Angeles', 'Sunnyvale', 'Atlanta', 'Washington DC', 'Houston'}
-2024-11-01 18:12:13,576 - INFO - The 20 call passes areas: {'Atlanta', 'Houston', 'United States'}
-2024-11-01 18:12:13,576 - INFO - The 21 call passes areas: {'United States', 'Indianapolis', 'Los Angeles', 'Atlanta', 'Houston'}
-2024-11-01 18:12:13,576 - INFO - The 22 call passes areas: {'Washington DC', 'United States', 'New York', 'Sunnyvale', 'Los Angeles', 'Atlanta', 'Seattle', 'Houston'}
-2024-11-01 18:12:13,576 - INFO - The 24 call passes areas: {'Indianapolis', 'Atlanta', 'United States'}
-2024-11-01 18:12:13,576 - INFO - The 26 call passes areas: {'Indianapolis', 'Atlanta', 'Houston', 'United States'}
-2024-11-01 18:12:13,576 - INFO - The 27 call passes areas: {'United States', 'Sunnyvale', 'Los Angeles', 'Seattle', 'Houston'}
-2024-11-01 18:12:13,576 - INFO - The 28 call passes areas: {'Sunnyvale', 'Los Angeles', 'Seattle', 'United States'}
-2024-11-01 18:12:13,576 - INFO - The 29 call passes areas: {'Atlanta', 'Houston', 'United States'}
-2024-11-01 18:12:13,576 - INFO - The 30 call passes areas: {'Seattle', 'Sunnyvale', 'United States'}
-2024-11-01 18:12:13,576 - INFO - The 31 call passes areas: {'Chicago', 'United States', 'Indianapolis', 'Los Angeles', 'Sunnyvale', 'Atlanta', 'Houston'}
-2024-11-01 18:12:13,576 - INFO - The 32 call passes areas: {'United States', 'New York', 'Los Angeles', 'Washington DC', 'Sunnyvale', 'Atlanta', 'Seattle', 'Houston'}
-2024-11-01 18:12:13,576 - INFO - The 34 call passes areas: {'Atlanta', 'Washington DC', 'United States'}
-2024-11-01 18:12:13,576 - INFO - The 35 call passes areas: {'United States', 'Los Angeles', 'Sunnyvale', 'Atlanta', 'Houston'}
-2024-11-01 18:12:13,577 - INFO - The 38 call passes areas: {'United States', 'Los Angeles', 'Washington DC', 'Sunnyvale', 'Atlanta', 'Seattle', 'Houston'}
-2024-11-01 18:12:13,577 - INFO - The 39 call passes areas: {'Atlanta', 'Washington DC', 'United States'}
-2024-11-01 18:12:13,577 - INFO - The 43 call passes areas: {'United States', 'Los Angeles', 'Sunnyvale', 'Atlanta', 'Washington DC', 'Houston'}
-2024-11-01 18:12:13,577 - INFO - The 44 call passes areas: {'Los Angeles', 'Denver', 'Sunnyvale', 'United States'}
-2024-11-01 18:12:13,577 - INFO - The 45 call passes areas: {'United States', 'Sunnyvale', 'Los Angeles', 'Atlanta', 'Seattle', 'Houston'}
-2024-11-01 18:12:13,577 - INFO - The 47 call passes areas: {'Los Angeles', 'Denver', 'Sunnyvale', 'United States'}
-2024-11-01 18:12:13,577 - INFO - The 48 call passes areas: {'Los Angeles', 'Sunnyvale', 'United States'}
-2024-11-01 18:12:13,577 - INFO - The 49 call passes areas: {'United States', 'Denver', 'Indianapolis', 'Los Angeles', 'Sunnyvale', 'Atlanta', 'Houston'}
-2024-11-01 18:12:13,577 - INFO - The 0 call passes areas: {'United States', 'Denver', 'Sunnyvale', 'Los Angeles', 'Atlanta', 'Houston'}
-2024-11-01 18:12:13,577 - INFO - The 2 call passes areas: {'United States', 'Indianapolis', 'Los Angeles', 'Sunnyvale', 'Atlanta', 'Houston'}
-2024-11-01 18:12:13,577 - INFO - The 3 call passes areas: {'United States', 'Indianapolis', 'Sunnyvale', 'Los Angeles', 'Atlanta', 'Seattle', 'Houston'}
-2024-11-01 18:12:13,577 - INFO - The 5 call passes areas: {'United States', 'Sunnyvale', 'Los Angeles', 'Seattle', 'Houston'}
-2024-11-01 18:12:13,577 - INFO - The 8 call passes areas: {'United States', 'Denver', 'New York', 'Los Angeles', 'Sunnyvale', 'Atlanta', 'Washington DC', 'Houston'}
-2024-11-01 18:12:13,577 - INFO - The 9 call passes areas: {'United States', 'New York', 'Los Angeles', 'Washington DC', 'Atlanta', 'Houston'}
-2024-11-01 18:12:13,577 - INFO - The 10 call passes areas: {'Washington DC', 'United States', 'New York', 'Sunnyvale', 'Los Angeles', 'Atlanta', 'Seattle', 'Houston'}
-2024-11-01 18:12:13,577 - INFO - The 13 call passes areas: {'United States', 'Sunnyvale', 'Los Angeles', 'Seattle', 'Houston'}
-2024-11-01 18:12:13,577 - INFO - The 14 call passes areas: {'Indianapolis', 'Atlanta', 'Houston', 'United States'}
-2024-11-01 18:12:13,577 - INFO - The 15 call passes areas: {'United States', 'Atlanta', 'Washington DC', 'New York', 'Houston'}
-2024-11-01 18:12:13,578 - INFO - The 17 call passes areas: {'United States', 'Sunnyvale', 'Los Angeles', 'Atlanta', 'Seattle', 'Houston'}
-2024-11-01 18:12:13,578 - INFO - The 18 call passes areas: {'Atlanta', 'Houston', 'United States'}
-2024-11-01 18:12:13,578 - INFO - The 19 call passes areas: {'United States', 'New York', 'Los Angeles', 'Sunnyvale', 'Atlanta', 'Washington DC', 'Houston'}
-2024-11-01 18:12:13,578 - INFO - The 20 call passes areas: {'Atlanta', 'Houston', 'United States'}
-2024-11-01 18:12:13,578 - INFO - The 21 call passes areas: {'United States', 'Indianapolis', 'Los Angeles', 'Atlanta', 'Houston'}
-2024-11-01 18:12:13,578 - INFO - The 22 call passes areas: {'Washington DC', 'United States', 'New York', 'Sunnyvale', 'Los Angeles', 'Atlanta', 'Seattle', 'Houston'}
-2024-11-01 18:12:13,578 - INFO - The 26 call passes areas: {'Indianapolis', 'Atlanta', 'Houston', 'United States'}
-2024-11-01 18:12:13,578 - INFO - The 27 call passes areas: {'United States', 'Sunnyvale', 'Los Angeles', 'Seattle', 'Houston'}
-2024-11-01 18:12:13,578 - INFO - The 29 call passes areas: {'Atlanta', 'Houston', 'United States'}
-2024-11-01 18:12:13,578 - INFO - The 31 call passes areas: {'Chicago', 'United States', 'Indianapolis', 'Los Angeles', 'Sunnyvale', 'Atlanta', 'Houston'}
-2024-11-01 18:12:13,578 - INFO - The 32 call passes areas: {'United States', 'New York', 'Los Angeles', 'Washington DC', 'Sunnyvale', 'Atlanta', 'Seattle', 'Houston'}
-2024-11-01 18:12:13,578 - INFO - The 35 call passes areas: {'United States', 'Los Angeles', 'Sunnyvale', 'Atlanta', 'Houston'}
-2024-11-01 18:12:13,578 - INFO - The 38 call passes areas: {'United States', 'Los Angeles', 'Washington DC', 'Sunnyvale', 'Atlanta', 'Seattle', 'Houston'}
-2024-11-01 18:12:13,578 - INFO - The 43 call passes areas: {'United States', 'Los Angeles', 'Sunnyvale', 'Atlanta', 'Washington DC', 'Houston'}
-2024-11-01 18:12:13,578 - INFO - The 45 call passes areas: {'United States', 'Sunnyvale', 'Los Angeles', 'Atlanta', 'Seattle', 'Houston'}
-2024-11-01 18:12:13,578 - INFO - The 49 call passes areas: {'United States', 'Denver', 'Indianapolis', 'Los Angeles', 'Sunnyvale', 'Atlanta', 'Houston'}
-2024-11-01 18:12:13,581 - INFO - Attacked areas: ['Kansas City', 'Houston']
-2024-11-01 18:12:13,582 - INFO - Potential areas: ['Houston', 'Kansas City', 'Atlanta', 'Houston', 'Sunnyvale', 'Atlanta', 'Sunnyvale', 'Denver']
-2024-11-01 18:12:13,582 - INFO - The 4 call passes areas: {'Denver', 'Sunnyvale', 'United States'}
-2024-11-01 18:12:13,582 - INFO - The 7 call passes areas: {'Los Angeles', 'Denver', 'Sunnyvale', 'United States'}
-2024-11-01 18:12:13,582 - INFO - The 24 call passes areas: {'Indianapolis', 'Atlanta', 'United States'}
-2024-11-01 18:12:13,582 - INFO - The 28 call passes areas: {'Sunnyvale', 'Los Angeles', 'Seattle', 'United States'}
-2024-11-01 18:12:13,582 - INFO - The 30 call passes areas: {'Seattle', 'Sunnyvale', 'United States'}
-2024-11-01 18:12:13,582 - INFO - The 33 call passes areas: {'Denver', 'Seattle', 'United States'}
-2024-11-01 18:12:13,582 - INFO - The 34 call passes areas: {'Atlanta', 'Washington DC', 'United States'}
-2024-11-01 18:12:13,582 - INFO - The 39 call passes areas: {'Atlanta', 'Washington DC', 'United States'}
-2024-11-01 18:12:13,582 - INFO - The 44 call passes areas: {'Los Angeles', 'Denver', 'Sunnyvale', 'United States'}
-2024-11-01 18:12:13,582 - INFO - The 46 call passes areas: {'Denver', 'Seattle', 'United States'}
-2024-11-01 18:12:13,582 - INFO - The 47 call passes areas: {'Los Angeles', 'Denver', 'Sunnyvale', 'United States'}
-2024-11-01 18:12:13,582 - INFO - The 48 call passes areas: {'Los Angeles', 'Sunnyvale', 'United States'}
-2024-11-01 18:12:13,583 - INFO - The 24 call passes areas: {'Indianapolis', 'Atlanta', 'United States'}
-2024-11-01 18:12:13,583 - INFO - The 34 call passes areas: {'Atlanta', 'Washington DC', 'United States'}
-2024-11-01 18:12:13,583 - INFO - The 39 call passes areas: {'Atlanta', 'Washington DC', 'United States'}
-2024-11-01 18:12:13,586 - INFO - Attacked areas: ['Kansas City', 'Houston', 'Atlanta']
-2024-11-01 18:12:13,586 - INFO - Potential areas: ['Houston', 'Kansas City', 'Atlanta', 'Houston', 'Sunnyvale', 'Atlanta', 'Sunnyvale', 'Denver', 'Sunnyvale', 'Denver']
-2024-11-01 18:12:13,586 - INFO - The 4 call passes areas: {'Denver', 'Sunnyvale', 'United States'}
-2024-11-01 18:12:13,586 - INFO - The 7 call passes areas: {'Los Angeles', 'Denver', 'Sunnyvale', 'United States'}
-2024-11-01 18:12:13,586 - INFO - The 28 call passes areas: {'Sunnyvale', 'Los Angeles', 'Seattle', 'United States'}
-2024-11-01 18:12:13,586 - INFO - The 30 call passes areas: {'Seattle', 'Sunnyvale', 'United States'}
-2024-11-01 18:12:13,586 - INFO - The 33 call passes areas: {'Denver', 'Seattle', 'United States'}
-2024-11-01 18:12:13,586 - INFO - The 44 call passes areas: {'Los Angeles', 'Denver', 'Sunnyvale', 'United States'}
-2024-11-01 18:12:13,586 - INFO - The 46 call passes areas: {'Denver', 'Seattle', 'United States'}
-2024-11-01 18:12:13,586 - INFO - The 47 call passes areas: {'Los Angeles', 'Denver', 'Sunnyvale', 'United States'}
-2024-11-01 18:12:13,586 - INFO - The 48 call passes areas: {'Los Angeles', 'Sunnyvale', 'United States'}
-2024-11-01 18:12:13,586 - INFO - After departure event 2, unable areas have ['Houston', 'Atlanta'].
-2024-11-01 18:12:13,587 - INFO - After departure event 3, unable areas have ['Atlanta'].
-2024-11-01 18:12:13,587 - INFO - After departure event 4, unable areas have [].
-2024-11-01 18:12:13,588 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\simulator.py - __main__ - Done.
+2024-11-07 12:51:49,384 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\network\generator.py - network.generator - Generate 10 events in 1 with 20 time.
+2024-11-07 12:51:49,385 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\network\generator.py - network.generator - Arrival time (¦Ë) is 20.0, holding time (¦Ì) is 20, intensity (¦Ñ) is 1.0.
+2024-11-07 12:51:49,385 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\network\generator.py - network.generator - Generate 20 events.
+2024-11-07 12:51:49,385 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\simulator.py - __main__ - Start the control plane.
+2024-11-07 12:51:49,385 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\network\controller.py - network.controller - Load the PRACA algorithm.
+2024-11-07 12:51:49,386 - INFO - The 0 call passes areas: {'Amsterdam', 'Frankfurt', 'Zurich', 'Roma'}
+2024-11-07 12:51:49,386 - INFO - The 3 call passes areas: {'Frankfurt', 'Luxembourg', 'Ljubjana', 'Budapest', 'Strasbourg', 'Praha', 'Bratislava', 'Zagreb'}
+2024-11-07 12:51:49,386 - INFO - The 4 call passes areas: {'Rotterdam', 'Zurich', 'Frankfurt', 'Brussels', 'Roma'}
+2024-11-07 12:51:49,386 - INFO - The 6 call passes areas: {'Frankfurt', 'Vienna', 'Milan', 'Warsaw'}
+2024-11-07 12:51:49,386 - INFO - The 7 call passes areas: {'Frankfurt', 'Budapest', 'Sofia', 'Strasbourg', 'Praha', 'Bratislava', 'Basel'}
+2024-11-07 12:51:49,386 - INFO - The 8 call passes areas: {'Frankfurt', 'Zurich', 'Kiev', 'Warsaw', 'Istanbul', 'Bucharest', 'Athens'}
+2024-11-07 12:51:49,386 - INFO - The 11 call passes areas: {'Paris', 'Frankfurt', 'Madrid', 'Brussels'}
+2024-11-07 12:51:49,386 - INFO - The 12 call passes areas: {'Kiev', 'Frankfurt', 'Warsaw', 'Madrid', 'Brussels', 'Paris', 'Bucharest'}
+2024-11-07 12:51:49,386 - INFO - The 14 call passes areas: {'Frankfurt', 'Budapest', 'Strasbourg', 'Praha', 'Bratislava', 'Basel'}
+2024-11-07 12:51:49,386 - INFO - The 15 call passes areas: {'Stockholm', 'Amsterdam', 'London', 'Frankfurt'}
+2024-11-07 12:51:49,386 - INFO - The 16 call passes areas: {'Kiev', 'Frankfurt', 'Rotterdam', 'Warsaw', 'Istanbul', 'Bucharest', 'Amsterdam', 'Athens'}
+2024-11-07 12:51:49,386 - INFO - The 17 call passes areas: {'Amsterdam', 'Zurich', 'Roma', 'Frankfurt'}
+2024-11-07 12:51:49,386 - INFO - The 20 call passes areas: {'Frankfurt', 'Vienna', 'Zurich', 'Geneva', 'Budapest', 'Bratislava'}
+2024-11-07 12:51:49,386 - INFO - The 21 call passes areas: {'Praha', 'Vienna', 'Frankfurt'}
+2024-11-07 12:51:49,386 - INFO - The 25 call passes areas: {'Frankfurt', 'Zurich', 'Luxembourg', 'Brussels', 'Roma'}
+2024-11-07 12:51:49,386 - INFO - The 27 call passes areas: {'Strasbourg', 'Stockholm', 'Basel', 'Frankfurt'}
+2024-11-07 12:51:49,386 - INFO - The 34 call passes areas: {'Praha', 'Budapest', 'Frankfurt', 'Bratislava'}
+2024-11-07 12:51:49,386 - INFO - The 35 call passes areas: {'Frankfurt', 'Geneva', 'Warsaw', 'Zurich'}
+2024-11-07 12:51:49,386 - INFO - The 36 call passes areas: {'Frankfurt', 'Ljubjana', 'Budapest', 'Brussels', 'Paris', 'Praha', 'Bratislava', 'Zagreb'}
+2024-11-07 12:51:49,386 - INFO - The 39 call passes areas: {'Strasbourg', 'Praha', 'Basel', 'Frankfurt'}
+2024-11-07 12:51:49,386 - INFO - The 40 call passes areas: {'Frankfurt', 'Luxembourg', 'Vienna', 'Budapest', 'Strasbourg', 'Bratislava', 'Zagreb'}
+2024-11-07 12:51:49,386 - INFO - The 45 call passes areas: {'Kiev', 'Frankfurt', 'Warsaw', 'Istanbul', 'Bucharest', 'Amsterdam', 'London'}
+2024-11-07 12:51:49,386 - INFO - The 51 call passes areas: {'Frankfurt', 'Kiev', 'Warsaw', 'Istanbul', 'Bucharest'}
+2024-11-07 12:51:49,386 - INFO - The 59 call passes areas: {'Kiev', 'Frankfurt', 'Zurich', 'Warsaw', 'Istanbul', 'Roma', 'Bucharest'}
+2024-11-07 12:51:49,386 - INFO - The 60 call passes areas: {'Frankfurt', 'Zurich', 'Luxembourg', 'Brussels'}
+2024-11-07 12:51:49,386 - INFO - The 61 call passes areas: {'Frankfurt', 'Praha'}
+2024-11-07 12:51:49,386 - INFO - The 62 call passes areas: {'Strasbourg', 'Frankfurt', 'Amsterdam'}
+2024-11-07 12:51:49,386 - INFO - The 63 call passes areas: {'Frankfurt', 'Kiev', 'Warsaw', 'Madrid', 'Brussels', 'Istanbul', 'Paris', 'Bucharest'}
+2024-11-07 12:51:49,386 - INFO - The 64 call passes areas: {'Kiev', 'Frankfurt', 'Warsaw', 'Istanbul', 'Strasbourg', 'Bucharest', 'Basel'}
+2024-11-07 12:51:49,386 - INFO - The 66 call passes areas: {'Kiev', 'Frankfurt', 'Warsaw', 'Strasbourg', 'Bucharest', 'Basel'}
+2024-11-07 12:51:49,386 - INFO - The 67 call passes areas: {'Amsterdam', 'Rotterdam', 'Praha', 'Frankfurt'}
+2024-11-07 12:51:49,386 - INFO - The 68 call passes areas: {'Praha', 'Budapest', 'Frankfurt', 'Bratislava'}
+2024-11-07 12:51:49,386 - INFO - The 69 call passes areas: {'Kiev', 'Frankfurt', 'Warsaw', 'Istanbul', 'Bucharest', 'Athens'}
+2024-11-07 12:51:49,387 - INFO - The 70 call passes areas: {'Strasbourg', 'Amsterdam', 'Frankfurt'}
+2024-11-07 12:51:49,387 - INFO - The 71 call passes areas: {'Rotterdam', 'Zurich', 'Frankfurt', 'Vaduz', 'Brussels'}
+2024-11-07 12:51:49,387 - INFO - The 73 call passes areas: {'Frankfurt', 'Zurich', 'Kiev', 'Warsaw', 'Istanbul', 'Roma', 'Bucharest'}
+2024-11-07 12:51:49,387 - INFO - The 75 call passes areas: {'Frankfurt', 'Luxembourg', 'Kiev', 'Warsaw', 'Strasbourg', 'Bucharest'}
+2024-11-07 12:51:49,387 - INFO - The 76 call passes areas: {'Frankfurt', 'Zurich', 'Vaduz', 'Praha', 'Bratislava'}
+2024-11-07 12:51:49,387 - INFO - The 79 call passes areas: {'Stockholm', 'Zurich', 'Milan', 'Frankfurt'}
+2024-11-07 12:51:49,387 - INFO - The 84 call passes areas: {'Frankfurt', 'Luxembourg', 'Kiev', 'Warsaw', 'Istanbul', 'Brussels', 'Bucharest'}
+2024-11-07 12:51:49,387 - INFO - The 89 call passes areas: {'Frankfurt', 'Warsaw', 'Brussels', 'Lisbon', 'London'}
+2024-11-07 12:51:49,387 - INFO - The 90 call passes areas: {'Stockholm', 'Frankfurt', 'Budapest', 'Praha', 'Bratislava', 'Zagreb'}
+2024-11-07 12:51:49,387 - INFO - The 91 call passes areas: {'Frankfurt', 'Vienna'}
+2024-11-07 12:51:49,387 - INFO - The 95 call passes areas: {'Frankfurt', 'Zurich', 'Bratislava', 'Praha'}
+2024-11-07 12:51:49,387 - INFO - The 97 call passes areas: {'Amsterdam', 'Praha', 'Rotterdam', 'Frankfurt'}
+2024-11-07 12:51:49,387 - INFO - The 98 call passes areas: {'Kiev', 'Frankfurt', 'Warsaw', 'Bucharest', 'Amsterdam'}
+2024-11-07 12:51:49,454 - INFO - Attacked areas: ['Frankfurt']
+2024-11-07 12:51:49,454 - INFO - Potential areas: ['Budapest', 'Bratislava']
+2024-11-07 12:51:49,454 - INFO - The 1 call passes areas: {'Vienna', 'Zurich', 'Geneva', 'Milan', 'Bratislava'}
+2024-11-07 12:51:49,454 - INFO - The 3 call passes areas: {'Luxembourg', 'Zurich', 'Vienna', 'Ljubjana', 'Geneva', 'Milan', 'Budapest', 'Strasbourg', 'Bratislava', 'Basel', 'Zagreb'}
+2024-11-07 12:51:49,454 - INFO - The 5 call passes areas: {'Vienna', 'Zurich', 'Geneva', 'Milan', 'Budapest', 'Bratislava'}
+2024-11-07 12:51:49,454 - INFO - The 6 call passes areas: {'Vienna', 'Warsaw', 'Milan', 'Praha', 'Bratislava'}
+2024-11-07 12:51:49,454 - INFO - The 7 call passes areas: {'Vienna', 'Zurich', 'Geneva', 'Milan', 'Budapest', 'Sofia', 'Bratislava', 'Basel'}
+2024-11-07 12:51:49,454 - INFO - The 8 call passes areas: {'Zurich', 'Vienna', 'Budapest', 'Milan', 'Sofia', 'Bratislava', 'Athens'}
+2024-11-07 12:51:49,454 - INFO - The 9 call passes areas: {'Vienna', 'Ljubjana', 'Budapest', 'Milan', 'Bratislava', 'Zagreb'}
+2024-11-07 12:51:49,454 - INFO - The 12 call passes areas: {'Vienna', 'Milan', 'Budapest', 'Madrid', 'Barcelona', 'Bucharest', 'Bratislava', 'Marseille'}
+2024-11-07 12:51:49,454 - INFO - The 13 call passes areas: {'Vienna', 'Budapest', 'Milan', 'Lyon', 'Bratislava', 'Marseille'}
+2024-11-07 12:51:49,454 - INFO - The 14 call passes areas: {'Zurich', 'Vienna', 'Geneva', 'Budapest', 'Milan', 'Bratislava', 'Basel'}
+2024-11-07 12:51:49,454 - INFO - The 16 call passes areas: {'Rotterdam', 'Vienna', 'Zurich', 'Geneva', 'Budapest', 'Milan', 'Brussels', 'Sofia', 'Paris', 'Bratislava', 'Athens'}
+2024-11-07 12:51:49,454 - INFO - The 18 call passes areas: {'Budapest', 'Istanbul', 'Bucharest'}
+2024-11-07 12:51:49,454 - INFO - The 19 call passes areas: {'Sofia', 'Budapest', 'Athens', 'Bratislava'}
+2024-11-07 12:51:49,454 - INFO - The 20 call passes areas: {'Zurich', 'Vienna', 'Geneva', 'Budapest', 'Milan', 'Bratislava'}
+2024-11-07 12:51:49,454 - INFO - The 21 call passes areas: {'Praha', 'Vienna', 'Bratislava'}
+2024-11-07 12:51:49,454 - INFO - The 22 call passes areas: {'Ljubjana', 'Zagreb', 'Budapest'}
+2024-11-07 12:51:49,454 - INFO - The 23 call passes areas: {'Sofia', 'Ljubjana', 'Zagreb', 'Budapest'}
+2024-11-07 12:51:49,454 - INFO - The 24 call passes areas: {'Vienna', 'Budapest', 'Istanbul', 'Bucharest', 'Bratislava'}
+2024-11-07 12:51:49,455 - INFO - The 31 call passes areas: {'Vienna', 'Zagreb', 'Milan', 'Madrid', 'Budapest', 'Barcelona', 'Bratislava', 'Marseille'}
+2024-11-07 12:51:49,455 - INFO - The 35 call passes areas: {'Vienna', 'Zurich', 'Warsaw', 'Geneva', 'Milan', 'Praha', 'Bratislava'}
+2024-11-07 12:51:49,455 - INFO - The 36 call passes areas: {'Vienna', 'Zurich', 'Ljubjana', 'Geneva', 'Budapest', 'Milan', 'Paris', 'Bratislava', 'Zagreb'}
+2024-11-07 12:51:49,455 - INFO - The 39 call passes areas: {'Vienna', 'Zurich', 'Geneva', 'Milan', 'Praha', 'Bratislava', 'Basel'}
+2024-11-07 12:51:49,455 - INFO - The 40 call passes areas: {'Luxembourg', 'Zurich', 'Vienna', 'Geneva', 'Milan', 'Budapest', 'Strasbourg', 'Bratislava', 'Basel', 'Zagreb'}
+2024-11-07 12:51:49,455 - INFO - The 42 call passes areas: {'Vienna', 'Milan', 'Madrid', 'Budapest', 'Barcelona', 'Bratislava', 'Marseille'}
+2024-11-07 12:51:49,455 - INFO - The 43 call passes areas: {'Ljubjana', 'Budapest', 'Praha', 'Bratislava', 'Zagreb'}
+2024-11-07 12:51:49,455 - INFO - The 45 call passes areas: {'Vienna', 'Zurich', 'Geneva', 'Budapest', 'Istanbul', 'Milan', 'Paris', 'Bucharest', 'Bratislava', 'London'}
+2024-11-07 12:51:49,455 - INFO - The 46 call passes areas: {'Vienna', 'Budapest', 'Istanbul', 'Bucharest', 'Bratislava'}
+2024-11-07 12:51:49,455 - INFO - The 48 call passes areas: {'Zagreb', 'Budapest'}
+2024-11-07 12:51:49,455 - INFO - The 49 call passes areas: {'Vienna', 'Bratislava'}
+2024-11-07 12:51:49,455 - INFO - The 52 call passes areas: {'Vienna', 'Milan', 'Lyon', 'Bratislava', 'Marseille'}
+2024-11-07 12:51:49,455 - INFO - The 53 call passes areas: {'Marseille', 'Vienna', 'Milan', 'Bratislava'}
+2024-11-07 12:51:49,455 - INFO - The 54 call passes areas: {'Vienna', 'Milan', 'Budapest', 'Lyon', 'Bratislava', 'Marseille'}
+2024-11-07 12:51:49,455 - INFO - The 55 call passes areas: {'Ljubjana', 'Budapest', 'Sofia', 'Zagreb', 'Athens'}
+2024-11-07 12:51:49,455 - INFO - The 59 call passes areas: {'Vienna', 'Budapest', 'Istanbul', 'Milan', 'Roma', 'Bucharest', 'Bratislava'}
+2024-11-07 12:51:49,455 - INFO - The 63 call passes areas: {'Vienna', 'Milan', 'Madrid', 'Budapest', 'Istanbul', 'Barcelona', 'Bucharest', 'Bratislava', 'Marseille'}
+2024-11-07 12:51:49,455 - INFO - The 64 call passes areas: {'Vienna', 'Zurich', 'Geneva', 'Budapest', 'Istanbul', 'Milan', 'Bucharest', 'Bratislava', 'Basel'}
+2024-11-07 12:51:49,455 - INFO - The 65 call passes areas: {'Sofia', 'Budapest', 'Zagreb', 'Athens'}
+2024-11-07 12:51:49,455 - INFO - The 66 call passes areas: {'Vienna', 'Zurich', 'Geneva', 'Milan', 'Budapest', 'Bucharest', 'Bratislava', 'Basel'}
+2024-11-07 12:51:49,455 - INFO - The 67 call passes areas: {'Rotterdam', 'Zurich', 'Vienna', 'Geneva', 'Milan', 'Brussels', 'Paris', 'Praha', 'Bratislava'}
+2024-11-07 12:51:49,455 - INFO - The 73 call passes areas: {'Vienna', 'Budapest', 'Milan', 'Istanbul', 'Roma', 'Bucharest', 'Bratislava'}
+2024-11-07 12:51:49,455 - INFO - The 75 call passes areas: {'Luxembourg', 'Zurich', 'Vienna', 'Geneva', 'Milan', 'Budapest', 'Strasbourg', 'Bucharest', 'Bratislava', 'Basel'}
+2024-11-07 12:51:49,455 - INFO - The 81 call passes areas: {'Vienna', 'Milan', 'Bratislava'}
+2024-11-07 12:51:49,455 - INFO - The 82 call passes areas: {'Vienna', 'Budapest', 'Milan', 'Barcelona', 'Marseille', 'Bratislava', 'Zagreb'}
+2024-11-07 12:51:49,455 - INFO - The 86 call passes areas: {'Vienna', 'Milan', 'Roma', 'Bratislava'}
+2024-11-07 12:51:49,455 - INFO - The 87 call passes areas: {'Ljubjana', 'Zagreb', 'Budapest', 'Bratislava'}
+2024-11-07 12:51:49,455 - INFO - The 92 call passes areas: {'Sofia', 'Vienna', 'Budapest', 'Bratislava'}
+2024-11-07 12:51:49,455 - INFO - The 93 call passes areas: {'Budapest', 'Bucharest'}
+2024-11-07 12:51:49,456 - INFO - The 0 call passes areas: {'Zurich', 'Geneva', 'Brussels', 'Paris', 'Roma', 'Amsterdam'}
+2024-11-07 12:51:49,456 - INFO - The 4 call passes areas: {'Rotterdam', 'Zurich', 'Geneva', 'Brussels', 'Paris', 'Roma'}
+2024-11-07 12:51:49,456 - INFO - The 16 call passes areas: {'Rotterdam', 'Vienna', 'Zurich', 'Geneva', 'Budapest', 'Milan', 'Brussels', 'Sofia', 'Paris', 'Bratislava', 'Athens'}
+2024-11-07 12:51:49,456 - INFO - The 17 call passes areas: {'Zurich', 'Geneva', 'Brussels', 'Paris', 'Roma', 'Amsterdam'}
+2024-11-07 12:51:49,456 - INFO - The 28 call passes areas: {'Luxembourg', 'Brussels'}
+2024-11-07 12:51:49,456 - INFO - The 33 call passes areas: {'Luxembourg', 'Brussels', 'Paris', 'Lyon', 'Marseille'}
+2024-11-07 12:51:49,456 - INFO - The 37 call passes areas: {'Paris', 'Rotterdam', 'Geneva', 'Brussels'}
+2024-11-07 12:51:49,456 - INFO - The 47 call passes areas: {'Paris', 'Madrid', 'Brussels'}
+2024-11-07 12:51:49,457 - INFO - The 62 call passes areas: {'Strasbourg', 'Amsterdam', 'Luxembourg', 'Brussels'}
+2024-11-07 12:51:49,457 - INFO - The 67 call passes areas: {'Rotterdam', 'Zurich', 'Vienna', 'Geneva', 'Milan', 'Brussels', 'Paris', 'Praha', 'Bratislava'}
+2024-11-07 12:51:49,457 - INFO - The 70 call passes areas: {'Strasbourg', 'Amsterdam', 'Luxembourg', 'Brussels'}
+2024-11-07 12:51:49,457 - INFO - The 71 call passes areas: {'Rotterdam', 'Zurich', 'Vaduz', 'Geneva', 'Brussels', 'Paris'}
+2024-11-07 12:51:49,457 - INFO - The 74 call passes areas: {'Paris', 'Luxembourg', 'Madrid', 'Brussels'}
+2024-11-07 12:51:49,457 - INFO - The 77 call passes areas: {'Paris', 'Brussels'}
+2024-11-07 12:51:49,457 - INFO - The 83 call passes areas: {'Paris', 'Brussels'}
+2024-11-07 12:51:49,457 - INFO - The 85 call passes areas: {'Paris', 'Lyon', 'Brussels'}
+2024-11-07 12:51:49,501 - INFO - Attacked areas: ['Frankfurt', 'Brussels']
+2024-11-07 12:51:49,501 - INFO - Potential areas: ['Budapest', 'Bratislava', 'Frankfurt']
+2024-11-07 12:51:49,501 - INFO - The 1 call passes areas: {'Vienna', 'Zurich', 'Geneva', 'Milan', 'Bratislava'}
+2024-11-07 12:51:49,501 - INFO - The 3 call passes areas: {'Luxembourg', 'Zurich', 'Vienna', 'Ljubjana', 'Geneva', 'Milan', 'Budapest', 'Strasbourg', 'Bratislava', 'Basel', 'Zagreb'}
+2024-11-07 12:51:49,501 - INFO - The 5 call passes areas: {'Vienna', 'Zurich', 'Geneva', 'Milan', 'Budapest', 'Bratislava'}
+2024-11-07 12:51:49,501 - INFO - The 6 call passes areas: {'Vienna', 'Warsaw', 'Milan', 'Praha', 'Bratislava'}
+2024-11-07 12:51:49,501 - INFO - The 7 call passes areas: {'Vienna', 'Zurich', 'Geneva', 'Milan', 'Budapest', 'Sofia', 'Bratislava', 'Basel'}
+2024-11-07 12:51:49,501 - INFO - The 8 call passes areas: {'Zurich', 'Vienna', 'Budapest', 'Milan', 'Sofia', 'Bratislava', 'Athens'}
+2024-11-07 12:51:49,501 - INFO - The 9 call passes areas: {'Vienna', 'Ljubjana', 'Budapest', 'Milan', 'Bratislava', 'Zagreb'}
+2024-11-07 12:51:49,501 - INFO - The 12 call passes areas: {'Vienna', 'Milan', 'Budapest', 'Madrid', 'Barcelona', 'Bucharest', 'Bratislava', 'Marseille'}
+2024-11-07 12:51:49,501 - INFO - The 13 call passes areas: {'Vienna', 'Budapest', 'Milan', 'Lyon', 'Bratislava', 'Marseille'}
+2024-11-07 12:51:49,502 - INFO - The 14 call passes areas: {'Zurich', 'Vienna', 'Geneva', 'Budapest', 'Milan', 'Bratislava', 'Basel'}
+2024-11-07 12:51:49,502 - INFO - The 16 call passes areas: {'Rotterdam', 'Vienna', 'Zurich', 'Geneva', 'Budapest', 'Milan', 'London', 'Sofia', 'Paris', 'Bratislava', 'Amsterdam', 'Athens'}
+2024-11-07 12:51:49,502 - INFO - The 18 call passes areas: {'Budapest', 'Istanbul', 'Bucharest'}
+2024-11-07 12:51:49,502 - INFO - The 19 call passes areas: {'Sofia', 'Budapest', 'Athens', 'Bratislava'}
+2024-11-07 12:51:49,502 - INFO - The 20 call passes areas: {'Zurich', 'Vienna', 'Geneva', 'Budapest', 'Milan', 'Bratislava'}
+2024-11-07 12:51:49,502 - INFO - The 21 call passes areas: {'Praha', 'Vienna', 'Bratislava'}
+2024-11-07 12:51:49,502 - INFO - The 22 call passes areas: {'Ljubjana', 'Zagreb', 'Budapest'}
+2024-11-07 12:51:49,502 - INFO - The 23 call passes areas: {'Sofia', 'Ljubjana', 'Zagreb', 'Budapest'}
+2024-11-07 12:51:49,502 - INFO - The 24 call passes areas: {'Vienna', 'Budapest', 'Istanbul', 'Bucharest', 'Bratislava'}
+2024-11-07 12:51:49,502 - INFO - The 31 call passes areas: {'Vienna', 'Zagreb', 'Milan', 'Madrid', 'Budapest', 'Barcelona', 'Bratislava', 'Marseille'}
+2024-11-07 12:51:49,502 - INFO - The 35 call passes areas: {'Vienna', 'Zurich', 'Warsaw', 'Geneva', 'Milan', 'Praha', 'Bratislava'}
+2024-11-07 12:51:49,502 - INFO - The 36 call passes areas: {'Vienna', 'Zurich', 'Ljubjana', 'Geneva', 'Budapest', 'Milan', 'Paris', 'Bratislava', 'Zagreb'}
+2024-11-07 12:51:49,502 - INFO - The 39 call passes areas: {'Vienna', 'Zurich', 'Geneva', 'Milan', 'Praha', 'Bratislava', 'Basel'}
+2024-11-07 12:51:49,502 - INFO - The 40 call passes areas: {'Luxembourg', 'Zurich', 'Vienna', 'Geneva', 'Milan', 'Budapest', 'Strasbourg', 'Bratislava', 'Basel', 'Zagreb'}
+2024-11-07 12:51:49,502 - INFO - The 42 call passes areas: {'Vienna', 'Milan', 'Madrid', 'Budapest', 'Barcelona', 'Bratislava', 'Marseille'}
+2024-11-07 12:51:49,502 - INFO - The 43 call passes areas: {'Ljubjana', 'Budapest', 'Praha', 'Bratislava', 'Zagreb'}
+2024-11-07 12:51:49,502 - INFO - The 45 call passes areas: {'Vienna', 'Zurich', 'Geneva', 'Budapest', 'Istanbul', 'Milan', 'Paris', 'Bucharest', 'Bratislava', 'London'}
+2024-11-07 12:51:49,502 - INFO - The 46 call passes areas: {'Vienna', 'Budapest', 'Istanbul', 'Bucharest', 'Bratislava'}
+2024-11-07 12:51:49,502 - INFO - The 48 call passes areas: {'Zagreb', 'Budapest'}
+2024-11-07 12:51:49,502 - INFO - The 49 call passes areas: {'Vienna', 'Bratislava'}
+2024-11-07 12:51:49,502 - INFO - The 52 call passes areas: {'Vienna', 'Milan', 'Lyon', 'Bratislava', 'Marseille'}
+2024-11-07 12:51:49,502 - INFO - The 53 call passes areas: {'Marseille', 'Vienna', 'Milan', 'Bratislava'}
+2024-11-07 12:51:49,502 - INFO - The 54 call passes areas: {'Vienna', 'Milan', 'Budapest', 'Lyon', 'Bratislava', 'Marseille'}
+2024-11-07 12:51:49,502 - INFO - The 55 call passes areas: {'Ljubjana', 'Budapest', 'Sofia', 'Zagreb', 'Athens'}
+2024-11-07 12:51:49,502 - INFO - The 59 call passes areas: {'Vienna', 'Budapest', 'Istanbul', 'Milan', 'Roma', 'Bucharest', 'Bratislava'}
+2024-11-07 12:51:49,502 - INFO - The 63 call passes areas: {'Vienna', 'Milan', 'Madrid', 'Budapest', 'Istanbul', 'Barcelona', 'Bucharest', 'Bratislava', 'Marseille'}
+2024-11-07 12:51:49,502 - INFO - The 64 call passes areas: {'Vienna', 'Zurich', 'Geneva', 'Budapest', 'Istanbul', 'Milan', 'Bucharest', 'Bratislava', 'Basel'}
+2024-11-07 12:51:49,502 - INFO - The 65 call passes areas: {'Sofia', 'Budapest', 'Zagreb', 'Athens'}
+2024-11-07 12:51:49,503 - INFO - The 66 call passes areas: {'Vienna', 'Zurich', 'Geneva', 'Milan', 'Budapest', 'Bucharest', 'Bratislava', 'Basel'}
+2024-11-07 12:51:49,503 - INFO - The 67 call passes areas: {'Rotterdam', 'Zurich', 'Vienna', 'Geneva', 'Milan', 'Paris', 'Praha', 'Bratislava', 'Amsterdam', 'London'}
+2024-11-07 12:51:49,503 - INFO - The 73 call passes areas: {'Vienna', 'Budapest', 'Milan', 'Istanbul', 'Roma', 'Bucharest', 'Bratislava'}
+2024-11-07 12:51:49,503 - INFO - The 75 call passes areas: {'Luxembourg', 'Zurich', 'Vienna', 'Geneva', 'Milan', 'Budapest', 'Strasbourg', 'Bucharest', 'Bratislava', 'Basel'}
+2024-11-07 12:51:49,503 - INFO - The 81 call passes areas: {'Vienna', 'Milan', 'Bratislava'}
+2024-11-07 12:51:49,503 - INFO - The 82 call passes areas: {'Vienna', 'Budapest', 'Milan', 'Barcelona', 'Marseille', 'Bratislava', 'Zagreb'}
+2024-11-07 12:51:49,503 - INFO - The 86 call passes areas: {'Vienna', 'Milan', 'Roma', 'Bratislava'}
+2024-11-07 12:51:49,503 - INFO - The 87 call passes areas: {'Ljubjana', 'Zagreb', 'Budapest', 'Bratislava'}
+2024-11-07 12:51:49,503 - INFO - The 92 call passes areas: {'Sofia', 'Vienna', 'Budapest', 'Bratislava'}
+2024-11-07 12:51:49,503 - INFO - The 93 call passes areas: {'Budapest', 'Bucharest'}
+2024-11-07 12:51:49,504 - INFO - The 0 call passes areas: {'Zurich', 'Geneva', 'Paris', 'Roma', 'Amsterdam', 'London'}
+2024-11-07 12:51:49,504 - INFO - The 1 call passes areas: {'Vienna', 'Zurich', 'Geneva', 'Milan', 'Bratislava'}
+2024-11-07 12:51:49,504 - INFO - The 3 call passes areas: {'Luxembourg', 'Zurich', 'Vienna', 'Ljubjana', 'Geneva', 'Milan', 'Budapest', 'Strasbourg', 'Bratislava', 'Basel', 'Zagreb'}
+2024-11-07 12:51:49,504 - INFO - The 4 call passes areas: {'Rotterdam', 'Zurich', 'Geneva', 'Paris', 'Roma', 'Amsterdam', 'London'}
+2024-11-07 12:51:49,504 - INFO - The 5 call passes areas: {'Vienna', 'Zurich', 'Geneva', 'Milan', 'Budapest', 'Bratislava'}
+2024-11-07 12:51:49,504 - INFO - The 7 call passes areas: {'Vienna', 'Zurich', 'Geneva', 'Milan', 'Budapest', 'Sofia', 'Bratislava', 'Basel'}
+2024-11-07 12:51:49,504 - INFO - The 8 call passes areas: {'Zurich', 'Vienna', 'Budapest', 'Milan', 'Sofia', 'Bratislava', 'Athens'}
+2024-11-07 12:51:49,504 - INFO - The 14 call passes areas: {'Zurich', 'Vienna', 'Geneva', 'Budapest', 'Milan', 'Bratislava', 'Basel'}
+2024-11-07 12:51:49,504 - INFO - The 16 call passes areas: {'Rotterdam', 'Vienna', 'Zurich', 'Geneva', 'Budapest', 'Milan', 'London', 'Sofia', 'Paris', 'Bratislava', 'Amsterdam', 'Athens'}
+2024-11-07 12:51:49,504 - INFO - The 17 call passes areas: {'Zurich', 'Geneva', 'Paris', 'Roma', 'Amsterdam', 'London'}
+2024-11-07 12:51:49,504 - INFO - The 20 call passes areas: {'Zurich', 'Vienna', 'Geneva', 'Budapest', 'Milan', 'Bratislava'}
+2024-11-07 12:51:49,504 - INFO - The 25 call passes areas: {'Zurich', 'Luxembourg', 'Geneva', 'Strasbourg', 'Roma', 'Basel'}
+2024-11-07 12:51:49,504 - INFO - The 29 call passes areas: {'Vaduz', 'Zurich', 'Roma'}
+2024-11-07 12:51:49,504 - INFO - The 35 call passes areas: {'Vienna', 'Zurich', 'Warsaw', 'Geneva', 'Milan', 'Praha', 'Bratislava'}
+2024-11-07 12:51:49,504 - INFO - The 36 call passes areas: {'Vienna', 'Zurich', 'Ljubjana', 'Geneva', 'Budapest', 'Milan', 'Paris', 'Bratislava', 'Zagreb'}
+2024-11-07 12:51:49,504 - INFO - The 39 call passes areas: {'Vienna', 'Zurich', 'Geneva', 'Milan', 'Praha', 'Bratislava', 'Basel'}
+2024-11-07 12:51:49,504 - INFO - The 40 call passes areas: {'Luxembourg', 'Zurich', 'Vienna', 'Geneva', 'Milan', 'Budapest', 'Strasbourg', 'Bratislava', 'Basel', 'Zagreb'}
+2024-11-07 12:51:49,504 - INFO - The 45 call passes areas: {'Vienna', 'Zurich', 'Geneva', 'Budapest', 'Istanbul', 'Milan', 'Paris', 'Bucharest', 'Bratislava', 'London'}
+2024-11-07 12:51:49,504 - INFO - The 56 call passes areas: {'Geneva', 'Zurich'}
+2024-11-07 12:51:49,504 - INFO - The 60 call passes areas: {'Luxembourg', 'Zurich', 'Geneva', 'Strasbourg', 'Basel'}
+2024-11-07 12:51:49,504 - INFO - The 64 call passes areas: {'Vienna', 'Zurich', 'Geneva', 'Budapest', 'Istanbul', 'Milan', 'Bucharest', 'Bratislava', 'Basel'}
+2024-11-07 12:51:49,504 - INFO - The 66 call passes areas: {'Vienna', 'Zurich', 'Geneva', 'Milan', 'Budapest', 'Bucharest', 'Bratislava', 'Basel'}
+2024-11-07 12:51:49,504 - INFO - The 67 call passes areas: {'Rotterdam', 'Zurich', 'Vienna', 'Geneva', 'Milan', 'Paris', 'Praha', 'Bratislava', 'Amsterdam', 'London'}
+2024-11-07 12:51:49,504 - INFO - The 71 call passes areas: {'Rotterdam', 'Zurich', 'Vaduz', 'Geneva', 'Paris', 'Amsterdam', 'London'}
+2024-11-07 12:51:49,504 - INFO - The 75 call passes areas: {'Luxembourg', 'Zurich', 'Vienna', 'Geneva', 'Milan', 'Budapest', 'Strasbourg', 'Bucharest', 'Bratislava', 'Basel'}
+2024-11-07 12:51:49,547 - INFO - Attacked areas: ['Frankfurt', 'Brussels', 'Zurich']
+2024-11-07 12:51:49,547 - INFO - Potential areas: ['Budapest', 'Bratislava', 'Frankfurt', 'Brussels']
+2024-11-07 12:51:49,547 - INFO - The 1 call passes areas: {'Vienna', 'Geneva', 'Milan', 'Lyon', 'Bratislava', 'Marseille'}
+2024-11-07 12:51:49,547 - INFO - The 3 call passes areas: {'Luxembourg', 'Vienna', 'Zagreb', 'Geneva', 'Milan', 'Budapest', 'Ljubjana', 'Strasbourg', 'Lyon', 'Bratislava', 'Basel', 'Marseille'}
+2024-11-07 12:51:49,547 - INFO - The 5 call passes areas: {'Vienna', 'Geneva', 'Milan', 'Budapest', 'Lyon', 'Bratislava', 'Marseille'}
+2024-11-07 12:51:49,548 - INFO - The 6 call passes areas: {'Vienna', 'Warsaw', 'Milan', 'Praha', 'Bratislava'}
+2024-11-07 12:51:49,548 - INFO - The 7 call passes areas: {'Vienna', 'Geneva', 'Milan', 'Budapest', 'Sofia', 'Lyon', 'Bratislava', 'Basel', 'Marseille'}
+2024-11-07 12:51:49,548 - INFO - The 9 call passes areas: {'Vienna', 'Ljubjana', 'Budapest', 'Milan', 'Bratislava', 'Zagreb'}
+2024-11-07 12:51:49,548 - INFO - The 12 call passes areas: {'Vienna', 'Milan', 'Budapest', 'Madrid', 'Barcelona', 'Bucharest', 'Bratislava', 'Marseille'}
+2024-11-07 12:51:49,548 - INFO - The 13 call passes areas: {'Vienna', 'Budapest', 'Milan', 'Lyon', 'Bratislava', 'Marseille'}
+2024-11-07 12:51:49,548 - INFO - The 14 call passes areas: {'Vienna', 'Geneva', 'Budapest', 'Milan', 'Lyon', 'Bratislava', 'Basel', 'Marseille'}
+2024-11-07 12:51:49,548 - INFO - The 16 call passes areas: {'Rotterdam', 'Vienna', 'London', 'Budapest', 'Milan', 'Sofia', 'Paris', 'Lyon', 'Bratislava', 'Amsterdam', 'Marseille', 'Athens'}
+2024-11-07 12:51:49,548 - INFO - The 18 call passes areas: {'Budapest', 'Istanbul', 'Bucharest'}
+2024-11-07 12:51:49,548 - INFO - The 19 call passes areas: {'Sofia', 'Budapest', 'Athens', 'Bratislava'}
+2024-11-07 12:51:49,548 - INFO - The 20 call passes areas: {'Vienna', 'Geneva', 'Budapest', 'Milan', 'Lyon', 'Bratislava', 'Marseille'}
+2024-11-07 12:51:49,548 - INFO - The 21 call passes areas: {'Praha', 'Vienna', 'Bratislava'}
+2024-11-07 12:51:49,548 - INFO - The 22 call passes areas: {'Ljubjana', 'Zagreb', 'Budapest'}
+2024-11-07 12:51:49,548 - INFO - The 23 call passes areas: {'Sofia', 'Ljubjana', 'Zagreb', 'Budapest'}
+2024-11-07 12:51:49,548 - INFO - The 24 call passes areas: {'Vienna', 'Budapest', 'Istanbul', 'Bucharest', 'Bratislava'}
+2024-11-07 12:51:49,548 - INFO - The 31 call passes areas: {'Vienna', 'Zagreb', 'Milan', 'Madrid', 'Budapest', 'Barcelona', 'Bratislava', 'Marseille'}
+2024-11-07 12:51:49,548 - INFO - The 35 call passes areas: {'Vienna', 'Warsaw', 'Geneva', 'Milan', 'Praha', 'Lyon', 'Bratislava', 'Marseille'}
+2024-11-07 12:51:49,548 - INFO - The 36 call passes areas: {'Vienna', 'Ljubjana', 'Budapest', 'Milan', 'Paris', 'Lyon', 'Marseille', 'Bratislava', 'Zagreb'}
+2024-11-07 12:51:49,548 - INFO - The 39 call passes areas: {'Vienna', 'Geneva', 'Milan', 'Praha', 'Lyon', 'Bratislava', 'Basel', 'Marseille'}
+2024-11-07 12:51:49,548 - INFO - The 40 call passes areas: {'Luxembourg', 'Vienna', 'Zagreb', 'Geneva', 'Milan', 'Budapest', 'Strasbourg', 'Lyon', 'Bratislava', 'Basel', 'Marseille'}
+2024-11-07 12:51:49,548 - INFO - The 42 call passes areas: {'Vienna', 'Milan', 'Madrid', 'Budapest', 'Barcelona', 'Bratislava', 'Marseille'}
+2024-11-07 12:51:49,548 - INFO - The 43 call passes areas: {'Ljubjana', 'Budapest', 'Praha', 'Bratislava', 'Zagreb'}
+2024-11-07 12:51:49,548 - INFO - The 45 call passes areas: {'Vienna', 'Budapest', 'Istanbul', 'Milan', 'Paris', 'Lyon', 'Bucharest', 'Bratislava', 'Marseille', 'London'}
+2024-11-07 12:51:49,548 - INFO - The 46 call passes areas: {'Vienna', 'Budapest', 'Istanbul', 'Bucharest', 'Bratislava'}
+2024-11-07 12:51:49,548 - INFO - The 48 call passes areas: {'Zagreb', 'Budapest'}
+2024-11-07 12:51:49,548 - INFO - The 49 call passes areas: {'Vienna', 'Bratislava'}
+2024-11-07 12:51:49,548 - INFO - The 52 call passes areas: {'Vienna', 'Milan', 'Lyon', 'Bratislava', 'Marseille'}
+2024-11-07 12:51:49,548 - INFO - The 53 call passes areas: {'Marseille', 'Vienna', 'Milan', 'Bratislava'}
+2024-11-07 12:51:49,548 - INFO - The 54 call passes areas: {'Vienna', 'Milan', 'Budapest', 'Lyon', 'Bratislava', 'Marseille'}
+2024-11-07 12:51:49,548 - INFO - The 55 call passes areas: {'Ljubjana', 'Budapest', 'Sofia', 'Zagreb', 'Athens'}
+2024-11-07 12:51:49,548 - INFO - The 59 call passes areas: {'Vienna', 'Budapest', 'Istanbul', 'Milan', 'Roma', 'Bucharest', 'Bratislava'}
+2024-11-07 12:51:49,548 - INFO - The 63 call passes areas: {'Vienna', 'Milan', 'Madrid', 'Budapest', 'Istanbul', 'Barcelona', 'Bucharest', 'Bratislava', 'Marseille'}
+2024-11-07 12:51:49,548 - INFO - The 64 call passes areas: {'Vienna', 'Geneva', 'Budapest', 'Istanbul', 'Milan', 'Lyon', 'Bucharest', 'Bratislava', 'Basel', 'Marseille'}
+2024-11-07 12:51:49,548 - INFO - The 65 call passes areas: {'Sofia', 'Budapest', 'Zagreb', 'Athens'}
+2024-11-07 12:51:49,549 - INFO - The 66 call passes areas: {'Vienna', 'Geneva', 'Milan', 'Budapest', 'Lyon', 'Bucharest', 'Bratislava', 'Basel', 'Marseille'}
+2024-11-07 12:51:49,549 - INFO - The 67 call passes areas: {'Rotterdam', 'Vienna', 'Milan', 'Paris', 'Praha', 'Lyon', 'Bratislava', 'Amsterdam', 'Marseille', 'London'}
+2024-11-07 12:51:49,549 - INFO - The 73 call passes areas: {'Vienna', 'Budapest', 'Milan', 'Istanbul', 'Roma', 'Bucharest', 'Bratislava'}
+2024-11-07 12:51:49,549 - INFO - The 75 call passes areas: {'Luxembourg', 'Vienna', 'Geneva', 'Milan', 'Budapest', 'Strasbourg', 'Lyon', 'Bucharest', 'Bratislava', 'Basel', 'Marseille'}
+2024-11-07 12:51:49,549 - INFO - The 81 call passes areas: {'Vienna', 'Milan', 'Bratislava'}
+2024-11-07 12:51:49,549 - INFO - The 82 call passes areas: {'Vienna', 'Budapest', 'Milan', 'Barcelona', 'Marseille', 'Bratislava', 'Zagreb'}
+2024-11-07 12:51:49,549 - INFO - The 86 call passes areas: {'Vienna', 'Milan', 'Roma', 'Bratislava'}
+2024-11-07 12:51:49,549 - INFO - The 87 call passes areas: {'Ljubjana', 'Zagreb', 'Budapest', 'Bratislava'}
+2024-11-07 12:51:49,549 - INFO - The 92 call passes areas: {'Sofia', 'Vienna', 'Budapest', 'Bratislava'}
+2024-11-07 12:51:49,549 - INFO - The 93 call passes areas: {'Budapest', 'Bucharest'}
+2024-11-07 12:51:49,550 - INFO - The 0 call passes areas: {'Milan', 'Paris', 'Lyon', 'Roma', 'Amsterdam', 'Marseille', 'London'}
+2024-11-07 12:51:49,550 - INFO - The 4 call passes areas: {'Rotterdam', 'Milan', 'Paris', 'Lyon', 'Roma', 'Amsterdam', 'Marseille', 'London'}
+2024-11-07 12:51:49,550 - INFO - The 16 call passes areas: {'Rotterdam', 'Vienna', 'London', 'Budapest', 'Milan', 'Sofia', 'Paris', 'Lyon', 'Bratislava', 'Amsterdam', 'Marseille', 'Athens'}
+2024-11-07 12:51:49,550 - INFO - The 17 call passes areas: {'Milan', 'Paris', 'Lyon', 'Roma', 'Amsterdam', 'Marseille', 'London'}
+2024-11-07 12:51:49,550 - INFO - The 30 call passes areas: {'London', 'Lisbon'}
+2024-11-07 12:51:49,550 - INFO - The 32 call passes areas: {'Paris', 'Lyon', 'Lisbon', 'Marseille', 'London'}
+2024-11-07 12:51:49,550 - INFO - The 37 call passes areas: {'Rotterdam', 'Geneva', 'Paris', 'Amsterdam', 'London'}
+2024-11-07 12:51:49,550 - INFO - The 38 call passes areas: {'Geneva', 'Dublin', 'Paris', 'Basel', 'London'}
+2024-11-07 12:51:49,550 - INFO - The 45 call passes areas: {'Vienna', 'Budapest', 'Istanbul', 'Milan', 'Paris', 'Lyon', 'Bucharest', 'Bratislava', 'Marseille', 'London'}
+2024-11-07 12:51:49,550 - INFO - The 57 call passes areas: {'Geneva', 'Paris', 'Lisbon', 'Basel', 'London'}
+2024-11-07 12:51:49,550 - INFO - The 62 call passes areas: {'Geneva', 'Strasbourg', 'Paris', 'Basel', 'Amsterdam', 'London'}
+2024-11-07 12:51:49,550 - INFO - The 67 call passes areas: {'Rotterdam', 'Vienna', 'Milan', 'Paris', 'Praha', 'Lyon', 'Bratislava', 'Amsterdam', 'Marseille', 'London'}
+2024-11-07 12:51:49,550 - INFO - The 70 call passes areas: {'Geneva', 'Paris', 'Strasbourg', 'Basel', 'Amsterdam', 'London'}
+2024-11-07 12:51:49,550 - INFO - The 88 call passes areas: {'Paris', 'Geneva', 'London', 'Lisbon'}
+2024-11-07 12:51:49,550 - INFO - The 96 call passes areas: {'Madrid', 'Dublin', 'Paris', 'Barcelona', 'London'}
+2024-11-07 12:51:49,551 - INFO - The 99 call passes areas: {'Geneva', 'Dublin', 'Paris', 'Basel', 'London'}
+2024-11-07 12:51:49,594 - INFO - Attacked areas: ['Frankfurt', 'Brussels', 'Zurich', 'London']
+2024-11-07 12:51:49,594 - INFO - Potential areas: ['Budapest', 'Bratislava', 'Frankfurt', 'Brussels']
+2024-11-07 12:51:49,594 - INFO - The 1 call passes areas: {'Vienna', 'Geneva', 'Milan', 'Lyon', 'Bratislava', 'Marseille'}
+2024-11-07 12:51:49,594 - INFO - The 3 call passes areas: {'Luxembourg', 'Vienna', 'Zagreb', 'Geneva', 'Milan', 'Budapest', 'Ljubjana', 'Strasbourg', 'Lyon', 'Bratislava', 'Basel', 'Marseille'}
+2024-11-07 12:51:49,594 - INFO - The 5 call passes areas: {'Vienna', 'Geneva', 'Milan', 'Budapest', 'Lyon', 'Bratislava', 'Marseille'}
+2024-11-07 12:51:49,594 - INFO - The 6 call passes areas: {'Vienna', 'Warsaw', 'Milan', 'Praha', 'Bratislava'}
+2024-11-07 12:51:49,594 - INFO - The 7 call passes areas: {'Vienna', 'Geneva', 'Milan', 'Budapest', 'Sofia', 'Lyon', 'Bratislava', 'Basel', 'Marseille'}
+2024-11-07 12:51:49,594 - INFO - The 9 call passes areas: {'Vienna', 'Ljubjana', 'Budapest', 'Milan', 'Bratislava', 'Zagreb'}
+2024-11-07 12:51:49,594 - INFO - The 12 call passes areas: {'Vienna', 'Milan', 'Budapest', 'Madrid', 'Barcelona', 'Bucharest', 'Bratislava', 'Marseille'}
+2024-11-07 12:51:49,594 - INFO - The 13 call passes areas: {'Vienna', 'Budapest', 'Milan', 'Lyon', 'Bratislava', 'Marseille'}
+2024-11-07 12:51:49,594 - INFO - The 14 call passes areas: {'Vienna', 'Geneva', 'Budapest', 'Milan', 'Lyon', 'Bratislava', 'Basel', 'Marseille'}
+2024-11-07 12:51:49,594 - INFO - The 18 call passes areas: {'Budapest', 'Istanbul', 'Bucharest'}
+2024-11-07 12:51:49,594 - INFO - The 19 call passes areas: {'Sofia', 'Budapest', 'Athens', 'Bratislava'}
+2024-11-07 12:51:49,594 - INFO - The 20 call passes areas: {'Vienna', 'Geneva', 'Budapest', 'Milan', 'Lyon', 'Bratislava', 'Marseille'}
+2024-11-07 12:51:49,594 - INFO - The 21 call passes areas: {'Praha', 'Vienna', 'Bratislava'}
+2024-11-07 12:51:49,594 - INFO - The 22 call passes areas: {'Ljubjana', 'Zagreb', 'Budapest'}
+2024-11-07 12:51:49,594 - INFO - The 23 call passes areas: {'Sofia', 'Ljubjana', 'Zagreb', 'Budapest'}
+2024-11-07 12:51:49,594 - INFO - The 24 call passes areas: {'Vienna', 'Budapest', 'Istanbul', 'Bucharest', 'Bratislava'}
+2024-11-07 12:51:49,594 - INFO - The 31 call passes areas: {'Vienna', 'Zagreb', 'Milan', 'Madrid', 'Budapest', 'Barcelona', 'Bratislava', 'Marseille'}
+2024-11-07 12:51:49,594 - INFO - The 35 call passes areas: {'Vienna', 'Warsaw', 'Geneva', 'Milan', 'Praha', 'Lyon', 'Bratislava', 'Marseille'}
+2024-11-07 12:51:49,594 - INFO - The 36 call passes areas: {'Vienna', 'Ljubjana', 'Budapest', 'Milan', 'Paris', 'Lyon', 'Marseille', 'Bratislava', 'Zagreb'}
+2024-11-07 12:51:49,594 - INFO - The 39 call passes areas: {'Vienna', 'Geneva', 'Milan', 'Praha', 'Lyon', 'Bratislava', 'Basel', 'Marseille'}
+2024-11-07 12:51:49,595 - INFO - The 40 call passes areas: {'Luxembourg', 'Vienna', 'Zagreb', 'Geneva', 'Milan', 'Budapest', 'Strasbourg', 'Lyon', 'Bratislava', 'Basel', 'Marseille'}
+2024-11-07 12:51:49,595 - INFO - The 42 call passes areas: {'Vienna', 'Milan', 'Madrid', 'Budapest', 'Barcelona', 'Bratislava', 'Marseille'}
+2024-11-07 12:51:49,595 - INFO - The 43 call passes areas: {'Ljubjana', 'Budapest', 'Praha', 'Bratislava', 'Zagreb'}
+2024-11-07 12:51:49,595 - INFO - The 46 call passes areas: {'Vienna', 'Budapest', 'Istanbul', 'Bucharest', 'Bratislava'}
+2024-11-07 12:51:49,595 - INFO - The 48 call passes areas: {'Zagreb', 'Budapest'}
+2024-11-07 12:51:49,595 - INFO - The 49 call passes areas: {'Vienna', 'Bratislava'}
+2024-11-07 12:51:49,595 - INFO - The 52 call passes areas: {'Vienna', 'Milan', 'Lyon', 'Bratislava', 'Marseille'}
+2024-11-07 12:51:49,595 - INFO - The 53 call passes areas: {'Marseille', 'Vienna', 'Milan', 'Bratislava'}
+2024-11-07 12:51:49,595 - INFO - The 54 call passes areas: {'Vienna', 'Milan', 'Budapest', 'Lyon', 'Bratislava', 'Marseille'}
+2024-11-07 12:51:49,595 - INFO - The 55 call passes areas: {'Ljubjana', 'Budapest', 'Sofia', 'Zagreb', 'Athens'}
+2024-11-07 12:51:49,595 - INFO - The 59 call passes areas: {'Vienna', 'Budapest', 'Istanbul', 'Milan', 'Roma', 'Bucharest', 'Bratislava'}
+2024-11-07 12:51:49,595 - INFO - The 63 call passes areas: {'Vienna', 'Milan', 'Madrid', 'Budapest', 'Istanbul', 'Barcelona', 'Bucharest', 'Bratislava', 'Marseille'}
+2024-11-07 12:51:49,595 - INFO - The 64 call passes areas: {'Vienna', 'Geneva', 'Budapest', 'Istanbul', 'Milan', 'Lyon', 'Bucharest', 'Bratislava', 'Basel', 'Marseille'}
+2024-11-07 12:51:49,595 - INFO - The 65 call passes areas: {'Sofia', 'Budapest', 'Zagreb', 'Athens'}
+2024-11-07 12:51:49,595 - INFO - The 66 call passes areas: {'Vienna', 'Geneva', 'Milan', 'Budapest', 'Lyon', 'Bucharest', 'Bratislava', 'Basel', 'Marseille'}
+2024-11-07 12:51:49,595 - INFO - The 73 call passes areas: {'Vienna', 'Budapest', 'Milan', 'Istanbul', 'Roma', 'Bucharest', 'Bratislava'}
+2024-11-07 12:51:49,595 - INFO - The 75 call passes areas: {'Luxembourg', 'Vienna', 'Geneva', 'Milan', 'Budapest', 'Strasbourg', 'Lyon', 'Bucharest', 'Bratislava', 'Basel', 'Marseille'}
+2024-11-07 12:51:49,595 - INFO - The 81 call passes areas: {'Vienna', 'Milan', 'Bratislava'}
+2024-11-07 12:51:49,595 - INFO - The 82 call passes areas: {'Vienna', 'Budapest', 'Milan', 'Barcelona', 'Marseille', 'Bratislava', 'Zagreb'}
+2024-11-07 12:51:49,595 - INFO - The 86 call passes areas: {'Vienna', 'Milan', 'Roma', 'Bratislava'}
+2024-11-07 12:51:49,595 - INFO - The 87 call passes areas: {'Ljubjana', 'Zagreb', 'Budapest', 'Bratislava'}
+2024-11-07 12:51:49,595 - INFO - The 92 call passes areas: {'Sofia', 'Vienna', 'Budapest', 'Bratislava'}
+2024-11-07 12:51:49,595 - INFO - The 93 call passes areas: {'Budapest', 'Bucharest'}
+2024-11-07 12:51:49,596 - INFO - After departure event 3, unable areas have ['Frankfurt', 'Brussels', 'Zurich'].
+2024-11-07 12:51:49,597 - INFO - The 0 call passes areas: {'Milan', 'Paris', 'Lyon', 'Roma', 'Amsterdam', 'Marseille', 'London'}
+2024-11-07 12:51:49,597 - INFO - The 4 call passes areas: {'Rotterdam', 'Milan', 'Paris', 'Lyon', 'Roma', 'Amsterdam', 'Marseille', 'London'}
+2024-11-07 12:51:49,597 - INFO - The 16 call passes areas: {'Rotterdam', 'Vienna', 'London', 'Budapest', 'Milan', 'Sofia', 'Paris', 'Lyon', 'Bratislava', 'Amsterdam', 'Marseille', 'Athens'}
+2024-11-07 12:51:49,597 - INFO - The 17 call passes areas: {'Milan', 'Paris', 'Lyon', 'Roma', 'Amsterdam', 'Marseille', 'London'}
+2024-11-07 12:51:49,597 - INFO - The 32 call passes areas: {'Paris', 'Lyon', 'Lisbon', 'Marseille', 'London'}
+2024-11-07 12:51:49,597 - INFO - The 36 call passes areas: {'Vienna', 'Ljubjana', 'Budapest', 'Milan', 'Paris', 'Lyon', 'Marseille', 'Bratislava', 'Zagreb'}
+2024-11-07 12:51:49,597 - INFO - The 37 call passes areas: {'Rotterdam', 'Geneva', 'Paris', 'Amsterdam', 'London'}
+2024-11-07 12:51:49,597 - INFO - The 38 call passes areas: {'Geneva', 'Dublin', 'Paris', 'Basel', 'London'}
+2024-11-07 12:51:49,597 - INFO - The 45 call passes areas: {'Vienna', 'Budapest', 'Istanbul', 'Milan', 'Paris', 'Lyon', 'Bucharest', 'Bratislava', 'Marseille', 'London'}
+2024-11-07 12:51:49,597 - INFO - The 57 call passes areas: {'Geneva', 'Paris', 'Lisbon', 'Basel', 'London'}
+2024-11-07 12:51:49,597 - INFO - The 62 call passes areas: {'Geneva', 'Strasbourg', 'Paris', 'Basel', 'Amsterdam', 'London'}
+2024-11-07 12:51:49,597 - INFO - The 67 call passes areas: {'Rotterdam', 'Vienna', 'Milan', 'Paris', 'Praha', 'Lyon', 'Bratislava', 'Amsterdam', 'Marseille', 'London'}
+2024-11-07 12:51:49,597 - INFO - The 70 call passes areas: {'Geneva', 'Paris', 'Strasbourg', 'Basel', 'Amsterdam', 'London'}
+2024-11-07 12:51:49,597 - INFO - The 74 call passes areas: {'Luxembourg', 'Geneva', 'Madrid', 'Strasbourg', 'Paris', 'Basel'}
+2024-11-07 12:51:49,597 - INFO - The 78 call passes areas: {'Paris', 'Geneva'}
+2024-11-07 12:51:49,598 - INFO - The 88 call passes areas: {'Paris', 'Geneva', 'London', 'Lisbon'}
+2024-11-07 12:51:49,598 - INFO - The 89 call passes areas: {'Vienna', 'Warsaw', 'Milan', 'Paris', 'Praha', 'Lyon', 'Lisbon', 'Bratislava', 'Marseille', 'London'}
+2024-11-07 12:51:49,598 - INFO - The 96 call passes areas: {'Madrid', 'Dublin', 'Paris', 'Barcelona', 'London'}
+2024-11-07 12:51:49,598 - INFO - The 97 call passes areas: {'Rotterdam', 'Vienna', 'Milan', 'Paris', 'Praha', 'Lyon', 'Bratislava', 'Amsterdam', 'Marseille', 'London'}
+2024-11-07 12:51:49,598 - INFO - The 98 call passes areas: {'Vienna', 'Milan', 'Budapest', 'Paris', 'Lyon', 'Bucharest', 'Bratislava', 'Amsterdam', 'Marseille', 'London'}
+2024-11-07 12:51:49,598 - INFO - The 99 call passes areas: {'Geneva', 'Dublin', 'Paris', 'Basel', 'London'}
+2024-11-07 12:51:49,641 - INFO - Attacked areas: ['Frankfurt', 'Brussels', 'Zurich', 'Paris']
+2024-11-07 12:51:49,641 - INFO - Potential areas: ['Budapest', 'Bratislava', 'Frankfurt', 'Brussels']
+2024-11-07 12:51:49,641 - INFO - The 1 call passes areas: {'Vienna', 'Geneva', 'Milan', 'Lyon', 'Bratislava', 'Marseille'}
+2024-11-07 12:51:49,641 - INFO - The 3 call passes areas: {'Luxembourg', 'Vienna', 'Zagreb', 'Geneva', 'Milan', 'Budapest', 'Ljubjana', 'Strasbourg', 'Lyon', 'Bratislava', 'Basel', 'Marseille'}
+2024-11-07 12:51:49,641 - INFO - The 5 call passes areas: {'Vienna', 'Geneva', 'Milan', 'Budapest', 'Lyon', 'Bratislava', 'Marseille'}
+2024-11-07 12:51:49,641 - INFO - The 6 call passes areas: {'Vienna', 'Warsaw', 'Milan', 'Praha', 'Bratislava'}
+2024-11-07 12:51:49,641 - INFO - The 7 call passes areas: {'Vienna', 'Geneva', 'Milan', 'Budapest', 'Sofia', 'Lyon', 'Bratislava', 'Basel', 'Marseille'}
+2024-11-07 12:51:49,641 - INFO - The 9 call passes areas: {'Vienna', 'Ljubjana', 'Budapest', 'Milan', 'Bratislava', 'Zagreb'}
+2024-11-07 12:51:49,641 - INFO - The 12 call passes areas: {'Vienna', 'Milan', 'Budapest', 'Madrid', 'Barcelona', 'Bucharest', 'Bratislava', 'Marseille'}
+2024-11-07 12:51:49,641 - INFO - The 13 call passes areas: {'Vienna', 'Budapest', 'Milan', 'Lyon', 'Bratislava', 'Marseille'}
+2024-11-07 12:51:49,641 - INFO - The 14 call passes areas: {'Vienna', 'Geneva', 'Budapest', 'Milan', 'Lyon', 'Bratislava', 'Basel', 'Marseille'}
+2024-11-07 12:51:49,641 - INFO - The 18 call passes areas: {'Budapest', 'Istanbul', 'Bucharest'}
+2024-11-07 12:51:49,641 - INFO - The 19 call passes areas: {'Sofia', 'Budapest', 'Athens', 'Bratislava'}
+2024-11-07 12:51:49,641 - INFO - The 20 call passes areas: {'Vienna', 'Geneva', 'Budapest', 'Milan', 'Lyon', 'Bratislava', 'Marseille'}
+2024-11-07 12:51:49,641 - INFO - The 21 call passes areas: {'Praha', 'Vienna', 'Bratislava'}
+2024-11-07 12:51:49,641 - INFO - The 22 call passes areas: {'Ljubjana', 'Zagreb', 'Budapest'}
+2024-11-07 12:51:49,641 - INFO - The 23 call passes areas: {'Sofia', 'Ljubjana', 'Zagreb', 'Budapest'}
+2024-11-07 12:51:49,641 - INFO - The 24 call passes areas: {'Vienna', 'Budapest', 'Istanbul', 'Bucharest', 'Bratislava'}
+2024-11-07 12:51:49,641 - INFO - The 31 call passes areas: {'Vienna', 'Zagreb', 'Milan', 'Madrid', 'Budapest', 'Barcelona', 'Bratislava', 'Marseille'}
+2024-11-07 12:51:49,641 - INFO - The 35 call passes areas: {'Vienna', 'Warsaw', 'Geneva', 'Milan', 'Praha', 'Lyon', 'Bratislava', 'Marseille'}
+2024-11-07 12:51:49,641 - INFO - The 39 call passes areas: {'Vienna', 'Geneva', 'Milan', 'Praha', 'Lyon', 'Bratislava', 'Basel', 'Marseille'}
+2024-11-07 12:51:49,641 - INFO - The 40 call passes areas: {'Luxembourg', 'Vienna', 'Zagreb', 'Geneva', 'Milan', 'Budapest', 'Strasbourg', 'Lyon', 'Bratislava', 'Basel', 'Marseille'}
+2024-11-07 12:51:49,641 - INFO - The 42 call passes areas: {'Vienna', 'Milan', 'Madrid', 'Budapest', 'Barcelona', 'Bratislava', 'Marseille'}
+2024-11-07 12:51:49,642 - INFO - The 43 call passes areas: {'Ljubjana', 'Budapest', 'Praha', 'Bratislava', 'Zagreb'}
+2024-11-07 12:51:49,642 - INFO - The 46 call passes areas: {'Vienna', 'Budapest', 'Istanbul', 'Bucharest', 'Bratislava'}
+2024-11-07 12:51:49,642 - INFO - The 48 call passes areas: {'Zagreb', 'Budapest'}
+2024-11-07 12:51:49,642 - INFO - The 49 call passes areas: {'Vienna', 'Bratislava'}
+2024-11-07 12:51:49,642 - INFO - The 52 call passes areas: {'Vienna', 'Milan', 'Lyon', 'Bratislava', 'Marseille'}
+2024-11-07 12:51:49,642 - INFO - The 53 call passes areas: {'Marseille', 'Vienna', 'Milan', 'Bratislava'}
+2024-11-07 12:51:49,642 - INFO - The 54 call passes areas: {'Vienna', 'Milan', 'Budapest', 'Lyon', 'Bratislava', 'Marseille'}
+2024-11-07 12:51:49,642 - INFO - The 55 call passes areas: {'Ljubjana', 'Budapest', 'Sofia', 'Zagreb', 'Athens'}
+2024-11-07 12:51:49,642 - INFO - The 59 call passes areas: {'Vienna', 'Budapest', 'Istanbul', 'Milan', 'Roma', 'Bucharest', 'Bratislava'}
+2024-11-07 12:51:49,642 - INFO - The 63 call passes areas: {'Vienna', 'Milan', 'Madrid', 'Budapest', 'Istanbul', 'Barcelona', 'Bucharest', 'Bratislava', 'Marseille'}
+2024-11-07 12:51:49,642 - INFO - The 64 call passes areas: {'Vienna', 'Geneva', 'Budapest', 'Istanbul', 'Milan', 'Lyon', 'Bucharest', 'Bratislava', 'Basel', 'Marseille'}
+2024-11-07 12:51:49,642 - INFO - The 65 call passes areas: {'Sofia', 'Budapest', 'Zagreb', 'Athens'}
+2024-11-07 12:51:49,642 - INFO - The 66 call passes areas: {'Vienna', 'Geneva', 'Milan', 'Budapest', 'Lyon', 'Bucharest', 'Bratislava', 'Basel', 'Marseille'}
+2024-11-07 12:51:49,642 - INFO - The 73 call passes areas: {'Vienna', 'Budapest', 'Milan', 'Istanbul', 'Roma', 'Bucharest', 'Bratislava'}
+2024-11-07 12:51:49,642 - INFO - The 75 call passes areas: {'Luxembourg', 'Vienna', 'Geneva', 'Milan', 'Budapest', 'Strasbourg', 'Lyon', 'Bucharest', 'Bratislava', 'Basel', 'Marseille'}
+2024-11-07 12:51:49,642 - INFO - The 81 call passes areas: {'Vienna', 'Milan', 'Bratislava'}
+2024-11-07 12:51:49,642 - INFO - The 82 call passes areas: {'Vienna', 'Budapest', 'Milan', 'Barcelona', 'Marseille', 'Bratislava', 'Zagreb'}
+2024-11-07 12:51:49,642 - INFO - The 84 call passes areas: {'Luxembourg', 'Vienna', 'Geneva', 'Milan', 'Budapest', 'Istanbul', 'Strasbourg', 'Lyon', 'Bucharest', 'Bratislava', 'Basel', 'Marseille'}
+2024-11-07 12:51:49,642 - INFO - The 86 call passes areas: {'Vienna', 'Milan', 'Roma', 'Bratislava'}
+2024-11-07 12:51:49,642 - INFO - The 87 call passes areas: {'Ljubjana', 'Zagreb', 'Budapest', 'Bratislava'}
+2024-11-07 12:51:49,642 - INFO - The 92 call passes areas: {'Sofia', 'Vienna', 'Budapest', 'Bratislava'}
+2024-11-07 12:51:49,642 - INFO - The 93 call passes areas: {'Budapest', 'Bucharest'}
+2024-11-07 12:51:49,643 - INFO - After departure event 2, unable areas have ['Frankfurt', 'Brussels', 'Paris'].
+2024-11-07 12:51:49,643 - INFO - The 3 call passes areas: {'Luxembourg', 'Vienna', 'Zagreb', 'Geneva', 'Milan', 'Budapest', 'Ljubjana', 'Strasbourg', 'Lyon', 'Bratislava', 'Basel', 'Marseille'}
+2024-11-07 12:51:49,643 - INFO - The 5 call passes areas: {'Vienna', 'Geneva', 'Milan', 'Budapest', 'Lyon', 'Bratislava', 'Marseille'}
+2024-11-07 12:51:49,644 - INFO - The 7 call passes areas: {'Vienna', 'Geneva', 'Milan', 'Budapest', 'Sofia', 'Lyon', 'Bratislava', 'Basel', 'Marseille'}
+2024-11-07 12:51:49,644 - INFO - The 8 call passes areas: {'Zurich', 'Vienna', 'Budapest', 'Milan', 'Sofia', 'Bratislava', 'Athens'}
+2024-11-07 12:51:49,644 - INFO - The 9 call passes areas: {'Vienna', 'Ljubjana', 'Budapest', 'Milan', 'Bratislava', 'Zagreb'}
+2024-11-07 12:51:49,644 - INFO - The 12 call passes areas: {'Vienna', 'Milan', 'Budapest', 'Madrid', 'Barcelona', 'Bucharest', 'Bratislava', 'Marseille'}
+2024-11-07 12:51:49,644 - INFO - The 13 call passes areas: {'Vienna', 'Budapest', 'Milan', 'Lyon', 'Bratislava', 'Marseille'}
+2024-11-07 12:51:49,644 - INFO - The 14 call passes areas: {'Vienna', 'Geneva', 'Budapest', 'Milan', 'Lyon', 'Bratislava', 'Basel', 'Marseille'}
+2024-11-07 12:51:49,644 - INFO - The 18 call passes areas: {'Budapest', 'Istanbul', 'Bucharest'}
+2024-11-07 12:51:49,644 - INFO - The 19 call passes areas: {'Sofia', 'Budapest', 'Athens', 'Bratislava'}
+2024-11-07 12:51:49,644 - INFO - The 20 call passes areas: {'Vienna', 'Geneva', 'Budapest', 'Milan', 'Lyon', 'Bratislava', 'Marseille'}
+2024-11-07 12:51:49,644 - INFO - The 22 call passes areas: {'Ljubjana', 'Zagreb', 'Budapest'}
+2024-11-07 12:51:49,644 - INFO - The 23 call passes areas: {'Sofia', 'Ljubjana', 'Zagreb', 'Budapest'}
+2024-11-07 12:51:49,644 - INFO - The 24 call passes areas: {'Vienna', 'Budapest', 'Istanbul', 'Bucharest', 'Bratislava'}
+2024-11-07 12:51:49,644 - INFO - The 31 call passes areas: {'Vienna', 'Zagreb', 'Milan', 'Madrid', 'Budapest', 'Barcelona', 'Bratislava', 'Marseille'}
+2024-11-07 12:51:49,644 - INFO - The 40 call passes areas: {'Luxembourg', 'Vienna', 'Zagreb', 'Geneva', 'Milan', 'Budapest', 'Strasbourg', 'Lyon', 'Bratislava', 'Basel', 'Marseille'}
+2024-11-07 12:51:49,644 - INFO - The 42 call passes areas: {'Vienna', 'Milan', 'Madrid', 'Budapest', 'Barcelona', 'Bratislava', 'Marseille'}
+2024-11-07 12:51:49,644 - INFO - The 43 call passes areas: {'Ljubjana', 'Budapest', 'Praha', 'Bratislava', 'Zagreb'}
+2024-11-07 12:51:49,644 - INFO - The 46 call passes areas: {'Vienna', 'Budapest', 'Istanbul', 'Bucharest', 'Bratislava'}
+2024-11-07 12:51:49,644 - INFO - The 48 call passes areas: {'Zagreb', 'Budapest'}
+2024-11-07 12:51:49,644 - INFO - The 54 call passes areas: {'Vienna', 'Milan', 'Budapest', 'Lyon', 'Bratislava', 'Marseille'}
+2024-11-07 12:51:49,644 - INFO - The 55 call passes areas: {'Ljubjana', 'Budapest', 'Sofia', 'Zagreb', 'Athens'}
+2024-11-07 12:51:49,644 - INFO - The 59 call passes areas: {'Vienna', 'Budapest', 'Istanbul', 'Milan', 'Roma', 'Bucharest', 'Bratislava'}
+2024-11-07 12:51:49,644 - INFO - The 63 call passes areas: {'Vienna', 'Milan', 'Madrid', 'Budapest', 'Istanbul', 'Barcelona', 'Bucharest', 'Bratislava', 'Marseille'}
+2024-11-07 12:51:49,644 - INFO - The 64 call passes areas: {'Vienna', 'Geneva', 'Budapest', 'Istanbul', 'Milan', 'Lyon', 'Bucharest', 'Bratislava', 'Basel', 'Marseille'}
+2024-11-07 12:51:49,644 - INFO - The 65 call passes areas: {'Sofia', 'Budapest', 'Zagreb', 'Athens'}
+2024-11-07 12:51:49,644 - INFO - The 66 call passes areas: {'Vienna', 'Geneva', 'Milan', 'Budapest', 'Lyon', 'Bucharest', 'Bratislava', 'Basel', 'Marseille'}
+2024-11-07 12:51:49,644 - INFO - The 73 call passes areas: {'Vienna', 'Budapest', 'Milan', 'Istanbul', 'Roma', 'Bucharest', 'Bratislava'}
+2024-11-07 12:51:49,644 - INFO - The 75 call passes areas: {'Luxembourg', 'Vienna', 'Geneva', 'Milan', 'Budapest', 'Strasbourg', 'Lyon', 'Bucharest', 'Bratislava', 'Basel', 'Marseille'}
+2024-11-07 12:51:49,644 - INFO - The 82 call passes areas: {'Vienna', 'Budapest', 'Milan', 'Barcelona', 'Marseille', 'Bratislava', 'Zagreb'}
+2024-11-07 12:51:49,644 - INFO - The 84 call passes areas: {'Luxembourg', 'Vienna', 'Geneva', 'Milan', 'Budapest', 'Istanbul', 'Strasbourg', 'Lyon', 'Bucharest', 'Bratislava', 'Basel', 'Marseille'}
+2024-11-07 12:51:49,644 - INFO - The 87 call passes areas: {'Ljubjana', 'Zagreb', 'Budapest', 'Bratislava'}
+2024-11-07 12:51:49,644 - INFO - The 92 call passes areas: {'Sofia', 'Vienna', 'Budapest', 'Bratislava'}
+2024-11-07 12:51:49,644 - INFO - The 93 call passes areas: {'Budapest', 'Bucharest'}
+2024-11-07 12:51:49,690 - INFO - Attacked areas: ['Frankfurt', 'Brussels', 'Paris', 'Budapest']
+2024-11-07 12:51:49,690 - INFO - Potential areas: ['Budapest', 'Bratislava', 'Frankfurt', 'Brussels']
+2024-11-07 12:51:49,691 - INFO - The 1 call passes areas: {'Vienna', 'Geneva', 'Milan', 'Lyon', 'Bratislava', 'Marseille'}
+2024-11-07 12:51:49,691 - INFO - The 6 call passes areas: {'Vienna', 'Warsaw', 'Milan', 'Praha', 'Bratislava'}
+2024-11-07 12:51:49,691 - INFO - The 7 call passes areas: {'Kiev', 'Vienna', 'Zurich', 'Warsaw', 'Geneva', 'Milan', 'Istanbul', 'Sofia', 'Praha', 'Bucharest', 'Bratislava', 'Basel', 'Athens'}
+2024-11-07 12:51:49,691 - INFO - The 8 call passes areas: {'Kiev', 'Zurich', 'Vienna', 'Warsaw', 'Milan', 'Istanbul', 'Praha', 'Bucharest', 'Bratislava', 'Athens'}
+2024-11-07 12:51:49,691 - INFO - The 12 call passes areas: {'Kiev', 'Vienna', 'Warsaw', 'Milan', 'Madrid', 'Barcelona', 'Praha', 'Bucharest', 'Bratislava', 'Marseille'}
+2024-11-07 12:51:49,691 - INFO - The 19 call passes areas: {'Kiev', 'Warsaw', 'Istanbul', 'Praha', 'Bucharest', 'Bratislava', 'Athens'}
+2024-11-07 12:51:49,691 - INFO - The 21 call passes areas: {'Praha', 'Vienna', 'Bratislava'}
+2024-11-07 12:51:49,691 - INFO - The 24 call passes areas: {'Kiev', 'Vienna', 'Warsaw', 'Istanbul', 'Praha', 'Bucharest', 'Bratislava'}
+2024-11-07 12:51:49,691 - INFO - The 35 call passes areas: {'Vienna', 'Warsaw', 'Geneva', 'Milan', 'Praha', 'Lyon', 'Bratislava', 'Marseille'}
+2024-11-07 12:51:49,691 - INFO - The 39 call passes areas: {'Vienna', 'Geneva', 'Milan', 'Praha', 'Lyon', 'Bratislava', 'Basel', 'Marseille'}
+2024-11-07 12:51:49,691 - INFO - The 46 call passes areas: {'Kiev', 'Vienna', 'Warsaw', 'Istanbul', 'Praha', 'Bucharest', 'Bratislava'}
+2024-11-07 12:51:49,691 - INFO - The 49 call passes areas: {'Vienna', 'Bratislava'}
+2024-11-07 12:51:49,691 - INFO - The 52 call passes areas: {'Vienna', 'Milan', 'Lyon', 'Bratislava', 'Marseille'}
+2024-11-07 12:51:49,691 - INFO - The 53 call passes areas: {'Marseille', 'Vienna', 'Milan', 'Bratislava'}
+2024-11-07 12:51:49,691 - INFO - The 59 call passes areas: {'Kiev', 'Vienna', 'Warsaw', 'Milan', 'Istanbul', 'Praha', 'Roma', 'Bucharest', 'Bratislava'}
+2024-11-07 12:51:49,691 - INFO - The 63 call passes areas: {'Kiev', 'Vienna', 'Warsaw', 'Milan', 'Madrid', 'Istanbul', 'Barcelona', 'Praha', 'Bucharest', 'Bratislava', 'Marseille'}
+2024-11-07 12:51:49,691 - INFO - The 64 call passes areas: {'Kiev', 'Vienna', 'Zurich', 'Warsaw', 'Geneva', 'Milan', 'Istanbul', 'Praha', 'Bucharest', 'Bratislava', 'Basel'}
+2024-11-07 12:51:49,691 - INFO - The 66 call passes areas: {'Kiev', 'Vienna', 'Zurich', 'Warsaw', 'Geneva', 'Milan', 'Praha', 'Bucharest', 'Bratislava', 'Basel'}
+2024-11-07 12:51:49,691 - INFO - The 73 call passes areas: {'Kiev', 'Vienna', 'Warsaw', 'Milan', 'Istanbul', 'Praha', 'Roma', 'Bucharest', 'Bratislava'}
+2024-11-07 12:51:49,691 - INFO - The 75 call passes areas: {'Kiev', 'Luxembourg', 'Zurich', 'Vienna', 'Warsaw', 'Geneva', 'Milan', 'Strasbourg', 'Praha', 'Bucharest', 'Bratislava', 'Basel'}
+2024-11-07 12:51:49,691 - INFO - The 76 call passes areas: {'Vienna', 'Zurich', 'Vaduz', 'Milan', 'Bratislava'}
+2024-11-07 12:51:49,691 - INFO - The 81 call passes areas: {'Vienna', 'Milan', 'Bratislava'}
+2024-11-07 12:51:49,691 - INFO - The 84 call passes areas: {'Kiev', 'Luxembourg', 'Zurich', 'Vienna', 'Warsaw', 'Geneva', 'Milan', 'Istanbul', 'Strasbourg', 'Praha', 'Bucharest', 'Bratislava', 'Basel'}
+2024-11-07 12:51:49,691 - INFO - The 86 call passes areas: {'Vienna', 'Milan', 'Roma', 'Bratislava'}
+2024-11-07 12:51:49,691 - INFO - The 92 call passes areas: {'Kiev', 'Vienna', 'Warsaw', 'Istanbul', 'Sofia', 'Praha', 'Bucharest', 'Bratislava', 'Athens'}
+2024-11-07 12:51:49,691 - INFO - The 95 call passes areas: {'Zurich', 'Milan', 'Vienna', 'Bratislava'}
+2024-11-07 12:51:49,692 - INFO - After departure event 4, unable areas have ['Frankfurt', 'Brussels', 'Budapest'].
+2024-11-07 12:51:49,693 - INFO - The 0 call passes areas: {'Zurich', 'Geneva', 'Paris', 'Roma', 'Amsterdam', 'London'}
+2024-11-07 12:51:49,693 - INFO - The 1 call passes areas: {'Vienna', 'Geneva', 'Milan', 'Lyon', 'Bratislava', 'Marseille'}
+2024-11-07 12:51:49,693 - INFO - The 4 call passes areas: {'Rotterdam', 'Zurich', 'Geneva', 'Paris', 'Roma', 'Amsterdam', 'London'}
+2024-11-07 12:51:49,693 - INFO - The 7 call passes areas: {'Kiev', 'Vienna', 'Zurich', 'Warsaw', 'Geneva', 'Milan', 'Istanbul', 'Sofia', 'Praha', 'Bucharest', 'Bratislava', 'Basel', 'Athens'}
+2024-11-07 12:51:49,693 - INFO - The 16 call passes areas: {'Kiev', 'Vienna', 'Zurich', 'Rotterdam', 'Warsaw', 'Geneva', 'Milan', 'Istanbul', 'London', 'Paris', 'Praha', 'Bucharest', 'Bratislava', 'Amsterdam', 'Athens'}
+2024-11-07 12:51:49,693 - INFO - The 17 call passes areas: {'Zurich', 'Geneva', 'Paris', 'Roma', 'Amsterdam', 'London'}
+2024-11-07 12:51:49,693 - INFO - The 25 call passes areas: {'Luxembourg', 'Geneva', 'Milan', 'Strasbourg', 'Lyon', 'Roma', 'Basel', 'Marseille'}
+2024-11-07 12:51:49,693 - INFO - The 26 call passes areas: {'Basel', 'Lyon', 'Strasbourg', 'Geneva'}
+2024-11-07 12:51:49,693 - INFO - The 33 call passes areas: {'Luxembourg', 'Geneva', 'Strasbourg', 'Lyon', 'Basel', 'Marseille'}
+2024-11-07 12:51:49,693 - INFO - The 35 call passes areas: {'Vienna', 'Warsaw', 'Geneva', 'Milan', 'Praha', 'Lyon', 'Bratislava', 'Marseille'}
+2024-11-07 12:51:49,693 - INFO - The 37 call passes areas: {'Rotterdam', 'Geneva', 'Paris', 'Amsterdam', 'London'}
+2024-11-07 12:51:49,693 - INFO - The 38 call passes areas: {'Geneva', 'Dublin', 'Paris', 'Basel', 'London'}
+2024-11-07 12:51:49,693 - INFO - The 39 call passes areas: {'Vienna', 'Geneva', 'Milan', 'Praha', 'Lyon', 'Bratislava', 'Basel', 'Marseille'}
+2024-11-07 12:51:49,693 - INFO - The 45 call passes areas: {'Kiev', 'Vienna', 'Zurich', 'Warsaw', 'Geneva', 'Milan', 'Istanbul', 'Paris', 'Praha', 'Bucharest', 'Bratislava', 'London'}
+2024-11-07 12:51:49,693 - INFO - The 50 call passes areas: {'Geneva', 'Barcelona', 'Lyon', 'Basel', 'Marseille'}
+2024-11-07 12:51:49,693 - INFO - The 56 call passes areas: {'Geneva', 'Zurich'}
+2024-11-07 12:51:49,693 - INFO - The 57 call passes areas: {'Geneva', 'Paris', 'Lisbon', 'Basel', 'London'}
+2024-11-07 12:51:49,693 - INFO - The 58 call passes areas: {'Lyon', 'Strasbourg', 'Geneva', 'Basel'}
+2024-11-07 12:51:49,693 - INFO - The 60 call passes areas: {'Luxembourg', 'Zurich', 'Geneva', 'Strasbourg', 'Basel'}
+2024-11-07 12:51:49,693 - INFO - The 62 call passes areas: {'Geneva', 'Strasbourg', 'Paris', 'Basel', 'Amsterdam', 'London'}
+2024-11-07 12:51:49,693 - INFO - The 64 call passes areas: {'Kiev', 'Vienna', 'Zurich', 'Warsaw', 'Geneva', 'Milan', 'Istanbul', 'Praha', 'Bucharest', 'Bratislava', 'Basel'}
+2024-11-07 12:51:49,693 - INFO - The 66 call passes areas: {'Kiev', 'Vienna', 'Zurich', 'Warsaw', 'Geneva', 'Milan', 'Praha', 'Bucharest', 'Bratislava', 'Basel'}
+2024-11-07 12:51:49,693 - INFO - The 67 call passes areas: {'Rotterdam', 'Zurich', 'Vienna', 'Geneva', 'Milan', 'Paris', 'Praha', 'Bratislava', 'Amsterdam', 'London'}
+2024-11-07 12:51:49,693 - INFO - The 70 call passes areas: {'Geneva', 'Paris', 'Strasbourg', 'Basel', 'Amsterdam', 'London'}
+2024-11-07 12:51:49,693 - INFO - The 71 call passes areas: {'Rotterdam', 'Zurich', 'Vaduz', 'Geneva', 'Paris', 'Amsterdam', 'London'}
+2024-11-07 12:51:49,693 - INFO - The 74 call passes areas: {'Luxembourg', 'Geneva', 'Madrid', 'Strasbourg', 'Barcelona', 'Lyon', 'Basel', 'Marseille'}
+2024-11-07 12:51:49,693 - INFO - The 75 call passes areas: {'Kiev', 'Luxembourg', 'Zurich', 'Vienna', 'Warsaw', 'Geneva', 'Milan', 'Strasbourg', 'Praha', 'Bucharest', 'Bratislava', 'Basel'}
+2024-11-07 12:51:49,693 - INFO - The 78 call passes areas: {'Paris', 'Geneva'}
+2024-11-07 12:51:49,693 - INFO - The 80 call passes areas: {'Lyon', 'Strasbourg', 'Geneva', 'Basel'}
+2024-11-07 12:51:49,693 - INFO - The 84 call passes areas: {'Kiev', 'Luxembourg', 'Zurich', 'Vienna', 'Warsaw', 'Geneva', 'Milan', 'Istanbul', 'Strasbourg', 'Praha', 'Bucharest', 'Bratislava', 'Basel'}
+2024-11-07 12:51:49,694 - INFO - The 88 call passes areas: {'Paris', 'Geneva', 'London', 'Lisbon'}
+2024-11-07 12:51:49,694 - INFO - The 89 call passes areas: {'Vienna', 'Zurich', 'Warsaw', 'Geneva', 'Milan', 'Paris', 'Praha', 'Lisbon', 'Bratislava', 'London'}
+2024-11-07 12:51:49,694 - INFO - The 97 call passes areas: {'Rotterdam', 'Vienna', 'Zurich', 'Geneva', 'Milan', 'Paris', 'Praha', 'Bratislava', 'Amsterdam', 'London'}
+2024-11-07 12:51:49,694 - INFO - The 98 call passes areas: {'Kiev', 'Vienna', 'Zurich', 'Warsaw', 'Geneva', 'Milan', 'Paris', 'Praha', 'Bucharest', 'Bratislava', 'Amsterdam', 'London'}
+2024-11-07 12:51:49,694 - INFO - The 99 call passes areas: {'Geneva', 'Dublin', 'Paris', 'Basel', 'London'}
+2024-11-07 12:51:49,738 - INFO - Attacked areas: ['Frankfurt', 'Brussels', 'Budapest', 'Geneva']
+2024-11-07 12:51:49,738 - INFO - Potential areas: ['Budapest', 'Bratislava', 'Frankfurt', 'Brussels']
+2024-11-07 12:51:49,738 - INFO - The 6 call passes areas: {'Vienna', 'Warsaw', 'Milan', 'Praha', 'Bratislava'}
+2024-11-07 12:51:49,738 - INFO - The 8 call passes areas: {'Kiev', 'Zurich', 'Vienna', 'Warsaw', 'Milan', 'Istanbul', 'Praha', 'Bucharest', 'Bratislava', 'Athens'}
+2024-11-07 12:51:49,738 - INFO - The 12 call passes areas: {'Kiev', 'Vienna', 'Warsaw', 'Milan', 'Madrid', 'Barcelona', 'Praha', 'Bucharest', 'Bratislava', 'Marseille'}
+2024-11-07 12:51:49,738 - INFO - The 16 call passes areas: {'Kiev', 'Vienna', 'Rotterdam', 'Warsaw', 'London', 'Milan', 'Istanbul', 'Paris', 'Praha', 'Lyon', 'Bucharest', 'Bratislava', 'Amsterdam', 'Marseille', 'Athens'}
+2024-11-07 12:51:49,738 - INFO - The 19 call passes areas: {'Kiev', 'Warsaw', 'Istanbul', 'Praha', 'Bucharest', 'Bratislava', 'Athens'}
+2024-11-07 12:51:49,738 - INFO - The 21 call passes areas: {'Praha', 'Vienna', 'Bratislava'}
+2024-11-07 12:51:49,738 - INFO - The 24 call passes areas: {'Kiev', 'Vienna', 'Warsaw', 'Istanbul', 'Praha', 'Bucharest', 'Bratislava'}
+2024-11-07 12:51:49,738 - INFO - The 45 call passes areas: {'Kiev', 'Vienna', 'Warsaw', 'Milan', 'Istanbul', 'Paris', 'Praha', 'Lyon', 'Bucharest', 'Bratislava', 'Marseille', 'London'}
+2024-11-07 12:51:49,738 - INFO - The 46 call passes areas: {'Kiev', 'Vienna', 'Warsaw', 'Istanbul', 'Praha', 'Bucharest', 'Bratislava'}
+2024-11-07 12:51:49,738 - INFO - The 49 call passes areas: {'Vienna', 'Bratislava'}
+2024-11-07 12:51:49,738 - INFO - The 52 call passes areas: {'Vienna', 'Milan', 'Lyon', 'Bratislava', 'Marseille'}
+2024-11-07 12:51:49,738 - INFO - The 53 call passes areas: {'Marseille', 'Vienna', 'Milan', 'Bratislava'}
+2024-11-07 12:51:49,738 - INFO - The 59 call passes areas: {'Kiev', 'Vienna', 'Warsaw', 'Milan', 'Istanbul', 'Praha', 'Roma', 'Bucharest', 'Bratislava'}
+2024-11-07 12:51:49,738 - INFO - The 63 call passes areas: {'Kiev', 'Vienna', 'Warsaw', 'Milan', 'Madrid', 'Istanbul', 'Barcelona', 'Praha', 'Bucharest', 'Bratislava', 'Marseille'}
+2024-11-07 12:51:49,738 - INFO - The 67 call passes areas: {'Rotterdam', 'Vienna', 'Milan', 'Paris', 'Praha', 'Lyon', 'Bratislava', 'Amsterdam', 'Marseille', 'London'}
+2024-11-07 12:51:49,738 - INFO - The 73 call passes areas: {'Kiev', 'Vienna', 'Warsaw', 'Milan', 'Istanbul', 'Praha', 'Roma', 'Bucharest', 'Bratislava'}
+2024-11-07 12:51:49,738 - INFO - The 76 call passes areas: {'Vienna', 'Zurich', 'Vaduz', 'Milan', 'Bratislava'}
+2024-11-07 12:51:49,738 - INFO - The 81 call passes areas: {'Vienna', 'Milan', 'Bratislava'}
+2024-11-07 12:51:49,739 - INFO - The 86 call passes areas: {'Vienna', 'Milan', 'Roma', 'Bratislava'}
+2024-11-07 12:51:49,739 - INFO - The 89 call passes areas: {'Vienna', 'Warsaw', 'Milan', 'Paris', 'Praha', 'Lyon', 'Lisbon', 'Bratislava', 'Marseille', 'London'}
+2024-11-07 12:51:49,739 - INFO - The 92 call passes areas: {'Kiev', 'Vienna', 'Warsaw', 'Istanbul', 'Sofia', 'Praha', 'Bucharest', 'Bratislava', 'Athens'}
+2024-11-07 12:51:49,739 - INFO - The 95 call passes areas: {'Zurich', 'Milan', 'Vienna', 'Bratislava'}
+2024-11-07 12:51:49,739 - INFO - The 97 call passes areas: {'Rotterdam', 'Vienna', 'Milan', 'Paris', 'Praha', 'Lyon', 'Bratislava', 'Amsterdam', 'Marseille', 'London'}
+2024-11-07 12:51:49,739 - INFO - The 98 call passes areas: {'Kiev', 'Vienna', 'Warsaw', 'Milan', 'Paris', 'Praha', 'Lyon', 'Bucharest', 'Bratislava', 'Amsterdam', 'Marseille', 'London'}
+2024-11-07 12:51:49,740 - INFO - After departure event 0, unable areas have ['Brussels', 'Budapest', 'Geneva'].
+2024-11-07 12:51:49,740 - INFO - The 0 call passes areas: {'Milan', 'Paris', 'Lyon', 'Roma', 'Amsterdam', 'Marseille', 'London'}
+2024-11-07 12:51:49,741 - INFO - The 4 call passes areas: {'Rotterdam', 'Milan', 'Paris', 'Lyon', 'Roma', 'Amsterdam', 'Marseille', 'London'}
+2024-11-07 12:51:49,741 - INFO - The 6 call passes areas: {'Vienna', 'Warsaw', 'Milan', 'Praha', 'Bratislava'}
+2024-11-07 12:51:49,741 - INFO - The 8 call passes areas: {'Kiev', 'Zurich', 'Vienna', 'Warsaw', 'Milan', 'Istanbul', 'Praha', 'Bucharest', 'Bratislava', 'Athens'}
+2024-11-07 12:51:49,741 - INFO - The 10 call passes areas: {'Marseille', 'Vienna', 'Milan'}
+2024-11-07 12:51:49,741 - INFO - The 12 call passes areas: {'Kiev', 'Vienna', 'Warsaw', 'Milan', 'Madrid', 'Barcelona', 'Praha', 'Bucharest', 'Bratislava', 'Marseille'}
+2024-11-07 12:51:49,741 - INFO - The 16 call passes areas: {'Kiev', 'Vienna', 'Rotterdam', 'Warsaw', 'London', 'Milan', 'Istanbul', 'Paris', 'Praha', 'Lyon', 'Bucharest', 'Bratislava', 'Amsterdam', 'Marseille', 'Athens'}
+2024-11-07 12:51:49,741 - INFO - The 17 call passes areas: {'Milan', 'Paris', 'Lyon', 'Roma', 'Amsterdam', 'Marseille', 'London'}
+2024-11-07 12:51:49,741 - INFO - The 33 call passes areas: {'Frankfurt', 'Luxembourg', 'Vienna', 'Milan', 'Strasbourg', 'Marseille'}
+2024-11-07 12:51:49,741 - INFO - The 45 call passes areas: {'Kiev', 'Vienna', 'Warsaw', 'Milan', 'Istanbul', 'Paris', 'Praha', 'Lyon', 'Bucharest', 'Bratislava', 'Marseille', 'London'}
+2024-11-07 12:51:49,741 - INFO - The 50 call passes areas: {'Frankfurt', 'Vienna', 'Milan', 'Strasbourg', 'Barcelona', 'Basel', 'Marseille'}
+2024-11-07 12:51:49,741 - INFO - The 52 call passes areas: {'Vienna', 'Milan', 'Lyon', 'Bratislava', 'Marseille'}
+2024-11-07 12:51:49,741 - INFO - The 53 call passes areas: {'Marseille', 'Vienna', 'Milan', 'Bratislava'}
+2024-11-07 12:51:49,741 - INFO - The 59 call passes areas: {'Kiev', 'Vienna', 'Warsaw', 'Milan', 'Istanbul', 'Praha', 'Roma', 'Bucharest', 'Bratislava'}
+2024-11-07 12:51:49,741 - INFO - The 63 call passes areas: {'Kiev', 'Vienna', 'Warsaw', 'Milan', 'Madrid', 'Istanbul', 'Barcelona', 'Praha', 'Bucharest', 'Bratislava', 'Marseille'}
+2024-11-07 12:51:49,741 - INFO - The 67 call passes areas: {'Rotterdam', 'Vienna', 'Milan', 'Paris', 'Praha', 'Lyon', 'Bratislava', 'Amsterdam', 'Marseille', 'London'}
+2024-11-07 12:51:49,741 - INFO - The 71 call passes areas: {'Rotterdam', 'Zurich', 'Vaduz', 'Milan', 'Paris', 'Lyon', 'Amsterdam', 'Marseille', 'London'}
+2024-11-07 12:51:49,741 - INFO - The 72 call passes areas: {'Lyon', 'Marseille', 'Vienna', 'Milan'}
+2024-11-07 12:51:49,741 - INFO - The 73 call passes areas: {'Kiev', 'Vienna', 'Warsaw', 'Milan', 'Istanbul', 'Praha', 'Roma', 'Bucharest', 'Bratislava'}
+2024-11-07 12:51:49,741 - INFO - The 76 call passes areas: {'Vienna', 'Zurich', 'Vaduz', 'Milan', 'Bratislava'}
+2024-11-07 12:51:49,741 - INFO - The 79 call passes areas: {'Stockholm', 'Vienna', 'Milan', 'Frankfurt'}
+2024-11-07 12:51:49,741 - INFO - The 81 call passes areas: {'Vienna', 'Milan', 'Bratislava'}
+2024-11-07 12:51:49,741 - INFO - The 86 call passes areas: {'Vienna', 'Milan', 'Roma', 'Bratislava'}
+2024-11-07 12:51:49,741 - INFO - The 89 call passes areas: {'Vienna', 'Warsaw', 'Milan', 'Paris', 'Praha', 'Lyon', 'Lisbon', 'Bratislava', 'Marseille', 'London'}
+2024-11-07 12:51:49,741 - INFO - The 95 call passes areas: {'Zurich', 'Milan', 'Vienna', 'Bratislava'}
+2024-11-07 12:51:49,741 - INFO - The 97 call passes areas: {'Rotterdam', 'Vienna', 'Milan', 'Paris', 'Praha', 'Lyon', 'Bratislava', 'Amsterdam', 'Marseille', 'London'}
+2024-11-07 12:51:49,741 - INFO - The 98 call passes areas: {'Kiev', 'Vienna', 'Warsaw', 'Milan', 'Paris', 'Praha', 'Lyon', 'Bucharest', 'Bratislava', 'Amsterdam', 'Marseille', 'London'}
+2024-11-07 12:51:49,787 - INFO - Attacked areas: ['Brussels', 'Budapest', 'Geneva', 'Milan']
+2024-11-07 12:51:49,787 - INFO - Potential areas: ['Budapest', 'Bratislava', 'Frankfurt', 'Brussels']
+2024-11-07 12:51:49,787 - INFO - The 0 call passes areas: {'Amsterdam', 'Frankfurt', 'Zurich', 'Roma'}
+2024-11-07 12:51:49,787 - INFO - The 4 call passes areas: {'Rotterdam', 'Zurich', 'Frankfurt', 'Roma', 'Amsterdam'}
+2024-11-07 12:51:49,787 - INFO - The 7 call passes areas: {'Frankfurt', 'Kiev', 'Warsaw', 'Istanbul', 'Sofia', 'Strasbourg', 'Bucharest', 'Basel', 'Athens'}
+2024-11-07 12:51:49,787 - INFO - The 8 call passes areas: {'Frankfurt', 'Zurich', 'Kiev', 'Warsaw', 'Istanbul', 'Bucharest', 'Athens'}
+2024-11-07 12:51:49,787 - INFO - The 10 call passes areas: {'Frankfurt', 'Vienna', 'Paris', 'Lyon', 'Amsterdam', 'Marseille', 'London'}
+2024-11-07 12:51:49,787 - INFO - The 11 call passes areas: {'Frankfurt', 'Madrid', 'Paris', 'Amsterdam', 'London'}
+2024-11-07 12:51:49,787 - INFO - The 12 call passes areas: {'Kiev', 'Frankfurt', 'Warsaw', 'Madrid', 'Paris', 'Bucharest', 'Amsterdam', 'London'}
+2024-11-07 12:51:49,787 - INFO - The 15 call passes areas: {'Stockholm', 'Amsterdam', 'London', 'Frankfurt'}
+2024-11-07 12:51:49,787 - INFO - The 16 call passes areas: {'Kiev', 'Frankfurt', 'Rotterdam', 'Warsaw', 'Istanbul', 'Bucharest', 'Amsterdam', 'Athens'}
+2024-11-07 12:51:49,787 - INFO - The 17 call passes areas: {'Amsterdam', 'Zurich', 'Roma', 'Frankfurt'}
+2024-11-07 12:51:49,787 - INFO - The 19 call passes areas: {'Kiev', 'Warsaw', 'Istanbul', 'Praha', 'Bucharest', 'Bratislava', 'Athens'}
+2024-11-07 12:51:49,787 - INFO - The 21 call passes areas: {'Praha', 'Vienna', 'Bratislava'}
+2024-11-07 12:51:49,787 - INFO - The 24 call passes areas: {'Kiev', 'Vienna', 'Warsaw', 'Istanbul', 'Praha', 'Bucharest', 'Bratislava'}
+2024-11-07 12:51:49,787 - INFO - The 25 call passes areas: {'Frankfurt', 'Zurich', 'Luxembourg', 'Strasbourg', 'Roma'}
+2024-11-07 12:51:49,787 - INFO - The 26 call passes areas: {'Frankfurt', 'Paris', 'Strasbourg', 'Lyon', 'Amsterdam', 'London'}
+2024-11-07 12:51:49,787 - INFO - The 27 call passes areas: {'Strasbourg', 'Stockholm', 'Basel', 'Frankfurt'}
+2024-11-07 12:51:49,787 - INFO - The 33 call passes areas: {'Frankfurt', 'Luxembourg', 'Strasbourg', 'Paris', 'Lyon', 'Amsterdam', 'Marseille', 'London'}
+2024-11-07 12:51:49,787 - INFO - The 38 call passes areas: {'Frankfurt', 'Dublin', 'Strasbourg', 'Basel', 'Amsterdam', 'London'}
+2024-11-07 12:51:49,788 - INFO - The 39 call passes areas: {'Strasbourg', 'Praha', 'Basel', 'Frankfurt'}
+2024-11-07 12:51:49,788 - INFO - The 45 call passes areas: {'Kiev', 'Frankfurt', 'Warsaw', 'Istanbul', 'Bucharest', 'Amsterdam', 'London'}
+2024-11-07 12:51:49,788 - INFO - The 46 call passes areas: {'Kiev', 'Vienna', 'Warsaw', 'Istanbul', 'Praha', 'Bucharest', 'Bratislava'}
+2024-11-07 12:51:49,788 - INFO - The 49 call passes areas: {'Vienna', 'Bratislava'}
+2024-11-07 12:51:49,788 - INFO - The 50 call passes areas: {'Frankfurt', 'Madrid', 'Strasbourg', 'Paris', 'Barcelona', 'Basel', 'Amsterdam', 'London'}
+2024-11-07 12:51:49,788 - INFO - The 51 call passes areas: {'Frankfurt', 'Kiev', 'Warsaw', 'Istanbul', 'Bucharest'}
+2024-11-07 12:51:49,788 - INFO - The 52 call passes areas: {'Frankfurt', 'Vienna', 'Paris', 'Lyon', 'Bratislava', 'Amsterdam', 'London'}
+2024-11-07 12:51:49,788 - INFO - The 53 call passes areas: {'Frankfurt', 'Vienna', 'Paris', 'Lyon', 'Bratislava', 'Amsterdam', 'Marseille', 'London'}
+2024-11-07 12:51:49,788 - INFO - The 57 call passes areas: {'Frankfurt', 'Strasbourg', 'Lisbon', 'Basel', 'Amsterdam', 'London'}
+2024-11-07 12:51:49,788 - INFO - The 58 call passes areas: {'Frankfurt', 'Strasbourg', 'Paris', 'Lyon', 'Amsterdam', 'London'}
+2024-11-07 12:51:49,788 - INFO - The 59 call passes areas: {'Kiev', 'Frankfurt', 'Zurich', 'Warsaw', 'Istanbul', 'Roma', 'Bucharest'}
+2024-11-07 12:51:49,788 - INFO - The 60 call passes areas: {'Strasbourg', 'Frankfurt', 'Zurich', 'Luxembourg'}
+2024-11-07 12:51:49,788 - INFO - The 61 call passes areas: {'Frankfurt', 'Praha'}
+2024-11-07 12:51:49,788 - INFO - The 62 call passes areas: {'Strasbourg', 'Frankfurt', 'Amsterdam'}
+2024-11-07 12:51:49,788 - INFO - The 63 call passes areas: {'Frankfurt', 'Kiev', 'Warsaw', 'Madrid', 'Istanbul', 'Paris', 'Bucharest', 'Amsterdam', 'London'}
+2024-11-07 12:51:49,788 - INFO - The 64 call passes areas: {'Kiev', 'Frankfurt', 'Warsaw', 'Istanbul', 'Strasbourg', 'Bucharest', 'Basel'}
+2024-11-07 12:51:49,788 - INFO - The 66 call passes areas: {'Kiev', 'Frankfurt', 'Warsaw', 'Strasbourg', 'Bucharest', 'Basel'}
+2024-11-07 12:51:49,788 - INFO - The 67 call passes areas: {'Amsterdam', 'Rotterdam', 'Praha', 'Frankfurt'}
+2024-11-07 12:51:49,788 - INFO - The 69 call passes areas: {'Kiev', 'Frankfurt', 'Warsaw', 'Istanbul', 'Bucharest', 'Athens'}
+2024-11-07 12:51:49,788 - INFO - The 70 call passes areas: {'Strasbourg', 'Amsterdam', 'Frankfurt'}
+2024-11-07 12:51:49,788 - INFO - The 71 call passes areas: {'Rotterdam', 'Zurich', 'Frankfurt', 'Vaduz', 'Amsterdam'}
+2024-11-07 12:51:49,788 - INFO - The 72 call passes areas: {'Frankfurt', 'Vienna', 'Paris', 'Lyon', 'Amsterdam', 'London'}
+2024-11-07 12:51:49,788 - INFO - The 73 call passes areas: {'Frankfurt', 'Zurich', 'Kiev', 'Warsaw', 'Istanbul', 'Roma', 'Bucharest'}
+2024-11-07 12:51:49,788 - INFO - The 74 call passes areas: {'Frankfurt', 'Luxembourg', 'Madrid', 'Strasbourg', 'Paris', 'Amsterdam', 'London'}
+2024-11-07 12:51:49,788 - INFO - The 75 call passes areas: {'Frankfurt', 'Luxembourg', 'Kiev', 'Warsaw', 'Strasbourg', 'Bucharest'}
+2024-11-07 12:51:49,788 - INFO - The 76 call passes areas: {'Frankfurt', 'Vienna', 'Zurich', 'Vaduz', 'Bratislava'}
+2024-11-07 12:51:49,788 - INFO - The 80 call passes areas: {'Frankfurt', 'Strasbourg', 'Paris', 'Lyon', 'Amsterdam', 'London'}
+2024-11-07 12:51:49,788 - INFO - The 84 call passes areas: {'Frankfurt', 'Luxembourg', 'Kiev', 'Warsaw', 'Istanbul', 'Strasbourg', 'Bucharest'}
+2024-11-07 12:51:49,788 - INFO - The 86 call passes areas: {'Frankfurt', 'Zurich', 'Vienna', 'Roma', 'Bratislava'}
+2024-11-07 12:51:49,788 - INFO - The 89 call passes areas: {'Frankfurt', 'Warsaw', 'Lisbon', 'Amsterdam', 'London'}
+2024-11-07 12:51:49,788 - INFO - The 91 call passes areas: {'Frankfurt', 'Vienna'}
+2024-11-07 12:51:49,788 - INFO - The 92 call passes areas: {'Kiev', 'Vienna', 'Warsaw', 'Istanbul', 'Sofia', 'Praha', 'Bucharest', 'Bratislava', 'Athens'}
+2024-11-07 12:51:49,788 - INFO - The 95 call passes areas: {'Frankfurt', 'Zurich', 'Vienna', 'Bratislava'}
+2024-11-07 12:51:49,788 - INFO - The 97 call passes areas: {'Amsterdam', 'Praha', 'Rotterdam', 'Frankfurt'}
+2024-11-07 12:51:49,788 - INFO - The 98 call passes areas: {'Kiev', 'Frankfurt', 'Warsaw', 'Bucharest', 'Amsterdam'}
+2024-11-07 12:51:49,788 - INFO - The 99 call passes areas: {'Frankfurt', 'Dublin', 'Strasbourg', 'Basel', 'Amsterdam', 'London'}
+2024-11-07 12:51:49,789 - INFO - After departure event 5, unable areas have ['Brussels', 'Geneva', 'Milan'].
+2024-11-07 12:51:49,790 - INFO - The 0 call passes areas: {'Amsterdam', 'Frankfurt', 'Zurich', 'Roma'}
+2024-11-07 12:51:49,790 - INFO - The 4 call passes areas: {'Rotterdam', 'Zurich', 'Frankfurt', 'Roma', 'Amsterdam'}
+2024-11-07 12:51:49,790 - INFO - The 10 call passes areas: {'Frankfurt', 'Vienna', 'Paris', 'Lyon', 'Amsterdam', 'Marseille', 'London'}
+2024-11-07 12:51:49,790 - INFO - The 11 call passes areas: {'Frankfurt', 'Madrid', 'Paris', 'Amsterdam', 'London'}
+2024-11-07 12:51:49,790 - INFO - The 12 call passes areas: {'Kiev', 'Frankfurt', 'Warsaw', 'Madrid', 'Paris', 'Bucharest', 'Amsterdam', 'London'}
+2024-11-07 12:51:49,790 - INFO - The 13 call passes areas: {'Frankfurt', 'Vienna', 'Budapest', 'Paris', 'Lyon', 'Bratislava', 'Amsterdam', 'London'}
+2024-11-07 12:51:49,790 - INFO - The 15 call passes areas: {'Stockholm', 'Amsterdam', 'London', 'Frankfurt'}
+2024-11-07 12:51:49,790 - INFO - The 16 call passes areas: {'Kiev', 'Frankfurt', 'Rotterdam', 'Warsaw', 'Istanbul', 'Bucharest', 'Amsterdam', 'Athens'}
+2024-11-07 12:51:49,790 - INFO - The 17 call passes areas: {'Amsterdam', 'Zurich', 'Roma', 'Frankfurt'}
+2024-11-07 12:51:49,790 - INFO - The 26 call passes areas: {'Frankfurt', 'Paris', 'Strasbourg', 'Lyon', 'Amsterdam', 'London'}
+2024-11-07 12:51:49,790 - INFO - The 31 call passes areas: {'Frankfurt', 'Vienna', 'Budapest', 'Madrid', 'Paris', 'Bratislava', 'Amsterdam', 'Zagreb', 'London'}
+2024-11-07 12:51:49,790 - INFO - The 33 call passes areas: {'Frankfurt', 'Luxembourg', 'Strasbourg', 'Paris', 'Lyon', 'Amsterdam', 'Marseille', 'London'}
+2024-11-07 12:51:49,790 - INFO - The 36 call passes areas: {'Frankfurt', 'Vienna', 'Ljubjana', 'Budapest', 'Paris', 'Bratislava', 'Amsterdam', 'Zagreb', 'London'}
+2024-11-07 12:51:49,790 - INFO - The 38 call passes areas: {'Frankfurt', 'Dublin', 'Strasbourg', 'Basel', 'Amsterdam', 'London'}
+2024-11-07 12:51:49,790 - INFO - The 42 call passes areas: {'Frankfurt', 'Vienna', 'Budapest', 'Madrid', 'Paris', 'Bratislava', 'Amsterdam', 'London'}
+2024-11-07 12:51:49,790 - INFO - The 45 call passes areas: {'Kiev', 'Frankfurt', 'Warsaw', 'Istanbul', 'Bucharest', 'Amsterdam', 'London'}
+2024-11-07 12:51:49,790 - INFO - The 50 call passes areas: {'Frankfurt', 'Madrid', 'Strasbourg', 'Paris', 'Barcelona', 'Basel', 'Amsterdam', 'London'}
+2024-11-07 12:51:49,790 - INFO - The 52 call passes areas: {'Frankfurt', 'Vienna', 'Paris', 'Lyon', 'Bratislava', 'Amsterdam', 'London'}
+2024-11-07 12:51:49,790 - INFO - The 53 call passes areas: {'Frankfurt', 'Vienna', 'Paris', 'Lyon', 'Bratislava', 'Amsterdam', 'Marseille', 'London'}
+2024-11-07 12:51:49,790 - INFO - The 54 call passes areas: {'Frankfurt', 'Vienna', 'Budapest', 'Paris', 'Lyon', 'Bratislava', 'Amsterdam', 'London'}
+2024-11-07 12:51:49,790 - INFO - The 57 call passes areas: {'Frankfurt', 'Strasbourg', 'Lisbon', 'Basel', 'Amsterdam', 'London'}
+2024-11-07 12:51:49,790 - INFO - The 58 call passes areas: {'Frankfurt', 'Strasbourg', 'Paris', 'Lyon', 'Amsterdam', 'London'}
+2024-11-07 12:51:49,790 - INFO - The 62 call passes areas: {'Strasbourg', 'Frankfurt', 'Amsterdam'}
+2024-11-07 12:51:49,790 - INFO - The 63 call passes areas: {'Frankfurt', 'Kiev', 'Warsaw', 'Madrid', 'Istanbul', 'Paris', 'Bucharest', 'Amsterdam', 'London'}
+2024-11-07 12:51:49,791 - INFO - The 67 call passes areas: {'Amsterdam', 'Rotterdam', 'Praha', 'Frankfurt'}
+2024-11-07 12:51:49,791 - INFO - The 70 call passes areas: {'Strasbourg', 'Amsterdam', 'Frankfurt'}
+2024-11-07 12:51:49,791 - INFO - The 71 call passes areas: {'Rotterdam', 'Zurich', 'Frankfurt', 'Vaduz', 'Amsterdam'}
+2024-11-07 12:51:49,791 - INFO - The 72 call passes areas: {'Frankfurt', 'Vienna', 'Paris', 'Lyon', 'Amsterdam', 'London'}
+2024-11-07 12:51:49,791 - INFO - The 74 call passes areas: {'Frankfurt', 'Luxembourg', 'Madrid', 'Strasbourg', 'Paris', 'Amsterdam', 'London'}
+2024-11-07 12:51:49,791 - INFO - The 80 call passes areas: {'Frankfurt', 'Strasbourg', 'Paris', 'Lyon', 'Amsterdam', 'London'}
+2024-11-07 12:51:49,791 - INFO - The 82 call passes areas: {'Frankfurt', 'Vienna', 'Budapest', 'Madrid', 'Paris', 'Barcelona', 'Bratislava', 'Amsterdam', 'Zagreb', 'London'}
+2024-11-07 12:51:49,791 - INFO - The 89 call passes areas: {'Frankfurt', 'Warsaw', 'Lisbon', 'Amsterdam', 'London'}
+2024-11-07 12:51:49,791 - INFO - The 97 call passes areas: {'Amsterdam', 'Praha', 'Rotterdam', 'Frankfurt'}
+2024-11-07 12:51:49,791 - INFO - The 98 call passes areas: {'Kiev', 'Frankfurt', 'Warsaw', 'Bucharest', 'Amsterdam'}
+2024-11-07 12:51:49,791 - INFO - The 99 call passes areas: {'Frankfurt', 'Dublin', 'Strasbourg', 'Basel', 'Amsterdam', 'London'}
+2024-11-07 12:51:49,835 - INFO - Attacked areas: ['Brussels', 'Geneva', 'Milan', 'Amsterdam']
+2024-11-07 12:51:49,835 - INFO - Potential areas: ['Budapest', 'Bratislava', 'Frankfurt', 'Brussels', 'Bucharest']
+2024-11-07 12:51:49,835 - INFO - The 2 call passes areas: {'Kiev', 'Bucharest'}
+2024-11-07 12:51:49,835 - INFO - The 3 call passes areas: {'Frankfurt', 'Luxembourg', 'Vienna', 'Ljubjana', 'Budapest', 'Strasbourg', 'Bratislava', 'Zagreb'}
+2024-11-07 12:51:49,835 - INFO - The 7 call passes areas: {'Frankfurt', 'Kiev', 'Warsaw', 'Istanbul', 'Sofia', 'Strasbourg', 'Bucharest', 'Basel', 'Athens'}
+2024-11-07 12:51:49,835 - INFO - The 8 call passes areas: {'Frankfurt', 'Zurich', 'Kiev', 'Warsaw', 'Istanbul', 'Bucharest', 'Athens'}
+2024-11-07 12:51:49,835 - INFO - The 14 call passes areas: {'Frankfurt', 'Vienna', 'Budapest', 'Strasbourg', 'Bratislava', 'Basel'}
+2024-11-07 12:51:49,835 - INFO - The 18 call passes areas: {'Budapest', 'Istanbul', 'Bucharest'}
+2024-11-07 12:51:49,835 - INFO - The 19 call passes areas: {'Kiev', 'Warsaw', 'Istanbul', 'Praha', 'Bucharest', 'Bratislava', 'Athens'}
+2024-11-07 12:51:49,835 - INFO - The 21 call passes areas: {'Praha', 'Vienna', 'Bratislava'}
+2024-11-07 12:51:49,835 - INFO - The 22 call passes areas: {'Ljubjana', 'Zagreb', 'Budapest'}
+2024-11-07 12:51:49,835 - INFO - The 23 call passes areas: {'Sofia', 'Ljubjana', 'Zagreb', 'Budapest'}
+2024-11-07 12:51:49,835 - INFO - The 24 call passes areas: {'Kiev', 'Vienna', 'Warsaw', 'Istanbul', 'Praha', 'Bucharest', 'Bratislava'}
+2024-11-07 12:51:49,835 - INFO - The 25 call passes areas: {'Frankfurt', 'Zurich', 'Luxembourg', 'Strasbourg', 'Roma'}
+2024-11-07 12:51:49,835 - INFO - The 27 call passes areas: {'Strasbourg', 'Stockholm', 'Basel', 'Frankfurt'}
+2024-11-07 12:51:49,835 - INFO - The 34 call passes areas: {'Frankfurt', 'Vienna', 'Budapest', 'Bratislava'}
+2024-11-07 12:51:49,835 - INFO - The 39 call passes areas: {'Strasbourg', 'Praha', 'Basel', 'Frankfurt'}
+2024-11-07 12:51:49,835 - INFO - The 40 call passes areas: {'Frankfurt', 'Luxembourg', 'Vienna', 'Budapest', 'Strasbourg', 'Bratislava', 'Zagreb'}
+2024-11-07 12:51:49,835 - INFO - The 43 call passes areas: {'Ljubjana', 'Budapest', 'Praha', 'Bratislava', 'Zagreb'}
+2024-11-07 12:51:49,836 - INFO - The 46 call passes areas: {'Kiev', 'Vienna', 'Warsaw', 'Istanbul', 'Praha', 'Bucharest', 'Bratislava'}
+2024-11-07 12:51:49,836 - INFO - The 48 call passes areas: {'Zagreb', 'Budapest'}
+2024-11-07 12:51:49,836 - INFO - The 49 call passes areas: {'Vienna', 'Bratislava'}
+2024-11-07 12:51:49,836 - INFO - The 51 call passes areas: {'Frankfurt', 'Kiev', 'Warsaw', 'Istanbul', 'Bucharest'}
+2024-11-07 12:51:49,836 - INFO - The 55 call passes areas: {'Ljubjana', 'Budapest', 'Sofia', 'Zagreb', 'Athens'}
+2024-11-07 12:51:49,836 - INFO - The 59 call passes areas: {'Kiev', 'Frankfurt', 'Zurich', 'Warsaw', 'Istanbul', 'Roma', 'Bucharest'}
+2024-11-07 12:51:49,836 - INFO - The 60 call passes areas: {'Strasbourg', 'Frankfurt', 'Zurich', 'Luxembourg'}
+2024-11-07 12:51:49,836 - INFO - The 61 call passes areas: {'Frankfurt', 'Praha'}
+2024-11-07 12:51:49,836 - INFO - The 64 call passes areas: {'Kiev', 'Frankfurt', 'Warsaw', 'Istanbul', 'Strasbourg', 'Bucharest', 'Basel'}
+2024-11-07 12:51:49,836 - INFO - The 65 call passes areas: {'Sofia', 'Budapest', 'Zagreb', 'Athens'}
+2024-11-07 12:51:49,836 - INFO - The 66 call passes areas: {'Kiev', 'Frankfurt', 'Warsaw', 'Strasbourg', 'Bucharest', 'Basel'}
+2024-11-07 12:51:49,836 - INFO - The 68 call passes areas: {'Frankfurt', 'Vienna', 'Budapest', 'Bratislava'}
+2024-11-07 12:51:49,836 - INFO - The 69 call passes areas: {'Kiev', 'Frankfurt', 'Warsaw', 'Istanbul', 'Bucharest', 'Athens'}
+2024-11-07 12:51:49,836 - INFO - The 73 call passes areas: {'Frankfurt', 'Zurich', 'Kiev', 'Warsaw', 'Istanbul', 'Roma', 'Bucharest'}
+2024-11-07 12:51:49,836 - INFO - The 75 call passes areas: {'Frankfurt', 'Luxembourg', 'Kiev', 'Warsaw', 'Strasbourg', 'Bucharest'}
+2024-11-07 12:51:49,836 - INFO - The 76 call passes areas: {'Frankfurt', 'Vienna', 'Zurich', 'Vaduz', 'Bratislava'}
+2024-11-07 12:51:49,836 - INFO - The 84 call passes areas: {'Frankfurt', 'Luxembourg', 'Kiev', 'Warsaw', 'Istanbul', 'Strasbourg', 'Bucharest'}
+2024-11-07 12:51:49,836 - INFO - The 86 call passes areas: {'Frankfurt', 'Zurich', 'Vienna', 'Roma', 'Bratislava'}
+2024-11-07 12:51:49,836 - INFO - The 87 call passes areas: {'Ljubjana', 'Zagreb', 'Budapest', 'Bratislava'}
+2024-11-07 12:51:49,836 - INFO - The 90 call passes areas: {'Stockholm', 'Vienna', 'Frankfurt', 'Budapest', 'Bratislava', 'Zagreb'}
+2024-11-07 12:51:49,836 - INFO - The 91 call passes areas: {'Frankfurt', 'Vienna'}
+2024-11-07 12:51:49,836 - INFO - The 92 call passes areas: {'Kiev', 'Vienna', 'Warsaw', 'Istanbul', 'Sofia', 'Praha', 'Bucharest', 'Bratislava', 'Athens'}
+2024-11-07 12:51:49,836 - INFO - The 93 call passes areas: {'Budapest', 'Bucharest'}
+2024-11-07 12:51:49,836 - INFO - The 94 call passes areas: {'Kiev', 'Athens', 'Istanbul', 'Bucharest'}
+2024-11-07 12:51:49,836 - INFO - The 95 call passes areas: {'Frankfurt', 'Zurich', 'Vienna', 'Bratislava'}
+2024-11-07 12:51:49,837 - INFO - The 3 call passes areas: {'Frankfurt', 'Luxembourg', 'Vienna', 'Ljubjana', 'Budapest', 'Strasbourg', 'Bratislava', 'Zagreb'}
+2024-11-07 12:51:49,837 - INFO - The 14 call passes areas: {'Frankfurt', 'Vienna', 'Budapest', 'Strasbourg', 'Bratislava', 'Basel'}
+2024-11-07 12:51:49,837 - INFO - The 19 call passes areas: {'Kiev', 'Warsaw', 'Istanbul', 'Praha', 'Bucharest', 'Bratislava', 'Athens'}
+2024-11-07 12:51:49,837 - INFO - The 21 call passes areas: {'Praha', 'Vienna', 'Bratislava'}
+2024-11-07 12:51:49,837 - INFO - The 24 call passes areas: {'Kiev', 'Vienna', 'Warsaw', 'Istanbul', 'Praha', 'Bucharest', 'Bratislava'}
+2024-11-07 12:51:49,837 - INFO - The 34 call passes areas: {'Frankfurt', 'Vienna', 'Budapest', 'Bratislava'}
+2024-11-07 12:51:49,837 - INFO - The 40 call passes areas: {'Frankfurt', 'Luxembourg', 'Vienna', 'Budapest', 'Strasbourg', 'Bratislava', 'Zagreb'}
+2024-11-07 12:51:49,837 - INFO - The 43 call passes areas: {'Ljubjana', 'Budapest', 'Praha', 'Bratislava', 'Zagreb'}
+2024-11-07 12:51:49,837 - INFO - The 46 call passes areas: {'Kiev', 'Vienna', 'Warsaw', 'Istanbul', 'Praha', 'Bucharest', 'Bratislava'}
+2024-11-07 12:51:49,837 - INFO - The 49 call passes areas: {'Vienna', 'Bratislava'}
+2024-11-07 12:51:49,837 - INFO - The 68 call passes areas: {'Frankfurt', 'Vienna', 'Budapest', 'Bratislava'}
+2024-11-07 12:51:49,838 - INFO - The 76 call passes areas: {'Frankfurt', 'Vienna', 'Zurich', 'Vaduz', 'Bratislava'}
+2024-11-07 12:51:49,838 - INFO - The 86 call passes areas: {'Frankfurt', 'Zurich', 'Vienna', 'Roma', 'Bratislava'}
+2024-11-07 12:51:49,838 - INFO - The 87 call passes areas: {'Ljubjana', 'Zagreb', 'Budapest', 'Bratislava'}
+2024-11-07 12:51:49,838 - INFO - The 90 call passes areas: {'Stockholm', 'Vienna', 'Frankfurt', 'Budapest', 'Bratislava', 'Zagreb'}
+2024-11-07 12:51:49,838 - INFO - The 92 call passes areas: {'Kiev', 'Vienna', 'Warsaw', 'Istanbul', 'Sofia', 'Praha', 'Bucharest', 'Bratislava', 'Athens'}
+2024-11-07 12:51:49,838 - INFO - The 95 call passes areas: {'Frankfurt', 'Zurich', 'Vienna', 'Bratislava'}
+2024-11-07 12:51:49,881 - INFO - Attacked areas: ['Brussels', 'Geneva', 'Milan', 'Amsterdam', 'Bratislava']
+2024-11-07 12:51:49,881 - INFO - Potential areas: ['Budapest', 'Bratislava', 'Frankfurt', 'Brussels', 'Bucharest']
+2024-11-07 12:51:49,881 - INFO - The 2 call passes areas: {'Kiev', 'Bucharest'}
+2024-11-07 12:51:49,881 - INFO - The 3 call passes areas: {'Frankfurt', 'Luxembourg', 'Kiev', 'Warsaw', 'Ljubjana', 'Budapest', 'Strasbourg', 'Bucharest', 'Zagreb'}
+2024-11-07 12:51:49,881 - INFO - The 7 call passes areas: {'Frankfurt', 'Kiev', 'Warsaw', 'Istanbul', 'Sofia', 'Strasbourg', 'Bucharest', 'Basel', 'Athens'}
+2024-11-07 12:51:49,881 - INFO - The 8 call passes areas: {'Frankfurt', 'Zurich', 'Kiev', 'Warsaw', 'Istanbul', 'Bucharest', 'Athens'}
+2024-11-07 12:51:49,881 - INFO - The 14 call passes areas: {'Kiev', 'Frankfurt', 'Warsaw', 'Budapest', 'Strasbourg', 'Bucharest', 'Basel'}
+2024-11-07 12:51:49,881 - INFO - The 18 call passes areas: {'Budapest', 'Istanbul', 'Bucharest'}
+2024-11-07 12:51:49,881 - INFO - The 21 call passes areas: {'Praha', 'Vienna', 'Frankfurt'}
+2024-11-07 12:51:49,881 - INFO - The 22 call passes areas: {'Ljubjana', 'Zagreb', 'Budapest'}
+2024-11-07 12:51:49,881 - INFO - The 23 call passes areas: {'Sofia', 'Ljubjana', 'Zagreb', 'Budapest'}
+2024-11-07 12:51:49,881 - INFO - The 24 call passes areas: {'Frankfurt', 'Vienna', 'Kiev', 'Warsaw', 'Istanbul', 'Bucharest'}
+2024-11-07 12:51:49,881 - INFO - The 25 call passes areas: {'Frankfurt', 'Zurich', 'Luxembourg', 'Strasbourg', 'Roma'}
+2024-11-07 12:51:49,881 - INFO - The 27 call passes areas: {'Strasbourg', 'Stockholm', 'Basel', 'Frankfurt'}
+2024-11-07 12:51:49,881 - INFO - The 34 call passes areas: {'Kiev', 'Frankfurt', 'Warsaw', 'Budapest', 'Bucharest'}
+2024-11-07 12:51:49,882 - INFO - The 39 call passes areas: {'Strasbourg', 'Praha', 'Basel', 'Frankfurt'}
+2024-11-07 12:51:49,882 - INFO - The 40 call passes areas: {'Frankfurt', 'Luxembourg', 'Kiev', 'Warsaw', 'Budapest', 'Strasbourg', 'Bucharest', 'Zagreb'}
+2024-11-07 12:51:49,882 - INFO - The 43 call passes areas: {'Kiev', 'Warsaw', 'Ljubjana', 'Budapest', 'Praha', 'Bucharest', 'Zagreb'}
+2024-11-07 12:51:49,882 - INFO - The 46 call passes areas: {'Frankfurt', 'Vienna', 'Kiev', 'Warsaw', 'Istanbul', 'Bucharest'}
+2024-11-07 12:51:49,882 - INFO - The 48 call passes areas: {'Zagreb', 'Budapest'}
+2024-11-07 12:51:49,882 - INFO - The 51 call passes areas: {'Frankfurt', 'Kiev', 'Warsaw', 'Istanbul', 'Bucharest'}
+2024-11-07 12:51:49,882 - INFO - The 55 call passes areas: {'Ljubjana', 'Budapest', 'Sofia', 'Zagreb', 'Athens'}
+2024-11-07 12:51:49,882 - INFO - The 59 call passes areas: {'Kiev', 'Frankfurt', 'Zurich', 'Warsaw', 'Istanbul', 'Roma', 'Bucharest'}
+2024-11-07 12:51:49,882 - INFO - The 60 call passes areas: {'Strasbourg', 'Frankfurt', 'Zurich', 'Luxembourg'}
+2024-11-07 12:51:49,882 - INFO - The 61 call passes areas: {'Frankfurt', 'Praha'}
+2024-11-07 12:51:49,882 - INFO - The 64 call passes areas: {'Kiev', 'Frankfurt', 'Warsaw', 'Istanbul', 'Strasbourg', 'Bucharest', 'Basel'}
+2024-11-07 12:51:49,882 - INFO - The 65 call passes areas: {'Sofia', 'Budapest', 'Zagreb', 'Athens'}
+2024-11-07 12:51:49,882 - INFO - The 66 call passes areas: {'Kiev', 'Frankfurt', 'Warsaw', 'Strasbourg', 'Bucharest', 'Basel'}
+2024-11-07 12:51:49,882 - INFO - The 68 call passes areas: {'Kiev', 'Frankfurt', 'Warsaw', 'Budapest', 'Bucharest'}
+2024-11-07 12:51:49,882 - INFO - The 69 call passes areas: {'Kiev', 'Frankfurt', 'Warsaw', 'Istanbul', 'Bucharest', 'Athens'}
+2024-11-07 12:51:49,882 - INFO - The 73 call passes areas: {'Frankfurt', 'Zurich', 'Kiev', 'Warsaw', 'Istanbul', 'Roma', 'Bucharest'}
+2024-11-07 12:51:49,882 - INFO - The 75 call passes areas: {'Frankfurt', 'Luxembourg', 'Kiev', 'Warsaw', 'Strasbourg', 'Bucharest'}
+2024-11-07 12:51:49,882 - INFO - The 84 call passes areas: {'Frankfurt', 'Luxembourg', 'Kiev', 'Warsaw', 'Istanbul', 'Strasbourg', 'Bucharest'}
+2024-11-07 12:51:49,882 - INFO - The 90 call passes areas: {'Stockholm', 'Kiev', 'Frankfurt', 'Warsaw', 'Budapest', 'Bucharest', 'Zagreb'}
+2024-11-07 12:51:49,882 - INFO - The 91 call passes areas: {'Frankfurt', 'Vienna'}
+2024-11-07 12:51:49,882 - INFO - The 92 call passes areas: {'Kiev', 'Frankfurt', 'Vienna', 'Warsaw', 'Budapest', 'Sofia', 'Bucharest'}
+2024-11-07 12:51:49,882 - INFO - The 93 call passes areas: {'Budapest', 'Bucharest'}
+2024-11-07 12:51:49,882 - INFO - The 94 call passes areas: {'Kiev', 'Athens', 'Istanbul', 'Bucharest'}
+2024-11-07 12:51:49,883 - INFO - After departure event 8, unable areas have ['Brussels', 'Geneva', 'Milan', 'Bratislava'].
+2024-11-07 12:51:49,884 - INFO - After departure event 9, unable areas have ['Brussels', 'Geneva', 'Milan'].
+2024-11-07 12:51:49,885 - INFO - After departure event 6, unable areas have ['Brussels', 'Milan'].
+2024-11-07 12:51:49,885 - INFO - After departure event 1, unable areas have ['Milan'].
+2024-11-07 12:51:49,886 - INFO - After departure event 7, unable areas have [].
+2024-11-07 12:51:49,887 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\simulator.py - __main__ - Done.

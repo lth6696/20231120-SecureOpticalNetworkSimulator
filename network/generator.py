@@ -1,4 +1,5 @@
 import numpy as np
+import random
 import networkx as nx
 import logging
 
@@ -18,7 +19,7 @@ class CallsGen:
         if len(nodes) < 2 or number < 1 or rate <= 0:
             raise ValueError
         for i in range(number):
-            [src, dst] = np.random.choice(nodes, 2)
+            [src, dst] = random.sample(nodes, 2)
             call = utl.call.Call(id=i, src=src, dst=dst, rate=rate, **kwargs)
             self.calls.append(call)
         return self.calls

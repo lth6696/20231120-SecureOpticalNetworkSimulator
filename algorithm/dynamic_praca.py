@@ -1,3 +1,4 @@
+import matplotlib.pyplot as plt
 import networkx as nx
 import logging
 import numpy as np
@@ -22,6 +23,7 @@ class PRACA:
         self._restore_services_under_attack(topo_gen.G, tfk_gen.calls)
         # 调整
         self._adjust_services_potentially_under_attack(topo_gen.G, tfk_gen.calls, net_state, depth)
+        # print(self.unable_areas, self.potential_areas)
 
     def remove(self, event: Event, topo_gen: TopoGen, tfk_gen: CallsGen, **kwargs):
         self.unable_areas.remove(event.event.target)
@@ -40,7 +42,7 @@ class PRACA:
         # 拓扑剪枝
         prune_G = self._prune_graph(G, self.unable_areas)
         # 寻找业务
-        break_calls = self._find_calls(G, calls, self.unable_areas)
+        break_calls = self._find_calls(calls, self.unable_areas)
         # 重路由
         self._reroute(prune_G, break_calls, True)
 
@@ -55,19 +57,20 @@ class PRACA:
         self.trans_matrix = self._calculate_transition_matrix(net_state, G, calls, self.unable_areas)
         # 计算攻击战略
         atk_tactics = self._trace_atk_tactics(net_state.regions, depth)
-        self.potential_areas += atk_tactics
+        self.potential_areas += [area for area in atk_tactics if area not in self.potential_areas]
         logging.info("Attacked areas: {}".format(self.unable_areas))
         logging.info("Potential areas: {}".format(self.potential_areas))
         # 重路由
         prune_G = self._prune_graph(G, self.potential_areas + self.unable_areas)
-        break_calls = self._find_calls(G, calls, self.potential_areas)
+        # nx.draw(prune_G)
+        # plt.show()
+        break_calls = self._find_calls(calls, self.potential_areas)
         self._reroute(prune_G, break_calls, False)
 
     def _evaluate_attack_probabilities(self, net_state: NetState, *args):
         fuzzy = Fuzzy()
         fuzzy.init_fuzzy_evaluation(net_state.regions, net_state.used_states)
         for grade in net_state.regions:
-            # todo update state
             net_state.update(*args, specify="distance")
             for factor in net_state.used_states:
                 fuzzy.add_evaluation(grade, factor, net_state.net_state[grade][factor])
@@ -116,16 +119,16 @@ class PRACA:
         return prune_topo
 
     @staticmethod
-    def _find_calls(G: nx.Graph, calls: list, target: list):
+    def _find_calls(calls: list, target: list):
         target_calls = []
         for call in calls:
-            if call.path is None:
-                continue
-            traverse_node = [G.nodes[node]["Country"] for node in call.path]
-            traverse_link = [region for node_pair in zip(call.path[:-1], call.path[1:]) for region in node_pair]
-            if set(traverse_node+traverse_link) & set(target):
+            # if call.path is []:
+            #     continue
+            # traverse_node = [G.nodes[node]["Country"] for node in call.path]
+            # traverse_link = [region for node_pair in zip(call.path[:-1], call.path[1:]) for region in node_pair]
+            if set(call.path) & set(target):
                 target_calls.append(call)
-                logging.info("The {} call passes areas: {}".format(call.id, set(traverse_node + traverse_link)))
+                logging.info("The {} call passes areas: {}".format(call.id, set(call.path)))
         return target_calls
 
     def _reserve(self, G: nx.Graph, path: list, rate: float):
@@ -157,6 +160,8 @@ class PRACA:
                 call.path = reroute
                 if restore_or_adjust:
                     call.restoration += 1
+                else:
+                    pass
             except: # 失败
                 if restore_or_adjust:
                     # 若恢复
