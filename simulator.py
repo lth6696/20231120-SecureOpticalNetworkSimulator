@@ -57,9 +57,9 @@ if __name__ == '__main__':
     logging.config.fileConfig('logconfig.ini')
 
     # 仿真配置文件
-    configFile = "./topology/NSFNet.xml"
+    configFile = "./topology/AttMpls.xml"
     ResultFile = "results.xlsx"
-    isSimulate = False
+    isSimulate = True
     collector = {"title": [], "results": []}
 
     # 开始仿真
