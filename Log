@@ -1,13 +1,14 @@
-2024-11-13 23:05:59,004 - INFO - D:\Codes\Java\20231120-SecureOpticalNetworkSimulator\simulator.py - __main__ - Construct the physical topology.
-2024-11-13 23:05:59,004 - INFO - D:\Codes\Java\20231120-SecureOpticalNetworkSimulator\network\topology.py - network.topology - Read the config file "./topology/AttMpls.xml".
-2024-11-13 23:05:59,013 - INFO - D:\Codes\Java\20231120-SecureOpticalNetworkSimulator\network\topology.py - network.topology - Add 25 nodes and 4680 links.
-2024-11-13 23:05:59,013 - INFO - D:\Codes\Java\20231120-SecureOpticalNetworkSimulator\simulator.py - __main__ - Done.
-2024-11-13 23:05:59,013 - INFO - D:\Codes\Java\20231120-SecureOpticalNetworkSimulator\simulator.py - __main__ - Generate the traffic events.
-2024-11-13 23:05:59,014 - INFO - D:\Codes\Java\20231120-SecureOpticalNetworkSimulator\network\generator.py - network.generator - Read the config file ./topology/AttMpls.xml.
-2024-11-13 23:05:59,014 - INFO - D:\Codes\Java\20231120-SecureOpticalNetworkSimulator\network\generator.py - network.generator - There are 1 kinds of calls.
-2024-11-13 23:05:59,014 - INFO - D:\Codes\Java\20231120-SecureOpticalNetworkSimulator\network\generator.py - network.generator - Mean arrival time (¦Ë) is 6.0 seconds, mean holding time (¦Ì) is 600.0 seconds, intensity (¦Ñ) is 0.01.
-2024-11-13 23:06:00,307 - INFO - D:\Codes\Java\20231120-SecureOpticalNetworkSimulator\network\generator.py - network.generator - Generate 50000 calls and 100000 events.
-2024-11-13 23:06:00,307 - INFO - D:\Codes\Java\20231120-SecureOpticalNetworkSimulator\simulator.py - __main__ - Done.
-2024-11-13 23:06:00,307 - INFO - D:\Codes\Java\20231120-SecureOpticalNetworkSimulator\simulator.py - __main__ - Load the statistic module.
-2024-11-13 23:06:00,307 - INFO - D:\Codes\Java\20231120-SecureOpticalNetworkSimulator\simulator.py - __main__ - Start the control plane.
-2024-11-13 23:06:00,308 - INFO - D:\Codes\Java\20231120-SecureOpticalNetworkSimulator\network\controller.py - network.controller - Load the SOSR-U algorithm.
+2024-11-13 23:13:17,623 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\simulator.py - __main__ - Construct the physical topology.
+2024-11-13 23:13:17,624 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\network\topology.py - network.topology - Read the config file "./topology/AttMpls.xml".
+2024-11-13 23:13:17,633 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\network\topology.py - network.topology - Add 25 nodes and 4680 links.
+2024-11-13 23:13:17,633 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\simulator.py - __main__ - Done.
+2024-11-13 23:13:17,633 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\simulator.py - __main__ - Generate the traffic events.
+2024-11-13 23:13:17,633 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\network\generator.py - network.generator - Read the config file ./topology/AttMpls.xml.
+2024-11-13 23:13:17,633 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\network\generator.py - network.generator - There are 1 kinds of calls.
+2024-11-13 23:13:17,633 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\network\generator.py - network.generator - Mean arrival time (¦Ë) is 3.0 seconds, mean holding time (¦Ì) is 600.0 seconds, intensity (¦Ñ) is 0.005.
+2024-11-13 23:13:18,790 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\network\generator.py - network.generator - Generate 50000 calls and 100000 events.
+2024-11-13 23:13:18,790 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\simulator.py - __main__ - Done.
+2024-11-13 23:13:18,790 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\simulator.py - __main__ - Load the statistic module.
+2024-11-13 23:13:18,790 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\simulator.py - __main__ - Start the control plane.
+2024-11-13 23:13:18,791 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\network\controller.py - network.controller - Load the SOSR-U algorithm.
+2024-11-13 23:31:22,043 - INFO - D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\simulator.py - __main__ - Done.
