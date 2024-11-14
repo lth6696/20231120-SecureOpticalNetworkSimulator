@@ -52,6 +52,10 @@ class TopoGen:
                     self.G[u_node][v_node][attr] = val
             else:
                 raise ValueError
+        # pos = {node: (self.G.nodes[node]["Longitude"], self.G.nodes[node]["Latitude"]) for node in self.G.nodes}
+        # import matplotlib.pyplot as plt
+        # nx.draw(self.G, pos, with_labels=True)
+        # plt.show()
 
 
 class EventGen:

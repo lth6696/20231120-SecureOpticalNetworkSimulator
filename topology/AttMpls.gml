@@ -528,11 +528,6 @@ graph [
     LinkLabel "Completion 2007-2008"
   ]
   edge [
-    source 22
-    target 24
-    LinkLabel "Completion 2007-2008"
-  ]
-  edge [
     source 23
     target 24
     LinkLabel "Completion 2007-2008"
