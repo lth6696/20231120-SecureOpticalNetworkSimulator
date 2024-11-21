@@ -71,9 +71,16 @@ class TrafficGenerator:
                      .format(__file__, __name__, self.meanArrivalTime, self.meanHoldingTime, self.meanArrivalTime / self.meanHoldingTime))
         nodesNum = len(topology.G.nodes)
         time = 0.0
+        sec_to_norm = 1
+
+        # 确定每组数量
+        sec_svc_count = np.ones(int(self.callsNum * sec_to_norm), dtype=int)
+        nor_svc_count = np.zeros(self.callsNum - len(sec_svc_count), dtype=int)
+        # 合并两个数组
+        svc_count = list(np.concatenate((sec_svc_count, nor_svc_count)))
         for i in range(self.callsNum):
             nextCallType = self.callsType[np.random.choice(self.weightVector)]
-            requestSecurity = np.random.randint(2)
+            requestSecurity = svc_count.pop(np.random.randint(0, len(svc_count)))
             sourceNode = np.random.randint(nodesNum)
             destinationNode = np.random.randint(nodesNum)
             while (sourceNode == destinationNode):
