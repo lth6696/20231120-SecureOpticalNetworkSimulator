@@ -1,3 +1,5 @@
+import sys
+
 import numpy as np
 import random
 import networkx as nx
@@ -52,10 +54,13 @@ class TopoGen:
                     self.G[u_node][v_node][attr] = val
             else:
                 raise ValueError
-        # pos = {node: (self.G.nodes[node]["Longitude"], self.G.nodes[node]["Latitude"]) for node in self.G.nodes}
-        # import matplotlib.pyplot as plt
-        # nx.draw(self.G, pos, with_labels=True)
-        # plt.show()
+        pos = {node: (self.G.nodes[node]["Longitude"], self.G.nodes[node]["Latitude"]) for node in self.G.nodes}
+        import matplotlib.pyplot as plt
+        plt.rcParams['figure.figsize'] = (16 * 0.39370, 9 * 0.39370)
+        plt.rcParams['figure.dpi'] = 300
+        nx.draw(self.G, pos, with_labels=True, width=0.5, linewidths=0.5, node_size=100, node_color="#0070C0", edge_color="k")
+        plt.show()
+        sys.exit()
 
 
 class EventGen:
