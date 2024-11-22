@@ -58,7 +58,7 @@ class TopoGen:
         import matplotlib.pyplot as plt
         plt.rcParams['figure.figsize'] = (16 * 0.39370, 9 * 0.39370)
         plt.rcParams['figure.dpi'] = 300
-        nx.draw(self.G, pos, width=0.5, linewidths=0.5, node_size=100, node_color="#0070C0", edge_color="k")
+        nx.draw(self.G, pos, width=0.5, linewidths=0.5, node_size=50, node_color="#0070C0", edge_color="k")
         plt.show()
         sys.exit()
 
