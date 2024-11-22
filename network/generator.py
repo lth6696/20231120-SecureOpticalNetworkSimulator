@@ -56,9 +56,9 @@ class TopoGen:
                 raise ValueError
         pos = {node: (self.G.nodes[node]["Longitude"], self.G.nodes[node]["Latitude"]) for node in self.G.nodes}
         import matplotlib.pyplot as plt
-        plt.rcParams['figure.figsize'] = (16 * 0.39370, 9 * 0.39370)
+        plt.rcParams['figure.figsize'] = (8.4 * 0.39370, 4.8 * 0.39370)
         plt.rcParams['figure.dpi'] = 300
-        nx.draw(self.G, pos, width=0.5, linewidths=0.5, node_size=50, node_color="#0070C0", edge_color="k")
+        nx.draw(self.G, pos, width=0.5, linewidths=0.5, node_size=30, node_color="#0070C0", edge_color="k")
         plt.show()
         sys.exit()
 
