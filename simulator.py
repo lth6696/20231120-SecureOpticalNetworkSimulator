@@ -85,14 +85,15 @@ if __name__ == '__main__':
             12: "joint risk level (%)"
         }
         col = 10
-        # x = [100 * (i + 1) for i in range(9)]
+        x = [100 * (i + 1) for i in range(9)]
         # y = [list(data.iloc[0+i*9 : 9+i*9, col])[::-1] for i in range(3)]
-        legend = ["SOSR-U", "SOSR-S", "Benchmark"]
-        x = [10 * i for i in [0, 2, 4, 6, 8, 10]]
-        y = [list(data.iloc[54+i*6: 60+i*6, col]) for i in range(3)]
-        y = [[0.0, 31.517135, 32.672424, 33.71738, 34.732917, 35.576042], [0.0, 0.0, 0.0, 0.0, 0.0, 0.0], [0.0, 40.395266, 40.309858, 40.374467, 39.780241, 40.038564]]
-        # y = [list(data.iloc[0 + i * 9: 9 + i * 9, col])[::-1] for i in [0, 1, 3, 4]]
-        # legend = ["NSFNet SOSR-U", "NSFNet SOSR-S", "AttMpls SOSR-U", "AttMpls SOSR-S"]
+        # legend = ["SOSR-U", "SOSR-S", "Benchmark"]
+        # x = [10 * i for i in [0, 2, 4, 6, 8, 10]]
+        # y = [list(data.iloc[54+i*6: 60+i*6, col]) for i in range(3)]
+        # y = [[0.0, 31.517135, 32.672424, 33.71738, 34.732917, 35.576042], [0.0, 0.0, 0.0, 0.0, 0.0, 0.0], [0.0, 40.395266, 40.309858, 40.374467, 39.780241, 40.038564]]
+        # pc.plotMultiRealTime(x, *y, legend=legend, label=["proportion of security services to total services (%)", title[col]])
+
+        y = [list(data.iloc[0 + i * 9: 9 + i * 9, col])[::-1] for i in [0, 1, 3, 4]]
+        legend = ["NSFNet SOSR-U", "NSFNet SOSR-S", "AT&T SOSR-U", "AT&T SOSR-S"]
         pc = result.curve.PlotCurve()
-        # pc.plotMultiRealTime(x, *y, legend=legend, label=["load (in Erlang)", title[col]])
-        pc.plotMultiRealTime(x, *y, legend=legend, label=["proportion of security services to total services (%)", title[col]])
+        pc.plotMultiRealTime(x, *y, legend=legend, label=["load (in Erlang)", title[col]])
