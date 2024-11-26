@@ -18,7 +18,7 @@ pd.set_option('display.max_columns', None)
 pd.set_option('display.width', None)
 
 
-def simulator(configFile: str):
+def simulator(configFile: str, **kwargs):
     # 检查输入
     if not os.path.exists(configFile):
         raise Exception("Config file does not exist.")
@@ -31,7 +31,7 @@ def simulator(configFile: str):
     logging.info("{} - {} - Generate the traffic events.".format(__file__, __name__))
     scheduler = event.scheduler.Scheduler()
     traffic = network.generator.TrafficGenerator()
-    traffic.generate(configFile, physicalTopology, scheduler)
+    traffic.generate(configFile, physicalTopology, scheduler, **kwargs)
     logging.info("{} - {} - Done.".format(__file__, __name__))
     # 加载数据统计模块
     logging.info("{} - {} - Load the statistic module.".format(__file__, __name__))
@@ -47,7 +47,7 @@ def simulator(configFile: str):
         print(df)
     #     # print(sum([len(controller.algorithm.secAvailableSymbiosisPaths[key]) for key in controller.algorithm.secAvailableSymbiosisPaths]))
     #     # print(sum([len(controller.algorithm.nomAvailableSymbiosisPaths[key]) for key in controller.algorithm.nomAvailableSymbiosisPaths]))
-        result.curve.PlotCurve.plotRealTime(statistic.time_stamp, statistic.realtime_num_carried_calls)
+    #     result.curve.PlotCurve.plotRealTime(statistic.time_stamp, statistic.realtime_num_carried_calls)
     #     result.curve.PlotCurve.plotRealTime(statistic.time_stamp, statistic.realtime_link_utilization)
     except:
         pass
@@ -59,14 +59,16 @@ if __name__ == '__main__':
     logging.config.fileConfig('logconfig.ini')
 
     # 仿真配置文件
-    configFile = "./topology/NSFNet.xml"
+    configFile = "./topology/AttMpls.xml"
     ResultFile = "results.xlsx"
-    isSimulate = False
+    isSimulate = True
     collector = {"title": [], "results": []}
 
     # 开始仿真
     if isSimulate:
-        title, result = simulator(configFile)
+        for load in [1000, 1200, 1400, 1600]:
+            title, res = simulator(configFile, load=load)
+            print(f"---------------------------------Load={load}---------------------------------")
         # df = pd.Series(result, index=title)
     else:
         if not os.path.exists(ResultFile):
@@ -84,16 +86,14 @@ if __name__ == '__main__':
             11: "the number of path risk",
             12: "joint risk level (%)"
         }
-        col = 10
+        col = 3
         x = [100 * (i + 1) for i in range(9)]
-        # y = [list(data.iloc[0+i*9 : 9+i*9, col])[::-1] for i in range(3)]
-        # legend = ["SOSR-U", "SOSR-S", "Benchmark"]
+        y = [list(data.iloc[0 + i * 9: 9 + i * 9, col])[::-1] for i in [3, 4, 5]]
+        legend = ["SOSR-U", "SOSR-S", "Benchmark"]
+
         # x = [10 * i for i in [0, 2, 4, 6, 8, 10]]
-        # y = [list(data.iloc[54+i*6: 60+i*6, col]) for i in range(3)]
         # y = [[0.0, 31.517135, 32.672424, 33.71738, 34.732917, 35.576042], [0.0, 0.0, 0.0, 0.0, 0.0, 0.0], [0.0, 40.395266, 40.309858, 40.374467, 39.780241, 40.038564]]
         # pc.plotMultiRealTime(x, *y, legend=legend, label=["proportion of security services to total services (%)", title[col]])
 
-        y = [list(data.iloc[0 + i * 9: 9 + i * 9, col])[::-1] for i in [0, 1, 3, 4]]
-        legend = ["NSFNet SOSR-U", "NSFNet SOSR-S", "AT&T SOSR-U", "AT&T SOSR-S"]
         pc = result.curve.PlotCurve()
         pc.plotMultiRealTime(x, *y, legend=legend, label=["load (in Erlang)", title[col]])

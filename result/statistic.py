@@ -61,11 +61,10 @@ class Statistic:
         self.mean_link_utilization = 0.0            # 平均链路利用率
 
         self.content_displayable_results = [
-            "success_rate_total_calls", "success_rate_sec_req_calls", "success_rate_norm_req_calls",
+            # "success_rate_total_calls", "success_rate_sec_req_calls", "success_rate_norm_req_calls",
             "block_rate_total_calls", "block_rate_sec_req_calls", "block_rate_norm_req_calls",
-            "mean_hop", "mean_hop_sec_req_calls", "mean_hop_norm_req_calls", "mean_hop_working_path", "mean_hop_backup_path",
-            "mean_num_high_tapping_risk", "mean_num_joint_tapping_risk", "mean_level_high_tapping_risk", "mean_level_joint_taping_risk",
-            "mean_link_utilization"
+            "mean_hop", "mean_hop_sec_req_calls", "mean_hop_norm_req_calls", "mean_link_utilization",
+            "mean_level_high_tapping_risk", "mean_num_high_tapping_risk", "mean_level_joint_taping_risk"
         ]
 
     def snapshot(self, event: Event, status: bool, G: nx.MultiDiGraph, routeTable: dict):

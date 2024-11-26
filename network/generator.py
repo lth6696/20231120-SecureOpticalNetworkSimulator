@@ -27,7 +27,7 @@ class TrafficGenerator:
         self.totalWeight = 0
         self.weightVector = []
 
-    def generate(self, configFile: str, topology: PhysicalTopology, scheduler: Scheduler):
+    def generate(self, configFile: str, topology: PhysicalTopology, scheduler: Scheduler, **kwargs):
         # 参数合法检测
         if not os.path.exists(configFile):
             raise Exception("Config file does not exist.")
@@ -41,7 +41,8 @@ class TrafficGenerator:
         try:
             self.trafficType = trafficAttr["type"]
             self.callsNum = int(trafficAttr["calls"])
-            self.load = int(trafficAttr["load"])
+            self.load = int(trafficAttr["load"]) if "load" not in kwargs.keys() else int(kwargs["load"])
+            print(self.load)
             self.maxRate = int(trafficAttr["max-rate"])
             self.statisticStart = int(trafficAttr["statisticStart"])
         except:
@@ -71,7 +72,7 @@ class TrafficGenerator:
                      .format(__file__, __name__, self.meanArrivalTime, self.meanHoldingTime, self.meanArrivalTime / self.meanHoldingTime))
         nodesNum = len(topology.G.nodes)
         time = 0.0
-        sec_to_norm = 1
+        sec_to_norm = 0.5
 
         # 确定每组数量
         sec_svc_count = np.ones(int(self.callsNum * sec_to_norm), dtype=int)
