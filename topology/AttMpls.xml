@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <sonsim version="1.0" type="optical">
     <!--module is the Routing Algorithm class in java-->
-    <ra module="SOSR-S"/>
+    <ra module="Benchmark"/>
 
     <!-- 'calls' 业务流数量 -->
     <!-- 'load' 业务负载 100 200 300 400 500 600 | 12 6 4 3 2.4 2-->

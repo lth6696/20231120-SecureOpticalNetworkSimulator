@@ -61,7 +61,7 @@ if __name__ == '__main__':
     # 仿真配置文件
     configFile = "./topology/AttMpls.xml"
     ResultFile = "results.xlsx"
-    isSimulate = True
+    isSimulate = False
     collector = {"title": [], "results": []}
 
     # 开始仿真
@@ -86,10 +86,11 @@ if __name__ == '__main__':
             11: "the number of path risk",
             12: "joint risk level (%)"
         }
-        col = 3
-        x = [100 * (i + 1) for i in range(9)]
-        y = [list(data.iloc[0 + i * 9: 9 + i * 9, col])[::-1] for i in [3, 4, 5]]
+        col = 10
+        x = [200 * (i + 1) for i in range(8)]
+        y = [list(data.iloc[27 + i * 8: 27 + (i+1) * 8, col])[::-1] for i in [0, 1, 2]]
         legend = ["SOSR-U", "SOSR-S", "Benchmark"]
+        print(y)
 
         # x = [10 * i for i in [0, 2, 4, 6, 8, 10]]
         # y = [[0.0, 31.517135, 32.672424, 33.71738, 34.732917, 35.576042], [0.0, 0.0, 0.0, 0.0, 0.0, 0.0], [0.0, 40.395266, 40.309858, 40.374467, 39.780241, 40.038564]]

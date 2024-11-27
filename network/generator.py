@@ -42,7 +42,6 @@ class TrafficGenerator:
             self.trafficType = trafficAttr["type"]
             self.callsNum = int(trafficAttr["calls"])
             self.load = int(trafficAttr["load"]) if "load" not in kwargs.keys() else int(kwargs["load"])
-            print(self.load)
             self.maxRate = int(trafficAttr["max-rate"])
             self.statisticStart = int(trafficAttr["statisticStart"])
         except:
