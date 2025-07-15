@@ -1,0 +1,21 @@
+2025-07-15 21:20:40,720 - INFO - Status: Optimal
+2025-07-15 21:20:40,720 - INFO - Total successful services: 3.0
+2025-07-15 21:20:40,720 - INFO - Successfully routed services:
+2025-07-15 21:20:40,720 - INFO - From v1 to v5
+2025-07-15 21:20:40,720 - INFO - From v2 to v6
+2025-07-15 21:20:40,720 - INFO - From v3 to v5
+2025-07-15 21:20:40,720 - INFO - Link encryption configurations:
+2025-07-15 21:20:40,720 - INFO - Link v1-v5 encrypted at level 1
+2025-07-15 21:20:40,720 - INFO - Link v2-v6 encrypted at level 1
+2025-07-15 21:20:40,721 - INFO - Link v3-v5 encrypted at level 2
+2025-07-15 21:20:40,721 - INFO - Link v5-v1 encrypted at level 1
+2025-07-15 21:20:40,721 - INFO - Link v5-v3 encrypted at level 2
+2025-07-15 21:20:40,721 - INFO - Link v6-v2 encrypted at level 1
+2025-07-15 21:20:40,721 - INFO - Service routing paths:
+2025-07-15 21:20:40,721 - INFO - Service v1 -> v5:
+2025-07-15 21:20:40,721 - INFO - v1->v5 (level 1)
+2025-07-15 21:20:40,721 - INFO - Service v2 -> v6:
+2025-07-15 21:20:40,721 - INFO - v2->v6 (level 1)
+2025-07-15 21:20:40,721 - INFO - Service v3 -> v5:
+2025-07-15 21:20:40,721 - INFO - v3->v5 (level 2)
+2025-07-15 21:20:40,721 - INFO - Loading topology data for visualization...

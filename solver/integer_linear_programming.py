@@ -1,11 +1,21 @@
+from math import ceil
 from pulp import *
+import logging
+import logging.config
+import networkx as nx
+import matplotlib.pyplot as plt
+
+# 配置日志
+log_config_path = "./logconfig.ini"
+logging.config.fileConfig(log_config_path)
+logger = logging.getLogger(__name__)
 
 # 初始化问题
 prob = LpProblem("PartiallySecuredOpticalNetwork", LpMaximize)
 
 # A. 输入参数
-N = 10  # 节点数量，可根据实际情况调整
-L = 3  # 安全等级数量，可根据实际情况调整
+N = 6  # 节点数量，可根据实际情况调整
+L = 2  # 安全等级数量，可根据实际情况调整
 
 # 创建节点集 V
 V = [f'v{i}' for i in range(1, N + 1)]
@@ -19,8 +29,8 @@ S = {l: 5 for l in range(1, L + 1)}  # 每个安全等级有5个光纤可以配�
 # 服务请求 (示例数据)
 services = [
     {'source': 'v1', 'dest': 'v5', 'RB': 0.2, 'RS': 2},
-    {'source': 'v2', 'dest': 'v7', 'RB': 0.3, 'RS': 1},
-    {'source': 'v3', 'dest': 'v8', 'RB': 0.1, 'RS': 3},
+    {'source': 'v2', 'dest': 'v6', 'RB': 0.3, 'RS': 1},
+    {'source': 'v3', 'dest': 'v5', 'RB': 0.1, 'RS': 1},
     # 可以添加更多服务请求
 ]
 
@@ -58,7 +68,7 @@ for (i, j) in E:
 
 # 约束(3): 每个安全等级的链路总数不超过其容量
 for l in range(1, L + 1):
-    prob += lpSum([kappa[(i, j, l)] for (i, j) in E]) <= S[l]
+    prob += lpSum([(kappa[(i, j, l)]+kappa[(j, i, l)])/2 for (i, j) in E]) <= S[l]
 
 # 约束(4): 对称性
 for (i, j) in E:
@@ -100,33 +110,33 @@ for (i, j) in E:
 for s in services:
     for (i, j) in E:
         for l in range(1, L + 1):
-            prob += lambda_sd[(s['source'], s['dest'], i, j, l)] * s['RS'] <= kappa[(i, j, l)]
+            prob += lambda_sd[(s['source'], s['dest'], i, j, l)] * ceil(s['RS'] * 1e-10) <= kappa[(i, j, l)]
 
 # 求解问题
 prob.solve()
 
 # 输出结果
-print("Status:", LpStatus[prob.status])
-print("Total successful services:", value(prob.objective))
-
-# 打印路由成功的服务
-print("\nSuccessfully routed services:")
-for s in services:
-    if gamma_sd[(s['source'], s['dest'])].value() == 1:
-        print(f"From {s['source']} to {s['dest']}")
+logger.info("Status: %s", LpStatus[prob.status])
+logger.info("Total successful services: %s", value(prob.objective))
 
 # 打印链路加密配置
-print("\nLink encryption configurations:")
+logger.info("Link encryption configurations:")
 for (i, j) in E:
     for l in range(1, L + 1):
         if kappa[(i, j, l)].value() == 1:
-            print(f"Link {i}-{j} encrypted at level {l}")
+            logger.info("Link %s-%s encrypted at level %s", i, j, l)
 
-# 打印服务路由路径
-print("\nService routing paths:")
+# 打印路由成功的服务
+logger.info("Successfully routed services:")
 for s in services:
     if gamma_sd[(s['source'], s['dest'])].value() == 1:
-        print(f"\nService {s['source']} -> {s['dest']}:")
+        logger.info("From %s to %s", s['source'], s['dest'])
+
+# 打印服务路由路径
+logger.info("Service routing paths:")
+for s in services:
+    if gamma_sd[(s['source'], s['dest'])].value() == 1:
+        logger.info("Service %s -> %s:", s['source'], s['dest'])
         path = []
         current = s['source']
         visited = set()
@@ -141,4 +151,26 @@ for s in services:
                 else:
                     continue
                 break
-        print(" -> ".join(path))
+        logger.info(" -> ".join(path))
+
+# 绘制拓扑结构图
+# 加载拓扑数据
+logger.info("Loading topology data for visualization...")
+G = nx.Graph()
+
+# 收集加密链路
+encrypted_edges = []
+for (i, j) in E:
+    for l in range(1, L + 1):
+        if kappa[(i, j, l)].value() == 1:
+            encrypted_edges.append((i, j))
+
+G.add_nodes_from(V)
+G.add_edges_from(encrypted_edges)
+
+# 绘制拓扑
+nx.draw(G, with_labels=True)
+plt.title('安全拓扑结构（加密链路）')
+plt.axis('off')
+plt.tight_layout()
+plt.show()
