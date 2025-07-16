@@ -1,30 +1,37 @@
-from math import ceil
-from pulp import *
+
 import logging
 import logging.config
 import networkx as nx
 import matplotlib.pyplot as plt
+from math import ceil
+from pulp import *
+from network.generator import TopoGen
 
 # 配置日志
 log_config_path = "./logconfig.ini"
 logging.config.fileConfig(log_config_path)
 logger = logging.getLogger(__name__)
 
+# 生成拓扑
+topo = TopoGen()
+topo.generate(path_gml="None", path_graphml="./topology/SixNode.graphml")
+topo.set(_type="")
+
 # 初始化问题
 prob = LpProblem("PartiallySecuredOpticalNetwork", LpMaximize)
 
 # A. 输入参数
-N = 6  # 节点数量，可根据实际情况调整
+N = len(topo.G.nodes)  # 节点数量，可根据实际情况调整
 L = 2  # 安全等级数量，可根据实际情况调整
 
 # 创建节点集 V
-V = [f'v{i}' for i in range(1, N + 1)]
+V = [f'v{i}' for i in topo.G.nodes]
 
-# 创建链路集 E (假设是完全连接的)
-E = [(f'v{i}', f'v{j}') for i in range(1, N + 1) for j in range(1, N + 1) if i != j]
+# 创建链路集 E
+E = [(f'v{i}', f'v{j}') for i, j in topo.G.edges] + [(f'v{j}', f'v{i}') for i, j in topo.G.edges]
 
 # 安全容量 S (示例值)
-S = {l: 5 for l in range(1, L + 1)}  # 每个安全等级有5个光纤可以配备
+S = {1: 5, 2: 3}  # 每个安全等级有5个光纤可以配备
 
 # 服务请求 (示例数据)
 services = [
@@ -33,7 +40,7 @@ services = [
     {'source': 'v3', 'dest': 'v5', 'RB': 0.1, 'RS': 1},
     # 可以添加更多服务请求
 ]
-
+sys.exit()
 # B. 决策变量
 # 加密状态变量 κ_{ij,l}
 kappa = LpVariable.dicts("kappa",

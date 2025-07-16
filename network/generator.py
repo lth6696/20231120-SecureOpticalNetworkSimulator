@@ -43,7 +43,7 @@ class TopoGen:
         else:
             raise ValueError
 
-    def set(self, _type: str, **kwargs):
+    def set(self, _type: str, isShow: bool = False, **kwargs):
         # 设置链路和节点属性
         for attr, val in kwargs.items():
             if _type == "node":
@@ -53,14 +53,16 @@ class TopoGen:
                 for u_node, v_node in self.G.edges:
                     self.G[u_node][v_node][attr] = val
             else:
-                raise ValueError
-        pos = {node: (self.G.nodes[node]["Longitude"], self.G.nodes[node]["Latitude"]) for node in self.G.nodes}
-        import matplotlib.pyplot as plt
-        plt.rcParams['figure.figsize'] = (8.4 * 0.39370, 4.8 * 0.39370)
-        plt.rcParams['figure.dpi'] = 300
-        nx.draw(self.G, pos, width=0.5, linewidths=0.5, node_size=30, node_color="#0070C0", edge_color="k")
-        plt.show()
-        sys.exit()
+                logging.warning(f"Unknown type {_type}.")
+
+        if isShow:
+            pos = {node: (self.G.nodes[node]["Longitude"], self.G.nodes[node]["Latitude"]) for node in self.G.nodes}
+            import matplotlib.pyplot as plt
+            plt.rcParams['figure.figsize'] = (8.4 * 0.39370, 4.8 * 0.39370)
+            plt.rcParams['figure.dpi'] = 300
+            nx.draw(self.G, pos, width=0.5, linewidths=0.5, node_size=30, node_color="#0070C0", edge_color="k")
+            plt.show()
+            sys.exit()
 
 
 class EventGen:
