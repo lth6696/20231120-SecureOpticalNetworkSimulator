@@ -1,21 +1,45 @@
-2025-07-15 21:20:40,720 - INFO - Status: Optimal
-2025-07-15 21:20:40,720 - INFO - Total successful services: 3.0
-2025-07-15 21:20:40,720 - INFO - Successfully routed services:
-2025-07-15 21:20:40,720 - INFO - From v1 to v5
-2025-07-15 21:20:40,720 - INFO - From v2 to v6
-2025-07-15 21:20:40,720 - INFO - From v3 to v5
-2025-07-15 21:20:40,720 - INFO - Link encryption configurations:
-2025-07-15 21:20:40,720 - INFO - Link v1-v5 encrypted at level 1
-2025-07-15 21:20:40,720 - INFO - Link v2-v6 encrypted at level 1
-2025-07-15 21:20:40,721 - INFO - Link v3-v5 encrypted at level 2
-2025-07-15 21:20:40,721 - INFO - Link v5-v1 encrypted at level 1
-2025-07-15 21:20:40,721 - INFO - Link v5-v3 encrypted at level 2
-2025-07-15 21:20:40,721 - INFO - Link v6-v2 encrypted at level 1
-2025-07-15 21:20:40,721 - INFO - Service routing paths:
-2025-07-15 21:20:40,721 - INFO - Service v1 -> v5:
-2025-07-15 21:20:40,721 - INFO - v1->v5 (level 1)
-2025-07-15 21:20:40,721 - INFO - Service v2 -> v6:
-2025-07-15 21:20:40,721 - INFO - v2->v6 (level 1)
-2025-07-15 21:20:40,721 - INFO - Service v3 -> v5:
-2025-07-15 21:20:40,721 - INFO - v3->v5 (level 2)
-2025-07-15 21:20:40,721 - INFO - Loading topology data for visualization...
+2025-07-17 11:51:11,205 - INFO - Status: Optimal
+2025-07-17 11:51:11,205 - INFO - Total successful services: 9.0
+2025-07-17 11:51:11,205 - INFO - Link encryption configurations:
+2025-07-17 11:51:11,205 - INFO - Link v1-v6 encrypted at level 2
+2025-07-17 11:51:11,205 - INFO - Link v2-v3 encrypted at level 2
+2025-07-17 11:51:11,205 - INFO - Link v2-v6 encrypted at level 2
+2025-07-17 11:51:11,205 - INFO - Link v3-v4 encrypted at level 2
+2025-07-17 11:51:11,205 - INFO - Link v3-v5 encrypted at level 1
+2025-07-17 11:51:11,205 - INFO - Link v5-v6 encrypted at level 2
+2025-07-17 11:51:11,205 - INFO - Link v6-v1 encrypted at level 2
+2025-07-17 11:51:11,205 - INFO - Link v3-v2 encrypted at level 2
+2025-07-17 11:51:11,205 - INFO - Link v6-v2 encrypted at level 2
+2025-07-17 11:51:11,205 - INFO - Link v4-v3 encrypted at level 2
+2025-07-17 11:51:11,205 - INFO - Link v5-v3 encrypted at level 1
+2025-07-17 11:51:11,205 - INFO - Link v6-v5 encrypted at level 2
+2025-07-17 11:51:11,205 - INFO - Successfully routed services:
+2025-07-17 11:51:11,205 - INFO - From v1 to v5 with 2 level
+2025-07-17 11:51:11,205 - INFO - From v2 to v6 with 2 level
+2025-07-17 11:51:11,205 - INFO - From v2 to v4 with 2 level
+2025-07-17 11:51:11,205 - INFO - From v3 to v5 with 1 level
+2025-07-17 11:51:11,206 - INFO - From v3 to v1 with 2 level
+2025-07-17 11:51:11,206 - INFO - From v6 to v1 with 2 level
+2025-07-17 11:51:11,206 - INFO - From v3 to v4 with 1 level
+2025-07-17 11:51:11,206 - INFO - From v5 to v6 with 2 level
+2025-07-17 11:51:11,206 - INFO - From v4 to v2 with 2 level
+2025-07-17 11:51:11,206 - INFO - Service routing paths:
+2025-07-17 11:51:11,206 - INFO - Service v1 -> v5 (level 2):
+2025-07-17 11:51:11,206 - INFO - v1->v6 (level 2) -> v6->v5 (level 2)
+2025-07-17 11:51:11,206 - INFO - Service v2 -> v6 (level 2):
+2025-07-17 11:51:11,206 - INFO - v2->v6 (level 2)
+2025-07-17 11:51:11,206 - INFO - Service v2 -> v4 (level 2):
+2025-07-17 11:51:11,206 - INFO - v2->v3 (level 2) -> v3->v4 (level 2)
+2025-07-17 11:51:11,206 - INFO - Service v3 -> v5 (level 1):
+2025-07-17 11:51:11,206 - INFO - v3->v5 (level 1)
+2025-07-17 11:51:11,206 - INFO - Service v3 -> v1 (level 2):
+2025-07-17 11:51:11,206 - INFO - v2->v6 (level 2) -> v6->v1 (level 2) -> v3->v2 (level 2)
+2025-07-17 11:51:11,206 - INFO - Service v6 -> v1 (level 2):
+2025-07-17 11:51:11,206 - INFO - v6->v1 (level 2)
+2025-07-17 11:51:11,206 - INFO - Service v3 -> v4 (level 1):
+2025-07-17 11:51:11,206 - INFO - v3->v4 (level 2)
+2025-07-17 11:51:11,206 - INFO - Service v5 -> v6 (level 2):
+2025-07-17 11:51:11,206 - INFO - v5->v6 (level 2)
+2025-07-17 11:51:11,206 - INFO - Service v4 -> v2 (level 2):
+2025-07-17 11:51:11,206 - INFO - v3->v2 (level 2) -> v4->v3 (level 2)
+2025-07-17 11:51:11,206 - INFO - Loading topology data for visualization...
