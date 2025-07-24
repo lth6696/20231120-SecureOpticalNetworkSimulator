@@ -1,4 +1,4 @@
-from utl.event import Event
+from event.event import Event
 from queue import PriorityQueue
 
 

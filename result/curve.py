@@ -18,9 +18,9 @@ def style(width, height, fontsize=8):
 
 class PlotCurve:
     def __init__(self):
-        self.colors = ["#C76109", "#D9AD47", "#2B9C80", "#81BADA", "#CF9EB6"]
-        self.markers = ['s', 'o', 'p', 'X', 'd', 'v']
-        self.line_styles = ['-', '--', ':', '-.', '-', '--']
+        self.colors = ["#E1C855", "#E07B54", "#51B1B7", "#CF9EB6"]
+        self.markers = ['o', 's', 'X', '*']
+        self.line_styles = ['-', '--', ':', '-.']
 
     @staticmethod
     def plotRealTime(timeStamp: list, serviceNumList: list):
@@ -32,9 +32,9 @@ class PlotCurve:
         plt.show()
 
     def plotMultiRealTime(self, timeStamp: list, *args,
-                          width: float = 5.3*1.3, height: float = 3.3*1.3,
+                          width: float = 8.6, height: float = 6,
                           legend: list = None, label: list = None):
-        # colors = ["#E1C855", "#E07B54", "#51B1B7", "#E1C855", "#E07B54", "#51B1B7"]
+        colors = ["#E1C855", "#E07B54", "#51B1B7", "#CF9EB6"]
         if len(args) < 1:
             raise Exception("Need at least one data list.")
         for data in args:
@@ -45,15 +45,15 @@ class PlotCurve:
             plt.plot(timeStamp, data,
                      marker=self.markers[i], ms=2.0,  # set marker
                      ls=self.line_styles[i], lw=0.5,  # set line
-                     color=self.colors[i])
+                     color=colors[i])
         if label:
             plt.xlabel(label[0])
             plt.ylabel(label[1])
         # plt.xticks([100*(i+1) for i in range(9)])
-        plt.yticks([5*(i+1) for i in range(6)])
+        # plt.yticks([20*i for i in range(6)])
         # plt.yticks([2 + 0.5 * i for i in range(5)])
         plt.grid(True, ls=':', lw=0.5, c='#d5d6d8')
         plt.tight_layout()
         if legend:
-            plt.legend(legend, ncol=2)
+            plt.legend(legend)
         plt.show()

@@ -1,95 +1,97 @@
-import sys
-
+import xml.etree.ElementTree as et
+import os.path
 import numpy as np
-import random
-import networkx as nx
 import logging
 
-import utl
-from network.attack import Attack
-from network.scheduler import Scheduler
-from network.state import NetState
+from network.topology import PhysicalTopology
+from network.traffic import OTNCalls
+from event.event import Event
+from event.scheduler import Scheduler
 
 
-class CallsGen:
-    def __init__(self):
-        self.calls = []
-
-    def generate(self, nodes: list, number: str, rate: str, **kwargs):
-        number = int(number)
-        rate = float(rate)
-        if len(nodes) < 2 or number < 1 or rate <= 0:
-            raise ValueError
-        for i in range(number):
-            [src, dst] = random.sample(nodes, 2)
-            call = utl.call.Call(id=i, src=src, dst=dst, rate=rate, **kwargs)
-            self.calls.append(call)
-        return self.calls
-
-
-class TopoGen:
-    def __init__(self):
-        self._infinitesimal = 1e-5
-        self.G = nx.Graph()
-
-    def generate(self, path_gml: str, path_graphml: str):
-        # 生成拓扑
-        if path_gml != "None" and path_graphml != "None":
-            raise ValueError
-        elif path_gml != "None":
-            self.G = nx.read_gml(path_gml)
-        elif path_graphml != "None":
-            self.G = nx.read_graphml(path_graphml)
-        else:
-            raise ValueError
-
-    def set(self, _type: str, isShow: bool = False, **kwargs):
-        # 设置链路和节点属性
-        for attr, val in kwargs.items():
-            if _type == "node":
-                for node in self.G.nodes:
-                    self.G.nodes[node][attr] = val
-            elif _type == "link":
-                for u_node, v_node in self.G.edges:
-                    self.G[u_node][v_node][attr] = val
-            else:
-                logging.warning(f"Unknown type {_type}.")
-
-        if isShow:
-            pos = {node: (self.G.nodes[node]["Longitude"], self.G.nodes[node]["Latitude"]) for node in self.G.nodes}
-            import matplotlib.pyplot as plt
-            plt.rcParams['figure.figsize'] = (8.4 * 0.39370, 4.8 * 0.39370)
-            plt.rcParams['figure.dpi'] = 300
-            nx.draw(self.G, pos, width=0.5, linewidths=0.5, node_size=30, node_color="#0070C0", edge_color="k")
-            plt.show()
-            sys.exit()
-
-
-class EventGen:
+class TrafficGenerator:
     """
     业务生成器
     """
     def __init__(self):
-        self.attacked_regions = []
+        self._callsInfoModuleName = "traffic"
+        self.trafficType = None
+        self.callsNum = None
+        self.load = None
+        self.meanRate = 0.0
+        self.maxRate = None
+        self.meanHoldingTime = 0.0
+        self.meanArrivalTime = 0.0
+        self.statisticStart = None
+        self.callsType = {}
+        self.totalWeight = 0
+        self.weightVector = []
 
-    def generate(self, scheduler: Scheduler, net_state: NetState, number: int, load: int, holding_time: float, strategy: str):
+    def generate(self, configFile: str, topology: PhysicalTopology, scheduler: Scheduler, **kwargs):
+        # 参数合法检测
+        if not os.path.exists(configFile):
+            raise Exception("Config file does not exist.")
         # 读取配置文件
-        logging.info(f"{__file__} - {__name__} - Generate {number} events in {load} with {holding_time} time.")
-        # 服务时间间隔μ, 到达时间间隔λ, 注意: λ/μ<1
-        arrival_time = holding_time / load
-        logging.info(f"{__file__} - {__name__} - Arrival time (λ) is {arrival_time}, holding time (μ) is {holding_time}, intensity (ρ) is {arrival_time / holding_time}.")
+        logging.info("{} - {} - Read the config file {}.".format(__file__, __name__, configFile))
+        xmlParser = et.parse(configFile)
+        elementCalls = xmlParser.getroot().find(self._callsInfoModuleName)
+        if elementCalls is None:
+            raise Exception("Config file does not include the traffic information.")
+        trafficAttr = elementCalls.attrib
+        try:
+            self.trafficType = trafficAttr["type"]
+            self.callsNum = int(trafficAttr["calls"])
+            self.load = int(trafficAttr["load"]) if "load" not in kwargs.keys() else int(kwargs["load"])
+            self.maxRate = int(trafficAttr["max-rate"])
+            self.statisticStart = int(trafficAttr["statisticStart"])
+        except:
+            raise Exception("Traffic config information are not complete.")
+        # 读取业务类型
+        for i, callType in enumerate(elementCalls):
+            callTypeAttr = callType.attrib
+            try:
+                self.callsType[i] = {
+                    "holding-time": int(callTypeAttr["holding-time"]),
+                    "rate": int(callTypeAttr["rate"]),
+                    "weight": int(callTypeAttr["weight"])
+                }
+            except:
+                raise Exception("Call's information missing.")
+            self.totalWeight += int(callTypeAttr["weight"])
+        logging.info("{} - {} - There are {} kinds of calls.".format(__file__, __name__, len(self.callsType)))
+        # 生成业务事件
+        self.weightVector = [aux for aux in self.callsType for _ in range(self.callsType[aux]["weight"])]
+        self.meanRate = sum([self.callsType[aux]["rate"] * self.callsType[aux]["weight"] / self.totalWeight for aux in self.callsType])
+        # 注意，λ/μ<1
+        # 服务时间间隔μ
+        self.meanHoldingTime  = sum([self.callsType[aux]["holding-time"] * self.callsType[aux]["weight"] / self.totalWeight for aux in self.callsType])
+        # 到达时间间隔λ
+        self.meanArrivalTime = (self.meanHoldingTime * (self.meanRate / self.maxRate)) / self.load
+        logging.info("{} - {} - Mean arrival time (λ) is {} seconds, mean holding time (μ) is {} seconds, intensity (ρ) is {}."
+                     .format(__file__, __name__, self.meanArrivalTime, self.meanHoldingTime, self.meanArrivalTime / self.meanHoldingTime))
+        nodesNum = len(topology.G.nodes)
         time = 0.0
-        for i in range(number):
-            # 设置时刻
-            start_time = np.random.exponential(arrival_time, 1)[0] + time
-            duration = np.random.exponential(holding_time)
-            end_time = start_time + duration
-            time = start_time
-            # 生成事件
-            atk_event = Attack().set(id=i, duration=duration, strategy=strategy, net_state=net_state, attacked_regions=self.attacked_regions)
-            self.attacked_regions.append(atk_event.target)
-            event_arrival = utl.event.Event(i, "eventArrive", start_time, atk_event)
-            event_departure = utl.event.Event(i, "eventDeparture", end_time, atk_event)
-            scheduler.addEvent(event_arrival)
-            scheduler.addEvent(event_departure)
-        logging.info(f"{__file__} - {__name__} - Generate {scheduler.getEventNum()} events.")
+        sec_to_norm = 0.5
+
+        # 确定每组数量
+        sec_svc_count = np.ones(int(self.callsNum * sec_to_norm), dtype=int)
+        nor_svc_count = np.zeros(self.callsNum - len(sec_svc_count), dtype=int)
+        # 合并两个数组
+        svc_count = list(np.concatenate((sec_svc_count, nor_svc_count)))
+        for i in range(self.callsNum):
+            nextCallType = self.callsType[np.random.choice(self.weightVector)]
+            requestSecurity = svc_count.pop(np.random.randint(0, len(svc_count)))
+            sourceNode = np.random.randint(nodesNum)
+            destinationNode = np.random.randint(nodesNum)
+            while (sourceNode == destinationNode):
+                destinationNode = np.random.randint(nodesNum)
+            startTime = np.random.exponential(self.meanArrivalTime, 1)[0] + time
+            duration = np.random.exponential(nextCallType["holding-time"])
+            endTime = startTime + duration
+            time = startTime
+            call = OTNCalls(i, sourceNode, destinationNode, duration, nextCallType["rate"], requestSecurity)
+            eventArrival = Event(i, "callArrive", startTime, call)
+            eventDeparture = Event(i, "callDeparture", endTime, call)
+            scheduler.addEvent(eventArrival)
+            scheduler.addEvent(eventDeparture)
+        logging.info("{} - {} - Generate {} calls and {} events.".format(__file__, __name__, self.callsNum, scheduler.getEventNum()))
