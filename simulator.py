@@ -73,12 +73,12 @@ if __name__ == '__main__':
     config_file = "simconfig.ini"
     configer = utl.config.Config().read(config_file)
     # 开始仿真
-    if input("Do you want to start simulation?") == "":
+    if input("Do you want to start simulation?[Y/n]") == "Y":
         simulator(configer)
         # data = np.array(all_res).mean(axis=0)
         # df = pd.Series(data, index=title)
         # print(df)
-    elif input("Do you want to show results?") == "":
+    elif input("Do you want to show results?[Y/n]") == "Y":
         a = []
         for _ in range(int(configer["result"]["iter_round"])):
             res = simulator(configer)

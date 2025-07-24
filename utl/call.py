@@ -1,9 +1,16 @@
+import logging
+
+logger = logging.getLogger(__name__)
+
+
 class Call:
     def __init__(self, **kwargs):
         self.id: int = -1
         self.src: any = -1
         self.dst: any = -1
         self.rate: float = 0
+        self.security: int = -1
+        self.ratio: str = "0"
         self.path: list = []
 
         self.set(**kwargs)
@@ -12,5 +19,10 @@ class Call:
         return f"Call {self.id} from \'{self.src}\' to \'{self.dst}\' require {self.rate}Mbps routing to the path: {self.path}."
 
     def set(self, **kwargs):
+        # Set instance attributes with validation.
+        allowed_attrs = self.__dict__.keys()
         for key in kwargs:
+            if key not in allowed_attrs:
+                logging.error(f"Invalid attribute '{key}'. Allowed attributes are: {allowed_attrs}")
+                continue
             setattr(self, key, kwargs[key])

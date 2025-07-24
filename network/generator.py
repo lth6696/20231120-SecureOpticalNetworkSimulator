@@ -10,6 +10,7 @@ from network.attack import Attack
 from network.scheduler import Scheduler
 from network.state import NetState
 
+logger = logging.getLogger(__name__)
 
 class CallsGen:
     def __init__(self):
@@ -18,8 +19,10 @@ class CallsGen:
     def generate(self, nodes: list, number: str, rate: str, **kwargs):
         number = int(number)
         rate = float(rate)
+        logger.info(f"Starting call generation with number={number}, rate={rate}")
         if len(nodes) < 2 or number < 1 or rate <= 0:
-            raise ValueError
+            logger.error(f"Invalid parameters for call generation: nodes count={len(nodes)}, number={number}, rate={rate}")
+            raise ValueError("Invalid parameters for call generation")
         for i in range(number):
             [src, dst] = random.sample(nodes, 2)
             call = utl.call.Call(id=i, src=src, dst=dst, rate=rate, **kwargs)
