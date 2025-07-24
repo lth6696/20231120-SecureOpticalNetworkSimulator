@@ -1,2 +1,4 @@
 from . import benchmark
-from . import sosr
+from . import dynamic_praca
+from . import fuzzy
+from . import static_spf
