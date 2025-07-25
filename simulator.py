@@ -25,7 +25,7 @@ def simulator(configer: configparser.ConfigParser):
     algo_set = {}
     topo_gen = network.generator.TopoGen()
     tfc_gen = network.generator.CallsGen()
-    atk_gen = network.generator.EventGen()
+    evnt_gen = network.generator.EventGen()
     net_state = network.state.NetState()
     scheduler = network.scheduler.Scheduler()
     res = result.statistic.Statistic()
@@ -42,7 +42,7 @@ def simulator(configer: configparser.ConfigParser):
             # 生成业务
             nodes = list(topo_gen.G.nodes.keys())
             tfc_gen.generate(nodes, **kargs)
-            algorithm.static_spf.StaticSPF.route(topo_gen.G, tfc_gen.calls)
+            # algorithm.static_spf.StaticSPF.route(topo_gen.G, tfc_gen.calls)
         elif section == "states":
             # 获取网络状态
             net_state.get(topo_gen.G, tfc_gen.calls, **kargs)
@@ -50,19 +50,19 @@ def simulator(configer: configparser.ConfigParser):
             algo_set = kargs
         elif section == "events":
             # 生成离散事件
-            atk_gen.generate(scheduler, net_state, **kargs)
-            net_state.update(topo_gen.G, tfc_gen.calls, atk_gen.attacked_regions)
+            evnt_gen.generate(scheduler, tfc_gen.calls, **kargs)
+            # net_state.update(topo_gen.G, tfc_gen.calls, evnt_gen.attacked_regions)
         elif section == "result":
             pass
         else:
             pass
 
     # 启动管控平台
-    logging.info("{} - {} - Start the control plane.".format(__file__, __name__))
+    logging.info("Start the control plane.".format(__file__, __name__))
     controller = network.controller.ControlPlane()
     controller.run(scheduler, topo_gen, tfc_gen, net_state, res, **algo_set)
     # print(res.show())
-    logging.info(f"{__file__} - {__name__} - Done.")
+    logging.info(f"Done.")
     return res.get()
 
 

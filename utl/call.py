@@ -10,13 +10,15 @@ class Call:
         self.dst: any = -1
         self.rate: float = 0
         self.security: int = -1
-        self.ratio: str = "0"
+        
         self.path: list = []
+        self.is_routed: bool = False
 
         self.set(**kwargs)
 
     def __str__(self):
-        return f"Call {self.id} from \'{self.src}\' to \'{self.dst}\' require {self.rate}Mbps routing to the path: {self.path}."
+        # return f"Call {self.id} from \'{self.src}\' to \'{self.dst}\' require {self.rate}Gbps and \'{self.security}\' security \'{self.is_routed}\' routing to the path: {self.path}."
+        return f"Call {self.id} ({self.src} --> {self.dst}): rate={self.rate} Gbps | security={self.security} | routing={self.is_routed} | path={self.path}."
 
     def set(self, **kwargs):
         # Set instance attributes with validation.

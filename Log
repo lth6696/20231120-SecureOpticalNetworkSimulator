@@ -1,45 +1,232 @@
-2025-07-17 11:51:11,205 - INFO - Status: Optimal
-2025-07-17 11:51:11,205 - INFO - Total successful services: 9.0
-2025-07-17 11:51:11,205 - INFO - Link encryption configurations:
-2025-07-17 11:51:11,205 - INFO - Link v1-v6 encrypted at level 2
-2025-07-17 11:51:11,205 - INFO - Link v2-v3 encrypted at level 2
-2025-07-17 11:51:11,205 - INFO - Link v2-v6 encrypted at level 2
-2025-07-17 11:51:11,205 - INFO - Link v3-v4 encrypted at level 2
-2025-07-17 11:51:11,205 - INFO - Link v3-v5 encrypted at level 1
-2025-07-17 11:51:11,205 - INFO - Link v5-v6 encrypted at level 2
-2025-07-17 11:51:11,205 - INFO - Link v6-v1 encrypted at level 2
-2025-07-17 11:51:11,205 - INFO - Link v3-v2 encrypted at level 2
-2025-07-17 11:51:11,205 - INFO - Link v6-v2 encrypted at level 2
-2025-07-17 11:51:11,205 - INFO - Link v4-v3 encrypted at level 2
-2025-07-17 11:51:11,205 - INFO - Link v5-v3 encrypted at level 1
-2025-07-17 11:51:11,205 - INFO - Link v6-v5 encrypted at level 2
-2025-07-17 11:51:11,205 - INFO - Successfully routed services:
-2025-07-17 11:51:11,205 - INFO - From v1 to v5 with 2 level
-2025-07-17 11:51:11,205 - INFO - From v2 to v6 with 2 level
-2025-07-17 11:51:11,205 - INFO - From v2 to v4 with 2 level
-2025-07-17 11:51:11,205 - INFO - From v3 to v5 with 1 level
-2025-07-17 11:51:11,206 - INFO - From v3 to v1 with 2 level
-2025-07-17 11:51:11,206 - INFO - From v6 to v1 with 2 level
-2025-07-17 11:51:11,206 - INFO - From v3 to v4 with 1 level
-2025-07-17 11:51:11,206 - INFO - From v5 to v6 with 2 level
-2025-07-17 11:51:11,206 - INFO - From v4 to v2 with 2 level
-2025-07-17 11:51:11,206 - INFO - Service routing paths:
-2025-07-17 11:51:11,206 - INFO - Service v1 -> v5 (level 2):
-2025-07-17 11:51:11,206 - INFO - v1->v6 (level 2) -> v6->v5 (level 2)
-2025-07-17 11:51:11,206 - INFO - Service v2 -> v6 (level 2):
-2025-07-17 11:51:11,206 - INFO - v2->v6 (level 2)
-2025-07-17 11:51:11,206 - INFO - Service v2 -> v4 (level 2):
-2025-07-17 11:51:11,206 - INFO - v2->v3 (level 2) -> v3->v4 (level 2)
-2025-07-17 11:51:11,206 - INFO - Service v3 -> v5 (level 1):
-2025-07-17 11:51:11,206 - INFO - v3->v5 (level 1)
-2025-07-17 11:51:11,206 - INFO - Service v3 -> v1 (level 2):
-2025-07-17 11:51:11,206 - INFO - v2->v6 (level 2) -> v6->v1 (level 2) -> v3->v2 (level 2)
-2025-07-17 11:51:11,206 - INFO - Service v6 -> v1 (level 2):
-2025-07-17 11:51:11,206 - INFO - v6->v1 (level 2)
-2025-07-17 11:51:11,206 - INFO - Service v3 -> v4 (level 1):
-2025-07-17 11:51:11,206 - INFO - v3->v4 (level 2)
-2025-07-17 11:51:11,206 - INFO - Service v5 -> v6 (level 2):
-2025-07-17 11:51:11,206 - INFO - v5->v6 (level 2)
-2025-07-17 11:51:11,206 - INFO - Service v4 -> v2 (level 2):
-2025-07-17 11:51:11,206 - INFO - v3->v2 (level 2) -> v4->v3 (level 2)
-2025-07-17 11:51:11,206 - INFO - Loading topology data for visualization...
+2025-07-25 22:12:40,458 - INFO - Starting topology generation.
+2025-07-25 22:12:40,458 - INFO - Generate topology from GraphML file: ./topology/SixNode.graphml
+2025-07-25 22:12:40,462 - DEBUG - Success load GraphML topology with 6 nodes and 8 edges.
+2025-07-25 22:12:40,462 - DEBUG - ===== TOPOLOGY NODES =====
+2025-07-25 22:12:40,462 - DEBUG - Node: 1 | Attributes: Internal=1, Latitude=50.0, Country=Default, id=1, Longitude=80.0, label=Node1
+2025-07-25 22:12:40,462 - DEBUG - Node: 2 | Attributes: Internal=1, Latitude=85.0, Country=Default, id=2, Longitude=60.0, label=Node2
+2025-07-25 22:12:40,462 - DEBUG - Node: 3 | Attributes: Internal=1, Latitude=85.0, Country=Default, id=3, Longitude=30.0, label=Node3
+2025-07-25 22:12:40,462 - DEBUG - Node: 4 | Attributes: Internal=1, Latitude=50.0, Country=Default, id=4, Longitude=10.0, label=Node4
+2025-07-25 22:12:40,462 - DEBUG - Node: 5 | Attributes: Internal=1, Latitude=15.0, Country=Default, id=5, Longitude=30.0, label=Node5
+2025-07-25 22:12:40,462 - DEBUG - Node: 6 | Attributes: Internal=1, Latitude=15.0, Country=Default, id=6, Longitude=60.0, label=Node6
+2025-07-25 22:12:40,462 - DEBUG - ===== TOPOLOGY EDGES =====
+2025-07-25 22:12:40,462 - DEBUG - Edge: (1 -- 2) | Attributes: id=e1, key=0, bandwidth=1000, weight=0.001, link_sec=0|1, link_ratio=6|4
+2025-07-25 22:12:40,462 - DEBUG - Edge: (1 -- 6) | Attributes: id=e2, key=0, bandwidth=1000, weight=0.001, link_sec=0|1, link_ratio=6|4
+2025-07-25 22:12:40,462 - DEBUG - Edge: (2 -- 3) | Attributes: id=e3, key=0, bandwidth=1000, weight=0.001, link_sec=0|1, link_ratio=6|4
+2025-07-25 22:12:40,463 - DEBUG - Edge: (2 -- 6) | Attributes: id=e4, key=0, bandwidth=1000, weight=0.001, link_sec=0|1, link_ratio=6|4
+2025-07-25 22:12:40,463 - DEBUG - Edge: (3 -- 4) | Attributes: id=e5, key=0, bandwidth=1000, weight=0.001, link_sec=0|1, link_ratio=6|4
+2025-07-25 22:12:40,463 - DEBUG - Edge: (3 -- 5) | Attributes: id=e6, key=0, bandwidth=1000, weight=0.001, link_sec=0|1, link_ratio=6|4
+2025-07-25 22:12:40,463 - DEBUG - Edge: (4 -- 5) | Attributes: id=e7, key=0, bandwidth=1000, weight=0.001, link_sec=0|1, link_ratio=6|4
+2025-07-25 22:12:40,463 - DEBUG - Edge: (5 -- 6) | Attributes: id=e8, key=0, bandwidth=1000, weight=0.001, link_sec=0|1, link_ratio=6|4
+2025-07-25 22:12:40,463 - DEBUG - ===== TOPOLOGY SUMMARY =====
+2025-07-25 22:12:40,463 - DEBUG - Total Nodes: 6
+2025-07-25 22:12:40,463 - DEBUG - Total Edges: 8
+2025-07-25 22:12:40,463 - DEBUG - Connected Components: 1
+2025-07-25 22:12:40,463 - INFO - Starting call generation with number=100, rate=10.0, security demands=[0, 1, 2], security ratio=[0.6, 0.3, 0.1]
+2025-07-25 22:12:40,464 - DEBUG - ===== CALLS INFO =====
+2025-07-25 22:12:40,464 - DEBUG - Call 0 (1 --> 4): rate=10.0 Gbps | security=1 | routing=False | path=[].
+2025-07-25 22:12:40,464 - DEBUG - Call 1 (1 --> 3): rate=10.0 Gbps | security=0 | routing=False | path=[].
+2025-07-25 22:12:40,464 - DEBUG - Call 2 (3 --> 1): rate=10.0 Gbps | security=0 | routing=False | path=[].
+2025-07-25 22:12:40,464 - DEBUG - Call 3 (3 --> 5): rate=10.0 Gbps | security=0 | routing=False | path=[].
+2025-07-25 22:12:40,464 - DEBUG - Call 4 (5 --> 6): rate=10.0 Gbps | security=0 | routing=False | path=[].
+2025-07-25 22:12:40,464 - DEBUG - Call 5 (5 --> 3): rate=10.0 Gbps | security=0 | routing=False | path=[].
+2025-07-25 22:12:40,464 - DEBUG - Call 6 (2 --> 5): rate=10.0 Gbps | security=0 | routing=False | path=[].
+2025-07-25 22:12:40,464 - DEBUG - Call 7 (2 --> 6): rate=10.0 Gbps | security=0 | routing=False | path=[].
+2025-07-25 22:12:40,464 - DEBUG - Call 8 (1 --> 5): rate=10.0 Gbps | security=1 | routing=False | path=[].
+2025-07-25 22:12:40,464 - DEBUG - Call 9 (5 --> 1): rate=10.0 Gbps | security=1 | routing=False | path=[].
+2025-07-25 22:12:40,464 - DEBUG - Call 10 (3 --> 4): rate=10.0 Gbps | security=0 | routing=False | path=[].
+2025-07-25 22:12:40,464 - DEBUG - Call 11 (4 --> 1): rate=10.0 Gbps | security=1 | routing=False | path=[].
+2025-07-25 22:12:40,464 - DEBUG - Call 12 (2 --> 3): rate=10.0 Gbps | security=0 | routing=False | path=[].
+2025-07-25 22:12:40,464 - DEBUG - Call 13 (3 --> 5): rate=10.0 Gbps | security=0 | routing=False | path=[].
+2025-07-25 22:12:40,464 - DEBUG - Call 14 (2 --> 3): rate=10.0 Gbps | security=0 | routing=False | path=[].
+2025-07-25 22:12:40,464 - DEBUG - Call 15 (6 --> 5): rate=10.0 Gbps | security=0 | routing=False | path=[].
+2025-07-25 22:12:40,464 - DEBUG - Call 16 (1 --> 2): rate=10.0 Gbps | security=2 | routing=False | path=[].
+2025-07-25 22:12:40,464 - DEBUG - Call 17 (5 --> 1): rate=10.0 Gbps | security=0 | routing=False | path=[].
+2025-07-25 22:12:40,464 - DEBUG - Call 18 (1 --> 2): rate=10.0 Gbps | security=1 | routing=False | path=[].
+2025-07-25 22:12:40,465 - DEBUG - Call 19 (4 --> 6): rate=10.0 Gbps | security=0 | routing=False | path=[].
+2025-07-25 22:12:40,465 - DEBUG - Call 20 (6 --> 2): rate=10.0 Gbps | security=1 | routing=False | path=[].
+2025-07-25 22:12:40,465 - DEBUG - Call 21 (3 --> 2): rate=10.0 Gbps | security=0 | routing=False | path=[].
+2025-07-25 22:12:40,465 - DEBUG - Call 22 (1 --> 6): rate=10.0 Gbps | security=1 | routing=False | path=[].
+2025-07-25 22:12:40,465 - DEBUG - Call 23 (3 --> 2): rate=10.0 Gbps | security=1 | routing=False | path=[].
+2025-07-25 22:12:40,465 - DEBUG - Call 24 (5 --> 3): rate=10.0 Gbps | security=0 | routing=False | path=[].
+2025-07-25 22:12:40,465 - DEBUG - Call 25 (5 --> 3): rate=10.0 Gbps | security=1 | routing=False | path=[].
+2025-07-25 22:12:40,465 - DEBUG - Call 26 (6 --> 1): rate=10.0 Gbps | security=0 | routing=False | path=[].
+2025-07-25 22:12:40,465 - DEBUG - Call 27 (1 --> 2): rate=10.0 Gbps | security=2 | routing=False | path=[].
+2025-07-25 22:12:40,465 - DEBUG - Call 28 (1 --> 2): rate=10.0 Gbps | security=0 | routing=False | path=[].
+2025-07-25 22:12:40,465 - DEBUG - Call 29 (1 --> 5): rate=10.0 Gbps | security=0 | routing=False | path=[].
+2025-07-25 22:12:40,465 - DEBUG - Call 30 (1 --> 6): rate=10.0 Gbps | security=0 | routing=False | path=[].
+2025-07-25 22:12:40,465 - DEBUG - Call 31 (6 --> 1): rate=10.0 Gbps | security=1 | routing=False | path=[].
+2025-07-25 22:12:40,465 - DEBUG - Call 32 (5 --> 4): rate=10.0 Gbps | security=0 | routing=False | path=[].
+2025-07-25 22:12:40,465 - DEBUG - Call 33 (3 --> 6): rate=10.0 Gbps | security=0 | routing=False | path=[].
+2025-07-25 22:12:40,465 - DEBUG - Call 34 (6 --> 1): rate=10.0 Gbps | security=2 | routing=False | path=[].
+2025-07-25 22:12:40,465 - DEBUG - Call 35 (1 --> 5): rate=10.0 Gbps | security=0 | routing=False | path=[].
+2025-07-25 22:12:40,465 - DEBUG - Call 36 (6 --> 3): rate=10.0 Gbps | security=0 | routing=False | path=[].
+2025-07-25 22:12:40,465 - DEBUG - Call 37 (4 --> 3): rate=10.0 Gbps | security=2 | routing=False | path=[].
+2025-07-25 22:12:40,465 - DEBUG - Call 38 (3 --> 5): rate=10.0 Gbps | security=0 | routing=False | path=[].
+2025-07-25 22:12:40,465 - DEBUG - Call 39 (2 --> 6): rate=10.0 Gbps | security=1 | routing=False | path=[].
+2025-07-25 22:12:40,465 - DEBUG - Call 40 (3 --> 4): rate=10.0 Gbps | security=0 | routing=False | path=[].
+2025-07-25 22:12:40,465 - DEBUG - Call 41 (1 --> 5): rate=10.0 Gbps | security=1 | routing=False | path=[].
+2025-07-25 22:12:40,465 - DEBUG - Call 42 (4 --> 1): rate=10.0 Gbps | security=0 | routing=False | path=[].
+2025-07-25 22:12:40,465 - DEBUG - Call 43 (4 --> 2): rate=10.0 Gbps | security=0 | routing=False | path=[].
+2025-07-25 22:12:40,465 - DEBUG - Call 44 (6 --> 5): rate=10.0 Gbps | security=1 | routing=False | path=[].
+2025-07-25 22:12:40,465 - DEBUG - Call 45 (4 --> 5): rate=10.0 Gbps | security=2 | routing=False | path=[].
+2025-07-25 22:12:40,465 - DEBUG - Call 46 (3 --> 2): rate=10.0 Gbps | security=0 | routing=False | path=[].
+2025-07-25 22:12:40,465 - DEBUG - Call 47 (2 --> 3): rate=10.0 Gbps | security=0 | routing=False | path=[].
+2025-07-25 22:12:40,465 - DEBUG - Call 48 (6 --> 3): rate=10.0 Gbps | security=0 | routing=False | path=[].
+2025-07-25 22:12:40,465 - DEBUG - Call 49 (6 --> 5): rate=10.0 Gbps | security=2 | routing=False | path=[].
+2025-07-25 22:12:40,465 - DEBUG - Call 50 (5 --> 3): rate=10.0 Gbps | security=1 | routing=False | path=[].
+2025-07-25 22:12:40,465 - DEBUG - Call 51 (2 --> 6): rate=10.0 Gbps | security=0 | routing=False | path=[].
+2025-07-25 22:12:40,465 - DEBUG - Call 52 (5 --> 1): rate=10.0 Gbps | security=0 | routing=False | path=[].
+2025-07-25 22:12:40,465 - DEBUG - Call 53 (3 --> 2): rate=10.0 Gbps | security=0 | routing=False | path=[].
+2025-07-25 22:12:40,465 - DEBUG - Call 54 (1 --> 6): rate=10.0 Gbps | security=1 | routing=False | path=[].
+2025-07-25 22:12:40,465 - DEBUG - Call 55 (2 --> 5): rate=10.0 Gbps | security=0 | routing=False | path=[].
+2025-07-25 22:12:40,466 - DEBUG - Call 56 (1 --> 2): rate=10.0 Gbps | security=1 | routing=False | path=[].
+2025-07-25 22:12:40,466 - DEBUG - Call 57 (3 --> 2): rate=10.0 Gbps | security=0 | routing=False | path=[].
+2025-07-25 22:12:40,466 - DEBUG - Call 58 (4 --> 3): rate=10.0 Gbps | security=1 | routing=False | path=[].
+2025-07-25 22:12:40,466 - DEBUG - Call 59 (4 --> 1): rate=10.0 Gbps | security=0 | routing=False | path=[].
+2025-07-25 22:12:40,466 - DEBUG - Call 60 (6 --> 4): rate=10.0 Gbps | security=0 | routing=False | path=[].
+2025-07-25 22:12:40,466 - DEBUG - Call 61 (6 --> 2): rate=10.0 Gbps | security=0 | routing=False | path=[].
+2025-07-25 22:12:40,466 - DEBUG - Call 62 (6 --> 1): rate=10.0 Gbps | security=1 | routing=False | path=[].
+2025-07-25 22:12:40,466 - DEBUG - Call 63 (5 --> 2): rate=10.0 Gbps | security=0 | routing=False | path=[].
+2025-07-25 22:12:40,466 - DEBUG - Call 64 (2 --> 6): rate=10.0 Gbps | security=0 | routing=False | path=[].
+2025-07-25 22:12:40,466 - DEBUG - Call 65 (3 --> 2): rate=10.0 Gbps | security=0 | routing=False | path=[].
+2025-07-25 22:12:40,466 - DEBUG - Call 66 (3 --> 1): rate=10.0 Gbps | security=1 | routing=False | path=[].
+2025-07-25 22:12:40,466 - DEBUG - Call 67 (5 --> 6): rate=10.0 Gbps | security=0 | routing=False | path=[].
+2025-07-25 22:12:40,466 - DEBUG - Call 68 (3 --> 5): rate=10.0 Gbps | security=0 | routing=False | path=[].
+2025-07-25 22:12:40,466 - DEBUG - Call 69 (6 --> 2): rate=10.0 Gbps | security=0 | routing=False | path=[].
+2025-07-25 22:12:40,466 - DEBUG - Call 70 (1 --> 3): rate=10.0 Gbps | security=0 | routing=False | path=[].
+2025-07-25 22:12:40,466 - DEBUG - Call 71 (5 --> 1): rate=10.0 Gbps | security=0 | routing=False | path=[].
+2025-07-25 22:12:40,466 - DEBUG - Call 72 (1 --> 5): rate=10.0 Gbps | security=1 | routing=False | path=[].
+2025-07-25 22:12:40,466 - DEBUG - Call 73 (6 --> 5): rate=10.0 Gbps | security=0 | routing=False | path=[].
+2025-07-25 22:12:40,466 - DEBUG - Call 74 (2 --> 4): rate=10.0 Gbps | security=0 | routing=False | path=[].
+2025-07-25 22:12:40,466 - DEBUG - Call 75 (6 --> 1): rate=10.0 Gbps | security=1 | routing=False | path=[].
+2025-07-25 22:12:40,466 - DEBUG - Call 76 (1 --> 6): rate=10.0 Gbps | security=0 | routing=False | path=[].
+2025-07-25 22:12:40,466 - DEBUG - Call 77 (1 --> 5): rate=10.0 Gbps | security=0 | routing=False | path=[].
+2025-07-25 22:12:40,466 - DEBUG - Call 78 (2 --> 3): rate=10.0 Gbps | security=1 | routing=False | path=[].
+2025-07-25 22:12:40,466 - DEBUG - Call 79 (3 --> 2): rate=10.0 Gbps | security=0 | routing=False | path=[].
+2025-07-25 22:12:40,466 - DEBUG - Call 80 (6 --> 1): rate=10.0 Gbps | security=1 | routing=False | path=[].
+2025-07-25 22:12:40,466 - DEBUG - Call 81 (4 --> 5): rate=10.0 Gbps | security=0 | routing=False | path=[].
+2025-07-25 22:12:40,466 - DEBUG - Call 82 (3 --> 6): rate=10.0 Gbps | security=0 | routing=False | path=[].
+2025-07-25 22:12:40,466 - DEBUG - Call 83 (6 --> 5): rate=10.0 Gbps | security=0 | routing=False | path=[].
+2025-07-25 22:12:40,466 - DEBUG - Call 84 (3 --> 6): rate=10.0 Gbps | security=0 | routing=False | path=[].
+2025-07-25 22:12:40,466 - DEBUG - Call 85 (4 --> 5): rate=10.0 Gbps | security=0 | routing=False | path=[].
+2025-07-25 22:12:40,466 - DEBUG - Call 86 (1 --> 4): rate=10.0 Gbps | security=1 | routing=False | path=[].
+2025-07-25 22:12:40,466 - DEBUG - Call 87 (3 --> 4): rate=10.0 Gbps | security=1 | routing=False | path=[].
+2025-07-25 22:12:40,466 - DEBUG - Call 88 (2 --> 5): rate=10.0 Gbps | security=0 | routing=False | path=[].
+2025-07-25 22:12:40,466 - DEBUG - Call 89 (5 --> 4): rate=10.0 Gbps | security=1 | routing=False | path=[].
+2025-07-25 22:12:40,466 - DEBUG - Call 90 (4 --> 1): rate=10.0 Gbps | security=2 | routing=False | path=[].
+2025-07-25 22:12:40,466 - DEBUG - Call 91 (3 --> 6): rate=10.0 Gbps | security=0 | routing=False | path=[].
+2025-07-25 22:12:40,466 - DEBUG - Call 92 (4 --> 1): rate=10.0 Gbps | security=2 | routing=False | path=[].
+2025-07-25 22:12:40,466 - DEBUG - Call 93 (5 --> 2): rate=10.0 Gbps | security=0 | routing=False | path=[].
+2025-07-25 22:12:40,466 - DEBUG - Call 94 (1 --> 4): rate=10.0 Gbps | security=0 | routing=False | path=[].
+2025-07-25 22:12:40,466 - DEBUG - Call 95 (2 --> 6): rate=10.0 Gbps | security=1 | routing=False | path=[].
+2025-07-25 22:12:40,466 - DEBUG - Call 96 (1 --> 6): rate=10.0 Gbps | security=1 | routing=False | path=[].
+2025-07-25 22:12:40,467 - DEBUG - Call 97 (1 --> 6): rate=10.0 Gbps | security=0 | routing=False | path=[].
+2025-07-25 22:12:40,467 - DEBUG - Call 98 (2 --> 6): rate=10.0 Gbps | security=1 | routing=False | path=[].
+2025-07-25 22:12:40,467 - DEBUG - Call 99 (4 --> 3): rate=10.0 Gbps | security=0 | routing=False | path=[].
+2025-07-25 22:12:40,467 - DEBUG - Call type count: {1: 29, 0: 63, 2: 8}
+2025-07-25 22:12:40,467 - INFO - Generate events in 1(load) with 20 holding time.
+2025-07-25 22:12:40,467 - INFO - Arrival time (lambda) is 20.0, holding time (mu) is 20, intensity (rio) is 1.0.
+2025-07-25 22:12:40,467 - DEBUG - Event 0 arrival 13.786777916795327 | depature 36.16422942590482.
+2025-07-25 22:12:40,467 - DEBUG - Event 1 arrival 27.67534533735965 | depature 49.012017988814875.
+2025-07-25 22:12:40,467 - DEBUG - Event 2 arrival 90.42819263452711 | depature 107.0184928489135.
+2025-07-25 22:12:40,467 - DEBUG - Event 3 arrival 101.60146741411707 | depature 110.1494388191203.
+2025-07-25 22:12:40,467 - DEBUG - Event 4 arrival 114.09471662594746 | depature 132.74583143879545.
+2025-07-25 22:12:40,467 - DEBUG - Event 5 arrival 129.92401662902506 | depature 130.73000635421775.
+2025-07-25 22:12:40,467 - DEBUG - Event 6 arrival 175.74885466946776 | depature 181.59253768833662.
+2025-07-25 22:12:40,467 - DEBUG - Event 7 arrival 177.95466544441302 | depature 194.35617304914592.
+2025-07-25 22:12:40,467 - DEBUG - Event 8 arrival 188.35511260536182 | depature 190.12218160525748.
+2025-07-25 22:12:40,467 - DEBUG - Event 9 arrival 200.50867259156394 | depature 204.97239354646493.
+2025-07-25 22:12:40,467 - DEBUG - Event 10 arrival 201.09592135779587 | depature 215.5787860022487.
+2025-07-25 22:12:40,467 - DEBUG - Event 11 arrival 203.59174820706167 | depature 205.55765681657275.
+2025-07-25 22:12:40,467 - DEBUG - Event 12 arrival 213.19607929041894 | depature 285.36954027537803.
+2025-07-25 22:12:40,467 - DEBUG - Event 13 arrival 224.75320081342798 | depature 226.91179270098255.
+2025-07-25 22:12:40,467 - DEBUG - Event 14 arrival 245.1523636001658 | depature 274.71878543336277.
+2025-07-25 22:12:40,468 - DEBUG - Event 15 arrival 250.77951090875996 | depature 264.79125765743623.
+2025-07-25 22:12:40,468 - DEBUG - Event 16 arrival 271.78354985000686 | depature 289.4786531166326.
+2025-07-25 22:12:40,468 - DEBUG - Event 17 arrival 274.5601237501262 | depature 283.4257758138656.
+2025-07-25 22:12:40,468 - DEBUG - Event 18 arrival 275.4576921938863 | depature 298.26197330915204.
+2025-07-25 22:12:40,468 - DEBUG - Event 19 arrival 320.5465381132208 | depature 337.85095937481844.
+2025-07-25 22:12:40,468 - DEBUG - Event 20 arrival 365.88004729953275 | depature 393.4267288770014.
+2025-07-25 22:12:40,468 - DEBUG - Event 21 arrival 374.23243469836206 | depature 374.523044749346.
+2025-07-25 22:12:40,468 - DEBUG - Event 22 arrival 395.67813627038504 | depature 401.6285605668337.
+2025-07-25 22:12:40,468 - DEBUG - Event 23 arrival 400.62180862721243 | depature 418.15328048896407.
+2025-07-25 22:12:40,468 - DEBUG - Event 24 arrival 461.0909622492656 | depature 493.3295765204007.
+2025-07-25 22:12:40,468 - DEBUG - Event 25 arrival 469.1473689918722 | depature 473.80571533584254.
+2025-07-25 22:12:40,468 - DEBUG - Event 26 arrival 482.07168735253083 | depature 486.0287332814104.
+2025-07-25 22:12:40,468 - DEBUG - Event 27 arrival 487.8893094302555 | depature 546.9230399339613.
+2025-07-25 22:12:40,468 - DEBUG - Event 28 arrival 503.15217325942905 | depature 519.6113413801755.
+2025-07-25 22:12:40,468 - DEBUG - Event 29 arrival 542.5630242764723 | depature 569.4457752112221.
+2025-07-25 22:12:40,468 - DEBUG - Event 30 arrival 550.1406744181564 | depature 550.1489177715703.
+2025-07-25 22:12:40,468 - DEBUG - Event 31 arrival 559.9190903324254 | depature 615.1720784013274.
+2025-07-25 22:12:40,468 - DEBUG - Event 32 arrival 567.8930002255107 | depature 586.334589241056.
+2025-07-25 22:12:40,468 - DEBUG - Event 33 arrival 622.9462653309897 | depature 652.3729594592397.
+2025-07-25 22:12:40,468 - DEBUG - Event 34 arrival 670.6675404202085 | depature 706.6589336526916.
+2025-07-25 22:12:40,468 - DEBUG - Event 35 arrival 671.7347528239021 | depature 699.8813719794035.
+2025-07-25 22:12:40,468 - DEBUG - Event 36 arrival 691.1695221982776 | depature 710.2193140113293.
+2025-07-25 22:12:40,468 - DEBUG - Event 37 arrival 708.6482777913501 | depature 733.5277547364318.
+2025-07-25 22:12:40,468 - DEBUG - Event 38 arrival 763.5623250641789 | depature 794.5583410187309.
+2025-07-25 22:12:40,468 - DEBUG - Event 39 arrival 782.7217063979982 | depature 821.3315666329332.
+2025-07-25 22:12:40,468 - DEBUG - Event 40 arrival 808.146366805919 | depature 808.5876823610442.
+2025-07-25 22:12:40,468 - DEBUG - Event 41 arrival 809.2118974813341 | depature 809.4062050127882.
+2025-07-25 22:12:40,469 - DEBUG - Event 42 arrival 851.2120093370992 | depature 910.6430323005166.
+2025-07-25 22:12:40,469 - DEBUG - Event 43 arrival 886.7209834437931 | depature 891.216924870304.
+2025-07-25 22:12:40,469 - DEBUG - Event 44 arrival 903.9433878426862 | depature 905.0229158600367.
+2025-07-25 22:12:40,469 - DEBUG - Event 45 arrival 939.1137715444462 | depature 972.6496913508992.
+2025-07-25 22:12:40,469 - DEBUG - Event 46 arrival 967.5892306159988 | depature 985.60921318731.
+2025-07-25 22:12:40,469 - DEBUG - Event 47 arrival 971.3988146035533 | depature 974.5517985481293.
+2025-07-25 22:12:40,469 - DEBUG - Event 48 arrival 1014.8994585213208 | depature 1046.251885574653.
+2025-07-25 22:12:40,469 - DEBUG - Event 49 arrival 1040.683795990459 | depature 1056.0766624329015.
+2025-07-25 22:12:40,469 - DEBUG - Event 50 arrival 1071.1167732728222 | depature 1093.57530799838.
+2025-07-25 22:12:40,469 - DEBUG - Event 51 arrival 1075.8556136566942 | depature 1102.653774137301.
+2025-07-25 22:12:40,469 - DEBUG - Event 52 arrival 1081.339797652423 | depature 1084.1172633659364.
+2025-07-25 22:12:40,469 - DEBUG - Event 53 arrival 1092.820760741704 | depature 1103.7581438573163.
+2025-07-25 22:12:40,469 - DEBUG - Event 54 arrival 1136.8369047514675 | depature 1149.0051462170989.
+2025-07-25 22:12:40,469 - DEBUG - Event 55 arrival 1150.3502013728967 | depature 1160.1477219766246.
+2025-07-25 22:12:40,469 - DEBUG - Event 56 arrival 1190.1046521886765 | depature 1201.8361059485264.
+2025-07-25 22:12:40,469 - DEBUG - Event 57 arrival 1208.1892433303951 | depature 1232.1739438946101.
+2025-07-25 22:12:40,469 - DEBUG - Event 58 arrival 1271.935933644376 | depature 1298.724345107679.
+2025-07-25 22:12:40,469 - DEBUG - Event 59 arrival 1325.3506698033532 | depature 1325.5904676990765.
+2025-07-25 22:12:40,469 - DEBUG - Event 60 arrival 1339.4491083337828 | depature 1359.6108465062464.
+2025-07-25 22:12:40,469 - DEBUG - Event 61 arrival 1348.1257078844706 | depature 1360.5873910543419.
+2025-07-25 22:12:40,469 - DEBUG - Event 62 arrival 1348.5885048292714 | depature 1353.7304146538454.
+2025-07-25 22:12:40,469 - DEBUG - Event 63 arrival 1375.7165022944057 | depature 1422.3195903388248.
+2025-07-25 22:12:40,469 - DEBUG - Event 64 arrival 1382.1763832944819 | depature 1388.9540315393574.
+2025-07-25 22:12:40,469 - DEBUG - Event 65 arrival 1390.6872922168702 | depature 1416.9243338979154.
+2025-07-25 22:12:40,469 - DEBUG - Event 66 arrival 1414.2608140111342 | depature 1426.1457998027922.
+2025-07-25 22:12:40,469 - DEBUG - Event 67 arrival 1429.975063387392 | depature 1432.5469648551543.
+2025-07-25 22:12:40,469 - DEBUG - Event 68 arrival 1434.897184116757 | depature 1463.9617596682176.
+2025-07-25 22:12:40,470 - DEBUG - Event 69 arrival 1435.2136160627567 | depature 1438.5847311202415.
+2025-07-25 22:12:40,470 - DEBUG - Event 70 arrival 1444.9319681016038 | depature 1493.6461938469024.
+2025-07-25 22:12:40,470 - DEBUG - Event 71 arrival 1449.3330871388732 | depature 1456.5350401968972.
+2025-07-25 22:12:40,470 - DEBUG - Event 72 arrival 1456.0943813352003 | depature 1486.6382806421843.
+2025-07-25 22:12:40,470 - DEBUG - Event 73 arrival 1469.2354654006622 | depature 1477.5649712228167.
+2025-07-25 22:12:40,470 - DEBUG - Event 74 arrival 1529.5092402241257 | depature 1529.8821560539395.
+2025-07-25 22:12:40,470 - DEBUG - Event 75 arrival 1564.223039400692 | depature 1567.7623739511182.
+2025-07-25 22:12:40,470 - DEBUG - Event 76 arrival 1583.3989978688173 | depature 1590.554301332723.
+2025-07-25 22:12:40,470 - DEBUG - Event 77 arrival 1588.9180182598873 | depature 1619.5945008191868.
+2025-07-25 22:12:40,470 - DEBUG - Event 78 arrival 1619.2497525170918 | depature 1631.0061783942394.
+2025-07-25 22:12:40,470 - DEBUG - Event 79 arrival 1627.5322666470163 | depature 1635.7837066340596.
+2025-07-25 22:12:40,470 - DEBUG - Event 80 arrival 1634.6315468990163 | depature 1696.3324650942122.
+2025-07-25 22:12:40,470 - DEBUG - Event 81 arrival 1638.5612130946984 | depature 1658.9261101787615.
+2025-07-25 22:12:40,470 - DEBUG - Event 82 arrival 1653.1094088314087 | depature 1676.1944338966866.
+2025-07-25 22:12:40,470 - DEBUG - Event 83 arrival 1675.7674125916149 | depature 1704.8363907289313.
+2025-07-25 22:12:40,470 - DEBUG - Event 84 arrival 1688.648296151151 | depature 1709.799205354277.
+2025-07-25 22:12:40,470 - DEBUG - Event 85 arrival 1707.0637791457398 | depature 1712.9433401697029.
+2025-07-25 22:12:40,470 - DEBUG - Event 86 arrival 1716.7984102973874 | depature 1728.3864671823803.
+2025-07-25 22:12:40,470 - DEBUG - Event 87 arrival 1718.7730794555705 | depature 1722.2797710325603.
+2025-07-25 22:12:40,470 - DEBUG - Event 88 arrival 1728.813365590635 | depature 1737.4726110603594.
+2025-07-25 22:12:40,470 - DEBUG - Event 89 arrival 1734.066232656821 | depature 1741.5997351940193.
+2025-07-25 22:12:40,470 - DEBUG - Event 90 arrival 1749.320594818494 | depature 1751.0126619380417.
+2025-07-25 22:12:40,470 - DEBUG - Event 91 arrival 1757.4721507979207 | depature 1760.3577067134481.
+2025-07-25 22:12:40,470 - DEBUG - Event 92 arrival 1786.0200596833004 | depature 1798.7587538301952.
+2025-07-25 22:12:40,470 - DEBUG - Event 93 arrival 1793.7095732661037 | depature 1797.442766004903.
+2025-07-25 22:12:40,470 - DEBUG - Event 94 arrival 1813.3509021333734 | depature 1830.0659637647038.
+2025-07-25 22:12:40,470 - DEBUG - Event 95 arrival 1818.5522367325993 | depature 1845.360164181563.
+2025-07-25 22:12:40,470 - DEBUG - Event 96 arrival 1823.2002178492846 | depature 1880.6732649131568.
+2025-07-25 22:12:40,470 - DEBUG - Event 97 arrival 1846.7471083656096 | depature 1848.688443321069.
+2025-07-25 22:12:40,471 - DEBUG - Event 98 arrival 1852.0060939742832 | depature 1870.3244823980604.
+2025-07-25 22:12:40,471 - DEBUG - Event 99 arrival 1882.142250065216 | depature 1882.7882634476198.
+2025-07-25 22:12:40,471 - INFO - Generate 200 events.
+2025-07-25 22:12:40,471 - INFO - Start the control plane.
+2025-07-25 22:12:40,471 - INFO - Load the PRACA algorithm.
+2025-07-25 22:12:40,471 - DEBUG - The eventArrive processed on 13.787 second origin from 1 to 4 with id 0.

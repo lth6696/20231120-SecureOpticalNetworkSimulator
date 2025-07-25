@@ -21,13 +21,13 @@ class ControlPlane:
             algo_name: str,
             **kargs):
         self._set_algorithm(algo_name)
-        attacked_regions = []
+        # attacked_regions = []
         while scheduler.getEventNum() != 0:
             (time, event) = scheduler.popEvent()
-            # logging.info("{} - {} - The {} event processed on {} second origin from {} to {} with id {}."
-            #              .format(__file__, __name__, event.type, time, event.call.sourceNode, event.call.destinationNode, event.id))
-            attacked_regions.append(event.event.target)
-            net_state.update(topo_gen.G, tfk_gen.calls, attacked_regions)
+            logging.debug("The {} processed on {:.3f} second origin from {} to {} with id {}."
+                         .format(event.type, time, event.event.src, event.event.dst, event.id))
+            # attacked_regions.append(event.event.target)
+            # net_state.update(topo_gen.G, tfk_gen.calls, attacked_regions)
             if event.type == "eventArrive":
                 self.algorithm.route(event, topo_gen, tfk_gen, net_state, **kargs)
             elif event.type == "eventDeparture":
@@ -42,4 +42,4 @@ class ControlPlane:
             self.algorithm = algorithm.dynamic_praca.PRACA()
         else:
             raise ValueError
-        logging.info(f"{__file__} - {__name__} - Load the {name} algorithm.")
+        logging.info(f"Load the {name} algorithm.")

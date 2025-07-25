@@ -22,3 +22,6 @@ class Event:
         self.type = type
         self.time = time
         self.event = event
+
+    def __str__(self):
+        return f"Event {self.id}: type={self.type} | time={self.time}."
