@@ -32,7 +32,7 @@ class ControlPlane:
                 self.algorithm.route(event, topo_gen, tfk_gen, net_state, **kargs)
             elif event.type == "eventDeparture":
                 self.algorithm.remove(event, topo_gen, tfk_gen)
-            statistic.snapshot(event, topo_gen.G, tfk_gen.calls)
+            # statistic.snapshot(event, topo_gen.G, tfk_gen.calls)
 
     def _set_algorithm(self, name: str):
         # 实例化算法
@@ -40,6 +40,10 @@ class ControlPlane:
             self.algorithm = algorithm.benchmark.Benchmark()
         elif name.lower() == "praca":
             self.algorithm = algorithm.dynamic_praca.PRACA()
+        elif name.lower() == "sasp":
+            self.algorithm = algorithm.pson_sasp.SASP()
+        # elif name.lower() == "spf":
+        #     self.algorithm = algorithm.pson_spf.SPF()
         else:
             raise ValueError
-        logging.info(f"Load the {name} algorithm.")
+        logging.info(f"Load the {self.algorithm.name} algorithm.")
