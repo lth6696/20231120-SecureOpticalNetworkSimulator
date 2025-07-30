@@ -199,6 +199,8 @@ class SASP:
         if alpha == 0 and not available_paths:
             # 步骤2: 计算K条最短路径 (伪代码第3行)
             available_paths = nx.shortest_simple_paths(graph, src, dst, weight="weight")
+            # 计算暴露比率
+
             # todo 为每个路径计算与安全需求的偏差，偏差值（考虑跳数）作为输入overflow的输入，计算可也用的偏差路径。要求需求为0时，偏差从0开始选择；需求为k时，偏差从0开始选择。
             # 步骤3: 计算溢出值 (伪代码第4行，假设的calculate_overflow_value函数)
             overflow_value = self.__calculate_overflow_value()
