@@ -3,6 +3,7 @@
 问题：如何在部分安全光网络中实现安全路由
 算法：Security Aware Service Provision
 """
+
 import networkx as nx
 import matplotlib.pyplot as plt
 import numpy as np
@@ -64,11 +65,11 @@ class SASP:
         if path:
             # 第5行: 在原始图中预留带宽
             self._reserve_bandwidth(graph, path, req_bandwidth)
-            return path
+            return True
         else:
             # 第7行: 阻止服务
             self._block_service(req_bandwidth, req_security)
-            return None
+            return False
 
     # 以下为Algorithm 1中引用的子算法接口定义
     def _generate_secure_subtopology(
@@ -189,85 +190,112 @@ class SASP:
             # k: int = 20
         ):
         """
-        路由服务 (Algorithm 3 或 4)
+        路由服务 (Algorithm 3)
         参数: 源节点, 目标节点, 安全拓扑
         返回: 找到的路径节点列表或None
         """
-        # 步骤1: 初始化条件 (对应伪代码第2行)
-        if available_paths is None:
-            available_paths = []
-        if alpha == 0 and not available_paths:
-            # 步骤2: 计算K条最短路径 (伪代码第3行)
-            available_paths = nx.shortest_simple_paths(graph, src, dst, weight="weight")
-            # 计算暴露比率
+        # 步骤1: 计算K条最短路径 (伪代码第3行)
+        available_paths = nx.shortest_simple_paths(graph, src, dst, weight="weight")
+        # 步骤2：为每条路径评分
+        path_scores = self.__score_paths(graph, available_paths, req_security, 2, 1)
+        # 步骤3: 计算溢出值
+        overflow_value = self.__calculate_overflow_value(graph)
 
-            # todo 为每个路径计算与安全需求的偏差，偏差值（考虑跳数）作为输入overflow的输入，计算可也用的偏差路径。要求需求为0时，偏差从0开始选择；需求为k时，偏差从0开始选择。
-            # 步骤3: 计算溢出值 (伪代码第4行，假设的calculate_overflow_value函数)
-            overflow_value = self.__calculate_overflow_value()
-
-        # 步骤4: 筛选满足安全需求范围 [l, l + alpha] 的路径 (伪代码第5行)
-        # 注意: 安全需求范围基于输入的安全需求等级(security_req)和溢出系数(alpha)
-        min_security = security_req
-        max_security = security_req + alpha
-
+        # 步骤4: 筛选满足安全需求范围 [0, overflow] 的路径 (伪代码第5行)
         # 筛选满足安全条件的路径子集
         valid_paths = [
-            path for path in available_paths
-            if min_security <= get_path_security_level(path) <= max_security
+            (path_scores[i], path) for i, path in enumerate(available_paths)
+            if 0 <= path_scores[i] <= overflow_value
         ]
+        valid_paths.sort(key=lambda x: x[0])
 
-        # 步骤5: 从有效路径中选择满足带宽需求且安全值最小的路径 (伪代码第6行)
-        min_security_path = None
-        min_security_value = float('inf')
-
-        for path in valid_paths:
-            if not has_sufficient_bandwidth(path, bandwidth_req):
-                continue
-
-            path_security = get_path_security_level(path)
-            if path_security < min_security_value:
-                min_security_value = path_security
-                min_security_path = path
-
-        # 步骤6: 检查是否找到路径 (伪代码第7-13行)
-        if min_security_path:
-            return min_security_path  # 找到合适路径
-
-        # 步骤7: 检查是否达到安全阈值上限 (伪代码第10行)
-        # 假设MAX_SECURITY_LEVEL为最高安全等级（通常设为系统最大安全等级）
-        MAX_SECURITY_LEVEL = 10  # 示例值，实际应来源于系统配置
-
-        if security_req + alpha >= MAX_SECURITY_LEVEL:
-            return None  # 无可用路径，返回None
-
-        # 步骤8: 递归调用自身，增加安全溢出系数 (伪代码第13-14行)
-        # 更新可用路径为排除已检查路径后的集合
-        remaining_paths = available_paths - set(valid_paths)
-
-        return self._route_security_overflow(
-            graph,
-            src, dst,
-            req_bandwidth,
-            req_security,
-            remaining_paths,
-            alpha + 1  # 增加安全溢出系数
-        )
-
-    def __calculate_overflow_value(self):
+        # 步骤5: 从有效路径中选择满足带宽需求 (伪代码第6行)
+        for _, path in valid_paths:
+            if self.__has_sufficient_bandwidth(graph, path, req_bandwidth):
+                return path
         return None
+
+    def __score_paths(
+            self,
+            G: nx.Graph, paths: list, req_security: int,
+            num_req_security: int, num_link_security: int
+    ):
+        scores = []
+        for path in paths:
+            scores.append(self.__score_single_path(G, path, req_security, num_req_security, num_link_security))
+        return scores
+
+    def __score_single_path(
+            self,
+            G: nx.Graph, path: list, req_security: int,
+            num_req_security: int, num_link_security: int
+    ):
+        path = list(zip(path[:-1], path[1:]))
+        # 1. 安全偏差计算 Div(r,p) = [∑(l∈p)(l - L*r/RS)]
+        div_value = 0.0
+        for (u, v) in path:
+            div_value += G[u][v]['link_sec'] - (num_link_security * req_security / num_req_security)
+
+        # 2. 路径长度计算 Utl(p) = |p|
+        utl_value = len(path)
+
+        # 综合评分
+        return div_value * utl_value
+
+    def __calculate_overflow_value(
+            self,
+            G: nx.Graph
+    ):
+        # 1 计算可用安全带宽比率
+        sec_bdw = 0.0
+        tot_bdw = 0.0
+        for (u, v) in G.edges:
+            tot_bdw += G[u][v]["bandwidth"]
+            if G[u][v]["link_sec"] == 1:
+                sec_bdw += G[u][v]["bandwidth"]
+        sec_ratio = sec_bdw / tot_bdw
+
+        # 2 计算非超额使用业务比率
+        exc_ratio = []
+        for (u, v) in G.edges:
+            excess_call_num = 0
+            if len(G[u][v]["call"]) == 0:
+                continue
+            for call in G[u][v]["call"]:
+                if call.security == 0 and G[u][v]["link_sec"] == 1:
+                    excess_call_num += 1
+            exc_ratio.append(excess_call_num / len(G[u][v]["call"]))
+        exc_ratio = np.mean(exc_ratio)
+
+        # 3 计算超额限度
+        overflow_value = (sec_ratio + exc_ratio) ** 2
+        return overflow_value
+
+    def __has_sufficient_bandwidth(
+            self,
+            G: nx.Graph,
+            path: list,
+            req_bandwidth: int
+    ):
+        for (u, v) in zip(path[:-1], path[1:]):
+            if G[u][v]["bandwidth"] >= req_bandwidth:
+                continue
+            else:
+                return False
+        return True
 
     def _reserve_bandwidth(
             self,
             graph: nx.Graph,
             path: list[int],
             bandwidth: float
-        ) -> None:
-            """
-            预留路径上的带宽
-            参数: 原始图对象, 路径节点列表, 带宽需求
-            """
-            # 在路径所有边上预留指定带宽
-        pass
+    ):
+        """
+        预留路径上的带宽
+        参数: 原始图对象, 路径节点列表, 带宽需求
+        """
+        # 在路径所有边上预留指定带宽
+        return None
 
     def _block_service(
         self,
@@ -280,84 +308,6 @@ class SASP:
         """
         # 实现服务阻止逻辑 (如记录日志, 通知等)
         pass
-
-    # def _route(
-    #     src: Node,
-    #     dst: Node,
-    #     bandwidth_req: float,
-    #     security_req: int,
-    #     available_paths: Set[Path] = None,
-    #     alpha: int = 0,
-    #     k: int = 20
-    # ):
-        """
-        Algorithm: Security Overflow Routing 实现
-        
-        参数:
-            src (Node): 源节点
-            dst (Node): 目标节点
-            bandwidth_req (float): 带宽需求 (Gbps)
-            security_req (int): 安全需求等级
-            available_paths (Set[Path]): 可用路径集合 (默认为None)
-            alpha (int): 安全溢出系数 (默认0)
-            k (int): K条最短路径数 (默认20)
-        
-        返回:
-            Optional[Path]: 满足条件的最小安全路径，或None（若无可用路径）
-        """
-        # # 步骤1: 初始化条件 (对应伪代码第2行)
-        # if alpha == 0 and not available_paths:
-        #     # 步骤2: 计算K条最短路径 (伪代码第3行)
-        #     available_paths = nx.k_shortest_paths(src, dst, k)
-        #     # 步骤3: 计算溢出值 (伪代码第4行，假设的calculate_overflow_value函数)
-        #     overflow_value = calculate_overflow_value(available_paths, src, dst)
-
-        # # 步骤4: 筛选满足安全需求范围 [l, l + alpha] 的路径 (伪代码第5行)
-        # # 注意: 安全需求范围基于输入的安全需求等级(security_req)和溢出系数(alpha)
-        # min_security = security_req
-        # max_security = security_req + alpha
-
-        # # 筛选满足安全条件的路径子集
-        # valid_paths = [
-        #     path for path in available_paths
-        #     if min_security <= get_path_security_level(path) <= max_security
-        # ]
-
-        # # 步骤5: 从有效路径中选择满足带宽需求且安全值最小的路径 (伪代码第6行)
-        # min_security_path = None
-        # min_security_value = float('inf')
-
-        # for path in valid_paths:
-        #     if not has_sufficient_bandwidth(path, bandwidth_req):
-        #         continue
-
-        #     path_security = get_path_security_level(path)
-        #     if path_security < min_security_value:
-        #         min_security_value = path_security
-        #         min_security_path = path
-
-        # # 步骤6: 检查是否找到路径 (伪代码第7-13行)
-        # if min_security_path:
-        #     return min_security_path  # 找到合适路径
-
-        # # 步骤7: 检查是否达到安全阈值上限 (伪代码第10行)
-        # # 假设MAX_SECURITY_LEVEL为最高安全等级（通常设为系统最大安全等级）
-        # MAX_SECURITY_LEVEL = 10  # 示例值，实际应来源于系统配置
-
-        # if security_req + alpha >= MAX_SECURITY_LEVEL:
-        #     return None  # 无可用路径，返回None
-
-        # # 步骤8: 递归调用自身，增加安全溢出系数 (伪代码第13-14行)
-        # # 更新可用路径为排除已检查路径后的集合
-        # remaining_paths = available_paths - set(valid_paths)
-        # return _route(
-        #     src, dst,
-        #     bandwidth_req,
-        #     security_req,
-        #     remaining_paths,
-        #     alpha + 1,  # 增加安全溢出系数
-        #     k
-        # )
 
     def remove(
         self, 
