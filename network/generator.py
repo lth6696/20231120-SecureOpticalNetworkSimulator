@@ -4,34 +4,43 @@ import numpy as np
 import random
 import networkx as nx
 import logging
+import matplotlib.pyplot as plt
 
 import utl
-# from network.attack import Attack
 from network.scheduler import Scheduler
-from network.state import NetState
 
 logger = logging.getLogger(__name__)
+
 
 class CallsGen:
     def __init__(self):
         self.calls = []
 
-    def generate(self, nodes: list, number: str, rate: str, req_sec: str, req_ratio: str):
-        number = int(number)
-        rate = float(rate)
-        # 计算不同需求业务的比例
-        req_sec = [int(level) for level in req_sec.split("|")]
-        req_ratio = [int(ratio) for ratio in req_ratio.split("|")]
-        req_weight = [ratio/sum(req_ratio) for ratio in req_ratio]
-        service_security_requests = random.choices(req_sec, weights=req_weight, k=number)
+        # 配置信息
+        self.cfg_call_number: int = 0
+        self.cfg_call_bandwidth: int = 0
+        self.cfg_call_security: list = []
+        self.cfg_call_ratio: list = []
 
-        logging.info(f"Starting call generation with number={number}, rate={rate}, security demands={req_sec}, security ratio={req_weight}")
-        if len(nodes) < 2 or number < 1 or rate <= 0:
-            logging.error(f"Invalid parameters for call generation: nodes count={len(nodes)}, number={number}, rate={rate}")
+    def generate(self, nodes: list, call_number: str, call_bandwidth: str, **kwargs):
+        self.cfg_call_number = int(call_number)
+        self.cfg_call_bandwidth = int(call_bandwidth)
+        # 计算不同安全需求业务的比例
+        if "call_security" and "call_ratio" in kwargs.keys():
+            self.cfg_call_security = [x for x in range(int(kwargs["call_security"])+1)]
+            self.cfg_call_ratio = [float(ratio) for ratio in kwargs["call_ratio"].split("|")]
+            service_security_requests = random.choices(self.cfg_call_security, weights=self.cfg_call_ratio, k=self.cfg_call_number)
+        else:
+            logging.error(f"Security parameters is insufficient.")
+            raise ValueError("Insufficient parameters for call generation")
+        logging.info(f"Starting call generation with number={self.cfg_call_number}, rate={self.cfg_call_ratio}, security demands={self.cfg_call_security}, security ratio={self.cfg_call_ratio}")
+
+        if len(nodes) < 2 or self.cfg_call_number < 1 or self.cfg_call_bandwidth <= 0:
+            logging.error(f"Invalid parameters for call generation: nodes count={len(nodes)}, number={self.cfg_call_number}, rate={self.cfg_call_bandwidth}")
             raise ValueError("Invalid parameters for call generation")
-        for i in range(number):
+        for i in range(self.cfg_call_number):
             [src, dst] = random.sample(nodes, 2)
-            call = utl.call.Call(id=i, src=src, dst=dst, rate=rate, security=service_security_requests[i])
+            call = utl.call.Call(id=i, src=src, dst=dst, rate=self.cfg_call_bandwidth, security=service_security_requests[i])
             self.calls.append(call)
         self._log_call_info()
         return self.calls
@@ -50,6 +59,13 @@ class TopoGen:
         self._infinitesimal = 1e-5
         self.G = nx.Graph()
 
+        # 配置信息
+        self.cfg_topo_file: str = ""
+        self.cfg_link_bandwidth: int = 0
+        self.cfg_link_weight: float = 0.0
+        self.cfg_link_security: list = []
+        self.cfg_link_ratio: list = []
+
     def generate(self, path_gml: str, path_graphml: str):
         # 生成拓扑
         logging.info("Starting topology generation.")
@@ -58,32 +74,54 @@ class TopoGen:
             raise ValueError
         elif path_gml != "None":
             logging.info(f"Generate topology from GML file: {path_gml}")
-            self.G = nx.read_gml(path_gml)
+            self.cfg_topo_file = path_gml
+            self.G = nx.read_gml(self.cfg_topo_file)
             logging.debug(f"Success load GML topology with {len(self.G.nodes)} nodes and {len(self.G.edges)} edges.")
         elif path_graphml != "None":
             logging.info(f"Generate topology from GraphML file: {path_graphml}")
-            self.G = nx.read_graphml(path_graphml)
+            self.cfg_topo_file = path_graphml
+            self.G = nx.read_graphml(self.cfg_topo_file)
             logging.debug(f"Success load GraphML topology with {len(self.G.nodes)} nodes and {len(self.G.edges)} edges.")
         else:
             logging.error("No topology file path was provided.")
             raise ValueError("No topology file path was provided.")
 
-    def set(self, _type: str, isShow: bool = False, **kwargs):
-        # 设置链路和节点属性
-        for attr, val in kwargs.items():
-            if _type == "node":
-                for node in self.G.nodes:
-                    self.G.nodes[node][attr] = val
-            elif _type == "link":
+    def set(self, _type: str, is_show: bool = False, **kwargs):
+        # 1 设置链路属性
+        if _type == "link":
+            if "link_bandwidth" in kwargs.keys():
+                self.cfg_link_bandwidth = int(kwargs["link_bandwidth"])
                 for u_node, v_node in self.G.edges:
-                    self.G[u_node][v_node][attr] = val
-            else:
-                logging.warning(f"Unknown type {_type}.")
+                    self.G[u_node][v_node]["link_bandwidth"] = self.cfg_link_bandwidth
+                    self.G[u_node][v_node]["link_available_bandwidth"] = self.cfg_link_bandwidth
+                logging.debug(f"Set link bandwidth = {self.cfg_link_bandwidth}.")
+            if "link_weight" in kwargs.keys():
+                self.cfg_link_weight = float(kwargs["link_weight"])
+                for u_node, v_node in self.G.edges:
+                    self.G[u_node][v_node]["link_weight"] = self.cfg_link_weight
+                logging.debug(f"Set link weight = {self.cfg_link_weight}.")
+            if "link_security" and "link_ratio" in kwargs.keys():
+                self.cfg_link_security = [x for x in range(int(kwargs["link_security"])+1)]
+                self.cfg_link_ratio = [float(x) for x in str(kwargs["link_ratio"]).split("|")]
+                # 依概率随机生成链路的安全性
+                path_security = random.choices(self.cfg_link_security, weights=self.cfg_link_ratio, k=len(self.G.edges))
+                # 设置属性
+                for i, (u_node, v_node) in enumerate(self.G.edges):
+                    self.G[u_node][v_node]["link_security"] = path_security[i]
+                logging.debug(f"Set link security = {self.cfg_link_security} | ratio = {self.cfg_link_ratio}.")
+                logging.debug(f"{len(self.G.edges)} links set security {path_security}.")
+            # 添加属性link_carried_calls，用字典{call_id: path}的方式记录业务承载情况
+            for u_node, v_node in self.G.edges:
+                self.G[u_node][v_node]["link_carried_calls"] = {}
+
+        # 2 设置节点属性
+        if _type == "node":
+            pass
+
         self._log_topology_info()
 
-        if isShow:
+        if is_show:
             pos = {node: (self.G.nodes[node]["Longitude"], self.G.nodes[node]["Latitude"]) for node in self.G.nodes}
-            import matplotlib.pyplot as plt
             plt.rcParams['figure.figsize'] = (8.4 * 0.39370, 4.8 * 0.39370)
             plt.rcParams['figure.dpi'] = 300
             nx.draw(self.G, pos, width=0.5, linewidths=0.5, node_size=30, node_color="#0070C0", edge_color="k")
@@ -115,10 +153,13 @@ class EventGen:
     业务生成器
     """
     def __init__(self):
-        pass
+        self.load = 0
+        self.holding_time = 0.0
 
     def generate(self, scheduler: Scheduler, calls: list, load: int, holding_time: float):
         # 读取配置文件
+        self.load = load
+        self.holding_time = holding_time
         logging.info(f"Generate events in {load}(load) with {holding_time} holding time.")
         # 服务时间间隔μ, 到达时间间隔λ, 注意: λ/μ<1
         arrival_time = holding_time / load

@@ -26,10 +26,9 @@ class ControlPlane:
             (time, event) = scheduler.popEvent()
             logging.debug("The {} processed on {:.3f} second origin from {} to {} with id {}."
                          .format(event.type, time, event.event.src, event.event.dst, event.id))
-            # attacked_regions.append(event.event.target)
             # net_state.update(topo_gen.G, tfk_gen.calls, attacked_regions)
             if event.type == "eventArrive":
-                self.algorithm.route(event, topo_gen, tfk_gen, net_state, **kargs)
+                self.algorithm.route(event, topo_gen, tfk_gen, **kargs)
             elif event.type == "eventDeparture":
                 self.algorithm.remove(event, topo_gen, tfk_gen)
             # statistic.snapshot(event, topo_gen.G, tfk_gen.calls)

@@ -3,6 +3,7 @@
 问题：如何在部分安全光网络中实现安全路由
 算法：Security Aware Service Provision
 """
+import logging
 
 import networkx as nx
 import matplotlib.pyplot as plt
@@ -16,32 +17,15 @@ from utl.event import Event
 class SASP:
     def __init__(self):
         self.name = "Security Aware Service Provision"
-
-        self.prime_topo = None
+        self.is_subgraph = False
 
     def route(
             self,
-            event: Event,
-            topo_gen: TopoGen,
-            tfk_gen: CallsGen,
-            net_state: NetState,
-            depth: int,
-            method: str = "security_overflow"
+            event: Event, topo_gen: TopoGen, tfk_gen: CallsGen,
+            method: str = "security_overflow", sec_link_ratio: float = 0.0
         ):
         """
         服务供应的主函数 - 实现Algorithm 1: Service Provision
-        
-        参数:
-            self: 类实例引用
-            event: 事件对象
-            topo_gen: 拓扑生成器
-            tfk_gen: 流量生成器
-            net_state: 网络状态
-            depth: 深度
-        
-        返回:
-            成功时: 路径节点列表
-            失败时: None
         """
         call = event.event
         src = call.src
@@ -51,15 +35,27 @@ class SASP:
         graph = topo_gen.G
 
         # 第2行: 构建安全拓扑 (Algorithm 2)
-        if self.prime_topo is None:
-            self.prime_topo = self._generate_secure_subtopology(graph, num_sec_links=-1, is_show=False)
-
+        if sec_link_ratio == 0.0:
+            # 默认拓扑
+            pass
+        elif not self.is_subgraph:
+            prime_topo = self._generate_secure_subtopology(graph, num_sec_links=int(len(graph.edges)*sec_link_ratio), is_show=False)
             # 更新链路安全属性
-            for (u, v) in self.prime_topo.edges:
-                graph[u][v]["link_sec"] = 1
+            logging.info(f"===== SUBGRAPH GENERATE =====")
+            for (u_node, v_node) in graph.edges:
+                if prime_topo.has_edge(u_node, v_node):
+                    graph[u_node][v_node]["link_security"] = 1
+                    # prime_topo[u_node][v_node]["link_security"] = 1
+                    logging.debug(f"Link {u_node} - {v_node} is set security.")
+                else:
+                    graph[u_node][v_node]["link_security"] = 0
+                    logging.debug(f"Link {u_node} - {v_node} is set normal.")
+            self.is_subgraph = True
 
         # 第3行: 路由服务 (Algorithm 3 或 4)
-        path = self.__getattribute__("_route_" + method)(graph, src, dst, req_bandwidth, req_security)
+        logging.debug(f"===== ROUTING {call.id} =====")
+        path = self.__getattribute__("_route_" + method)(graph, src, dst, req_bandwidth, req_security, tfk_gen.cfg_call_security[-1], topo_gen.cfg_link_security[-1])
+        logging.debug(f"Route service {call.id}: {path}.")
         
         # 第4-7行: 条件判断
         if path:
@@ -76,7 +72,7 @@ class SASP:
         self,
         G: nx.Graph, 
         num_sec_links: int = -1,
-        weight: str = "weight",
+        weight: str = None,
         is_show: bool = False
     ) -> nx.Graph:
         """
@@ -185,9 +181,8 @@ class SASP:
             dst: int,
             req_bandwidth: int,
             req_security: int,
-            available_paths: list = None,
-            alpha: int = 0,
-            # k: int = 20
+            num_req_security: int,
+            num_link_security: int
         ):
         """
         路由服务 (Algorithm 3)
@@ -195,11 +190,14 @@ class SASP:
         返回: 找到的路径节点列表或None
         """
         # 步骤1: 计算K条最短路径 (伪代码第3行)
-        available_paths = nx.shortest_simple_paths(graph, src, dst, weight="weight")
+        available_paths = list(nx.shortest_simple_paths(graph, src, dst, weight="weight"))
+        logging.debug(f"KSP: {available_paths}")
         # 步骤2：为每条路径评分
-        path_scores = self.__score_paths(graph, available_paths, req_security, 2, 1)
+        path_scores = self.__score_paths(graph, available_paths, req_security, num_req_security, num_link_security)
+        logging.debug(f"Score: {path_scores}")
         # 步骤3: 计算溢出值
-        overflow_value = self.__calculate_overflow_value(graph)
+        overflow_value = self.__calculate_overflow_value(graph) * num_req_security
+        logging.debug(f"Overflow value is {overflow_value}.")
 
         # 步骤4: 筛选满足安全需求范围 [0, overflow] 的路径 (伪代码第5行)
         # 筛选满足安全条件的路径子集
@@ -208,6 +206,7 @@ class SASP:
             if 0 <= path_scores[i] <= overflow_value
         ]
         valid_paths.sort(key=lambda x: x[0])
+        logging.debug(f"Valid paths are {valid_paths}")
 
         # 步骤5: 从有效路径中选择满足带宽需求 (伪代码第6行)
         for _, path in valid_paths:
@@ -234,7 +233,7 @@ class SASP:
         # 1. 安全偏差计算 Div(r,p) = [∑(l∈p)(l - L*r/RS)]
         div_value = 0.0
         for (u, v) in path:
-            div_value += G[u][v]['link_sec'] - (num_link_security * req_security / num_req_security)
+            div_value += G[u][v]['link_security'] - (num_link_security * req_security / num_req_security)
 
         # 2. 路径长度计算 Utl(p) = |p|
         utl_value = len(path)
@@ -250,25 +249,26 @@ class SASP:
         sec_bdw = 0.0
         tot_bdw = 0.0
         for (u, v) in G.edges:
-            tot_bdw += G[u][v]["bandwidth"]
-            if G[u][v]["link_sec"] == 1:
-                sec_bdw += G[u][v]["bandwidth"]
+            tot_bdw += G[u][v]["link_bandwidth"]
+            if G[u][v]["link_security"] == 1:
+                sec_bdw += G[u][v]["link_available_bandwidth"]
         sec_ratio = sec_bdw / tot_bdw
 
         # 2 计算非超额使用业务比率
         exc_ratio = []
         for (u, v) in G.edges:
             excess_call_num = 0
-            if len(G[u][v]["call"]) == 0:
+            if len(G[u][v]["link_carried_calls"]) == 0:
+                exc_ratio.append(1)
                 continue
-            for call in G[u][v]["call"]:
-                if call.security == 0 and G[u][v]["link_sec"] == 1:
+            for call in G[u][v]["link_carried_calls"]:
+                if call.security == 0 and G[u][v]["link_security"] == 1:
                     excess_call_num += 1
-            exc_ratio.append(excess_call_num / len(G[u][v]["call"]))
+            exc_ratio.append(excess_call_num / len(G[u][v]["link_carried_calls"]))
         exc_ratio = np.mean(exc_ratio)
 
         # 3 计算超额限度
-        overflow_value = (sec_ratio + exc_ratio) ** 2
+        overflow_value = (0.5*sec_ratio + 0.5*exc_ratio) ** 2
         return overflow_value
 
     def __has_sufficient_bandwidth(
@@ -278,7 +278,7 @@ class SASP:
             req_bandwidth: int
     ):
         for (u, v) in zip(path[:-1], path[1:]):
-            if G[u][v]["bandwidth"] >= req_bandwidth:
+            if G[u][v]["link_bandwidth"] >= req_bandwidth:
                 continue
             else:
                 return False

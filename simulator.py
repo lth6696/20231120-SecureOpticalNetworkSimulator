@@ -11,7 +11,6 @@ import numpy as np
 import pandas as pd
 import scipy.stats as st
 
-import algorithm.static_spf
 import utl
 import network
 import result
@@ -43,9 +42,6 @@ def simulator(configer: configparser.ConfigParser):
             nodes = list(topo_gen.G.nodes.keys())
             tfc_gen.generate(nodes, **kargs)
             # algorithm.static_spf.StaticSPF.route(topo_gen.G, tfc_gen.calls)
-        elif section == "states":
-            # 获取网络状态
-            net_state.get(topo_gen.G, tfc_gen.calls, **kargs)
         elif section == "algorithm":
             algo_set = kargs
         elif section == "events":

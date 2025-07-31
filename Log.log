@@ -1,432 +1,1045 @@
-2025-07-28 16:30:47,870 - INFO - Starting topology generation.
-2025-07-28 16:30:47,870 - INFO - Generate topology from GraphML file: ./topology/SixNode.graphml
-2025-07-28 16:30:47,872 - DEBUG - Success load GraphML topology with 6 nodes and 8 edges.
-2025-07-28 16:30:47,872 - DEBUG - ===== TOPOLOGY NODES =====
-2025-07-28 16:30:47,872 - DEBUG - Node: 1 | Attributes: Internal=1, Latitude=50.0, Country=Default, id=1, Longitude=80.0, label=Node1
-2025-07-28 16:30:47,872 - DEBUG - Node: 2 | Attributes: Internal=1, Latitude=85.0, Country=Default, id=2, Longitude=60.0, label=Node2
-2025-07-28 16:30:47,873 - DEBUG - Node: 3 | Attributes: Internal=1, Latitude=85.0, Country=Default, id=3, Longitude=30.0, label=Node3
-2025-07-28 16:30:47,873 - DEBUG - Node: 4 | Attributes: Internal=1, Latitude=50.0, Country=Default, id=4, Longitude=10.0, label=Node4
-2025-07-28 16:30:47,873 - DEBUG - Node: 5 | Attributes: Internal=1, Latitude=15.0, Country=Default, id=5, Longitude=30.0, label=Node5
-2025-07-28 16:30:47,873 - DEBUG - Node: 6 | Attributes: Internal=1, Latitude=15.0, Country=Default, id=6, Longitude=60.0, label=Node6
-2025-07-28 16:30:47,873 - DEBUG - ===== TOPOLOGY EDGES =====
-2025-07-28 16:30:47,874 - DEBUG - Edge: (1 -- 2) | Attributes: id=e1, key=0, bandwidth=1000, weight=0.001, link_sec=0|1, link_ratio=6|4
-2025-07-28 16:30:47,874 - DEBUG - Edge: (1 -- 6) | Attributes: id=e2, key=0, bandwidth=1000, weight=0.001, link_sec=0|1, link_ratio=6|4
-2025-07-28 16:30:47,874 - DEBUG - Edge: (2 -- 3) | Attributes: id=e3, key=0, bandwidth=1000, weight=0.001, link_sec=0|1, link_ratio=6|4
-2025-07-28 16:30:47,874 - DEBUG - Edge: (2 -- 6) | Attributes: id=e4, key=0, bandwidth=1000, weight=0.001, link_sec=0|1, link_ratio=6|4
-2025-07-28 16:30:47,874 - DEBUG - Edge: (3 -- 4) | Attributes: id=e5, key=0, bandwidth=1000, weight=0.001, link_sec=0|1, link_ratio=6|4
-2025-07-28 16:30:47,874 - DEBUG - Edge: (3 -- 5) | Attributes: id=e6, key=0, bandwidth=1000, weight=0.001, link_sec=0|1, link_ratio=6|4
-2025-07-28 16:30:47,874 - DEBUG - Edge: (4 -- 5) | Attributes: id=e7, key=0, bandwidth=1000, weight=0.001, link_sec=0|1, link_ratio=6|4
-2025-07-28 16:30:47,874 - DEBUG - Edge: (5 -- 6) | Attributes: id=e8, key=0, bandwidth=1000, weight=0.001, link_sec=0|1, link_ratio=6|4
-2025-07-28 16:30:47,874 - DEBUG - ===== TOPOLOGY SUMMARY =====
-2025-07-28 16:30:47,874 - DEBUG - Total Nodes: 6
-2025-07-28 16:30:47,874 - DEBUG - Total Edges: 8
-2025-07-28 16:30:47,874 - DEBUG - Connected Components: 1
-2025-07-28 16:30:47,874 - INFO - Starting call generation with number=100, rate=10.0, security demands=[0, 1, 2], security ratio=[0.6, 0.3, 0.1]
-2025-07-28 16:30:47,875 - DEBUG - ===== CALLS INFO =====
-2025-07-28 16:30:47,875 - DEBUG - Call 0 (2 --> 1): rate=10.0 Gbps | security=2 | routing=False | path=[].
-2025-07-28 16:30:47,876 - DEBUG - Call 1 (2 --> 3): rate=10.0 Gbps | security=2 | routing=False | path=[].
-2025-07-28 16:30:47,876 - DEBUG - Call 2 (4 --> 3): rate=10.0 Gbps | security=0 | routing=False | path=[].
-2025-07-28 16:30:47,876 - DEBUG - Call 3 (3 --> 2): rate=10.0 Gbps | security=0 | routing=False | path=[].
-2025-07-28 16:30:47,876 - DEBUG - Call 4 (1 --> 6): rate=10.0 Gbps | security=2 | routing=False | path=[].
-2025-07-28 16:30:47,876 - DEBUG - Call 5 (1 --> 5): rate=10.0 Gbps | security=0 | routing=False | path=[].
-2025-07-28 16:30:47,876 - DEBUG - Call 6 (2 --> 3): rate=10.0 Gbps | security=0 | routing=False | path=[].
-2025-07-28 16:30:47,876 - DEBUG - Call 7 (6 --> 3): rate=10.0 Gbps | security=1 | routing=False | path=[].
-2025-07-28 16:30:47,876 - DEBUG - Call 8 (1 --> 3): rate=10.0 Gbps | security=0 | routing=False | path=[].
-2025-07-28 16:30:47,876 - DEBUG - Call 9 (5 --> 2): rate=10.0 Gbps | security=2 | routing=False | path=[].
-2025-07-28 16:30:47,876 - DEBUG - Call 10 (5 --> 4): rate=10.0 Gbps | security=1 | routing=False | path=[].
-2025-07-28 16:30:47,876 - DEBUG - Call 11 (5 --> 4): rate=10.0 Gbps | security=1 | routing=False | path=[].
-2025-07-28 16:30:47,876 - DEBUG - Call 12 (1 --> 2): rate=10.0 Gbps | security=0 | routing=False | path=[].
-2025-07-28 16:30:47,876 - DEBUG - Call 13 (2 --> 6): rate=10.0 Gbps | security=0 | routing=False | path=[].
-2025-07-28 16:30:47,876 - DEBUG - Call 14 (2 --> 5): rate=10.0 Gbps | security=0 | routing=False | path=[].
-2025-07-28 16:30:47,876 - DEBUG - Call 15 (2 --> 3): rate=10.0 Gbps | security=1 | routing=False | path=[].
-2025-07-28 16:30:47,876 - DEBUG - Call 16 (1 --> 2): rate=10.0 Gbps | security=0 | routing=False | path=[].
-2025-07-28 16:30:47,876 - DEBUG - Call 17 (1 --> 4): rate=10.0 Gbps | security=2 | routing=False | path=[].
-2025-07-28 16:30:47,876 - DEBUG - Call 18 (2 --> 5): rate=10.0 Gbps | security=0 | routing=False | path=[].
-2025-07-28 16:30:47,876 - DEBUG - Call 19 (4 --> 2): rate=10.0 Gbps | security=0 | routing=False | path=[].
-2025-07-28 16:30:47,876 - DEBUG - Call 20 (3 --> 1): rate=10.0 Gbps | security=0 | routing=False | path=[].
-2025-07-28 16:30:47,876 - DEBUG - Call 21 (5 --> 3): rate=10.0 Gbps | security=1 | routing=False | path=[].
-2025-07-28 16:30:47,876 - DEBUG - Call 22 (3 --> 5): rate=10.0 Gbps | security=0 | routing=False | path=[].
-2025-07-28 16:30:47,876 - DEBUG - Call 23 (1 --> 6): rate=10.0 Gbps | security=0 | routing=False | path=[].
-2025-07-28 16:30:47,876 - DEBUG - Call 24 (3 --> 4): rate=10.0 Gbps | security=0 | routing=False | path=[].
-2025-07-28 16:30:47,876 - DEBUG - Call 25 (2 --> 1): rate=10.0 Gbps | security=0 | routing=False | path=[].
-2025-07-28 16:30:47,876 - DEBUG - Call 26 (2 --> 3): rate=10.0 Gbps | security=0 | routing=False | path=[].
-2025-07-28 16:30:47,876 - DEBUG - Call 27 (5 --> 1): rate=10.0 Gbps | security=0 | routing=False | path=[].
-2025-07-28 16:30:47,876 - DEBUG - Call 28 (2 --> 3): rate=10.0 Gbps | security=1 | routing=False | path=[].
-2025-07-28 16:30:47,876 - DEBUG - Call 29 (6 --> 5): rate=10.0 Gbps | security=0 | routing=False | path=[].
-2025-07-28 16:30:47,876 - DEBUG - Call 30 (2 --> 3): rate=10.0 Gbps | security=1 | routing=False | path=[].
-2025-07-28 16:30:47,876 - DEBUG - Call 31 (3 --> 1): rate=10.0 Gbps | security=0 | routing=False | path=[].
-2025-07-28 16:30:47,876 - DEBUG - Call 32 (5 --> 4): rate=10.0 Gbps | security=0 | routing=False | path=[].
-2025-07-28 16:30:47,876 - DEBUG - Call 33 (5 --> 4): rate=10.0 Gbps | security=0 | routing=False | path=[].
-2025-07-28 16:30:47,876 - DEBUG - Call 34 (3 --> 5): rate=10.0 Gbps | security=1 | routing=False | path=[].
-2025-07-28 16:30:47,876 - DEBUG - Call 35 (4 --> 1): rate=10.0 Gbps | security=0 | routing=False | path=[].
-2025-07-28 16:30:47,876 - DEBUG - Call 36 (1 --> 6): rate=10.0 Gbps | security=0 | routing=False | path=[].
-2025-07-28 16:30:47,877 - DEBUG - Call 37 (5 --> 1): rate=10.0 Gbps | security=0 | routing=False | path=[].
-2025-07-28 16:30:47,877 - DEBUG - Call 38 (1 --> 5): rate=10.0 Gbps | security=1 | routing=False | path=[].
-2025-07-28 16:30:47,877 - DEBUG - Call 39 (5 --> 3): rate=10.0 Gbps | security=1 | routing=False | path=[].
-2025-07-28 16:30:47,877 - DEBUG - Call 40 (2 --> 6): rate=10.0 Gbps | security=0 | routing=False | path=[].
-2025-07-28 16:30:47,877 - DEBUG - Call 41 (1 --> 5): rate=10.0 Gbps | security=1 | routing=False | path=[].
-2025-07-28 16:30:47,877 - DEBUG - Call 42 (6 --> 2): rate=10.0 Gbps | security=0 | routing=False | path=[].
-2025-07-28 16:30:47,877 - DEBUG - Call 43 (4 --> 5): rate=10.0 Gbps | security=0 | routing=False | path=[].
-2025-07-28 16:30:47,877 - DEBUG - Call 44 (4 --> 3): rate=10.0 Gbps | security=1 | routing=False | path=[].
-2025-07-28 16:30:47,877 - DEBUG - Call 45 (5 --> 3): rate=10.0 Gbps | security=0 | routing=False | path=[].
-2025-07-28 16:30:47,877 - DEBUG - Call 46 (5 --> 4): rate=10.0 Gbps | security=1 | routing=False | path=[].
-2025-07-28 16:30:47,877 - DEBUG - Call 47 (3 --> 6): rate=10.0 Gbps | security=0 | routing=False | path=[].
-2025-07-28 16:30:47,877 - DEBUG - Call 48 (4 --> 2): rate=10.0 Gbps | security=0 | routing=False | path=[].
-2025-07-28 16:30:47,877 - DEBUG - Call 49 (2 --> 5): rate=10.0 Gbps | security=1 | routing=False | path=[].
-2025-07-28 16:30:47,877 - DEBUG - Call 50 (6 --> 4): rate=10.0 Gbps | security=0 | routing=False | path=[].
-2025-07-28 16:30:47,877 - DEBUG - Call 51 (5 --> 2): rate=10.0 Gbps | security=0 | routing=False | path=[].
-2025-07-28 16:30:47,877 - DEBUG - Call 52 (3 --> 4): rate=10.0 Gbps | security=2 | routing=False | path=[].
-2025-07-28 16:30:47,877 - DEBUG - Call 53 (3 --> 2): rate=10.0 Gbps | security=1 | routing=False | path=[].
-2025-07-28 16:30:47,877 - DEBUG - Call 54 (2 --> 1): rate=10.0 Gbps | security=0 | routing=False | path=[].
-2025-07-28 16:30:47,877 - DEBUG - Call 55 (2 --> 5): rate=10.0 Gbps | security=0 | routing=False | path=[].
-2025-07-28 16:30:47,877 - DEBUG - Call 56 (5 --> 1): rate=10.0 Gbps | security=2 | routing=False | path=[].
-2025-07-28 16:30:47,877 - DEBUG - Call 57 (3 --> 1): rate=10.0 Gbps | security=1 | routing=False | path=[].
-2025-07-28 16:30:47,877 - DEBUG - Call 58 (5 --> 6): rate=10.0 Gbps | security=0 | routing=False | path=[].
-2025-07-28 16:30:47,877 - DEBUG - Call 59 (3 --> 5): rate=10.0 Gbps | security=2 | routing=False | path=[].
-2025-07-28 16:30:47,877 - DEBUG - Call 60 (4 --> 5): rate=10.0 Gbps | security=0 | routing=False | path=[].
-2025-07-28 16:30:47,877 - DEBUG - Call 61 (1 --> 6): rate=10.0 Gbps | security=2 | routing=False | path=[].
-2025-07-28 16:30:47,877 - DEBUG - Call 62 (4 --> 3): rate=10.0 Gbps | security=1 | routing=False | path=[].
-2025-07-28 16:30:47,877 - DEBUG - Call 63 (2 --> 6): rate=10.0 Gbps | security=0 | routing=False | path=[].
-2025-07-28 16:30:47,877 - DEBUG - Call 64 (4 --> 5): rate=10.0 Gbps | security=0 | routing=False | path=[].
-2025-07-28 16:30:47,877 - DEBUG - Call 65 (1 --> 6): rate=10.0 Gbps | security=0 | routing=False | path=[].
-2025-07-28 16:30:47,877 - DEBUG - Call 66 (6 --> 1): rate=10.0 Gbps | security=0 | routing=False | path=[].
-2025-07-28 16:30:47,877 - DEBUG - Call 67 (4 --> 1): rate=10.0 Gbps | security=0 | routing=False | path=[].
-2025-07-28 16:30:47,877 - DEBUG - Call 68 (1 --> 5): rate=10.0 Gbps | security=0 | routing=False | path=[].
-2025-07-28 16:30:47,877 - DEBUG - Call 69 (5 --> 4): rate=10.0 Gbps | security=1 | routing=False | path=[].
-2025-07-28 16:30:47,877 - DEBUG - Call 70 (3 --> 2): rate=10.0 Gbps | security=1 | routing=False | path=[].
-2025-07-28 16:30:47,877 - DEBUG - Call 71 (3 --> 4): rate=10.0 Gbps | security=0 | routing=False | path=[].
-2025-07-28 16:30:47,877 - DEBUG - Call 72 (3 --> 2): rate=10.0 Gbps | security=1 | routing=False | path=[].
-2025-07-28 16:30:47,877 - DEBUG - Call 73 (6 --> 1): rate=10.0 Gbps | security=0 | routing=False | path=[].
-2025-07-28 16:30:47,877 - DEBUG - Call 74 (3 --> 6): rate=10.0 Gbps | security=1 | routing=False | path=[].
-2025-07-28 16:30:47,877 - DEBUG - Call 75 (2 --> 3): rate=10.0 Gbps | security=0 | routing=False | path=[].
-2025-07-28 16:30:47,877 - DEBUG - Call 76 (6 --> 4): rate=10.0 Gbps | security=0 | routing=False | path=[].
-2025-07-28 16:30:47,878 - DEBUG - Call 77 (6 --> 5): rate=10.0 Gbps | security=0 | routing=False | path=[].
-2025-07-28 16:30:47,878 - DEBUG - Call 78 (5 --> 2): rate=10.0 Gbps | security=1 | routing=False | path=[].
-2025-07-28 16:30:47,878 - DEBUG - Call 79 (5 --> 1): rate=10.0 Gbps | security=2 | routing=False | path=[].
-2025-07-28 16:30:47,878 - DEBUG - Call 80 (5 --> 4): rate=10.0 Gbps | security=0 | routing=False | path=[].
-2025-07-28 16:30:47,878 - DEBUG - Call 81 (3 --> 2): rate=10.0 Gbps | security=0 | routing=False | path=[].
-2025-07-28 16:30:47,878 - DEBUG - Call 82 (6 --> 2): rate=10.0 Gbps | security=0 | routing=False | path=[].
-2025-07-28 16:30:47,878 - DEBUG - Call 83 (1 --> 6): rate=10.0 Gbps | security=0 | routing=False | path=[].
-2025-07-28 16:30:47,878 - DEBUG - Call 84 (4 --> 3): rate=10.0 Gbps | security=0 | routing=False | path=[].
-2025-07-28 16:30:47,878 - DEBUG - Call 85 (4 --> 1): rate=10.0 Gbps | security=0 | routing=False | path=[].
-2025-07-28 16:30:47,878 - DEBUG - Call 86 (6 --> 5): rate=10.0 Gbps | security=0 | routing=False | path=[].
-2025-07-28 16:30:47,878 - DEBUG - Call 87 (1 --> 2): rate=10.0 Gbps | security=0 | routing=False | path=[].
-2025-07-28 16:30:47,878 - DEBUG - Call 88 (6 --> 4): rate=10.0 Gbps | security=1 | routing=False | path=[].
-2025-07-28 16:30:47,878 - DEBUG - Call 89 (6 --> 1): rate=10.0 Gbps | security=0 | routing=False | path=[].
-2025-07-28 16:30:47,878 - DEBUG - Call 90 (3 --> 1): rate=10.0 Gbps | security=1 | routing=False | path=[].
-2025-07-28 16:30:47,878 - DEBUG - Call 91 (2 --> 6): rate=10.0 Gbps | security=0 | routing=False | path=[].
-2025-07-28 16:30:47,878 - DEBUG - Call 92 (5 --> 2): rate=10.0 Gbps | security=1 | routing=False | path=[].
-2025-07-28 16:30:47,878 - DEBUG - Call 93 (3 --> 2): rate=10.0 Gbps | security=0 | routing=False | path=[].
-2025-07-28 16:30:47,878 - DEBUG - Call 94 (6 --> 3): rate=10.0 Gbps | security=1 | routing=False | path=[].
-2025-07-28 16:30:47,878 - DEBUG - Call 95 (5 --> 2): rate=10.0 Gbps | security=0 | routing=False | path=[].
-2025-07-28 16:30:47,878 - DEBUG - Call 96 (2 --> 3): rate=10.0 Gbps | security=0 | routing=False | path=[].
-2025-07-28 16:30:47,878 - DEBUG - Call 97 (1 --> 5): rate=10.0 Gbps | security=0 | routing=False | path=[].
-2025-07-28 16:30:47,878 - DEBUG - Call 98 (6 --> 5): rate=10.0 Gbps | security=0 | routing=False | path=[].
-2025-07-28 16:30:47,878 - DEBUG - Call 99 (2 --> 4): rate=10.0 Gbps | security=2 | routing=False | path=[].
-2025-07-28 16:30:47,878 - DEBUG - Call type count: {2: 11, 0: 63, 1: 26}
-2025-07-28 16:30:47,878 - INFO - Generate events in 1(load) with 20 holding time.
-2025-07-28 16:30:47,878 - INFO - Arrival time (lambda) is 20.0, holding time (mu) is 20, intensity (rio) is 1.0.
-2025-07-28 16:30:47,878 - DEBUG - Event 0 arrival 1.515043531925679 | depature 15.197098957165084.
-2025-07-28 16:30:47,878 - DEBUG - Event 1 arrival 23.56705410939727 | depature 69.12430116422132.
-2025-07-28 16:30:47,879 - DEBUG - Event 2 arrival 60.87686305836812 | depature 66.7344533796518.
-2025-07-28 16:30:47,879 - DEBUG - Event 3 arrival 69.74294565663673 | depature 72.35432741763272.
-2025-07-28 16:30:47,879 - DEBUG - Event 4 arrival 114.03645906801691 | depature 120.20733779474367.
-2025-07-28 16:30:47,879 - DEBUG - Event 5 arrival 147.28312965741696 | depature 158.16734520259618.
-2025-07-28 16:30:47,879 - DEBUG - Event 6 arrival 171.4786859254524 | depature 172.31733839597285.
-2025-07-28 16:30:47,879 - DEBUG - Event 7 arrival 189.62801754109296 | depature 195.7484140349656.
-2025-07-28 16:30:47,879 - DEBUG - Event 8 arrival 228.24528116734447 | depature 251.0517878421415.
-2025-07-28 16:30:47,879 - DEBUG - Event 9 arrival 252.14451013492982 | depature 262.21395032309.
-2025-07-28 16:30:47,879 - DEBUG - Event 10 arrival 258.50524052039157 | depature 265.35948929333466.
-2025-07-28 16:30:47,879 - DEBUG - Event 11 arrival 290.0958460384113 | depature 307.0646966789069.
-2025-07-28 16:30:47,879 - DEBUG - Event 12 arrival 304.7918792522677 | depature 358.748200808441.
-2025-07-28 16:30:47,879 - DEBUG - Event 13 arrival 306.0975684311571 | depature 366.57113379279707.
-2025-07-28 16:30:47,879 - DEBUG - Event 14 arrival 329.0870904093364 | depature 332.50877575826314.
-2025-07-28 16:30:47,879 - DEBUG - Event 15 arrival 334.63291366601356 | depature 360.9518044227644.
-2025-07-28 16:30:47,879 - DEBUG - Event 16 arrival 389.9179741888356 | depature 414.7732790402022.
-2025-07-28 16:30:47,879 - DEBUG - Event 17 arrival 425.9093679369695 | depature 430.14544875062967.
-2025-07-28 16:30:47,879 - DEBUG - Event 18 arrival 455.3426799868673 | depature 498.3461762171515.
-2025-07-28 16:30:47,879 - DEBUG - Event 19 arrival 464.2012226416042 | depature 483.93468567430745.
-2025-07-28 16:30:47,879 - DEBUG - Event 20 arrival 470.0057311474819 | depature 528.5738056914691.
-2025-07-28 16:30:47,879 - DEBUG - Event 21 arrival 493.00705201465104 | depature 530.4182980333003.
-2025-07-28 16:30:47,879 - DEBUG - Event 22 arrival 501.5906794542812 | depature 511.84521034683655.
-2025-07-28 16:30:47,879 - DEBUG - Event 23 arrival 523.0214025063373 | depature 579.4519053460004.
-2025-07-28 16:30:47,879 - DEBUG - Event 24 arrival 523.5234859285796 | depature 526.349812560265.
-2025-07-28 16:30:47,879 - DEBUG - Event 25 arrival 537.6998653620107 | depature 641.7148100533855.
-2025-07-28 16:30:47,880 - DEBUG - Event 26 arrival 538.8271127539124 | depature 553.8983163870689.
-2025-07-28 16:30:47,880 - DEBUG - Event 27 arrival 543.2271340296448 | depature 550.0165083137877.
-2025-07-28 16:30:47,880 - DEBUG - Event 28 arrival 583.3611733199571 | depature 595.3333594943557.
-2025-07-28 16:30:47,880 - DEBUG - Event 29 arrival 600.8967160627278 | depature 612.6475073604852.
-2025-07-28 16:30:47,880 - DEBUG - Event 30 arrival 601.5443570856612 | depature 626.2056678925487.
-2025-07-28 16:30:47,880 - DEBUG - Event 31 arrival 643.6367518662485 | depature 643.9255893905164.
-2025-07-28 16:30:47,880 - DEBUG - Event 32 arrival 666.1823933937235 | depature 698.7118262740753.
-2025-07-28 16:30:47,880 - DEBUG - Event 33 arrival 681.3421275671967 | depature 694.6534970603844.
-2025-07-28 16:30:47,880 - DEBUG - Event 34 arrival 694.5578374264621 | depature 700.553191055734.
-2025-07-28 16:30:47,880 - DEBUG - Event 35 arrival 699.6569768270638 | depature 707.191901665568.
-2025-07-28 16:30:47,880 - DEBUG - Event 36 arrival 735.8284406283776 | depature 737.6222723987565.
-2025-07-28 16:30:47,880 - DEBUG - Event 37 arrival 753.7519375741605 | depature 772.2637612097113.
-2025-07-28 16:30:47,880 - DEBUG - Event 38 arrival 760.6871892819073 | depature 762.5775272429877.
-2025-07-28 16:30:47,880 - DEBUG - Event 39 arrival 770.6281481503961 | depature 777.1303433660828.
-2025-07-28 16:30:47,880 - DEBUG - Event 40 arrival 781.8654650218974 | depature 796.1938878094063.
-2025-07-28 16:30:47,880 - DEBUG - Event 41 arrival 803.22425298777 | depature 875.1887362668425.
-2025-07-28 16:30:47,880 - DEBUG - Event 42 arrival 846.5067773117567 | depature 912.7867874177724.
-2025-07-28 16:30:47,880 - DEBUG - Event 43 arrival 854.0686052626152 | depature 873.0000738879688.
-2025-07-28 16:30:47,880 - DEBUG - Event 44 arrival 857.0555367939168 | depature 861.5302339081214.
-2025-07-28 16:30:47,880 - DEBUG - Event 45 arrival 858.2324080751597 | depature 888.5598778432927.
-2025-07-28 16:30:47,880 - DEBUG - Event 46 arrival 877.6112717474906 | depature 887.8111467649587.
-2025-07-28 16:30:47,880 - DEBUG - Event 47 arrival 878.3098213579107 | depature 974.16905898791.
-2025-07-28 16:30:47,880 - DEBUG - Event 48 arrival 910.7910407972698 | depature 943.6917025724183.
-2025-07-28 16:30:47,880 - DEBUG - Event 49 arrival 911.2155694755274 | depature 922.6716356762338.
-2025-07-28 16:30:47,880 - DEBUG - Event 50 arrival 928.1816212764797 | depature 935.006306576522.
-2025-07-28 16:30:47,880 - DEBUG - Event 51 arrival 945.394164992727 | depature 977.728700161922.
-2025-07-28 16:30:47,880 - DEBUG - Event 52 arrival 966.4281158046521 | depature 967.1019937166509.
-2025-07-28 16:30:47,880 - DEBUG - Event 53 arrival 981.1612749617391 | depature 987.3230310077317.
-2025-07-28 16:30:47,880 - DEBUG - Event 54 arrival 988.8802675220452 | depature 989.2967493092657.
-2025-07-28 16:30:47,881 - DEBUG - Event 55 arrival 1003.3893414109008 | depature 1046.9916777443902.
-2025-07-28 16:30:47,881 - DEBUG - Event 56 arrival 1008.1181529769561 | depature 1017.0960832260222.
-2025-07-28 16:30:47,881 - DEBUG - Event 57 arrival 1063.5072348212482 | depature 1112.326891112344.
-2025-07-28 16:30:47,881 - DEBUG - Event 58 arrival 1070.5403755627094 | depature 1071.7822087717047.
-2025-07-28 16:30:47,881 - DEBUG - Event 59 arrival 1101.3196198575818 | depature 1122.2196300296707.
-2025-07-28 16:30:47,881 - DEBUG - Event 60 arrival 1111.8924536856455 | depature 1140.6627931260994.
-2025-07-28 16:30:47,881 - DEBUG - Event 61 arrival 1156.2993255260258 | depature 1161.2743322966776.
-2025-07-28 16:30:47,881 - DEBUG - Event 62 arrival 1164.517625681515 | depature 1181.009167476526.
-2025-07-28 16:30:47,881 - DEBUG - Event 63 arrival 1169.3484482327667 | depature 1195.0859104919753.
-2025-07-28 16:30:47,881 - DEBUG - Event 64 arrival 1191.4578410355957 | depature 1217.7147156033345.
-2025-07-28 16:30:47,881 - DEBUG - Event 65 arrival 1193.4478294831913 | depature 1200.0112312323045.
-2025-07-28 16:30:47,881 - DEBUG - Event 66 arrival 1345.5081674451076 | depature 1358.3573289473945.
-2025-07-28 16:30:47,881 - DEBUG - Event 67 arrival 1353.8980799543003 | depature 1385.2435594115611.
-2025-07-28 16:30:47,881 - DEBUG - Event 68 arrival 1373.909270823713 | depature 1396.6613528440228.
-2025-07-28 16:30:47,881 - DEBUG - Event 69 arrival 1382.3051495267457 | depature 1434.0290333858393.
-2025-07-28 16:30:47,881 - DEBUG - Event 70 arrival 1400.104335768628 | depature 1419.7608954374625.
-2025-07-28 16:30:47,881 - DEBUG - Event 71 arrival 1450.7879288415224 | depature 1500.4928572639833.
-2025-07-28 16:30:47,881 - DEBUG - Event 72 arrival 1518.6431115932246 | depature 1530.620491637798.
-2025-07-28 16:30:47,881 - DEBUG - Event 73 arrival 1526.0212599534234 | depature 1583.5389280373304.
-2025-07-28 16:30:47,881 - DEBUG - Event 74 arrival 1533.1126254694564 | depature 1533.4843228545747.
-2025-07-28 16:30:47,881 - DEBUG - Event 75 arrival 1533.5806826510493 | depature 1557.4448773378444.
-2025-07-28 16:30:47,881 - DEBUG - Event 76 arrival 1535.7673699639547 | depature 1539.448248499923.
-2025-07-28 16:30:47,881 - DEBUG - Event 77 arrival 1536.9250167684415 | depature 1552.3388914804798.
-2025-07-28 16:30:47,881 - DEBUG - Event 78 arrival 1539.7442275237156 | depature 1571.8938749447218.
-2025-07-28 16:30:47,881 - DEBUG - Event 79 arrival 1541.573385010274 | depature 1561.7219084365825.
-2025-07-28 16:30:47,881 - DEBUG - Event 80 arrival 1543.827623678291 | depature 1559.4080188546036.
-2025-07-28 16:30:47,881 - DEBUG - Event 81 arrival 1586.6083125707014 | depature 1604.0106626065267.
-2025-07-28 16:30:47,882 - DEBUG - Event 82 arrival 1599.5136217139038 | depature 1599.8291575654835.
-2025-07-28 16:30:47,882 - DEBUG - Event 83 arrival 1606.8517184807909 | depature 1646.1780611297343.
-2025-07-28 16:30:47,882 - DEBUG - Event 84 arrival 1609.8435591951243 | depature 1616.8168984738452.
-2025-07-28 16:30:47,882 - DEBUG - Event 85 arrival 1623.065111801087 | depature 1729.6972940471196.
-2025-07-28 16:30:47,882 - DEBUG - Event 86 arrival 1691.2038078767919 | depature 1702.4729420603671.
-2025-07-28 16:30:47,882 - DEBUG - Event 87 arrival 1728.3818160690207 | depature 1847.7156748575837.
-2025-07-28 16:30:47,882 - DEBUG - Event 88 arrival 1739.8090812065898 | depature 1779.4642995588572.
-2025-07-28 16:30:47,882 - DEBUG - Event 89 arrival 1873.5719287121003 | depature 1896.707086795697.
-2025-07-28 16:30:47,882 - DEBUG - Event 90 arrival 1874.0823463261731 | depature 1921.427753501957.
-2025-07-28 16:30:47,882 - DEBUG - Event 91 arrival 1887.1582805203357 | depature 1965.129003772456.
-2025-07-28 16:30:47,882 - DEBUG - Event 92 arrival 1944.8571017102443 | depature 2004.8861196764651.
-2025-07-28 16:30:47,882 - DEBUG - Event 93 arrival 2009.7374107654068 | depature 2054.377574104967.
-2025-07-28 16:30:47,882 - DEBUG - Event 94 arrival 2138.946464669302 | depature 2144.9219462144174.
-2025-07-28 16:30:47,882 - DEBUG - Event 95 arrival 2149.3360735250885 | depature 2153.4324148508877.
-2025-07-28 16:30:47,882 - DEBUG - Event 96 arrival 2155.180689904864 | depature 2159.0385750754035.
-2025-07-28 16:30:47,882 - DEBUG - Event 97 arrival 2158.4338903599078 | depature 2165.4506535186056.
-2025-07-28 16:30:47,882 - DEBUG - Event 98 arrival 2164.3241909823278 | depature 2164.6969304345726.
-2025-07-28 16:30:47,882 - DEBUG - Event 99 arrival 2210.5664015094576 | depature 2260.6321766194983.
-2025-07-28 16:30:47,882 - INFO - Generate 200 events.
-2025-07-28 16:30:47,882 - INFO - Start the control plane.
-2025-07-28 16:30:47,882 - INFO - Load the Security Aware Service Provision algorithm.
-2025-07-28 16:30:47,882 - DEBUG - The eventArrive processed on 1.515 second origin from 2 to 1 with id 0.
-2025-07-28 16:30:47,883 - DEBUG - The eventDeparture processed on 15.197 second origin from 2 to 1 with id 0.
-2025-07-28 16:30:47,883 - DEBUG - The eventArrive processed on 23.567 second origin from 2 to 3 with id 1.
-2025-07-28 16:30:47,883 - DEBUG - The eventArrive processed on 60.877 second origin from 4 to 3 with id 2.
-2025-07-28 16:30:47,883 - DEBUG - The eventDeparture processed on 66.734 second origin from 4 to 3 with id 2.
-2025-07-28 16:30:47,883 - DEBUG - The eventDeparture processed on 69.124 second origin from 2 to 3 with id 1.
-2025-07-28 16:30:47,883 - DEBUG - The eventArrive processed on 69.743 second origin from 3 to 2 with id 3.
-2025-07-28 16:30:47,883 - DEBUG - The eventDeparture processed on 72.354 second origin from 3 to 2 with id 3.
-2025-07-28 16:30:47,883 - DEBUG - The eventArrive processed on 114.036 second origin from 1 to 6 with id 4.
-2025-07-28 16:30:47,883 - DEBUG - The eventDeparture processed on 120.207 second origin from 1 to 6 with id 4.
-2025-07-28 16:30:47,883 - DEBUG - The eventArrive processed on 147.283 second origin from 1 to 5 with id 5.
-2025-07-28 16:30:47,883 - DEBUG - The eventDeparture processed on 158.167 second origin from 1 to 5 with id 5.
-2025-07-28 16:30:47,884 - DEBUG - The eventArrive processed on 171.479 second origin from 2 to 3 with id 6.
-2025-07-28 16:30:47,884 - DEBUG - The eventDeparture processed on 172.317 second origin from 2 to 3 with id 6.
-2025-07-28 16:30:47,884 - DEBUG - The eventArrive processed on 189.628 second origin from 6 to 3 with id 7.
-2025-07-28 16:30:47,884 - DEBUG - The eventDeparture processed on 195.748 second origin from 6 to 3 with id 7.
-2025-07-28 16:30:47,884 - DEBUG - The eventArrive processed on 228.245 second origin from 1 to 3 with id 8.
-2025-07-28 16:30:47,884 - DEBUG - The eventDeparture processed on 251.052 second origin from 1 to 3 with id 8.
-2025-07-28 16:30:47,884 - DEBUG - The eventArrive processed on 252.145 second origin from 5 to 2 with id 9.
-2025-07-28 16:30:47,884 - DEBUG - The eventArrive processed on 258.505 second origin from 5 to 4 with id 10.
-2025-07-28 16:30:47,884 - DEBUG - The eventDeparture processed on 262.214 second origin from 5 to 2 with id 9.
-2025-07-28 16:30:47,884 - DEBUG - The eventDeparture processed on 265.359 second origin from 5 to 4 with id 10.
-2025-07-28 16:30:47,884 - DEBUG - The eventArrive processed on 290.096 second origin from 5 to 4 with id 11.
-2025-07-28 16:30:47,884 - DEBUG - The eventArrive processed on 304.792 second origin from 1 to 2 with id 12.
-2025-07-28 16:30:47,884 - DEBUG - The eventArrive processed on 306.098 second origin from 2 to 6 with id 13.
-2025-07-28 16:30:47,884 - DEBUG - The eventDeparture processed on 307.065 second origin from 5 to 4 with id 11.
-2025-07-28 16:30:47,884 - DEBUG - The eventArrive processed on 329.087 second origin from 2 to 5 with id 14.
-2025-07-28 16:30:47,884 - DEBUG - The eventDeparture processed on 332.509 second origin from 2 to 5 with id 14.
-2025-07-28 16:30:47,884 - DEBUG - The eventArrive processed on 334.633 second origin from 2 to 3 with id 15.
-2025-07-28 16:30:47,884 - DEBUG - The eventDeparture processed on 358.748 second origin from 1 to 2 with id 12.
-2025-07-28 16:30:47,884 - DEBUG - The eventDeparture processed on 360.952 second origin from 2 to 3 with id 15.
-2025-07-28 16:30:47,884 - DEBUG - The eventDeparture processed on 366.571 second origin from 2 to 6 with id 13.
-2025-07-28 16:30:47,884 - DEBUG - The eventArrive processed on 389.918 second origin from 1 to 2 with id 16.
-2025-07-28 16:30:47,884 - DEBUG - The eventDeparture processed on 414.773 second origin from 1 to 2 with id 16.
-2025-07-28 16:30:47,884 - DEBUG - The eventArrive processed on 425.909 second origin from 1 to 4 with id 17.
-2025-07-28 16:30:47,884 - DEBUG - The eventDeparture processed on 430.145 second origin from 1 to 4 with id 17.
-2025-07-28 16:30:47,884 - DEBUG - The eventArrive processed on 455.343 second origin from 2 to 5 with id 18.
-2025-07-28 16:30:47,884 - DEBUG - The eventArrive processed on 464.201 second origin from 4 to 2 with id 19.
-2025-07-28 16:30:47,884 - DEBUG - The eventArrive processed on 470.006 second origin from 3 to 1 with id 20.
-2025-07-28 16:30:47,884 - DEBUG - The eventDeparture processed on 483.935 second origin from 4 to 2 with id 19.
-2025-07-28 16:30:47,884 - DEBUG - The eventArrive processed on 493.007 second origin from 5 to 3 with id 21.
-2025-07-28 16:30:47,884 - DEBUG - The eventDeparture processed on 498.346 second origin from 2 to 5 with id 18.
-2025-07-28 16:30:47,884 - DEBUG - The eventArrive processed on 501.591 second origin from 3 to 5 with id 22.
-2025-07-28 16:30:47,884 - DEBUG - The eventDeparture processed on 511.845 second origin from 3 to 5 with id 22.
-2025-07-28 16:30:47,884 - DEBUG - The eventArrive processed on 523.021 second origin from 1 to 6 with id 23.
-2025-07-28 16:30:47,884 - DEBUG - The eventArrive processed on 523.523 second origin from 3 to 4 with id 24.
-2025-07-28 16:30:47,884 - DEBUG - The eventDeparture processed on 526.350 second origin from 3 to 4 with id 24.
-2025-07-28 16:30:47,885 - DEBUG - The eventDeparture processed on 528.574 second origin from 3 to 1 with id 20.
-2025-07-28 16:30:47,885 - DEBUG - The eventDeparture processed on 530.418 second origin from 5 to 3 with id 21.
-2025-07-28 16:30:47,885 - DEBUG - The eventArrive processed on 537.700 second origin from 2 to 1 with id 25.
-2025-07-28 16:30:47,885 - DEBUG - The eventArrive processed on 538.827 second origin from 2 to 3 with id 26.
-2025-07-28 16:30:47,885 - DEBUG - The eventArrive processed on 543.227 second origin from 5 to 1 with id 27.
-2025-07-28 16:30:47,885 - DEBUG - The eventDeparture processed on 550.017 second origin from 5 to 1 with id 27.
-2025-07-28 16:30:47,885 - DEBUG - The eventDeparture processed on 553.898 second origin from 2 to 3 with id 26.
-2025-07-28 16:30:47,885 - DEBUG - The eventDeparture processed on 579.452 second origin from 1 to 6 with id 23.
-2025-07-28 16:30:47,885 - DEBUG - The eventArrive processed on 583.361 second origin from 2 to 3 with id 28.
-2025-07-28 16:30:47,885 - DEBUG - The eventDeparture processed on 595.333 second origin from 2 to 3 with id 28.
-2025-07-28 16:30:47,885 - DEBUG - The eventArrive processed on 600.897 second origin from 6 to 5 with id 29.
-2025-07-28 16:30:47,885 - DEBUG - The eventArrive processed on 601.544 second origin from 2 to 3 with id 30.
-2025-07-28 16:30:47,885 - DEBUG - The eventDeparture processed on 612.648 second origin from 6 to 5 with id 29.
-2025-07-28 16:30:47,885 - DEBUG - The eventDeparture processed on 626.206 second origin from 2 to 3 with id 30.
-2025-07-28 16:30:47,885 - DEBUG - The eventDeparture processed on 641.715 second origin from 2 to 1 with id 25.
-2025-07-28 16:30:47,885 - DEBUG - The eventArrive processed on 643.637 second origin from 3 to 1 with id 31.
-2025-07-28 16:30:47,885 - DEBUG - The eventDeparture processed on 643.926 second origin from 3 to 1 with id 31.
-2025-07-28 16:30:47,885 - DEBUG - The eventArrive processed on 666.182 second origin from 5 to 4 with id 32.
-2025-07-28 16:30:47,885 - DEBUG - The eventArrive processed on 681.342 second origin from 5 to 4 with id 33.
-2025-07-28 16:30:47,885 - DEBUG - The eventArrive processed on 694.558 second origin from 3 to 5 with id 34.
-2025-07-28 16:30:47,885 - DEBUG - The eventDeparture processed on 694.653 second origin from 5 to 4 with id 33.
-2025-07-28 16:30:47,885 - DEBUG - The eventDeparture processed on 698.712 second origin from 5 to 4 with id 32.
-2025-07-28 16:30:47,885 - DEBUG - The eventArrive processed on 699.657 second origin from 4 to 1 with id 35.
-2025-07-28 16:30:47,885 - DEBUG - The eventDeparture processed on 700.553 second origin from 3 to 5 with id 34.
-2025-07-28 16:30:47,885 - DEBUG - The eventDeparture processed on 707.192 second origin from 4 to 1 with id 35.
-2025-07-28 16:30:47,885 - DEBUG - The eventArrive processed on 735.828 second origin from 1 to 6 with id 36.
-2025-07-28 16:30:47,885 - DEBUG - The eventDeparture processed on 737.622 second origin from 1 to 6 with id 36.
-2025-07-28 16:30:47,885 - DEBUG - The eventArrive processed on 753.752 second origin from 5 to 1 with id 37.
-2025-07-28 16:30:47,885 - DEBUG - The eventArrive processed on 760.687 second origin from 1 to 5 with id 38.
-2025-07-28 16:30:47,886 - DEBUG - The eventDeparture processed on 762.578 second origin from 1 to 5 with id 38.
-2025-07-28 16:30:47,886 - DEBUG - The eventArrive processed on 770.628 second origin from 5 to 3 with id 39.
-2025-07-28 16:30:47,886 - DEBUG - The eventDeparture processed on 772.264 second origin from 5 to 1 with id 37.
-2025-07-28 16:30:47,886 - DEBUG - The eventDeparture processed on 777.130 second origin from 5 to 3 with id 39.
-2025-07-28 16:30:47,886 - DEBUG - The eventArrive processed on 781.865 second origin from 2 to 6 with id 40.
-2025-07-28 16:30:47,886 - DEBUG - The eventDeparture processed on 796.194 second origin from 2 to 6 with id 40.
-2025-07-28 16:30:47,886 - DEBUG - The eventArrive processed on 803.224 second origin from 1 to 5 with id 41.
-2025-07-28 16:30:47,886 - DEBUG - The eventArrive processed on 846.507 second origin from 6 to 2 with id 42.
-2025-07-28 16:30:47,886 - DEBUG - The eventArrive processed on 854.069 second origin from 4 to 5 with id 43.
-2025-07-28 16:30:47,886 - DEBUG - The eventArrive processed on 857.056 second origin from 4 to 3 with id 44.
-2025-07-28 16:30:47,886 - DEBUG - The eventArrive processed on 858.232 second origin from 5 to 3 with id 45.
-2025-07-28 16:30:47,886 - DEBUG - The eventDeparture processed on 861.530 second origin from 4 to 3 with id 44.
-2025-07-28 16:30:47,886 - DEBUG - The eventDeparture processed on 873.000 second origin from 4 to 5 with id 43.
-2025-07-28 16:30:47,886 - DEBUG - The eventDeparture processed on 875.189 second origin from 1 to 5 with id 41.
-2025-07-28 16:30:47,886 - DEBUG - The eventArrive processed on 877.611 second origin from 5 to 4 with id 46.
-2025-07-28 16:30:47,886 - DEBUG - The eventArrive processed on 878.310 second origin from 3 to 6 with id 47.
-2025-07-28 16:30:47,886 - DEBUG - The eventDeparture processed on 887.811 second origin from 5 to 4 with id 46.
-2025-07-28 16:30:47,886 - DEBUG - The eventDeparture processed on 888.560 second origin from 5 to 3 with id 45.
-2025-07-28 16:30:47,886 - DEBUG - The eventArrive processed on 910.791 second origin from 4 to 2 with id 48.
-2025-07-28 16:30:47,886 - DEBUG - The eventArrive processed on 911.216 second origin from 2 to 5 with id 49.
-2025-07-28 16:30:47,886 - DEBUG - The eventDeparture processed on 912.787 second origin from 6 to 2 with id 42.
-2025-07-28 16:30:47,886 - DEBUG - The eventDeparture processed on 922.672 second origin from 2 to 5 with id 49.
-2025-07-28 16:30:47,887 - DEBUG - The eventArrive processed on 928.182 second origin from 6 to 4 with id 50.
-2025-07-28 16:30:47,887 - DEBUG - The eventDeparture processed on 935.006 second origin from 6 to 4 with id 50.
-2025-07-28 16:30:47,887 - DEBUG - The eventDeparture processed on 943.692 second origin from 4 to 2 with id 48.
-2025-07-28 16:30:47,887 - DEBUG - The eventArrive processed on 945.394 second origin from 5 to 2 with id 51.
-2025-07-28 16:30:47,887 - DEBUG - The eventArrive processed on 966.428 second origin from 3 to 4 with id 52.
-2025-07-28 16:30:47,887 - DEBUG - The eventDeparture processed on 967.102 second origin from 3 to 4 with id 52.
-2025-07-28 16:30:47,887 - DEBUG - The eventDeparture processed on 974.169 second origin from 3 to 6 with id 47.
-2025-07-28 16:30:47,887 - DEBUG - The eventDeparture processed on 977.729 second origin from 5 to 2 with id 51.
-2025-07-28 16:30:47,887 - DEBUG - The eventArrive processed on 981.161 second origin from 3 to 2 with id 53.
-2025-07-28 16:30:47,887 - DEBUG - The eventDeparture processed on 987.323 second origin from 3 to 2 with id 53.
-2025-07-28 16:30:47,887 - DEBUG - The eventArrive processed on 988.880 second origin from 2 to 1 with id 54.
-2025-07-28 16:30:47,887 - DEBUG - The eventDeparture processed on 989.297 second origin from 2 to 1 with id 54.
-2025-07-28 16:30:47,887 - DEBUG - The eventArrive processed on 1003.389 second origin from 2 to 5 with id 55.
-2025-07-28 16:30:47,887 - DEBUG - The eventArrive processed on 1008.118 second origin from 5 to 1 with id 56.
-2025-07-28 16:30:47,887 - DEBUG - The eventDeparture processed on 1017.096 second origin from 5 to 1 with id 56.
-2025-07-28 16:30:47,887 - DEBUG - The eventDeparture processed on 1046.992 second origin from 2 to 5 with id 55.
-2025-07-28 16:30:47,887 - DEBUG - The eventArrive processed on 1063.507 second origin from 3 to 1 with id 57.
-2025-07-28 16:30:47,887 - DEBUG - The eventArrive processed on 1070.540 second origin from 5 to 6 with id 58.
-2025-07-28 16:30:47,887 - DEBUG - The eventDeparture processed on 1071.782 second origin from 5 to 6 with id 58.
-2025-07-28 16:30:47,887 - DEBUG - The eventArrive processed on 1101.320 second origin from 3 to 5 with id 59.
-2025-07-28 16:30:47,887 - DEBUG - The eventArrive processed on 1111.892 second origin from 4 to 5 with id 60.
-2025-07-28 16:30:47,887 - DEBUG - The eventDeparture processed on 1112.327 second origin from 3 to 1 with id 57.
-2025-07-28 16:30:47,887 - DEBUG - The eventDeparture processed on 1122.220 second origin from 3 to 5 with id 59.
-2025-07-28 16:30:47,887 - DEBUG - The eventDeparture processed on 1140.663 second origin from 4 to 5 with id 60.
-2025-07-28 16:30:47,887 - DEBUG - The eventArrive processed on 1156.299 second origin from 1 to 6 with id 61.
-2025-07-28 16:30:47,887 - DEBUG - The eventDeparture processed on 1161.274 second origin from 1 to 6 with id 61.
-2025-07-28 16:30:47,887 - DEBUG - The eventArrive processed on 1164.518 second origin from 4 to 3 with id 62.
-2025-07-28 16:30:47,887 - DEBUG - The eventArrive processed on 1169.348 second origin from 2 to 6 with id 63.
-2025-07-28 16:30:47,887 - DEBUG - The eventDeparture processed on 1181.009 second origin from 4 to 3 with id 62.
-2025-07-28 16:30:47,887 - DEBUG - The eventArrive processed on 1191.458 second origin from 4 to 5 with id 64.
-2025-07-28 16:30:47,887 - DEBUG - The eventArrive processed on 1193.448 second origin from 1 to 6 with id 65.
-2025-07-28 16:30:47,887 - DEBUG - The eventDeparture processed on 1195.086 second origin from 2 to 6 with id 63.
-2025-07-28 16:30:47,888 - DEBUG - The eventDeparture processed on 1200.011 second origin from 1 to 6 with id 65.
-2025-07-28 16:30:47,888 - DEBUG - The eventDeparture processed on 1217.715 second origin from 4 to 5 with id 64.
-2025-07-28 16:30:47,888 - DEBUG - The eventArrive processed on 1345.508 second origin from 6 to 1 with id 66.
-2025-07-28 16:30:47,888 - DEBUG - The eventArrive processed on 1353.898 second origin from 4 to 1 with id 67.
-2025-07-28 16:30:47,888 - DEBUG - The eventDeparture processed on 1358.357 second origin from 6 to 1 with id 66.
-2025-07-28 16:30:47,888 - DEBUG - The eventArrive processed on 1373.909 second origin from 1 to 5 with id 68.
-2025-07-28 16:30:47,888 - DEBUG - The eventArrive processed on 1382.305 second origin from 5 to 4 with id 69.
-2025-07-28 16:30:47,888 - DEBUG - The eventDeparture processed on 1385.244 second origin from 4 to 1 with id 67.
-2025-07-28 16:30:47,888 - DEBUG - The eventDeparture processed on 1396.661 second origin from 1 to 5 with id 68.
-2025-07-28 16:30:47,888 - DEBUG - The eventArrive processed on 1400.104 second origin from 3 to 2 with id 70.
-2025-07-28 16:30:47,888 - DEBUG - The eventDeparture processed on 1419.761 second origin from 3 to 2 with id 70.
-2025-07-28 16:30:47,888 - DEBUG - The eventDeparture processed on 1434.029 second origin from 5 to 4 with id 69.
-2025-07-28 16:30:47,888 - DEBUG - The eventArrive processed on 1450.788 second origin from 3 to 4 with id 71.
-2025-07-28 16:30:47,888 - DEBUG - The eventDeparture processed on 1500.493 second origin from 3 to 4 with id 71.
-2025-07-28 16:30:47,888 - DEBUG - The eventArrive processed on 1518.643 second origin from 3 to 2 with id 72.
-2025-07-28 16:30:47,888 - DEBUG - The eventArrive processed on 1526.021 second origin from 6 to 1 with id 73.
-2025-07-28 16:30:47,888 - DEBUG - The eventDeparture processed on 1530.620 second origin from 3 to 2 with id 72.
-2025-07-28 16:30:47,888 - DEBUG - The eventArrive processed on 1533.113 second origin from 3 to 6 with id 74.
-2025-07-28 16:30:47,888 - DEBUG - The eventDeparture processed on 1533.484 second origin from 3 to 6 with id 74.
-2025-07-28 16:30:47,888 - DEBUG - The eventArrive processed on 1533.581 second origin from 2 to 3 with id 75.
-2025-07-28 16:30:47,888 - DEBUG - The eventArrive processed on 1535.767 second origin from 6 to 4 with id 76.
-2025-07-28 16:30:47,888 - DEBUG - The eventArrive processed on 1536.925 second origin from 6 to 5 with id 77.
-2025-07-28 16:30:47,888 - DEBUG - The eventDeparture processed on 1539.448 second origin from 6 to 4 with id 76.
-2025-07-28 16:30:47,888 - DEBUG - The eventArrive processed on 1539.744 second origin from 5 to 2 with id 78.
-2025-07-28 16:30:47,888 - DEBUG - The eventArrive processed on 1541.573 second origin from 5 to 1 with id 79.
-2025-07-28 16:30:47,888 - DEBUG - The eventArrive processed on 1543.828 second origin from 5 to 4 with id 80.
-2025-07-28 16:30:47,888 - DEBUG - The eventDeparture processed on 1552.339 second origin from 6 to 5 with id 77.
-2025-07-28 16:30:47,888 - DEBUG - The eventDeparture processed on 1557.445 second origin from 2 to 3 with id 75.
-2025-07-28 16:30:47,888 - DEBUG - The eventDeparture processed on 1559.408 second origin from 5 to 4 with id 80.
-2025-07-28 16:30:47,888 - DEBUG - The eventDeparture processed on 1561.722 second origin from 5 to 1 with id 79.
-2025-07-28 16:30:47,888 - DEBUG - The eventDeparture processed on 1571.894 second origin from 5 to 2 with id 78.
-2025-07-28 16:30:47,888 - DEBUG - The eventDeparture processed on 1583.539 second origin from 6 to 1 with id 73.
-2025-07-28 16:30:47,888 - DEBUG - The eventArrive processed on 1586.608 second origin from 3 to 2 with id 81.
-2025-07-28 16:30:47,889 - DEBUG - The eventArrive processed on 1599.514 second origin from 6 to 2 with id 82.
-2025-07-28 16:30:47,889 - DEBUG - The eventDeparture processed on 1599.829 second origin from 6 to 2 with id 82.
-2025-07-28 16:30:47,889 - DEBUG - The eventDeparture processed on 1604.011 second origin from 3 to 2 with id 81.
-2025-07-28 16:30:47,889 - DEBUG - The eventArrive processed on 1606.852 second origin from 1 to 6 with id 83.
-2025-07-28 16:30:47,889 - DEBUG - The eventArrive processed on 1609.844 second origin from 4 to 3 with id 84.
-2025-07-28 16:30:47,889 - DEBUG - The eventDeparture processed on 1616.817 second origin from 4 to 3 with id 84.
-2025-07-28 16:30:47,889 - DEBUG - The eventArrive processed on 1623.065 second origin from 4 to 1 with id 85.
-2025-07-28 16:30:47,889 - DEBUG - The eventDeparture processed on 1646.178 second origin from 1 to 6 with id 83.
-2025-07-28 16:30:47,889 - DEBUG - The eventArrive processed on 1691.204 second origin from 6 to 5 with id 86.
-2025-07-28 16:30:47,889 - DEBUG - The eventDeparture processed on 1702.473 second origin from 6 to 5 with id 86.
-2025-07-28 16:30:47,889 - DEBUG - The eventArrive processed on 1728.382 second origin from 1 to 2 with id 87.
-2025-07-28 16:30:47,889 - DEBUG - The eventDeparture processed on 1729.697 second origin from 4 to 1 with id 85.
-2025-07-28 16:30:47,889 - DEBUG - The eventArrive processed on 1739.809 second origin from 6 to 4 with id 88.
-2025-07-28 16:30:47,889 - DEBUG - The eventDeparture processed on 1779.464 second origin from 6 to 4 with id 88.
-2025-07-28 16:30:47,889 - DEBUG - The eventDeparture processed on 1847.716 second origin from 1 to 2 with id 87.
-2025-07-28 16:30:47,889 - DEBUG - The eventArrive processed on 1873.572 second origin from 6 to 1 with id 89.
-2025-07-28 16:30:47,889 - DEBUG - The eventArrive processed on 1874.082 second origin from 3 to 1 with id 90.
-2025-07-28 16:30:47,889 - DEBUG - The eventArrive processed on 1887.158 second origin from 2 to 6 with id 91.
-2025-07-28 16:30:47,889 - DEBUG - The eventDeparture processed on 1896.707 second origin from 6 to 1 with id 89.
-2025-07-28 16:30:47,889 - DEBUG - The eventDeparture processed on 1921.428 second origin from 3 to 1 with id 90.
-2025-07-28 16:30:47,889 - DEBUG - The eventArrive processed on 1944.857 second origin from 5 to 2 with id 92.
-2025-07-28 16:30:47,889 - DEBUG - The eventDeparture processed on 1965.129 second origin from 2 to 6 with id 91.
-2025-07-28 16:30:47,889 - DEBUG - The eventDeparture processed on 2004.886 second origin from 5 to 2 with id 92.
-2025-07-28 16:30:47,889 - DEBUG - The eventArrive processed on 2009.737 second origin from 3 to 2 with id 93.
-2025-07-28 16:30:47,889 - DEBUG - The eventDeparture processed on 2054.378 second origin from 3 to 2 with id 93.
-2025-07-28 16:30:47,889 - DEBUG - The eventArrive processed on 2138.946 second origin from 6 to 3 with id 94.
-2025-07-28 16:30:47,889 - DEBUG - The eventDeparture processed on 2144.922 second origin from 6 to 3 with id 94.
-2025-07-28 16:30:47,889 - DEBUG - The eventArrive processed on 2149.336 second origin from 5 to 2 with id 95.
-2025-07-28 16:30:47,889 - DEBUG - The eventDeparture processed on 2153.432 second origin from 5 to 2 with id 95.
-2025-07-28 16:30:47,889 - DEBUG - The eventArrive processed on 2155.181 second origin from 2 to 3 with id 96.
-2025-07-28 16:30:47,889 - DEBUG - The eventArrive processed on 2158.434 second origin from 1 to 5 with id 97.
-2025-07-28 16:30:47,889 - DEBUG - The eventDeparture processed on 2159.039 second origin from 2 to 3 with id 96.
-2025-07-28 16:30:47,889 - DEBUG - The eventArrive processed on 2164.324 second origin from 6 to 5 with id 98.
-2025-07-28 16:30:47,889 - DEBUG - The eventDeparture processed on 2164.697 second origin from 6 to 5 with id 98.
-2025-07-28 16:30:47,889 - DEBUG - The eventDeparture processed on 2165.451 second origin from 1 to 5 with id 97.
-2025-07-28 16:30:47,890 - DEBUG - The eventArrive processed on 2210.566 second origin from 2 to 4 with id 99.
-2025-07-28 16:30:47,890 - DEBUG - The eventDeparture processed on 2260.632 second origin from 2 to 4 with id 99.
-2025-07-28 16:30:47,890 - INFO - Done.
+2025-08-01 01:06:39,106 - INFO - Starting topology generation.
+2025-08-01 01:06:39,107 - INFO - Generate topology from GraphML file: ./topology/SixNode.graphml
+2025-08-01 01:06:39,109 - DEBUG - Success load GraphML topology with 6 nodes and 8 edges.
+2025-08-01 01:06:39,109 - DEBUG - Set link bandwidth = 1000.
+2025-08-01 01:06:39,109 - DEBUG - Set link weight = 0.001.
+2025-08-01 01:06:39,109 - DEBUG - Set link security = [0, 1] | ratio = [0.6, 0.4].
+2025-08-01 01:06:39,109 - DEBUG - 8 links set security [1, 0, 0, 0, 0, 0, 0, 0].
+2025-08-01 01:06:39,110 - DEBUG - ===== TOPOLOGY NODES =====
+2025-08-01 01:06:39,110 - DEBUG - Node: 1 | Attributes: Internal=1, Latitude=50.0, Country=Default, id=1, Longitude=80.0, label=Node1
+2025-08-01 01:06:39,110 - DEBUG - Node: 2 | Attributes: Internal=1, Latitude=85.0, Country=Default, id=2, Longitude=60.0, label=Node2
+2025-08-01 01:06:39,110 - DEBUG - Node: 3 | Attributes: Internal=1, Latitude=85.0, Country=Default, id=3, Longitude=30.0, label=Node3
+2025-08-01 01:06:39,110 - DEBUG - Node: 4 | Attributes: Internal=1, Latitude=50.0, Country=Default, id=4, Longitude=10.0, label=Node4
+2025-08-01 01:06:39,110 - DEBUG - Node: 5 | Attributes: Internal=1, Latitude=15.0, Country=Default, id=5, Longitude=30.0, label=Node5
+2025-08-01 01:06:39,110 - DEBUG - Node: 6 | Attributes: Internal=1, Latitude=15.0, Country=Default, id=6, Longitude=60.0, label=Node6
+2025-08-01 01:06:39,110 - DEBUG - ===== TOPOLOGY EDGES =====
+2025-08-01 01:06:39,110 - DEBUG - Edge: (1 -- 2) | Attributes: id=e1, key=0, link_bandwidth=1000, link_available_bandwidth=1000, link_weight=0.001, link_security=1, link_carried_calls={}
+2025-08-01 01:06:39,110 - DEBUG - Edge: (1 -- 6) | Attributes: id=e2, key=0, link_bandwidth=1000, link_available_bandwidth=1000, link_weight=0.001, link_security=0, link_carried_calls={}
+2025-08-01 01:06:39,110 - DEBUG - Edge: (2 -- 3) | Attributes: id=e3, key=0, link_bandwidth=1000, link_available_bandwidth=1000, link_weight=0.001, link_security=0, link_carried_calls={}
+2025-08-01 01:06:39,110 - DEBUG - Edge: (2 -- 6) | Attributes: id=e4, key=0, link_bandwidth=1000, link_available_bandwidth=1000, link_weight=0.001, link_security=0, link_carried_calls={}
+2025-08-01 01:06:39,110 - DEBUG - Edge: (3 -- 4) | Attributes: id=e5, key=0, link_bandwidth=1000, link_available_bandwidth=1000, link_weight=0.001, link_security=0, link_carried_calls={}
+2025-08-01 01:06:39,110 - DEBUG - Edge: (3 -- 5) | Attributes: id=e6, key=0, link_bandwidth=1000, link_available_bandwidth=1000, link_weight=0.001, link_security=0, link_carried_calls={}
+2025-08-01 01:06:39,110 - DEBUG - Edge: (4 -- 5) | Attributes: id=e7, key=0, link_bandwidth=1000, link_available_bandwidth=1000, link_weight=0.001, link_security=0, link_carried_calls={}
+2025-08-01 01:06:39,110 - DEBUG - Edge: (5 -- 6) | Attributes: id=e8, key=0, link_bandwidth=1000, link_available_bandwidth=1000, link_weight=0.001, link_security=0, link_carried_calls={}
+2025-08-01 01:06:39,110 - DEBUG - ===== TOPOLOGY SUMMARY =====
+2025-08-01 01:06:39,110 - DEBUG - Total Nodes: 6
+2025-08-01 01:06:39,110 - DEBUG - Total Edges: 8
+2025-08-01 01:06:39,111 - DEBUG - Connected Components: 1
+2025-08-01 01:06:39,111 - INFO - Starting call generation with number=100, rate=[0.6, 0.3, 0.1], security demands=[0, 1, 2], security ratio=[0.6, 0.3, 0.1]
+2025-08-01 01:06:39,112 - DEBUG - ===== CALLS INFO =====
+2025-08-01 01:06:39,112 - DEBUG - Call 0 (2 --> 1): rate=10 Gbps | security=0 | routing=False | path=[].
+2025-08-01 01:06:39,112 - DEBUG - Call 1 (4 --> 6): rate=10 Gbps | security=0 | routing=False | path=[].
+2025-08-01 01:06:39,112 - DEBUG - Call 2 (5 --> 2): rate=10 Gbps | security=1 | routing=False | path=[].
+2025-08-01 01:06:39,112 - DEBUG - Call 3 (3 --> 2): rate=10 Gbps | security=0 | routing=False | path=[].
+2025-08-01 01:06:39,112 - DEBUG - Call 4 (5 --> 4): rate=10 Gbps | security=0 | routing=False | path=[].
+2025-08-01 01:06:39,112 - DEBUG - Call 5 (1 --> 4): rate=10 Gbps | security=1 | routing=False | path=[].
+2025-08-01 01:06:39,112 - DEBUG - Call 6 (4 --> 5): rate=10 Gbps | security=0 | routing=False | path=[].
+2025-08-01 01:06:39,112 - DEBUG - Call 7 (4 --> 6): rate=10 Gbps | security=2 | routing=False | path=[].
+2025-08-01 01:06:39,112 - DEBUG - Call 8 (3 --> 4): rate=10 Gbps | security=0 | routing=False | path=[].
+2025-08-01 01:06:39,112 - DEBUG - Call 9 (5 --> 2): rate=10 Gbps | security=2 | routing=False | path=[].
+2025-08-01 01:06:39,112 - DEBUG - Call 10 (6 --> 3): rate=10 Gbps | security=0 | routing=False | path=[].
+2025-08-01 01:06:39,112 - DEBUG - Call 11 (1 --> 4): rate=10 Gbps | security=2 | routing=False | path=[].
+2025-08-01 01:06:39,112 - DEBUG - Call 12 (5 --> 2): rate=10 Gbps | security=1 | routing=False | path=[].
+2025-08-01 01:06:39,112 - DEBUG - Call 13 (5 --> 3): rate=10 Gbps | security=0 | routing=False | path=[].
+2025-08-01 01:06:39,112 - DEBUG - Call 14 (2 --> 3): rate=10 Gbps | security=0 | routing=False | path=[].
+2025-08-01 01:06:39,112 - DEBUG - Call 15 (2 --> 3): rate=10 Gbps | security=1 | routing=False | path=[].
+2025-08-01 01:06:39,112 - DEBUG - Call 16 (1 --> 2): rate=10 Gbps | security=0 | routing=False | path=[].
+2025-08-01 01:06:39,112 - DEBUG - Call 17 (4 --> 2): rate=10 Gbps | security=0 | routing=False | path=[].
+2025-08-01 01:06:39,112 - DEBUG - Call 18 (5 --> 4): rate=10 Gbps | security=0 | routing=False | path=[].
+2025-08-01 01:06:39,112 - DEBUG - Call 19 (4 --> 3): rate=10 Gbps | security=1 | routing=False | path=[].
+2025-08-01 01:06:39,112 - DEBUG - Call 20 (6 --> 2): rate=10 Gbps | security=0 | routing=False | path=[].
+2025-08-01 01:06:39,112 - DEBUG - Call 21 (4 --> 3): rate=10 Gbps | security=1 | routing=False | path=[].
+2025-08-01 01:06:39,112 - DEBUG - Call 22 (4 --> 5): rate=10 Gbps | security=0 | routing=False | path=[].
+2025-08-01 01:06:39,112 - DEBUG - Call 23 (4 --> 1): rate=10 Gbps | security=1 | routing=False | path=[].
+2025-08-01 01:06:39,112 - DEBUG - Call 24 (2 --> 1): rate=10 Gbps | security=0 | routing=False | path=[].
+2025-08-01 01:06:39,112 - DEBUG - Call 25 (6 --> 5): rate=10 Gbps | security=0 | routing=False | path=[].
+2025-08-01 01:06:39,113 - DEBUG - Call 26 (3 --> 2): rate=10 Gbps | security=0 | routing=False | path=[].
+2025-08-01 01:06:39,113 - DEBUG - Call 27 (4 --> 5): rate=10 Gbps | security=0 | routing=False | path=[].
+2025-08-01 01:06:39,113 - DEBUG - Call 28 (1 --> 2): rate=10 Gbps | security=1 | routing=False | path=[].
+2025-08-01 01:06:39,113 - DEBUG - Call 29 (3 --> 5): rate=10 Gbps | security=0 | routing=False | path=[].
+2025-08-01 01:06:39,113 - DEBUG - Call 30 (3 --> 5): rate=10 Gbps | security=1 | routing=False | path=[].
+2025-08-01 01:06:39,113 - DEBUG - Call 31 (4 --> 2): rate=10 Gbps | security=0 | routing=False | path=[].
+2025-08-01 01:06:39,113 - DEBUG - Call 32 (2 --> 5): rate=10 Gbps | security=0 | routing=False | path=[].
+2025-08-01 01:06:39,113 - DEBUG - Call 33 (4 --> 3): rate=10 Gbps | security=1 | routing=False | path=[].
+2025-08-01 01:06:39,113 - DEBUG - Call 34 (6 --> 1): rate=10 Gbps | security=0 | routing=False | path=[].
+2025-08-01 01:06:39,113 - DEBUG - Call 35 (6 --> 2): rate=10 Gbps | security=1 | routing=False | path=[].
+2025-08-01 01:06:39,113 - DEBUG - Call 36 (5 --> 1): rate=10 Gbps | security=0 | routing=False | path=[].
+2025-08-01 01:06:39,113 - DEBUG - Call 37 (1 --> 4): rate=10 Gbps | security=0 | routing=False | path=[].
+2025-08-01 01:06:39,113 - DEBUG - Call 38 (6 --> 4): rate=10 Gbps | security=1 | routing=False | path=[].
+2025-08-01 01:06:39,113 - DEBUG - Call 39 (1 --> 3): rate=10 Gbps | security=0 | routing=False | path=[].
+2025-08-01 01:06:39,113 - DEBUG - Call 40 (3 --> 6): rate=10 Gbps | security=0 | routing=False | path=[].
+2025-08-01 01:06:39,113 - DEBUG - Call 41 (3 --> 5): rate=10 Gbps | security=1 | routing=False | path=[].
+2025-08-01 01:06:39,113 - DEBUG - Call 42 (5 --> 2): rate=10 Gbps | security=1 | routing=False | path=[].
+2025-08-01 01:06:39,113 - DEBUG - Call 43 (6 --> 5): rate=10 Gbps | security=0 | routing=False | path=[].
+2025-08-01 01:06:39,113 - DEBUG - Call 44 (5 --> 6): rate=10 Gbps | security=0 | routing=False | path=[].
+2025-08-01 01:06:39,113 - DEBUG - Call 45 (5 --> 3): rate=10 Gbps | security=0 | routing=False | path=[].
+2025-08-01 01:06:39,113 - DEBUG - Call 46 (5 --> 2): rate=10 Gbps | security=0 | routing=False | path=[].
+2025-08-01 01:06:39,113 - DEBUG - Call 47 (2 --> 1): rate=10 Gbps | security=1 | routing=False | path=[].
+2025-08-01 01:06:39,113 - DEBUG - Call 48 (1 --> 2): rate=10 Gbps | security=1 | routing=False | path=[].
+2025-08-01 01:06:39,113 - DEBUG - Call 49 (4 --> 1): rate=10 Gbps | security=0 | routing=False | path=[].
+2025-08-01 01:06:39,113 - DEBUG - Call 50 (2 --> 5): rate=10 Gbps | security=0 | routing=False | path=[].
+2025-08-01 01:06:39,113 - DEBUG - Call 51 (4 --> 3): rate=10 Gbps | security=0 | routing=False | path=[].
+2025-08-01 01:06:39,113 - DEBUG - Call 52 (4 --> 1): rate=10 Gbps | security=0 | routing=False | path=[].
+2025-08-01 01:06:39,113 - DEBUG - Call 53 (1 --> 3): rate=10 Gbps | security=1 | routing=False | path=[].
+2025-08-01 01:06:39,113 - DEBUG - Call 54 (2 --> 3): rate=10 Gbps | security=0 | routing=False | path=[].
+2025-08-01 01:06:39,113 - DEBUG - Call 55 (2 --> 3): rate=10 Gbps | security=1 | routing=False | path=[].
+2025-08-01 01:06:39,113 - DEBUG - Call 56 (5 --> 3): rate=10 Gbps | security=2 | routing=False | path=[].
+2025-08-01 01:06:39,114 - DEBUG - Call 57 (5 --> 2): rate=10 Gbps | security=2 | routing=False | path=[].
+2025-08-01 01:06:39,114 - DEBUG - Call 58 (4 --> 5): rate=10 Gbps | security=1 | routing=False | path=[].
+2025-08-01 01:06:39,114 - DEBUG - Call 59 (4 --> 5): rate=10 Gbps | security=1 | routing=False | path=[].
+2025-08-01 01:06:39,114 - DEBUG - Call 60 (3 --> 6): rate=10 Gbps | security=0 | routing=False | path=[].
+2025-08-01 01:06:39,114 - DEBUG - Call 61 (2 --> 5): rate=10 Gbps | security=0 | routing=False | path=[].
+2025-08-01 01:06:39,114 - DEBUG - Call 62 (6 --> 1): rate=10 Gbps | security=1 | routing=False | path=[].
+2025-08-01 01:06:39,114 - DEBUG - Call 63 (2 --> 5): rate=10 Gbps | security=1 | routing=False | path=[].
+2025-08-01 01:06:39,114 - DEBUG - Call 64 (5 --> 1): rate=10 Gbps | security=0 | routing=False | path=[].
+2025-08-01 01:06:39,114 - DEBUG - Call 65 (1 --> 4): rate=10 Gbps | security=0 | routing=False | path=[].
+2025-08-01 01:06:39,114 - DEBUG - Call 66 (6 --> 4): rate=10 Gbps | security=1 | routing=False | path=[].
+2025-08-01 01:06:39,114 - DEBUG - Call 67 (3 --> 5): rate=10 Gbps | security=0 | routing=False | path=[].
+2025-08-01 01:06:39,114 - DEBUG - Call 68 (5 --> 4): rate=10 Gbps | security=0 | routing=False | path=[].
+2025-08-01 01:06:39,114 - DEBUG - Call 69 (3 --> 2): rate=10 Gbps | security=1 | routing=False | path=[].
+2025-08-01 01:06:39,114 - DEBUG - Call 70 (5 --> 6): rate=10 Gbps | security=0 | routing=False | path=[].
+2025-08-01 01:06:39,114 - DEBUG - Call 71 (1 --> 3): rate=10 Gbps | security=0 | routing=False | path=[].
+2025-08-01 01:06:39,114 - DEBUG - Call 72 (5 --> 6): rate=10 Gbps | security=2 | routing=False | path=[].
+2025-08-01 01:06:39,114 - DEBUG - Call 73 (5 --> 1): rate=10 Gbps | security=0 | routing=False | path=[].
+2025-08-01 01:06:39,114 - DEBUG - Call 74 (1 --> 2): rate=10 Gbps | security=2 | routing=False | path=[].
+2025-08-01 01:06:39,114 - DEBUG - Call 75 (2 --> 1): rate=10 Gbps | security=2 | routing=False | path=[].
+2025-08-01 01:06:39,114 - DEBUG - Call 76 (4 --> 6): rate=10 Gbps | security=1 | routing=False | path=[].
+2025-08-01 01:06:39,114 - DEBUG - Call 77 (3 --> 4): rate=10 Gbps | security=1 | routing=False | path=[].
+2025-08-01 01:06:39,114 - DEBUG - Call 78 (1 --> 2): rate=10 Gbps | security=2 | routing=False | path=[].
+2025-08-01 01:06:39,114 - DEBUG - Call 79 (4 --> 2): rate=10 Gbps | security=0 | routing=False | path=[].
+2025-08-01 01:06:39,114 - DEBUG - Call 80 (1 --> 2): rate=10 Gbps | security=0 | routing=False | path=[].
+2025-08-01 01:06:39,114 - DEBUG - Call 81 (2 --> 6): rate=10 Gbps | security=0 | routing=False | path=[].
+2025-08-01 01:06:39,114 - DEBUG - Call 82 (6 --> 2): rate=10 Gbps | security=1 | routing=False | path=[].
+2025-08-01 01:06:39,114 - DEBUG - Call 83 (3 --> 4): rate=10 Gbps | security=0 | routing=False | path=[].
+2025-08-01 01:06:39,114 - DEBUG - Call 84 (1 --> 5): rate=10 Gbps | security=0 | routing=False | path=[].
+2025-08-01 01:06:39,114 - DEBUG - Call 85 (4 --> 2): rate=10 Gbps | security=1 | routing=False | path=[].
+2025-08-01 01:06:39,114 - DEBUG - Call 86 (1 --> 5): rate=10 Gbps | security=1 | routing=False | path=[].
+2025-08-01 01:06:39,114 - DEBUG - Call 87 (2 --> 3): rate=10 Gbps | security=0 | routing=False | path=[].
+2025-08-01 01:06:39,115 - DEBUG - Call 88 (4 --> 1): rate=10 Gbps | security=0 | routing=False | path=[].
+2025-08-01 01:06:39,115 - DEBUG - Call 89 (5 --> 4): rate=10 Gbps | security=1 | routing=False | path=[].
+2025-08-01 01:06:39,115 - DEBUG - Call 90 (4 --> 5): rate=10 Gbps | security=0 | routing=False | path=[].
+2025-08-01 01:06:39,115 - DEBUG - Call 91 (3 --> 1): rate=10 Gbps | security=1 | routing=False | path=[].
+2025-08-01 01:06:39,115 - DEBUG - Call 92 (3 --> 4): rate=10 Gbps | security=0 | routing=False | path=[].
+2025-08-01 01:06:39,115 - DEBUG - Call 93 (4 --> 5): rate=10 Gbps | security=0 | routing=False | path=[].
+2025-08-01 01:06:39,115 - DEBUG - Call 94 (6 --> 2): rate=10 Gbps | security=2 | routing=False | path=[].
+2025-08-01 01:06:39,115 - DEBUG - Call 95 (3 --> 2): rate=10 Gbps | security=1 | routing=False | path=[].
+2025-08-01 01:06:39,115 - DEBUG - Call 96 (2 --> 3): rate=10 Gbps | security=0 | routing=False | path=[].
+2025-08-01 01:06:39,115 - DEBUG - Call 97 (2 --> 4): rate=10 Gbps | security=1 | routing=False | path=[].
+2025-08-01 01:06:39,115 - DEBUG - Call 98 (6 --> 2): rate=10 Gbps | security=1 | routing=False | path=[].
+2025-08-01 01:06:39,115 - DEBUG - Call 99 (1 --> 3): rate=10 Gbps | security=1 | routing=False | path=[].
+2025-08-01 01:06:39,115 - DEBUG - Call type count: {0: 55, 1: 35, 2: 10}
+2025-08-01 01:06:39,115 - INFO - Generate events in 1(load) with 20 holding time.
+2025-08-01 01:06:39,115 - INFO - Arrival time (lambda) is 20.0, holding time (mu) is 20, intensity (rio) is 1.0.
+2025-08-01 01:06:39,115 - DEBUG - Event 0 arrival 3.4874752645871583 | depature 21.12817602243005.
+2025-08-01 01:06:39,115 - DEBUG - Event 1 arrival 25.518066515132528 | depature 51.61776709308768.
+2025-08-01 01:06:39,115 - DEBUG - Event 2 arrival 29.28855875339943 | depature 60.625491512309125.
+2025-08-01 01:06:39,116 - DEBUG - Event 3 arrival 53.071563345630196 | depature 59.54531578818008.
+2025-08-01 01:06:39,116 - DEBUG - Event 4 arrival 65.53524298111341 | depature 65.91275763359252.
+2025-08-01 01:06:39,116 - DEBUG - Event 5 arrival 83.44389073185778 | depature 104.77687663802197.
+2025-08-01 01:06:39,116 - DEBUG - Event 6 arrival 106.50965115487811 | depature 111.35525460723426.
+2025-08-01 01:06:39,116 - DEBUG - Event 7 arrival 120.16163466939886 | depature 148.087281012225.
+2025-08-01 01:06:39,116 - DEBUG - Event 8 arrival 134.6948530766834 | depature 135.9652681724222.
+2025-08-01 01:06:39,116 - DEBUG - Event 9 arrival 149.18333628710533 | depature 166.5306847680008.
+2025-08-01 01:06:39,116 - DEBUG - Event 10 arrival 183.55681903738673 | depature 199.88827154652023.
+2025-08-01 01:06:39,116 - DEBUG - Event 11 arrival 186.04185538199044 | depature 187.11363820160744.
+2025-08-01 01:06:39,116 - DEBUG - Event 12 arrival 213.8301258013197 | depature 234.85487746159845.
+2025-08-01 01:06:39,116 - DEBUG - Event 13 arrival 238.7854556453635 | depature 266.1509484445594.
+2025-08-01 01:06:39,116 - DEBUG - Event 14 arrival 242.97110271383139 | depature 250.61663308288342.
+2025-08-01 01:06:39,116 - DEBUG - Event 15 arrival 265.954745548741 | depature 295.5214861381057.
+2025-08-01 01:06:39,116 - DEBUG - Event 16 arrival 281.992091482879 | depature 308.02884694566086.
+2025-08-01 01:06:39,116 - DEBUG - Event 17 arrival 283.313100731776 | depature 294.8672521746898.
+2025-08-01 01:06:39,116 - DEBUG - Event 18 arrival 294.6517401402699 | depature 307.8966119938844.
+2025-08-01 01:06:39,116 - DEBUG - Event 19 arrival 313.6875611220421 | depature 339.4408688882016.
+2025-08-01 01:06:39,116 - DEBUG - Event 20 arrival 344.44495262000765 | depature 388.3644276226789.
+2025-08-01 01:06:39,117 - DEBUG - Event 21 arrival 413.3748536198871 | depature 419.82620320236214.
+2025-08-01 01:06:39,117 - DEBUG - Event 22 arrival 437.9063921798129 | depature 459.4225069168365.
+2025-08-01 01:06:39,117 - DEBUG - Event 23 arrival 497.1303149972356 | depature 508.37041389403737.
+2025-08-01 01:06:39,117 - DEBUG - Event 24 arrival 525.2965911371045 | depature 531.4287994935812.
+2025-08-01 01:06:39,117 - DEBUG - Event 25 arrival 562.6168788842984 | depature 569.2414161782483.
+2025-08-01 01:06:39,117 - DEBUG - Event 26 arrival 566.7998780345301 | depature 595.4492334113246.
+2025-08-01 01:06:39,117 - DEBUG - Event 27 arrival 594.3171075443154 | depature 603.7145411681535.
+2025-08-01 01:06:39,117 - DEBUG - Event 28 arrival 623.2901208948869 | depature 646.852242050086.
+2025-08-01 01:06:39,117 - DEBUG - Event 29 arrival 697.1136556987185 | depature 716.1475554771732.
+2025-08-01 01:06:39,117 - DEBUG - Event 30 arrival 703.1017342813593 | depature 705.7032334274305.
+2025-08-01 01:06:39,117 - DEBUG - Event 31 arrival 707.5235318887895 | depature 748.0537213937886.
+2025-08-01 01:06:39,117 - DEBUG - Event 32 arrival 724.8183039484566 | depature 747.7737295691165.
+2025-08-01 01:06:39,117 - DEBUG - Event 33 arrival 755.2068008471655 | depature 769.210487321483.
+2025-08-01 01:06:39,117 - DEBUG - Event 34 arrival 769.6406309471366 | depature 799.9780494430686.
+2025-08-01 01:06:39,117 - DEBUG - Event 35 arrival 769.9505959564248 | depature 773.6891065986805.
+2025-08-01 01:06:39,117 - DEBUG - Event 36 arrival 802.6802183334262 | depature 822.9671641953172.
+2025-08-01 01:06:39,117 - DEBUG - Event 37 arrival 811.5908151011444 | depature 823.7924495474224.
+2025-08-01 01:06:39,117 - DEBUG - Event 38 arrival 816.0844729291081 | depature 829.8334702450614.
+2025-08-01 01:06:39,117 - DEBUG - Event 39 arrival 834.3527577421662 | depature 834.5860260594062.
+2025-08-01 01:06:39,117 - DEBUG - Event 40 arrival 835.872150710824 | depature 850.1609545838443.
+2025-08-01 01:06:39,118 - DEBUG - Event 41 arrival 876.0043689524799 | depature 887.0225222468351.
+2025-08-01 01:06:39,118 - DEBUG - Event 42 arrival 876.0381237666934 | depature 936.4061555687664.
+2025-08-01 01:06:39,118 - DEBUG - Event 43 arrival 909.3015625072611 | depature 910.1514922663131.
+2025-08-01 01:06:39,118 - DEBUG - Event 44 arrival 928.783870156492 | depature 957.1349337542072.
+2025-08-01 01:06:39,118 - DEBUG - Event 45 arrival 984.5021894066213 | depature 990.6530917811596.
+2025-08-01 01:06:39,118 - DEBUG - Event 46 arrival 985.1508213736677 | depature 1011.1178232994458.
+2025-08-01 01:06:39,118 - DEBUG - Event 47 arrival 989.6396094480563 | depature 990.3091282158986.
+2025-08-01 01:06:39,118 - DEBUG - Event 48 arrival 993.3726078960808 | depature 995.1328236825162.
+2025-08-01 01:06:39,118 - DEBUG - Event 49 arrival 1036.461034216645 | depature 1041.849826447613.
+2025-08-01 01:06:39,118 - DEBUG - Event 50 arrival 1058.9480226531891 | depature 1092.5323044394752.
+2025-08-01 01:06:39,118 - DEBUG - Event 51 arrival 1073.3487091035606 | depature 1077.9509953179554.
+2025-08-01 01:06:39,118 - DEBUG - Event 52 arrival 1121.083882158125 | depature 1147.92714653634.
+2025-08-01 01:06:39,118 - DEBUG - Event 53 arrival 1122.004311396038 | depature 1124.015582922303.
+2025-08-01 01:06:39,118 - DEBUG - Event 54 arrival 1147.6571223232174 | depature 1166.1987003991017.
+2025-08-01 01:06:39,118 - DEBUG - Event 55 arrival 1163.8900376743659 | depature 1200.2156165812837.
+2025-08-01 01:06:39,118 - DEBUG - Event 56 arrival 1181.3350593358687 | depature 1183.0717957716085.
+2025-08-01 01:06:39,118 - DEBUG - Event 57 arrival 1233.546683869588 | depature 1242.8239327002914.
+2025-08-01 01:06:39,118 - DEBUG - Event 58 arrival 1247.843387474276 | depature 1259.8399340066057.
+2025-08-01 01:06:39,118 - DEBUG - Event 59 arrival 1261.206867584249 | depature 1263.3994273004425.
+2025-08-01 01:06:39,118 - DEBUG - Event 60 arrival 1263.061814476344 | depature 1278.7654167095882.
+2025-08-01 01:06:39,118 - DEBUG - Event 61 arrival 1268.872621598463 | depature 1275.694714338383.
+2025-08-01 01:06:39,118 - DEBUG - Event 62 arrival 1271.1087429317167 | depature 1273.008288367258.
+2025-08-01 01:06:39,119 - DEBUG - Event 63 arrival 1313.5243547832108 | depature 1328.5229009166726.
+2025-08-01 01:06:39,119 - DEBUG - Event 64 arrival 1327.7316801561408 | depature 1372.3916354602975.
+2025-08-01 01:06:39,119 - DEBUG - Event 65 arrival 1399.2738870265603 | depature 1407.4652647103871.
+2025-08-01 01:06:39,119 - DEBUG - Event 66 arrival 1431.1491337112934 | depature 1445.5095963885306.
+2025-08-01 01:06:39,119 - DEBUG - Event 67 arrival 1476.4808464827227 | depature 1502.1097286240654.
+2025-08-01 01:06:39,119 - DEBUG - Event 68 arrival 1479.1760798054274 | depature 1546.3404474484253.
+2025-08-01 01:06:39,119 - DEBUG - Event 69 arrival 1512.5796964786393 | depature 1557.9715929573213.
+2025-08-01 01:06:39,119 - DEBUG - Event 70 arrival 1520.284468902523 | depature 1560.7834128915536.
+2025-08-01 01:06:39,119 - DEBUG - Event 71 arrival 1563.2440647267656 | depature 1567.2404147752293.
+2025-08-01 01:06:39,119 - DEBUG - Event 72 arrival 1608.3537178956274 | depature 1614.8735472741646.
+2025-08-01 01:06:39,119 - DEBUG - Event 73 arrival 1614.6282762471249 | depature 1617.3100662929278.
+2025-08-01 01:06:39,119 - DEBUG - Event 74 arrival 1702.3519856752837 | depature 1758.5790356880677.
+2025-08-01 01:06:39,119 - DEBUG - Event 75 arrival 1718.9708684951736 | depature 1731.8566425319304.
+2025-08-01 01:06:39,119 - DEBUG - Event 76 arrival 1735.6243905232016 | depature 1756.1375243739865.
+2025-08-01 01:06:39,119 - DEBUG - Event 77 arrival 1746.0280123534349 | depature 1751.8891429576015.
+2025-08-01 01:06:39,119 - DEBUG - Event 78 arrival 1764.8162921383225 | depature 1771.0811756811815.
+2025-08-01 01:06:39,119 - DEBUG - Event 79 arrival 1795.6442657885027 | depature 1804.8264192053252.
+2025-08-01 01:06:39,119 - DEBUG - Event 80 arrival 1803.96916586067 | depature 1829.6792958690492.
+2025-08-01 01:06:39,119 - DEBUG - Event 81 arrival 1817.6716065416074 | depature 1818.8620261659594.
+2025-08-01 01:06:39,119 - DEBUG - Event 82 arrival 1835.058783600063 | depature 1854.3904045052516.
+2025-08-01 01:06:39,119 - DEBUG - Event 83 arrival 1842.0739775321665 | depature 1845.8750023920059.
+2025-08-01 01:06:39,119 - DEBUG - Event 84 arrival 1862.4783360947897 | depature 1917.4742851754856.
+2025-08-01 01:06:39,119 - DEBUG - Event 85 arrival 1913.0612242213408 | depature 1919.2868292651683.
+2025-08-01 01:06:39,120 - DEBUG - Event 86 arrival 1916.31996636096 | depature 1943.491724019782.
+2025-08-01 01:06:39,120 - DEBUG - Event 87 arrival 1918.319678616251 | depature 1963.2464140717796.
+2025-08-01 01:06:39,120 - DEBUG - Event 88 arrival 1925.3996563987369 | depature 1929.1628691630192.
+2025-08-01 01:06:39,120 - DEBUG - Event 89 arrival 1958.0883993253992 | depature 1958.3956900611308.
+2025-08-01 01:06:39,120 - DEBUG - Event 90 arrival 1969.2239617259188 | depature 2013.2419444728478.
+2025-08-01 01:06:39,120 - DEBUG - Event 91 arrival 1970.2624723171787 | depature 1970.3282270108039.
+2025-08-01 01:06:39,120 - DEBUG - Event 92 arrival 1987.052838882103 | depature 2031.5127231732388.
+2025-08-01 01:06:39,120 - DEBUG - Event 93 arrival 2016.1615435684798 | depature 2019.3719081230774.
+2025-08-01 01:06:39,120 - DEBUG - Event 94 arrival 2023.3101960643753 | depature 2033.6819456984806.
+2025-08-01 01:06:39,120 - DEBUG - Event 95 arrival 2038.131276000478 | depature 2046.7388612068708.
+2025-08-01 01:06:39,120 - DEBUG - Event 96 arrival 2044.2105717492257 | depature 2058.8072508593273.
+2025-08-01 01:06:39,120 - DEBUG - Event 97 arrival 2052.598097180904 | depature 2114.948874878117.
+2025-08-01 01:06:39,120 - DEBUG - Event 98 arrival 2086.740747756945 | depature 2107.146590620552.
+2025-08-01 01:06:39,120 - DEBUG - Event 99 arrival 2091.590149024721 | depature 2111.21915524145.
+2025-08-01 01:06:39,120 - INFO - Generate 200 events.
+2025-08-01 01:06:39,120 - INFO - Start the control plane.
+2025-08-01 01:06:39,120 - INFO - Load the Security Aware Service Provision algorithm.
+2025-08-01 01:06:39,120 - DEBUG - The eventArrive processed on 3.487 second origin from 2 to 1 with id 0.
+2025-08-01 01:06:39,123 - INFO - ===== SUBGRAPH GENERATE =====
+2025-08-01 01:06:39,124 - DEBUG - Link 1 - 2 is set security.
+2025-08-01 01:06:39,124 - DEBUG - Link 1 - 6 is set security.
+2025-08-01 01:06:39,124 - DEBUG - Link 2 - 3 is set security.
+2025-08-01 01:06:39,124 - DEBUG - Link 2 - 6 is set normal.
+2025-08-01 01:06:39,124 - DEBUG - Link 3 - 4 is set normal.
+2025-08-01 01:06:39,124 - DEBUG - Link 3 - 5 is set normal.
+2025-08-01 01:06:39,124 - DEBUG - Link 4 - 5 is set normal.
+2025-08-01 01:06:39,124 - DEBUG - Link 5 - 6 is set normal.
+2025-08-01 01:06:39,124 - DEBUG - ===== ROUTING 0 =====
+2025-08-01 01:06:39,125 - DEBUG - KSP: [['2', '1'], ['2', '6', '1'], ['2', '3', '5', '6', '1'], ['2', '3', '4', '5', '6', '1']]
+2025-08-01 01:06:39,125 - DEBUG - Score: [1.0, 2.0, 8.0, 10.0]
+2025-08-01 01:06:39,125 - DEBUG - Overflow value is 0.9453125.
+2025-08-01 01:06:39,125 - DEBUG - Valid paths are []
+2025-08-01 01:06:39,125 - DEBUG - Route service 0: None.
+2025-08-01 01:06:39,125 - DEBUG - The eventDeparture processed on 21.128 second origin from 2 to 1 with id 0.
+2025-08-01 01:06:39,125 - DEBUG - The eventArrive processed on 25.518 second origin from 4 to 6 with id 1.
+2025-08-01 01:06:39,125 - DEBUG - ===== ROUTING 1 =====
+2025-08-01 01:06:39,125 - DEBUG - KSP: [['4', '5', '6'], ['4', '3', '2', '6'], ['4', '3', '5', '6'], ['4', '5', '3', '2', '6'], ['4', '3', '2', '1', '6'], ['4', '5', '3', '2', '1', '6']]
+2025-08-01 01:06:39,126 - DEBUG - Score: [0.0, 3.0, 0.0, 4.0, 12.0, 15.0]
+2025-08-01 01:06:39,126 - DEBUG - Overflow value is 0.9453125.
+2025-08-01 01:06:39,126 - DEBUG - Valid paths are [(0.0, ['4', '5', '6']), (0.0, ['4', '3', '5', '6'])]
+2025-08-01 01:06:39,126 - DEBUG - Route service 1: ['4', '5', '6'].
+2025-08-01 01:06:39,126 - DEBUG - The eventArrive processed on 29.289 second origin from 5 to 2 with id 2.
+2025-08-01 01:06:39,126 - DEBUG - ===== ROUTING 2 =====
+2025-08-01 01:06:39,126 - DEBUG - KSP: [['5', '3', '2'], ['5', '6', '2'], ['5', '4', '3', '2'], ['5', '6', '1', '2']]
+2025-08-01 01:06:39,126 - DEBUG - Score: [0.0, -2.0, -1.5, 1.5]
+2025-08-01 01:06:39,126 - DEBUG - Overflow value is 0.9453125.
+2025-08-01 01:06:39,126 - DEBUG - Valid paths are [(0.0, ['5', '3', '2'])]
+2025-08-01 01:06:39,126 - DEBUG - Route service 2: ['5', '3', '2'].
+2025-08-01 01:06:39,126 - DEBUG - The eventDeparture processed on 51.618 second origin from 4 to 6 with id 1.
+2025-08-01 01:06:39,126 - DEBUG - The eventArrive processed on 53.072 second origin from 3 to 2 with id 3.
+2025-08-01 01:06:39,127 - DEBUG - ===== ROUTING 3 =====
+2025-08-01 01:06:39,127 - DEBUG - KSP: [['3', '2'], ['3', '5', '6', '2'], ['3', '4', '5', '6', '2'], ['3', '5', '6', '1', '2'], ['3', '4', '5', '6', '1', '2']]
+2025-08-01 01:06:39,127 - DEBUG - Score: [1.0, 0.0, 0.0, 8.0, 10.0]
+2025-08-01 01:06:39,127 - DEBUG - Overflow value is 0.9453125.
+2025-08-01 01:06:39,127 - DEBUG - Valid paths are [(0.0, ['3', '5', '6', '2']), (0.0, ['3', '4', '5', '6', '2'])]
+2025-08-01 01:06:39,127 - DEBUG - Route service 3: ['3', '5', '6', '2'].
+2025-08-01 01:06:39,127 - DEBUG - The eventDeparture processed on 59.545 second origin from 3 to 2 with id 3.
+2025-08-01 01:06:39,127 - DEBUG - The eventDeparture processed on 60.625 second origin from 5 to 2 with id 2.
+2025-08-01 01:06:39,127 - DEBUG - The eventArrive processed on 65.535 second origin from 5 to 4 with id 4.
+2025-08-01 01:06:39,127 - DEBUG - ===== ROUTING 4 =====
+2025-08-01 01:06:39,128 - DEBUG - KSP: [['5', '4'], ['5', '3', '4'], ['5', '6', '2', '3', '4'], ['5', '6', '1', '2', '3', '4']]
+2025-08-01 01:06:39,128 - DEBUG - Score: [0.0, 0.0, 4.0, 15.0]
+2025-08-01 01:06:39,128 - DEBUG - Overflow value is 0.9453125.
+2025-08-01 01:06:39,128 - DEBUG - Valid paths are [(0.0, ['5', '4']), (0.0, ['5', '3', '4'])]
+2025-08-01 01:06:39,128 - DEBUG - Route service 4: ['5', '4'].
+2025-08-01 01:06:39,128 - DEBUG - The eventDeparture processed on 65.913 second origin from 5 to 4 with id 4.
+2025-08-01 01:06:39,128 - DEBUG - The eventArrive processed on 83.444 second origin from 1 to 4 with id 5.
+2025-08-01 01:06:39,128 - DEBUG - ===== ROUTING 5 =====
+2025-08-01 01:06:39,129 - DEBUG - KSP: [['1', '2', '3', '4'], ['1', '6', '5', '4'], ['1', '2', '6', '5', '4'], ['1', '2', '3', '5', '4'], ['1', '6', '2', '3', '4'], ['1', '6', '5', '3', '4'], ['1', '2', '6', '5', '3', '4'], ['1', '6', '2', '3', '5', '4']]
+2025-08-01 01:06:39,129 - DEBUG - Score: [1.5, -1.5, -4.0, 0.0, 0.0, -4.0, -7.5, -2.5]
+2025-08-01 01:06:39,129 - DEBUG - Overflow value is 0.9453125.
+2025-08-01 01:06:39,129 - DEBUG - Valid paths are [(0.0, ['1', '2', '3', '5', '4']), (0.0, ['1', '6', '2', '3', '4'])]
+2025-08-01 01:06:39,129 - DEBUG - Route service 5: ['1', '2', '3', '5', '4'].
+2025-08-01 01:06:39,129 - DEBUG - The eventDeparture processed on 104.777 second origin from 1 to 4 with id 5.
+2025-08-01 01:06:39,129 - DEBUG - The eventArrive processed on 106.510 second origin from 4 to 5 with id 6.
+2025-08-01 01:06:39,129 - DEBUG - ===== ROUTING 6 =====
+2025-08-01 01:06:39,129 - DEBUG - KSP: [['4', '5'], ['4', '3', '5'], ['4', '3', '2', '6', '5'], ['4', '3', '2', '1', '6', '5']]
+2025-08-01 01:06:39,129 - DEBUG - Score: [0.0, 0.0, 4.0, 15.0]
+2025-08-01 01:06:39,129 - DEBUG - Overflow value is 0.9453125.
+2025-08-01 01:06:39,129 - DEBUG - Valid paths are [(0.0, ['4', '5']), (0.0, ['4', '3', '5'])]
+2025-08-01 01:06:39,129 - DEBUG - Route service 6: ['4', '5'].
+2025-08-01 01:06:39,129 - DEBUG - The eventDeparture processed on 111.355 second origin from 4 to 5 with id 6.
+2025-08-01 01:06:39,129 - DEBUG - The eventArrive processed on 120.162 second origin from 4 to 6 with id 7.
+2025-08-01 01:06:39,130 - DEBUG - ===== ROUTING 7 =====
+2025-08-01 01:06:39,130 - DEBUG - KSP: [['4', '5', '6'], ['4', '3', '2', '6'], ['4', '3', '5', '6'], ['4', '5', '3', '2', '6'], ['4', '3', '2', '1', '6'], ['4', '5', '3', '2', '1', '6']]
+2025-08-01 01:06:39,130 - DEBUG - Score: [-4.0, -6.0, -9.0, -12.0, -4.0, -10.0]
+2025-08-01 01:06:39,130 - DEBUG - Overflow value is 0.9453125.
+2025-08-01 01:06:39,130 - DEBUG - Valid paths are []
+2025-08-01 01:06:39,130 - DEBUG - Route service 7: None.
+2025-08-01 01:06:39,130 - DEBUG - The eventArrive processed on 134.695 second origin from 3 to 4 with id 8.
+2025-08-01 01:06:39,130 - DEBUG - ===== ROUTING 8 =====
+2025-08-01 01:06:39,130 - DEBUG - KSP: [['3', '4'], ['3', '5', '4'], ['3', '2', '6', '5', '4'], ['3', '2', '1', '6', '5', '4']]
+2025-08-01 01:06:39,131 - DEBUG - Score: [0.0, 0.0, 4.0, 15.0]
+2025-08-01 01:06:39,131 - DEBUG - Overflow value is 0.9453125.
+2025-08-01 01:06:39,131 - DEBUG - Valid paths are [(0.0, ['3', '4']), (0.0, ['3', '5', '4'])]
+2025-08-01 01:06:39,131 - DEBUG - Route service 8: ['3', '4'].
+2025-08-01 01:06:39,131 - DEBUG - The eventDeparture processed on 135.965 second origin from 3 to 4 with id 8.
+2025-08-01 01:06:39,131 - DEBUG - The eventDeparture processed on 148.087 second origin from 4 to 6 with id 7.
+2025-08-01 01:06:39,131 - DEBUG - The eventArrive processed on 149.183 second origin from 5 to 2 with id 9.
+2025-08-01 01:06:39,131 - DEBUG - ===== ROUTING 9 =====
+2025-08-01 01:06:39,131 - DEBUG - KSP: [['5', '3', '2'], ['5', '6', '2'], ['5', '4', '3', '2'], ['5', '6', '1', '2']]
+2025-08-01 01:06:39,131 - DEBUG - Score: [-2.0, -4.0, -6.0, -3.0]
+2025-08-01 01:06:39,131 - DEBUG - Overflow value is 0.9453125.
+2025-08-01 01:06:39,131 - DEBUG - Valid paths are []
+2025-08-01 01:06:39,131 - DEBUG - Route service 9: None.
+2025-08-01 01:06:39,131 - DEBUG - The eventDeparture processed on 166.531 second origin from 5 to 2 with id 9.
+2025-08-01 01:06:39,131 - DEBUG - The eventArrive processed on 183.557 second origin from 6 to 3 with id 10.
+2025-08-01 01:06:39,131 - DEBUG - ===== ROUTING 10 =====
+2025-08-01 01:06:39,132 - DEBUG - KSP: [['6', '2', '3'], ['6', '5', '3'], ['6', '1', '2', '3'], ['6', '5', '4', '3']]
+2025-08-01 01:06:39,132 - DEBUG - Score: [2.0, 0.0, 9.0, 0.0]
+2025-08-01 01:06:39,132 - DEBUG - Overflow value is 0.9453125.
+2025-08-01 01:06:39,132 - DEBUG - Valid paths are [(0.0, ['6', '5', '3']), (0.0, ['6', '5', '4', '3'])]
+2025-08-01 01:06:39,132 - DEBUG - Route service 10: ['6', '5', '3'].
+2025-08-01 01:06:39,132 - DEBUG - The eventArrive processed on 186.042 second origin from 1 to 4 with id 11.
+2025-08-01 01:06:39,132 - DEBUG - ===== ROUTING 11 =====
+2025-08-01 01:06:39,133 - DEBUG - KSP: [['1', '2', '3', '4'], ['1', '6', '5', '4'], ['1', '2', '6', '5', '4'], ['1', '2', '3', '5', '4'], ['1', '6', '2', '3', '4'], ['1', '6', '5', '3', '4'], ['1', '2', '6', '5', '3', '4'], ['1', '6', '2', '3', '5', '4']]
+2025-08-01 01:06:39,133 - DEBUG - Score: [-3.0, -6.0, -12.0, -8.0, -8.0, -12.0, -20.0, -15.0]
+2025-08-01 01:06:39,133 - DEBUG - Overflow value is 0.9453125.
+2025-08-01 01:06:39,133 - DEBUG - Valid paths are []
+2025-08-01 01:06:39,133 - DEBUG - Route service 11: None.
+2025-08-01 01:06:39,133 - DEBUG - The eventDeparture processed on 187.114 second origin from 1 to 4 with id 11.
+2025-08-01 01:06:39,133 - DEBUG - The eventDeparture processed on 199.888 second origin from 6 to 3 with id 10.
+2025-08-01 01:06:39,133 - DEBUG - The eventArrive processed on 213.830 second origin from 5 to 2 with id 12.
+2025-08-01 01:06:39,133 - DEBUG - ===== ROUTING 12 =====
+2025-08-01 01:06:39,133 - DEBUG - KSP: [['5', '3', '2'], ['5', '6', '2'], ['5', '4', '3', '2'], ['5', '6', '1', '2']]
+2025-08-01 01:06:39,133 - DEBUG - Score: [0.0, -2.0, -1.5, 1.5]
+2025-08-01 01:06:39,133 - DEBUG - Overflow value is 0.9453125.
+2025-08-01 01:06:39,133 - DEBUG - Valid paths are [(0.0, ['5', '3', '2'])]
+2025-08-01 01:06:39,133 - DEBUG - Route service 12: ['5', '3', '2'].
+2025-08-01 01:06:39,134 - DEBUG - The eventDeparture processed on 234.855 second origin from 5 to 2 with id 12.
+2025-08-01 01:06:39,134 - DEBUG - The eventArrive processed on 238.785 second origin from 5 to 3 with id 13.
+2025-08-01 01:06:39,134 - DEBUG - ===== ROUTING 13 =====
+2025-08-01 01:06:39,134 - DEBUG - KSP: [['5', '3'], ['5', '4', '3'], ['5', '6', '2', '3'], ['5', '6', '1', '2', '3']]
+2025-08-01 01:06:39,134 - DEBUG - Score: [0.0, 0.0, 3.0, 12.0]
+2025-08-01 01:06:39,134 - DEBUG - Overflow value is 0.9453125.
+2025-08-01 01:06:39,134 - DEBUG - Valid paths are [(0.0, ['5', '3']), (0.0, ['5', '4', '3'])]
+2025-08-01 01:06:39,134 - DEBUG - Route service 13: ['5', '3'].
+2025-08-01 01:06:39,134 - DEBUG - The eventArrive processed on 242.971 second origin from 2 to 3 with id 14.
+2025-08-01 01:06:39,134 - DEBUG - ===== ROUTING 14 =====
+2025-08-01 01:06:39,134 - DEBUG - KSP: [['2', '3'], ['2', '6', '5', '3'], ['2', '1', '6', '5', '3'], ['2', '6', '5', '4', '3'], ['2', '1', '6', '5', '4', '3']]
+2025-08-01 01:06:39,135 - DEBUG - Score: [1.0, 0.0, 8.0, 0.0, 10.0]
+2025-08-01 01:06:39,135 - DEBUG - Overflow value is 0.9453125.
+2025-08-01 01:06:39,135 - DEBUG - Valid paths are [(0.0, ['2', '6', '5', '3']), (0.0, ['2', '6', '5', '4', '3'])]
+2025-08-01 01:06:39,135 - DEBUG - Route service 14: ['2', '6', '5', '3'].
+2025-08-01 01:06:39,135 - DEBUG - The eventDeparture processed on 250.617 second origin from 2 to 3 with id 14.
+2025-08-01 01:06:39,135 - DEBUG - The eventArrive processed on 265.955 second origin from 2 to 3 with id 15.
+2025-08-01 01:06:39,135 - DEBUG - ===== ROUTING 15 =====
+2025-08-01 01:06:39,135 - DEBUG - KSP: [['2', '3'], ['2', '6', '5', '3'], ['2', '1', '6', '5', '3'], ['2', '6', '5', '4', '3'], ['2', '1', '6', '5', '4', '3']]
+2025-08-01 01:06:39,135 - DEBUG - Score: [0.5, -4.5, 0.0, -8.0, -2.5]
+2025-08-01 01:06:39,135 - DEBUG - Overflow value is 0.9453125.
+2025-08-01 01:06:39,135 - DEBUG - Valid paths are [(0.0, ['2', '1', '6', '5', '3']), (0.5, ['2', '3'])]
+2025-08-01 01:06:39,135 - DEBUG - Route service 15: ['2', '1', '6', '5', '3'].
+2025-08-01 01:06:39,135 - DEBUG - The eventDeparture processed on 266.151 second origin from 5 to 3 with id 13.
+2025-08-01 01:06:39,135 - DEBUG - The eventArrive processed on 281.992 second origin from 1 to 2 with id 16.
+2025-08-01 01:06:39,136 - DEBUG - ===== ROUTING 16 =====
+2025-08-01 01:06:39,136 - DEBUG - KSP: [['1', '2'], ['1', '6', '2'], ['1', '6', '5', '3', '2'], ['1', '6', '5', '4', '3', '2']]
+2025-08-01 01:06:39,136 - DEBUG - Score: [1.0, 2.0, 8.0, 10.0]
+2025-08-01 01:06:39,136 - DEBUG - Overflow value is 0.9453125.
+2025-08-01 01:06:39,136 - DEBUG - Valid paths are []
+2025-08-01 01:06:39,136 - DEBUG - Route service 16: None.
+2025-08-01 01:06:39,136 - DEBUG - The eventArrive processed on 283.313 second origin from 4 to 2 with id 17.
+2025-08-01 01:06:39,136 - DEBUG - ===== ROUTING 17 =====
+2025-08-01 01:06:39,136 - DEBUG - KSP: [['4', '3', '2'], ['4', '5', '3', '2'], ['4', '5', '6', '2'], ['4', '3', '5', '6', '2'], ['4', '5', '6', '1', '2'], ['4', '3', '5', '6', '1', '2']]
+2025-08-01 01:06:39,137 - DEBUG - Score: [2.0, 3.0, 0.0, 0.0, 8.0, 10.0]
+2025-08-01 01:06:39,137 - DEBUG - Overflow value is 0.9453125.
+2025-08-01 01:06:39,137 - DEBUG - Valid paths are [(0.0, ['4', '5', '6', '2']), (0.0, ['4', '3', '5', '6', '2'])]
+2025-08-01 01:06:39,137 - DEBUG - Route service 17: ['4', '5', '6', '2'].
+2025-08-01 01:06:39,137 - DEBUG - The eventArrive processed on 294.652 second origin from 5 to 4 with id 18.
+2025-08-01 01:06:39,137 - DEBUG - ===== ROUTING 18 =====
+2025-08-01 01:06:39,137 - DEBUG - KSP: [['5', '4'], ['5', '3', '4'], ['5', '6', '2', '3', '4'], ['5', '6', '1', '2', '3', '4']]
+2025-08-01 01:06:39,137 - DEBUG - Score: [0.0, 0.0, 4.0, 15.0]
+2025-08-01 01:06:39,137 - DEBUG - Overflow value is 0.9453125.
+2025-08-01 01:06:39,137 - DEBUG - Valid paths are [(0.0, ['5', '4']), (0.0, ['5', '3', '4'])]
+2025-08-01 01:06:39,137 - DEBUG - Route service 18: ['5', '4'].
+2025-08-01 01:06:39,137 - DEBUG - The eventDeparture processed on 294.867 second origin from 4 to 2 with id 17.
+2025-08-01 01:06:39,137 - DEBUG - The eventDeparture processed on 295.521 second origin from 2 to 3 with id 15.
+2025-08-01 01:06:39,137 - DEBUG - The eventDeparture processed on 307.897 second origin from 5 to 4 with id 18.
+2025-08-01 01:06:39,137 - DEBUG - The eventDeparture processed on 308.029 second origin from 1 to 2 with id 16.
+2025-08-01 01:06:39,137 - DEBUG - The eventArrive processed on 313.688 second origin from 4 to 3 with id 19.
+2025-08-01 01:06:39,137 - DEBUG - ===== ROUTING 19 =====
+2025-08-01 01:06:39,138 - DEBUG - KSP: [['4', '3'], ['4', '5', '3'], ['4', '5', '6', '2', '3'], ['4', '5', '6', '1', '2', '3']]
+2025-08-01 01:06:39,138 - DEBUG - Score: [-0.5, -2.0, -4.0, 2.5]
+2025-08-01 01:06:39,138 - DEBUG - Overflow value is 0.9453125.
+2025-08-01 01:06:39,138 - DEBUG - Valid paths are []
+2025-08-01 01:06:39,138 - DEBUG - Route service 19: None.
+2025-08-01 01:06:39,138 - DEBUG - The eventDeparture processed on 339.441 second origin from 4 to 3 with id 19.
+2025-08-01 01:06:39,138 - DEBUG - The eventArrive processed on 344.445 second origin from 6 to 2 with id 20.
+2025-08-01 01:06:39,138 - DEBUG - ===== ROUTING 20 =====
+2025-08-01 01:06:39,138 - DEBUG - KSP: [['6', '2'], ['6', '1', '2'], ['6', '5', '3', '2'], ['6', '5', '4', '3', '2']]
+2025-08-01 01:06:39,138 - DEBUG - Score: [0.0, 4.0, 3.0, 4.0]
+2025-08-01 01:06:39,139 - DEBUG - Overflow value is 0.9453125.
+2025-08-01 01:06:39,139 - DEBUG - Valid paths are [(0.0, ['6', '2'])]
+2025-08-01 01:06:39,139 - DEBUG - Route service 20: ['6', '2'].
+2025-08-01 01:06:39,139 - DEBUG - The eventDeparture processed on 388.364 second origin from 6 to 2 with id 20.
+2025-08-01 01:06:39,139 - DEBUG - The eventArrive processed on 413.375 second origin from 4 to 3 with id 21.
+2025-08-01 01:06:39,139 - DEBUG - ===== ROUTING 21 =====
+2025-08-01 01:06:39,139 - DEBUG - KSP: [['4', '3'], ['4', '5', '3'], ['4', '5', '6', '2', '3'], ['4', '5', '6', '1', '2', '3']]
+2025-08-01 01:06:39,139 - DEBUG - Score: [-0.5, -2.0, -4.0, 2.5]
+2025-08-01 01:06:39,139 - DEBUG - Overflow value is 0.9453125.
+2025-08-01 01:06:39,139 - DEBUG - Valid paths are []
+2025-08-01 01:06:39,139 - DEBUG - Route service 21: None.
+2025-08-01 01:06:39,139 - DEBUG - The eventDeparture processed on 419.826 second origin from 4 to 3 with id 21.
+2025-08-01 01:06:39,140 - DEBUG - The eventArrive processed on 437.906 second origin from 4 to 5 with id 22.
+2025-08-01 01:06:39,140 - DEBUG - ===== ROUTING 22 =====
+2025-08-01 01:06:39,140 - DEBUG - KSP: [['4', '5'], ['4', '3', '5'], ['4', '3', '2', '6', '5'], ['4', '3', '2', '1', '6', '5']]
+2025-08-01 01:06:39,140 - DEBUG - Score: [0.0, 0.0, 4.0, 15.0]
+2025-08-01 01:06:39,140 - DEBUG - Overflow value is 0.9453125.
+2025-08-01 01:06:39,140 - DEBUG - Valid paths are [(0.0, ['4', '5']), (0.0, ['4', '3', '5'])]
+2025-08-01 01:06:39,140 - DEBUG - Route service 22: ['4', '5'].
+2025-08-01 01:06:39,140 - DEBUG - The eventDeparture processed on 459.423 second origin from 4 to 5 with id 22.
+2025-08-01 01:06:39,140 - DEBUG - The eventArrive processed on 497.130 second origin from 4 to 1 with id 23.
+2025-08-01 01:06:39,140 - DEBUG - ===== ROUTING 23 =====
+2025-08-01 01:06:39,141 - DEBUG - KSP: [['4', '3', '2', '1'], ['4', '5', '6', '1'], ['4', '3', '5', '6', '1'], ['4', '3', '2', '6', '1'], ['4', '5', '3', '2', '1'], ['4', '5', '6', '2', '1'], ['4', '3', '5', '6', '2', '1'], ['4', '5', '3', '2', '6', '1']]
+2025-08-01 01:06:39,141 - DEBUG - Score: [1.5, -1.5, -4.0, 0.0, 0.0, -4.0, -7.5, -2.5]
+2025-08-01 01:06:39,141 - DEBUG - Overflow value is 0.9453125.
+2025-08-01 01:06:39,141 - DEBUG - Valid paths are [(0.0, ['4', '3', '2', '6', '1']), (0.0, ['4', '5', '3', '2', '1'])]
+2025-08-01 01:06:39,141 - DEBUG - Route service 23: ['4', '3', '2', '6', '1'].
+2025-08-01 01:06:39,141 - DEBUG - The eventDeparture processed on 508.370 second origin from 4 to 1 with id 23.
+2025-08-01 01:06:39,141 - DEBUG - The eventArrive processed on 525.297 second origin from 2 to 1 with id 24.
+2025-08-01 01:06:39,141 - DEBUG - ===== ROUTING 24 =====
+2025-08-01 01:06:39,141 - DEBUG - KSP: [['2', '1'], ['2', '6', '1'], ['2', '3', '5', '6', '1'], ['2', '3', '4', '5', '6', '1']]
+2025-08-01 01:06:39,141 - DEBUG - Score: [1.0, 2.0, 8.0, 10.0]
+2025-08-01 01:06:39,141 - DEBUG - Overflow value is 0.9453125.
+2025-08-01 01:06:39,141 - DEBUG - Valid paths are []
+2025-08-01 01:06:39,141 - DEBUG - Route service 24: None.
+2025-08-01 01:06:39,142 - DEBUG - The eventDeparture processed on 531.429 second origin from 2 to 1 with id 24.
+2025-08-01 01:06:39,142 - DEBUG - The eventArrive processed on 562.617 second origin from 6 to 5 with id 25.
+2025-08-01 01:06:39,142 - DEBUG - ===== ROUTING 25 =====
+2025-08-01 01:06:39,142 - DEBUG - KSP: [['6', '5'], ['6', '2', '3', '5'], ['6', '1', '2', '3', '5'], ['6', '2', '3', '4', '5'], ['6', '1', '2', '3', '4', '5']]
+2025-08-01 01:06:39,142 - DEBUG - Score: [0.0, 3.0, 12.0, 4.0, 15.0]
+2025-08-01 01:06:39,142 - DEBUG - Overflow value is 0.9453125.
+2025-08-01 01:06:39,142 - DEBUG - Valid paths are [(0.0, ['6', '5'])]
+2025-08-01 01:06:39,142 - DEBUG - Route service 25: ['6', '5'].
+2025-08-01 01:06:39,142 - DEBUG - The eventArrive processed on 566.800 second origin from 3 to 2 with id 26.
+2025-08-01 01:06:39,142 - DEBUG - ===== ROUTING 26 =====
+2025-08-01 01:06:39,142 - DEBUG - KSP: [['3', '2'], ['3', '5', '6', '2'], ['3', '4', '5', '6', '2'], ['3', '5', '6', '1', '2'], ['3', '4', '5', '6', '1', '2']]
+2025-08-01 01:06:39,143 - DEBUG - Score: [1.0, 0.0, 0.0, 8.0, 10.0]
+2025-08-01 01:06:39,143 - DEBUG - Overflow value is 0.9453125.
+2025-08-01 01:06:39,143 - DEBUG - Valid paths are [(0.0, ['3', '5', '6', '2']), (0.0, ['3', '4', '5', '6', '2'])]
+2025-08-01 01:06:39,143 - DEBUG - Route service 26: ['3', '5', '6', '2'].
+2025-08-01 01:06:39,143 - DEBUG - The eventDeparture processed on 569.241 second origin from 6 to 5 with id 25.
+2025-08-01 01:06:39,143 - DEBUG - The eventArrive processed on 594.317 second origin from 4 to 5 with id 27.
+2025-08-01 01:06:39,143 - DEBUG - ===== ROUTING 27 =====
+2025-08-01 01:06:39,143 - DEBUG - KSP: [['4', '5'], ['4', '3', '5'], ['4', '3', '2', '6', '5'], ['4', '3', '2', '1', '6', '5']]
+2025-08-01 01:06:39,143 - DEBUG - Score: [0.0, 0.0, 4.0, 15.0]
+2025-08-01 01:06:39,143 - DEBUG - Overflow value is 0.9453125.
+2025-08-01 01:06:39,143 - DEBUG - Valid paths are [(0.0, ['4', '5']), (0.0, ['4', '3', '5'])]
+2025-08-01 01:06:39,143 - DEBUG - Route service 27: ['4', '5'].
+2025-08-01 01:06:39,143 - DEBUG - The eventDeparture processed on 595.449 second origin from 3 to 2 with id 26.
+2025-08-01 01:06:39,143 - DEBUG - The eventDeparture processed on 603.715 second origin from 4 to 5 with id 27.
+2025-08-01 01:06:39,143 - DEBUG - The eventArrive processed on 623.290 second origin from 1 to 2 with id 28.
+2025-08-01 01:06:39,143 - DEBUG - ===== ROUTING 28 =====
+2025-08-01 01:06:39,144 - DEBUG - KSP: [['1', '2'], ['1', '6', '2'], ['1', '6', '5', '3', '2'], ['1', '6', '5', '4', '3', '2']]
+2025-08-01 01:06:39,144 - DEBUG - Score: [0.5, 0.0, 0.0, -2.5]
+2025-08-01 01:06:39,144 - DEBUG - Overflow value is 0.9453125.
+2025-08-01 01:06:39,144 - DEBUG - Valid paths are [(0.0, ['1', '6', '2']), (0.0, ['1', '6', '5', '3', '2']), (0.5, ['1', '2'])]
+2025-08-01 01:06:39,144 - DEBUG - Route service 28: ['1', '6', '2'].
+2025-08-01 01:06:39,144 - DEBUG - The eventDeparture processed on 646.852 second origin from 1 to 2 with id 28.
+2025-08-01 01:06:39,144 - DEBUG - The eventArrive processed on 697.114 second origin from 3 to 5 with id 29.
+2025-08-01 01:06:39,144 - DEBUG - ===== ROUTING 29 =====
+2025-08-01 01:06:39,144 - DEBUG - KSP: [['3', '5'], ['3', '4', '5'], ['3', '2', '6', '5'], ['3', '2', '1', '6', '5']]
+2025-08-01 01:06:39,144 - DEBUG - Score: [0.0, 0.0, 3.0, 12.0]
+2025-08-01 01:06:39,144 - DEBUG - Overflow value is 0.9453125.
+2025-08-01 01:06:39,144 - DEBUG - Valid paths are [(0.0, ['3', '5']), (0.0, ['3', '4', '5'])]
+2025-08-01 01:06:39,144 - DEBUG - Route service 29: ['3', '5'].
+2025-08-01 01:06:39,144 - DEBUG - The eventArrive processed on 703.102 second origin from 3 to 5 with id 30.
+2025-08-01 01:06:39,144 - DEBUG - ===== ROUTING 30 =====
+2025-08-01 01:06:39,145 - DEBUG - KSP: [['3', '5'], ['3', '4', '5'], ['3', '2', '6', '5'], ['3', '2', '1', '6', '5']]
+2025-08-01 01:06:39,145 - DEBUG - Score: [-0.5, -2.0, -1.5, 4.0]
+2025-08-01 01:06:39,145 - DEBUG - Overflow value is 0.9453125.
+2025-08-01 01:06:39,145 - DEBUG - Valid paths are []
+2025-08-01 01:06:39,145 - DEBUG - Route service 30: None.
+2025-08-01 01:06:39,145 - DEBUG - The eventDeparture processed on 705.703 second origin from 3 to 5 with id 30.
+2025-08-01 01:06:39,145 - DEBUG - The eventArrive processed on 707.524 second origin from 4 to 2 with id 31.
+2025-08-01 01:06:39,145 - DEBUG - ===== ROUTING 31 =====
+2025-08-01 01:06:39,146 - DEBUG - KSP: [['4', '3', '2'], ['4', '5', '3', '2'], ['4', '5', '6', '2'], ['4', '3', '5', '6', '2'], ['4', '5', '6', '1', '2'], ['4', '3', '5', '6', '1', '2']]
+2025-08-01 01:06:39,146 - DEBUG - Score: [2.0, 3.0, 0.0, 0.0, 8.0, 10.0]
+2025-08-01 01:06:39,146 - DEBUG - Overflow value is 0.9453125.
+2025-08-01 01:06:39,146 - DEBUG - Valid paths are [(0.0, ['4', '5', '6', '2']), (0.0, ['4', '3', '5', '6', '2'])]
+2025-08-01 01:06:39,146 - DEBUG - Route service 31: ['4', '5', '6', '2'].
+2025-08-01 01:06:39,146 - DEBUG - The eventDeparture processed on 716.148 second origin from 3 to 5 with id 29.
+2025-08-01 01:06:39,146 - DEBUG - The eventArrive processed on 724.818 second origin from 2 to 5 with id 32.
+2025-08-01 01:06:39,146 - DEBUG - ===== ROUTING 32 =====
+2025-08-01 01:06:39,146 - DEBUG - KSP: [['2', '3', '5'], ['2', '6', '5'], ['2', '3', '4', '5'], ['2', '1', '6', '5']]
+2025-08-01 01:06:39,146 - DEBUG - Score: [2.0, 0.0, 3.0, 6.0]
+2025-08-01 01:06:39,146 - DEBUG - Overflow value is 0.9453125.
+2025-08-01 01:06:39,147 - DEBUG - Valid paths are [(0.0, ['2', '6', '5'])]
+2025-08-01 01:06:39,147 - DEBUG - Route service 32: ['2', '6', '5'].
+2025-08-01 01:06:39,147 - DEBUG - The eventDeparture processed on 747.774 second origin from 2 to 5 with id 32.
+2025-08-01 01:06:39,147 - DEBUG - The eventDeparture processed on 748.054 second origin from 4 to 2 with id 31.
+2025-08-01 01:06:39,147 - DEBUG - The eventArrive processed on 755.207 second origin from 4 to 3 with id 33.
+2025-08-01 01:06:39,147 - DEBUG - ===== ROUTING 33 =====
+2025-08-01 01:06:39,147 - DEBUG - KSP: [['4', '3'], ['4', '5', '3'], ['4', '5', '6', '2', '3'], ['4', '5', '6', '1', '2', '3']]
+2025-08-01 01:06:39,147 - DEBUG - Score: [-0.5, -2.0, -4.0, 2.5]
+2025-08-01 01:06:39,147 - DEBUG - Overflow value is 0.9453125.
+2025-08-01 01:06:39,147 - DEBUG - Valid paths are []
+2025-08-01 01:06:39,147 - DEBUG - Route service 33: None.
+2025-08-01 01:06:39,147 - DEBUG - The eventDeparture processed on 769.210 second origin from 4 to 3 with id 33.
+2025-08-01 01:06:39,147 - DEBUG - The eventArrive processed on 769.641 second origin from 6 to 1 with id 34.
+2025-08-01 01:06:39,147 - DEBUG - ===== ROUTING 34 =====
+2025-08-01 01:06:39,148 - DEBUG - KSP: [['6', '1'], ['6', '2', '1'], ['6', '5', '3', '2', '1'], ['6', '5', '4', '3', '2', '1']]
+2025-08-01 01:06:39,148 - DEBUG - Score: [1.0, 2.0, 8.0, 10.0]
+2025-08-01 01:06:39,148 - DEBUG - Overflow value is 0.9453125.
+2025-08-01 01:06:39,148 - DEBUG - Valid paths are []
+2025-08-01 01:06:39,148 - DEBUG - Route service 34: None.
+2025-08-01 01:06:39,148 - DEBUG - The eventArrive processed on 769.951 second origin from 6 to 2 with id 35.
+2025-08-01 01:06:39,148 - DEBUG - ===== ROUTING 35 =====
+2025-08-01 01:06:39,148 - DEBUG - KSP: [['6', '2'], ['6', '1', '2'], ['6', '5', '3', '2'], ['6', '5', '4', '3', '2']]
+2025-08-01 01:06:39,148 - DEBUG - Score: [-0.5, 2.0, -1.5, -4.0]
+2025-08-01 01:06:39,148 - DEBUG - Overflow value is 0.9453125.
+2025-08-01 01:06:39,148 - DEBUG - Valid paths are []
+2025-08-01 01:06:39,148 - DEBUG - Route service 35: None.
+2025-08-01 01:06:39,148 - DEBUG - The eventDeparture processed on 773.689 second origin from 6 to 2 with id 35.
+2025-08-01 01:06:39,148 - DEBUG - The eventDeparture processed on 799.978 second origin from 6 to 1 with id 34.
+2025-08-01 01:06:39,148 - DEBUG - The eventArrive processed on 802.680 second origin from 5 to 1 with id 36.
+2025-08-01 01:06:39,148 - DEBUG - ===== ROUTING 36 =====
+2025-08-01 01:06:39,149 - DEBUG - KSP: [['5', '6', '1'], ['5', '3', '2', '1'], ['5', '6', '2', '1'], ['5', '4', '3', '2', '1'], ['5', '3', '2', '6', '1'], ['5', '4', '3', '2', '6', '1']]
+2025-08-01 01:06:39,149 - DEBUG - Score: [2.0, 6.0, 3.0, 8.0, 8.0, 10.0]
+2025-08-01 01:06:39,149 - DEBUG - Overflow value is 0.9453125.
+2025-08-01 01:06:39,149 - DEBUG - Valid paths are []
+2025-08-01 01:06:39,149 - DEBUG - Route service 36: None.
+2025-08-01 01:06:39,149 - DEBUG - The eventArrive processed on 811.591 second origin from 1 to 4 with id 37.
+2025-08-01 01:06:39,149 - DEBUG - ===== ROUTING 37 =====
+2025-08-01 01:06:39,150 - DEBUG - KSP: [['1', '2', '3', '4'], ['1', '6', '5', '4'], ['1', '2', '6', '5', '4'], ['1', '2', '3', '5', '4'], ['1', '6', '2', '3', '4'], ['1', '6', '5', '3', '4'], ['1', '2', '6', '5', '3', '4'], ['1', '6', '2', '3', '5', '4']]
+2025-08-01 01:06:39,150 - DEBUG - Score: [6.0, 3.0, 4.0, 8.0, 8.0, 4.0, 5.0, 10.0]
+2025-08-01 01:06:39,150 - DEBUG - Overflow value is 0.9453125.
+2025-08-01 01:06:39,150 - DEBUG - Valid paths are []
+2025-08-01 01:06:39,150 - DEBUG - Route service 37: None.
+2025-08-01 01:06:39,150 - DEBUG - The eventArrive processed on 816.084 second origin from 6 to 4 with id 38.
+2025-08-01 01:06:39,150 - DEBUG - ===== ROUTING 38 =====
+2025-08-01 01:06:39,150 - DEBUG - KSP: [['6', '5', '4'], ['6', '2', '3', '4'], ['6', '5', '3', '4'], ['6', '1', '2', '3', '4'], ['6', '2', '3', '5', '4'], ['6', '1', '2', '3', '5', '4']]
+2025-08-01 01:06:39,150 - DEBUG - Score: [-2.0, -1.5, -4.5, 4.0, -4.0, 2.5]
+2025-08-01 01:06:39,150 - DEBUG - Overflow value is 0.9453125.
+2025-08-01 01:06:39,150 - DEBUG - Valid paths are []
+2025-08-01 01:06:39,150 - DEBUG - Route service 38: None.
+2025-08-01 01:06:39,150 - DEBUG - The eventDeparture processed on 822.967 second origin from 5 to 1 with id 36.
+2025-08-01 01:06:39,150 - DEBUG - The eventDeparture processed on 823.792 second origin from 1 to 4 with id 37.
+2025-08-01 01:06:39,150 - DEBUG - The eventDeparture processed on 829.833 second origin from 6 to 4 with id 38.
+2025-08-01 01:06:39,150 - DEBUG - The eventArrive processed on 834.353 second origin from 1 to 3 with id 39.
+2025-08-01 01:06:39,150 - DEBUG - ===== ROUTING 39 =====
+2025-08-01 01:06:39,151 - DEBUG - KSP: [['1', '2', '3'], ['1', '6', '2', '3'], ['1', '6', '5', '3'], ['1', '2', '6', '5', '3'], ['1', '6', '5', '4', '3'], ['1', '2', '6', '5', '4', '3']]
+2025-08-01 01:06:39,151 - DEBUG - Score: [4.0, 6.0, 3.0, 4.0, 4.0, 5.0]
+2025-08-01 01:06:39,151 - DEBUG - Overflow value is 0.9453125.
+2025-08-01 01:06:39,151 - DEBUG - Valid paths are []
+2025-08-01 01:06:39,151 - DEBUG - Route service 39: None.
+2025-08-01 01:06:39,151 - DEBUG - The eventDeparture processed on 834.586 second origin from 1 to 3 with id 39.
+2025-08-01 01:06:39,151 - DEBUG - The eventArrive processed on 835.872 second origin from 3 to 6 with id 40.
+2025-08-01 01:06:39,151 - DEBUG - ===== ROUTING 40 =====
+2025-08-01 01:06:39,151 - DEBUG - KSP: [['3', '2', '6'], ['3', '5', '6'], ['3', '2', '1', '6'], ['3', '4', '5', '6']]
+2025-08-01 01:06:39,151 - DEBUG - Score: [2.0, 0.0, 9.0, 0.0]
+2025-08-01 01:06:39,151 - DEBUG - Overflow value is 0.9453125.
+2025-08-01 01:06:39,152 - DEBUG - Valid paths are [(0.0, ['3', '5', '6']), (0.0, ['3', '4', '5', '6'])]
+2025-08-01 01:06:39,152 - DEBUG - Route service 40: ['3', '5', '6'].
+2025-08-01 01:06:39,152 - DEBUG - The eventDeparture processed on 850.161 second origin from 3 to 6 with id 40.
+2025-08-01 01:06:39,152 - DEBUG - The eventArrive processed on 876.004 second origin from 3 to 5 with id 41.
+2025-08-01 01:06:39,152 - DEBUG - ===== ROUTING 41 =====
+2025-08-01 01:06:39,152 - DEBUG - KSP: [['3', '5'], ['3', '4', '5'], ['3', '2', '6', '5'], ['3', '2', '1', '6', '5']]
+2025-08-01 01:06:39,152 - DEBUG - Score: [-0.5, -2.0, -1.5, 4.0]
+2025-08-01 01:06:39,152 - DEBUG - Overflow value is 0.9453125.
+2025-08-01 01:06:39,152 - DEBUG - Valid paths are []
+2025-08-01 01:06:39,152 - DEBUG - Route service 41: None.
+2025-08-01 01:06:39,152 - DEBUG - The eventArrive processed on 876.038 second origin from 5 to 2 with id 42.
+2025-08-01 01:06:39,152 - DEBUG - ===== ROUTING 42 =====
+2025-08-01 01:06:39,152 - DEBUG - KSP: [['5', '3', '2'], ['5', '6', '2'], ['5', '4', '3', '2'], ['5', '6', '1', '2']]
+2025-08-01 01:06:39,152 - DEBUG - Score: [0.0, -2.0, -1.5, 1.5]
+2025-08-01 01:06:39,153 - DEBUG - Overflow value is 0.9453125.
+2025-08-01 01:06:39,153 - DEBUG - Valid paths are [(0.0, ['5', '3', '2'])]
+2025-08-01 01:06:39,153 - DEBUG - Route service 42: ['5', '3', '2'].
+2025-08-01 01:06:39,153 - DEBUG - The eventDeparture processed on 887.023 second origin from 3 to 5 with id 41.
+2025-08-01 01:06:39,153 - DEBUG - The eventArrive processed on 909.302 second origin from 6 to 5 with id 43.
+2025-08-01 01:06:39,153 - DEBUG - ===== ROUTING 43 =====
+2025-08-01 01:06:39,153 - DEBUG - KSP: [['6', '5'], ['6', '2', '3', '5'], ['6', '1', '2', '3', '5'], ['6', '2', '3', '4', '5'], ['6', '1', '2', '3', '4', '5']]
+2025-08-01 01:06:39,153 - DEBUG - Score: [0.0, 3.0, 12.0, 4.0, 15.0]
+2025-08-01 01:06:39,153 - DEBUG - Overflow value is 0.9453125.
+2025-08-01 01:06:39,153 - DEBUG - Valid paths are [(0.0, ['6', '5'])]
+2025-08-01 01:06:39,153 - DEBUG - Route service 43: ['6', '5'].
+2025-08-01 01:06:39,153 - DEBUG - The eventDeparture processed on 910.151 second origin from 6 to 5 with id 43.
+2025-08-01 01:06:39,153 - DEBUG - The eventArrive processed on 928.784 second origin from 5 to 6 with id 44.
+2025-08-01 01:06:39,153 - DEBUG - ===== ROUTING 44 =====
+2025-08-01 01:06:39,154 - DEBUG - KSP: [['5', '6'], ['5', '3', '2', '6'], ['5', '4', '3', '2', '6'], ['5', '3', '2', '1', '6'], ['5', '4', '3', '2', '1', '6']]
+2025-08-01 01:06:39,154 - DEBUG - Score: [0.0, 3.0, 4.0, 12.0, 15.0]
+2025-08-01 01:06:39,154 - DEBUG - Overflow value is 0.9453125.
+2025-08-01 01:06:39,154 - DEBUG - Valid paths are [(0.0, ['5', '6'])]
+2025-08-01 01:06:39,154 - DEBUG - Route service 44: ['5', '6'].
+2025-08-01 01:06:39,154 - DEBUG - The eventDeparture processed on 936.406 second origin from 5 to 2 with id 42.
+2025-08-01 01:06:39,154 - DEBUG - The eventDeparture processed on 957.135 second origin from 5 to 6 with id 44.
+2025-08-01 01:06:39,154 - DEBUG - The eventArrive processed on 984.502 second origin from 5 to 3 with id 45.
+2025-08-01 01:06:39,154 - DEBUG - ===== ROUTING 45 =====
+2025-08-01 01:06:39,155 - DEBUG - KSP: [['5', '3'], ['5', '4', '3'], ['5', '6', '2', '3'], ['5', '6', '1', '2', '3']]
+2025-08-01 01:06:39,155 - DEBUG - Score: [0.0, 0.0, 3.0, 12.0]
+2025-08-01 01:06:39,155 - DEBUG - Overflow value is 0.9453125.
+2025-08-01 01:06:39,155 - DEBUG - Valid paths are [(0.0, ['5', '3']), (0.0, ['5', '4', '3'])]
+2025-08-01 01:06:39,155 - DEBUG - Route service 45: ['5', '3'].
+2025-08-01 01:06:39,156 - DEBUG - The eventArrive processed on 985.151 second origin from 5 to 2 with id 46.
+2025-08-01 01:06:39,156 - DEBUG - ===== ROUTING 46 =====
+2025-08-01 01:06:39,156 - DEBUG - KSP: [['5', '3', '2'], ['5', '6', '2'], ['5', '4', '3', '2'], ['5', '6', '1', '2']]
+2025-08-01 01:06:39,156 - DEBUG - Score: [2.0, 0.0, 3.0, 6.0]
+2025-08-01 01:06:39,156 - DEBUG - Overflow value is 0.9453125.
+2025-08-01 01:06:39,156 - DEBUG - Valid paths are [(0.0, ['5', '6', '2'])]
+2025-08-01 01:06:39,156 - DEBUG - Route service 46: ['5', '6', '2'].
+2025-08-01 01:06:39,156 - DEBUG - The eventArrive processed on 989.640 second origin from 2 to 1 with id 47.
+2025-08-01 01:06:39,156 - DEBUG - ===== ROUTING 47 =====
+2025-08-01 01:06:39,156 - DEBUG - KSP: [['2', '1'], ['2', '6', '1'], ['2', '3', '5', '6', '1'], ['2', '3', '4', '5', '6', '1']]
+2025-08-01 01:06:39,157 - DEBUG - Score: [0.5, 0.0, 0.0, -2.5]
+2025-08-01 01:06:39,157 - DEBUG - Overflow value is 0.9453125.
+2025-08-01 01:06:39,157 - DEBUG - Valid paths are [(0.0, ['2', '6', '1']), (0.0, ['2', '3', '5', '6', '1']), (0.5, ['2', '1'])]
+2025-08-01 01:06:39,157 - DEBUG - Route service 47: ['2', '6', '1'].
+2025-08-01 01:06:39,157 - DEBUG - The eventDeparture processed on 990.309 second origin from 2 to 1 with id 47.
+2025-08-01 01:06:39,157 - DEBUG - The eventDeparture processed on 990.653 second origin from 5 to 3 with id 45.
+2025-08-01 01:06:39,157 - DEBUG - The eventArrive processed on 993.373 second origin from 1 to 2 with id 48.
+2025-08-01 01:06:39,157 - DEBUG - ===== ROUTING 48 =====
+2025-08-01 01:06:39,157 - DEBUG - KSP: [['1', '2'], ['1', '6', '2'], ['1', '6', '5', '3', '2'], ['1', '6', '5', '4', '3', '2']]
+2025-08-01 01:06:39,157 - DEBUG - Score: [0.5, 0.0, 0.0, -2.5]
+2025-08-01 01:06:39,157 - DEBUG - Overflow value is 0.9453125.
+2025-08-01 01:06:39,157 - DEBUG - Valid paths are [(0.0, ['1', '6', '2']), (0.0, ['1', '6', '5', '3', '2']), (0.5, ['1', '2'])]
+2025-08-01 01:06:39,157 - DEBUG - Route service 48: ['1', '6', '2'].
+2025-08-01 01:06:39,157 - DEBUG - The eventDeparture processed on 995.133 second origin from 1 to 2 with id 48.
+2025-08-01 01:06:39,157 - DEBUG - The eventDeparture processed on 1011.118 second origin from 5 to 2 with id 46.
+2025-08-01 01:06:39,158 - DEBUG - The eventArrive processed on 1036.461 second origin from 4 to 1 with id 49.
+2025-08-01 01:06:39,158 - DEBUG - ===== ROUTING 49 =====
+2025-08-01 01:06:39,158 - DEBUG - KSP: [['4', '3', '2', '1'], ['4', '5', '6', '1'], ['4', '3', '5', '6', '1'], ['4', '3', '2', '6', '1'], ['4', '5', '3', '2', '1'], ['4', '5', '6', '2', '1'], ['4', '3', '5', '6', '2', '1'], ['4', '5', '3', '2', '6', '1']]
+2025-08-01 01:06:39,158 - DEBUG - Score: [6.0, 3.0, 4.0, 8.0, 8.0, 4.0, 5.0, 10.0]
+2025-08-01 01:06:39,158 - DEBUG - Overflow value is 0.9453125.
+2025-08-01 01:06:39,158 - DEBUG - Valid paths are []
+2025-08-01 01:06:39,158 - DEBUG - Route service 49: None.
+2025-08-01 01:06:39,158 - DEBUG - The eventDeparture processed on 1041.850 second origin from 4 to 1 with id 49.
+2025-08-01 01:06:39,158 - DEBUG - The eventArrive processed on 1058.948 second origin from 2 to 5 with id 50.
+2025-08-01 01:06:39,158 - DEBUG - ===== ROUTING 50 =====
+2025-08-01 01:06:39,159 - DEBUG - KSP: [['2', '3', '5'], ['2', '6', '5'], ['2', '3', '4', '5'], ['2', '1', '6', '5']]
+2025-08-01 01:06:39,159 - DEBUG - Score: [2.0, 0.0, 3.0, 6.0]
+2025-08-01 01:06:39,159 - DEBUG - Overflow value is 0.9453125.
+2025-08-01 01:06:39,159 - DEBUG - Valid paths are [(0.0, ['2', '6', '5'])]
+2025-08-01 01:06:39,159 - DEBUG - Route service 50: ['2', '6', '5'].
+2025-08-01 01:06:39,159 - DEBUG - The eventArrive processed on 1073.349 second origin from 4 to 3 with id 51.
+2025-08-01 01:06:39,159 - DEBUG - ===== ROUTING 51 =====
+2025-08-01 01:06:39,159 - DEBUG - KSP: [['4', '3'], ['4', '5', '3'], ['4', '5', '6', '2', '3'], ['4', '5', '6', '1', '2', '3']]
+2025-08-01 01:06:39,159 - DEBUG - Score: [0.0, 0.0, 4.0, 15.0]
+2025-08-01 01:06:39,159 - DEBUG - Overflow value is 0.9453125.
+2025-08-01 01:06:39,159 - DEBUG - Valid paths are [(0.0, ['4', '3']), (0.0, ['4', '5', '3'])]
+2025-08-01 01:06:39,159 - DEBUG - Route service 51: ['4', '3'].
+2025-08-01 01:06:39,160 - DEBUG - The eventDeparture processed on 1077.951 second origin from 4 to 3 with id 51.
+2025-08-01 01:06:39,160 - DEBUG - The eventDeparture processed on 1092.532 second origin from 2 to 5 with id 50.
+2025-08-01 01:06:39,160 - DEBUG - The eventArrive processed on 1121.084 second origin from 4 to 1 with id 52.
+2025-08-01 01:06:39,160 - DEBUG - ===== ROUTING 52 =====
+2025-08-01 01:06:39,160 - DEBUG - KSP: [['4', '3', '2', '1'], ['4', '5', '6', '1'], ['4', '3', '5', '6', '1'], ['4', '3', '2', '6', '1'], ['4', '5', '3', '2', '1'], ['4', '5', '6', '2', '1'], ['4', '3', '5', '6', '2', '1'], ['4', '5', '3', '2', '6', '1']]
+2025-08-01 01:06:39,160 - DEBUG - Score: [6.0, 3.0, 4.0, 8.0, 8.0, 4.0, 5.0, 10.0]
+2025-08-01 01:06:39,160 - DEBUG - Overflow value is 0.9453125.
+2025-08-01 01:06:39,160 - DEBUG - Valid paths are []
+2025-08-01 01:06:39,160 - DEBUG - Route service 52: None.
+2025-08-01 01:06:39,160 - DEBUG - The eventArrive processed on 1122.004 second origin from 1 to 3 with id 53.
+2025-08-01 01:06:39,160 - DEBUG - ===== ROUTING 53 =====
+2025-08-01 01:06:39,161 - DEBUG - KSP: [['1', '2', '3'], ['1', '6', '2', '3'], ['1', '6', '5', '3'], ['1', '2', '6', '5', '3'], ['1', '6', '5', '4', '3'], ['1', '2', '6', '5', '4', '3']]
+2025-08-01 01:06:39,161 - DEBUG - Score: [2.0, 1.5, -1.5, -4.0, -4.0, -7.5]
+2025-08-01 01:06:39,161 - DEBUG - Overflow value is 0.9453125.
+2025-08-01 01:06:39,161 - DEBUG - Valid paths are []
+2025-08-01 01:06:39,161 - DEBUG - Route service 53: None.
+2025-08-01 01:06:39,161 - DEBUG - The eventDeparture processed on 1124.016 second origin from 1 to 3 with id 53.
+2025-08-01 01:06:39,161 - DEBUG - The eventArrive processed on 1147.657 second origin from 2 to 3 with id 54.
+2025-08-01 01:06:39,161 - DEBUG - ===== ROUTING 54 =====
+2025-08-01 01:06:39,162 - DEBUG - KSP: [['2', '3'], ['2', '6', '5', '3'], ['2', '1', '6', '5', '3'], ['2', '6', '5', '4', '3'], ['2', '1', '6', '5', '4', '3']]
+2025-08-01 01:06:39,162 - DEBUG - Score: [1.0, 0.0, 8.0, 0.0, 10.0]
+2025-08-01 01:06:39,162 - DEBUG - Overflow value is 0.9453125.
+2025-08-01 01:06:39,162 - DEBUG - Valid paths are [(0.0, ['2', '6', '5', '3']), (0.0, ['2', '6', '5', '4', '3'])]
+2025-08-01 01:06:39,162 - DEBUG - Route service 54: ['2', '6', '5', '3'].
+2025-08-01 01:06:39,162 - DEBUG - The eventDeparture processed on 1147.927 second origin from 4 to 1 with id 52.
+2025-08-01 01:06:39,162 - DEBUG - The eventArrive processed on 1163.890 second origin from 2 to 3 with id 55.
+2025-08-01 01:06:39,162 - DEBUG - ===== ROUTING 55 =====
+2025-08-01 01:06:39,162 - DEBUG - KSP: [['2', '3'], ['2', '6', '5', '3'], ['2', '1', '6', '5', '3'], ['2', '6', '5', '4', '3'], ['2', '1', '6', '5', '4', '3']]
+2025-08-01 01:06:39,162 - DEBUG - Score: [0.5, -4.5, 0.0, -8.0, -2.5]
+2025-08-01 01:06:39,162 - DEBUG - Overflow value is 0.9453125.
+2025-08-01 01:06:39,162 - DEBUG - Valid paths are [(0.0, ['2', '1', '6', '5', '3']), (0.5, ['2', '3'])]
+2025-08-01 01:06:39,163 - DEBUG - Route service 55: ['2', '1', '6', '5', '3'].
+2025-08-01 01:06:39,163 - DEBUG - The eventDeparture processed on 1166.199 second origin from 2 to 3 with id 54.
+2025-08-01 01:06:39,163 - DEBUG - The eventArrive processed on 1181.335 second origin from 5 to 3 with id 56.
+2025-08-01 01:06:39,163 - DEBUG - ===== ROUTING 56 =====
+2025-08-01 01:06:39,163 - DEBUG - KSP: [['5', '3'], ['5', '4', '3'], ['5', '6', '2', '3'], ['5', '6', '1', '2', '3']]
+2025-08-01 01:06:39,163 - DEBUG - Score: [-1.0, -4.0, -6.0, -4.0]
+2025-08-01 01:06:39,163 - DEBUG - Overflow value is 0.9453125.
+2025-08-01 01:06:39,163 - DEBUG - Valid paths are []
+2025-08-01 01:06:39,163 - DEBUG - Route service 56: None.
+2025-08-01 01:06:39,163 - DEBUG - The eventDeparture processed on 1183.072 second origin from 5 to 3 with id 56.
+2025-08-01 01:06:39,163 - DEBUG - The eventDeparture processed on 1200.216 second origin from 2 to 3 with id 55.
+2025-08-01 01:06:39,163 - DEBUG - The eventArrive processed on 1233.547 second origin from 5 to 2 with id 57.
+2025-08-01 01:06:39,163 - DEBUG - ===== ROUTING 57 =====
+2025-08-01 01:06:39,164 - DEBUG - KSP: [['5', '3', '2'], ['5', '6', '2'], ['5', '4', '3', '2'], ['5', '6', '1', '2']]
+2025-08-01 01:06:39,164 - DEBUG - Score: [-2.0, -4.0, -6.0, -3.0]
+2025-08-01 01:06:39,164 - DEBUG - Overflow value is 0.9453125.
+2025-08-01 01:06:39,164 - DEBUG - Valid paths are []
+2025-08-01 01:06:39,164 - DEBUG - Route service 57: None.
+2025-08-01 01:06:39,164 - DEBUG - The eventDeparture processed on 1242.824 second origin from 5 to 2 with id 57.
+2025-08-01 01:06:39,164 - DEBUG - The eventArrive processed on 1247.843 second origin from 4 to 5 with id 58.
+2025-08-01 01:06:39,164 - DEBUG - ===== ROUTING 58 =====
+2025-08-01 01:06:39,164 - DEBUG - KSP: [['4', '5'], ['4', '3', '5'], ['4', '3', '2', '6', '5'], ['4', '3', '2', '1', '6', '5']]
+2025-08-01 01:06:39,164 - DEBUG - Score: [-0.5, -2.0, -4.0, 2.5]
+2025-08-01 01:06:39,164 - DEBUG - Overflow value is 0.9453125.
+2025-08-01 01:06:39,164 - DEBUG - Valid paths are []
+2025-08-01 01:06:39,164 - DEBUG - Route service 58: None.
+2025-08-01 01:06:39,164 - DEBUG - The eventDeparture processed on 1259.840 second origin from 4 to 5 with id 58.
+2025-08-01 01:06:39,164 - DEBUG - The eventArrive processed on 1261.207 second origin from 4 to 5 with id 59.
+2025-08-01 01:06:39,164 - DEBUG - ===== ROUTING 59 =====
+2025-08-01 01:06:39,165 - DEBUG - KSP: [['4', '5'], ['4', '3', '5'], ['4', '3', '2', '6', '5'], ['4', '3', '2', '1', '6', '5']]
+2025-08-01 01:06:39,165 - DEBUG - Score: [-0.5, -2.0, -4.0, 2.5]
+2025-08-01 01:06:39,165 - DEBUG - Overflow value is 0.9453125.
+2025-08-01 01:06:39,165 - DEBUG - Valid paths are []
+2025-08-01 01:06:39,165 - DEBUG - Route service 59: None.
+2025-08-01 01:06:39,165 - DEBUG - The eventArrive processed on 1263.062 second origin from 3 to 6 with id 60.
+2025-08-01 01:06:39,165 - DEBUG - ===== ROUTING 60 =====
+2025-08-01 01:06:39,165 - DEBUG - KSP: [['3', '2', '6'], ['3', '5', '6'], ['3', '2', '1', '6'], ['3', '4', '5', '6']]
+2025-08-01 01:06:39,165 - DEBUG - Score: [2.0, 0.0, 9.0, 0.0]
+2025-08-01 01:06:39,165 - DEBUG - Overflow value is 0.9453125.
+2025-08-01 01:06:39,165 - DEBUG - Valid paths are [(0.0, ['3', '5', '6']), (0.0, ['3', '4', '5', '6'])]
+2025-08-01 01:06:39,166 - DEBUG - Route service 60: ['3', '5', '6'].
+2025-08-01 01:06:39,166 - DEBUG - The eventDeparture processed on 1263.399 second origin from 4 to 5 with id 59.
+2025-08-01 01:06:39,166 - DEBUG - The eventArrive processed on 1268.873 second origin from 2 to 5 with id 61.
+2025-08-01 01:06:39,166 - DEBUG - ===== ROUTING 61 =====
+2025-08-01 01:06:39,166 - DEBUG - KSP: [['2', '3', '5'], ['2', '6', '5'], ['2', '3', '4', '5'], ['2', '1', '6', '5']]
+2025-08-01 01:06:39,166 - DEBUG - Score: [2.0, 0.0, 3.0, 6.0]
+2025-08-01 01:06:39,166 - DEBUG - Overflow value is 0.9453125.
+2025-08-01 01:06:39,166 - DEBUG - Valid paths are [(0.0, ['2', '6', '5'])]
+2025-08-01 01:06:39,166 - DEBUG - Route service 61: ['2', '6', '5'].
+2025-08-01 01:06:39,166 - DEBUG - The eventArrive processed on 1271.109 second origin from 6 to 1 with id 62.
+2025-08-01 01:06:39,166 - DEBUG - ===== ROUTING 62 =====
+2025-08-01 01:06:39,166 - DEBUG - KSP: [['6', '1'], ['6', '2', '1'], ['6', '5', '3', '2', '1'], ['6', '5', '4', '3', '2', '1']]
+2025-08-01 01:06:39,167 - DEBUG - Score: [0.5, 0.0, 0.0, -2.5]
+2025-08-01 01:06:39,167 - DEBUG - Overflow value is 0.9453125.
+2025-08-01 01:06:39,167 - DEBUG - Valid paths are [(0.0, ['6', '2', '1']), (0.0, ['6', '5', '3', '2', '1']), (0.5, ['6', '1'])]
+2025-08-01 01:06:39,167 - DEBUG - Route service 62: ['6', '2', '1'].
+2025-08-01 01:06:39,167 - DEBUG - The eventDeparture processed on 1273.008 second origin from 6 to 1 with id 62.
+2025-08-01 01:06:39,167 - DEBUG - The eventDeparture processed on 1275.695 second origin from 2 to 5 with id 61.
+2025-08-01 01:06:39,167 - DEBUG - The eventDeparture processed on 1278.765 second origin from 3 to 6 with id 60.
+2025-08-01 01:06:39,167 - DEBUG - The eventArrive processed on 1313.524 second origin from 2 to 5 with id 63.
+2025-08-01 01:06:39,167 - DEBUG - ===== ROUTING 63 =====
+2025-08-01 01:06:39,168 - DEBUG - KSP: [['2', '3', '5'], ['2', '6', '5'], ['2', '3', '4', '5'], ['2', '1', '6', '5']]
+2025-08-01 01:06:39,168 - DEBUG - Score: [0.0, -2.0, -1.5, 1.5]
+2025-08-01 01:06:39,168 - DEBUG - Overflow value is 0.9453125.
+2025-08-01 01:06:39,168 - DEBUG - Valid paths are [(0.0, ['2', '3', '5'])]
+2025-08-01 01:06:39,168 - DEBUG - Route service 63: ['2', '3', '5'].
+2025-08-01 01:06:39,168 - DEBUG - The eventArrive processed on 1327.732 second origin from 5 to 1 with id 64.
+2025-08-01 01:06:39,168 - DEBUG - ===== ROUTING 64 =====
+2025-08-01 01:06:39,168 - DEBUG - KSP: [['5', '6', '1'], ['5', '3', '2', '1'], ['5', '6', '2', '1'], ['5', '4', '3', '2', '1'], ['5', '3', '2', '6', '1'], ['5', '4', '3', '2', '6', '1']]
+2025-08-01 01:06:39,168 - DEBUG - Score: [2.0, 6.0, 3.0, 8.0, 8.0, 10.0]
+2025-08-01 01:06:39,169 - DEBUG - Overflow value is 0.9453125.
+2025-08-01 01:06:39,169 - DEBUG - Valid paths are []
+2025-08-01 01:06:39,169 - DEBUG - Route service 64: None.
+2025-08-01 01:06:39,169 - DEBUG - The eventDeparture processed on 1328.523 second origin from 2 to 5 with id 63.
+2025-08-01 01:06:39,169 - DEBUG - The eventDeparture processed on 1372.392 second origin from 5 to 1 with id 64.
+2025-08-01 01:06:39,169 - DEBUG - The eventArrive processed on 1399.274 second origin from 1 to 4 with id 65.
+2025-08-01 01:06:39,169 - DEBUG - ===== ROUTING 65 =====
+2025-08-01 01:06:39,169 - DEBUG - KSP: [['1', '2', '3', '4'], ['1', '6', '5', '4'], ['1', '2', '6', '5', '4'], ['1', '2', '3', '5', '4'], ['1', '6', '2', '3', '4'], ['1', '6', '5', '3', '4'], ['1', '2', '6', '5', '3', '4'], ['1', '6', '2', '3', '5', '4']]
+2025-08-01 01:06:39,169 - DEBUG - Score: [6.0, 3.0, 4.0, 8.0, 8.0, 4.0, 5.0, 10.0]
+2025-08-01 01:06:39,170 - DEBUG - Overflow value is 0.9453125.
+2025-08-01 01:06:39,170 - DEBUG - Valid paths are []
+2025-08-01 01:06:39,170 - DEBUG - Route service 65: None.
+2025-08-01 01:06:39,170 - DEBUG - The eventDeparture processed on 1407.465 second origin from 1 to 4 with id 65.
+2025-08-01 01:06:39,170 - DEBUG - The eventArrive processed on 1431.149 second origin from 6 to 4 with id 66.
+2025-08-01 01:06:39,170 - DEBUG - ===== ROUTING 66 =====
+2025-08-01 01:06:39,170 - DEBUG - KSP: [['6', '5', '4'], ['6', '2', '3', '4'], ['6', '5', '3', '4'], ['6', '1', '2', '3', '4'], ['6', '2', '3', '5', '4'], ['6', '1', '2', '3', '5', '4']]
+2025-08-01 01:06:39,170 - DEBUG - Score: [-2.0, -1.5, -4.5, 4.0, -4.0, 2.5]
+2025-08-01 01:06:39,170 - DEBUG - Overflow value is 0.9453125.
+2025-08-01 01:06:39,170 - DEBUG - Valid paths are []
+2025-08-01 01:06:39,170 - DEBUG - Route service 66: None.
+2025-08-01 01:06:39,170 - DEBUG - The eventDeparture processed on 1445.510 second origin from 6 to 4 with id 66.
+2025-08-01 01:06:39,171 - DEBUG - The eventArrive processed on 1476.481 second origin from 3 to 5 with id 67.
+2025-08-01 01:06:39,171 - DEBUG - ===== ROUTING 67 =====
+2025-08-01 01:06:39,171 - DEBUG - KSP: [['3', '5'], ['3', '4', '5'], ['3', '2', '6', '5'], ['3', '2', '1', '6', '5']]
+2025-08-01 01:06:39,171 - DEBUG - Score: [0.0, 0.0, 3.0, 12.0]
+2025-08-01 01:06:39,171 - DEBUG - Overflow value is 0.9453125.
+2025-08-01 01:06:39,171 - DEBUG - Valid paths are [(0.0, ['3', '5']), (0.0, ['3', '4', '5'])]
+2025-08-01 01:06:39,171 - DEBUG - Route service 67: ['3', '5'].
+2025-08-01 01:06:39,171 - DEBUG - The eventArrive processed on 1479.176 second origin from 5 to 4 with id 68.
+2025-08-01 01:06:39,171 - DEBUG - ===== ROUTING 68 =====
+2025-08-01 01:06:39,171 - DEBUG - KSP: [['5', '4'], ['5', '3', '4'], ['5', '6', '2', '3', '4'], ['5', '6', '1', '2', '3', '4']]
+2025-08-01 01:06:39,172 - DEBUG - Score: [0.0, 0.0, 4.0, 15.0]
+2025-08-01 01:06:39,172 - DEBUG - Overflow value is 0.9453125.
+2025-08-01 01:06:39,172 - DEBUG - Valid paths are [(0.0, ['5', '4']), (0.0, ['5', '3', '4'])]
+2025-08-01 01:06:39,172 - DEBUG - Route service 68: ['5', '4'].
+2025-08-01 01:06:39,172 - DEBUG - The eventDeparture processed on 1502.110 second origin from 3 to 5 with id 67.
+2025-08-01 01:06:39,172 - DEBUG - The eventArrive processed on 1512.580 second origin from 3 to 2 with id 69.
+2025-08-01 01:06:39,172 - DEBUG - ===== ROUTING 69 =====
+2025-08-01 01:06:39,172 - DEBUG - KSP: [['3', '2'], ['3', '5', '6', '2'], ['3', '4', '5', '6', '2'], ['3', '5', '6', '1', '2'], ['3', '4', '5', '6', '1', '2']]
+2025-08-01 01:06:39,172 - DEBUG - Score: [0.5, -4.5, -8.0, 0.0, -2.5]
+2025-08-01 01:06:39,172 - DEBUG - Overflow value is 0.9453125.
+2025-08-01 01:06:39,172 - DEBUG - Valid paths are [(0.0, ['3', '5', '6', '1', '2']), (0.5, ['3', '2'])]
+2025-08-01 01:06:39,172 - DEBUG - Route service 69: ['3', '5', '6', '1', '2'].
+2025-08-01 01:06:39,172 - DEBUG - The eventArrive processed on 1520.284 second origin from 5 to 6 with id 70.
+2025-08-01 01:06:39,172 - DEBUG - ===== ROUTING 70 =====
+2025-08-01 01:06:39,173 - DEBUG - KSP: [['5', '6'], ['5', '3', '2', '6'], ['5', '4', '3', '2', '6'], ['5', '3', '2', '1', '6'], ['5', '4', '3', '2', '1', '6']]
+2025-08-01 01:06:39,173 - DEBUG - Score: [0.0, 3.0, 4.0, 12.0, 15.0]
+2025-08-01 01:06:39,173 - DEBUG - Overflow value is 0.9453125.
+2025-08-01 01:06:39,173 - DEBUG - Valid paths are [(0.0, ['5', '6'])]
+2025-08-01 01:06:39,173 - DEBUG - Route service 70: ['5', '6'].
+2025-08-01 01:06:39,173 - DEBUG - The eventDeparture processed on 1546.340 second origin from 5 to 4 with id 68.
+2025-08-01 01:06:39,173 - DEBUG - The eventDeparture processed on 1557.972 second origin from 3 to 2 with id 69.
+2025-08-01 01:06:39,173 - DEBUG - The eventDeparture processed on 1560.783 second origin from 5 to 6 with id 70.
+2025-08-01 01:06:39,173 - DEBUG - The eventArrive processed on 1563.244 second origin from 1 to 3 with id 71.
+2025-08-01 01:06:39,173 - DEBUG - ===== ROUTING 71 =====
+2025-08-01 01:06:39,173 - DEBUG - KSP: [['1', '2', '3'], ['1', '6', '2', '3'], ['1', '6', '5', '3'], ['1', '2', '6', '5', '3'], ['1', '6', '5', '4', '3'], ['1', '2', '6', '5', '4', '3']]
+2025-08-01 01:06:39,173 - DEBUG - Score: [4.0, 6.0, 3.0, 4.0, 4.0, 5.0]
+2025-08-01 01:06:39,173 - DEBUG - Overflow value is 0.9453125.
+2025-08-01 01:06:39,174 - DEBUG - Valid paths are []
+2025-08-01 01:06:39,174 - DEBUG - Route service 71: None.
+2025-08-01 01:06:39,174 - DEBUG - The eventDeparture processed on 1567.240 second origin from 1 to 3 with id 71.
+2025-08-01 01:06:39,174 - DEBUG - The eventArrive processed on 1608.354 second origin from 5 to 6 with id 72.
+2025-08-01 01:06:39,174 - DEBUG - ===== ROUTING 72 =====
+2025-08-01 01:06:39,174 - DEBUG - KSP: [['5', '6'], ['5', '3', '2', '6'], ['5', '4', '3', '2', '6'], ['5', '3', '2', '1', '6'], ['5', '4', '3', '2', '1', '6']]
+2025-08-01 01:06:39,174 - DEBUG - Score: [-1.0, -6.0, -12.0, -4.0, -10.0]
+2025-08-01 01:06:39,174 - DEBUG - Overflow value is 0.9453125.
+2025-08-01 01:06:39,174 - DEBUG - Valid paths are []
+2025-08-01 01:06:39,175 - DEBUG - Route service 72: None.
+2025-08-01 01:06:39,175 - DEBUG - The eventArrive processed on 1614.628 second origin from 5 to 1 with id 73.
+2025-08-01 01:06:39,175 - DEBUG - ===== ROUTING 73 =====
+2025-08-01 01:06:39,175 - DEBUG - KSP: [['5', '6', '1'], ['5', '3', '2', '1'], ['5', '6', '2', '1'], ['5', '4', '3', '2', '1'], ['5', '3', '2', '6', '1'], ['5', '4', '3', '2', '6', '1']]
+2025-08-01 01:06:39,175 - DEBUG - Score: [2.0, 6.0, 3.0, 8.0, 8.0, 10.0]
+2025-08-01 01:06:39,175 - DEBUG - Overflow value is 0.9453125.
+2025-08-01 01:06:39,175 - DEBUG - Valid paths are []
+2025-08-01 01:06:39,175 - DEBUG - Route service 73: None.
+2025-08-01 01:06:39,175 - DEBUG - The eventDeparture processed on 1614.874 second origin from 5 to 6 with id 72.
+2025-08-01 01:06:39,175 - DEBUG - The eventDeparture processed on 1617.310 second origin from 5 to 1 with id 73.
+2025-08-01 01:06:39,175 - DEBUG - The eventArrive processed on 1702.352 second origin from 1 to 2 with id 74.
+2025-08-01 01:06:39,175 - DEBUG - ===== ROUTING 74 =====
+2025-08-01 01:06:39,175 - DEBUG - KSP: [['1', '2'], ['1', '6', '2'], ['1', '6', '5', '3', '2'], ['1', '6', '5', '4', '3', '2']]
+2025-08-01 01:06:39,175 - DEBUG - Score: [0.0, -2.0, -8.0, -15.0]
+2025-08-01 01:06:39,175 - DEBUG - Overflow value is 0.9453125.
+2025-08-01 01:06:39,175 - DEBUG - Valid paths are [(0.0, ['1', '2'])]
+2025-08-01 01:06:39,175 - DEBUG - Route service 74: ['1', '2'].
+2025-08-01 01:06:39,175 - DEBUG - The eventArrive processed on 1718.971 second origin from 2 to 1 with id 75.
+2025-08-01 01:06:39,175 - DEBUG - ===== ROUTING 75 =====
+2025-08-01 01:06:39,176 - DEBUG - KSP: [['2', '1'], ['2', '6', '1'], ['2', '3', '5', '6', '1'], ['2', '3', '4', '5', '6', '1']]
+2025-08-01 01:06:39,176 - DEBUG - Score: [0.0, -2.0, -8.0, -15.0]
+2025-08-01 01:06:39,176 - DEBUG - Overflow value is 0.9453125.
+2025-08-01 01:06:39,176 - DEBUG - Valid paths are [(0.0, ['2', '1'])]
+2025-08-01 01:06:39,176 - DEBUG - Route service 75: ['2', '1'].
+2025-08-01 01:06:39,176 - DEBUG - The eventDeparture processed on 1731.857 second origin from 2 to 1 with id 75.
+2025-08-01 01:06:39,176 - DEBUG - The eventArrive processed on 1735.624 second origin from 4 to 6 with id 76.
+2025-08-01 01:06:39,176 - DEBUG - ===== ROUTING 76 =====
+2025-08-01 01:06:39,177 - DEBUG - KSP: [['4', '5', '6'], ['4', '3', '2', '6'], ['4', '3', '5', '6'], ['4', '5', '3', '2', '6'], ['4', '3', '2', '1', '6'], ['4', '5', '3', '2', '1', '6']]
+2025-08-01 01:06:39,177 - DEBUG - Score: [-2.0, -1.5, -4.5, -4.0, 4.0, 2.5]
+2025-08-01 01:06:39,177 - DEBUG - Overflow value is 0.9453125.
+2025-08-01 01:06:39,177 - DEBUG - Valid paths are []
+2025-08-01 01:06:39,177 - DEBUG - Route service 76: None.
+2025-08-01 01:06:39,177 - DEBUG - The eventArrive processed on 1746.028 second origin from 3 to 4 with id 77.
+2025-08-01 01:06:39,177 - DEBUG - ===== ROUTING 77 =====
+2025-08-01 01:06:39,177 - DEBUG - KSP: [['3', '4'], ['3', '5', '4'], ['3', '2', '6', '5', '4'], ['3', '2', '1', '6', '5', '4']]
+2025-08-01 01:06:39,177 - DEBUG - Score: [-0.5, -2.0, -4.0, 2.5]
+2025-08-01 01:06:39,177 - DEBUG - Overflow value is 0.9453125.
+2025-08-01 01:06:39,178 - DEBUG - Valid paths are []
+2025-08-01 01:06:39,178 - DEBUG - Route service 77: None.
+2025-08-01 01:06:39,178 - DEBUG - The eventDeparture processed on 1751.889 second origin from 3 to 4 with id 77.
+2025-08-01 01:06:39,178 - DEBUG - The eventDeparture processed on 1756.138 second origin from 4 to 6 with id 76.
+2025-08-01 01:06:39,178 - DEBUG - The eventDeparture processed on 1758.579 second origin from 1 to 2 with id 74.
+2025-08-01 01:06:39,178 - DEBUG - The eventArrive processed on 1764.816 second origin from 1 to 2 with id 78.
+2025-08-01 01:06:39,178 - DEBUG - ===== ROUTING 78 =====
+2025-08-01 01:06:39,178 - DEBUG - KSP: [['1', '2'], ['1', '6', '2'], ['1', '6', '5', '3', '2'], ['1', '6', '5', '4', '3', '2']]
+2025-08-01 01:06:39,178 - DEBUG - Score: [0.0, -2.0, -8.0, -15.0]
+2025-08-01 01:06:39,178 - DEBUG - Overflow value is 0.9453125.
+2025-08-01 01:06:39,178 - DEBUG - Valid paths are [(0.0, ['1', '2'])]
+2025-08-01 01:06:39,178 - DEBUG - Route service 78: ['1', '2'].
+2025-08-01 01:06:39,178 - DEBUG - The eventDeparture processed on 1771.081 second origin from 1 to 2 with id 78.
+2025-08-01 01:06:39,178 - DEBUG - The eventArrive processed on 1795.644 second origin from 4 to 2 with id 79.
+2025-08-01 01:06:39,178 - DEBUG - ===== ROUTING 79 =====
+2025-08-01 01:06:39,179 - DEBUG - KSP: [['4', '3', '2'], ['4', '5', '3', '2'], ['4', '5', '6', '2'], ['4', '3', '5', '6', '2'], ['4', '5', '6', '1', '2'], ['4', '3', '5', '6', '1', '2']]
+2025-08-01 01:06:39,179 - DEBUG - Score: [2.0, 3.0, 0.0, 0.0, 8.0, 10.0]
+2025-08-01 01:06:39,179 - DEBUG - Overflow value is 0.9453125.
+2025-08-01 01:06:39,179 - DEBUG - Valid paths are [(0.0, ['4', '5', '6', '2']), (0.0, ['4', '3', '5', '6', '2'])]
+2025-08-01 01:06:39,179 - DEBUG - Route service 79: ['4', '5', '6', '2'].
+2025-08-01 01:06:39,179 - DEBUG - The eventArrive processed on 1803.969 second origin from 1 to 2 with id 80.
+2025-08-01 01:06:39,179 - DEBUG - ===== ROUTING 80 =====
+2025-08-01 01:06:39,179 - DEBUG - KSP: [['1', '2'], ['1', '6', '2'], ['1', '6', '5', '3', '2'], ['1', '6', '5', '4', '3', '2']]
+2025-08-01 01:06:39,179 - DEBUG - Score: [1.0, 2.0, 8.0, 10.0]
+2025-08-01 01:06:39,179 - DEBUG - Overflow value is 0.9453125.
+2025-08-01 01:06:39,179 - DEBUG - Valid paths are []
+2025-08-01 01:06:39,179 - DEBUG - Route service 80: None.
+2025-08-01 01:06:39,179 - DEBUG - The eventDeparture processed on 1804.826 second origin from 4 to 2 with id 79.
+2025-08-01 01:06:39,179 - DEBUG - The eventArrive processed on 1817.672 second origin from 2 to 6 with id 81.
+2025-08-01 01:06:39,179 - DEBUG - ===== ROUTING 81 =====
+2025-08-01 01:06:39,180 - DEBUG - KSP: [['2', '6'], ['2', '1', '6'], ['2', '3', '5', '6'], ['2', '3', '4', '5', '6']]
+2025-08-01 01:06:39,180 - DEBUG - Score: [0.0, 4.0, 3.0, 4.0]
+2025-08-01 01:06:39,180 - DEBUG - Overflow value is 0.9453125.
+2025-08-01 01:06:39,180 - DEBUG - Valid paths are [(0.0, ['2', '6'])]
+2025-08-01 01:06:39,180 - DEBUG - Route service 81: ['2', '6'].
+2025-08-01 01:06:39,180 - DEBUG - The eventDeparture processed on 1818.862 second origin from 2 to 6 with id 81.
+2025-08-01 01:06:39,180 - DEBUG - The eventDeparture processed on 1829.679 second origin from 1 to 2 with id 80.
+2025-08-01 01:06:39,180 - DEBUG - The eventArrive processed on 1835.059 second origin from 6 to 2 with id 82.
+2025-08-01 01:06:39,180 - DEBUG - ===== ROUTING 82 =====
+2025-08-01 01:06:39,180 - DEBUG - KSP: [['6', '2'], ['6', '1', '2'], ['6', '5', '3', '2'], ['6', '5', '4', '3', '2']]
+2025-08-01 01:06:39,180 - DEBUG - Score: [-0.5, 2.0, -1.5, -4.0]
+2025-08-01 01:06:39,180 - DEBUG - Overflow value is 0.9453125.
+2025-08-01 01:06:39,180 - DEBUG - Valid paths are []
+2025-08-01 01:06:39,180 - DEBUG - Route service 82: None.
+2025-08-01 01:06:39,180 - DEBUG - The eventArrive processed on 1842.074 second origin from 3 to 4 with id 83.
+2025-08-01 01:06:39,180 - DEBUG - ===== ROUTING 83 =====
+2025-08-01 01:06:39,181 - DEBUG - KSP: [['3', '4'], ['3', '5', '4'], ['3', '2', '6', '5', '4'], ['3', '2', '1', '6', '5', '4']]
+2025-08-01 01:06:39,181 - DEBUG - Score: [0.0, 0.0, 4.0, 15.0]
+2025-08-01 01:06:39,181 - DEBUG - Overflow value is 0.9453125.
+2025-08-01 01:06:39,181 - DEBUG - Valid paths are [(0.0, ['3', '4']), (0.0, ['3', '5', '4'])]
+2025-08-01 01:06:39,181 - DEBUG - Route service 83: ['3', '4'].
+2025-08-01 01:06:39,181 - DEBUG - The eventDeparture processed on 1845.875 second origin from 3 to 4 with id 83.
+2025-08-01 01:06:39,181 - DEBUG - The eventDeparture processed on 1854.390 second origin from 6 to 2 with id 82.
+2025-08-01 01:06:39,181 - DEBUG - The eventArrive processed on 1862.478 second origin from 1 to 5 with id 84.
+2025-08-01 01:06:39,181 - DEBUG - ===== ROUTING 84 =====
+2025-08-01 01:06:39,181 - DEBUG - KSP: [['1', '6', '5'], ['1', '2', '3', '5'], ['1', '2', '6', '5'], ['1', '6', '2', '3', '5'], ['1', '2', '3', '4', '5'], ['1', '6', '2', '3', '4', '5']]
+2025-08-01 01:06:39,181 - DEBUG - Score: [2.0, 6.0, 3.0, 8.0, 8.0, 10.0]
+2025-08-01 01:06:39,181 - DEBUG - Overflow value is 0.9453125.
+2025-08-01 01:06:39,182 - DEBUG - Valid paths are []
+2025-08-01 01:06:39,182 - DEBUG - Route service 84: None.
+2025-08-01 01:06:39,182 - DEBUG - The eventArrive processed on 1913.061 second origin from 4 to 2 with id 85.
+2025-08-01 01:06:39,182 - DEBUG - ===== ROUTING 85 =====
+2025-08-01 01:06:39,182 - DEBUG - KSP: [['4', '3', '2'], ['4', '5', '3', '2'], ['4', '5', '6', '2'], ['4', '3', '5', '6', '2'], ['4', '5', '6', '1', '2'], ['4', '3', '5', '6', '1', '2']]
+2025-08-01 01:06:39,182 - DEBUG - Score: [0.0, -1.5, -4.5, -8.0, 0.0, -2.5]
+2025-08-01 01:06:39,182 - DEBUG - Overflow value is 0.9453125.
+2025-08-01 01:06:39,182 - DEBUG - Valid paths are [(0.0, ['4', '3', '2']), (0.0, ['4', '5', '6', '1', '2'])]
+2025-08-01 01:06:39,182 - DEBUG - Route service 85: ['4', '3', '2'].
+2025-08-01 01:06:39,182 - DEBUG - The eventArrive processed on 1916.320 second origin from 1 to 5 with id 86.
+2025-08-01 01:06:39,182 - DEBUG - ===== ROUTING 86 =====
+2025-08-01 01:06:39,183 - DEBUG - KSP: [['1', '6', '5'], ['1', '2', '3', '5'], ['1', '2', '6', '5'], ['1', '6', '2', '3', '5'], ['1', '2', '3', '4', '5'], ['1', '6', '2', '3', '4', '5']]
+2025-08-01 01:06:39,183 - DEBUG - Score: [0.0, 1.5, -1.5, 0.0, 0.0, -2.5]
+2025-08-01 01:06:39,183 - DEBUG - Overflow value is 0.9453125.
+2025-08-01 01:06:39,183 - DEBUG - Valid paths are [(0.0, ['1', '6', '5']), (0.0, ['1', '6', '2', '3', '5']), (0.0, ['1', '2', '3', '4', '5'])]
+2025-08-01 01:06:39,183 - DEBUG - Route service 86: ['1', '6', '5'].
+2025-08-01 01:06:39,183 - DEBUG - The eventDeparture processed on 1917.474 second origin from 1 to 5 with id 84.
+2025-08-01 01:06:39,183 - DEBUG - The eventArrive processed on 1918.320 second origin from 2 to 3 with id 87.
+2025-08-01 01:06:39,183 - DEBUG - ===== ROUTING 87 =====
+2025-08-01 01:06:39,183 - DEBUG - KSP: [['2', '3'], ['2', '6', '5', '3'], ['2', '1', '6', '5', '3'], ['2', '6', '5', '4', '3'], ['2', '1', '6', '5', '4', '3']]
+2025-08-01 01:06:39,183 - DEBUG - Score: [1.0, 0.0, 8.0, 0.0, 10.0]
+2025-08-01 01:06:39,183 - DEBUG - Overflow value is 0.9453125.
+2025-08-01 01:06:39,183 - DEBUG - Valid paths are [(0.0, ['2', '6', '5', '3']), (0.0, ['2', '6', '5', '4', '3'])]
+2025-08-01 01:06:39,184 - DEBUG - Route service 87: ['2', '6', '5', '3'].
+2025-08-01 01:06:39,184 - DEBUG - The eventDeparture processed on 1919.287 second origin from 4 to 2 with id 85.
+2025-08-01 01:06:39,184 - DEBUG - The eventArrive processed on 1925.400 second origin from 4 to 1 with id 88.
+2025-08-01 01:06:39,184 - DEBUG - ===== ROUTING 88 =====
+2025-08-01 01:06:39,184 - DEBUG - KSP: [['4', '3', '2', '1'], ['4', '5', '6', '1'], ['4', '3', '5', '6', '1'], ['4', '3', '2', '6', '1'], ['4', '5', '3', '2', '1'], ['4', '5', '6', '2', '1'], ['4', '3', '5', '6', '2', '1'], ['4', '5', '3', '2', '6', '1']]
+2025-08-01 01:06:39,184 - DEBUG - Score: [6.0, 3.0, 4.0, 8.0, 8.0, 4.0, 5.0, 10.0]
+2025-08-01 01:06:39,184 - DEBUG - Overflow value is 0.9453125.
+2025-08-01 01:06:39,184 - DEBUG - Valid paths are []
+2025-08-01 01:06:39,184 - DEBUG - Route service 88: None.
+2025-08-01 01:06:39,184 - DEBUG - The eventDeparture processed on 1929.163 second origin from 4 to 1 with id 88.
+2025-08-01 01:06:39,184 - DEBUG - The eventDeparture processed on 1943.492 second origin from 1 to 5 with id 86.
+2025-08-01 01:06:39,184 - DEBUG - The eventArrive processed on 1958.088 second origin from 5 to 4 with id 89.
+2025-08-01 01:06:39,184 - DEBUG - ===== ROUTING 89 =====
+2025-08-01 01:06:39,185 - DEBUG - KSP: [['5', '4'], ['5', '3', '4'], ['5', '6', '2', '3', '4'], ['5', '6', '1', '2', '3', '4']]
+2025-08-01 01:06:39,185 - DEBUG - Score: [-0.5, -2.0, -4.0, 2.5]
+2025-08-01 01:06:39,185 - DEBUG - Overflow value is 0.9453125.
+2025-08-01 01:06:39,185 - DEBUG - Valid paths are []
+2025-08-01 01:06:39,185 - DEBUG - Route service 89: None.
+2025-08-01 01:06:39,186 - DEBUG - The eventDeparture processed on 1958.396 second origin from 5 to 4 with id 89.
+2025-08-01 01:06:39,186 - DEBUG - The eventDeparture processed on 1963.246 second origin from 2 to 3 with id 87.
+2025-08-01 01:06:39,186 - DEBUG - The eventArrive processed on 1969.224 second origin from 4 to 5 with id 90.
+2025-08-01 01:06:39,186 - DEBUG - ===== ROUTING 90 =====
+2025-08-01 01:06:39,186 - DEBUG - KSP: [['4', '5'], ['4', '3', '5'], ['4', '3', '2', '6', '5'], ['4', '3', '2', '1', '6', '5']]
+2025-08-01 01:06:39,186 - DEBUG - Score: [0.0, 0.0, 4.0, 15.0]
+2025-08-01 01:06:39,186 - DEBUG - Overflow value is 0.9453125.
+2025-08-01 01:06:39,186 - DEBUG - Valid paths are [(0.0, ['4', '5']), (0.0, ['4', '3', '5'])]
+2025-08-01 01:06:39,186 - DEBUG - Route service 90: ['4', '5'].
+2025-08-01 01:06:39,186 - DEBUG - The eventArrive processed on 1970.262 second origin from 3 to 1 with id 91.
+2025-08-01 01:06:39,187 - DEBUG - ===== ROUTING 91 =====
+2025-08-01 01:06:39,187 - DEBUG - KSP: [['3', '2', '1'], ['3', '5', '6', '1'], ['3', '2', '6', '1'], ['3', '4', '5', '6', '1'], ['3', '5', '6', '2', '1'], ['3', '4', '5', '6', '2', '1']]
+2025-08-01 01:06:39,187 - DEBUG - Score: [2.0, -1.5, 1.5, -4.0, -4.0, -7.5]
+2025-08-01 01:06:39,187 - DEBUG - Overflow value is 0.9453125.
+2025-08-01 01:06:39,187 - DEBUG - Valid paths are []
+2025-08-01 01:06:39,187 - DEBUG - Route service 91: None.
+2025-08-01 01:06:39,187 - DEBUG - The eventDeparture processed on 1970.328 second origin from 3 to 1 with id 91.
+2025-08-01 01:06:39,187 - DEBUG - The eventArrive processed on 1987.053 second origin from 3 to 4 with id 92.
+2025-08-01 01:06:39,187 - DEBUG - ===== ROUTING 92 =====
+2025-08-01 01:06:39,188 - DEBUG - KSP: [['3', '4'], ['3', '5', '4'], ['3', '2', '6', '5', '4'], ['3', '2', '1', '6', '5', '4']]
+2025-08-01 01:06:39,188 - DEBUG - Score: [0.0, 0.0, 4.0, 15.0]
+2025-08-01 01:06:39,188 - DEBUG - Overflow value is 0.9453125.
+2025-08-01 01:06:39,188 - DEBUG - Valid paths are [(0.0, ['3', '4']), (0.0, ['3', '5', '4'])]
+2025-08-01 01:06:39,188 - DEBUG - Route service 92: ['3', '4'].
+2025-08-01 01:06:39,188 - DEBUG - The eventDeparture processed on 2013.242 second origin from 4 to 5 with id 90.
+2025-08-01 01:06:39,188 - DEBUG - The eventArrive processed on 2016.162 second origin from 4 to 5 with id 93.
+2025-08-01 01:06:39,188 - DEBUG - ===== ROUTING 93 =====
+2025-08-01 01:06:39,188 - DEBUG - KSP: [['4', '5'], ['4', '3', '5'], ['4', '3', '2', '6', '5'], ['4', '3', '2', '1', '6', '5']]
+2025-08-01 01:06:39,188 - DEBUG - Score: [0.0, 0.0, 4.0, 15.0]
+2025-08-01 01:06:39,188 - DEBUG - Overflow value is 0.9453125.
+2025-08-01 01:06:39,188 - DEBUG - Valid paths are [(0.0, ['4', '5']), (0.0, ['4', '3', '5'])]
+2025-08-01 01:06:39,188 - DEBUG - Route service 93: ['4', '5'].
+2025-08-01 01:06:39,188 - DEBUG - The eventDeparture processed on 2019.372 second origin from 4 to 5 with id 93.
+2025-08-01 01:06:39,188 - DEBUG - The eventArrive processed on 2023.310 second origin from 6 to 2 with id 94.
+2025-08-01 01:06:39,189 - DEBUG - ===== ROUTING 94 =====
+2025-08-01 01:06:39,189 - DEBUG - KSP: [['6', '2'], ['6', '1', '2'], ['6', '5', '3', '2'], ['6', '5', '4', '3', '2']]
+2025-08-01 01:06:39,189 - DEBUG - Score: [-1.0, 0.0, -6.0, -12.0]
+2025-08-01 01:06:39,189 - DEBUG - Overflow value is 0.9453125.
+2025-08-01 01:06:39,189 - DEBUG - Valid paths are [(0.0, ['6', '1', '2'])]
+2025-08-01 01:06:39,189 - DEBUG - Route service 94: ['6', '1', '2'].
+2025-08-01 01:06:39,190 - DEBUG - The eventDeparture processed on 2031.513 second origin from 3 to 4 with id 92.
+2025-08-01 01:06:39,190 - DEBUG - The eventDeparture processed on 2033.682 second origin from 6 to 2 with id 94.
+2025-08-01 01:06:39,190 - DEBUG - The eventArrive processed on 2038.131 second origin from 3 to 2 with id 95.
+2025-08-01 01:06:39,190 - DEBUG - ===== ROUTING 95 =====
+2025-08-01 01:06:39,190 - DEBUG - KSP: [['3', '2'], ['3', '5', '6', '2'], ['3', '4', '5', '6', '2'], ['3', '5', '6', '1', '2'], ['3', '4', '5', '6', '1', '2']]
+2025-08-01 01:06:39,190 - DEBUG - Score: [0.5, -4.5, -8.0, 0.0, -2.5]
+2025-08-01 01:06:39,190 - DEBUG - Overflow value is 0.9453125.
+2025-08-01 01:06:39,190 - DEBUG - Valid paths are [(0.0, ['3', '5', '6', '1', '2']), (0.5, ['3', '2'])]
+2025-08-01 01:06:39,190 - DEBUG - Route service 95: ['3', '5', '6', '1', '2'].
+2025-08-01 01:06:39,190 - DEBUG - The eventArrive processed on 2044.211 second origin from 2 to 3 with id 96.
+2025-08-01 01:06:39,190 - DEBUG - ===== ROUTING 96 =====
+2025-08-01 01:06:39,191 - DEBUG - KSP: [['2', '3'], ['2', '6', '5', '3'], ['2', '1', '6', '5', '3'], ['2', '6', '5', '4', '3'], ['2', '1', '6', '5', '4', '3']]
+2025-08-01 01:06:39,191 - DEBUG - Score: [1.0, 0.0, 8.0, 0.0, 10.0]
+2025-08-01 01:06:39,191 - DEBUG - Overflow value is 0.9453125.
+2025-08-01 01:06:39,191 - DEBUG - Valid paths are [(0.0, ['2', '6', '5', '3']), (0.0, ['2', '6', '5', '4', '3'])]
+2025-08-01 01:06:39,191 - DEBUG - Route service 96: ['2', '6', '5', '3'].
+2025-08-01 01:06:39,191 - DEBUG - The eventDeparture processed on 2046.739 second origin from 3 to 2 with id 95.
+2025-08-01 01:06:39,191 - DEBUG - The eventArrive processed on 2052.598 second origin from 2 to 4 with id 97.
+2025-08-01 01:06:39,191 - DEBUG - ===== ROUTING 97 =====
+2025-08-01 01:06:39,191 - DEBUG - KSP: [['2', '3', '4'], ['2', '6', '5', '4'], ['2', '3', '5', '4'], ['2', '1', '6', '5', '4'], ['2', '6', '5', '3', '4'], ['2', '1', '6', '5', '3', '4']]
+2025-08-01 01:06:39,191 - DEBUG - Score: [0.0, -4.5, -1.5, 0.0, -8.0, -2.5]
+2025-08-01 01:06:39,191 - DEBUG - Overflow value is 0.9453125.
+2025-08-01 01:06:39,191 - DEBUG - Valid paths are [(0.0, ['2', '3', '4']), (0.0, ['2', '1', '6', '5', '4'])]
+2025-08-01 01:06:39,192 - DEBUG - Route service 97: ['2', '3', '4'].
+2025-08-01 01:06:39,192 - DEBUG - The eventDeparture processed on 2058.807 second origin from 2 to 3 with id 96.
+2025-08-01 01:06:39,192 - DEBUG - The eventArrive processed on 2086.741 second origin from 6 to 2 with id 98.
+2025-08-01 01:06:39,192 - DEBUG - ===== ROUTING 98 =====
+2025-08-01 01:06:39,192 - DEBUG - KSP: [['6', '2'], ['6', '1', '2'], ['6', '5', '3', '2'], ['6', '5', '4', '3', '2']]
+2025-08-01 01:06:39,192 - DEBUG - Score: [-0.5, 2.0, -1.5, -4.0]
+2025-08-01 01:06:39,192 - DEBUG - Overflow value is 0.9453125.
+2025-08-01 01:06:39,192 - DEBUG - Valid paths are []
+2025-08-01 01:06:39,192 - DEBUG - Route service 98: None.
+2025-08-01 01:06:39,192 - DEBUG - The eventArrive processed on 2091.590 second origin from 1 to 3 with id 99.
+2025-08-01 01:06:39,192 - DEBUG - ===== ROUTING 99 =====
+2025-08-01 01:06:39,193 - DEBUG - KSP: [['1', '2', '3'], ['1', '6', '2', '3'], ['1', '6', '5', '3'], ['1', '2', '6', '5', '3'], ['1', '6', '5', '4', '3'], ['1', '2', '6', '5', '4', '3']]
+2025-08-01 01:06:39,193 - DEBUG - Score: [2.0, 1.5, -1.5, -4.0, -4.0, -7.5]
+2025-08-01 01:06:39,193 - DEBUG - Overflow value is 0.9453125.
+2025-08-01 01:06:39,193 - DEBUG - Valid paths are []
+2025-08-01 01:06:39,193 - DEBUG - Route service 99: None.
+2025-08-01 01:06:39,193 - DEBUG - The eventDeparture processed on 2107.147 second origin from 6 to 2 with id 98.
+2025-08-01 01:06:39,193 - DEBUG - The eventDeparture processed on 2111.219 second origin from 1 to 3 with id 99.
+2025-08-01 01:06:39,193 - DEBUG - The eventDeparture processed on 2114.949 second origin from 2 to 4 with id 97.
+2025-08-01 01:06:39,193 - INFO - Done.
