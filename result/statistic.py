@@ -22,7 +22,7 @@ class MeanList:
 
 class Statistic:
     def __init__(self):
-        self.time_stamp = []                    # 时间戳
+        self.time_stamp = [0.0]                   # 时间戳
 
         self.num_total_calls = 0                # 总业务数量
         self.num_carried_calls = 0              # 成功路由业务总数
@@ -31,12 +31,11 @@ class Statistic:
         self.success_rate = MeanList()          # 业务成功率
         self.block_rate = MeanList()            # 业务阻塞率
 
-        self.mean_hop = MeanList()              # 平均路径跳数
+        self.mean_hop = 0.0                     # 平均路径跳数
 
         self.realtime_num_carried_calls = [0]    # 实时承载业务数量
         self.realtime_num_blocked_calls = [0]    # 实时阻塞业务数量
-        self.realtime_link_utilization = [0]
-        self.realtime_attacks = []  #todo delete this attr
+        self.realtime_link_utilization = [0.0]
 
         self.mean_link_utilization = 0.0        # 平均链路利用率
 
@@ -49,10 +48,10 @@ class Statistic:
 
     def snapshot(self, event: Event, G: nx.DiGraph, calls: list):
         self.time_stamp.append(event.time)
-        self._update_real_time_events(event)
         self._update_num_calls(calls, event)
         self._update_block_rate()
         self._update_hop(calls)
+        self._update_link_utilization(G)
 
     def show(self):
         results = []
@@ -74,7 +73,18 @@ class Statistic:
         return results
 
     def plot_real_time_carried_service(self):
-        plt.plot(self.realtime_num_carried_calls)
+        self._plot_single_line(self.time_stamp, self.realtime_num_carried_calls, xylabel=["time", "real time carried services"])
+
+    def plot_real_time_blocked_service(self):
+        self._plot_single_line(self.time_stamp, self.realtime_num_blocked_calls, xylabel=["time", "real time blocked services"])
+
+    def plot_real_time_link_utilization(self):
+        self._plot_single_line(self.time_stamp, self.realtime_link_utilization, xylabel=["time", "real time link utilization"])
+
+    def _plot_single_line(self, x, y, xylabel: list):
+        plt.plot(x, y, ls='solid', lw=1, color="#73C0DE")
+        plt.xlabel(xylabel[0])
+        plt.ylabel(xylabel[1])
         plt.show()
 
     def _update_num_calls(self, calls: list, event: Event):
@@ -88,12 +98,18 @@ class Statistic:
             if call.is_routed:
                 self.num_carried_calls += 1
                 self.realtime_num_carried_calls.append(self.realtime_num_carried_calls[-1] + 1)
+                self.realtime_num_blocked_calls.append(self.realtime_num_blocked_calls[-1])
             else:
                 self.num_blocked_calls += 1
+                self.realtime_num_carried_calls.append(self.realtime_num_carried_calls[-1])
                 self.realtime_num_blocked_calls.append(self.realtime_num_blocked_calls[-1] + 1)
         elif event.type == "eventDeparture":
             if call.is_routed:
                 self.realtime_num_carried_calls.append(self.realtime_num_carried_calls[-1] - 1)
+                self.realtime_num_blocked_calls.append(self.realtime_num_blocked_calls[-1])
+            else:
+                self.realtime_num_carried_calls.append(self.realtime_num_carried_calls[-1])
+                self.realtime_num_blocked_calls.append(self.realtime_num_blocked_calls[-1])
 
         logging.debug(f"The number of blocked calls {self.num_blocked_calls} + carried calls {self.num_carried_calls} -> total calls {self.num_total_calls}")
 
@@ -109,25 +125,18 @@ class Statistic:
             if call.path is None:
                 continue
             hops.append(len(call.path)-1)
-        self.mean_hop.add(np.mean(hops))
+        self.mean_hop = np.mean(hops)
 
-    def _update_link_utilization(self, G: nx.MultiDiGraph):
-        lu = 0.0
-        for (start, end, index) in G.edges:
-            lu += (1 - G[start][end][index]["bandwidth"] / G[start][end][index]["max-bandwidth"]) * 100
-        lu = lu / len(G.edges)
-        self.realtime_link_utilization.append(lu)
-        self.mean_link_utilization = np.mean(self.realtime_link_utilization)
+    def _update_link_utilization(self, G: nx.Graph):
+        each_link_utilization = []
+        for u_node, v_node in G.edges:
+            each_link_utilization.append((1 - G[u_node][v_node]["link_available_bandwidth"] / G[u_node][v_node]["link_bandwidth"]) * 100)
+        self.realtime_link_utilization.append(np.mean(each_link_utilization))
+
+        len_list = len(self.realtime_link_utilization)
+        self.mean_link_utilization = np.mean(self.realtime_link_utilization[int(len_list/3): int(2*len_list/3)])    # 抽样中间1/3个点的平均值
+        logging.debug(f"Mean link utilization is {self.mean_link_utilization}.")
         # 校验
         if 100 < self.mean_link_utilization < 0:
             raise Exception("The value of the average of link utilization {} is invalidation."
                             .format(self.mean_link_utilization))
-
-    def _update_real_time_events(self, event: Event):
-        if event.type == "eventArrive":
-            n_atks = self.realtime_attacks[-1] + 1 if self.realtime_attacks else 1
-            self.realtime_attacks.append(n_atks)
-        elif event.type == "eventDeparture":
-            n_atks = self.realtime_attacks[-1] - 1
-            self.realtime_attacks.append(n_atks)
-
