@@ -1,9 +1,12 @@
+import logging
+
 import pandas as pd
 
 from utl.event import Event
 
 import networkx as nx
 import numpy as np
+import matplotlib.pyplot as plt
 
 
 class MeanList:
@@ -30,12 +33,10 @@ class Statistic:
 
         self.mean_hop = MeanList()              # 平均路径跳数
 
-        self.mean_restore_times = MeanList()    # 平均业务恢复次数
-
-        self.realtime_num_carried_calls = []    # 实时承载业务数量
-        self.realtime_num_blocked_calls = []    # 实时阻塞业务数量
-        self.realtime_link_utilization = []
-        self.realtime_attacks = []
+        self.realtime_num_carried_calls = [0]    # 实时承载业务数量
+        self.realtime_num_blocked_calls = [0]    # 实时阻塞业务数量
+        self.realtime_link_utilization = [0]
+        self.realtime_attacks = []  #todo delete this attr
 
         self.mean_link_utilization = 0.0        # 平均链路利用率
 
@@ -43,17 +44,15 @@ class Statistic:
             "success_rate",
             "block_rate",
             "mean_hop",
-            "mean_link_utilization",
-            "mean_restore_times"
+            "mean_link_utilization"
         ]
 
     def snapshot(self, event: Event, G: nx.DiGraph, calls: list):
         self.time_stamp.append(event.time)
         self._update_real_time_events(event)
-        self._update_num_calls(calls)
+        self._update_num_calls(calls, event)
         self._update_block_rate()
         self._update_hop(calls)
-        self._update_atks(event, calls)
 
     def show(self):
         results = []
@@ -74,18 +73,29 @@ class Statistic:
                 results.append(getattr(self, attr))
         return results
 
-    def _update_num_calls(self, calls: list):
+    def plot_real_time_carried_service(self):
+        plt.plot(self.realtime_num_carried_calls)
+        plt.show()
+
+    def _update_num_calls(self, calls: list, event: Event):
         if self.num_total_calls == 0:
             self.num_total_calls = len(calls)
         if self.num_total_calls != 0 and self.num_total_calls != len(calls):
             raise ValueError
-        self.num_blocked_calls = sum([1 for call in calls if call.path is None])
-        self.num_carried_calls = sum([1 for call in calls if call.path is not None])
-        if self.num_blocked_calls + self.num_carried_calls != self.num_total_calls:
-            raise ValueError
-        else:
-            self.realtime_num_carried_calls.append(self.num_carried_calls)
-            self.realtime_num_blocked_calls.append(self.num_blocked_calls)
+        call = event.event
+        # 查询当前业务状态
+        if event.type == "eventArrive":
+            if call.is_routed:
+                self.num_carried_calls += 1
+                self.realtime_num_carried_calls.append(self.realtime_num_carried_calls[-1] + 1)
+            else:
+                self.num_blocked_calls += 1
+                self.realtime_num_blocked_calls.append(self.realtime_num_blocked_calls[-1] + 1)
+        elif event.type == "eventDeparture":
+            if call.is_routed:
+                self.realtime_num_carried_calls.append(self.realtime_num_carried_calls[-1] - 1)
+
+        logging.debug(f"The number of blocked calls {self.num_blocked_calls} + carried calls {self.num_carried_calls} -> total calls {self.num_total_calls}")
 
     def _update_block_rate(self):
         if not self.num_total_calls:
@@ -121,10 +131,3 @@ class Statistic:
             n_atks = self.realtime_attacks[-1] - 1
             self.realtime_attacks.append(n_atks)
 
-    def _update_atks(self, event: Event, calls: list):
-        if event.type == "eventArrive":
-            restore_times = []
-            for call in calls:
-                restore_times.append(call.restoration)
-            # print(np.average(restore_times), len([1 for call in calls if call.restoration > 2]))
-            self.mean_restore_times.add(np.mean(restore_times))

@@ -9,8 +9,8 @@ import networkx as nx
 import matplotlib.pyplot as plt
 import numpy as np
 
+import utl.call
 from network.generator import TopoGen, CallsGen
-from network.state import NetState
 from utl.event import Event
 
 
@@ -60,11 +60,10 @@ class SASP:
         # 第4-7行: 条件判断
         if path:
             # 第5行: 在原始图中预留带宽
-            self._reserve_bandwidth(graph, path, req_bandwidth)
+            self._reserve_bandwidth(graph, path, call)
             return True
         else:
             # 第7行: 阻止服务
-            self._block_service(req_bandwidth, req_security)
             return False
 
     # 以下为Algorithm 1中引用的子算法接口定义
@@ -196,7 +195,7 @@ class SASP:
         path_scores = self.__score_paths(graph, available_paths, req_security, num_req_security, num_link_security)
         logging.debug(f"Score: {path_scores}")
         # 步骤3: 计算溢出值
-        overflow_value = self.__calculate_overflow_value(graph) * num_req_security
+        overflow_value = self.__calculate_overflow_value(graph)
         logging.debug(f"Overflow value is {overflow_value}.")
 
         # 步骤4: 筛选满足安全需求范围 [0, overflow] 的路径 (伪代码第5行)
@@ -234,9 +233,12 @@ class SASP:
         div_value = 0.0
         for (u, v) in path:
             div_value += G[u][v]['link_security'] - (num_link_security * req_security / num_req_security)
+        div_value = 1 - np.exp(- div_value / len(path))
 
-        # 2. 路径长度计算 Utl(p) = |p|
-        utl_value = len(path)
+        # 2. 路径长度计算 Utl(p) = 1-e^{-p}
+        utl_value = 1 - np.exp(1-len(path))
+
+        logging.debug(f"Socre of sec deviation: {div_value}, hop: {utl_value}.")
 
         # 综合评分
         return div_value * utl_value
@@ -245,7 +247,7 @@ class SASP:
             self,
             G: nx.Graph
     ):
-        # 1 计算可用安全带宽比率
+        # 1 计算可用安全带宽比率,0<=x<=1
         sec_bdw = 0.0
         tot_bdw = 0.0
         for (u, v) in G.edges:
@@ -261,14 +263,15 @@ class SASP:
             if len(G[u][v]["link_carried_calls"]) == 0:
                 exc_ratio.append(1)
                 continue
-            for call in G[u][v]["link_carried_calls"]:
-                if call.security == 0 and G[u][v]["link_security"] == 1:
+            for call_id in G[u][v]["link_carried_calls"]:
+                if G[u][v]["link_carried_calls"][call_id].security == 0 and G[u][v]["link_security"] == 1:
                     excess_call_num += 1
             exc_ratio.append(excess_call_num / len(G[u][v]["link_carried_calls"]))
         exc_ratio = np.mean(exc_ratio)
 
         # 3 计算超额限度
         overflow_value = (0.5*sec_ratio + 0.5*exc_ratio) ** 2
+        logging.debug(f"The overflow of sec_ratio: {sec_ratio}, non_exc_ratio: {exc_ratio}.")
         return overflow_value
 
     def __has_sufficient_bandwidth(
@@ -278,7 +281,7 @@ class SASP:
             req_bandwidth: int
     ):
         for (u, v) in zip(path[:-1], path[1:]):
-            if G[u][v]["link_bandwidth"] >= req_bandwidth:
+            if G[u][v]["link_available_bandwidth"] >= req_bandwidth:
                 continue
             else:
                 return False
@@ -287,33 +290,42 @@ class SASP:
     def _reserve_bandwidth(
             self,
             graph: nx.Graph,
-            path: list[int],
-            bandwidth: float
+            path: list,
+            call: utl.call.Call
     ):
         """
         预留路径上的带宽
         参数: 原始图对象, 路径节点列表, 带宽需求
         """
+        # 再次检查带宽
+        for u_node, v_node in zip(path[:-1], path[1:]):
+            if graph[u_node][v_node]["link_available_bandwidth"] < call.rate:
+                logging.error(f"There are not enough bandwidth, check the path validity.")
+                logging.error(f"Service path: {path}, link: {u_node}-{v_node}, link available bandwidth: {graph[u_node][v_node]["link_available_bandwidth"]}, req bandwidth: {req_bandwidth}")
         # 在路径所有边上预留指定带宽
+        call.path = path
+        call.is_routed = True
+        for u_node, v_node in zip(path[:-1], path[1:]):
+            graph[u_node][v_node]["link_available_bandwidth"] -= call.rate
+            graph[u_node][v_node]["link_weight"] = 1 / graph[u_node][v_node]["link_available_bandwidth"]
+            graph[u_node][v_node]["link_carried_calls"][call.id] = call
         return None
-
-    def _block_service(
-        self,
-        bandwidth: float,
-        security: int
-    ) -> None:
-        """
-        阻止服务请求
-        参数: 带宽需求, 安全需求
-        """
-        # 实现服务阻止逻辑 (如记录日志, 通知等)
-        pass
 
     def remove(
         self, 
         event: Event, 
         topo_gen: TopoGen, 
         tfk_gen: CallsGen, 
-        **kwargs
-        ):
-        pass
+    ):
+        call = event.event
+        graph = topo_gen.G
+        logging.debug(f"===== REMOVE SERVICE {call.id} =====")
+        # 拓扑资源释放
+        for u_node, v_node in zip(call.path[:-1], call.path[1:]):
+            logging.debug(f"Current: link {u_node}-{v_node} has bandwidth: {graph[u_node][v_node]["link_available_bandwidth"]}"
+                          f", weight: {graph[u_node][v_node]["link_weight"]}.")
+            graph[u_node][v_node]["link_available_bandwidth"] += call.rate
+            graph[u_node][v_node]["link_weight"] = 1 / graph[u_node][v_node]["link_available_bandwidth"]
+            graph[u_node][v_node]["link_carried_calls"].pop(call.id)
+            logging.debug(f"After release: link {u_node}-{v_node} has bandwidth: {graph[u_node][v_node]["link_available_bandwidth"]}"
+                          f", weight: {graph[u_node][v_node]["link_weight"]}.")
