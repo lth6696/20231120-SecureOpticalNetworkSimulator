@@ -71,7 +71,10 @@ if __name__ == '__main__':
     configer = utl.config.Config().read(config_file)
     # 开始仿真
     if input("Do you want to start simulation?[Y/n]") == "Y":
-        simulator(configer)
+        res = simulator(configer)
+        prefix = [0.4, 10000, 20, 1]
+        formatted = [f"{num:8.3f}" for num in prefix+res]
+        print(", ".join(formatted))
     elif input("Do you want to show results?[Y/n]") == "Y":
         a = []
         for _ in range(int(configer["result"]["iter_round"])):

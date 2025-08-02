@@ -18,6 +18,7 @@ class MeanList:
     def get(self):
         return np.mean(self.real_time_list)
 
+
 class MultiMeanList:
     def __init__(self, num: int):
         self.real_time_list = [[] for _ in range(num)]
@@ -29,7 +30,7 @@ class MultiMeanList:
         mean_for_all_list = np.mean([value for _list in self.real_time_list for value in _list])
         mean_for_each_list = [np.mean(_list) for _list in self.real_time_list]
 
-        return mean_for_all_list, mean_for_each_list
+        return mean_for_all_list, *mean_for_each_list
 
 
 class Statistic:
@@ -40,8 +41,8 @@ class Statistic:
         self.num_carried_calls = 0              # 成功路由业务总数
         self.num_blocked_calls = 0              # 阻塞业务总数
 
-        self.success_rate = MeanList()          # 业务成功率
-        self.block_rate = MeanList()            # 业务阻塞率
+        self.success_rate = []          # 业务成功率
+        self.block_rate = []            # 业务阻塞率
 
         self.mean_hop = 0.0                     # 平均路径跳数
 
@@ -53,28 +54,34 @@ class Statistic:
 
         self.mean_security_deviation = MultiMeanList(3)     # 平均值 - 路径安全性与业务需求的偏差值
         self.mean_exposure_ratio = MultiMeanList(3)         # 平均值 - 路径安全风险暴露比率
+        self.overused_bandwidth = 0             # 被超额使用的带宽
 
         self.content_displayable_results = [
-            "success_rate",
             "block_rate",
             "mean_hop",
-            "mean_link_utilization"
+            "mean_link_utilization",
+            "overused_bandwidth",
+            "mean_security_deviation",
+            "mean_exposure_ratio"
         ]
 
     def snapshot(self, event: Event, topo_gen: TopoGen, tfk_gen: CallsGen):
         calls = tfk_gen.calls
         G = topo_gen.G
 
-        self.time_stamp.append(event.time)
+        if event.type == "simEnd":
+            self._update_block_rate(tfk_gen)
+            self._update_overused_bw(topo_gen, tfk_gen)
+        else:
+            self.time_stamp.append(event.time)
 
-        # 基础网络参数
-        self._update_num_calls(calls, event)
-        self._update_block_rate()
-        self._update_hop(calls)
-        self._update_link_utilization(G)
+            # 基础网络参数
+            self._update_num_calls(calls, event)
+            self._update_hop(calls)
+            self._update_link_utilization(G)
 
-        # 自定义性能参数
-        self._update_security(G, event, tfk_gen.cfg_call_security[-1], topo_gen.cfg_link_security[-1])
+            # 自定义性能参数
+            self._update_security(G, event, tfk_gen.cfg_call_security[-1], topo_gen.cfg_link_security[-1])
 
     def show(self):
         results = []
@@ -91,6 +98,12 @@ class Statistic:
         for attr in self.content_displayable_results:
             if isinstance(getattr(self, attr), MeanList):
                 results.append(getattr(self, attr).get())
+            elif isinstance(getattr(self, attr), MultiMeanList):
+                data = getattr(self, attr).get()
+                for x in data:
+                    results.append(x)
+            elif isinstance(getattr(self, attr), list):
+                results = results + getattr(self, attr)
             else:
                 results.append(getattr(self, attr))
         return results
@@ -136,11 +149,19 @@ class Statistic:
 
         logging.debug(f"The number of blocked calls {self.num_blocked_calls} + carried calls {self.num_carried_calls} -> total calls {self.num_total_calls}")
 
-    def _update_block_rate(self):
+    def _update_block_rate(self, tfk_gen: CallsGen):
         if not self.num_total_calls:
             return
-        self.success_rate.add(self.num_carried_calls / self.num_total_calls * 100)
-        self.block_rate.add(self.num_blocked_calls / self.num_total_calls * 100)
+        # self.success_rate.add(self.num_carried_calls / self.num_total_calls * 100)
+        self.block_rate = [0 for _ in range(tfk_gen.cfg_call_security[-1]+1)]
+        self.success_rate = [0 for _ in range(tfk_gen.cfg_call_security[-1] + 1)]
+        for call in tfk_gen.calls:
+            if not call.is_routed:
+                self.block_rate[call.security] += 1
+            else:
+                self.success_rate[call.security] += 1
+        self.block_rate = [sum(self.block_rate) / self.num_total_calls * 100] + [x / self.num_total_calls * 100 for x in self.block_rate]
+        self.success_rate = [sum(self.success_rate) / self.num_total_calls * 100] + [x / self.num_total_calls * 100 for x in self.success_rate]
 
     def _update_hop(self, calls: list):
         hops = []
@@ -163,6 +184,15 @@ class Statistic:
         if 100 < self.mean_link_utilization < 0:
             raise Exception("The value of the average of link utilization {} is invalidation."
                             .format(self.mean_link_utilization))
+
+    def _update_overused_bw(self, topo_gen: TopoGen, tfk_gen: CallsGen):
+        for call in tfk_gen.calls:
+            if not call.is_routed:
+                continue
+            for u_node, v_node in zip(call.path[:-1], call.path[1:]):
+                # 若链路加密，但业务不需要安全性，则视为超用
+                if topo_gen.G[u_node][v_node]["link_security"] == 1 and call.security == 0:
+                    self.overused_bandwidth += call.rate
 
     def _update_security(self, G: nx.Graph, event: Event, num_req_security: int, num_link_security: int):
         # 更新安全性偏差与不同业务的暴露率

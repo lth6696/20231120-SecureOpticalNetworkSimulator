@@ -1,6 +1,7 @@
 import algorithm
 import network
 import result
+import utl
 
 import logging
 
@@ -29,6 +30,9 @@ class ControlPlane:
             elif event.type == "eventDeparture":
                 self.algorithm.remove(event, topo_gen, tfk_gen)
             statistic.snapshot(event, topo_gen, tfk_gen)
+        # 发送仿真结束事件
+        evt_end = utl.event.Event(99999999, "simEnd", 99999999, None)
+        statistic.snapshot(evt_end, topo_gen, tfk_gen)
 
     def _set_algorithm(self, name: str):
         # 实例化算法
