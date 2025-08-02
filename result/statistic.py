@@ -1,12 +1,11 @@
 import logging
-
 import pandas as pd
-
-from utl.event import Event
-
 import networkx as nx
 import numpy as np
 import matplotlib.pyplot as plt
+
+from utl.event import Event
+from network.generator import TopoGen, CallsGen
 
 
 class MeanList:
@@ -18,6 +17,19 @@ class MeanList:
 
     def get(self):
         return np.mean(self.real_time_list)
+
+class MultiMeanList:
+    def __init__(self, num: int):
+        self.real_time_list = [[] for _ in range(num)]
+
+    def add(self, index: int, value: any):
+        self.real_time_list[index].append(value)
+
+    def get(self):
+        mean_for_all_list = np.mean([value for _list in self.real_time_list for value in _list])
+        mean_for_each_list = [np.mean(_list) for _list in self.real_time_list]
+
+        return mean_for_all_list, mean_for_each_list
 
 
 class Statistic:
@@ -39,6 +51,9 @@ class Statistic:
 
         self.mean_link_utilization = 0.0        # 平均链路利用率
 
+        self.mean_security_deviation = MultiMeanList(3)     # 平均值 - 路径安全性与业务需求的偏差值
+        self.mean_exposure_ratio = MultiMeanList(3)         # 平均值 - 路径安全风险暴露比率
+
         self.content_displayable_results = [
             "success_rate",
             "block_rate",
@@ -46,12 +61,20 @@ class Statistic:
             "mean_link_utilization"
         ]
 
-    def snapshot(self, event: Event, G: nx.DiGraph, calls: list):
+    def snapshot(self, event: Event, topo_gen: TopoGen, tfk_gen: CallsGen):
+        calls = tfk_gen.calls
+        G = topo_gen.G
+
         self.time_stamp.append(event.time)
+
+        # 基础网络参数
         self._update_num_calls(calls, event)
         self._update_block_rate()
         self._update_hop(calls)
         self._update_link_utilization(G)
+
+        # 自定义性能参数
+        self._update_security(G, event, tfk_gen.cfg_call_security[-1], topo_gen.cfg_link_security[-1])
 
     def show(self):
         results = []
@@ -140,3 +163,31 @@ class Statistic:
         if 100 < self.mean_link_utilization < 0:
             raise Exception("The value of the average of link utilization {} is invalidation."
                             .format(self.mean_link_utilization))
+
+    def _update_security(self, G: nx.Graph, event: Event, num_req_security: int, num_link_security: int):
+        # 更新安全性偏差与不同业务的暴露率
+        call = event.event
+        if event.type == "eventArrive":
+            # 1 安全偏差 \sqrt{\frac{\sum_{(i,j)\in p}{(sec_{req}-sec_{(i,j)})^2}}{|p|}}
+            if call.path:
+                logging.debug(f"===== STATISTIC SEC INFO =====")
+                div_value = 0.0
+                for (u, v) in zip(call.path[:-1], call.path[1:]):
+                    div_value += (G[u][v]['link_security'] - (num_link_security * call.security / num_req_security)) ** 2
+                    logging.debug(f"Service {call.id} has security: {call.security}, link {u}-{v} sec: {G[u][v]['link_security']}")
+                div_value = (div_value / (len(call.path) - 1)) ** 0.5
+                self.mean_security_deviation.add(call.security, div_value)
+                logging.debug(f"Service {call.id} has security deviation {div_value}.")
+
+                # 2 暴露率 \frac{\sum_{(i,j)\in p}{dist_{insec}(i,j)}}{\sum_{(i,j)\in p}{dist(i,j)}}
+                expo_value = [0.0, 0.0]
+                for (u, v) in zip(call.path[:-1], call.path[1:]):
+                    distance = ((G.nodes[u]["Latitude"] - G.nodes[v]["Latitude"]) ** 2 +
+                                (G.nodes[u]["Longitude"] - G.nodes[v]["Longitude"]) ** 2) ** 0.5
+                    if G[u][v]["link_security"] == 0:
+                        expo_value[0] += distance   # 记录非安全路径长度
+                    expo_value[1] += distance       # 记录总路径长度
+                    logging.debug(f"Service {call.id} through link {u}-{v} with {G[u][v]["link_security"]}, distance {distance}, "
+                                  f"risk link {expo_value[0]}, total link {expo_value[1]}.")
+                self.mean_exposure_ratio.add(call.security, expo_value[0] / expo_value[1] * 100)
+                logging.debug(f"Service {call.id} has exposure ratio {expo_value[0] / expo_value[1] * 100}.")

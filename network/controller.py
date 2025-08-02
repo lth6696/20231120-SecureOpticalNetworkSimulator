@@ -28,7 +28,7 @@ class ControlPlane:
                 self.algorithm.route(event, topo_gen, tfk_gen, **kargs)
             elif event.type == "eventDeparture":
                 self.algorithm.remove(event, topo_gen, tfk_gen)
-            statistic.snapshot(event, topo_gen.G, tfk_gen.calls)
+            statistic.snapshot(event, topo_gen, tfk_gen)
 
     def _set_algorithm(self, name: str):
         # 实例化算法
@@ -36,6 +36,8 @@ class ControlPlane:
             self.algorithm = algorithm.benchmark.Benchmark()
         elif name.lower() == "sasp":
             self.algorithm = algorithm.pson_sasp.SASP()
+        elif name.lower() == "mer":
+            self.algorithm = algorithm.pson_mer.MER()
         # elif name.lower() == "spf":
         #     self.algorithm = algorithm.pson_spf.SPF()
         else:

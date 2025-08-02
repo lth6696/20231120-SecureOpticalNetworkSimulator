@@ -56,6 +56,8 @@ def simulator(configer: configparser.ConfigParser):
     logging.info("Start the control plane.".format(__file__, __name__))
     controller = network.controller.ControlPlane()
     controller.run(scheduler, topo_gen, tfc_gen, res, **algo_set)
+    res.plot_real_time_carried_service()
+    res.plot_real_time_blocked_service()
     res.plot_real_time_link_utilization()
     logging.info(f"Done.")
     return res.get()

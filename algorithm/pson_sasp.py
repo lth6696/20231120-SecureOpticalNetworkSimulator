@@ -64,6 +64,7 @@ class SASP:
             return True
         else:
             # 第7行: 阻止服务
+            logging.debug(f"Service {call.id} with security {call.security} is blocked.")
             return False
 
     # 以下为Algorithm 1中引用的子算法接口定义
@@ -235,8 +236,18 @@ class SASP:
             div_value += G[u][v]['link_security'] - (num_link_security * req_security / num_req_security)
         div_value = 1 - np.exp(- div_value / len(path))
 
+        """
+        div_value = []
+        for (u, v) in path:
+            div_value.append(G[u][v]['link_security'] - (num_link_security * req_security / num_req_security))
+            # div_value += np.abs(G[u][v]['link_security'] - (num_link_security * req_security / num_req_security))
+        neg_or_pos = min(div_value) / np.abs(min(div_value)) if min(div_value) != 0 else 1
+        div_value = 1 - np.exp(- np.sum([np.abs(x) for x in div_value]) / len(path) * neg_or_pos)
+
+        """
+
         # 2. 路径长度计算 Utl(p) = 1-e^{-p}
-        utl_value = 1 - np.exp(1-len(path))
+        utl_value = 1 - np.exp(-0.5*len(path))
 
         logging.debug(f"Socre of sec deviation: {div_value}, hop: {utl_value}.")
 
@@ -257,21 +268,25 @@ class SASP:
         sec_ratio = sec_bdw / tot_bdw
 
         # 2 计算非超额使用业务比率
-        exc_ratio = []
+        norm_ratio = []
         for (u, v) in G.edges:
             excess_call_num = 0
+            norm_call_num = 0
             if len(G[u][v]["link_carried_calls"]) == 0:
-                exc_ratio.append(1)
+                norm_ratio.append(1)
                 continue
             for call_id in G[u][v]["link_carried_calls"]:
+                # 若业务不存在安全需求但使用了安全链路，是为超额
                 if G[u][v]["link_carried_calls"][call_id].security == 0 and G[u][v]["link_security"] == 1:
                     excess_call_num += 1
-            exc_ratio.append(excess_call_num / len(G[u][v]["link_carried_calls"]))
-        exc_ratio = np.mean(exc_ratio)
+                else:
+                    norm_call_num += 1
+            norm_ratio.append(norm_call_num / len(G[u][v]["link_carried_calls"]))
+        norm_ratio = np.mean(norm_ratio)
 
         # 3 计算超额限度
-        overflow_value = (0.5*sec_ratio + 0.5*exc_ratio) ** 2
-        logging.debug(f"The overflow of sec_ratio: {sec_ratio}, non_exc_ratio: {exc_ratio}.")
+        overflow_value = (0.5*sec_ratio + 0.5*norm_ratio) ** 3
+        logging.debug(f"The overflow of sec_ratio: {sec_ratio}, non_exc_ratio: {norm_ratio}.")
         return overflow_value
 
     def __has_sufficient_bandwidth(
