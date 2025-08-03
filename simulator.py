@@ -72,14 +72,16 @@ if __name__ == '__main__':
     # 开始仿真
     if input("Do you want to start simulation?[Y/n]") == "Y":
         res = simulator(configer)
-        prefix = [0.4, 10000, 20, 1]
+        prefix = [0.4, int(configer["call"]["call_number"]), int(configer["call"]["load"]), 1]
         formatted = [f"{num:8.3f}" for num in prefix+res]
         print(", ".join(formatted))
     elif input("Do you want to simulate multi rounds?[Y/n]") == "Y":
         for iter_round in range(int(configer["result"]["iter_round"])):
             res = simulator(configer)
-            prefix = [0.4, 10000, 20, iter_round+1]
+            prefix = [0.4, int(configer["call"]["call_number"]), int(configer["events"]["load"]), iter_round+1]
             formatted = [f"{num:8.3f}" for num in prefix + res]
             print(", ".join(formatted))
+    elif input("Do you want to show results?[Y/n]") == "Y":
+        result.curve.PlotCurve().plot_block_rate()
     else:
         sys.exit()

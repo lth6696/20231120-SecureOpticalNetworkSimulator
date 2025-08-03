@@ -1,4 +1,6 @@
 import matplotlib.pyplot as plt
+import pandas as pd
+import seaborn as sns
 
 
 def style(width, height, fontsize=8):
@@ -56,4 +58,13 @@ class PlotCurve:
         plt.tight_layout()
         if legend:
             plt.legend(legend, ncol=2)
+        plt.show()
+
+    def plot_block_rate(self):
+        data_file = "./data.csv"
+        data = pd.read_csv(data_file)
+
+        sns.lineplot(data=data, x="load", y="exposure ratio(t)", hue="algorithm")
+        # plt.yticks([(x + 1) * 0.1 for x in range(4)])
+        # plt.xticks([(x + 1) * 20 for x in range(3)])
         plt.show()
