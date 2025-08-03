@@ -56,9 +56,9 @@ def simulator(configer: configparser.ConfigParser):
     logging.info("Start the control plane.".format(__file__, __name__))
     controller = network.controller.ControlPlane()
     controller.run(scheduler, topo_gen, tfc_gen, res, **algo_set)
-    res.plot_real_time_carried_service()
-    res.plot_real_time_blocked_service()
-    res.plot_real_time_link_utilization()
+    # res.plot_real_time_carried_service()
+    # res.plot_real_time_blocked_service()
+    # res.plot_real_time_link_utilization()
     logging.info(f"Done.")
     return res.get()
 
@@ -76,28 +76,7 @@ if __name__ == '__main__':
         formatted = [f"{num:8.3f}" for num in prefix+res]
         print(", ".join(formatted))
     elif input("Do you want to show results?[Y/n]") == "Y":
-        a = []
-        for _ in range(int(configer["result"]["iter_round"])):
+        for iter in range(int(configer["result"]["iter_round"])):
             res = simulator(configer)
-            a.append(res[-1])
-        confidence_level = 0.99
-        b = st.t.interval(confidence_level, df=len(a)-1, loc=np.mean(a), scale=st.sem(a))
-        print(np.mean(a), b)
-
-        # if not os.path.exists(ResultFile):
-        #     raise Exception("File does not exist.")
-        # data = pd.read_excel(ResultFile)
-        # title = {
-        #     5: "BR (%)",
-        #     6: "RT",
-        #     7: "PAH (%)"
-        # }
-        # col = 7
-        # x = [5, 10, 15, 20, 25]
-        # y = [list(data.iloc[i*len(x): len(x)*(1+i), col]) for i in [0, 1, 2, 3, 4]]
-        # legend = ["Benchmark", "PRACA k=1", "PRACA k=2", "PRACA k=3", "PRACA k=4"]
-        # # legend = ["Benchmark", "PRACA-degree", "PRACA-service", "PRACA-random"]
-        # pc = result.curve.PlotCurve()
-        # pc.plotMultiRealTime(x, *y, legend=legend, label=["the number of attacks", title[col]])
     else:
         sys.exit()
