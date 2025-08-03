@@ -75,8 +75,11 @@ if __name__ == '__main__':
         prefix = [0.4, 10000, 20, 1]
         formatted = [f"{num:8.3f}" for num in prefix+res]
         print(", ".join(formatted))
-    elif input("Do you want to show results?[Y/n]") == "Y":
-        for iter in range(int(configer["result"]["iter_round"])):
+    elif input("Do you want to simulate multi rounds?[Y/n]") == "Y":
+        for iter_round in range(int(configer["result"]["iter_round"])):
             res = simulator(configer)
+            prefix = [0.4, 10000, 20, iter_round+1]
+            formatted = [f"{num:8.3f}" for num in prefix + res]
+            print(", ".join(formatted))
     else:
         sys.exit()
