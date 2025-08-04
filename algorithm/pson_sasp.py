@@ -45,11 +45,16 @@ class SASP:
             for (u_node, v_node) in graph.edges:
                 if prime_topo.has_edge(u_node, v_node):
                     graph[u_node][v_node]["link_security"] = 1
+                    graph[v_node][u_node]["link_security"] = 1
                     # prime_topo[u_node][v_node]["link_security"] = 1
                     logging.debug(f"Link {u_node} - {v_node} is set security.")
                 else:
                     graph[u_node][v_node]["link_security"] = 0
+                    graph[v_node][u_node]["link_security"] = 0
                     logging.debug(f"Link {u_node} - {v_node} is set normal.")
+            for u, v, attrs in graph.edges(data=True):
+                attr_str = ", ".join([f"{k}={v}" for k, v in attrs.items()])
+                logging.debug(f"Edge: ({u} -- {v}) | Attributes: {attr_str}")
             self.is_subgraph = True
 
         # 第3行: 路由服务 (Algorithm 3 或 4)
@@ -232,9 +237,13 @@ class SASP:
         path = list(zip(path[:-1], path[1:]))
         # 1. 安全偏差计算 Div(r,p) = [∑(l∈p)(l - L*r/RS)]
         div_value = 0.0
+        # print(f"====== req_sec = {req_security} ==========")
         for (u, v) in path:
             div_value += G[u][v]['link_security'] - (num_link_security * req_security / num_req_security)
+            # print(f"G[{u}][{v}][link_security] = {G[u][v]['link_security']}")
+            # print(f"{G[u][v]['link_security']} - ({num_link_security} * {req_security} / {num_req_security}) = {div_value}")
         div_value = 1 - np.exp(- div_value / len(path))
+        # print(div_value)
 
         """
         div_value = []
@@ -316,13 +325,13 @@ class SASP:
         for u_node, v_node in zip(path[:-1], path[1:]):
             if graph[u_node][v_node]["link_available_bandwidth"] < call.rate:
                 logging.error(f"There are not enough bandwidth, check the path validity.")
-                logging.error(f"Service path: {path}, link: {u_node}-{v_node}, link available bandwidth: {graph[u_node][v_node]["link_available_bandwidth"]}, req bandwidth: {req_bandwidth}")
+                logging.error(f"Service path: {path}, link: {u_node}-{v_node}, link available bandwidth: {graph[u_node][v_node]["link_available_bandwidth"]}, req bandwidth: {call.rate}")
         # 在路径所有边上预留指定带宽
         call.path = path
         call.is_routed = True
         for u_node, v_node in zip(path[:-1], path[1:]):
             graph[u_node][v_node]["link_available_bandwidth"] -= call.rate
-            graph[u_node][v_node]["link_weight"] = 1 / graph[u_node][v_node]["link_available_bandwidth"]
+            graph[u_node][v_node]["link_weight"] = 1 / graph[u_node][v_node]["link_available_bandwidth"] if graph[u_node][v_node]["link_available_bandwidth"] > 0 else 1e9
             graph[u_node][v_node]["link_carried_calls"][call.id] = call
         return None
 

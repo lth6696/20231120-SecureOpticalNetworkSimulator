@@ -36,8 +36,8 @@ class ControlPlane:
 
     def _set_algorithm(self, name: str):
         # 实例化算法
-        if name.lower() == "benchmark":
-            self.algorithm = algorithm.benchmark.Benchmark()
+        if name.lower() == "mert":
+            self.algorithm = algorithm.pson_mer_subtopo.MER()
         elif name.lower() == "sasp":
             self.algorithm = algorithm.pson_sasp.SASP()
         elif name.lower() == "mer":

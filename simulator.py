@@ -72,7 +72,7 @@ if __name__ == '__main__':
     # 开始仿真
     if input("Do you want to start simulation?[Y/n]") == "Y":
         res = simulator(configer)
-        prefix = [0.4, int(configer["call"]["call_number"]), int(configer["call"]["load"]), 1]
+        prefix = [0.4, int(configer["call"]["call_number"]), int(configer["events"]["load"]), 1]
         formatted = [f"{num:8.3f}" for num in prefix+res]
         print(", ".join(formatted))
     elif input("Do you want to simulate multi rounds?[Y/n]") == "Y":
