@@ -294,7 +294,7 @@ class SASP:
         norm_ratio = np.mean(norm_ratio)
 
         # 3 计算超额限度
-        overflow_value = (0.5*sec_ratio + 0.5*norm_ratio) ** 1
+        overflow_value = (0.5*sec_ratio + 0.5*norm_ratio) ** 2
         logging.debug(f"The overflow of sec_ratio: {sec_ratio}, non_exc_ratio: {norm_ratio}.")
         return overflow_value
 
