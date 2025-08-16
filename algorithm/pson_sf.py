@@ -71,9 +71,12 @@ class SF:
 
             if sum_link_sec == 0:
                 available_paths.append((0, path))
+                logging.debug(f"Feasible.")
             elif sum_link_sec == len(path) - 1:
                 available_paths.append((1, path))
+                logging.debug(f"Feasible.")
             else:
+                logging.debug(f"Infeasible.")
                 continue
 
         # 检查可用路径集
@@ -82,11 +85,13 @@ class SF:
             logging.debug(f"The available paths: {available_paths}")
         else:
             logging.warning(f"No available paths.")
+            return False
 
         # 步骤2：检查业务需求
         if 0 > call.security > tfk_gen.cfg_call_security:
             logging.warning(f"Unknown security requirement: {call.security}")
 
+        logging.debug(f"Call {call.id} has sec demand {call.security}.")
         if call.security == 0:
             # 业务不存在安全需求, 保证0%加密
             path_sec, path = available_paths.pop(0)
@@ -129,7 +134,7 @@ class SF:
         call.is_routed = True
         for u_node, v_node in zip(path[:-1], path[1:]):
             graph[u_node][v_node]["link_available_bandwidth"] -= call.rate
-            graph[u_node][v_node]["link_weight"] = 1 / graph[u_node][v_node]["link_available_bandwidth"]
+            graph[u_node][v_node]["link_weight"] = 1 / graph[u_node][v_node]["link_available_bandwidth"] if graph[u_node][v_node]["link_available_bandwidth"] > 0 else 999
             graph[u_node][v_node]["link_carried_calls"][call.id] = call
         return None
 
