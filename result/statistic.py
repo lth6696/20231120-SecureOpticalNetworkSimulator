@@ -7,7 +7,6 @@ import matplotlib.pyplot as plt
 from utl.event import Event
 from network.generator import TopoGen, CallsGen
 
-# todo change the way of calculate sec deviation
 class MeanList:
     def __init__(self):
         self.real_time_list = []
@@ -215,8 +214,9 @@ class Statistic:
                 logging.debug(f"===== STATISTIC SEC INFO =====")
                 div_value = 0.0
                 for (u, v) in zip(call.path[:-1], call.path[1:]):
-                    div_value += (G[u][v]['link_security'] - (
-                            num_link_security * call.security / num_req_security)) ** 2
+                    # div_value += (G[u][v]['link_security'] - (
+                    #         num_link_security * call.security / num_req_security)) ** 2
+                    div_value += (G[u][v]['link_security'] - np.ceil(call.security/10)) ** 2
                     logging.debug(
                         f"Service {call.id} has security: {call.security}, link {u}-{v} sec: {G[u][v]['link_security']}")
                 div_value = (div_value / (len(call.path) - 1)) ** 0.5

@@ -74,13 +74,13 @@ if __name__ == '__main__':
         res = simulator(configer)
         prefix = [0.4, int(configer["call"]["call_number"]), int(configer["events"]["load"]), 1]
         formatted = [f"{num:8.3f}" for num in prefix+res]
-        print(f"6N8L,    {configer["algorithm"]["algo_name"]}," + ", ".join(formatted))
+        print(f"NSFNET,    {configer["algorithm"]["algo_name"]}," + ", ".join(formatted))
     elif input("Do you want to simulate multi rounds?[Y/n]") == "Y":
         for iter_round in range(int(configer["result"]["iter_round"])):
             res = simulator(configer)
             prefix = [0.4, int(configer["call"]["call_number"]), int(configer["events"]["load"]), iter_round+1]
             formatted = [f"{num:8.3f}" for num in prefix + res]
-            print(", ".join(formatted))
+            print(f"NSFNET,    {configer["algorithm"]["algo_name"]}," + ", ".join(formatted))
     elif input("Do you want to show results?[Y/n]") == "Y":
         result.curve.PlotCurve().plot_block_rate()
     else:

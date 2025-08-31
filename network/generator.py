@@ -86,7 +86,7 @@ class TopoGen:
             logging.error("No topology file path was provided.")
             raise ValueError("No topology file path was provided.")
 
-    def set(self, _type: str, is_show: bool = False, **kwargs):
+    def set(self, _type: str, is_show: bool = True, **kwargs):
         # 1 设置链路属性
         if _type == "link":
             if "link_bandwidth" in kwargs.keys():
@@ -124,9 +124,15 @@ class TopoGen:
             pos = {node: (self.G.nodes[node]["Longitude"], self.G.nodes[node]["Latitude"]) for node in self.G.nodes}
             plt.rcParams['figure.figsize'] = (8.4 * 0.39370, 4.8 * 0.39370)
             plt.rcParams['figure.dpi'] = 300
-            nx.draw(self.G, pos, width=0.5, linewidths=0.5, node_size=30, node_color="#0070C0", edge_color="k")
+            edge_color = []
+            for u, v in self.G.edges:
+                if self.G[u][v]["link_security"] == 1:
+                    edge_color.append("r")
+                else:
+                    edge_color.append("k")
+            nx.draw(self.G, pos, width=0.5, linewidths=0.5, node_size=30, node_color="#0070C0", edge_color=edge_color)
             plt.show()
-            sys.exit()
+            # sys.exit()
 
     def _log_topology_info(self):
         # 记录节点信息
