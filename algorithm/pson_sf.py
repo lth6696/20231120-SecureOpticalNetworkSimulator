@@ -1,6 +1,7 @@
 import logging
 import networkx as nx
 import numpy as np
+import matplotlib.pyplot as plt
 
 from utl.event import Event
 from utl.call import Call
@@ -17,7 +18,8 @@ class SF:
         self.logger = logging.getLogger(__name__)
         self.name = "Security First Service Provision"
 
-        self.is_subgraph = False
+        self.is_subgraph = True
+        self.is_show = True
 
     def route(
             self,
@@ -57,7 +59,21 @@ class SF:
             for u, v, attrs in G.edges(data=True):
                 attr_str = ", ".join([f"{k}={v}" for k, v in attrs.items()])
                 logging.debug(f"Edge: ({u} -- {v}) | Attributes: {attr_str}")
-            self.is_subgraph = True
+            self.is_subgraph = False
+
+        if self.is_show:
+            pos = {node: (G.nodes[node]["Longitude"], G.nodes[node]["Latitude"]) for node in G.nodes}
+            plt.rcParams['figure.figsize'] = (8.4 * 0.39370, 4.8 * 0.39370)
+            plt.rcParams['figure.dpi'] = 300
+            edge_color = []
+            for u, v in G.edges:
+                if G[u][v]["link_security"] == 1:
+                    edge_color.append("r")
+                else:
+                    edge_color.append("k")
+            nx.draw(G, pos, width=0.5, linewidths=0.5, node_size=30, node_color="#0070C0", edge_color=edge_color)
+            plt.show()
+            self.is_show = False
 
         logging.debug(f"===== ROUTING {call.id} =====")
         # 步骤1: 搜索所有简单路径

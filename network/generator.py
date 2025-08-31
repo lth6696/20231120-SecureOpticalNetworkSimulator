@@ -86,7 +86,7 @@ class TopoGen:
             logging.error("No topology file path was provided.")
             raise ValueError("No topology file path was provided.")
 
-    def set(self, _type: str, is_show: bool = True, **kwargs):
+    def set(self, _type: str, is_show: bool = False, **kwargs):
         # 1 设置链路属性
         if _type == "link":
             if "link_bandwidth" in kwargs.keys():

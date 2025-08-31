@@ -7,6 +7,7 @@ import matplotlib.pyplot as plt
 from utl.event import Event
 from network.generator import TopoGen, CallsGen
 
+
 class MeanList:
     def __init__(self):
         self.real_time_list = []
@@ -155,18 +156,23 @@ class Statistic:
     def _update_block_rate(self, tfk_gen: CallsGen):
         if not self.num_total_calls:
             return
-        # self.success_rate.add(self.num_carried_calls / self.num_total_calls * 100)
-        self.block_rate = [0 for _ in range(tfk_gen.cfg_call_security[-1] + 1)]
-        self.success_rate = [0 for _ in range(tfk_gen.cfg_call_security[-1] + 1)]
+        # 1.记录各个类型业务数量
+        num_differ_calls = [0] * (tfk_gen.cfg_call_security[-1] + 1)
+        num_block_calls = [0] * (tfk_gen.cfg_call_security[-1] + 1)
+        num_success_calls = [0] * (tfk_gen.cfg_call_security[-1] + 1)
+        # 2.统计各个业务阻塞情况
         for call in tfk_gen.calls:
+            num_differ_calls[call.security] += 1
             if not call.is_routed:
-                self.block_rate[call.security] += 1
+                num_block_calls[call.security] += 1
             else:
-                self.success_rate[call.security] += 1
-        self.block_rate = [sum(self.block_rate) / self.num_total_calls * 100] + [x / self.num_total_calls * 100 for x in
-                                                                                 self.block_rate]
-        self.success_rate = [sum(self.success_rate) / self.num_total_calls * 100] + [x / self.num_total_calls * 100 for
-                                                                                     x in self.success_rate]
+                num_success_calls[call.security] += 1
+        # 3.计算总阻塞率和各个类目下的阻塞率
+        self.block_rate.append(sum(num_block_calls) / self.num_total_calls * 100)
+        self.success_rate.append(sum(num_success_calls) / self.num_total_calls * 100)
+        for i in range(len(num_differ_calls)):
+            self.block_rate.append(num_block_calls[i] / num_differ_calls[i] * 100)
+            self.success_rate.append(num_success_calls[i] / num_differ_calls[i] * 100)
 
     def _update_hop(self, calls: list):
         hops = []
