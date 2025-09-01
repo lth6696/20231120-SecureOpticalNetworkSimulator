@@ -104,7 +104,11 @@ class TopoGen:
                 self.cfg_link_security = [x for x in range(int(kwargs["link_security"])+1)]
                 self.cfg_link_ratio = [float(x) for x in str(kwargs["link_ratio"]).split("|")]
                 # 依概率随机生成链路的安全性
-                path_security = random.choices(self.cfg_link_security, weights=self.cfg_link_ratio, k=len(self.G.edges))
+                # path_security = random.choices(self.cfg_link_security, weights=self.cfg_link_ratio, k=len(self.G.edges))
+                # path_security = [self.cfg_link_security[i] for i, ratio in enumerate(self.cfg_link_ratio) for _ in range(round(ratio * len(self.G.edges)))]
+                num_sec_link = round(self.cfg_link_ratio[-1] * len(self.G.edges))
+                path_security = [self.cfg_link_security[-1]] * num_sec_link + [self.cfg_link_security[0]] * (len(self.G.edges) - num_sec_link)
+                np.random.shuffle(path_security)
                 # 设置属性
                 for i, (u_node, v_node) in enumerate(self.G.edges):
                     self.G[u_node][v_node]["link_security"] = path_security[i]

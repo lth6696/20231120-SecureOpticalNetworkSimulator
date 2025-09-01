@@ -7,7 +7,7 @@ from utl.event import Event
 from utl.call import Call
 from network.generator import TopoGen, CallsGen
 
-# todo 更改成功率的基数为对应的总数
+
 class SF:
     """
     Security First Service Provision 算法实现
@@ -18,7 +18,8 @@ class SF:
         self.logger = logging.getLogger(__name__)
         self.name = "Security First Service Provision"
 
-        self.is_subgraph = True
+        # 是否开启拓扑构建，开启设置为True，否则设置为False
+        self.is_subgraph = False
         self.is_show = True
 
     def route(
@@ -27,6 +28,7 @@ class SF:
             topo_gen: TopoGen,
             tfk_gen: CallsGen,
             sec_link_ratio: float = 0.0,
+            k: int = 10,    # 限制路径数量
             **kwargs
     ):
         """
@@ -42,7 +44,7 @@ class SF:
 
         # 第2行: 构建安全拓扑 (Algorithm 2)
         if self.is_subgraph:
-            prime_topo = self._generate_secure_subtopology(G, num_sec_links=int(len(G.edges) * sec_link_ratio),
+            prime_topo = self._generate_secure_subtopology(G, num_sec_links=round(len(G.edges) * sec_link_ratio),
                                                            is_show=False)
             # 更新链路安全属性
             logging.info(f"===== SUBGRAPH GENERATE =====")
@@ -71,7 +73,7 @@ class SF:
                     edge_color.append("r")
                 else:
                     edge_color.append("k")
-            nx.draw(G, pos, width=0.5, linewidths=0.5, node_size=30, node_color="#0070C0", edge_color=edge_color)
+            nx.draw(G, pos, width=0.5, linewidths=0.5, node_size=30, node_color="#0070C0", edge_color=edge_color, with_labels=True)
             plt.show()
             self.is_show = False
 
@@ -85,7 +87,7 @@ class SF:
 
         # 滤除所有安全路径和普通路径
         available_paths = []
-        for path in k_paths:
+        for path in k_paths[:k]:
             # 检查路径带宽可用性
             link_bdw = [
                 G[u_node][v_node]["link_available_bandwidth"]
@@ -117,7 +119,8 @@ class SF:
                 available_paths.append((1, path))
                 logging.debug(f"Feasible.")
             else:
-                logging.debug(f"Infeasible.")
+                available_paths.append((0.5, path))
+                logging.debug(f"Condition Feasible.")
                 continue
 
         # 检查可用路径集
@@ -134,10 +137,15 @@ class SF:
 
         logging.debug(f"Call {call.id} has sec demand {call.security}.")
         if call.security == 0:
-            # 业务不存在安全需求, 保证0%加密
+            # 业务不存在安全需求
             path_sec, path = available_paths.pop(0)
             if path_sec == 0:
                 logging.debug(f"Path {path} is selected with the path sec {path_sec}.")
+                self._reserve_bandwidth(G, path, call)
+                return True
+            elif path_sec == 0.5 or path_sec == 1:
+                # 允许普通业务使用安全带宽，但不使用加密能力
+                logging.debug(f"Path {path} is conditional selected with the path sec {path_sec}.")
                 self._reserve_bandwidth(G, path, call)
                 return True
             else:
@@ -169,7 +177,7 @@ class SF:
         for u_node, v_node in zip(path[:-1], path[1:]):
             if graph[u_node][v_node]["link_available_bandwidth"] < call.rate:
                 logging.error(f"There are not enough bandwidth, check the path validity.")
-                logging.error(f"Service path: {path}, link: {u_node}-{v_node}, link available bandwidth: {graph[u_node][v_node]["link_available_bandwidth"]}, req bandwidth: {req_bandwidth}")
+                logging.error(f"Service path: {path}, link: {u_node}-{v_node}, link available bandwidth: {graph[u_node][v_node]["link_available_bandwidth"]}, req bandwidth: {call.rate}")
         # 在路径所有边上预留指定带宽
         call.path = path
         call.is_routed = True
@@ -263,6 +271,7 @@ class SF:
         return candidate_edges[:num_add]
 
     def __sort_edges(self, G: nx.Graph, strategy: str):
+        # print(list(nx.eulerian_circuit(G)))
         # 最小割集
         edges_min_cut = nx.minimum_edge_cut(G)
         edges_min_cut = [(u, v) for (u, v) in G.edges if (u, v) in edges_min_cut or (v, u) in edges_min_cut]
