@@ -37,7 +37,7 @@ class SF:
         输入业务存在三类：1、强安全，2、尽力而为，3、无安全
 
         对于强安全和尽力而为，要保证100%加密，否则阻塞；
-        对于无安全，要保证100%不加密，否则阻塞。
+        对于无安全，可使用安全带宽，但不加密。
         """
         call = event.event      # 业务信息，包括以下属性：call.src、call.dst、call.rate、call.security
         G = topo_gen.G          # 拓扑图
@@ -230,74 +230,21 @@ class SF:
             pass
         elif current_edges_count > num_sec_links:
             # 步骤5: 决定要剪切的边 (此处需实现具体决策逻辑)
-            E_cut = self.__decide_edges_to_cut(G, G_prime, current_edges_count - num_sec_links)
-
-            # 步骤6: 移除选定边
-            G_prime.remove_edges_from(E_cut)
+            while current_edges_count > num_sec_links:
+                odd_nodes = [node for node, deg in G_prime.degree() if deg == 1]
+                if not odd_nodes:
+                    logging.error(f"There is no odd nodes to be removed.")
+                G_prime.remove_node(odd_nodes[0])
+                current_edges_count = len(G_prime.edges())
 
         # 步骤7-9: 边数不足时添加 (伪代码第7-9行)
         elif current_edges_count < num_sec_links:
             # 步骤8: 根据Eq.12决定要添加的边 (需实现具体决策逻辑)
-            E_add = self.__decide_edges_to_add(G, G_prime, num_sec_links - current_edges_count)
+            E_add = list(set(G.edges()) - set(G_prime.edges()))
 
             # 步骤9: 添加选定边
-            for (u, v) in E_add:
+            for (u, v) in E_add[:num_sec_links - current_edges_count]:
                 G_prime.add_edge(u, v, **G[u][v])
 
         # 步骤10: 返回最终子图 (伪代码第10行)
         return G_prime
-
-    def __decide_edges_to_cut(self, G: nx.Graph, G_prime: nx.Graph, num_cut: int):
-        """
-        决定要剪切的边
-        参数: 原始图对象, 安全链路数量
-        返回: 要剪切的边集
-        """
-        # 实现内容将基于具体决策逻辑
-        candidate_edges = self.__sort_edges(G, strategy="cut")
-        # 求交集
-        candidate_edges = [(u, v) for (u, v) in candidate_edges if (u, v) in G_prime.edges]
-        return candidate_edges[:num_cut]
-
-    def __decide_edges_to_add(self, G: nx.Graph, G_prime: nx.Graph, num_add: int):
-        # 实现内容将基于具体决策逻辑
-        candidate_edges = self.__sort_edges(G, strategy="add")
-        # 去重
-        for (u, v) in G_prime.edges:
-            if (u, v) in candidate_edges:
-                candidate_edges.remove((u, v))
-            else:
-                pass
-        return candidate_edges[:num_add]
-
-    def __sort_edges(self, G: nx.Graph, strategy: str):
-        # print(list(nx.eulerian_circuit(G)))
-        # 最小割集
-        edges_min_cut = nx.minimum_edge_cut(G)
-        edges_min_cut = [(u, v) for (u, v) in G.edges if (u, v) in edges_min_cut or (v, u) in edges_min_cut]
-
-        # 最大网络半径集合
-        edges_max_dia = self.__maximum_edge_diameter(G)
-        edges_max_dia = [(u, v) for (u, v) in edges_max_dia if (u, v) not in edges_min_cut]
-
-        if strategy == "cut":
-            return edges_max_dia + edges_min_cut
-        elif strategy == "add":
-            return edges_min_cut + edges_max_dia
-
-    def __maximum_edge_diameter(self, G: nx.Graph):
-        # 节点坐标存储在字典属性中，格式：{node: (x, y)}
-        pos = {node: (G.nodes[node]["Longitude"], G.nodes[node]["Latitude"]) for node in G.nodes}
-
-        # 计算每条边的长度并排序
-        edges_with_length = []
-        for u, v in G.edges():
-            x1, y1 = pos[u]
-            x2, y2 = pos[v]
-            length = np.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2)
-            edges_with_length.append((u, v, length))
-
-        # 按长度从长到短排序
-        sorted_edges = sorted(edges_with_length, key=lambda x: x[2], reverse=True)
-        sorted_edge_list = [(u, v) for u, v, _ in sorted_edges]
-        return sorted_edge_list

@@ -18,6 +18,7 @@ class SASP:
     def __init__(self):
         self.name = "Security Aware Service Provision"
         self.is_subgraph = False
+        self.is_show = True
 
     def route(
             self,
@@ -35,11 +36,8 @@ class SASP:
         graph = topo_gen.G
 
         # 第2行: 构建安全拓扑 (Algorithm 2)
-        if sec_link_ratio == 0.0:
-            # 默认拓扑
-            pass
-        elif not self.is_subgraph:
-            prime_topo = self._generate_secure_subtopology(graph, num_sec_links=int(len(graph.edges)*sec_link_ratio), is_show=False)
+        if not self.is_subgraph:
+            prime_topo = self._generate_secure_subtopology(graph, num_sec_links=int(len(graph.edges)*sec_link_ratio))
             # 更新链路安全属性
             logging.info(f"===== SUBGRAPH GENERATE =====")
             for (u_node, v_node) in graph.edges:
@@ -56,6 +54,21 @@ class SASP:
                 attr_str = ", ".join([f"{k}={v}" for k, v in attrs.items()])
                 logging.debug(f"Edge: ({u} -- {v}) | Attributes: {attr_str}")
             self.is_subgraph = True
+
+        if self.is_show:
+            pos = {node: (graph.nodes[node]["Longitude"], graph.nodes[node]["Latitude"]) for node in graph.nodes}
+            plt.rcParams['figure.figsize'] = (8.4 * 0.39370, 4.8 * 0.39370)
+            plt.rcParams['figure.dpi'] = 300
+            edge_color = []
+            for u, v in graph.edges:
+                if graph[u][v]["link_security"] == 1:
+                    edge_color.append("r")
+                else:
+                    edge_color.append("k")
+            nx.draw(graph, pos, width=0.5, linewidths=0.5, node_size=30, node_color="#0070C0", edge_color=edge_color,
+                    with_labels=True)
+            plt.show()
+            self.is_show = False
 
         # 第3行: 路由服务 (Algorithm 3 或 4)
         logging.debug(f"===== ROUTING {call.id} =====")
@@ -77,8 +90,7 @@ class SASP:
         self,
         G: nx.Graph, 
         num_sec_links: int = -1,
-        weight: str = None,
-        is_show: bool = False
+        weight: str = None
     ) -> nx.Graph:
         """
         构建安全拓扑 (Algorithm 2)
@@ -87,97 +99,34 @@ class SASP:
         """
         # 步骤2: 生成最小生成树 (伪代码第2行)
         G_prime = nx.minimum_spanning_tree(G, weight=weight)
-        
+
         # 步骤3: 获取当前边集 (伪代码第3行)
         E = set(G_prime.edges())
         current_edges_count = len(E)
-        
+
         # 步骤4-6: 边数过多时剪枝 (伪代码第4-6行)
         if num_sec_links < 0:
             pass
         elif current_edges_count > num_sec_links:
             # 步骤5: 决定要剪切的边 (此处需实现具体决策逻辑)
-            E_cut = self.__decide_edges_to_cut(G, G_prime, current_edges_count - num_sec_links)
-            
-            # 步骤6: 移除选定边
-            G_prime.remove_edges_from(E_cut)
-        
+            while current_edges_count > num_sec_links:
+                odd_nodes = [node for node, deg in G_prime.degree() if deg == 1]
+                if not odd_nodes:
+                    logging.error(f"There is no odd nodes to be removed.")
+                G_prime.remove_node(odd_nodes[0])
+                current_edges_count = len(G_prime.edges())
+
         # 步骤7-9: 边数不足时添加 (伪代码第7-9行)
         elif current_edges_count < num_sec_links:
             # 步骤8: 根据Eq.12决定要添加的边 (需实现具体决策逻辑)
-            E_add = self.__decide_edges_to_add(G, G_prime, num_sec_links - current_edges_count)
-            
-            # 步骤9: 添加选定边
-            for (u, v) in E_add:
-                G_prime.add_edge(u, v, **G[u][v])
+            E_add = list(set(G.edges()) - set(G_prime.edges()))
 
-        if is_show:
-            self._show_topology(G_prime)
+            # 步骤9: 添加选定边
+            for (u, v) in E_add[:num_sec_links - current_edges_count]:
+                G_prime.add_edge(u, v, **G[u][v])
 
         # 步骤10: 返回最终子图 (伪代码第10行)
         return G_prime
-
-    def __decide_edges_to_cut(self, G: nx.Graph, G_prime: nx.Graph, num_cut: int):
-        """
-        决定要剪切的边
-        参数: 原始图对象, 安全链路数量
-        返回: 要剪切的边集
-        """
-        # 实现内容将基于具体决策逻辑
-        candidate_edges = self.__sort_edges(G, strategy="cut")
-        # 求交集
-        candidate_edges = [(u, v) for (u, v) in candidate_edges if (u, v) in G_prime.edges]
-        return candidate_edges[:num_cut]
-
-    def __decide_edges_to_add(self, G: nx.Graph, G_prime: nx.Graph, num_add: int):
-        # 实现内容将基于具体决策逻辑
-        candidate_edges = self.__sort_edges(G, strategy="add")
-        # 去重
-        for (u, v) in G_prime.edges:
-            if (u, v) in candidate_edges:
-                candidate_edges.remove((u, v))
-            else:
-                pass
-        return candidate_edges[:num_add]
-
-    def __sort_edges(self, G: nx.Graph, strategy: str):
-        # 最小割集
-        edges_min_cut = nx.minimum_edge_cut(G)
-        edges_min_cut = [(u, v) for (u, v) in G.edges if (u, v) in edges_min_cut or (v, u) in edges_min_cut]
-
-        # 最大网络半径集合
-        edges_max_dia = self.__maximum_edge_diameter(G)
-        edges_max_dia = [(u, v) for (u, v) in edges_max_dia if (u, v) not in edges_min_cut]
-
-        if strategy == "cut":
-            return edges_max_dia + edges_min_cut
-        elif strategy == "add":
-            return edges_min_cut + edges_max_dia
-
-    def __maximum_edge_diameter(self, G: nx.Graph):
-        # 节点坐标存储在字典属性中，格式：{node: (x, y)}
-        pos = {node: (G.nodes[node]["Longitude"], G.nodes[node]["Latitude"]) for node in G.nodes}
-
-        # 计算每条边的长度并排序
-        edges_with_length = []
-        for u, v in G.edges():
-            x1, y1 = pos[u]
-            x2, y2 = pos[v]
-            length = np.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2)
-            edges_with_length.append((u, v, length))
-
-        # 按长度从长到短排序
-        sorted_edges = sorted(edges_with_length, key=lambda x: x[2], reverse=True)
-        sorted_edge_list = [(u, v) for u, v, _ in sorted_edges]
-        return sorted_edge_list
-
-    def _show_topology(self, G: nx.Graph):
-        pos = {node: (G.nodes[node]["Longitude"], G.nodes[node]["Latitude"]) for node in G.nodes}
-        plt.rcParams['figure.figsize'] = (8.4 * 0.39370, 4.8 * 0.39370)
-        plt.rcParams['figure.dpi'] = 300
-        nx.draw(G, pos, width=0.5, linewidths=0.5, node_size=30, node_color="#0070C0", edge_color="y")
-        plt.show()
-        return None
 
     def _route_security_overflow(
             self,
@@ -294,7 +243,7 @@ class SASP:
         norm_ratio = np.mean(norm_ratio)
 
         # 3 计算超额限度
-        overflow_value = (0.5*sec_ratio + 0.5*norm_ratio) ** 2
+        overflow_value = (0.5*sec_ratio + 0.5*norm_ratio) ** 0.5
         logging.debug(f"The overflow of sec_ratio: {sec_ratio}, non_exc_ratio: {norm_ratio}.")
         return overflow_value
 
