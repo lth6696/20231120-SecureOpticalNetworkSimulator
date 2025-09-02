@@ -39,7 +39,9 @@ class ControlPlane:
         if name.lower() == "mert":
             self.algorithm = algorithm.pson_mer_subtopo.MER()
         elif name.lower() == "sasp":
-            self.algorithm = algorithm.pson_sasp.SASP()
+            self.algorithm = algorithm.pson_sasp.SASP(is_subgraph=False)
+        elif name.lower() == "sasp_t":
+            self.algorithm = algorithm.pson_sasp.SASP(is_subgraph=True)
         elif name.lower() == "mer":
             self.algorithm = algorithm.pson_mer.MER()
         elif name.lower() == "sf":

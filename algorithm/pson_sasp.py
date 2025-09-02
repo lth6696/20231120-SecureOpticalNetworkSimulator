@@ -15,10 +15,12 @@ from utl.event import Event
 
 
 class SASP:
-    def __init__(self):
+    def __init__(self, is_subgraph: bool = True):
         self.name = "Security Aware Service Provision"
-        self.is_subgraph = False
-        self.is_show = True
+
+        # 是否开启拓扑构建，开启设置为True，否则设置为False
+        self.is_subgraph = is_subgraph
+        self.is_show = False
 
     def route(
             self,
@@ -36,8 +38,8 @@ class SASP:
         graph = topo_gen.G
 
         # 第2行: 构建安全拓扑 (Algorithm 2)
-        if not self.is_subgraph:
-            prime_topo = self._generate_secure_subtopology(graph, num_sec_links=int(len(graph.edges)*sec_link_ratio))
+        if self.is_subgraph:
+            prime_topo = self._generate_secure_subtopology(graph, num_sec_links=round(len(graph.edges)*sec_link_ratio))
             # 更新链路安全属性
             logging.info(f"===== SUBGRAPH GENERATE =====")
             for (u_node, v_node) in graph.edges:
@@ -53,7 +55,7 @@ class SASP:
             for u, v, attrs in graph.edges(data=True):
                 attr_str = ", ".join([f"{k}={v}" for k, v in attrs.items()])
                 logging.debug(f"Edge: ({u} -- {v}) | Attributes: {attr_str}")
-            self.is_subgraph = True
+            self.is_subgraph = False
 
         if self.is_show:
             pos = {node: (graph.nodes[node]["Longitude"], graph.nodes[node]["Latitude"]) for node in graph.nodes}
