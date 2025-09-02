@@ -121,3 +121,50 @@ class PlotCurve:
 
         # 显示图表
         plt.show()
+
+    def plot_block_rate_1(self, width: float = 8.4 * 1.3, height: float = 6.3 * 1.3):
+        import pandas as pd
+        import numpy as np
+        import matplotlib.pyplot as plt
+        import seaborn as sns
+        from scipy import stats
+
+        # 创建DataFrame
+        data = pd.read_csv("./data.csv")
+
+        # 计算置信区间
+        def confidence_interval(data, confidence=0.95):
+            n = len(data)
+            mean = np.mean(data)
+            sem = stats.sem(data)
+            h = sem * stats.t.ppf((1 + confidence) / 2, n - 1)
+            return mean, h
+
+        # 按algorithm和load分组计算均值和置信区间
+        grouped = data.groupby(['algorithm', 'load'])['block_rate(t)'].apply(
+            lambda x: confidence_interval(x)
+        ).reset_index()
+
+        # 拆分均值和置信区间
+        grouped[['mean', 'ci']] = pd.DataFrame(grouped['block_rate(t)'].tolist(), index=grouped.index)
+        grouped.drop('block_rate(t)', axis=1, inplace=True)
+
+        # 绘制曲线
+        style(width, height)
+        sns.lineplot(data=grouped, x='load', y='mean', hue='algorithm', marker='o', linewidth=1.5)
+
+        # 添加置信区间
+        for algo in grouped['algorithm'].unique():
+            subset = grouped[grouped['algorithm'] == algo]
+            plt.fill_between(subset['load'],
+                             subset['mean'] - subset['ci'],
+                             subset['mean'] + subset['ci'],
+                             alpha=0.3)
+
+        plt.xlabel('Load')
+        plt.ylabel('Block Rate(t)')
+        # plt.title('Block Rate(t) vs Load with 95% Confidence Intervals', fontsize=14)
+        plt.legend()
+        plt.grid(color='#FAB9E1', linestyle=':', linewidth=0.5, alpha=1, zorder=0)
+        plt.tight_layout()
+        plt.show()
