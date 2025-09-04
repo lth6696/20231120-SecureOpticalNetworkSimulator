@@ -14,13 +14,13 @@ class SF:
     根据伪代码实现路径选择算法，考虑安全需求类型
     """
 
-    def __init__(self):
+    def __init__(self, is_subgraph: bool = True):
         self.logger = logging.getLogger(__name__)
         self.name = "Security First Service Provision"
 
         # 是否开启拓扑构建，开启设置为True，否则设置为False
-        self.is_subgraph = False
-        self.is_show = True
+        self.is_subgraph = is_subgraph
+        self.is_show = False
 
     def route(
             self,

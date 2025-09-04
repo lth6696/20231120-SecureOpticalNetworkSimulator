@@ -44,8 +44,10 @@ class ControlPlane:
             self.algorithm = algorithm.pson_sasp.SASP(is_subgraph=True)
         elif name.lower() == "mer":
             self.algorithm = algorithm.pson_mer.MER()
+        elif name.lower() == "sf_t":
+            self.algorithm = algorithm.pson_sf.SF(is_subgraph=True)
         elif name.lower() == "sf":
-            self.algorithm = algorithm.pson_sf.SF()
+            self.algorithm = algorithm.pson_sf.SF(is_subgraph=False)
         # elif name.lower() == "spf":
         #     self.algorithm = algorithm.pson_spf.SPF()
         else:
