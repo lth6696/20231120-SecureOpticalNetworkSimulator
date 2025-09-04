@@ -168,3 +168,55 @@ class PlotCurve:
         plt.grid(color='#FAB9E1', linestyle=':', linewidth=0.5, alpha=1, zorder=0)
         plt.tight_layout()
         plt.show()
+
+    def plot_blocking_rate_vs_load(self, width: float = 8.4 * 1.3, height: float = 6.3 * 1.3):
+        # 创建DataFrame
+        data = pd.read_csv("./data.csv")
+
+        # 按algorithm和load分组计算block_rate(t)的平均值
+        grouped_data = data.groupby(['algorithm', 'load'])['block_rate(t)'].mean().reset_index()
+
+        # 创建图表
+        style(width, height)
+
+        # 为每个algorithm绘制曲线
+        algorithms = grouped_data['algorithm'].unique()
+        for algo in algorithms:
+            algo_data = grouped_data[grouped_data['algorithm'] == algo]
+            plt.plot(algo_data['load'], algo_data['block_rate(t)'],
+                     marker='o', label=algo, linewidth=2)
+
+        plt.xlabel('Load')
+        plt.ylabel('Blocking Rate(t)')
+        # plt.title('Average Block Rate by Load and Algorithm', fontsize=14)
+        plt.legend()
+        plt.grid(color='#FAB9E1', linestyle=':', linewidth=0.5, alpha=1, zorder=0)
+
+        # 显示图表
+        plt.tight_layout()
+        plt.show()
+
+    def plot_blocking_rate_vs_load_in_error_bar(self, width: float = 8.4 * 1.3, height: float = 6.3 * 1.3):
+        # 创建DataFrame
+        data = pd.read_csv("./data.csv")
+
+        # 按算法分组并计算均值和标准差
+        algorithms = data['algorithm'].unique()
+
+        style(width, height)
+
+        for algo in algorithms:
+            algo_data = data[data['algorithm'] == algo]
+            mean_br = algo_data.groupby('load')['block_rate(t)'].mean()
+            std_br = algo_data.groupby('load')['block_rate(t)'].std()
+
+            plt.errorbar(mean_br.index, mean_br.values, yerr=std_br.values,
+                         label=algo, marker='o', capsize=1, linestyle='-',
+                         elinewidth=0.5, markersize=2.5, lw=1, capthick=0.5)
+
+        plt.xlabel('Load')
+        plt.ylabel('Blocking Rate')
+        # plt.title('Block Rate vs Load by Algorithm')
+        plt.legend()
+        plt.grid(color='#FAB9E1', linestyle=':', linewidth=0.5, alpha=1, zorder=0)
+        plt.show()

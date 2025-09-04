@@ -82,6 +82,6 @@ if __name__ == '__main__':
             formatted = [f"{num:8.3f}" for num in prefix + res]
             print(f"NSFNET,    {configer["algorithm"]["algo_name"]}," + ", ".join(formatted))
     elif input("Do you want to show results?[Y/n]") == "Y":
-        result.curve.PlotCurve().plot_block_rate_1()
+        result.curve.PlotCurve().plot_blocking_rate_vs_load_in_error_bar()
     else:
         sys.exit()
