@@ -76,11 +76,28 @@ if __name__ == '__main__':
         formatted = [f"{num:8.3f}" for num in prefix+res]
         print(f"NSFNET,    {configer["algorithm"]["algo_name"]}," + ", ".join(formatted))
     elif input("Do you want to simulate multi rounds?[Y/n]") == "Y":
-        for iter_round in range(int(configer["result"]["iter_round"])):
-            res = simulator(configer)
-            prefix = [float(configer["algorithm"]["sec_link_ratio"]), int(configer["call"]["call_number"]), int(configer["events"]["load"]), iter_round+1]
-            formatted = [f"{num:8.3f}" for num in prefix + res]
-            print(f"NSFNET,    {configer["algorithm"]["algo_name"]}," + ", ".join(formatted))
+        # for iter_round in range(int(configer["result"]["iter_round"])):
+        #     res = simulator(configer)
+        #     prefix = [float(configer["algorithm"]["sec_link_ratio"]), int(configer["call"]["call_number"]), int(configer["events"]["load"]), iter_round+1]
+        #     formatted = [f"{num:8.3f}" for num in prefix + res]
+        #     print(f"NSFNET,    {configer["algorithm"]["algo_name"]}," + ", ".join(formatted))
+
+        loads = [50+100*(i+2) for i in range(4)]
+        # 循环处理每个load值
+        for i, load_value in enumerate(loads):
+            config = configparser.ConfigParser()
+            config.read('simconfig.ini')
+            # 修改[events]节中的load值
+            config.set('events', 'load', str(load_value))
+            # 或者直接覆盖原文件（谨慎使用）
+            with open('simconfig.ini', 'w') as configfile:
+                config.write(configfile)
+            for iter_round in range(int(configer["result"]["iter_round"])):
+                res = simulator(config)
+                prefix = [float(config["algorithm"]["sec_link_ratio"]), int(config["call"]["call_number"]), int(config["events"]["load"]), iter_round+1]
+                formatted = [f"{num:8.3f}" for num in prefix + res]
+                print(f"NSFNET,    {config["algorithm"]["algo_name"]}," + ", ".join(formatted))
+
     elif input("Do you want to show results?[Y/n]") == "Y":
         result.curve.PlotCurve().plot_blocking_rate_vs_load_in_error_bar()
     else:
