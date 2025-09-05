@@ -82,7 +82,7 @@ if __name__ == '__main__':
         #     formatted = [f"{num:8.3f}" for num in prefix + res]
         #     print(f"NSFNET,    {configer["algorithm"]["algo_name"]}," + ", ".join(formatted))
 
-        loads = [50+100*(i+2) for i in range(4)]
+        loads = [50*(i+13) for i in range(4)]
         # 循环处理每个load值
         for i, load_value in enumerate(loads):
             config = configparser.ConfigParser()
