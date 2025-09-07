@@ -1,8 +1,8 @@
 import matplotlib.pyplot as plt
 import pandas as pd
-import seaborn as sns
 import numpy as np
 from scipy import interpolate
+from scipy.interpolate import UnivariateSpline  # 或使用 make_interp_spline
 
 
 def style(width, height, fontsize=11):
@@ -62,8 +62,8 @@ class PlotCurve:
             plt.legend(legend, ncol=2)
         plt.show()
 
-    def plot_block_rate(self, width: float = 8.4 * 1.3, height: float = 6.3 * 1.3):
-        data_file = "./data_lsr_br.csv"
+    def plot_blocking_rate_vs_sec_rate(self, width: float = 8.4 * 1.3, height: float = 6.3 * 1.3):
+        data_file = "./data/data_lsr_br.csv"
         data = pd.read_csv(data_file)
 
         # 数据预处理（根据图片信息调整列名和数据类型）
@@ -104,10 +104,10 @@ class PlotCurve:
                 y_smooth = f(x_smooth)
 
                 # 绘制曲线
-                plt.plot(x_smooth, y_smooth, label=algo, linewidth=1.5, alpha=0.8, zorder=100)
+                plt.plot(x_smooth, y_smooth, label=algo, linewidth=1, zorder=50)
 
                 # 可选：在原数据点位置添加标记
-                plt.scatter(x_clean, y_clean, s=15, zorder=100)
+                plt.scatter(x_clean, y_clean, marker='o', s=20, linewidths=1, edgecolors="#FFFFFF", zorder=100)
             else:
                 # 数据点不足时直接绘制散点图
                 plt.scatter(x_clean, y_clean, label=algo, s=15)
@@ -115,108 +115,222 @@ class PlotCurve:
         # 图表装饰
         plt.xlabel('Link Security Ratio')
         plt.ylabel('Blocking Rate (%)')
+        # plt.yticks([20*i for i in range(6)])
         plt.legend()
         plt.grid(color='#FAB9E1', linestyle=':', linewidth=0.5, alpha=1, zorder=0)
         plt.tight_layout()
 
         # 显示图表
-        plt.show()
-
-    def plot_block_rate_1(self, width: float = 8.4 * 1.3, height: float = 6.3 * 1.3):
-        import pandas as pd
-        import numpy as np
-        import matplotlib.pyplot as plt
-        import seaborn as sns
-        from scipy import stats
-
-        # 创建DataFrame
-        data = pd.read_csv("./data.csv")
-
-        # 计算置信区间
-        def confidence_interval(data, confidence=0.95):
-            n = len(data)
-            mean = np.mean(data)
-            sem = stats.sem(data)
-            h = sem * stats.t.ppf((1 + confidence) / 2, n - 1)
-            return mean, h
-
-        # 按algorithm和load分组计算均值和置信区间
-        grouped = data.groupby(['algorithm', 'load'])['block_rate(t)'].apply(
-            lambda x: confidence_interval(x)
-        ).reset_index()
-
-        # 拆分均值和置信区间
-        grouped[['mean', 'ci']] = pd.DataFrame(grouped['block_rate(t)'].tolist(), index=grouped.index)
-        grouped.drop('block_rate(t)', axis=1, inplace=True)
-
-        # 绘制曲线
-        style(width, height)
-        sns.lineplot(data=grouped, x='load', y='mean', hue='algorithm', marker='o', linewidth=1.5)
-
-        # 添加置信区间
-        for algo in grouped['algorithm'].unique():
-            subset = grouped[grouped['algorithm'] == algo]
-            plt.fill_between(subset['load'],
-                             subset['mean'] - subset['ci'],
-                             subset['mean'] + subset['ci'],
-                             alpha=0.3)
-
-        plt.xlabel('Load')
-        plt.ylabel('Block Rate(t)')
-        # plt.title('Block Rate(t) vs Load with 95% Confidence Intervals', fontsize=14)
-        plt.legend()
-        plt.grid(color='#FAB9E1', linestyle=':', linewidth=0.5, alpha=1, zorder=0)
-        plt.tight_layout()
         plt.show()
 
     def plot_blocking_rate_vs_load(self, width: float = 8.4 * 1.3, height: float = 6.3 * 1.3):
-        # 创建DataFrame
+        # 读取数据
         data = pd.read_csv("./data.csv")
 
-        # 按algorithm和load分组计算block_rate(t)的平均值
-        grouped_data = data.groupby(['algorithm', 'load'])['block_rate(t)'].mean().reset_index()
+        # 按算法和负载分组，计算均值和标准差
+        grouped_data = data.groupby(['algorithm', 'load'])['block_rate(t)'].agg(['mean', 'std']).reset_index()
 
         # 创建图表
-        style(width, height)
+        style(width, height)  # 假设这是自定义的样式函数
 
-        # 为每个algorithm绘制曲线
         algorithms = grouped_data['algorithm'].unique()
+
         for algo in algorithms:
             algo_data = grouped_data[grouped_data['algorithm'] == algo]
-            plt.plot(algo_data['load'], algo_data['block_rate(t)'],
-                     marker='o', label=algo, linewidth=2)
+            loads = algo_data['load']
+            means = algo_data['mean']
+            stds = algo_data['std']
+
+            # 生成平滑曲线（插值）
+            # 注意：插值需要按负载排序且无重复值
+            sorted_idx = np.argsort(loads)
+            x_sorted = loads.iloc[sorted_idx]
+            y_sorted = means.iloc[sorted_idx]
+
+            # 使用UnivariateSpline进行插值（可调整平滑参数s）
+            spline = UnivariateSpline(x_sorted, y_sorted, s=0)  # s为平滑因子，越小越贴近原始数据
+            x_smooth = np.linspace(x_sorted.min(), x_sorted.max(), 300)  # 生成300个插值点
+            y_smooth = spline(x_smooth)
+
+            # 绘制平滑曲线
+            plt.plot(x_smooth, y_smooth, label=algo, linewidth=1, zorder=80)
+
+            # 绘制误差棒（可选用errorbar或fill_between）
+            plt.errorbar(x_sorted, y_sorted, yerr=stds.iloc[sorted_idx],
+                         fmt='none',  # 不绘制数据点
+                         capsize=1, capthick=0.5,  # 误差棒端帽大小
+                         lw=1, alpha=0.5, elinewidth=0.5,  # 透明度
+                         color=plt.gca().lines[-1].get_color(), zorder=50)  # 使用与曲线相同的颜色
+
+            plt.scatter(loads, means,
+                        marker='o', s=20,
+                        linewidths=1, edgecolors="#FFFFFF",
+                        zorder=100)
 
         plt.xlabel('Load')
-        plt.ylabel('Blocking Rate(t)')
-        # plt.title('Average Block Rate by Load and Algorithm', fontsize=14)
+        plt.ylabel('Blocking Rate (%)')
+        plt.xticks([100*i for i in range(9)])
+        # plt.yticks([20*i for i in range(5)])
         plt.legend()
         plt.grid(color='#FAB9E1', linestyle=':', linewidth=0.5, alpha=1, zorder=0)
-
-        # 显示图表
         plt.tight_layout()
         plt.show()
 
-    def plot_blocking_rate_vs_load_in_error_bar(self, width: float = 8.4 * 1.3, height: float = 6.3 * 1.3):
-        # 创建DataFrame
+    def plot_utilization_vs_load_in_error_bar(self, width: float = 8.4 * 1.3, height: float = 6.3 * 1.3):
+        # 读取数据
         data = pd.read_csv("./data.csv")
 
-        # 按算法分组并计算均值和标准差
-        algorithms = data['algorithm'].unique()
+        # 按算法和负载分组，计算均值和标准差
+        grouped_data = data.groupby(['algorithm', 'load'])['link utilization'].agg(['mean', 'std']).reset_index()
 
-        style(width, height)
+        # 创建图表
+        style(width, height)  # 假设这是自定义的样式函数
+
+        algorithms = grouped_data['algorithm'].unique()
 
         for algo in algorithms:
-            algo_data = data[data['algorithm'] == algo]
-            mean_br = algo_data.groupby('load')['block_rate(t)'].mean()
-            std_br = algo_data.groupby('load')['block_rate(t)'].std()
+            algo_data = grouped_data[grouped_data['algorithm'] == algo]
+            loads = algo_data['load']
+            means = algo_data['mean']
+            stds = algo_data['std']
 
-            plt.errorbar(mean_br.index, mean_br.values, yerr=std_br.values,
-                         label=algo, marker='o', capsize=1, linestyle='-',
-                         elinewidth=0.5, markersize=2.5, lw=1, capthick=0.5)
+            # 生成平滑曲线（插值）
+            # 注意：插值需要按负载排序且无重复值
+            sorted_idx = np.argsort(loads)
+            x_sorted = loads.iloc[sorted_idx]
+            y_sorted = means.iloc[sorted_idx]
+
+            # 使用UnivariateSpline进行插值（可调整平滑参数s）
+            spline = UnivariateSpline(x_sorted, y_sorted, s=0.1)  # s为平滑因子，越小越贴近原始数据
+            x_smooth = np.linspace(x_sorted.min(), x_sorted.max(), 300)  # 生成300个插值点
+            y_smooth = spline(x_smooth)
+
+            # 绘制平滑曲线
+            plt.plot(x_smooth, y_smooth, label=algo, linewidth=1, zorder=80)
+
+            # 绘制误差棒（可选用errorbar或fill_between）
+            plt.errorbar(x_sorted, y_sorted, yerr=stds.iloc[sorted_idx],
+                         fmt='none',  # 不绘制数据点
+                         capsize=1, capthick=0.5,  # 误差棒端帽大小
+                         lw=1, alpha=0.5, elinewidth=0.5,  # 透明度
+                         color=plt.gca().lines[-1].get_color(), zorder=50)  # 使用与曲线相同的颜色
+
+            plt.scatter(loads, means,
+                        marker='o', s=20,
+                        linewidths=1, edgecolors="#FFFFFF",
+                        zorder=100)
 
         plt.xlabel('Load')
-        plt.ylabel('Blocking Rate')
-        # plt.title('Block Rate vs Load by Algorithm')
+        plt.ylabel('Link Utilization (%)')
+        plt.xticks([100 * i for i in range(9)])
+        # plt.yticks([20*i for i in range(5)])
         plt.legend()
         plt.grid(color='#FAB9E1', linestyle=':', linewidth=0.5, alpha=1, zorder=0)
+        plt.tight_layout()
+        plt.show()
+
+    def plot_deviation_vs_load_in_error_bar(self, width: float = 8.4 * 1.3, height: float = 6.3 * 1.3):
+        # 读取数据
+        data = pd.read_csv("./data.csv")
+
+        # 按算法和负载分组，计算均值和标准差
+        grouped_data = data.groupby(['algorithm', 'load'])['security deviation (2)'].agg(['mean', 'std']).reset_index()
+
+        # 创建图表
+        style(width, height)  # 假设这是自定义的样式函数
+
+        algorithms = grouped_data['algorithm'].unique()
+
+        for algo in algorithms:
+            algo_data = grouped_data[grouped_data['algorithm'] == algo]
+            loads = algo_data['load']
+            means = algo_data['mean']
+            stds = algo_data['std']
+
+            # 生成平滑曲线（插值）
+            # 注意：插值需要按负载排序且无重复值
+            sorted_idx = np.argsort(loads)
+            x_sorted = loads.iloc[sorted_idx]
+            y_sorted = means.iloc[sorted_idx]
+
+            # 使用UnivariateSpline进行插值（可调整平滑参数s）
+            spline = UnivariateSpline(x_sorted, y_sorted, s=0)  # s为平滑因子，越小越贴近原始数据
+            x_smooth = np.linspace(x_sorted.min(), x_sorted.max(), 300)  # 生成300个插值点
+            y_smooth = spline(x_smooth)
+
+            # 绘制平滑曲线
+            plt.plot(x_smooth, y_smooth, label=algo, linewidth=1, zorder=80)
+
+            # 绘制误差棒（可选用errorbar或fill_between）
+            plt.errorbar(x_sorted, y_sorted, yerr=stds.iloc[sorted_idx],
+                         fmt='none',  # 不绘制数据点
+                         capsize=1, capthick=0.5,  # 误差棒端帽大小
+                         lw=1, alpha=0.5, elinewidth=0.5,  # 透明度
+                         color=plt.gca().lines[-1].get_color(), zorder=50)  # 使用与曲线相同的颜色
+
+            plt.scatter(loads, means,
+                        marker='o', s=20,
+                        linewidths=1, edgecolors="#FFFFFF",
+                        zorder=100)
+
+        plt.xlabel('Load')
+        plt.ylabel('Security Deviation')
+        plt.xticks([100 * i for i in range(9)])
+        # plt.yticks([20*i for i in range(5)])
+        plt.legend()
+        plt.grid(color='#FAB9E1', linestyle=':', linewidth=0.5, alpha=1, zorder=0)
+        plt.tight_layout()
+        plt.show()
+
+    def plot_exposure_vs_load_in_error_bar(self, width: float = 8.4 * 1.3, height: float = 6.3 * 1.3):
+        # 读取数据
+        data = pd.read_csv("./data.csv")
+
+        # 按算法和负载分组，计算均值和标准差
+        grouped_data = data.groupby(['algorithm', 'load'])['exposure ratio(2)'].agg(['mean', 'std']).reset_index()
+
+        # 创建图表
+        style(width, height)  # 假设这是自定义的样式函数
+
+        algorithms = grouped_data['algorithm'].unique()
+
+        for algo in algorithms:
+            algo_data = grouped_data[grouped_data['algorithm'] == algo]
+            loads = algo_data['load']
+            means = algo_data['mean']
+            stds = algo_data['std']
+
+            # 生成平滑曲线（插值）
+            # 注意：插值需要按负载排序且无重复值
+            sorted_idx = np.argsort(loads)
+            x_sorted = loads.iloc[sorted_idx]
+            y_sorted = means.iloc[sorted_idx]
+
+            # 使用UnivariateSpline进行插值（可调整平滑参数s）
+            spline = UnivariateSpline(x_sorted, y_sorted, s=0)  # s为平滑因子，越小越贴近原始数据
+            x_smooth = np.linspace(x_sorted.min(), x_sorted.max(), 300)  # 生成300个插值点
+            y_smooth = spline(x_smooth)
+
+            # 绘制平滑曲线
+            plt.plot(x_smooth, y_smooth, label=algo, linewidth=1, zorder=80)
+
+            # 绘制误差棒（可选用errorbar或fill_between）
+            plt.errorbar(x_sorted, y_sorted, yerr=stds.iloc[sorted_idx],
+                         fmt='none',  # 不绘制数据点
+                         capsize=1, capthick=0.5,  # 误差棒端帽大小
+                         lw=1, alpha=0.5, elinewidth=0.5,  # 透明度
+                         color=plt.gca().lines[-1].get_color(), zorder=50)  # 使用与曲线相同的颜色
+
+            plt.scatter(loads, means,
+                        marker='o', s=20,
+                        linewidths=1, edgecolors="#FFFFFF",
+                        zorder=100)
+
+        plt.xlabel('Load')
+        plt.ylabel('Exposure Rate (%)')
+        plt.xticks([100 * i for i in range(9)])
+        # plt.yticks([20*i for i in range(5)])
+        plt.legend()
+        plt.grid(color='#FAB9E1', linestyle=':', linewidth=0.5, alpha=1, zorder=0)
+        plt.tight_layout()
         plt.show()

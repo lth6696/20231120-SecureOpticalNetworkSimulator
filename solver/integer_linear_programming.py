@@ -21,13 +21,13 @@ sys.path.insert(0, str(project_root))
 from network.generator import TopoGen
 
 # 配置日志
-log_config_path = "./logconfig.ini"
+log_config_path = "../logconfig.ini"
 logging.config.fileConfig(log_config_path)
 logger = logging.getLogger(__name__)
 
 # 生成拓扑
 topo = TopoGen()
-topo.generate(path_gml="None", path_graphml="./topology/SixNode.graphml")
+topo.generate(path_gml="None", path_graphml="../topology/SixNode.graphml")
 topo.set(_type="")
 
 # 初始化问题
@@ -186,11 +186,60 @@ for l in range(1, L + 1):
         if kappa[(i, j, l)].value() == 1:
             encrypted_edges[l].append((i.replace('v', ''), j.replace('v', '')))
 
-# 绘制拓扑
-# nx.draw(G, pos, width=0.5, linewidths=0.5, node_size=30, node_color="#0070C0", edge_color="k", with_labels=True)
-nx.draw_networkx_nodes(G, pos, linewidths=0.5, node_size=30, node_color="#0070C0")
-nx.draw_networkx_labels(G, pos, labels={n: n for n in G.nodes})
-edge_color = ['b', 'g', 'y', 'r']
-for i, l in enumerate(encrypted_edges):
-    nx.draw_networkx_edges(G, pos, encrypted_edges[l], edge_color=edge_color[i], width=2)
+# # 绘制拓扑
+# # nx.draw(G, pos, width=0.5, linewidths=0.5, node_size=30, node_color="#0070C0", edge_color="k", with_labels=True)
+# nx.draw_networkx_nodes(G, pos, linewidths=0.5, node_size=30, node_color="#0070C0")
+# nx.draw_networkx_labels(G, pos, labels={n: n for n in G.nodes})
+# edge_color = ['b', 'g', 'y', 'r']
+# for i, l in enumerate(encrypted_edges):
+#     nx.draw_networkx_edges(G, pos, encrypted_edges[l], edge_color=edge_color[i], width=2)
+# plt.show()
+
+# 初始化字典记录各安全等级的业务总数和阻塞数
+security_stats = {}
+for s in services:
+    rs = s['RS']
+    security_stats.setdefault(rs, {'total': 0, 'blocked': 0})
+    security_stats[rs]['total'] += 1
+
+# 统计阻塞业务数量
+for s in services:
+    rs = s['RS']
+    if gamma_sd[(s['source'], s['dest'])].value() != 1:
+        security_stats[rs]['blocked'] += 1
+
+# 计算并打印阻塞率
+print("\n各安全等级业务阻塞率分析:")
+print("=" * 50)
+print(f"{'安全等级':<10}{'总业务数':<10}{'阻塞业务数':<12}{'阻塞率(%)':<10}")
+print("-" * 50)
+
+for rs, stats in sorted(security_stats.items()):
+    total = stats['total']
+    blocked = stats['blocked']
+    blocking_rate = (blocked / total) * 100 if total > 0 else 0
+
+    print(f"{rs:<12}{total:<10}{blocked:<12}{blocking_rate:.2f}%")
+
+# 准备数据
+security_levels = sorted(security_stats.keys())
+blocking_rates = [(stats['blocked'] / stats['total']) * 100 for stats in security_stats.values()]
+
+plt.figure(figsize=(10, 6))
+bars = plt.bar(security_levels, blocking_rates, color=['blue', 'green', 'red'])
+
+# 添加数值标签
+for bar in bars:
+    height = bar.get_height()
+    plt.text(bar.get_x() + bar.get_width() / 2., height,
+             f'{height:.2f}%', ha='center', va='bottom')
+
+plt.xlabel('Security Level')
+plt.ylabel('Blocking Rate (%)')
+# plt.title('各安全等级业务阻塞率')
+plt.xticks(security_levels)
+plt.grid(axis='y', linestyle='--', alpha=0.7)
+plt.tight_layout()
 plt.show()
+# plt.savefig('blocking_rates.png')
+# print("\n阻塞率可视化图表已保存为 'blocking_rates.png'")
