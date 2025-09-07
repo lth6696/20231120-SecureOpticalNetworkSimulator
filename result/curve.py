@@ -104,16 +104,32 @@ class PlotCurve:
                 y_smooth = f(x_smooth)
 
                 # 绘制曲线
-                plt.plot(x_smooth, y_smooth, label=algo, linewidth=1, zorder=50)
+                plt.plot(x_smooth*100, y_smooth, label=algo, linewidth=1, zorder=50)
 
                 # 可选：在原数据点位置添加标记
-                plt.scatter(x_clean, y_clean, marker='o', s=20, linewidths=1, edgecolors="#FFFFFF", zorder=100)
+                plt.scatter(x_clean*100, y_clean, marker='o', s=20, linewidths=1, edgecolors="#FFFFFF", zorder=100)
             else:
                 # 数据点不足时直接绘制散点图
                 plt.scatter(x_clean, y_clean, label=algo, s=15)
 
+        # 使用 annotate 方法
+        # 在(20,55)和(20,35)之间添加双箭头标注
+        plt.annotate('',
+                    xy=(30, 24.410),  # 箭头终点
+                    xytext=(30, 45.760),  # 箭头起点
+                    arrowprops=dict(arrowstyle='<|-|>', color='black', lw=1),  # 双箭头样式
+                    zorder=110)
+        plt.text(14, 38, "21.35%", zorder=110)
+
+        plt.annotate('',
+                     xy=(60, 8.570),  # 箭头终点
+                     xytext=(60, 12.550),  # 箭头起点
+                     arrowprops=dict(arrowstyle='<|-|>', color='black', lw=1),  # 双箭头样式
+                     zorder=110)
+        plt.text(61, 10, "3.98%", zorder=110)
+
         # 图表装饰
-        plt.xlabel('Link Security Ratio')
+        plt.xlabel('Secure Link Rate (%)')
         plt.ylabel('Blocking Rate (%)')
         # plt.yticks([20*i for i in range(6)])
         plt.legend()
@@ -128,7 +144,7 @@ class PlotCurve:
         data = pd.read_csv("./data.csv")
 
         # 按算法和负载分组，计算均值和标准差
-        grouped_data = data.groupby(['algorithm', 'load'])['block_rate(t)'].agg(['mean', 'std']).reset_index()
+        grouped_data = data.groupby(['algorithm', 'load'])['block_rate(2)'].agg(['mean', 'std']).reset_index()
 
         # 创建图表
         style(width, height)  # 假设这是自定义的样式函数
@@ -140,6 +156,7 @@ class PlotCurve:
             loads = algo_data['load']
             means = algo_data['mean']
             stds = algo_data['std']
+            print(algo_data)
 
             # 生成平滑曲线（插值）
             # 注意：插值需要按负载排序且无重复值
