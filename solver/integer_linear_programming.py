@@ -1,12 +1,13 @@
 import sys
 import os
-from pathlib import Path
 import logging
 import logging.config
+import random
 import networkx as nx
 import matplotlib.pyplot as plt
 from math import ceil
 from pulp import *
+from pathlib import Path
 
 # 获取当前文件的绝对路径
 current_file = Path(__file__).resolve()
@@ -28,51 +29,73 @@ logger = logging.getLogger(__name__)
 # 生成拓扑
 topo = TopoGen()
 topo.generate(path_gml="None", path_graphml="../topology/SixNode.graphml")
-topo.set(_type="")
 
 # 初始化问题
 prob = LpProblem("PartiallySecuredOpticalNetwork", LpMaximize)
 
-# A. 输入参数
+# 输入参数
 N = len(topo.G.nodes)  # 节点数量，可根据实际情况调整
-L = 2  # 安全等级数量，可根据实际情况调整
+E = len(topo.G.edges)
+SL = 0.6  # 安全链路比率
+LB = 1000  # 链路带宽
+L = (0, 1)  # 链路安全性
 
-# 创建节点集 V
-V = [f'v{i}' for i in topo.G.nodes]
+SC = (0.4, 0.3, 0.3)  # 不同类型业务比率，依次为无、尽力、高需求
+RB = 10  # 业务带宽需求
+RS = (0, 1, 2)  # 业务安全需求
+NC = 100  # 业务数量
 
-# 创建链路集 E
-E = [(f'v{i}', f'v{j}') for i, j in topo.G.edges] + [(f'v{j}', f'v{i}') for i, j in topo.G.edges]
+# # 创建节点集 V
+# V = [f'v{i}' for i in topo.G.nodes]
 
-# 安全容量 S (示例值)
-S = {1: 5, 2: 5}  # 每个安全等级有5个光纤可以配备
+# # 创建链路集 E
+# E = [(f'v{i}', f'v{j}') for i, j in topo.G.edges] + [(f'v{j}', f'v{i}') for i, j in topo.G.edges]
+
+# # 安全容量 S (示例值)
+# S = {1: 5, 2: 5}  # 每个安全等级有5个光纤可以配备
 
 # 服务请求 (示例数据)
-services = [
-    {'source': 'v1', 'dest': 'v5', 'RB': 0.4, 'RS': 2},
-    {'source': 'v2', 'dest': 'v6', 'RB': 0.3, 'RS': 2},
-    {'source': 'v2', 'dest': 'v4', 'RB': 0.3, 'RS': 2},
-    {'source': 'v3', 'dest': 'v5', 'RB': 0.2, 'RS': 1},
-    {'source': 'v3', 'dest': 'v1', 'RB': 0.3, 'RS': 2},
-    {'source': 'v6', 'dest': 'v1', 'RB': 0.3, 'RS': 2},
-    {'source': 'v3', 'dest': 'v4', 'RB': 0.2, 'RS': 1},
-    {'source': 'v5', 'dest': 'v6', 'RB': 0.3, 'RS': 2},
-    {'source': 'v4', 'dest': 'v2', 'RB': 0.3, 'RS': 2}
-]
-# sys.exit()
-# B. 决策变量
-# 加密状态变量 κ_{ij,l}
-kappa = LpVariable.dicts("kappa",
-                         [(i, j, l) for (i, j) in E for l in range(1, L + 1)],
-                         cat='Binary')
+security_reqs = random.choices(RS, weights=SC, k=NC)
+calls = {}
+for i in range(NC):
+    # 随机选择起始节点和目的节点（确保不重合）
+    while True:
+        start_node = random.randint(0, N - 1)
+        end_node = random.randint(0, N - 1)
+        if start_node != end_node:
+            break
 
-# 路由状态变量 λ_{ij,l}^{sd}
-lambda_sd = LpVariable.dicts("lambda",
-                             [(s['source'], s['dest'], i, j, l)
-                              for s in services for (i, j) in E for l in range(1, L + 1)],
-                             cat='Binary')
+    calls[start_node] = {end_node: "rate": RB, "sec": security_reqs[i]}
+
+# services = [
+#     {'source': 'v1', 'dest': 'v5', 'RB': 0.4, 'RS': 2},
+#     {'source': 'v2', 'dest': 'v6', 'RB': 0.3, 'RS': 2},
+#     {'source': 'v2', 'dest': 'v4', 'RB': 0.3, 'RS': 2},
+#     {'source': 'v3', 'dest': 'v5', 'RB': 0.2, 'RS': 1},
+#     {'source': 'v3', 'dest': 'v1', 'RB': 0.3, 'RS': 2},
+#     {'source': 'v6', 'dest': 'v1', 'RB': 0.3, 'RS': 2},
+#     {'source': 'v3', 'dest': 'v4', 'RB': 0.2, 'RS': 1},
+#     {'source': 'v5', 'dest': 'v6', 'RB': 0.3, 'RS': 2},
+#     {'source': 'v4', 'dest': 'v2', 'RB': 0.3, 'RS': 2}
+# ]
+
+# 决策变量
+# 加密状态变量 κ_{ij,l}
+kappa = LpVariable.dicts(
+    "kappa",
+    [(i, j, l) for (i, j) in topo.G.edges for l in L],
+    cat='Binary'
+)
+
+# 路由状态变量 λ_{ij,l}^{sd,c}
+lambda_ = LpVariable.dicts(
+    "lambda",
+    [(s['source'], s['dest'], i, j, l) for s in services for (i, j) in E for l in range(1, L + 1)],
+    cat='Binary'
+)
 
 # 路由成功变量 γ^{sd}
-gamma_sd = LpVariable.dicts("gamma",
+gamma = LpVariable.dicts("gamma",
                             [(s['source'], s['dest']) for s in services],
                             cat='Binary')
 
@@ -128,8 +151,9 @@ for s in services:
 # C.3 资源约束
 # 约束(9): 链路带宽容量
 for (i, j) in E:
-    prob += lpSum([lambda_sd[(s['source'], s['dest'], i, j, l)] * s['RB'] + lambda_sd[(s['source'], s['dest'], j, i, l)] * s['RB']
-                   for s in services]) <= 1
+    prob += lpSum(
+        [lambda_sd[(s['source'], s['dest'], i, j, l)] * s['RB'] + lambda_sd[(s['source'], s['dest'], j, i, l)] * s['RB']
+         for s in services]) <= 1
 
 # 约束(10): 安全要求
 for s in services:
