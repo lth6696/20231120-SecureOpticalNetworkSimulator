@@ -1,6 +1,9 @@
 import logging
 import logging.config
 import random
+
+import numpy as np
+import pandas as pd
 from pulp import *
 from pathlib import Path
 
@@ -31,7 +34,7 @@ prob = LpProblem("PartiallySecuredOpticalNetwork", LpMaximize)
 # 输入参数
 N = len(topo.G.nodes)  # 节点数量，可根据实际情况调整
 E = len(topo.G.edges)
-SL = 0.6   # 安全链路比率
+SLR = 0.6   # 安全链路比率
 LB = 1000  # 链路带宽
 L = (0, 1)  # 链路安全性
 
@@ -40,7 +43,7 @@ RB = 10  # 业务带宽需求
 RS = (0, 1, 2)  # 业务安全需求
 NC = 100  # 业务数量
 
-SL = (E - round(E * SL), round(E * SL))
+SL = (E - round(E * SLR), round(E * SLR))
 
 # 服务请求 (示例数据)
 security_reqs = random.choices(RS, weights=SC, k=NC)
@@ -159,10 +162,12 @@ for row in calls:
                     for l in L:
                         prob += lambda_[(s, d, c, i, j, l)] * call["sec"] <= l * kappa[(i, j, l)] * 2
 
+# print(listSolvers(onlyAvailable=True))
 # 求解问题
-prob.solve()
+status = prob.solve(CPLEX_CMD(msg=False))
+print(LpStatus[status])
 
-# 输出结果
+# 输出结果(阻塞率、拓扑、暴露率、偏差)
 logger.info("Status: %s", LpStatus[prob.status])
 logger.info("Total successful services: %s", value(prob.objective))
 
@@ -185,9 +190,14 @@ logger.info(f"The encryption rate is {link_status["enc"]/2/E}")
 
 # 打印路由成功的服务
 logger.info("Successfully routed services:")
-for (s, d, c) in gamma:
-    if gamma[(s, d, c)].value() == 1:
-        logger.info(f"Call src {s}, dst {d}, index {c} routed with sec {calls[int(s)][int(d)][c]["sec"]}")
+def get_calls_routed_paths():
+    """
+    格式 {(src, dst, c): [(i, j, l), ...]}
+    """
+    paths = {}
+    for (s, d, c) in gamma:
+        if gamma[(s, d, c)].value() != 1:
+            continue
         path = []
         for i in topo.G.nodes:
             for j in topo.G[i]:
@@ -195,23 +205,14 @@ for (s, d, c) in gamma:
                     if lambda_[(s, d, c, i, j, l)].value() == 1:
                         if kappa[(i, j, l)].value() != 1:
                             logger.error(f"Lambda {s}-{d}-{c}-{i}-{j}-{l} is 1, but Kappa {i}-{j}-{l} is {kappa[(i, j, l)].value()}?")
-                        path.append(f"{i}-{j}(level {l})")
-        logger.info(" -> ".join(path))
+                        path.append((i, j, l))
+        paths[(s, d, c)] = path
+    return paths
 
-# # 打印服务路由路径
-# logger.info("Service routing paths:")
-# for row in calls:
-#     for col in row:
-#         for c, call in enumerate(col):
-#             if gamma[(call['src'], call['dst'], c)].value() == 1:
-#                 logger.info("Service %s -> %s (level %s):", call['src'], call['dst'], call['sec'])
-#                 path = []
-#                 for i in topo.G.nodes:
-#                     for j in topo.G[i]:
-#                         for l in L:
-#                             if lambda_[(call['src'], call['dst'], c, i, j, l)].value() == 1:
-#                                 path.append(f"{i}->{j} (level {l})")
-#                 logger.info(" -> ".join(path))
+routed_paths = get_calls_routed_paths()
+for (s, d, c) in routed_paths:
+    logger.info(f"Call src {s}, dst {d}, index {c} routed with sec {calls[int(s)][int(d)][c]["sec"]}")
+    logger.info(routed_paths[(s, d, c)])
 
 # 绘制拓扑结构图
 # 加载拓扑数据
@@ -238,6 +239,12 @@ for (s, d, c) in gamma:
 #     nx.draw_networkx_edges(G, pos, encrypted_edges[l], edge_color=edge_color[i], width=2)
 # plt.show()
 
+res = {
+    "topology": "6N8E",
+    "num of calls": NC,
+    "secure link rate": SLR
+}
+
 # 初始化字典记录各安全等级的业务总数和阻塞数
 security_stats = {}
 for row in calls:
@@ -248,22 +255,52 @@ for row in calls:
             security_stats[rs]['total'] += 1
 
 # 统计阻塞业务数量
-for row in calls:
-    for col in row:
-        for c, call in enumerate(col):
-            rs = call["sec"]
-            if gamma[(call['src'], call['dst'], c)].value() != 1:
-                security_stats[rs]['blocked'] += 1
+for (s, d, c) in gamma:
+    rs = calls[int(s)][int(d)][c]["sec"]
+    if gamma[(s, d, c)].value() != 1:
+        security_stats[rs]['blocked'] += 1
+res["blocking rate"] = sum([security_stats[rs]["blocked"] for rs in security_stats]) / sum([security_stats[rs]["total"] for rs in security_stats]) * 100
 
 # 计算并打印阻塞率
-print("\n各安全等级业务阻塞率分析:")
-print("=" * 50)
-print(f"{'安全等级':<10}{'总业务数':<10}{'阻塞业务数':<12}{'阻塞率(%)':<10}")
-print("-" * 50)
-
 for rs, stats in sorted(security_stats.items()):
     total = stats['total']
     blocked = stats['blocked']
     blocking_rate = (blocked / total) * 100 if total > 0 else 0
+    res[f"blocking rate {rs}"] = blocking_rate
 
-    print(f"{rs:<12}{total:<10}{blocked:<12}{blocking_rate:.2f}%")
+# 计算偏差
+security_deviations = {}
+for (s, d, c) in routed_paths:
+    div_value = 0.0
+    rs = calls[int(s)][int(d)][c]["sec"]
+    for (i, j, l) in routed_paths[(s, d, c)]:
+        # div_value += (G[u][v]['link_security'] - np.ceil(call.security/10)) ** 2
+        div_value += (l - np.ceil(rs/10))
+    div_value = (div_value / (len(routed_paths[(s, d, c)]))) ** 0.5
+    security_deviations.setdefault(rs, [])
+    security_deviations[rs].append(div_value)
+res["security deviations"] = np.mean([x for rs in security_deviations for x in security_deviations[rs]])
+for rs in security_deviations:
+    res[f"security deviations {rs}"] = np.mean(security_deviations[rs])
+
+# 计算暴露率
+expo_value = [0.0, 0.0]
+for (u, v) in zip(call.path[:-1], call.path[1:]):
+    distance = ((G.nodes[u]["Latitude"] - G.nodes[v]["Latitude"]) ** 2 +
+                (G.nodes[u]["Longitude"] - G.nodes[v]["Longitude"]) ** 2) ** 0.5
+    if G[u][v]["link_security"] == 0:
+        expo_value[0] += distance  # 记录非安全路径长度
+    expo_value[1] += distance  # 记录总路径长度
+    logging.debug(
+        f"Service {call.id} through link {u}-{v} with {G[u][v]["link_security"]}, distance {distance}, "
+        f"risk link {expo_value[0]}, total link {expo_value[1]}.")
+self.mean_exposure_ratio.add(call.security, expo_value[0] / expo_value[1] * 100)
+
+#显示所有列
+pd.set_option('display.max_columns', None)
+#显示所有行
+pd.set_option('display.max_rows', None)
+pd.set_option('display.width', 5000)
+#设置value的显示长度为100，默认为50
+pd.set_option('max_colwidth', 100)
+print(pd.DataFrame([res]))
