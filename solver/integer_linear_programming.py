@@ -45,9 +45,9 @@ RB = 10  # 业务带宽需求
 RS = (0, 1, 2)  # 业务安全需求
 NC = 200  # 业务数量
 
-is_run = True  # 是否运行ILP
+is_run = False  # 是否运行ILP
 is_show = False # 是否绘制加密拓扑
-is_plot = False  # 是否绘制结果图
+is_plot = True  # 是否绘制结果图
 
 SL = (E - round(E * SLR), round(E * SLR))
 
@@ -352,7 +352,7 @@ if is_show:
 if not is_plot:
     sys.exit()
 
-pf = pd.read_csv("../data.csv")
+pf = pd.read_csv("../data_6N8E_load_br.csv")
 
 
 def plot_stack_br_sec():
@@ -399,17 +399,174 @@ def plot_stack_br_sec():
     # 设置标题和标签
     plt.xlabel('Secure Link Rate (%)')
     plt.ylabel('Blocking Rate (%)')
-
     # 添加图例
     plt.legend()
-
     # 设置网格
     plt.grid(color='#FAB9E1', linestyle=':', linewidth=0.5, alpha=1, zorder=0)
-
     # 调整布局
     plt.tight_layout()
-
     # 显示图表
     plt.show()
 
-plot_stack_br_sec()
+def plot_stack_br_load():
+    grouped = pf.groupby("num of calls")[["br 0 stack", "br 1 stack", "br 2 stack"]].sum().reset_index()
+
+    style(width=8.4 * 1.3, height=6.3 * 1.3)
+
+    # 绘制堆积面积图
+    plt.stackplot(
+        grouped["num of calls"],
+        grouped["br 0 stack"],
+        grouped["br 1 stack"],
+        grouped["br 2 stack"],
+        # labels=['Sec. Req. = 0', 'Sec. Req. = 1', 'Sec. Req. = 2'],
+        colors=['#E8AD76', '#FFE64A', '#FF424B'],
+        edgecolor='#FFFFFF',
+        linewidth=1,
+        alpha=0.4
+    )
+
+    # 绘制堆积柱状图
+    width = 5
+    plt.bar(
+        grouped["num of calls"], grouped["br 0 stack"],
+        label='Sec. Req. = 0', width=width,
+        color='#E8AD76',
+        linewidth=0.5, edgecolor="#FFFFFF", zorder=10
+    )
+    plt.bar(
+        grouped["num of calls"], grouped["br 1 stack"],
+        bottom=grouped["br 0 stack"],
+        label='Sec. Req. = 1', width=width,
+        color='#FFE64A',
+        linewidth=0.5, edgecolor="#FFFFFF", zorder=10
+    )
+    plt.bar(
+        grouped["num of calls"], grouped["br 2 stack"],
+        bottom=grouped["br 0 stack"] + grouped["br 1 stack"],
+        label='Sec. Req. = 2', width=width,
+        color='#FF424B',
+        linewidth=0.5, edgecolor="#FFFFFF", zorder=10
+    )
+
+    # 设置标题和标签
+    plt.xlabel('Num of Calls')
+    plt.ylabel('Blocking Rate (%)')
+    # 添加图例
+    plt.legend()
+    # 设置网格
+    plt.grid(color='#FAB9E1', linestyle=':', linewidth=0.5, alpha=1, zorder=0)
+    # 调整布局
+    plt.tight_layout()
+    # 显示图表
+    plt.show()
+
+def plot_stack_dev_load():
+    grouped = pf.groupby("num of calls")[["security deviations", "security deviations 1", "security deviations 2"]].sum().reset_index()
+
+    style(width=8.4 * 1.3, height=6.3 * 1.3)
+
+    # 绘制堆积面积图
+    plt.stackplot(
+        grouped["num of calls"],
+        grouped["security deviations"],
+        grouped["security deviations 1"],
+        grouped["security deviations 2"],
+        # labels=['Sec. Req. = 0', 'Sec. Req. = 1', 'Sec. Req. = 2'],
+        colors=['#E8AD76', '#FFE64A', '#FF424B'],
+        edgecolor='#FFFFFF',
+        linewidth=1,
+        alpha=0.4
+    )
+
+    # 绘制堆积柱状图
+    width = 5
+    plt.bar(
+        grouped["num of calls"], grouped["security deviations"],
+        label='Sec. Req. = 0', width=width,
+        color='#E8AD76',
+        linewidth=0.5, edgecolor="#FFFFFF", zorder=10
+    )
+    plt.bar(
+        grouped["num of calls"], grouped["security deviations 1"],
+        bottom=grouped["security deviations"],
+        label='Sec. Req. = 1', width=width,
+        color='#FFE64A',
+        linewidth=0.5, edgecolor="#FFFFFF", zorder=10
+    )
+    plt.bar(
+        grouped["num of calls"], grouped["security deviations 2"],
+        bottom=grouped["security deviations"] + grouped["security deviations 1"],
+        label='Sec. Req. = 2', width=width,
+        color='#FF424B',
+        linewidth=0.5, edgecolor="#FFFFFF", zorder=10
+    )
+
+    # 设置标题和标签
+    plt.xlabel('Num of Calls')
+    plt.ylabel('Security Deviations')
+    plt.yticks([0.1*i for i in range(5)])
+    # 添加图例
+    plt.legend()
+    # 设置网格
+    plt.grid(color='#FAB9E1', linestyle=':', linewidth=0.5, alpha=1, zorder=0)
+    # 调整布局
+    plt.tight_layout()
+    # 显示图表
+    plt.show()
+
+def plot_stack_expo_load():
+    grouped = pf.groupby("num of calls")[["exposure rate", "exposure rate 1", "exposure rate 2"]].sum().reset_index()
+
+    style(width=8.4 * 1.3, height=6.3 * 1.3)
+
+    # 绘制堆积面积图
+    plt.stackplot(
+        grouped["num of calls"],
+        grouped["exposure rate"],
+        grouped["exposure rate 1"],
+        grouped["exposure rate 2"],
+        # labels=['Sec. Req. = 0', 'Sec. Req. = 1', 'Sec. Req. = 2'],
+        colors=['#E8AD76', '#FFE64A', '#FF424B'],
+        edgecolor='#FFFFFF',
+        linewidth=1,
+        alpha=0.4
+    )
+
+    # 绘制堆积柱状图
+    width = 5
+    plt.bar(
+        grouped["num of calls"], grouped["exposure rate"],
+        label='Sec. Req. = 0', width=width,
+        color='#E8AD76',
+        linewidth=0.5, edgecolor="#FFFFFF", zorder=10
+    )
+    plt.bar(
+        grouped["num of calls"], grouped["exposure rate 1"],
+        bottom=grouped["exposure rate"],
+        label='Sec. Req. = 1', width=width,
+        color='#FFE64A',
+        linewidth=0.5, edgecolor="#FFFFFF", zorder=10
+    )
+    plt.bar(
+        grouped["num of calls"], grouped["exposure rate 2"],
+        bottom=grouped["exposure rate"] + grouped["exposure rate 1"],
+        label='Sec. Req. = 2', width=width,
+        color='#FF424B',
+        linewidth=0.5, edgecolor="#FFFFFF", zorder=10
+    )
+
+    # 设置标题和标签
+    plt.xlabel('Num of Calls')
+    plt.ylabel('Exposure Rate (%)')
+    plt.yticks([10*i for i in range(6)])
+    # 添加图例
+    plt.legend()
+    # 设置网格
+    plt.grid(color='#FAB9E1', linestyle=':', linewidth=0.5, alpha=1, zorder=0)
+    # 调整布局
+    plt.tight_layout()
+    # 显示图表
+    plt.show()
+
+plot_stack_expo_load()
