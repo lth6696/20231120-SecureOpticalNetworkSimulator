@@ -1,0 +1,2 @@
+topology,num of calls,secure link rate,blocking rate,blocking rate 0,br 0 stack,blocking rate 1,br 1 stack,blocking rate 2,br 2 stack,security deviations,security deviations 0,security deviations 1,security deviations 2,exposure rate,exposure rate 0,exposure rate 1,exposure rate 2
+6N8E,100,0.6,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.1881857918609058,0.5086102482727184,0.0,0.0,22.745164443670546,61.4734174153258,0.0,0.0

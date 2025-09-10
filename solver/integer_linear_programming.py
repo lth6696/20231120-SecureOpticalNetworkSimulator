@@ -36,18 +36,18 @@ prob = LpProblem("PartiallySecuredOpticalNetwork", LpMaximize)
 # 输入参数
 N = len(topo.G.nodes)  # 节点数量，可根据实际情况调整
 E = len(topo.G.edges)
-SLR = 0.0  # 安全链路比率
+SLR = 0.6  # 安全链路比率
 LB = 1000  # 链路带宽
 L = (0, 1)  # 链路安全性
 
 SC = (0.4, 0.3, 0.3)  # 不同类型业务比率，依次为无、尽力、高需求
 RB = 10  # 业务带宽需求
 RS = (0, 1, 2)  # 业务安全需求
-NC = 100  # 业务数量
+NC = 200  # 业务数量
 
-is_run = False  # 是否运行ILP
+is_run = True  # 是否运行ILP
 is_show = False # 是否绘制加密拓扑
-is_plot = True  # 是否绘制结果图
+is_plot = False  # 是否绘制结果图
 
 SL = (E - round(E * SLR), round(E * SLR))
 
@@ -366,8 +366,34 @@ def plot_stack_br_sec():
         grouped["br 0 stack"],
         grouped["br 1 stack"],
         grouped["br 2 stack"],
-        labels=['Sec. Req. = 0', 'Sec. Req. = 1', 'Sec. Req. = 2'],
-        colors=['green', 'blue', 'yellow']
+        # labels=['Sec. Req. = 0', 'Sec. Req. = 1', 'Sec. Req. = 2'],
+        colors=['#E8AD76', '#FFE64A', '#FF424B'],
+        edgecolor='#FFFFFF',
+        linewidth=1,
+        alpha=0.4
+    )
+
+    # 绘制堆积柱状图
+    width = 0.01
+    plt.bar(
+        grouped["secure link rate"], grouped["br 0 stack"],
+        label='Sec. Req. = 0', width=width,
+        color='#E8AD76',
+        linewidth=0.5, edgecolor="#FFFFFF", zorder=10
+    )
+    plt.bar(
+        grouped["secure link rate"], grouped["br 1 stack"],
+        bottom=grouped["br 0 stack"],
+        label='Sec. Req. = 1', width=width,
+        color='#FFE64A',
+        linewidth=0.5, edgecolor="#FFFFFF", zorder=10
+    )
+    plt.bar(
+        grouped["secure link rate"], grouped["br 2 stack"],
+        bottom=grouped["br 0 stack"] + grouped["br 1 stack"],
+        label='Sec. Req. = 2', width=width,
+        color='#FF424B',
+        linewidth=0.5, edgecolor="#FFFFFF", zorder=10
     )
 
     # 设置标题和标签
@@ -385,6 +411,5 @@ def plot_stack_br_sec():
 
     # 显示图表
     plt.show()
-
 
 plot_stack_br_sec()
