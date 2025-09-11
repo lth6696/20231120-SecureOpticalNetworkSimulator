@@ -352,7 +352,7 @@ if is_show:
 if not is_plot:
     sys.exit()
 
-pf = pd.read_csv("../data_6N8E_load_br.csv")
+pf = pd.read_csv("../data/data_6N8E_lsr_br.csv")
 
 
 def plot_stack_br_sec():
@@ -362,37 +362,37 @@ def plot_stack_br_sec():
 
     # 绘制堆积面积图
     plt.stackplot(
-        grouped["secure link rate"],
+        grouped["secure link rate"] * 100,
         grouped["br 0 stack"],
         grouped["br 1 stack"],
         grouped["br 2 stack"],
         # labels=['Sec. Req. = 0', 'Sec. Req. = 1', 'Sec. Req. = 2'],
-        colors=['#E8AD76', '#FFE64A', '#FF424B'],
+        colors=['#64FF98', '#FFF57D', '#FF7D82'],
         edgecolor='#FFFFFF',
         linewidth=1,
-        alpha=0.4
+        alpha=1
     )
 
     # 绘制堆积柱状图
-    width = 0.01
+    width = 1
     plt.bar(
-        grouped["secure link rate"], grouped["br 0 stack"],
+        grouped["secure link rate"] * 100, grouped["br 0 stack"],
         label='Sec. Req. = 0', width=width,
-        color='#E8AD76',
+        color='#00E64B',
         linewidth=0.5, edgecolor="#FFFFFF", zorder=10
     )
     plt.bar(
-        grouped["secure link rate"], grouped["br 1 stack"],
+        grouped["secure link rate"] * 100, grouped["br 1 stack"],
         bottom=grouped["br 0 stack"],
         label='Sec. Req. = 1', width=width,
-        color='#FFE64A',
+        color='#EBD700',
         linewidth=0.5, edgecolor="#FFFFFF", zorder=10
     )
     plt.bar(
-        grouped["secure link rate"], grouped["br 2 stack"],
+        grouped["secure link rate"] * 100, grouped["br 2 stack"],
         bottom=grouped["br 0 stack"] + grouped["br 1 stack"],
         label='Sec. Req. = 2', width=width,
-        color='#FF424B',
+        color='#CC000A',
         linewidth=0.5, edgecolor="#FFFFFF", zorder=10
     )
 
@@ -569,4 +569,4 @@ def plot_stack_expo_load():
     # 显示图表
     plt.show()
 
-plot_stack_expo_load()
+plot_stack_br_sec()
