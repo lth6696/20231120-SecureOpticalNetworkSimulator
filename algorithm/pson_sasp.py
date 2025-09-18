@@ -190,10 +190,10 @@ class SASP:
         div_value = 0.0
         # print(f"====== req_sec = {req_security} ==========")
         for (u, v) in path:
-            div_value += G[u][v]['link_security'] - (num_link_security * req_security / num_req_security)
+            div_value += np.abs(G[u][v]['link_security'] - np.ceil((num_link_security * req_security / num_req_security)))
             # print(f"G[{u}][{v}][link_security] = {G[u][v]['link_security']}")
             # print(f"{G[u][v]['link_security']} - ({num_link_security} * {req_security} / {num_req_security}) = {div_value}")
-        div_value = 1 - np.exp(- div_value / len(path))
+        div_value = div_value / len(path)
         # print(div_value)
 
         """
@@ -207,7 +207,7 @@ class SASP:
         """
 
         # 2. 路径长度计算 Utl(p) = 1-e^{-p}
-        utl_value = 1 - np.exp(-0.5*len(path))
+        utl_value = 1 - np.exp(-len(path))
 
         logging.debug(f"Socre of sec deviation: {div_value}, hop: {utl_value}.")
 
