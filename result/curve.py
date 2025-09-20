@@ -63,7 +63,7 @@ class PlotCurve:
         plt.show()
 
     def plot_blocking_rate_vs_sec_rate(self, width: float = 8.4 * 1.3, height: float = 6.3 * 1.3):
-        data_file = "./data/data_lsr_br.csv"
+        data_file = "./data/data_NSFNET_lsr_br.csv"
         data = pd.read_csv(data_file)
 
         # 数据预处理（根据图片信息调整列名和数据类型）
@@ -115,18 +115,18 @@ class PlotCurve:
         # 使用 annotate 方法
         # 在(20,55)和(20,35)之间添加双箭头标注
         plt.annotate('',
-                    xy=(30, 24.410),  # 箭头终点
-                    xytext=(30, 45.760),  # 箭头起点
+                    xy=(0, 29.120),  # 箭头终点
+                    xytext=(0, 60.030),  # 箭头起点
                     arrowprops=dict(arrowstyle='<|-|>', color='black', lw=1),  # 双箭头样式
                     zorder=110)
-        plt.text(14, 38, "21.35%", zorder=110)
+        plt.text(1, 42, "30.91%", zorder=110)
 
-        plt.annotate('',
-                     xy=(60, 8.570),  # 箭头终点
-                     xytext=(60, 12.550),  # 箭头起点
-                     arrowprops=dict(arrowstyle='<|-|>', color='black', lw=1),  # 双箭头样式
-                     zorder=110)
-        plt.text(61, 10, "3.98%", zorder=110)
+        # plt.annotate('',
+        #              xy=(60, 8.570),  # 箭头终点
+        #              xytext=(60, 12.550),  # 箭头起点
+        #              arrowprops=dict(arrowstyle='<|-|>', color='black', lw=1),  # 双箭头样式
+        #              zorder=110)
+        # plt.text(61, 10, "3.98%", zorder=110)
 
         # 图表装饰
         plt.xlabel('Secure Link Rate (%)')

@@ -99,6 +99,6 @@ if __name__ == '__main__':
                 print(f"NSFNET,    {config["algorithm"]["algo_name"]}," + ", ".join(formatted))
 
     elif input("Do you want to show results?[Y/n]") == "Y":
-        result.curve.PlotCurve().plot_blocking_rate_vs_load()
+        result.curve.PlotCurve().plot_blocking_rate_vs_sec_rate()
     else:
         sys.exit()
