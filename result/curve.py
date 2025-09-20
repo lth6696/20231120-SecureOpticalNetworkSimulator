@@ -141,10 +141,10 @@ class PlotCurve:
 
     def plot_blocking_rate_vs_load(self, width: float = 8.4 * 1.3, height: float = 6.3 * 1.3):
         # 读取数据
-        data = pd.read_csv("./data.csv")
+        data = pd.read_csv("./data/data_NSFNET_load_br_3.csv")
 
         # 按算法和负载分组，计算均值和标准差
-        grouped_data = data.groupby(['algorithm', 'load'])['block_rate(2)'].agg(['mean', 'std']).reset_index()
+        grouped_data = data.groupby(['algorithm', 'load'])['block_rate(t)'].agg(['mean', 'std']).reset_index()
 
         # 创建图表
         style(width, height)  # 假设这是自定义的样式函数
@@ -195,7 +195,7 @@ class PlotCurve:
 
     def plot_utilization_vs_load_in_error_bar(self, width: float = 8.4 * 1.3, height: float = 6.3 * 1.3):
         # 读取数据
-        data = pd.read_csv("./data.csv")
+        data = pd.read_csv("./data/data_NSFNET_load_br_3.csv")
 
         # 按算法和负载分组，计算均值和标准差
         grouped_data = data.groupby(['algorithm', 'load'])['link utilization'].agg(['mean', 'std']).reset_index()
@@ -248,10 +248,10 @@ class PlotCurve:
 
     def plot_deviation_vs_load_in_error_bar(self, width: float = 8.4 * 1.3, height: float = 6.3 * 1.3):
         # 读取数据
-        data = pd.read_csv("./data.csv")
+        data = pd.read_csv("./data/data_NSFNET_load_br_3.csv")
 
         # 按算法和负载分组，计算均值和标准差
-        grouped_data = data.groupby(['algorithm', 'load'])['security deviation (2)'].agg(['mean', 'std']).reset_index()
+        grouped_data = data.groupby(['algorithm', 'load'])['security deviation (t)'].agg(['mean', 'std']).reset_index()
 
         # 创建图表
         style(width, height)  # 假设这是自定义的样式函数
@@ -301,7 +301,7 @@ class PlotCurve:
 
     def plot_exposure_vs_load_in_error_bar(self, width: float = 8.4 * 1.3, height: float = 6.3 * 1.3):
         # 读取数据
-        data = pd.read_csv("./data.csv")
+        data = pd.read_csv("./data/data_NSFNET_load_br_3.csv")
 
         # 按算法和负载分组，计算均值和标准差
         grouped_data = data.groupby(['algorithm', 'load'])['exposure ratio(2)'].agg(['mean', 'std']).reset_index()

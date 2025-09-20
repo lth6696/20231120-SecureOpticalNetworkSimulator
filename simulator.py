@@ -82,7 +82,7 @@ if __name__ == '__main__':
         #     formatted = [f"{num:8.3f}" for num in prefix + res]
         #     print(f"NSFNET,    {configer["algorithm"]["algo_name"]}," + ", ".join(formatted))
 
-        loads = [50*(i+13) for i in range(4)]
+        loads = [50*(i+1) for i in range(16)]
         # 循环处理每个load值
         for i, load_value in enumerate(loads):
             config = configparser.ConfigParser()
@@ -99,6 +99,6 @@ if __name__ == '__main__':
                 print(f"NSFNET,    {config["algorithm"]["algo_name"]}," + ", ".join(formatted))
 
     elif input("Do you want to show results?[Y/n]") == "Y":
-        result.curve.PlotCurve().plot_blocking_rate_vs_sec_rate()
+        result.curve.PlotCurve().plot_deviation_vs_load_in_error_bar()
     else:
         sys.exit()

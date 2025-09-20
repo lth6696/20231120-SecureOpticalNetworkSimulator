@@ -352,7 +352,7 @@ if is_show:
 if not is_plot:
     sys.exit()
 
-pf = pd.read_csv("../data/data_6N8E_lsr_br.csv")
+pf = pd.read_csv("../data/data_6N8E_load_br.csv")
 
 
 def plot_stack_br_sec():
@@ -420,10 +420,10 @@ def plot_stack_br_load():
         grouped["br 1 stack"],
         grouped["br 2 stack"],
         # labels=['Sec. Req. = 0', 'Sec. Req. = 1', 'Sec. Req. = 2'],
-        colors=['#E8AD76', '#FFE64A', '#FF424B'],
+        colors=['#64FF98', '#FFF57D', '#FF7D82'],
         edgecolor='#FFFFFF',
         linewidth=1,
-        alpha=0.4
+        alpha=1
     )
 
     # 绘制堆积柱状图
@@ -431,21 +431,21 @@ def plot_stack_br_load():
     plt.bar(
         grouped["num of calls"], grouped["br 0 stack"],
         label='Sec. Req. = 0', width=width,
-        color='#E8AD76',
+        color='#00E64B',
         linewidth=0.5, edgecolor="#FFFFFF", zorder=10
     )
     plt.bar(
         grouped["num of calls"], grouped["br 1 stack"],
         bottom=grouped["br 0 stack"],
         label='Sec. Req. = 1', width=width,
-        color='#FFE64A',
+        color='#EBD700',
         linewidth=0.5, edgecolor="#FFFFFF", zorder=10
     )
     plt.bar(
         grouped["num of calls"], grouped["br 2 stack"],
         bottom=grouped["br 0 stack"] + grouped["br 1 stack"],
         label='Sec. Req. = 2', width=width,
-        color='#FF424B',
+        color='#CC000A',
         linewidth=0.5, edgecolor="#FFFFFF", zorder=10
     )
 
@@ -473,10 +473,10 @@ def plot_stack_dev_load():
         grouped["security deviations 1"],
         grouped["security deviations 2"],
         # labels=['Sec. Req. = 0', 'Sec. Req. = 1', 'Sec. Req. = 2'],
-        colors=['#E8AD76', '#FFE64A', '#FF424B'],
+        colors=['#64FF98', '#FFF57D', '#FF7D82'],
         edgecolor='#FFFFFF',
         linewidth=1,
-        alpha=0.4
+        alpha=1
     )
 
     # 绘制堆积柱状图
@@ -484,21 +484,21 @@ def plot_stack_dev_load():
     plt.bar(
         grouped["num of calls"], grouped["security deviations"],
         label='Sec. Req. = 0', width=width,
-        color='#E8AD76',
+        color='#00E64B',
         linewidth=0.5, edgecolor="#FFFFFF", zorder=10
     )
     plt.bar(
         grouped["num of calls"], grouped["security deviations 1"],
         bottom=grouped["security deviations"],
         label='Sec. Req. = 1', width=width,
-        color='#FFE64A',
+        color='#EBD700',
         linewidth=0.5, edgecolor="#FFFFFF", zorder=10
     )
     plt.bar(
         grouped["num of calls"], grouped["security deviations 2"],
         bottom=grouped["security deviations"] + grouped["security deviations 1"],
         label='Sec. Req. = 2', width=width,
-        color='#FF424B',
+        color='#CC000A',
         linewidth=0.5, edgecolor="#FFFFFF", zorder=10
     )
 
@@ -527,10 +527,10 @@ def plot_stack_expo_load():
         grouped["exposure rate 1"],
         grouped["exposure rate 2"],
         # labels=['Sec. Req. = 0', 'Sec. Req. = 1', 'Sec. Req. = 2'],
-        colors=['#E8AD76', '#FFE64A', '#FF424B'],
+        colors=['#64FF98', '#FFF57D', '#FF7D82'],
         edgecolor='#FFFFFF',
         linewidth=1,
-        alpha=0.4
+        alpha=1
     )
 
     # 绘制堆积柱状图
@@ -538,21 +538,21 @@ def plot_stack_expo_load():
     plt.bar(
         grouped["num of calls"], grouped["exposure rate"],
         label='Sec. Req. = 0', width=width,
-        color='#E8AD76',
+        color='#00E64B',
         linewidth=0.5, edgecolor="#FFFFFF", zorder=10
     )
     plt.bar(
         grouped["num of calls"], grouped["exposure rate 1"],
         bottom=grouped["exposure rate"],
         label='Sec. Req. = 1', width=width,
-        color='#FFE64A',
+        color='#EBD700',
         linewidth=0.5, edgecolor="#FFFFFF", zorder=10
     )
     plt.bar(
         grouped["num of calls"], grouped["exposure rate 2"],
         bottom=grouped["exposure rate"] + grouped["exposure rate 1"],
         label='Sec. Req. = 2', width=width,
-        color='#FF424B',
+        color='#CC000A',
         linewidth=0.5, edgecolor="#FFFFFF", zorder=10
     )
 
@@ -569,4 +569,4 @@ def plot_stack_expo_load():
     # 显示图表
     plt.show()
 
-plot_stack_br_sec()
+plot_stack_expo_load()
