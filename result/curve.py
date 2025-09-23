@@ -144,7 +144,7 @@ class PlotCurve:
         data = pd.read_csv("./data/data_NSFNET_load_br_3.csv")
 
         # 按算法和负载分组，计算均值和标准差
-        grouped_data = data.groupby(['algorithm', 'load'])['block_rate(t)'].agg(['mean', 'std']).reset_index()
+        grouped_data = data.groupby(['algorithm', 'load'])['block_rate(2)'].agg(['mean', 'std']).reset_index()
 
         # 创建图表
         style(width, height)  # 假设这是自定义的样式函数
@@ -251,7 +251,7 @@ class PlotCurve:
         data = pd.read_csv("./data/data_NSFNET_load_br_3.csv")
 
         # 按算法和负载分组，计算均值和标准差
-        grouped_data = data.groupby(['algorithm', 'load'])['security deviation (t)'].agg(['mean', 'std']).reset_index()
+        grouped_data = data.groupby(['algorithm', 'load'])['security deviation (2)'].agg(['mean', 'std']).reset_index()
 
         # 创建图表
         style(width, height)  # 假设这是自定义的样式函数
@@ -304,7 +304,7 @@ class PlotCurve:
         data = pd.read_csv("./data/data_NSFNET_load_br_3.csv")
 
         # 按算法和负载分组，计算均值和标准差
-        grouped_data = data.groupby(['algorithm', 'load'])['exposure ratio(2)'].agg(['mean', 'std']).reset_index()
+        grouped_data = data.groupby(['algorithm', 'load'])['exposure ratio(t)'].agg(['mean', 'std']).reset_index()
 
         # 创建图表
         style(width, height)  # 假设这是自定义的样式函数
