@@ -80,8 +80,10 @@ class PlotCurve:
         # 按算法分组处理
         algorithms = data['algorithm'].unique()
         style(width=width, height=height)
+        markers = ['D', 's', 'o', '^']
+        line_styles = ['-', '--', '-.', ':']
 
-        for algo in algorithms:
+        for i, algo in enumerate(algorithms):
             # 提取当前算法的数据
             algo_data = data[data['algorithm'] == algo]
 
@@ -104,10 +106,15 @@ class PlotCurve:
                 y_smooth = f(x_smooth)
 
                 # 绘制曲线
-                plt.plot(x_smooth*100, y_smooth, label=algo, linewidth=1, zorder=50)
-
+                # plt.plot(x_smooth*100, y_smooth, label=algo, linewidth=1, zorder=50)
+                plt.plot(
+                    x * 100, y,
+                    ls=line_styles[i], lw=1,
+                    marker=markers[i], ms=4, mfc="white",
+                    zorder=100
+                )
                 # 可选：在原数据点位置添加标记
-                plt.scatter(x_clean*100, y_clean, marker='o', s=20, linewidths=1, edgecolors="#FFFFFF", zorder=100)
+                # plt.scatter(x_clean*100, y_clean, marker='o', s=20, linewidths=1, edgecolors="#FFFFFF", zorder=100)
             else:
                 # 数据点不足时直接绘制散点图
                 plt.scatter(x_clean, y_clean, label=algo, s=15)
@@ -132,7 +139,7 @@ class PlotCurve:
         plt.xlabel('Secure Link Rate (%)')
         plt.ylabel('Blocking Rate (%)')
         # plt.yticks([20*i for i in range(6)])
-        plt.legend()
+        plt.legend(["SF_STC", "SF", "CF_STC", "CF"])
         plt.grid(color='#FAB9E1', linestyle=':', linewidth=0.5, alpha=1, zorder=0)
         plt.tight_layout()
 
@@ -150,8 +157,10 @@ class PlotCurve:
         style(width, height)  # 假设这是自定义的样式函数
 
         algorithms = grouped_data['algorithm'].unique()
+        markers = ['D', 's', 'o', '^']
+        line_styles = ['-', '--', '-.', ':']
 
-        for algo in algorithms:
+        for i, algo in enumerate(algorithms):
             algo_data = grouped_data[grouped_data['algorithm'] == algo]
             loads = algo_data['load']
             means = algo_data['mean']
@@ -170,7 +179,13 @@ class PlotCurve:
             y_smooth = spline(x_smooth)
 
             # 绘制平滑曲线
-            plt.plot(x_smooth, y_smooth, label=algo, linewidth=1, zorder=80)
+            # plt.plot(x_smooth, y_smooth, label=algo, linewidth=1, zorder=80)
+            plt.plot(
+                loads, means,
+                ls=line_styles[i], lw=1,
+                marker=markers[i], ms=4, mfc="white",
+                zorder=100
+            )
 
             # 绘制误差棒（可选用errorbar或fill_between）
             plt.errorbar(x_sorted, y_sorted, yerr=stds.iloc[sorted_idx],
@@ -179,16 +194,16 @@ class PlotCurve:
                          lw=1, alpha=0.5, elinewidth=0.5,  # 透明度
                          color=plt.gca().lines[-1].get_color(), zorder=50)  # 使用与曲线相同的颜色
 
-            plt.scatter(loads, means,
-                        marker='o', s=20,
-                        linewidths=1, edgecolors="#FFFFFF",
-                        zorder=100)
+            # plt.scatter(loads, means,
+            #             marker='o', s=20,
+            #             linewidths=1, edgecolors="#FFFFFF",
+            #             zorder=100)
 
         plt.xlabel('Load')
         plt.ylabel('Blocking Rate (%)')
         plt.xticks([100*i for i in range(9)])
         # plt.yticks([20*i for i in range(5)])
-        plt.legend()
+        plt.legend(["CF", "CF_STC", "SF", "SF_STC"], ncol=2)
         plt.grid(color='#FAB9E1', linestyle=':', linewidth=0.5, alpha=1, zorder=0)
         plt.tight_layout()
         plt.show()
@@ -204,8 +219,10 @@ class PlotCurve:
         style(width, height)  # 假设这是自定义的样式函数
 
         algorithms = grouped_data['algorithm'].unique()
+        markers = ['D', 's', 'o', '^']
+        line_styles = ['-', '--', '-.', ':']
 
-        for algo in algorithms:
+        for i, algo in enumerate(algorithms):
             algo_data = grouped_data[grouped_data['algorithm'] == algo]
             loads = algo_data['load']
             means = algo_data['mean']
@@ -223,7 +240,13 @@ class PlotCurve:
             y_smooth = spline(x_smooth)
 
             # 绘制平滑曲线
-            plt.plot(x_smooth, y_smooth, label=algo, linewidth=1, zorder=80)
+            # plt.plot(x_smooth, y_smooth, label=algo, linewidth=1, zorder=80)
+            plt.plot(
+                loads, means,
+                ls=line_styles[i], lw=1,
+                marker=markers[i], ms=4, mfc="white",
+                zorder=100
+            )
 
             # 绘制误差棒（可选用errorbar或fill_between）
             plt.errorbar(x_sorted, y_sorted, yerr=stds.iloc[sorted_idx],
@@ -232,16 +255,16 @@ class PlotCurve:
                          lw=1, alpha=0.5, elinewidth=0.5,  # 透明度
                          color=plt.gca().lines[-1].get_color(), zorder=50)  # 使用与曲线相同的颜色
 
-            plt.scatter(loads, means,
-                        marker='o', s=20,
-                        linewidths=1, edgecolors="#FFFFFF",
-                        zorder=100)
+            # plt.scatter(loads, means,
+            #             marker='o', s=20,
+            #             linewidths=1, edgecolors="#FFFFFF",
+            #             zorder=100)
 
         plt.xlabel('Load')
         plt.ylabel('Link Utilization (%)')
         plt.xticks([100 * i for i in range(9)])
         # plt.yticks([20*i for i in range(5)])
-        plt.legend()
+        plt.legend(["CF", "CF_STC", "SF", "SF_STC"])
         plt.grid(color='#FAB9E1', linestyle=':', linewidth=0.5, alpha=1, zorder=0)
         plt.tight_layout()
         plt.show()
@@ -257,8 +280,10 @@ class PlotCurve:
         style(width, height)  # 假设这是自定义的样式函数
 
         algorithms = grouped_data['algorithm'].unique()
+        markers = ['D', 's', 'o', '^']
+        line_styles = ['-', '--', '-.', ':']
 
-        for algo in algorithms:
+        for i, algo in enumerate(algorithms):
             algo_data = grouped_data[grouped_data['algorithm'] == algo]
             loads = algo_data['load']
             means = algo_data['mean']
@@ -276,7 +301,13 @@ class PlotCurve:
             y_smooth = spline(x_smooth)
 
             # 绘制平滑曲线
-            plt.plot(x_smooth, y_smooth, label=algo, linewidth=1, zorder=80)
+            # plt.plot(x_smooth, y_smooth, label=algo, linewidth=1, zorder=80)
+            plt.plot(
+                loads, means,
+                ls=line_styles[i], lw=1,
+                marker=markers[i], ms=4, mfc="white",
+                zorder=100
+            )
 
             # 绘制误差棒（可选用errorbar或fill_between）
             plt.errorbar(x_sorted, y_sorted, yerr=stds.iloc[sorted_idx],
@@ -285,16 +316,16 @@ class PlotCurve:
                          lw=1, alpha=0.5, elinewidth=0.5,  # 透明度
                          color=plt.gca().lines[-1].get_color(), zorder=50)  # 使用与曲线相同的颜色
 
-            plt.scatter(loads, means,
-                        marker='o', s=20,
-                        linewidths=1, edgecolors="#FFFFFF",
-                        zorder=100)
+            # plt.scatter(loads, means,
+            #             marker=markers[i], s=20, fc="none",
+            #             linewidths=1, edgecolors=plt.gca().lines[-1].get_color(),
+            #             zorder=100)
 
         plt.xlabel('Load')
         plt.ylabel('Security Deviation')
         plt.xticks([100 * i for i in range(9)])
         # plt.yticks([20*i for i in range(5)])
-        plt.legend()
+        plt.legend(["CF", "CF_STC", "SF", "SF_STC"])
         plt.grid(color='#FAB9E1', linestyle=':', linewidth=0.5, alpha=1, zorder=0)
         plt.tight_layout()
         plt.show()
@@ -304,14 +335,16 @@ class PlotCurve:
         data = pd.read_csv("./data/data_NSFNET_load_br_3.csv")
 
         # 按算法和负载分组，计算均值和标准差
-        grouped_data = data.groupby(['algorithm', 'load'])['exposure ratio(t)'].agg(['mean', 'std']).reset_index()
+        grouped_data = data.groupby(['algorithm', 'load'])['exposure ratio(2)'].agg(['mean', 'std']).reset_index()
 
         # 创建图表
         style(width, height)  # 假设这是自定义的样式函数
 
         algorithms = grouped_data['algorithm'].unique()
+        markers = ['D', 's', 'o', '^']
+        line_styles = ['-', '--', '-.', ':']
 
-        for algo in algorithms:
+        for i, algo in enumerate(algorithms):
             algo_data = grouped_data[grouped_data['algorithm'] == algo]
             loads = algo_data['load']
             means = algo_data['mean']
@@ -329,7 +362,13 @@ class PlotCurve:
             y_smooth = spline(x_smooth)
 
             # 绘制平滑曲线
-            plt.plot(x_smooth, y_smooth, label=algo, linewidth=1, zorder=80)
+            # plt.plot(x_smooth, y_smooth, label=algo, linewidth=1, zorder=80)
+            plt.plot(
+                loads, means,
+                ls=line_styles[i], lw=1,
+                marker=markers[i], ms=4, mfc="white",
+                zorder=100
+            )
 
             # 绘制误差棒（可选用errorbar或fill_between）
             plt.errorbar(x_sorted, y_sorted, yerr=stds.iloc[sorted_idx],
@@ -338,16 +377,16 @@ class PlotCurve:
                          lw=1, alpha=0.5, elinewidth=0.5,  # 透明度
                          color=plt.gca().lines[-1].get_color(), zorder=50)  # 使用与曲线相同的颜色
 
-            plt.scatter(loads, means,
-                        marker='o', s=20,
-                        linewidths=1, edgecolors="#FFFFFF",
-                        zorder=100)
+            # plt.scatter(loads, means,
+            #             marker='o', s=20,
+            #             linewidths=1, edgecolors="#FFFFFF",
+            #             zorder=100)
 
         plt.xlabel('Load')
         plt.ylabel('Exposure Rate (%)')
         plt.xticks([100 * i for i in range(9)])
         # plt.yticks([20*i for i in range(5)])
-        plt.legend()
+        plt.legend(["CF", "CF_STC", "SF", "SF_STC"])
         plt.grid(color='#FAB9E1', linestyle=':', linewidth=0.5, alpha=1, zorder=0)
         plt.tight_layout()
         plt.show()

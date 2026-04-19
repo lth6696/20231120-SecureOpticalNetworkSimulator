@@ -352,7 +352,76 @@ if is_show:
 if not is_plot:
     sys.exit()
 
-pf = pd.read_csv("../data/data_6N8E_load_br.csv")
+pf = pd.read_csv("../data/data_6N8E_lsr_br.csv")
+
+
+def plot_group_br_sec():
+    grouped = pf.groupby("secure link rate")[
+        ["br 0 stack", "br 1 stack", "br 2 stack"]].sum().reset_index()
+
+    style(width=8.4 * 1.3, height=6.3 * 1.3)
+
+    # 核心参数：柱子宽度（关键！控制柱子间距）
+    bar_width = 4
+
+    # 绘制两组柱状图：通过偏移量实现并列
+    plt.bar(grouped["secure link rate"] * 100 - bar_width, grouped["br 0 stack"] + 0.5,
+            label='Sec. Req. = 0', width=bar_width,
+            color='#00E64B',
+            linewidth=0.2, edgecolor="#FFFFFF", zorder=10)
+    plt.bar(grouped["secure link rate"] * 100, grouped["br 1 stack"] + 0.5,
+            label='Sec. Req. = 1', width=bar_width,
+            color='#EBD700',
+            linewidth=0.2, edgecolor="#FFFFFF", zorder=10)
+    plt.bar(grouped["secure link rate"] * 100 + bar_width, grouped["br 2 stack"] + 0.5,
+            label='Sec. Req. = 2', width=bar_width,
+            color='#CC000A',
+            linewidth=0.2, edgecolor="#FFFFFF", zorder=10)
+
+    y0 = grouped["br 0 stack"].to_numpy(dtype=float)
+    y1 = grouped["br 1 stack"].to_numpy(dtype=float)
+    y2 = grouped["br 2 stack"].to_numpy(dtype=float)
+    total = y0 + y1 + y2
+    plt.bar(
+        grouped["secure link rate"] * 100, total,
+        width=3 * bar_width,
+        color='#BFBFBF', zorder=5, label='Total Req.'
+    )
+
+    # 循环添加数值
+    for i in range(len(grouped["secure link rate"])):
+        plt.text(
+            grouped["secure link rate"][i] * 100 - bar_width, grouped["br 0 stack"][i] + 1,
+            str(grouped["br 0 stack"][i].round(2)),
+            ha='center', va='bottom', fontsize=6, zorder=10, rotation=90
+        )
+        plt.text(
+            grouped["secure link rate"][i] * 100, grouped["br 1 stack"][i] + 1,
+            str(grouped["br 1 stack"][i].round(2)),
+            ha='center', va='bottom', fontsize=6, zorder=10, rotation=90
+        )
+        plt.text(
+            grouped["secure link rate"][i] * 100 + bar_width, grouped["br 2 stack"][i] + 1,
+            str(grouped["br 2 stack"][i].round(2)),
+            ha='center', va='bottom', fontsize=6, zorder=10, rotation=90
+        )
+
+    ax = plt.gca()  # 获取当前坐标轴
+    ax.set_axisbelow(False)  # 关闭「轴在图形下方」
+    ax.spines[:].set_zorder(20)  # 所有边框（上下左右）顶层
+    ax.tick_params(zorder=20)  # 刻度线+刻度标签顶层
+
+    # 设置标题和标签
+    plt.xlabel('Secure Link Rate (%)')
+    plt.ylabel('Blocking Rate (%)')
+    # 添加图例
+    plt.legend()
+    # 设置网格
+    plt.grid(color='#FAB9E1', linestyle=':', linewidth=0.5, alpha=1, zorder=0)
+    # 调整布局
+    plt.tight_layout()
+    # 显示图表
+    plt.show()
 
 
 def plot_stack_br_sec():
@@ -408,6 +477,76 @@ def plot_stack_br_sec():
     # 显示图表
     plt.show()
 
+
+def plot_group_br_load():
+    grouped = pf.groupby("num of calls")[
+        ["br 0 stack", "br 1 stack", "br 2 stack"]].sum().reset_index()
+
+    style(width=8.4 * 1.3, height=6.3 * 1.3)
+
+    # 核心参数：柱子宽度（关键！控制柱子间距）
+    bar_width = 15
+
+    # 绘制两组柱状图：通过偏移量实现并列
+    plt.bar(grouped["num of calls"] - bar_width, grouped["br 0 stack"] + 0.2,
+            label='Sec. Req. = 0', width=bar_width,
+            color='#00E64B',
+            linewidth=0.2, edgecolor="#FFFFFF", zorder=10)
+    plt.bar(grouped["num of calls"], grouped["br 1 stack"] + 0.2,
+            label='Sec. Req. = 1', width=bar_width,
+            color='#EBD700',
+            linewidth=0.2, edgecolor="#FFFFFF", zorder=10)
+    plt.bar(grouped["num of calls"] + bar_width, grouped["br 2 stack"] + 0.2,
+            label='Sec. Req. = 2', width=bar_width,
+            color='#CC000A',
+            linewidth=0.2, edgecolor="#FFFFFF", zorder=10)
+
+    y0 = grouped["br 0 stack"].to_numpy(dtype=float)
+    y1 = grouped["br 1 stack"].to_numpy(dtype=float)
+    y2 = grouped["br 2 stack"].to_numpy(dtype=float)
+    total = y0 + y1 + y2
+    plt.bar(
+        grouped["num of calls"], total,
+        width=3 * bar_width,
+        color='#BFBFBF', zorder=5, label='Total Req.'
+    )
+
+    # 循环添加数值
+    for i in range(len(grouped["num of calls"])):
+        plt.text(
+            grouped["num of calls"][i] - bar_width, grouped["br 0 stack"][i] + 0.6,
+            str(grouped["br 0 stack"][i].round(2)),
+            ha='center', va='bottom', fontsize=6, zorder=10, rotation=90
+        )
+        plt.text(
+            grouped["num of calls"][i], grouped["br 1 stack"][i] + 0.6,
+            str(grouped["br 1 stack"][i].round(2)),
+            ha='center', va='bottom', fontsize=6, zorder=10, rotation=90
+        )
+        plt.text(
+            grouped["num of calls"][i] + bar_width, grouped["br 2 stack"][i] + 0.6,
+            str(grouped["br 2 stack"][i].round(2)),
+            ha='center', va='bottom', fontsize=6, zorder=10, rotation=90
+        )
+
+    ax = plt.gca()  # 获取当前坐标轴
+    ax.set_axisbelow(False)  # 关闭「轴在图形下方」
+    ax.spines[:].set_zorder(20)  # 所有边框（上下左右）顶层
+    ax.tick_params(zorder=20)  # 刻度线+刻度标签顶层
+
+    # 设置标题和标签
+    plt.xlabel('Num of Calls')
+    plt.ylabel('Blocking Rate (%)')
+    # 添加图例
+    plt.legend()
+    # 设置网格
+    plt.grid(color='#FAB9E1', linestyle=':', linewidth=0.5, alpha=1, zorder=0)
+    # 调整布局
+    plt.tight_layout()
+    # 显示图表
+    plt.show()
+
+
 def plot_stack_br_load():
     grouped = pf.groupby("num of calls")[["br 0 stack", "br 1 stack", "br 2 stack"]].sum().reset_index()
 
@@ -460,6 +599,77 @@ def plot_stack_br_load():
     plt.tight_layout()
     # 显示图表
     plt.show()
+
+
+def plot_group_dev_load():
+    grouped = pf.groupby("num of calls")[
+        ["security deviations", "security deviations 1", "security deviations 2"]].sum().reset_index()
+
+    style(width=8.4 * 1.3, height=6.3 * 1.3)
+
+    # 核心参数：柱子宽度（关键！控制柱子间距）
+    bar_width = 15
+
+    # 绘制两组柱状图：通过偏移量实现并列
+    plt.bar(grouped["num of calls"] - bar_width, grouped["security deviations"],
+            label='Sec. Req. = 0', width=bar_width,
+            color='#00E64B',
+            linewidth=0.2, edgecolor="#FFFFFF", zorder=10)
+    plt.bar(grouped["num of calls"], grouped["security deviations 1"] + 0.003,
+            label='Sec. Req. = 1', width=bar_width,
+            color='#EBD700',
+            linewidth=0.2, edgecolor="#FFFFFF", zorder=10)
+    plt.bar(grouped["num of calls"] + bar_width, grouped["security deviations 2"] + 0.003,
+            label='Sec. Req. = 2', width=bar_width,
+            color='#CC000A',
+            linewidth=0.2, edgecolor="#FFFFFF", zorder=10)
+
+    y0 = grouped["security deviations"].to_numpy(dtype=float)
+    y1 = grouped["security deviations 1"].to_numpy(dtype=float)
+    y2 = grouped["security deviations 2"].to_numpy(dtype=float)
+    total = y0 + y1 + y2
+    plt.bar(
+        grouped["num of calls"], total,
+        width=3 * bar_width,
+        color='#BFBFBF', zorder=5, label='Total Req.'
+    )
+
+    # 循环添加数值
+    for i in range(len(grouped["num of calls"])):
+        plt.text(
+            grouped["num of calls"][i] - bar_width, grouped["security deviations"][i] + 0.007,
+            str(grouped["security deviations"][i].round(2)),
+            ha='center', va='bottom', fontsize=6, zorder=10, rotation=90
+        )
+        plt.text(
+            grouped["num of calls"][i], grouped["security deviations 1"][i] + 0.007,
+            str(int(grouped["security deviations 1"][i])),
+            ha='center', va='bottom', fontsize=6, zorder=10, rotation=90
+        )
+        plt.text(
+            grouped["num of calls"][i] + bar_width, grouped["security deviations 2"][i] + 0.007,
+            str(int(grouped["security deviations 2"][i])),
+            ha='center', va='bottom', fontsize=6, zorder=10, rotation=90
+        )
+
+    ax = plt.gca()  # 获取当前坐标轴
+    ax.set_axisbelow(False)  # 关闭「轴在图形下方」
+    ax.spines[:].set_zorder(20)  # 所有边框（上下左右）顶层
+    ax.tick_params(zorder=20)  # 刻度线+刻度标签顶层
+
+    # 设置标题和标签
+    plt.xlabel('Num of Calls')
+    plt.ylabel('Security Deviations')
+    plt.yticks([0.1 * i for i in range(5)])
+    # 添加图例
+    plt.legend(ncol=2)
+    # 设置网格
+    plt.grid(color='#FAB9E1', linestyle=':', linewidth=0.5, alpha=1, zorder=0)
+    # 调整布局
+    plt.tight_layout()
+    # 显示图表
+    plt.show()
+
 
 def plot_stack_dev_load():
     grouped = pf.groupby("num of calls")[["security deviations", "security deviations 1", "security deviations 2"]].sum().reset_index()
@@ -515,6 +725,77 @@ def plot_stack_dev_load():
     # 显示图表
     plt.show()
 
+
+def plot_group_expo_load():
+    grouped = pf.groupby("num of calls")[
+        ["exposure rate", "exposure rate 1", "exposure rate 2"]].sum().reset_index()
+
+    style(width=8.4 * 1.3, height=6.3 * 1.3)
+
+    # 核心参数：柱子宽度（关键！控制柱子间距）
+    bar_width = 15
+
+    # 绘制两组柱状图：通过偏移量实现并列
+    plt.bar(grouped["num of calls"] - bar_width, grouped["exposure rate"],
+            label='Sec. Req. = 0', width=bar_width,
+            color='#00E64B',
+            linewidth=0.2, edgecolor="#FFFFFF", zorder=10)
+    plt.bar(grouped["num of calls"], grouped["exposure rate 1"] + 0.5,
+            label='Sec. Req. = 1', width=bar_width,
+            color='#EBD700',
+            linewidth=0.2, edgecolor="#FFFFFF", zorder=10)
+    plt.bar(grouped["num of calls"] + bar_width, grouped["exposure rate 2"] + 0.5,
+            label='Sec. Req. = 2', width=bar_width,
+            color='#CC000A',
+            linewidth=0.2, edgecolor="#FFFFFF", zorder=10)
+
+    y0 = grouped["exposure rate"].to_numpy(dtype=float)
+    y1 = grouped["exposure rate 1"].to_numpy(dtype=float)
+    y2 = grouped["exposure rate 2"].to_numpy(dtype=float)
+    total = y0 + y1 + y2
+    plt.bar(
+        grouped["num of calls"], total,
+        width=3 * bar_width,
+        color='#BFBFBF', zorder=5, label='Total Req.'
+    )
+
+    # 循环添加数值
+    for i in range(len(grouped["num of calls"])):
+        plt.text(
+            grouped["num of calls"][i] - bar_width, grouped["exposure rate"][i] + 0.5,
+            str(grouped["exposure rate"][i].round(2)),
+            ha='center', va='bottom', fontsize=6, zorder=10, rotation=90
+        )
+        plt.text(
+            grouped["num of calls"][i], grouped["exposure rate 1"][i] + 1,
+            str(int(grouped["exposure rate 1"][i])),
+            ha='center', va='bottom', fontsize=6, zorder=10, rotation=90
+        )
+        plt.text(
+            grouped["num of calls"][i] + bar_width, grouped["exposure rate 2"][i] + 1,
+            str(int(grouped["exposure rate 2"][i])),
+            ha='center', va='bottom', fontsize=6, zorder=10, rotation=90
+        )
+
+    ax = plt.gca()  # 获取当前坐标轴
+    ax.set_axisbelow(False)  # 关闭「轴在图形下方」
+    ax.spines[:].set_zorder(20)  # 所有边框（上下左右）顶层
+    ax.tick_params(zorder=20)  # 刻度线+刻度标签顶层
+
+    # 设置标题和标签
+    plt.xlabel('Num of Calls')
+    plt.ylabel('Exposure Rate (%)')
+    plt.yticks([10 * i for i in range(6)])
+    # 添加图例
+    plt.legend(ncol=2)
+    # 设置网格
+    plt.grid(color='#FAB9E1', linestyle=':', linewidth=0.5, alpha=1, zorder=0)
+    # 调整布局
+    plt.tight_layout()
+    # 显示图表
+    plt.show()
+
+
 def plot_stack_expo_load():
     grouped = pf.groupby("num of calls")[["exposure rate", "exposure rate 1", "exposure rate 2"]].sum().reset_index()
 
@@ -569,4 +850,4 @@ def plot_stack_expo_load():
     # 显示图表
     plt.show()
 
-plot_stack_expo_load()
+plot_group_br_sec()
