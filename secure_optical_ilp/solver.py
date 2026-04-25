@@ -164,10 +164,13 @@ class SecureOpticalILPSolver:
         sense = pulp.LpMaximize if maximize_admitted else pulp.LpMinimize
         problem = pulp.LpProblem("secure_optical_network_ilp", sense)
 
+        # Variables
+        # 1. whether $R^{sd,l}$ is successfully routed.
         mu = {
             request_id: pulp.LpVariable(f"mu_{request_id}", cat="Binary")
             for request_id in self._request_ids
         }
+        # 2. whether $R^{sd,l}$ is provisioned.
         gamma = {
             request_id: pulp.LpVariable(f"gamma_{request_id}", cat="Binary")
             for request_id in self._request_ids
@@ -186,6 +189,7 @@ class SecureOpticalILPSolver:
             )
             for key in self._lightpaths
         }
+        # 3. $R^{sd,l}$ passed through the $k^{th}$ lightpath from $m$ to $n$.
         lambda_vars = {
             (request_id, key): pulp.LpVariable(
                 f"lambda_{request_id}_{key.source}_{key.target}_{key.index}",
@@ -194,6 +198,7 @@ class SecureOpticalILPSolver:
             for request_id in self._request_ids
             for key in self._lightpaths
         }
+        # 4. the usage of the secret channel of the $R^{sd,l}$
         kappa_vars = {
             (request_id, key): pulp.LpVariable(
                 f"kappa_{request_id}_{key.source}_{key.target}_{key.index}",
@@ -202,6 +207,7 @@ class SecureOpticalILPSolver:
             for request_id in self._request_ids
             for key in self._lightpaths
         }
+        # 5. the lightpath use the link $e_{ij}$ with the usage of the wavelength $w$.
         iota_vars = {
             (key, edge, wavelength): pulp.LpVariable(
                 f"iota_{key.source}_{key.target}_{key.index}_{edge[0]}_{edge[1]}_{wavelength}",
@@ -211,6 +217,7 @@ class SecureOpticalILPSolver:
             for edge in self._edges
             for wavelength in self._wavelengths
         }
+        # 6. whether the secret channel deployed in the $e_{ij,w}$
         chi_vars = {
             (key, edge, wavelength): pulp.LpVariable(
                 f"chi_{key.source}_{key.target}_{key.index}_{edge[0]}_{edge[1]}_{wavelength}",
@@ -223,6 +230,7 @@ class SecureOpticalILPSolver:
 
         request_count = max(1, len(self._request_ids))
 
+        # Constraints
         for request_id in self._request_ids:
             request = self._requests_by_id[request_id]
             security_required = 1 if request.security_level > 0 else 0

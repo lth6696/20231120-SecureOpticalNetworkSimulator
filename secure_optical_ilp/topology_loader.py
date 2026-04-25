@@ -143,7 +143,7 @@ def build_demo_requests_from_graph(
                 source=source,
                 target=target,
                 bandwidth=rng.randint(1, 4),
-                security_level=rng.randint(0, 3),
+                security_level=rng.randint(0, 2),
         )
         requests.append(request)
         logger.info(request)
