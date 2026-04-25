@@ -1,28 +1,29 @@
-2026-04-08 17:42:45,643 - INFO - Logging initialized from D:\Program\Python\20260407-SecureOpticalNetworkSimulator\logconfig.ini
-2026-04-08 17:42:45,649 - INFO - Program started with logging config D:\Program\Python\20260407-SecureOpticalNetworkSimulator\logconfig.ini
-2026-04-08 17:42:45,649 - INFO - Loading topology from topology\SixNode.graphml
-2026-04-08 17:42:45,792 - INFO - Reading GraphML topology from topology\SixNode.graphml
-2026-04-08 17:42:45,867 - INFO - Loaded topology graph: directed=False, |V|=6, |E|=8
-2026-04-08 17:42:45,868 - INFO - ServiceRequest(request_id='r1', source='5', target='1', bandwidth=1, security_level=0)
-2026-04-08 17:42:45,868 - INFO - ServiceRequest(request_id='r2', source='5', target='4', bandwidth=3, security_level=1)
-2026-04-08 17:42:45,868 - INFO - ServiceRequest(request_id='r3', source='2', target='4', bandwidth=2, security_level=0)
-2026-04-08 17:42:45,868 - INFO - ServiceRequest(request_id='r4', source='5', target='2', bandwidth=1, security_level=3)
-2026-04-08 17:42:45,868 - INFO - Built 4 uniformly distributed demo requests from topology with seed=42
-2026-04-08 17:42:45,868 - INFO - Generated 4 uniformly distributed demo requests from topology graph with |V|=6, |E|=8
-2026-04-08 17:42:45,868 - INFO - Converting graph to NetworkInstance: nodes=6, directed_links=16, positioned_nodes=6
-2026-04-08 17:42:45,868 - INFO - Built NetworkInstance with 16 directed links and 4 requests
-2026-04-08 17:42:45,957 - INFO - Starting ILP solve: requests=4, candidate_lightpaths=60, edges=16, wavelengths=2
-2026-04-08 17:42:46,047 - INFO - Phase 1 model built, maximizing admitted requests
-2026-04-08 17:42:47,008 - INFO - Phase 1 solve finished with status=Optimal
-2026-04-08 17:42:47,008 - INFO - Phase 1 accepted 4 requests with objective 4.0000
-2026-04-08 17:42:47,082 - INFO - Phase 2 model built, minimizing cost with admitted_target=4
-2026-04-08 17:42:48,222 - INFO - Phase 2 solve finished with status=Optimal
-2026-04-08 17:42:48,223 - INFO - Solution extracted: admitted=4/4, phase2_objective=278.0226
-2026-04-08 17:42:48,225 - INFO - Writing visualization outputs to outputs
-2026-04-08 17:42:48,512 - INFO - Rendering logical lightpath figure with service=3 and security=2 paths
-2026-04-08 17:42:48,829 - INFO - Saved logical lightpath visualization to outputs\lightpaths_mnk.png
-2026-04-08 17:42:48,829 - INFO - Rendering physical link usage figure
-2026-04-08 17:42:49,072 - INFO - Saved physical link visualization to outputs\links_ijw.png
-2026-04-08 17:42:49,072 - INFO - Solution written to outputs\solution.json
-2026-04-08 17:42:49,072 - INFO - Visualization outputs: {'lightpaths_mnk': WindowsPath('outputs/lightpaths_mnk.png'), 'links_ijw': WindowsPath('outputs/links_ijw.png')}
-2026-04-08 17:42:49,072 - INFO - Program finished successfully
+2026-04-25 12:50:12,789 - INFO - Logging initialized from D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\logconfig.ini
+2026-04-25 12:50:12,789 - INFO - Program started with app config D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\config.toml
+2026-04-25 12:50:12,790 - INFO - Logging config loaded from D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\logconfig.ini
+2026-04-25 12:50:12,790 - INFO - Loading topology from D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\topology\SixNode.graphml
+2026-04-25 12:50:12,962 - INFO - Reading GraphML topology from D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\topology\SixNode.graphml
+2026-04-25 12:50:13,052 - INFO - Loaded topology graph: directed=False, |V|=6, |E|=8
+2026-04-25 12:50:13,052 - INFO - ServiceRequest(request_id='r1', source='5', target='1', bandwidth=1, security_level=0)
+2026-04-25 12:50:13,052 - INFO - ServiceRequest(request_id='r2', source='5', target='4', bandwidth=3, security_level=0)
+2026-04-25 12:50:13,052 - INFO - ServiceRequest(request_id='r3', source='2', target='4', bandwidth=2, security_level=2)
+2026-04-25 12:50:13,052 - INFO - ServiceRequest(request_id='r4', source='1', target='5', bandwidth=1, security_level=2)
+2026-04-25 12:50:13,053 - INFO - Built 4 uniformly distributed demo requests from topology with seed=42
+2026-04-25 12:50:13,053 - INFO - Generated 4 uniformly distributed demo requests from topology graph with |V|=6, |E|=8
+2026-04-25 12:50:13,053 - INFO - Converting graph to NetworkInstance: nodes=6, directed_links=16, positioned_nodes=6
+2026-04-25 12:50:13,053 - INFO - Built NetworkInstance with 16 directed links and 4 requests
+2026-04-25 12:50:13,129 - INFO - Starting ILP solve: requests=4, candidate_lightpaths=60, edges=16, wavelengths=2
+2026-04-25 12:50:13,229 - INFO - Phase 1 model built, maximizing admitted requests
+2026-04-25 12:50:14,343 - INFO - Phase 1 solve finished with status=Optimal
+2026-04-25 12:50:14,343 - INFO - Phase 1 accepted 4 requests with objective 4.0000
+2026-04-25 12:50:14,443 - INFO - Phase 2 model built, minimizing cost with admitted_target=4
+2026-04-25 12:50:15,818 - INFO - Phase 2 solve finished with status=Optimal
+2026-04-25 12:50:15,820 - INFO - Solution extracted: admitted=4/4, phase2_objective=376.6122
+2026-04-25 12:50:15,822 - INFO - Writing visualization outputs to D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\outputs
+2026-04-25 12:50:17,063 - INFO - Rendering logical lightpath figure with service=4 and security=2 paths
+2026-04-25 12:50:17,782 - INFO - Saved logical lightpath visualization to D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\outputs\lightpaths_mnk.png
+2026-04-25 12:50:17,783 - INFO - Rendering physical link usage figure
+2026-04-25 12:50:18,098 - INFO - Saved physical link visualization to D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\outputs\links_ijw.png
+2026-04-25 12:50:18,098 - INFO - Solution written to D:\Program\JAVA\20231120-SecureOpticalNetworkSimulator\outputs\solution.json
+2026-04-25 12:50:18,098 - INFO - Visualization outputs: {'lightpaths_mnk': WindowsPath('D:/Program/JAVA/20231120-SecureOpticalNetworkSimulator/outputs/lightpaths_mnk.png'), 'links_ijw': WindowsPath('D:/Program/JAVA/20231120-SecureOpticalNetworkSimulator/outputs/links_ijw.png')}
+2026-04-25 12:50:18,099 - INFO - Program finished successfully

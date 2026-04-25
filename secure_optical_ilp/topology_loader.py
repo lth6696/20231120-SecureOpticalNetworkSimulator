@@ -54,7 +54,7 @@ def load_topology_graphml(path: str | Path):
     return topology
 
 
-def build_instance_from_graph(
+def build_network(
     graph,
     *,
     requests: tuple[ServiceRequest, ...],
@@ -102,11 +102,15 @@ def build_instance_from_graph(
     )
 
 
-def build_demo_requests_from_graph(
+def build_requests(
     graph,
-    request_count: int = 4,
+    request_count: int = 0,
     *,
-    seed: int = 42,
+    seed: int = 0,
+    bandwidth_min: int = 0,
+    bandwidth_max: int = 0,
+    security_level_min: int = 0,
+    security_level_max: int = 0,
 ) -> tuple[ServiceRequest, ...]:
     """根据拓扑自动生成一组示例业务请求。
 
@@ -122,6 +126,10 @@ def build_demo_requests_from_graph(
     """
     if request_count <= 0:
         raise ValueError("request_count 必须为正整数。")
+    if bandwidth_min <= 0 or bandwidth_max < bandwidth_min:
+        raise ValueError("bandwidth range must be positive and ordered.")
+    if security_level_min < 0 or security_level_max < security_level_min:
+        raise ValueError("security level range must be non-negative and ordered.")
 
     nodes = [str(node) for node in graph.nodes]
     if len(nodes) < 2:
@@ -142,8 +150,8 @@ def build_demo_requests_from_graph(
                 request_id=f"r{index}",
                 source=source,
                 target=target,
-                bandwidth=rng.randint(1, 4),
-                security_level=rng.randint(0, 2),
+                bandwidth=rng.randint(bandwidth_min, bandwidth_max),
+                security_level=rng.randint(security_level_min, security_level_max),
         )
         requests.append(request)
         logger.info(request)

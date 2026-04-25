@@ -43,10 +43,10 @@ class ServiceRequest:
 class CostParameters:
     """目标函数中的成本系数。"""
 
-    wavelength_cost: float = 1.0
-    distance_cost: float = 0.1
-    key_rate_cost: float = 1.0
-    security_port_cost: float = 1.0
+    wavelength_cost: float = 0.0
+    distance_cost: float = 0.0
+    key_rate_cost: float = 0.0
+    security_port_cost: float = 0.0
     logical_hop_tiebreak: float = 1e-3
     physical_hop_tiebreak: float = 1e-3
 

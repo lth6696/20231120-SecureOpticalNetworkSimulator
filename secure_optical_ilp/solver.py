@@ -88,8 +88,7 @@ class SecureOpticalILPSolver:
     def solve(self) -> SolverSolution:
         """分两阶段求解模型。
 
-        第一阶段最大化被接纳的业务数，因为原始目标里含有 ``1 / sum(mu)``
-        这样的非线性项。
+        第一阶段最大化被接纳的业务数，因为原始目标里含有 ``1 / sum(mu)``这样的非线性项。
         第二阶段固定第一阶段得到的接纳数，再最小化线性化后的成本。
         """
         pulp = _require_pulp()

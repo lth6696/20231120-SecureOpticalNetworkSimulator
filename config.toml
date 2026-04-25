@@ -1,0 +1,37 @@
+[logging]
+config_path = "logconfig.ini"
+
+[topology]
+path = "topology/SixNode.graphml"
+
+[request_generation]
+count = 4
+seed = 42
+bandwidth_min = 1
+bandwidth_max = 4
+security_level_min = 0
+security_level_max = 2
+
+[network_resources]
+wavelengths = 2
+lightpaths_per_pair = 2
+logical_bandwidth_capacity = 10.0
+logical_key_capacity = 6.0
+
+[costs]
+wavelength_cost = 2.0
+distance_cost = 0.03
+key_rate_cost = 1.2
+security_port_cost = 3.0
+logical_hop_tiebreak = 0.001
+physical_hop_tiebreak = 0.001
+
+[solver]
+solver_message = false
+# CBC time limit in seconds. Omit this key to disable the limit.
+# time_limit_seconds = 60
+
+[outputs]
+directory = "outputs"
+solution_filename = "solution.json"
+enable_visualization = true

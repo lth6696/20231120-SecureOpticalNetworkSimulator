@@ -3,14 +3,14 @@
   "admitted_count": 4,
   "total_requests": 4,
   "phase_one_objective": 4.0,
-  "phase_two_objective": 278.0226335525212,
+  "phase_two_objective": 376.61218788313215,
   "total_cost_breakdown": {
-    "security_wavelength_cost": 6.0,
-    "security_distance_cost": 255.2056335525215,
+    "security_wavelength_cost": 8.0,
+    "security_distance_cost": 351.7951878831325,
     "key_rate_cost": 4.8,
     "security_port_cost": 12.0,
-    "logical_hop_tiebreak": 0.008,
-    "physical_hop_tiebreak": 0.009000000000000001
+    "logical_hop_tiebreak": 0.006,
+    "physical_hop_tiebreak": 0.011000000000000003
   },
   "request_routes": [
     {
@@ -29,34 +29,10 @@
     {
       "request_id": "r2",
       "admitted": true,
-      "security_enabled": true,
-      "service_lightpaths": [
-        {
-          "source": "5",
-          "target": "2",
-          "index": 0
-        },
-        {
-          "source": "2",
-          "target": "4",
-          "index": 0
-        }
-      ],
-      "security_lightpaths": [
-        {
-          "source": "5",
-          "target": "4",
-          "index": 0
-        }
-      ]
-    },
-    {
-      "request_id": "r3",
-      "admitted": true,
       "security_enabled": false,
       "service_lightpaths": [
         {
-          "source": "2",
+          "source": "5",
           "target": "4",
           "index": 0
         }
@@ -64,31 +40,71 @@
       "security_lightpaths": []
     },
     {
-      "request_id": "r4",
+      "request_id": "r3",
       "admitted": true,
       "security_enabled": true,
       "service_lightpaths": [
         {
-          "source": "5",
-          "target": "2",
+          "source": "2",
+          "target": "4",
           "index": 0
         }
       ],
       "security_lightpaths": [
         {
-          "source": "5",
+          "source": "2",
           "target": "4",
-          "index": 0
-        },
-        {
-          "source": "4",
-          "target": "2",
           "index": 1
+        }
+      ]
+    },
+    {
+      "request_id": "r4",
+      "admitted": true,
+      "security_enabled": true,
+      "service_lightpaths": [
+        {
+          "source": "1",
+          "target": "5",
+          "index": 1
+        }
+      ],
+      "security_lightpaths": [
+        {
+          "source": "1",
+          "target": "5",
+          "index": 0
         }
       ]
     }
   ],
   "service_lightpaths": [
+    {
+      "key": {
+        "source": "1",
+        "target": "5",
+        "index": 1
+      },
+      "layer": "service",
+      "request_ids": [
+        "r4"
+      ],
+      "carried_load": 1,
+      "physical_assignments": [
+        {
+          "source": "1",
+          "target": "0",
+          "wavelength": 0,
+          "distance": 4290.207895543115
+        },
+        {
+          "source": "0",
+          "target": "5",
+          "wavelength": 0,
+          "distance": 3219.6518110203656
+        }
+      ]
+    },
     {
       "key": {
         "source": "2",
@@ -97,21 +113,20 @@
       },
       "layer": "service",
       "request_ids": [
-        "r2",
         "r3"
       ],
-      "carried_load": 5,
+      "carried_load": 2,
       "physical_assignments": [
         {
           "source": "2",
           "target": "3",
-          "wavelength": 0,
+          "wavelength": 1,
           "distance": 287.45288903219097
         },
         {
           "source": "3",
           "target": "4",
-          "wavelength": 0,
+          "wavelength": 1,
           "distance": 3929.1936671754106
         }
       ]
@@ -145,27 +160,20 @@
     {
       "key": {
         "source": "5",
-        "target": "2",
+        "target": "4",
         "index": 0
       },
       "layer": "service",
       "request_ids": [
-        "r2",
-        "r4"
+        "r2"
       ],
-      "carried_load": 4,
+      "carried_load": 3,
       "physical_assignments": [
         {
           "source": "5",
-          "target": "0",
-          "wavelength": 1,
-          "distance": 3219.6518110203656
-        },
-        {
-          "source": "0",
-          "target": "2",
+          "target": "4",
           "wavelength": 0,
-          "distance": 7783.644865119111
+          "distance": 4290.207895543115
         }
       ]
     }
@@ -173,48 +181,53 @@
   "security_lightpaths": [
     {
       "key": {
-        "source": "4",
-        "target": "2",
-        "index": 1
+        "source": "1",
+        "target": "5",
+        "index": 0
       },
       "layer": "security",
       "request_ids": [
         "r4"
       ],
-      "carried_load": 3,
+      "carried_load": 2,
       "physical_assignments": [
         {
-          "source": "4",
-          "target": "3",
-          "wavelength": 0,
-          "distance": 3929.1936671754106
+          "source": "1",
+          "target": "0",
+          "wavelength": 1,
+          "distance": 4290.207895543115
         },
         {
-          "source": "3",
-          "target": "2",
-          "wavelength": 0,
-          "distance": 287.45288903219097
+          "source": "0",
+          "target": "5",
+          "wavelength": 1,
+          "distance": 3219.6518110203656
         }
       ]
     },
     {
       "key": {
-        "source": "5",
+        "source": "2",
         "target": "4",
-        "index": 0
+        "index": 1
       },
       "layer": "security",
       "request_ids": [
-        "r2",
-        "r4"
+        "r3"
       ],
-      "carried_load": 4,
+      "carried_load": 2,
       "physical_assignments": [
         {
-          "source": "5",
+          "source": "2",
+          "target": "3",
+          "wavelength": 0,
+          "distance": 287.45288903219097
+        },
+        {
+          "source": "3",
           "target": "4",
-          "wavelength": 1,
-          "distance": 4290.207895543115
+          "wavelength": 0,
+          "distance": 3929.1936671754106
         }
       ]
     }

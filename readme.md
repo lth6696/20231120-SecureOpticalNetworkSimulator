@@ -33,14 +33,23 @@ assumptions:
 
 ```bash
 python -m pip install -r requirements.txt
-python main.py --topology topology/SixNode.graphml
+python main.py
 ```
 
-You can also switch to another file in the `topology` folder, for example:
+The project uses `config.toml` for input parameters. TOML was chosen over YAML
+because the current inputs are mostly typed scalar values grouped by purpose
+(topology path, request generation, resource capacities, costs, solver options,
+and output paths), and TOML keeps those values explicit without adding a YAML
+parser dependency on Python 3.11+.
 
-```bash
-python main.py --topology topology/Nsfnet.graphml
+To switch to another topology, edit:
+
+```toml
+[topology]
+path = "topology/Nsfnet.graphml"
 ```
+
+To run with a different config file, use `python main.py --config path/to/config.toml`.
 
 ### Output
 
@@ -50,5 +59,4 @@ Running `main.py` creates:
 - `outputs/lightpaths_mnk.png`
 - `outputs/links_ijw.png`
 
-Replace the demo topology and requests in `main.py` with your own data to use
-the model on a different instance.
+Adjust `config.toml` to use the model on a different instance.
