@@ -56,7 +56,12 @@ To run with a different config file, use `python main.py --config path/to/config
 Running `main.py` creates:
 
 - `outputs/solution.json`
+- `outputs/solution_report.md`
 - `outputs/lightpaths_mnk.png`
 - `outputs/links_ijw.png`
+
+`solution_report.md` contains readable Markdown tables for the summary,
+request-to-lightpath mapping, and lightpath-to-physical-edge mapping. The same
+tables are also written to `Log.log`.
 
 Adjust `config.toml` to use the model on a different instance.

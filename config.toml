@@ -5,18 +5,18 @@ config_path = "logconfig.ini"
 path = "topology/SixNode.graphml"
 
 [request_generation]
-count = 4
+count = 10
 seed = 42
 bandwidth_min = 1
 bandwidth_max = 4
-security_level_min = 0
+security_level_min = 1
 security_level_max = 2
 
 [network_resources]
 wavelengths = 2
 lightpaths_per_pair = 2
 logical_bandwidth_capacity = 10.0
-logical_key_capacity = 6.0
+logical_key_capacity = 10.0
 
 [costs]
 wavelength_cost = 2.0
@@ -34,4 +34,5 @@ solver_message = false
 [outputs]
 directory = "outputs"
 solution_filename = "solution.json"
+report_filename = "solution_report.md"
 enable_visualization = true

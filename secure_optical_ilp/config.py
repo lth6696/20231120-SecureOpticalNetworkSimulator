@@ -61,6 +61,7 @@ class SolverConfig:
 class OutputConfig:
     directory: Path = Path("outputs")
     solution_filename: str = "solution.json"
+    report_filename: str = "solution_report.md"
     enable_visualization: bool = True
 
 
@@ -126,6 +127,7 @@ def _read_output_config(raw_config: dict[str, Any], base_dir: Path) -> OutputCon
     return OutputConfig(
         directory=_resolve_path(section, "directory", base_dir),
         solution_filename=section.get("solution_filename", "solution.json"),
+        report_filename=section.get("report_filename", "solution_report.md"),
         enable_visualization=section.get("enable_visualization", True),
     )
 
@@ -208,3 +210,5 @@ def _validate_config(config: AppConfig) -> None:
         raise ValueError("solver.time_limit_seconds must be positive when set.")
     if not config.outputs.solution_filename:
         raise ValueError("outputs.solution_filename cannot be empty.")
+    if not config.outputs.report_filename:
+        raise ValueError("outputs.report_filename cannot be empty.")

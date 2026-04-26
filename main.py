@@ -9,10 +9,12 @@ from secure_optical_ilp import (
     SecureOpticalILPSolver,
     build_requests,
     build_network,
+    format_solution_report,
     load_app_config,
     load_topology_graphml,
     setup_logging,
     visualize_solution,
+    write_solution_report,
 )
 
 logger = logging.getLogger(__name__)
@@ -108,6 +110,10 @@ def main() -> None:
 
         solution_path = output_dir / config.outputs.solution_filename
         solution.write_json(solution_path)
+        report_path = output_dir / config.outputs.report_filename
+        write_solution_report(instance, solution, report_path)
+        logger.info("Readable solution report written to %s", report_path)
+        logger.info("Readable solution report:\n%s", format_solution_report(instance, solution))
         images = {}
         if config.outputs.enable_visualization:
             images = visualize_solution(instance, solution, output_dir)
@@ -122,6 +128,7 @@ def main() -> None:
         print(f"requests={config.request_generation.count}")
         print(f"seed={config.request_generation.seed}")
         print(f"solution_json={solution_path}")
+        print(f"solution_report={report_path}")
         for name, path in images.items():
             print(f"{name}={path}")
         logger.info("Program finished successfully")

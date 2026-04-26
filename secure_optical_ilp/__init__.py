@@ -20,6 +20,7 @@ from .models import (
     ServiceRequest,
     SolverSolution,
 )
+from .reporting import format_solution_report, write_solution_report
 from .solver import SecureOpticalILPSolver
 from .topology_loader import (
     build_requests,
@@ -48,8 +49,10 @@ __all__ = [
     "TopologyConfig",
     "build_requests",
     "build_network",
+    "format_solution_report",
     "load_app_config",
     "load_topology_graphml",
     "setup_logging",
     "visualize_solution",
+    "write_solution_report",
 ]

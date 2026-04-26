@@ -1,43 +1,80 @@
 {
   "status": "Optimal",
-  "admitted_count": 4,
-  "total_requests": 4,
-  "phase_one_objective": 4.0,
-  "phase_two_objective": 376.61218788313215,
+  "admitted_count": 10,
+  "total_requests": 10,
+  "phase_one_objective": 10.0,
+  "phase_two_objective": 646.3998079136562,
   "total_cost_breakdown": {
-    "security_wavelength_cost": 8.0,
-    "security_distance_cost": 351.7951878831325,
-    "key_rate_cost": 4.8,
-    "security_port_cost": 12.0,
-    "logical_hop_tiebreak": 0.006,
-    "physical_hop_tiebreak": 0.011000000000000003
+    "security_wavelength_cost": 12.0,
+    "security_distance_cost": 587.5468079136572,
+    "key_rate_cost": 16.8,
+    "security_port_cost": 30.0,
+    "logical_hop_tiebreak": 0.04000000000000003,
+    "physical_hop_tiebreak": 0.013000000000000005
   },
   "request_routes": [
     {
       "request_id": "r1",
       "admitted": true,
-      "security_enabled": false,
+      "security_enabled": true,
       "service_lightpaths": [
         {
           "source": "5",
+          "target": "0",
+          "index": 0
+        },
+        {
+          "source": "0",
+          "target": "1",
+          "index": 0
+        }
+      ],
+      "security_lightpaths": [
+        {
+          "source": "5",
+          "target": "0",
+          "index": 1
+        },
+        {
+          "source": "0",
           "target": "1",
           "index": 1
         }
-      ],
-      "security_lightpaths": []
+      ]
     },
     {
       "request_id": "r2",
       "admitted": true,
-      "security_enabled": false,
+      "security_enabled": true,
       "service_lightpaths": [
         {
           "source": "5",
           "target": "4",
-          "index": 0
+          "index": 1
         }
       ],
-      "security_lightpaths": []
+      "security_lightpaths": [
+        {
+          "source": "5",
+          "target": "0",
+          "index": 1
+        },
+        {
+          "source": "0",
+          "target": "1",
+          "index": 1
+        },
+        {
+          "source": "1",
+          "target": "2",
+          "index": 1
+        },
+        {
+          "source": "2",
+          "target": "4",
+          "index": 0
+        }
+      ]
     },
     {
       "request_id": "r3",
@@ -47,14 +84,14 @@
         {
           "source": "2",
           "target": "4",
-          "index": 0
+          "index": 1
         }
       ],
       "security_lightpaths": [
         {
           "source": "2",
           "target": "4",
-          "index": 1
+          "index": 0
         }
       ]
     },
@@ -64,16 +101,205 @@
       "security_enabled": true,
       "service_lightpaths": [
         {
+          "source": "5",
+          "target": "0",
+          "index": 0
+        },
+        {
+          "source": "0",
+          "target": "1",
+          "index": 0
+        },
+        {
           "source": "1",
-          "target": "5",
+          "target": "2",
+          "index": 0
+        }
+      ],
+      "security_lightpaths": [
+        {
+          "source": "5",
+          "target": "0",
           "index": 1
+        },
+        {
+          "source": "0",
+          "target": "1",
+          "index": 1
+        },
+        {
+          "source": "1",
+          "target": "2",
+          "index": 1
+        }
+      ]
+    },
+    {
+      "request_id": "r5",
+      "admitted": true,
+      "security_enabled": true,
+      "service_lightpaths": [
+        {
+          "source": "1",
+          "target": "2",
+          "index": 0
+        },
+        {
+          "source": "2",
+          "target": "4",
+          "index": 1
+        },
+        {
+          "source": "4",
+          "target": "3",
+          "index": 0
         }
       ],
       "security_lightpaths": [
         {
           "source": "1",
-          "target": "5",
+          "target": "2",
+          "index": 1
+        },
+        {
+          "source": "2",
+          "target": "4",
           "index": 0
+        },
+        {
+          "source": "4",
+          "target": "3",
+          "index": 1
+        }
+      ]
+    },
+    {
+      "request_id": "r6",
+      "admitted": true,
+      "security_enabled": true,
+      "service_lightpaths": [
+        {
+          "source": "2",
+          "target": "4",
+          "index": 1
+        },
+        {
+          "source": "4",
+          "target": "3",
+          "index": 0
+        }
+      ],
+      "security_lightpaths": [
+        {
+          "source": "2",
+          "target": "4",
+          "index": 0
+        },
+        {
+          "source": "4",
+          "target": "3",
+          "index": 1
+        }
+      ]
+    },
+    {
+      "request_id": "r7",
+      "admitted": true,
+      "security_enabled": true,
+      "service_lightpaths": [
+        {
+          "source": "4",
+          "target": "3",
+          "index": 0
+        }
+      ],
+      "security_lightpaths": [
+        {
+          "source": "4",
+          "target": "3",
+          "index": 1
+        }
+      ]
+    },
+    {
+      "request_id": "r8",
+      "admitted": true,
+      "security_enabled": true,
+      "service_lightpaths": [
+        {
+          "source": "2",
+          "target": "4",
+          "index": 1
+        }
+      ],
+      "security_lightpaths": [
+        {
+          "source": "2",
+          "target": "4",
+          "index": 0
+        }
+      ]
+    },
+    {
+      "request_id": "r9",
+      "admitted": true,
+      "security_enabled": true,
+      "service_lightpaths": [
+        {
+          "source": "0",
+          "target": "1",
+          "index": 0
+        }
+      ],
+      "security_lightpaths": [
+        {
+          "source": "0",
+          "target": "1",
+          "index": 1
+        }
+      ]
+    },
+    {
+      "request_id": "r10",
+      "admitted": true,
+      "security_enabled": true,
+      "service_lightpaths": [
+        {
+          "source": "5",
+          "target": "4",
+          "index": 1
+        },
+        {
+          "source": "4",
+          "target": "3",
+          "index": 0
+        }
+      ],
+      "security_lightpaths": [
+        {
+          "source": "5",
+          "target": "0",
+          "index": 1
+        },
+        {
+          "source": "0",
+          "target": "1",
+          "index": 1
+        },
+        {
+          "source": "1",
+          "target": "2",
+          "index": 1
+        },
+        {
+          "source": "2",
+          "target": "4",
+          "index": 0
+        },
+        {
+          "source": "4",
+          "target": "3",
+          "index": 1
         }
       ]
     }
@@ -82,26 +308,21 @@
     {
       "key": {
         "source": "1",
-        "target": "5",
-        "index": 1
+        "target": "2",
+        "index": 0
       },
       "layer": "service",
       "request_ids": [
-        "r4"
+        "r4",
+        "r5"
       ],
-      "carried_load": 1,
+      "carried_load": 2,
       "physical_assignments": [
         {
           "source": "1",
-          "target": "0",
+          "target": "2",
           "wavelength": 0,
-          "distance": 4290.207895543115
-        },
-        {
-          "source": "0",
-          "target": "5",
-          "wavelength": 0,
-          "distance": 3219.6518110203656
+          "distance": 3929.1936671754106
         }
       ]
     },
@@ -109,18 +330,21 @@
       "key": {
         "source": "2",
         "target": "4",
-        "index": 0
+        "index": 1
       },
       "layer": "service",
       "request_ids": [
-        "r3"
+        "r3",
+        "r5",
+        "r6",
+        "r8"
       ],
-      "carried_load": 2,
+      "carried_load": 9,
       "physical_assignments": [
         {
           "source": "2",
           "target": "3",
-          "wavelength": 1,
+          "wavelength": 0,
           "distance": 287.45288903219097
         },
         {
@@ -133,25 +357,43 @@
     },
     {
       "key": {
+        "source": "4",
+        "target": "3",
+        "index": 0
+      },
+      "layer": "service",
+      "request_ids": [
+        "r5",
+        "r6",
+        "r7",
+        "r10"
+      ],
+      "carried_load": 9,
+      "physical_assignments": [
+        {
+          "source": "4",
+          "target": "3",
+          "wavelength": 1,
+          "distance": 3929.1936671754106
+        }
+      ]
+    },
+    {
+      "key": {
         "source": "5",
-        "target": "1",
+        "target": "4",
         "index": 1
       },
       "layer": "service",
       "request_ids": [
-        "r1"
+        "r2",
+        "r10"
       ],
-      "carried_load": 1,
+      "carried_load": 7,
       "physical_assignments": [
         {
           "source": "5",
-          "target": "0",
-          "wavelength": 0,
-          "distance": 3219.6518110203656
-        },
-        {
-          "source": "0",
-          "target": "1",
+          "target": "4",
           "wavelength": 0,
           "distance": 4290.207895543115
         }
@@ -160,18 +402,41 @@
     {
       "key": {
         "source": "5",
-        "target": "4",
+        "target": "0",
         "index": 0
       },
       "layer": "service",
       "request_ids": [
-        "r2"
+        "r1",
+        "r4"
+      ],
+      "carried_load": 2,
+      "physical_assignments": [
+        {
+          "source": "5",
+          "target": "0",
+          "wavelength": 0,
+          "distance": 3219.6518110203656
+        }
+      ]
+    },
+    {
+      "key": {
+        "source": "0",
+        "target": "1",
+        "index": 0
+      },
+      "layer": "service",
+      "request_ids": [
+        "r1",
+        "r4",
+        "r9"
       ],
       "carried_load": 3,
       "physical_assignments": [
         {
-          "source": "5",
-          "target": "4",
+          "source": "0",
+          "target": "1",
           "wavelength": 0,
           "distance": 4290.207895543115
         }
@@ -182,26 +447,23 @@
     {
       "key": {
         "source": "1",
-        "target": "5",
-        "index": 0
+        "target": "2",
+        "index": 1
       },
       "layer": "security",
       "request_ids": [
-        "r4"
+        "r2",
+        "r4",
+        "r5",
+        "r10"
       ],
-      "carried_load": 2,
+      "carried_load": 6,
       "physical_assignments": [
         {
           "source": "1",
-          "target": "0",
+          "target": "2",
           "wavelength": 1,
-          "distance": 4290.207895543115
-        },
-        {
-          "source": "0",
-          "target": "5",
-          "wavelength": 1,
-          "distance": 3219.6518110203656
+          "distance": 3929.1936671754106
         }
       ]
     },
@@ -209,18 +471,23 @@
       "key": {
         "source": "2",
         "target": "4",
-        "index": 1
+        "index": 0
       },
       "layer": "security",
       "request_ids": [
-        "r3"
+        "r2",
+        "r3",
+        "r5",
+        "r6",
+        "r8",
+        "r10"
       ],
-      "carried_load": 2,
+      "carried_load": 8,
       "physical_assignments": [
         {
           "source": "2",
           "target": "3",
-          "wavelength": 0,
+          "wavelength": 1,
           "distance": 287.45288903219097
         },
         {
@@ -228,6 +495,76 @@
           "target": "4",
           "wavelength": 0,
           "distance": 3929.1936671754106
+        }
+      ]
+    },
+    {
+      "key": {
+        "source": "4",
+        "target": "3",
+        "index": 1
+      },
+      "layer": "security",
+      "request_ids": [
+        "r5",
+        "r6",
+        "r7",
+        "r10"
+      ],
+      "carried_load": 6,
+      "physical_assignments": [
+        {
+          "source": "4",
+          "target": "3",
+          "wavelength": 0,
+          "distance": 3929.1936671754106
+        }
+      ]
+    },
+    {
+      "key": {
+        "source": "5",
+        "target": "0",
+        "index": 1
+      },
+      "layer": "security",
+      "request_ids": [
+        "r1",
+        "r2",
+        "r4",
+        "r10"
+      ],
+      "carried_load": 6,
+      "physical_assignments": [
+        {
+          "source": "5",
+          "target": "0",
+          "wavelength": 1,
+          "distance": 3219.6518110203656
+        }
+      ]
+    },
+    {
+      "key": {
+        "source": "0",
+        "target": "1",
+        "index": 1
+      },
+      "layer": "security",
+      "request_ids": [
+        "r1",
+        "r2",
+        "r4",
+        "r9",
+        "r10"
+      ],
+      "carried_load": 7,
+      "physical_assignments": [
+        {
+          "source": "0",
+          "target": "1",
+          "wavelength": 1,
+          "distance": 4290.207895543115
         }
       ]
     }
