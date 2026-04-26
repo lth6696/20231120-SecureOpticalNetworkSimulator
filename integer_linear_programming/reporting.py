@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from pathlib import Path
 
-from .models import NetworkInstance, SolverSolution
+from .data_model import NetworkInstance, SolverSolution
 
 
 def format_solution_report(instance: NetworkInstance, solution: SolverSolution) -> str:

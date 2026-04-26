@@ -4,7 +4,7 @@ import logging
 from collections import defaultdict
 from dataclasses import dataclass
 
-from .models import (
+from .data_model import (
     ActiveLightpath,
     LightpathKey,
     NetworkInstance,

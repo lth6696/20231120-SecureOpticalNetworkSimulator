@@ -4,7 +4,7 @@ import argparse
 import logging
 from pathlib import Path
 
-from secure_optical_ilp import (
+from integer_linear_programming import (
     AppConfig,
     SecureOpticalILPSolver,
     build_requests,

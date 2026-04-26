@@ -5,7 +5,7 @@ import math
 import random
 from pathlib import Path
 
-from .models import CostParameters, NetworkInstance, PhysicalLink, ServiceRequest
+from .data_model import CostParameters, NetworkInstance, PhysicalLink, ServiceRequest
 
 logger = logging.getLogger(__name__)
 
@@ -109,6 +109,8 @@ def build_requests(
     seed: int = 0,
     bandwidth_min: int = 0,
     bandwidth_max: int = 0,
+    key_rate_min: int = 0,
+    key_rate_max: int = 0,
     security_level_min: int = 0,
     security_level_max: int = 0,
 ) -> tuple[ServiceRequest, ...]:
@@ -151,6 +153,7 @@ def build_requests(
                 source=source,
                 target=target,
                 bandwidth=rng.randint(bandwidth_min, bandwidth_max),
+                key_rate=rng.randint(key_rate_min, key_rate_max),
                 security_level=rng.randint(security_level_min, security_level_max),
         )
         requests.append(request)

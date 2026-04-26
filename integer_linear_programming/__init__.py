@@ -9,7 +9,7 @@ from .config import (
     load_app_config,
 )
 from .logging_utils import setup_logging
-from .models import (
+from .data_model import (
     ActiveLightpath,
     CostParameters,
     LightpathKey,

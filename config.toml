@@ -9,6 +9,8 @@ count = 10
 seed = 42
 bandwidth_min = 1
 bandwidth_max = 4
+key_rate_min = 1
+key_rate_max = 4
 security_level_min = 1
 security_level_max = 2
 

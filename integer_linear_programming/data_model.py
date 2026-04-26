@@ -5,6 +5,72 @@ from dataclasses import asdict, dataclass, field
 from pathlib import Path
 
 
+"""
+dataclass 是 Python 3.7+ 内置标准库的装饰器，专门用来创建数据类
+frozen=True：让配置不可修改，安全可靠；
+slots=True：让配置类省内存、速度快、禁止乱加属性，更严谨。
+"""
+
+
+@dataclass(frozen=True, slots=True)
+class LoggingConfig:
+    config_path: Path = Path("logconfig.ini")
+
+
+@dataclass(frozen=True, slots=True)
+class TopologyConfig:
+    path: Path = Path("topology/SixNode.graphml")
+
+
+@dataclass(frozen=True, slots=True)
+class RequestGenerationConfig:
+    count: int = 0
+    seed: int = 0
+    bandwidth_min: int = 0
+    bandwidth_max: int = 0
+    security_level_min: int = 0
+    security_level_max: int = 0
+
+
+@dataclass(frozen=True, slots=True)
+class NetworkResourceConfig:
+    wavelengths: int = 0
+    lightpaths_per_pair: int = 0
+    logical_bandwidth_capacity: float = 0.0
+    logical_key_capacity: float = 0.0
+
+
+@dataclass(frozen=True, slots=True)
+class SolverConfig:
+    time_limit_seconds: int | None = None
+    solver_message: bool = False
+
+
+@dataclass(frozen=True, slots=True)
+class OutputConfig:
+    directory: Path = Path("outputs")
+    solution_filename: str = "solution.json"
+    report_filename: str = "solution_report.md"
+    enable_visualization: bool = True
+
+
+@dataclass(frozen=True, slots=True)
+class AppConfig:
+    logging: LoggingConfig = LoggingConfig()
+    topology: TopologyConfig = TopologyConfig()
+    request_generation: RequestGenerationConfig = RequestGenerationConfig()
+    network_resources: NetworkResourceConfig = NetworkResourceConfig()
+    costs: CostParameters = CostParameters(
+        wavelength_cost=0.0,
+        distance_cost=0.0,
+        key_rate_cost=0.0,
+        security_port_cost=0.0,
+        logical_hop_tiebreak=1e-3,
+        physical_hop_tiebreak=1e-3,
+    )
+    solver: SolverConfig = SolverConfig()
+    outputs: OutputConfig = OutputConfig()
+
 @dataclass(frozen=True, slots=True)
 class PhysicalLink:
     """有向物理光纤链路。
@@ -29,14 +95,16 @@ class ServiceRequest:
         source: 源节点。
         target: 宿节点。
         bandwidth: 业务光路承载的带宽需求。
-        security_level: 密钥速率/安全等级需求，``0`` 表示不需要安全通道。
+        key_rate: 密钥速率.
+        security_level: 安全等级需求，0 表示不需要安全通道; 1 表示共享安全通道; 2 表示专用安全通道。
     """
 
     request_id: str
     source: str
     target: str
     bandwidth: float
-    security_level: float = 0.0
+    key_rate: float
+    security_level: int
 
 
 @dataclass(frozen=True, slots=True)

@@ -4,7 +4,7 @@ import logging
 from collections import defaultdict
 from pathlib import Path
 
-from .models import ActiveLightpath, NetworkInstance, SolverSolution
+from .data_model import ActiveLightpath, NetworkInstance, SolverSolution
 
 logger = logging.getLogger(__name__)
 
