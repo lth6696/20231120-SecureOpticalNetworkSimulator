@@ -16,9 +16,8 @@ security_level_max = 2
 
 [network_resources]
 wavelengths = 2
-lightpaths_per_pair = 2
-logical_bandwidth_capacity = 10.0
-logical_key_capacity = 10.0
+bandwidth_max = 10
+key_rate_max = 10
 
 [costs]
 wavelength_cost = 2.0
@@ -29,6 +28,7 @@ logical_hop_tiebreak = 0.001
 physical_hop_tiebreak = 0.001
 
 [solver]
+solver = "CPLEX_CMD"
 solver_message = false
 # CBC time limit in seconds. Omit this key to disable the limit.
 # time_limit_seconds = 60

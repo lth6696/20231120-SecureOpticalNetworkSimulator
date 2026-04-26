@@ -22,7 +22,7 @@ from .data_model import (
 )
 from .reporting import format_solution_report, write_solution_report
 from .solver import SecureOpticalILPSolver
-from .topology_loader import (
+from .network import (
     build_requests,
     build_network,
     load_topology_graphml,

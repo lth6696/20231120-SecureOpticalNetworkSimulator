@@ -28,6 +28,8 @@ class RequestGenerationConfig:
     seed: int = 0
     bandwidth_min: int = 0
     bandwidth_max: int = 0
+    key_rate_min: int = 0
+    key_rate_max: int = 0
     security_level_min: int = 0
     security_level_max: int = 0
 
@@ -35,13 +37,13 @@ class RequestGenerationConfig:
 @dataclass(frozen=True, slots=True)
 class NetworkResourceConfig:
     wavelengths: int = 0
-    lightpaths_per_pair: int = 0
-    logical_bandwidth_capacity: float = 0.0
-    logical_key_capacity: float = 0.0
+    bandwidth_max: int = 10
+    key_rate_max: int = 10
 
 
 @dataclass(frozen=True, slots=True)
 class SolverConfig:
+    solver: str = None
     time_limit_seconds: int | None = None
     solver_message: bool = False
 
@@ -53,23 +55,6 @@ class OutputConfig:
     report_filename: str = "solution_report.md"
     enable_visualization: bool = True
 
-
-@dataclass(frozen=True, slots=True)
-class AppConfig:
-    logging: LoggingConfig = LoggingConfig()
-    topology: TopologyConfig = TopologyConfig()
-    request_generation: RequestGenerationConfig = RequestGenerationConfig()
-    network_resources: NetworkResourceConfig = NetworkResourceConfig()
-    costs: CostParameters = CostParameters(
-        wavelength_cost=0.0,
-        distance_cost=0.0,
-        key_rate_cost=0.0,
-        security_port_cost=0.0,
-        logical_hop_tiebreak=1e-3,
-        physical_hop_tiebreak=1e-3,
-    )
-    solver: SolverConfig = SolverConfig()
-    outputs: OutputConfig = OutputConfig()
 
 @dataclass(frozen=True, slots=True)
 class PhysicalLink:
@@ -102,6 +87,7 @@ class ServiceRequest:
     request_id: str
     source: str
     target: str
+    sequence: int
     bandwidth: float
     key_rate: float
     security_level: int
@@ -119,6 +105,7 @@ class CostParameters:
     physical_hop_tiebreak: float = 1e-3
 
 
+# todo to be deleted
 @dataclass(frozen=True, slots=True)
 class LightpathKey:
     """逻辑光路 ``(m, n, k)`` 的标识。"""
@@ -131,6 +118,7 @@ class LightpathKey:
         return f"({self.source},{self.target},{self.index})"
 
 
+# todo to be deleted
 @dataclass(frozen=True, slots=True)
 class PhysicalAssignment:
     """某条逻辑光路选中的物理链路-波长资源 ``(i, j, w)``。"""
@@ -141,6 +129,7 @@ class PhysicalAssignment:
     distance: float
 
 
+# todo to be deleted
 @dataclass(frozen=True, slots=True)
 class RequestRouting:
     """单个业务在业务层/安全层上的最终路由结果。"""
@@ -152,6 +141,7 @@ class RequestRouting:
     security_lightpaths: tuple[LightpathKey, ...]
 
 
+# todo to be deleted
 @dataclass(frozen=True, slots=True)
 class ActiveLightpath:
     """被激活的逻辑光路及其映射到的物理资源。"""
@@ -217,6 +207,17 @@ class SolverSolution:
         return "\n".join(lines)
 
 
+@dataclass(frozen=True, slots=True)
+class AppConfig:
+    logging: LoggingConfig = LoggingConfig()
+    topology: TopologyConfig = TopologyConfig()
+    request_generation: RequestGenerationConfig = RequestGenerationConfig()
+    network_resources: NetworkResourceConfig = NetworkResourceConfig()
+    costs: CostParameters = CostParameters()
+    solver: SolverConfig = SolverConfig()
+    outputs: OutputConfig = OutputConfig()
+
+
 @dataclass(slots=True)
 class NetworkInstance:
     """完整的 ILP 输入实例。
@@ -225,9 +226,8 @@ class NetworkInstance:
         nodes: 节点集合 ``V``。
         links: 有向链路集合 ``E``。
         wavelengths: 每条有向物理链路可用的波长数。
-        lightpaths_per_pair: 每个 ``(m,n)`` 对应的候选逻辑光路数量 ``k``。
-        logical_bandwidth_capacity: 单条业务逻辑光路的带宽容量。
-        logical_key_capacity: 单条安全逻辑光路的密钥容量。
+        bandwidth_max: 单条业务逻辑光路的带宽容量。
+        key_rate_max: 单条安全逻辑光路的密钥容量。
         requests: 业务请求集合。
         costs: 目标函数中的成本系数。
         node_positions: ``networkx`` 可视化时使用的可选节点坐标。
@@ -236,9 +236,8 @@ class NetworkInstance:
     nodes: tuple[str, ...]
     links: tuple[PhysicalLink, ...]
     wavelengths: int
-    lightpaths_per_pair: int
-    logical_bandwidth_capacity: float
-    logical_key_capacity: float
+    bandwidth_max: float
+    key_rate_max: float
     requests: tuple[ServiceRequest, ...]
     costs: CostParameters = field(default_factory=CostParameters)
     node_positions: dict[str, tuple[float, float]] = field(default_factory=dict)
@@ -249,11 +248,9 @@ class NetworkInstance:
             raise ValueError("Node identifiers must be unique.")
         if self.wavelengths <= 0:
             raise ValueError("wavelengths must be positive.")
-        if self.lightpaths_per_pair <= 0:
-            raise ValueError("lightpaths_per_pair must be positive.")
-        if self.logical_bandwidth_capacity <= 0:
+        if self.bandwidth_max <= 0:
             raise ValueError("logical_bandwidth_capacity must be positive.")
-        if self.logical_key_capacity <= 0:
+        if self.key_rate_max <= 0:
             raise ValueError("logical_key_capacity must be positive.")
 
         known_nodes = set(self.nodes)
@@ -282,16 +279,16 @@ class NetworkInstance:
         """建立 ``(i, j) -> distance`` 的映射，供目标函数和结果导出使用。"""
         return {(link.source, link.target): link.distance for link in self.links}
 
-    @property
-    def candidate_lightpaths(self) -> tuple[LightpathKey, ...]:
-        """枚举所有候选逻辑光路 ``(m, n, k)``。"""
-        return tuple(
-            LightpathKey(source, target, index)
-            for source in self.nodes
-            for target in self.nodes
-            if source != target
-            for index in range(self.lightpaths_per_pair)
-        )
+    # @property
+    # def candidate_lightpaths(self) -> tuple[LightpathKey, ...]:
+    #     """枚举所有候选逻辑光路 ``(m, n, k)``。"""
+    #     return tuple(
+    #         LightpathKey(source, target, index)
+    #         for source in self.nodes
+    #         for target in self.nodes
+    #         if source != target
+    #         for index in range(self.lightpaths_per_pair)
+    #     )
 
     @property
     def wavelength_indices(self) -> tuple[int, ...]:

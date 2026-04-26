@@ -59,21 +59,12 @@ def build_network(
     *,
     requests: tuple[ServiceRequest, ...],
     wavelengths: int,
-    lightpaths_per_pair: int,
-    logical_bandwidth_capacity: float,
-    logical_key_capacity: float,
+    bandwidth_max: int,
+    key_rate_max: int,
     costs: CostParameters | None = None,
 ) -> NetworkInstance:
-    """将 ``networkx`` 拓扑转换为 ILP 的输入实例。
-
-    输入：
-        graph: 由 NetworkX 构建的拓扑 ``G(V,E)``。
-        requests: 由 ``ServiceRequest`` 定义的业务请求集合。
-        wavelengths/lightpaths_per_pair/logical_*: ILP 资源参数。
-        costs: 目标函数成本系数。
-
-    输出：
-        供 ``SecureOpticalILPSolver`` 使用的 ``NetworkInstance``。
+    """
+    将 networkx 拓扑转换为 ILP 的输入实例 NetworkInstance。
     """
     nodes = tuple(str(node) for node in graph.nodes)
     links = tuple(_graph_to_links(graph))
@@ -93,9 +84,8 @@ def build_network(
         nodes=nodes,
         links=links,
         wavelengths=wavelengths,
-        lightpaths_per_pair=lightpaths_per_pair,
-        logical_bandwidth_capacity=logical_bandwidth_capacity,
-        logical_key_capacity=logical_key_capacity,
+        bandwidth_max=bandwidth_max,
+        key_rate_max=key_rate_max,
         requests=requests,
         costs=costs or CostParameters(),
         node_positions=node_positions,
@@ -126,12 +116,16 @@ def build_requests(
         这里只是为了演示和测试而自动生成请求。后续如果改成从独立
         流量文件读取业务，只需要替换这个函数，不需要改求解器。
     """
+    from collections import defaultdict
+
     if request_count <= 0:
         raise ValueError("request_count 必须为正整数。")
     if bandwidth_min <= 0 or bandwidth_max < bandwidth_min:
         raise ValueError("bandwidth range must be positive and ordered.")
     if security_level_min < 0 or security_level_max < security_level_min:
         raise ValueError("security level range must be non-negative and ordered.")
+    if key_rate_min < 0 or key_rate_max < key_rate_min:
+        raise ValueError("key rate range must be non-negative and ordered.")
 
     nodes = [str(node) for node in graph.nodes]
     if len(nodes) < 2:
@@ -146,12 +140,15 @@ def build_requests(
     rng = random.Random(seed)
 
     requests = []
+    pair_count = defaultdict(int)
     for index in range(1, request_count + 1):
         source, target = rng.choice(candidate_pairs)
+        pair_count[(source, target)] += 1
         request = ServiceRequest(
                 request_id=f"r{index}",
                 source=source,
                 target=target,
+                sequence=pair_count[(source, target)] - 1,
                 bandwidth=rng.randint(bandwidth_min, bandwidth_max),
                 key_rate=rng.randint(key_rate_min, key_rate_max),
                 security_level=rng.randint(security_level_min, security_level_max),

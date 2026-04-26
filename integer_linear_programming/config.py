@@ -4,7 +4,14 @@ from dataclasses import dataclass, fields
 from pathlib import Path
 from typing import Any
 
-from .data_model import CostParameters
+from .data_model import (LoggingConfig,
+                         TopologyConfig,
+                         RequestGenerationConfig,
+                         NetworkResourceConfig,
+                         SolverConfig,
+                         OutputConfig,
+                         AppConfig,
+                         CostParameters)
 
 try:
     import tomllib
@@ -16,9 +23,6 @@ except ModuleNotFoundError:  # pragma: no cover - Python < 3.11
             "TOML config support requires Python 3.11+ or the `tomli` package. "
             "Run `python -m pip install -r requirements.txt`."
         ) from exc
-
-
-
 
 
 def load_app_config(path: str | Path = "config.toml") -> AppConfig:
@@ -132,13 +136,11 @@ def _validate_config(config: AppConfig) -> None:
         raise ValueError("request_generation security_level range must be ordered.")
     if resources.wavelengths <= 0:
         raise ValueError("network_resources.wavelengths must be positive.")
-    if resources.lightpaths_per_pair <= 0:
-        raise ValueError("network_resources.lightpaths_per_pair must be positive.")
-    if resources.logical_bandwidth_capacity <= 0:
+    if resources.bandwidth_max <= 0:
         raise ValueError(
             "network_resources.logical_bandwidth_capacity must be positive."
         )
-    if resources.logical_key_capacity <= 0:
+    if resources.key_rate_max <= 0:
         raise ValueError("network_resources.logical_key_capacity must be positive.")
     for field in fields(CostParameters):
         value = getattr(costs, field.name)
