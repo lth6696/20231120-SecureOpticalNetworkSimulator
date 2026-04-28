@@ -29,6 +29,7 @@ physical_hop_tiebreak = 0.001
 
 [solver]
 solver = "CPLEX_CMD"
+candidate_lightpaths_per_pair = 8
 solver_message = false
 # CBC time limit in seconds. Omit this key to disable the limit.
 # time_limit_seconds = 60

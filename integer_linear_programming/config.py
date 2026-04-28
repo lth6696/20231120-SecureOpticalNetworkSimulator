@@ -148,6 +148,11 @@ def _validate_config(config: AppConfig) -> None:
             raise ValueError(f"costs.{field.name} cannot be negative.")
     if solver.time_limit_seconds is not None and solver.time_limit_seconds <= 0:
         raise ValueError("solver.time_limit_seconds must be positive when set.")
+    if (
+        solver.candidate_lightpaths_per_pair is not None
+        and solver.candidate_lightpaths_per_pair <= 0
+    ):
+        raise ValueError("solver.candidate_lightpaths_per_pair must be positive when set.")
     if not config.outputs.solution_filename:
         raise ValueError("outputs.solution_filename cannot be empty.")
     if not config.outputs.report_filename:

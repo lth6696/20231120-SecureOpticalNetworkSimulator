@@ -29,7 +29,7 @@ def build_instance(config: AppConfig):
     logger.info("Loading topology from %s", topology_path)
     graph = load_topology_graphml(topology_path)
 
-    logger.info(f"{"=" * 20} Start Generating Requests {"=" * 20}")
+    logger.info("%s Start Generating Requests %s", "=" * 20, "=" * 20)
     requests = build_requests(
         graph,
         request_count=request_config.count,
@@ -42,7 +42,7 @@ def build_instance(config: AppConfig):
         security_level_max=request_config.security_level_max,
     )
 
-    logger.info(f"{"=" * 20} Start Building Network {"=" * 20}")
+    logger.info("%s Start Building Network %s", "=" * 20, "=" * 20)
     instance = build_network(
         graph,
         requests=requests,
@@ -95,30 +95,32 @@ def main() -> None:
         solver = SecureOpticalILPSolver(
             instance,
             solver=config.solver.solver,
+            candidate_lightpaths_per_pair=config.solver.candidate_lightpaths_per_pair,
             time_limit_seconds=config.solver.time_limit_seconds,
             solver_message=config.solver.solver_message,
         )
         solution = solver.solve()
 
-        # output_dir = config.outputs.directory
-        # output_dir.mkdir(parents=True, exist_ok=True)
-        #
-        # solution_path = output_dir / config.outputs.solution_filename
-        # solution.write_json(solution_path)
-        # report_path = output_dir / config.outputs.report_filename
-        # write_solution_report(instance, solution, report_path)
-        # logger.info("Readable solution report written to %s", report_path)
-        # logger.info("Readable solution report:\n%s", format_solution_report(instance, solution))
-        # images = {}
-        # if config.outputs.enable_visualization:
-        #     images = visualize_solution(instance, solution, output_dir)
-        # logger.info("Solution written to %s", solution_path)
-        # logger.info("Visualization outputs: %s", images)
-        #
-        # print_solution(solution)
-        #
-        # for name, path in images.items():
-        #     print(f"{name}={path}")
+        output_dir = config.outputs.directory
+        output_dir.mkdir(parents=True, exist_ok=True)
+
+        solution_path = output_dir / config.outputs.solution_filename
+        solution.write_json(solution_path)
+        report_path = output_dir / config.outputs.report_filename
+        write_solution_report(instance, solution, report_path)
+        logger.info("Readable solution report written to %s", report_path)
+        logger.info("Readable solution report:\n%s", format_solution_report(instance, solution))
+        images = {}
+        if config.outputs.enable_visualization:
+            images = visualize_solution(instance, solution, output_dir)
+        logger.info("Solution written to %s", solution_path)
+        logger.info("Visualization outputs: %s", images)
+
+        print_solution(solution)
+        print(f"solution_json={solution_path}")
+        print(f"solution_report={report_path}")
+        for name, path in images.items():
+            print(f"{name}={path}")
         logger.info("Program finished successfully")
     except Exception:
         logger.exception("Program execution failed")

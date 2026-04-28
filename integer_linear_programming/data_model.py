@@ -44,6 +44,7 @@ class NetworkResourceConfig:
 @dataclass(frozen=True, slots=True)
 class SolverConfig:
     solver: str = None
+    candidate_lightpaths_per_pair: int | None = None
     time_limit_seconds: int | None = None
     solver_message: bool = False
 
@@ -266,6 +267,8 @@ class NetworkInstance:
                 raise ValueError(f"Request source and target must differ: {request}.")
             if request.bandwidth <= 0:
                 raise ValueError(f"Request bandwidth must be positive: {request}.")
+            if request.key_rate < 0:
+                raise ValueError(f"Request key rate cannot be negative: {request}.")
             if request.security_level < 0:
                 raise ValueError(f"Security level cannot be negative: {request}.")
 
