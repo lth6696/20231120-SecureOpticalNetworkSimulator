@@ -1,0 +1,17 @@
+{
+  "algorithm": "grooming_shortest_path",
+  "topology_path": "../wdm_sim/graphml/SixNode.graphml",
+  "k_paths": 3,
+  "traffic": {
+    "calls": 200,
+    "load": 20.0,
+    "mean_holding_time": 10.0,
+    "max_rate": 100,
+    "seed": 7,
+    "call_types": [
+      {"rate": 10, "weight": 7, "cos": 0},
+      {"rate": 40, "weight": 2, "cos": 1},
+      {"rate": 100, "weight": 1, "cos": 2}
+    ]
+  }
+}

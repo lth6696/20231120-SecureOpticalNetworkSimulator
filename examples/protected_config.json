@@ -1,0 +1,17 @@
+{
+  "algorithm": "joint_kpath_pair_grooming",
+  "topology_path": "../wdm_sim/graphml/SixNode.graphml",
+  "k_paths": 3,
+  "traffic": {
+    "calls": 100,
+    "load": 8.0,
+    "mean_holding_time": 10.0,
+    "max_rate": 100,
+    "seed": 11,
+    "call_types": [
+      {"rate": 10, "weight": 6, "cos": 0, "security_required": true},
+      {"rate": 40, "weight": 3, "cos": 1, "security_required": true},
+      {"rate": 100, "weight": 1, "cos": 2, "security_required": true}
+    ]
+  }
+}
