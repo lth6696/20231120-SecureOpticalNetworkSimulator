@@ -3,8 +3,8 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import Any
 
-from .event.events import Event, FlowArrivalEvent
-from .event.flow import Flow
+from event.events import Event, FlowArrivalEvent
+from event.flow import Flow
 
 
 @dataclass

@@ -7,7 +7,17 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any
 
-from .exceptions import ConfigurationError
+from exceptions import ConfigurationError
+
+
+@dataclass(frozen=True, slots=True)
+class LoggingConfig:
+    path: Path = Path("logconfig.ini")
+
+
+@dataclass(frozen=True, slots=True)
+class TopologyConfig:
+    path: Path = Path("graphml/Nsfnet.graphml")
 
 
 @dataclass(frozen=True, slots=True)
@@ -28,7 +38,7 @@ class PairWeightConfig:
 
 @dataclass(frozen=True, slots=True)
 class TrafficConfig:
-    calls: int
+    calls: int = 0
     load: float
     mean_holding_time: float
     max_rate: int
@@ -41,8 +51,12 @@ class TrafficConfig:
 class SimulationConfig:
     algorithm: str
     topology_path: Path
-    traffic: TrafficConfig
     k_paths: int = 3
+
+    logging: LoggingConfig = LoggingConfig()
+    topology: TopologyConfig = TopologyConfig()
+    traffic: TrafficConfig = TrafficConfig()
+
     trace_path: Path | None = None
 
 

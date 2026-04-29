@@ -3,22 +3,22 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import Any
 
-from .algorithms import (
+from algorithms import (
     GroomingShortestPathRWA,
     JointKPathPairGroomingRWA,
     KShortestPathFirstFitRWA,
     RoutingAlgorithm,
     ShortestPathFirstFitRWA,
 )
-from .config import SimulationConfig
-from .event.control_plane import ControlPlane
-from .event.events import Event
-from .event.scheduler import EventScheduler
-from .event.traffic import TrafficGenerator
-from .exceptions import ConfigurationError
-from .stats import StatsCollector
-from .topology import VirtualTopology, load_physical_topology
-from .tracer import Tracer
+from config import SimulationConfig
+from event.control_plane import ControlPlane
+from event.events import Event
+from event.scheduler import EventScheduler
+from event.traffic import TrafficGenerator
+from exceptions import ConfigurationError
+from stats import StatsCollector
+from topology import VirtualTopology, load_physical_topology
+from tracer import Tracer
 
 
 @dataclass
