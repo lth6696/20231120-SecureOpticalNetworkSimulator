@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import logging
 import math
 import xml.etree.ElementTree as ET
 from dataclasses import dataclass, field
@@ -11,6 +12,8 @@ import networkx as nx
 
 from wdm_sim.exceptions import ConfigurationError, ResourceUnavailableError, TopologyError
 
+logger = logging.getLogger(__name__)
+
 DEFAULT_GROOMING_INPUT_PORTS = 8
 DEFAULT_GROOMING_OUTPUT_PORTS = 8
 DEFAULT_WAVELENGTHS = 4
@@ -19,6 +22,8 @@ DEFAULT_WAVELENGTH_BANDWIDTH = 100
 
 @dataclass(slots=True)
 class WDMNode:
+    # In this simplified WDM model, grooming ports bound how many lightpaths
+    # can originate from or terminate at the node simultaneously.
     id: int
     name: str = ""
     grooming_input_ports: int = 0
@@ -55,6 +60,8 @@ class WDMNode:
 
 @dataclass(slots=True)
 class WDMLink:
+    # Each wavelength tracks both binary occupancy and remaining bandwidth for
+    # flows groomed onto the lightpath that owns that wavelength.
     id: int
     src: int
     dst: int
@@ -109,6 +116,8 @@ class WDMLink:
 
 @dataclass
 class WDMPhysicalTopology:
+    # The physical topology keeps a directed graph view so routing and resource
+    # accounting can be expressed in terms of concrete link identifiers.
     nodes: dict[int, WDMNode]
     links: dict[int, WDMLink]
     adjacency: dict[int, list[int]] = field(init=False)
@@ -154,6 +163,8 @@ class WDMPhysicalTopology:
         return None
 
     def shared_physical_edge_link_ids(self, link_id: int) -> set[int]:
+        # Undirected source topologies are expanded into two directed arcs; both
+        # arcs represent the same fiber and should be excluded together.
         link = self.get_link(link_id)
         endpoints = {link.src, link.dst}
         return {
@@ -206,9 +217,12 @@ class WDMPhysicalTopology:
 
 
 def load_physical_topology(path: str | Path) -> WDMPhysicalTopology:
+    # JSON/XML can describe WDM resources explicitly; GraphML is treated as a
+    # topology skeleton and filled with simulator defaults where needed.
     topology_path = Path(path)
     if not topology_path.exists():
         raise ConfigurationError(f"topology file does not exist: {topology_path}")
+    logger.info("Loading physical topology from %s", topology_path)
     if topology_path.suffix.lower() == ".json":
         data = json.loads(topology_path.read_text(encoding="utf-8"))
     elif topology_path.suffix.lower() == ".xml":
@@ -219,7 +233,13 @@ def load_physical_topology(path: str | Path) -> WDMPhysicalTopology:
         raise ConfigurationError(
             f"unsupported topology format {topology_path.suffix!r}; use JSON, XML, or GraphML"
         )
-    return _topology_from_mapping(data)
+    topology = _topology_from_mapping(data)
+    logger.info(
+        "Physical topology loaded from structured file: nodes=%d links=%d",
+        topology.num_nodes,
+        len(topology.links),
+    )
+    return topology
 
 
 def _topology_from_mapping(data: dict[str, Any]) -> WDMPhysicalTopology:
@@ -265,6 +285,8 @@ def _load_topology_xml(path: Path) -> dict[str, Any]:
 
 
 def _load_topology_graphml(path: Path) -> WDMPhysicalTopology:
+    # Many GraphML datasets describe an undirected IP topology, so we normalize
+    # node ids and synthesize directed WDM links during import.
     graph = nx.read_graphml(path)
     node_mapping = _graphml_node_mapping(graph.nodes)
     nodes: dict[int, WDMNode] = {}
@@ -323,7 +345,14 @@ def _load_topology_graphml(path: Path) -> WDMPhysicalTopology:
 
     if not nodes or not links:
         raise ConfigurationError(f"GraphML topology is empty: {path}")
-    return WDMPhysicalTopology(nodes=nodes, links=links)
+    topology = WDMPhysicalTopology(nodes=nodes, links=links)
+    logger.info(
+        "GraphML topology loaded: nodes=%d directed_links=%d source=%s",
+        topology.num_nodes,
+        len(topology.links),
+        path,
+    )
+    return topology
 
 
 def _graphml_node_mapping(raw_node_ids: Any) -> dict[str, int]:
@@ -340,6 +369,8 @@ def _graphml_node_mapping(raw_node_ids: Any) -> dict[str, int]:
 def _graphml_edge_weight(
     graph: nx.Graph, raw_src: Any, raw_dst: Any, attrs: dict[str, Any]
 ) -> float:
+    # Prefer explicit edge cost; if only coordinates exist, use geographic
+    # distance so shortest-path algorithms still have meaningful weights.
     explicit = _get_float(attrs, "weight", "distance", "cost", default=None)
     if explicit is not None and explicit > 0:
         return explicit

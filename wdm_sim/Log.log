@@ -1,0 +1,7 @@
+2026-05-01 00:04:25,138 - INFO - Starting simulation with config=config.toml
+2026-05-01 00:04:25,138 - INFO - Loading physical topology from graphml\Nsfnet.graphml
+2026-05-01 00:04:25,245 - INFO - GraphML topology loaded: nodes=14 directed_links=42 source=graphml\Nsfnet.graphml
+2026-05-01 00:04:25,245 - INFO - Physical topology loaded: nodes=14 links=42
+2026-05-01 00:04:25,246 - INFO - Routing algorithm selected: JointKPathPairGroomingRWA
+2026-05-01 00:04:25,246 - INFO - JointKPathPairGrooming initialized with k=4
+2026-05-01 00:04:25,246 - INFO - Control plane bound to routing algorithm=JointKPathPairGroomingRWA

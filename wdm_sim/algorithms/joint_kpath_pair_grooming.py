@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import logging
 from dataclasses import dataclass
 
 from wdm_sim.event.control_plane import ControlPlane
@@ -8,6 +9,8 @@ from wdm_sim.graph_algorithms import dijkstra_shortest_path, yen_k_shortest_path
 from wdm_sim.topology.virtual import WDMLightPath
 
 from .common import FirstFitAllocator
+
+logger = logging.getLogger(__name__)
 
 
 @dataclass(frozen=True, slots=True)
@@ -34,9 +37,18 @@ class JointKPathPairGroomingRWA(FirstFitAllocator):
 
     def simulation_interface(self, cp: ControlPlane) -> None:
         self.cp = cp
+        logger.info("JointKPathPairGrooming initialized with k=%d", self.k)
 
     def flow_arrival(self, flow: Flow) -> None:
         assert self.cp is not None
+        logger.info(
+            "JKPG handling flow id=%d src=%d dst=%d rate=%d security_required=%s",
+            flow.id,
+            flow.src,
+            flow.dst,
+            flow.rate,
+            flow.security_required,
+        )
         if not flow.security_required:
             if self._try_unprotected_grooming_or_ksp(flow):
                 return
@@ -66,6 +78,11 @@ class JointKPathPairGroomingRWA(FirstFitAllocator):
                 key=lambda item: virtual.get_lightpath_bw_available(item.id),
             )
             if self.cp.accept_flow(flow.id, [lightpath]):
+                logger.info(
+                    "JKPG reused working lightpath for unprotected flow id=%d lightpath id=%d",
+                    flow.id,
+                    lightpath.id,
+                )
                 return True
 
         physical = self.cp.get_physical_topology()
@@ -84,11 +101,15 @@ class JointKPathPairGroomingRWA(FirstFitAllocator):
         assert self.cp is not None
         best_solution: _PairSolution | None = None
 
+        # Reusing an existing working lightpath is considered first because it
+        # can reduce total cost to just the backup side of the protected pair.
         for solution in self._existing_working_solutions(flow):
             if best_solution is None or solution.cost < best_solution.cost:
                 best_solution = solution
 
         physical = self.cp.get_physical_topology()
+        # The pseudocode's auxiliary graph is modeled here as a filtered view of
+        # links that still admit at least one first-fit wavelength.
         working_allowed = self._links_with_first_fit_wavelength(flow.rate)
         working_paths = yen_k_shortest_paths(
             physical.num_nodes,
@@ -117,6 +138,17 @@ class JointKPathPairGroomingRWA(FirstFitAllocator):
             if best_solution is None or solution.cost < best_solution.cost:
                 best_solution = solution
 
+        if best_solution is not None:
+            logger.info(
+                "JKPG selected protected pair for flow id=%d working_links=%s backup_links=%s cost=%.6f reused=%s",
+                flow.id,
+                best_solution.working_links,
+                best_solution.backup_links,
+                best_solution.cost,
+                best_solution.existing_working_lightpath is not None,
+            )
+        else:
+            logger.warning("JKPG found no protected pair for flow id=%d", flow.id)
         return best_solution
 
     def _existing_working_solutions(self, flow: Flow) -> list[_PairSolution]:
@@ -146,6 +178,8 @@ class JointKPathPairGroomingRWA(FirstFitAllocator):
         assert self.cp is not None
         physical = self.cp.get_physical_topology()
         excluded_links: set[int] = set()
+        # Exclude both directions of each working fiber so the backup route is
+        # physically link-disjoint instead of merely arc-disjoint.
         for link_id in working_links:
             excluded_links.update(physical.shared_physical_edge_link_ids(link_id))
 
@@ -157,6 +191,7 @@ class JointKPathPairGroomingRWA(FirstFitAllocator):
             flow.dst,
         )
         if not backup_node_path:
+            logger.debug("JKPG backup search failed for flow id=%d working_links=%s", flow.id, working_links)
             return None
         backup_links = physical.nodes_to_links(backup_node_path)
         backup_wavelength = self._first_fit_wavelength(backup_links, flow.rate)
@@ -169,6 +204,8 @@ class JointKPathPairGroomingRWA(FirstFitAllocator):
         virtual = self.cp.get_virtual_topology()
         created: list[WDMLightPath] = []
         try:
+            # Install backup first so the working path is never committed unless
+            # the complete protected pair can be reserved successfully.
             backup = virtual.create_lightpath(
                 self.cp.create_candidate_wdm_lightpath(
                     flow.src,
@@ -197,8 +234,15 @@ class JointKPathPairGroomingRWA(FirstFitAllocator):
             if not self.cp.accept_flow(flow.id, [working]):
                 raise RuntimeError("selected working lightpath could not accept flow")
             self.cp.reserve_backup_lightpaths(flow.id, [backup])
+            logger.info(
+                "JKPG allocated protected pair for flow id=%d working=%d backup=%d",
+                flow.id,
+                working.id,
+                backup.id,
+            )
             return True
         except Exception:
+            logger.exception("JKPG failed to allocate protected pair for flow id=%d", flow.id)
             for lightpath in reversed(created):
                 if lightpath.id in virtual.lightpaths and virtual.is_lightpath_idle(lightpath.id):
                     virtual.remove_lightpath(lightpath.id)
@@ -229,4 +273,3 @@ class JointKPathPairGroomingRWA(FirstFitAllocator):
         assert self.cp is not None
         physical = self.cp.get_physical_topology()
         return sum(physical.get_link(link_id).weight for link_id in link_ids)
-

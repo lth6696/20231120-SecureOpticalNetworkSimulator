@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import logging
 from dataclasses import dataclass
 
 from wdm_sim.event.control_plane import ControlPlane
@@ -7,6 +8,8 @@ from wdm_sim.event.flow import Flow
 from wdm_sim.graph_algorithms import dijkstra_shortest_path
 
 from .common import FirstFitAllocator
+
+logger = logging.getLogger(__name__)
 
 
 @dataclass
@@ -22,6 +25,7 @@ class ShortestPathFirstFitRWA(FirstFitAllocator):
         node_path = dijkstra_shortest_path(
             physical.num_nodes, physical.weighted_adjacency(), flow.src, flow.dst
         )
+        logger.info("SPFF handling flow id=%d path=%s", flow.id, node_path)
         if self.try_first_fit_on_node_path(flow, node_path):
             return
         self.cp.block_flow(flow.id)

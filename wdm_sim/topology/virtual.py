@@ -1,14 +1,19 @@
 from __future__ import annotations
 
+import logging
 from dataclasses import dataclass, field
 
 from wdm_sim.exceptions import ResourceUnavailableError, TopologyError
 from wdm_sim.stats import StatsCollector
 from wdm_sim.topology.physical import WDMPhysicalTopology
 
+logger = logging.getLogger(__name__)
+
 
 @dataclass(slots=True)
 class WDMLightPath:
+    # `reserved` keeps a lightpath alive without active traffic, while `backup`
+    # marks protection capacity that must not be reused for working traffic.
     id: int
     src: int
     dst: int
@@ -23,13 +28,26 @@ class WDMLightPath:
 
 @dataclass
 class VirtualTopology:
+    # Virtual topology owns the established lightpaths and mediates between
+    # grooming decisions and physical resource reservations.
     physical_topology: WDMPhysicalTopology
     stats: StatsCollector | None = None
     lightpaths: dict[int, WDMLightPath] = field(default_factory=dict)
     _next_lightpath_id: int = 0
 
     def create_lightpath(self, candidate: WDMLightPath) -> WDMLightPath:
+        # Resource acquisition is transactional: any failure rolls back all
+        # wavelength and port reservations taken earlier in the method.
         self._validate_candidate(candidate)
+        logger.debug(
+            "Creating lightpath candidate src=%d dst=%d links=%s wavelengths=%s reserved=%s backup=%s",
+            candidate.src,
+            candidate.dst,
+            candidate.links,
+            candidate.wavelengths,
+            candidate.reserved,
+            candidate.backup,
+        )
 
         src_node = self.physical_topology.get_node(candidate.src)
         dst_node = self.physical_topology.get_node(candidate.dst)
@@ -76,6 +94,16 @@ class VirtualTopology:
         self.lightpaths[lightpath.id] = lightpath
         if self.stats is not None:
             self.stats.lightpath_created()
+        logger.info(
+            "Lightpath created id=%d src=%d dst=%d links=%s wavelengths=%s reserved=%s backup=%s",
+            lightpath.id,
+            lightpath.src,
+            lightpath.dst,
+            lightpath.links,
+            lightpath.wavelengths,
+            lightpath.reserved,
+            lightpath.backup,
+        )
         return lightpath
 
     def remove_lightpath(self, lightpath_id: int) -> None:
@@ -95,6 +123,7 @@ class VirtualTopology:
         del self.lightpaths[lightpath_id]
         if self.stats is not None:
             self.stats.lightpath_removed()
+        logger.info("Lightpath removed id=%d", lightpath_id)
 
     def deallocate_lightpaths(self, lightpaths: list[WDMLightPath]) -> None:
         for lightpath in lightpaths:
@@ -103,6 +132,8 @@ class VirtualTopology:
     def get_available_lightpaths(
         self, src: int, dst: int, required_bw: int
     ) -> list[WDMLightPath]:
+        # Backup lightpaths are excluded because they reserve protection
+        # capacity and must not be selected as grooming candidates.
         return [
             lightpath
             for lightpath in self.lightpaths.values()
@@ -113,6 +144,7 @@ class VirtualTopology:
         ]
 
     def get_lightpath_bw_available(self, lightpath_id: int) -> int:
+        # End-to-end capacity is limited by the tightest hop on the route.
         lightpath = self.lightpaths[lightpath_id]
         values = [
             self.physical_topology.get_link(link_id).available_bandwidth[wavelength]
@@ -124,6 +156,8 @@ class VirtualTopology:
         return not self.lightpaths[lightpath_id].active_flow_ids
 
     def _validate_candidate(self, candidate: WDMLightPath) -> None:
+        # The simulator currently assumes wavelength continuity end to end; the
+        # list-based representation leaves room for future converter support.
         if len(candidate.links) != len(candidate.wavelengths):
             raise TopologyError(
                 "lightpath candidate must have the same number of links and wavelengths"

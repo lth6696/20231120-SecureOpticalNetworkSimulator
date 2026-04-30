@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import logging
 import random
 from dataclasses import dataclass
 from typing import TypeVar
@@ -7,9 +8,10 @@ from typing import TypeVar
 from .events import FlowArrivalEvent, FlowDepartureEvent
 from .flow import Flow
 from .scheduler import EventScheduler
-from wdm_sim.config import CallTypeConfig, PairWeightConfig, TrafficConfig
+from wdm_sim.config import CallTypeConfig, TrafficConfig
 
 T = TypeVar("T")
+logger = logging.getLogger(__name__)
 
 
 @dataclass
@@ -18,6 +20,8 @@ class TrafficGenerator:
     node_ids: list[int]
 
     def generate(self, scheduler: EventScheduler) -> None:
+        # Each generated flow immediately schedules both its arrival and its
+        # future departure so teardown ordering stays deterministic.
         rng = random.Random(self.config.seed)
         mean_rate = _weighted_mean_rate(self.config.call_types)
         mean_arrival_time = (
@@ -52,6 +56,12 @@ class TrafficGenerator:
             )
             scheduler.add_event(FlowArrivalEvent(time=time, flow=flow))
             scheduler.add_event(FlowDepartureEvent(time=time + duration, flow_id=flow_id))
+        logger.info(
+            "Traffic generated: flows=%d mean_arrival_time=%.6f seed=%s",
+            self.config.calls,
+            mean_arrival_time,
+            self.config.seed,
+        )
 
 
 def _weighted_mean_rate(call_types: list[CallTypeConfig]) -> float:
