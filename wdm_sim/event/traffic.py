@@ -25,11 +25,11 @@ class TrafficGenerator:
         rng = random.Random(self.config.seed)
         mean_rate = _weighted_mean_rate(self.config.call_types)
         mean_arrival_time = (
-            self.config.mean_holding_time * (mean_rate / self.config.max_rate)
+            self.config.mean_holding_time * (mean_rate / self.config.max_bandwidth)
         ) / self.config.load
 
-        pairs = self.config.pairs or [
-            PairWeightConfig(src=src, dst=dst, weight=1.0)
+        pairs = [
+            (src, dst)
             for src in self.node_ids
             for dst in self.node_ids
             if src != dst
@@ -40,22 +40,25 @@ class TrafficGenerator:
         time = 0.0
         for flow_id in range(self.config.calls):
             call_type = _weighted_choice(rng, self.config.call_types)
-            pair = _weighted_choice(rng, pairs)
+            pair = rng.choice(pairs)
             inter_arrival = rng.expovariate(1.0 / mean_arrival_time)
             duration = rng.expovariate(1.0 / self.config.mean_holding_time)
             time += inter_arrival
             flow = Flow(
                 id=flow_id,
-                src=pair.src,
-                dst=pair.dst,
-                rate=call_type.rate,
+                src=pair[0],
+                dst=pair[1],
+                # rate=call_type.rate,
+                rate=rng.randint(self.config.min_bandwidth, self.config.max_bandwidth),
                 duration=duration,
                 cos=call_type.cos,
-                security_required=call_type.security_required,
-                key_rate=call_type.key_rate,
+                security_required=rng.randint(self.config.min_security_level, self.config.max_security_level),
+                key_rate=rng.randint(self.config.min_key_rate, self.config.max_key_rate),
             )
             scheduler.add_event(FlowArrivalEvent(time=time, flow=flow))
             scheduler.add_event(FlowDepartureEvent(time=time + duration, flow_id=flow_id))
+            logger.debug(FlowArrivalEvent(time=time, flow=flow))
+            logger.debug(FlowDepartureEvent(time=time + duration, flow_id=flow_id))
         logger.info(
             "Traffic generated: flows=%d mean_arrival_time=%.6f seed=%s",
             self.config.calls,

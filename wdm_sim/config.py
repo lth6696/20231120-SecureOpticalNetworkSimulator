@@ -124,6 +124,12 @@ def _read_dataclass(cls, values: dict[str, Any]):
     if unexpected:
         names = ", ".join(sorted(unexpected))
         raise ValueError(f"Unknown keys in [{_section_name(cls)}]: {names}")
+
+    if cls is TrafficConfig and "call_types" in values:
+        values["call_types"] = [
+            item if isinstance(item, CallTypeConfig) else CallTypeConfig(**item)
+            for item in values["call_types"]
+        ]
     return cls(**values)
 
 

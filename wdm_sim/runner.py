@@ -1,14 +1,14 @@
 from __future__ import annotations
 
 import logging
-from dataclasses import dataclass
+from dataclasses import dataclass, asdict
 from typing import Any
 
 from algorithms import (
     GroomingShortestPathRWA,
     JointKPathPairGroomingRWA,
     KShortestPathFirstFitRWA,
-    RoutingAlgorithm,
+    HeuristicAlgorithm,
     ShortestPathFirstFitRWA,
 )
 from config import SimulationConfig
@@ -29,11 +29,12 @@ class SimulationRunner:
     scheduler: EventScheduler
     control_plane: ControlPlane
     stats: StatsCollector
-    routing_algorithm: RoutingAlgorithm
+    routing_algorithm: HeuristicAlgorithm
 
     def run(self) -> dict[str, Any]:
         # Core discrete-event loop: process the earliest event, observe it in
         # statistics, then let the control plane mutate network state.
+        logger.info(f"{"=" * 30} Start Simulation {"=" * 30}")
         logger.info("Simulation loop started with %d scheduled events", len(self.scheduler))
         while len(self.scheduler) > 0:
             event: Event = self.scheduler.pop_event()
@@ -51,12 +52,7 @@ def build_runner(config: SimulationConfig) -> SimulationRunner:
     # Build all stateful simulation components once and connect them through the
     # control plane so algorithms work against a single shared state model.
     stats = StatsCollector()
-    physical = load_physical_topology(config.topology.path)
-    logger.info(
-        "Physical topology loaded: nodes=%d links=%d",
-        physical.num_nodes,
-        len(physical.links),
-    )
+    physical = load_physical_topology(config.topology.path, **asdict(config.resource))
     virtual = VirtualTopology(physical_topology=physical, stats=stats)
     tracer = Tracer(path=config.trace_path)
     control_plane = ControlPlane(
@@ -71,7 +67,7 @@ def build_runner(config: SimulationConfig) -> SimulationRunner:
     control_plane.set_routing_algorithm(routing_algorithm)
 
     scheduler = EventScheduler()
-    TrafficGenerator(config.traffic, sorted(physical.nodes)).generate(scheduler)
+    TrafficGenerator(config.traffic, sorted(physical.graph.nodes())).generate(scheduler)
     logger.info("Traffic generation completed with %d scheduled events", len(scheduler))
     return SimulationRunner(
         scheduler=scheduler,
@@ -81,7 +77,7 @@ def build_runner(config: SimulationConfig) -> SimulationRunner:
     )
 
 
-def _create_algorithm(config: SimulationConfig) -> RoutingAlgorithm:
+def _create_algorithm(config: SimulationConfig) -> HeuristicAlgorithm:
     # Accept a few aliases so config files can stay readable while still mapping
     # cleanly onto concrete algorithm classes.
     name = config.algorithm.name.strip().lower()

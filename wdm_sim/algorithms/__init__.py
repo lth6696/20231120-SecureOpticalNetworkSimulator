@@ -1,4 +1,4 @@
-from .base import RoutingAlgorithm
+from .base import HeuristicAlgorithm
 from .grooming_shortest_path import GroomingShortestPathRWA
 from .joint_kpath_pair_grooming import JointKPathPairGroomingRWA
 from .ksp_first_fit import KShortestPathFirstFitRWA
@@ -8,6 +8,6 @@ __all__ = [
     "GroomingShortestPathRWA",
     "JointKPathPairGroomingRWA",
     "KShortestPathFirstFitRWA",
-    "RoutingAlgorithm",
+    "HeuristicAlgorithm",
     "ShortestPathFirstFitRWA",
 ]

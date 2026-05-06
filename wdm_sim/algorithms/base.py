@@ -6,7 +6,7 @@ from wdm_sim.event.control_plane import ControlPlane
 from wdm_sim.event.flow import Flow
 
 
-class RoutingAlgorithm(Protocol):
+class HeuristicAlgorithm(Protocol):
     def simulation_interface(self, cp: ControlPlane) -> None: ...
 
     def flow_arrival(self, flow: Flow) -> None: ...

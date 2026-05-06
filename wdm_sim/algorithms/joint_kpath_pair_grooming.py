@@ -1,6 +1,8 @@
 from __future__ import annotations
 
 import logging
+import networkx as nx
+from itertools import islice
 from dataclasses import dataclass
 
 from wdm_sim.event.control_plane import ControlPlane
@@ -49,7 +51,7 @@ class JointKPathPairGroomingRWA(FirstFitAllocator):
             flow.rate,
             flow.security_required,
         )
-        if not flow.security_required:
+        if flow.security_required == 0:
             if self._try_unprotected_grooming_or_ksp(flow):
                 return
             self.cp.block_flow(flow.id)
@@ -111,6 +113,11 @@ class JointKPathPairGroomingRWA(FirstFitAllocator):
         # The pseudocode's auxiliary graph is modeled here as a filtered view of
         # links that still admit at least one first-fit wavelength.
         working_allowed = self._links_with_first_fit_wavelength(flow.rate)
+        # try:
+        #     working_paths = [list(path) for path in islice(nx.shortest_simple_paths(physical.graph, flow.src, flow.dst, weight="weight"), self.k)]
+        # except (nx.NetworkXNoPath, nx.NodeNotFound):
+        #     working_paths = []
+
         working_paths = yen_k_shortest_paths(
             physical.num_nodes,
             physical.filtered_weighted_adjacency(working_allowed),
