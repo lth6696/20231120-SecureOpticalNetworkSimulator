@@ -11,6 +11,6 @@ class Flow:
     rate: int
     duration: float
     cos: int
-    security_required: int = 0
-    key_rate: int = 0
+    sec: int = 0
+    kgr: int = 0
 

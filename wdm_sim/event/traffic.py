@@ -20,8 +20,6 @@ class TrafficGenerator:
     node_ids: list[int]
 
     def generate(self, scheduler: EventScheduler) -> None:
-        # Each generated flow immediately schedules both its arrival and its
-        # future departure so teardown ordering stays deterministic.
         rng = random.Random(self.config.seed)
         mean_rate = _weighted_mean_rate(self.config.call_types)
         mean_arrival_time = (
@@ -37,6 +35,8 @@ class TrafficGenerator:
         if not pairs:
             raise ValueError("traffic generation requires at least two nodes")
 
+        logger.info(f"Start generate traffic: {self.config.calls} flows, {mean_arrival_time} mean_arrival_time.")
+
         time = 0.0
         for flow_id in range(self.config.calls):
             call_type = _weighted_choice(rng, self.config.call_types)
@@ -44,27 +44,24 @@ class TrafficGenerator:
             inter_arrival = rng.expovariate(1.0 / mean_arrival_time)
             duration = rng.expovariate(1.0 / self.config.mean_holding_time)
             time += inter_arrival
+            sec = rng.randint(self.config.min_security_level, self.config.max_security_level)
             flow = Flow(
                 id=flow_id,
                 src=pair[0],
                 dst=pair[1],
-                # rate=call_type.rate,
                 rate=rng.randint(self.config.min_bandwidth, self.config.max_bandwidth),
                 duration=duration,
                 cos=call_type.cos,
-                security_required=rng.randint(self.config.min_security_level, self.config.max_security_level),
-                key_rate=rng.randint(self.config.min_key_rate, self.config.max_key_rate),
+                sec=sec,
+                kgr=rng.randint(self.config.min_key_rate, self.config.max_key_rate) if sec > 0 else 0,
             )
-            scheduler.add_event(FlowArrivalEvent(time=time, flow=flow))
-            scheduler.add_event(FlowDepartureEvent(time=time + duration, flow_id=flow_id))
-            logger.debug(FlowArrivalEvent(time=time, flow=flow))
-            logger.debug(FlowDepartureEvent(time=time + duration, flow_id=flow_id))
-        logger.info(
-            "Traffic generated: flows=%d mean_arrival_time=%.6f seed=%s",
-            self.config.calls,
-            mean_arrival_time,
-            self.config.seed,
-        )
+            event_arrival = FlowArrivalEvent(time=time, flow=flow)
+            event_depart = FlowDepartureEvent(time=time + duration, flow=flow)
+            scheduler.add_event(event_arrival)
+            scheduler.add_event(event_depart)
+
+            logger.debug(event_arrival)
+            logger.debug(event_depart)
 
 
 def _weighted_mean_rate(call_types: list[CallTypeConfig]) -> float:

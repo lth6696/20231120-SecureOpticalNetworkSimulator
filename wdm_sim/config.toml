@@ -3,7 +3,12 @@ path = "logconfig.ini"
 level = "DEBUG"
 
 [topology]
-path = "graphml/Nsfnet.graphml"
+path = "graphml/SixNode.graphml"
+
+[topology.resource]
+wavelengths = 2
+max_bandwidth = 100
+max_key_rate = 10
 
 [traffic]
 calls = 10
@@ -32,14 +37,9 @@ rate = 100
 weight = 1
 cos = 1
 
-[resource]
-wavelengths = 2
-max_bandwidth = 100
-max_key_rate = 10
-
 [algorithm]
 name = "JKPG"
-k_paths = 4
+k = 4
 
 [costs]
 wavelength_cost = 2.0

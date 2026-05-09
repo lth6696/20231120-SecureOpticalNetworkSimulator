@@ -5,11 +5,8 @@ from dataclasses import dataclass, asdict
 from typing import Any
 
 from algorithms import (
-    GroomingShortestPathRWA,
-    JointKPathPairGroomingRWA,
-    KShortestPathFirstFitRWA,
+    JointKSPGrooming,
     HeuristicAlgorithm,
-    ShortestPathFirstFitRWA,
 )
 from config import SimulationConfig
 from event.control_plane import ControlPlane
@@ -40,7 +37,7 @@ class SimulationRunner:
             event: Event = self.scheduler.pop_event()
             logger.debug("Dispatching event type=%s time=%.6f", type(event).__name__, event.time)
             self.stats.observe_event(event)
-            self.control_plane.new_event(event)
+            self.control_plane.process_event(event)
         self.routing_algorithm.simulation_end()
         self.control_plane.tracer.close()
         summary = self.stats.summary()
@@ -49,25 +46,34 @@ class SimulationRunner:
 
 
 def build_runner(config: SimulationConfig) -> SimulationRunner:
-    # Build all stateful simulation components once and connect them through the
-    # control plane so algorithms work against a single shared state model.
+    # 创建统计模块，用于记录业务到达、接受、阻塞、释放、资源利用率等仿真过程中的统计信息。
     stats = StatsCollector()
-    physical = load_physical_topology(config.topology.path, **asdict(config.resource))
-    virtual = VirtualTopology(physical_topology=physical, stats=stats)
+    # 创建事件追踪器
     tracer = Tracer(path=config.trace_path)
+
+    # 加载物理拓扑
+    pt = load_physical_topology(config.topology.path, **asdict(config.topology.resource))
+    # 创建虚拟拓扑
+    vt = VirtualTopology()
+    vt.init(pt.graph)
+
+    # 创建控制平面
+    logger.info(f"{'='*25} Initialize Control Plane {'='*25}")
     control_plane = ControlPlane(
-        physical_topology=physical,
-        virtual_topology=virtual,
+        pt=pt,
+        vt=vt,
         stats=stats,
         tracer=tracer,
     )
     routing_algorithm = _create_algorithm(config)
-    logger.info("Routing algorithm selected: %s", type(routing_algorithm).__name__)
     routing_algorithm.simulation_interface(control_plane)
-    control_plane.set_routing_algorithm(routing_algorithm)
+    control_plane.set_algorithm(routing_algorithm)
+    logger.info("Algorithm selected: %s", type(routing_algorithm).__name__)
 
+    # 创建事件调度器
+    logger.info(f"{'=' * 25} Initialize Scheduler {'=' * 25}")
     scheduler = EventScheduler()
-    TrafficGenerator(config.traffic, sorted(physical.graph.nodes())).generate(scheduler)
+    TrafficGenerator(config.traffic, sorted(pt.graph.nodes())).generate(scheduler)
     logger.info("Traffic generation completed with %d scheduled events", len(scheduler))
     return SimulationRunner(
         scheduler=scheduler,
@@ -81,17 +87,6 @@ def _create_algorithm(config: SimulationConfig) -> HeuristicAlgorithm:
     # Accept a few aliases so config files can stay readable while still mapping
     # cleanly onto concrete algorithm classes.
     name = config.algorithm.name.strip().lower()
-    if name in {"shortest_path_first_fit", "spff", "shortestpathfirstfitrwa"}:
-        return ShortestPathFirstFitRWA()
-    if name in {"grooming_shortest_path", "grooming", "groomingshortestpathrwa"}:
-        return GroomingShortestPathRWA()
-    if name in {"k_shortest_path_first_fit", "ksp_first_fit", "ksp"}:
-        return KShortestPathFirstFitRWA(k=config.algorithm.k_paths)
-    if name in {
-        "joint_kpath_pair_grooming",
-        "joint_k_path_pair_grooming",
-        "jkpg",
-        "protected_pair_grooming",
-    }:
-        return JointKPathPairGroomingRWA(k=config.algorithm.k_paths)
+    if name == "jkpg":
+        return JointKSPGrooming(k=config.algorithm.k)
     raise ConfigurationError(f"unknown routing algorithm: {config.algorithm}")

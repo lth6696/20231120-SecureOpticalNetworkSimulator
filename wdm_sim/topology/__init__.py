@@ -1,10 +1,7 @@
-from .physical import WDMLink, WDMNode, WDMPhysicalTopology, load_physical_topology
-from .virtual import VirtualTopology, WDMLightPath
+from .physical import WDMPhysicalTopology, load_physical_topology
+from .virtual import VirtualTopology
 
 __all__ = [
-    "WDMLink",
-    "WDMLightPath",
-    "WDMNode",
     "WDMPhysicalTopology",
     "VirtualTopology",
     "load_physical_topology",

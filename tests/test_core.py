@@ -55,8 +55,8 @@ class GroomingResourceTests(unittest.TestCase):
         stats = StatsCollector()
         virtual = VirtualTopology(physical_topology=physical, stats=stats)
         cp = ControlPlane(
-            physical_topology=physical,
-            virtual_topology=virtual,
+            pt=physical,
+            vt=virtual,
             stats=stats,
             tracer=Tracer(),
         )
@@ -101,7 +101,7 @@ class ProtectedPairGroomingTests(unittest.TestCase):
         self.assertEqual(
             summary["num_lightpaths_created"], summary["num_lightpaths_removed"]
         )
-        self.assertEqual(len(runner.control_plane.virtual_topology.lightpaths), 0)
+        self.assertEqual(len(runner.control_plane.vt.lightpaths), 0)
 
 
 if __name__ == "__main__":

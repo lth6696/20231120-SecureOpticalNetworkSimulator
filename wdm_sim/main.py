@@ -31,7 +31,7 @@ def main() -> int:
     args = parse_args()
     config = load_simulation_config(args.config)
     _configure_logging(config)
-    logger.info("Starting simulation with config=%s", args.config)
+    logger.info(f"{'='*25} Start Running {'='*25}")
     runner = build_runner(config)
     summary = runner.run()
     logger.info("Simulation completed with summary=%s", summary)

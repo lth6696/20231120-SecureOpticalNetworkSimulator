@@ -1,0 +1,106 @@
+2026-05-09 19:33:26,221 - INFO - ========================= Start Running =========================
+2026-05-09 19:33:26,221 - INFO - ========================= Loading Physical Topology =========================
+2026-05-09 19:33:26,222 - INFO - Topology file: graphml\SixNode.graphml
+2026-05-09 19:33:26,394 - INFO - GraphML topology loaded: nodes=6 directed_links=16.
+2026-05-09 19:33:26,394 - INFO - ========================= Loading Virtual Topology =========================
+2026-05-09 19:33:26,394 - INFO - ========================= Initialize Control Plane =========================
+2026-05-09 19:33:26,394 - INFO - JointKPathPairGrooming initialized with k=4
+2026-05-09 19:33:26,395 - INFO - Control plane bound to routing algorithm=JointKSPGrooming
+2026-05-09 19:33:26,395 - INFO - Algorithm selected: JointKSPGrooming
+2026-05-09 19:33:26,395 - INFO - ========================= Initialize Scheduler =========================
+2026-05-09 19:33:26,395 - INFO - Start generate traffic: 10 flows, 1.25 mean_arrival_time.
+2026-05-09 19:33:26,395 - DEBUG - 0 FlowArrival from node 0 to node 1 with 94 rate, 0 kgr and 0 security level.
+2026-05-09 19:33:26,395 - DEBUG - 0 FlowDeparture.
+2026-05-09 19:33:26,395 - DEBUG - 1 FlowArrival from node 4 to node 3 with 4 rate, 1 kgr and 1 security level.
+2026-05-09 19:33:26,395 - DEBUG - 1 FlowDeparture.
+2026-05-09 19:33:26,395 - DEBUG - 2 FlowArrival from node 1 to node 3 with 91 rate, 0 kgr and 0 security level.
+2026-05-09 19:33:26,395 - DEBUG - 2 FlowDeparture.
+2026-05-09 19:33:26,395 - DEBUG - 3 FlowArrival from node 3 to node 2 with 0 rate, 2 kgr and 1 security level.
+2026-05-09 19:33:26,395 - DEBUG - 3 FlowDeparture.
+2026-05-09 19:33:26,395 - DEBUG - 4 FlowArrival from node 2 to node 0 with 13 rate, 1 kgr and 1 security level.
+2026-05-09 19:33:26,395 - DEBUG - 4 FlowDeparture.
+2026-05-09 19:33:26,395 - DEBUG - 5 FlowArrival from node 2 to node 1 with 93 rate, 0 kgr and 0 security level.
+2026-05-09 19:33:26,396 - DEBUG - 5 FlowDeparture.
+2026-05-09 19:33:26,396 - DEBUG - 6 FlowArrival from node 0 to node 4 with 37 rate, 3 kgr and 2 security level.
+2026-05-09 19:33:26,396 - DEBUG - 6 FlowDeparture.
+2026-05-09 19:33:26,396 - DEBUG - 7 FlowArrival from node 4 to node 2 with 10 rate, 2 kgr and 1 security level.
+2026-05-09 19:33:26,396 - DEBUG - 7 FlowDeparture.
+2026-05-09 19:33:26,396 - DEBUG - 8 FlowArrival from node 2 to node 3 with 20 rate, 3 kgr and 1 security level.
+2026-05-09 19:33:26,396 - DEBUG - 8 FlowDeparture.
+2026-05-09 19:33:26,396 - DEBUG - 9 FlowArrival from node 4 to node 1 with 9 rate, 2 kgr and 2 security level.
+2026-05-09 19:33:26,396 - DEBUG - 9 FlowDeparture.
+2026-05-09 19:33:26,396 - INFO - Traffic generation completed with 20 scheduled events
+2026-05-09 19:33:26,396 - INFO - ============================== Start Simulation ==============================
+2026-05-09 19:33:26,396 - INFO - Simulation loop started with 20 scheduled events
+2026-05-09 19:33:26,396 - DEBUG - Dispatching event type=FlowArrivalEvent time=1.691319
+2026-05-09 19:33:26,396 - DEBUG - Processing event type=FlowArrivalEvent time=1.691319
+2026-05-09 19:33:26,396 - INFO - Flow arrival id=0 src=0 dst=1 rate=94
+2026-05-09 19:33:26,396 - INFO - Algorithm handling flow id=0 src=0 dst=1 rate=94 security=0
+2026-05-09 19:33:26,397 - INFO - Flow blocked id=0 src=0 dst=1 rate=94
+2026-05-09 19:33:26,397 - DEBUG - Dispatching event type=FlowArrivalEvent time=4.475429
+2026-05-09 19:33:26,397 - DEBUG - Processing event type=FlowArrivalEvent time=4.475429
+2026-05-09 19:33:26,397 - INFO - Flow arrival id=1 src=4 dst=3 rate=4
+2026-05-09 19:33:26,397 - INFO - Algorithm handling flow id=1 src=4 dst=3 rate=4 security=1
+2026-05-09 19:33:26,397 - INFO - Flow blocked id=1 src=4 dst=3 rate=4
+2026-05-09 19:33:26,397 - DEBUG - Dispatching event type=FlowDepartureEvent time=4.500262
+2026-05-09 19:33:26,397 - DEBUG - Processing event type=FlowDepartureEvent time=4.500262
+2026-05-09 19:33:26,397 - DEBUG - Dispatching event type=FlowArrivalEvent time=5.355323
+2026-05-09 19:33:26,397 - DEBUG - Processing event type=FlowArrivalEvent time=5.355323
+2026-05-09 19:33:26,398 - INFO - Flow arrival id=2 src=1 dst=3 rate=91
+2026-05-09 19:33:26,398 - INFO - Algorithm handling flow id=2 src=1 dst=3 rate=91 security=0
+2026-05-09 19:33:26,398 - INFO - Flow blocked id=2 src=1 dst=3 rate=91
+2026-05-09 19:33:26,398 - DEBUG - Dispatching event type=FlowDepartureEvent time=5.384953
+2026-05-09 19:33:26,398 - DEBUG - Processing event type=FlowDepartureEvent time=5.384953
+2026-05-09 19:33:26,398 - DEBUG - Dispatching event type=FlowDepartureEvent time=5.624267
+2026-05-09 19:33:26,398 - DEBUG - Processing event type=FlowDepartureEvent time=5.624267
+2026-05-09 19:33:26,399 - DEBUG - Dispatching event type=FlowArrivalEvent time=6.035198
+2026-05-09 19:33:26,399 - DEBUG - Processing event type=FlowArrivalEvent time=6.035198
+2026-05-09 19:33:26,399 - INFO - Flow arrival id=3 src=3 dst=2 rate=0
+2026-05-09 19:33:26,399 - INFO - Algorithm handling flow id=3 src=3 dst=2 rate=0 security=1
+2026-05-09 19:33:26,399 - INFO - Flow blocked id=3 src=3 dst=2 rate=0
+2026-05-09 19:33:26,399 - DEBUG - Dispatching event type=FlowArrivalEvent time=6.442138
+2026-05-09 19:33:26,399 - DEBUG - Processing event type=FlowArrivalEvent time=6.442138
+2026-05-09 19:33:26,399 - INFO - Flow arrival id=4 src=2 dst=0 rate=13
+2026-05-09 19:33:26,399 - INFO - Algorithm handling flow id=4 src=2 dst=0 rate=13 security=1
+2026-05-09 19:33:26,400 - INFO - Flow blocked id=4 src=2 dst=0 rate=13
+2026-05-09 19:33:26,400 - DEBUG - Dispatching event type=FlowArrivalEvent time=8.792830
+2026-05-09 19:33:26,400 - DEBUG - Processing event type=FlowArrivalEvent time=8.792830
+2026-05-09 19:33:26,400 - INFO - Flow arrival id=5 src=2 dst=1 rate=93
+2026-05-09 19:33:26,400 - INFO - Algorithm handling flow id=5 src=2 dst=1 rate=93 security=0
+2026-05-09 19:33:26,401 - INFO - Flow blocked id=5 src=2 dst=1 rate=93
+2026-05-09 19:33:26,401 - DEBUG - Dispatching event type=FlowDepartureEvent time=8.866851
+2026-05-09 19:33:26,401 - DEBUG - Processing event type=FlowDepartureEvent time=8.866851
+2026-05-09 19:33:26,401 - DEBUG - Dispatching event type=FlowDepartureEvent time=11.999197
+2026-05-09 19:33:26,401 - DEBUG - Processing event type=FlowDepartureEvent time=11.999197
+2026-05-09 19:33:26,401 - DEBUG - Dispatching event type=FlowArrivalEvent time=13.313099
+2026-05-09 19:33:26,401 - DEBUG - Processing event type=FlowArrivalEvent time=13.313099
+2026-05-09 19:33:26,401 - INFO - Flow arrival id=6 src=0 dst=4 rate=37
+2026-05-09 19:33:26,401 - INFO - Algorithm handling flow id=6 src=0 dst=4 rate=37 security=2
+2026-05-09 19:33:26,401 - INFO - Flow blocked id=6 src=0 dst=4 rate=37
+2026-05-09 19:33:26,401 - DEBUG - Dispatching event type=FlowArrivalEvent time=13.403214
+2026-05-09 19:33:26,401 - DEBUG - Processing event type=FlowArrivalEvent time=13.403214
+2026-05-09 19:33:26,401 - INFO - Flow arrival id=7 src=4 dst=2 rate=10
+2026-05-09 19:33:26,401 - INFO - Algorithm handling flow id=7 src=4 dst=2 rate=10 security=1
+2026-05-09 19:33:26,402 - INFO - Flow blocked id=7 src=4 dst=2 rate=10
+2026-05-09 19:33:26,402 - DEBUG - Dispatching event type=FlowArrivalEvent time=13.810331
+2026-05-09 19:33:26,402 - DEBUG - Processing event type=FlowArrivalEvent time=13.810331
+2026-05-09 19:33:26,402 - INFO - Flow arrival id=8 src=2 dst=3 rate=20
+2026-05-09 19:33:26,402 - INFO - Algorithm handling flow id=8 src=2 dst=3 rate=20 security=1
+2026-05-09 19:33:26,402 - INFO - Flow blocked id=8 src=2 dst=3 rate=20
+2026-05-09 19:33:26,402 - DEBUG - Dispatching event type=FlowArrivalEvent time=14.198556
+2026-05-09 19:33:26,402 - DEBUG - Processing event type=FlowArrivalEvent time=14.198556
+2026-05-09 19:33:26,402 - INFO - Flow arrival id=9 src=4 dst=1 rate=9
+2026-05-09 19:33:26,402 - INFO - Algorithm handling flow id=9 src=4 dst=1 rate=9 security=2
+2026-05-09 19:33:26,402 - INFO - Flow blocked id=9 src=4 dst=1 rate=9
+2026-05-09 19:33:26,402 - DEBUG - Dispatching event type=FlowDepartureEvent time=18.049325
+2026-05-09 19:33:26,402 - DEBUG - Processing event type=FlowDepartureEvent time=18.049325
+2026-05-09 19:33:26,402 - DEBUG - Dispatching event type=FlowDepartureEvent time=18.069846
+2026-05-09 19:33:26,402 - DEBUG - Processing event type=FlowDepartureEvent time=18.069846
+2026-05-09 19:33:26,402 - DEBUG - Dispatching event type=FlowDepartureEvent time=23.907680
+2026-05-09 19:33:26,402 - DEBUG - Processing event type=FlowDepartureEvent time=23.907680
+2026-05-09 19:33:26,402 - DEBUG - Dispatching event type=FlowDepartureEvent time=24.228537
+2026-05-09 19:33:26,402 - DEBUG - Processing event type=FlowDepartureEvent time=24.228537
+2026-05-09 19:33:26,402 - DEBUG - Dispatching event type=FlowDepartureEvent time=41.790084
+2026-05-09 19:33:26,402 - DEBUG - Processing event type=FlowDepartureEvent time=41.790084
+2026-05-09 19:33:26,402 - INFO - Simulation loop finished with summary={'arrivals': 10, 'accepted': 0, 'blocked': 10, 'blocking_rate': 1.0, 'required_bandwidth': 371, 'blocked_bandwidth': 371, 'bandwidth_blocking_rate': 1.0, 'num_lightpaths_created': 0, 'num_lightpaths_removed': 0, 'grooming_count': 0, 'new_lightpath_count': 0, 'average_physical_hops_per_accepted_flow': 0.0, 'average_virtual_hops_per_accepted_flow': 0.0}
+2026-05-09 19:33:26,402 - INFO - Simulation completed with summary={'arrivals': 10, 'accepted': 0, 'blocked': 10, 'blocking_rate': 1.0, 'required_bandwidth': 371, 'blocked_bandwidth': 371, 'bandwidth_blocking_rate': 1.0, 'num_lightpaths_created': 0, 'num_lightpaths_removed': 0, 'grooming_count': 0, 'new_lightpath_count': 0, 'average_physical_hops_per_accepted_flow': 0.0, 'average_virtual_hops_per_accepted_flow': 0.0}
