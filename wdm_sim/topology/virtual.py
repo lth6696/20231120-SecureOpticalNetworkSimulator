@@ -5,11 +5,23 @@ from dataclasses import dataclass, field
 
 import networkx as nx
 
-from wdm_sim.exceptions import ResourceUnavailableError, TopologyError
-from wdm_sim.stats import StatsCollector
-from wdm_sim.topology.physical import WDMPhysicalTopology
-
 logger = logging.getLogger(__name__)
+
+
+@dataclass
+class Lightpath:
+    src: int
+    dst: int
+    wavelength_used: int
+    max_bandwidth: int
+    max_key_rate: int
+    avl_bandwidth: int
+    avl_key_rate: int
+    route: []
+    usage: str
+    kind: str       # new, exist
+
+    layer: str = "lightpath"
 
 
 @dataclass
@@ -23,10 +35,12 @@ class VirtualTopology:
      - layer: {mapping, physical, wavelength, lightpath}
      - wavelength_used: int
      - max_bandwidth: int
-     - avl_bandwidth: int
      - max_key_rate: int
+     - avl_bandwidth: int
      - avl_key_rate: int
      - route: []
+     - usage: {data, recip}
+     - kind: exist
     """
     graph: nx.MultiDiGraph = field(init=False)
 

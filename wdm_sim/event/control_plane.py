@@ -8,7 +8,7 @@ from .flow import Flow
 from wdm_sim.exceptions import SimulationError, TopologyError
 from wdm_sim.stats import StatsCollector
 from wdm_sim.topology.physical import WDMPhysicalTopology
-from wdm_sim.topology.virtual import VirtualTopology
+from wdm_sim.topology.virtual import VirtualTopology, Lightpath
 from wdm_sim.tracer import Tracer
 
 logger = logging.getLogger(__name__)
@@ -47,7 +47,7 @@ class ControlPlane:
         else:
             raise SimulationError(f"unsupported event type: {type(event).__name__}")
 
-    def accept_flow(self, flow_id: int, lightpaths: list) -> bool:
+    def accept_flow(self, flow_id: int, lightpaths: dict) -> bool:
         flow = self.active_flows.get(flow_id)
         if flow is None:
             logger.warning("Ignoring accept for missing flow id=%d", flow_id)
@@ -55,53 +55,87 @@ class ControlPlane:
         if not lightpaths:
             raise TopologyError("accept_flow requires at least one lightpath")
 
-        # Wavelength occupation is checked when lightpaths are created. At flow
-        # admission time we only need to verify residual groomable bandwidth.
-        self._validate_virtual_continuity(flow, lightpaths)
-        for lightpath in lightpaths:
-            if lightpath.backup:
-                raise TopologyError(
-                    f"backup lightpath {lightpath.id} cannot carry primary traffic"
-                )
-            available = self.vt.get_lightpath_bw_available(lightpath.id)
-            if available < flow.rate:
-                logger.warning(
-                    "Insufficient bandwidth for flow id=%d on lightpath id=%d available=%d required=%d",
-                    flow.id,
-                    lightpath.id,
-                    available,
-                    flow.rate,
-                )
-                return False
+        physical_hops = 0
+        virtual_hops = 0
+        groomed = False
+        # 分数据和协商路径，若占用波长，则新建光路，扣除数据速率和密钥速率
+        # 若复用光路，则扣除数据速率和密钥速率
+        # 为数据光路打上标记，为协商光路打上标记
+        for usage, value in lightpaths.items():
+            if usage == "data":
+                for lightpath in value:
+                    if lightpath.kind == "new":
+                        # 新建光路
+                        self.vt.graph.add_edge(
+                            lightpath.src,
+                            lightpath.dst,
+                            layer="lightpath",
+                            wavelength_used=lightpath.wavelength_used,
+                            max_bandwidth=lightpath.max_bandwidth,
+                            max_key_rate=0,
+                            avl_bandwidth=lightpath.avl_bandwidth - flow.rate,
+                            avl_key_rate=0,
+                            route=lightpath.route,
+                            usage="data",
+                            kind="exist"
+                        )
+                        virtual_hops += 1
+                        # 删除波长
+                        for u, v in zip(lightpath.route[:-1], lightpath.route[1:]):
+                            self.pt.graph.edges[u.node, v.node]["wavelength_available"].remove(lightpath.wavelength_used)
+                            self.pt.graph.edges[u.node, v.node]["wavelength_used"].append(lightpath.wavelength_used)
+                            physical_hops += 1
+                    elif lightpath.kind == "exist":
+                        for key, attr in self.vt.graph[lightpath.src][lightpath.dst].items():
+                            if self.vt.graph[lightpath.src][lightpath.dst][key]["route"] == lightpath.route:
+                                self.vt.graph[lightpath.src][lightpath.dst][key]["avl_bandwidth"] -= flow.rate
+                                break
+                        virtual_hops += 1
+                        groomed = True
+            elif usage == "recip":
+                for lightpath in value:
+                    if lightpath.kind == "new":
+                        self.vt.graph.add_edge(
+                            lightpath.src,
+                            lightpath.dst,
+                            layer="lightpath",
+                            wavelength_used=lightpath.wavelength_used,
+                            max_bandwidth=0,
+                            max_key_rate=lightpath.max_key_rate,
+                            avl_bandwidth=0,
+                            avl_key_rate=lightpath.avl_key_rate - flow.kgr,
+                            route=lightpath.route,
+                            usage="recip",
+                            kind="exist"
+                        )
+                        virtual_hops += 1
+                        # 删除波长
+                        for u, v in zip(lightpath.route[:-1], lightpath.route[1:]):
+                            self.pt.graph.edges[u.node, v.node]["wavelength_available"].remove(lightpath.wavelength_used)
+                            self.pt.graph.edges[u.node, v.node]["wavelength_used"].append(lightpath.wavelength_used)
+                            physical_hops += 1
+                    elif lightpath.kind == "exist":
+                        for key, attr in self.vt.graph[lightpath.src][lightpath.dst].items():
+                            if self.vt.graph[lightpath.src][lightpath.dst][key]["route"] == lightpath.route:
+                                self.vt.graph[lightpath.src][lightpath.dst][key]["avl_key_rate"] -= flow.kgr
+                                break
+                        virtual_hops += 1
+                        groomed = True
 
-        groomed = any(lightpath.active_flow_ids for lightpath in lightpaths)
-        for lightpath in lightpaths:
-            for link_id, wavelength in zip(lightpath.links, lightpath.wavelengths):
-                self.pt.get_link(link_id).allocate_bandwidth(
-                    wavelength, flow.rate
-                )
-            lightpath.active_flow_ids.add(flow.id)
-
-        self.mapped_flows_single_path[flow.id] = [lightpath.id for lightpath in lightpaths]
         self.stats.accept_flow(
             flow=flow,
-            physical_hops=sum(len(lightpath.links) for lightpath in lightpaths),
-            virtual_hops=len(lightpaths),
+            physical_hops=int(physical_hops/2),
+            virtual_hops=int(virtual_hops/2),
             groomed=groomed,
         )
-        self.tracer.record(
-            "flow-accepted",
-            self.current_time,
-            flow,
-            lightpaths=[lightpath.id for lightpath in lightpaths],
-            groomed=groomed,
-        )
-        logger.info(
-            "Flow accepted id=%d lightpaths=%s groomed=%s",
-            flow.id,
-            [lightpath.id for lightpath in lightpaths],
-            groomed,
-        )
+        # self.tracer.record(
+        #     "flow-accepted",
+        #     self.current_time,
+        #     flow,
+        #     lightpaths=[lightpath.id for lightpath in lightpaths],
+        #     groomed=groomed,
+        # )
+        logger.info(f"Flow {flow.id} accepted.")
         return True
 
     def block_flow(self, flow_id: int) -> bool:
@@ -188,23 +222,6 @@ class ControlPlane:
     #         reserved=reserved,
     #         backup=backup,
     #     )
-
-    def _validate_virtual_continuity(
-        self, flow: Flow, lightpaths: list
-    ) -> None:
-        # A multi-segment virtual route must form one continuous src->dst chain.
-        current = flow.src
-        for lightpath in lightpaths:
-            if lightpath.id not in self.vt.lightpaths:
-                raise TopologyError(f"lightpath {lightpath.id} is not registered")
-            if lightpath.src != current:
-                raise TopologyError(
-                    f"virtual path is discontinuous: expected src {current}, "
-                    f"got lightpath {lightpath.id} src {lightpath.src}"
-                )
-            current = lightpath.dst
-        if current != flow.dst:
-            raise TopologyError(f"virtual path ends at {current}, expected {flow.dst}")
 
     def get_algorithm(self):
         if self.algorithm is None:

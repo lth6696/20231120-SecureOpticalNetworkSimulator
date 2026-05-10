@@ -35,10 +35,10 @@ def main() -> int:
     runner = build_runner(config)
     summary = runner.run()
     logger.info("Simulation completed with summary=%s", summary)
-    if args.pretty:
-        print(json.dumps(summary, indent=2, sort_keys=True))
-    else:
-        print(json.dumps(summary, sort_keys=True))
+    # if args.pretty:
+    #     print(json.dumps(summary, indent=2, sort_keys=True))
+    # else:
+    #     print(json.dumps(summary, sort_keys=True))
     return 0
 
 

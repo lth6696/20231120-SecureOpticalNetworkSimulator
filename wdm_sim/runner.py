@@ -4,10 +4,7 @@ import logging
 from dataclasses import dataclass, asdict
 from typing import Any
 
-from algorithms import (
-    JointKSPGrooming,
-    HeuristicAlgorithm,
-)
+from algorithms import *
 from config import SimulationConfig
 from event.control_plane import ControlPlane
 from event.events import Event
@@ -88,5 +85,5 @@ def _create_algorithm(config: SimulationConfig) -> HeuristicAlgorithm:
     # cleanly onto concrete algorithm classes.
     name = config.algorithm.name.strip().lower()
     if name == "jkpg":
-        return JointKSPGrooming(k=config.algorithm.k)
+        return AuxGJointDataRecipGrooming(k=config.algorithm.k)
     raise ConfigurationError(f"unknown routing algorithm: {config.algorithm}")
