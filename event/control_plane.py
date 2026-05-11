@@ -185,9 +185,8 @@ class ControlPlane:
 
         self.stats.accept_flow(
             flow=flow,
-            physical_hops=int(physical_hops/2),
-            virtual_hops=int(virtual_hops/2),
-            groomed=groomed,
+            lightpaths=lightpaths,
+            physical_edges=self.pt.graph.edges()
         )
         # self.tracer.record(
         #     "flow-accepted",
