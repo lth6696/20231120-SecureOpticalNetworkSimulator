@@ -11,7 +11,7 @@ max_bandwidth = 100
 max_key_rate = 10
 
 [traffic]
-calls = 10
+calls = 100
 load = 2.0
 mean_holding_time = 10.0
 seed = 42
