@@ -2,8 +2,8 @@ from __future__ import annotations
 
 from typing import Protocol
 
-from wdm_sim.event.control_plane import ControlPlane
-from wdm_sim.event.flow import Flow
+from event.control_plane import ControlPlane
+from event.flow import Flow
 
 
 class HeuristicAlgorithm(Protocol):

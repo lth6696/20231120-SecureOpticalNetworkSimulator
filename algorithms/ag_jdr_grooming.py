@@ -6,9 +6,9 @@ from itertools import islice
 from dataclasses import dataclass
 from typing import Any
 
-from wdm_sim.event.control_plane import ControlPlane
-from wdm_sim.event.flow import Flow
-from wdm_sim.topology import Lightpath
+from event.control_plane import ControlPlane
+from event.flow import Flow
+from topology import Lightpath
 
 from .auxiliary_graph import AuxiliaryGraph, VirtualNode
 from .base import HeuristicAlgorithm

@@ -84,6 +84,8 @@ def _create_algorithm(config: SimulationConfig) -> HeuristicAlgorithm:
     # Accept a few aliases so config files can stay readable while still mapping
     # cleanly onto concrete algorithm classes.
     name = config.algorithm.name.strip().lower()
-    if name == "jkpg":
+    if name == "jdrg":
         return AuxGJointDataRecipGrooming(k=config.algorithm.k)
+    elif name == "sfg":
+        return AuxGSecurityFirstGrooming(k=config.algorithm.k)
     raise ConfigurationError(f"unknown routing algorithm: {config.algorithm}")

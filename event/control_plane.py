@@ -6,11 +6,11 @@ from typing import Literal, Any
 
 from .events import Event, FlowArrivalEvent, FlowDepartureEvent
 from .flow import Flow
-from wdm_sim.exceptions import SimulationError, TopologyError
-from wdm_sim.stats import StatsCollector
-from wdm_sim.topology.physical import WDMPhysicalTopology
-from wdm_sim.topology.virtual import VirtualTopology, Lightpath
-from wdm_sim.tracer import Tracer
+from exceptions import SimulationError, TopologyError
+from stats import StatsCollector
+from topology.physical import WDMPhysicalTopology
+from topology.virtual import VirtualTopology, Lightpath
+from tracer import Tracer
 
 logger = logging.getLogger(__name__)
 

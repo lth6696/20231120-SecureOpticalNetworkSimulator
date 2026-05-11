@@ -6,7 +6,7 @@ from pathlib import Path
 
 import networkx as nx
 
-from wdm_sim.exceptions import ConfigurationError, ResourceUnavailableError, TopologyError
+from exceptions import ConfigurationError, ResourceUnavailableError, TopologyError
 
 logger = logging.getLogger(__name__)
 

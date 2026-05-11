@@ -1,6 +1,6 @@
 [logging]
 path = "logconfig.ini"
-level = "INFO"
+level = "DEBUG"
 
 [topology]
 path = "graphml/SixNode.graphml"
@@ -38,7 +38,7 @@ weight = 1
 cos = 1
 
 [algorithm]
-name = "JKPG"
+name = "SFG"
 k = 4
 
 [costs]

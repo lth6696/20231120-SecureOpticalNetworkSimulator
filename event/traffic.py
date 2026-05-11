@@ -8,7 +8,7 @@ from typing import TypeVar
 from .events import FlowArrivalEvent, FlowDepartureEvent
 from .flow import Flow
 from .scheduler import EventScheduler
-from wdm_sim.config import CallTypeConfig, TrafficConfig
+from config import CallTypeConfig, TrafficConfig
 
 T = TypeVar("T")
 logger = logging.getLogger(__name__)
