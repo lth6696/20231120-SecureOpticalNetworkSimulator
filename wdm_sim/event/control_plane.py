@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import logging
 from dataclasses import dataclass, field
+from typing import Literal, Any
 
 from .events import Event, FlowArrivalEvent, FlowDepartureEvent
 from .flow import Flow
@@ -15,14 +16,24 @@ logger = logging.getLogger(__name__)
 
 
 @dataclass
+class FlowLightpathRef:
+    usage: Literal["data", "recip"]
+    src: int
+    dst: int
+    key: int
+    wavelength_used: int
+    route: list[Any]
+    created_by_this_flow: bool
+
+
+@dataclass
 class ControlPlane:
     pt: WDMPhysicalTopology
     vt: VirtualTopology
     stats: StatsCollector
     tracer: Tracer
     active_flows: dict[int, Flow] = field(default_factory=dict)
-    mapped_flows_single_path: dict[int, list[int]] = field(default_factory=dict)
-    mapped_backup_lightpaths: dict[int, list[int]] = field(default_factory=dict)
+    mapped_flow_lightpaths: dict[int, list[FlowLightpathRef]] = field(default_factory=dict)
     algorithm: object | None = None
     current_time: float = 0.0
 
@@ -42,7 +53,7 @@ class ControlPlane:
         elif isinstance(event, FlowDepartureEvent):
             if event.flow.id in self.active_flows:
                 logger.info(f"Flow departure id={event.flow.id} src={event.flow.src} dst={event.flow.dst}")
-                self.get_algorithm().flow_departure(event.flow.id)
+                # self.get_algorithm().flow_departure(event.flow.id)
                 self.remove_flow(event.flow.id)
         else:
             raise SimulationError(f"unsupported event type: {type(event).__name__}")
@@ -66,7 +77,7 @@ class ControlPlane:
                 for lightpath in value:
                     if lightpath.kind == "new":
                         # 新建光路
-                        self.vt.graph.add_edge(
+                        edge_key = self.vt.graph.add_edge(
                             lightpath.src,
                             lightpath.dst,
                             layer="lightpath",
@@ -77,7 +88,19 @@ class ControlPlane:
                             avl_key_rate=0,
                             route=lightpath.route,
                             usage="data",
-                            kind="exist"
+                            kind="exist",
+                            active_flows={flow.id}
+                        )
+                        self.mapped_flow_lightpaths.setdefault(flow.id, []).append(
+                            FlowLightpathRef(
+                                usage="data",
+                                src=lightpath.src,
+                                dst=lightpath.dst,
+                                key=edge_key,
+                                wavelength_used=lightpath.wavelength_used,
+                                route=lightpath.route,
+                                created_by_this_flow=True,
+                            )
                         )
                         virtual_hops += 1
                         # 删除波长
@@ -87,15 +110,28 @@ class ControlPlane:
                             physical_hops += 1
                     elif lightpath.kind == "exist":
                         for key, attr in self.vt.graph[lightpath.src][lightpath.dst].items():
-                            if self.vt.graph[lightpath.src][lightpath.dst][key]["route"] == lightpath.route:
-                                self.vt.graph[lightpath.src][lightpath.dst][key]["avl_bandwidth"] -= flow.rate
+                            if attr["route"] == lightpath.route and attr["usage"] == "data":
+                                attr["avl_bandwidth"] -= flow.rate
+                                attr.setdefault("active_flows", set()).add(flow.id)
+
+                                self.mapped_flow_lightpaths.setdefault(flow.id, []).append(
+                                    FlowLightpathRef(
+                                        usage="data",
+                                        src=lightpath.src,
+                                        dst=lightpath.dst,
+                                        key=key,
+                                        wavelength_used=lightpath.wavelength_used,
+                                        route=lightpath.route,
+                                        created_by_this_flow=False,
+                                    )
+                                )
                                 break
                         virtual_hops += 1
                         groomed = True
             elif usage == "recip":
                 for lightpath in value:
                     if lightpath.kind == "new":
-                        self.vt.graph.add_edge(
+                        edge_key = self.vt.graph.add_edge(
                             lightpath.src,
                             lightpath.dst,
                             layer="lightpath",
@@ -106,7 +142,19 @@ class ControlPlane:
                             avl_key_rate=lightpath.avl_key_rate - flow.kgr,
                             route=lightpath.route,
                             usage="recip",
-                            kind="exist"
+                            kind="exist",
+                            active_flows={flow.id}
+                        )
+                        self.mapped_flow_lightpaths.setdefault(flow.id, []).append(
+                            FlowLightpathRef(
+                                usage="recip",
+                                src=lightpath.src,
+                                dst=lightpath.dst,
+                                key=edge_key,
+                                wavelength_used=lightpath.wavelength_used,
+                                route=lightpath.route,
+                                created_by_this_flow=True,
+                            )
                         )
                         virtual_hops += 1
                         # 删除波长
@@ -116,8 +164,21 @@ class ControlPlane:
                             physical_hops += 1
                     elif lightpath.kind == "exist":
                         for key, attr in self.vt.graph[lightpath.src][lightpath.dst].items():
-                            if self.vt.graph[lightpath.src][lightpath.dst][key]["route"] == lightpath.route:
-                                self.vt.graph[lightpath.src][lightpath.dst][key]["avl_key_rate"] -= flow.kgr
+                            if attr["route"] == lightpath.route and attr["usage"] == "recip":
+                                attr["avl_key_rate"] -= flow.kgr
+                                attr.setdefault("active_flows", set()).add(flow.id)
+
+                                self.mapped_flow_lightpaths.setdefault(flow.id, []).append(
+                                    FlowLightpathRef(
+                                        usage="recip",
+                                        src=lightpath.src,
+                                        dst=lightpath.dst,
+                                        key=key,
+                                        wavelength_used=lightpath.wavelength_used,
+                                        route=lightpath.route,
+                                        created_by_this_flow=False,
+                                    )
+                                )
                                 break
                         virtual_hops += 1
                         groomed = True
@@ -155,73 +216,81 @@ class ControlPlane:
         return True
 
     def remove_flow(self, flow_id: int) -> bool:
-        # Removing a flow releases bandwidth first, then tears down any idle
-        # working or reserved backup lightpaths that were created for it.
+        """
+        1. 根据 flow_id 找到 active flow
+        2. 找到该 flow 占用的 lightpath id
+        3. 释放这些 lightpath 上占用的带宽
+        4. 如果 lightpath 已经空闲，则删除 lightpath
+        5. 从 active_flows 中删除该 flow
+        """
         flow = self.active_flows.get(flow_id)
+
         if flow is None:
             logger.warning("Ignoring removal for missing flow id=%d", flow_id)
             return False
-        lightpath_ids = self.mapped_flows_single_path.pop(flow_id, [])
-        for lightpath_id in lightpath_ids:
-            lightpath = self.vt.lightpaths.get(lightpath_id)
-            if lightpath is None:
-                continue
-            for link_id, wavelength in zip(lightpath.links, lightpath.wavelengths):
-                self.pt.get_link(link_id).release_bandwidth(
-                    wavelength, flow.rate
+
+        lightpath_refs = self.mapped_flow_lightpaths.pop(flow_id, [])
+
+        for ref in lightpath_refs:
+            try:
+                edge_data = self.vt.graph[ref.src][ref.dst][ref.key]
+            except KeyError:
+                logger.warning(
+                    "Virtual lightpath edge missing during flow removal: "
+                    "flow_id=%d src=%s dst=%s key=%s",
+                    flow_id,
+                    ref.src,
+                    ref.dst,
+                    ref.key,
                 )
-            lightpath.active_flow_ids.discard(flow_id)
-            if self.vt.is_lightpath_idle(lightpath.id) and not lightpath.reserved:
-                self.vt.remove_lightpath(lightpath.id)
-        for backup_id in self.mapped_backup_lightpaths.pop(flow_id, []):
-            backup = self.vt.lightpaths.get(backup_id)
-            if backup is not None and self.vt.is_lightpath_idle(backup_id):
-                self.vt.remove_lightpath(backup_id)
+                continue
+
+            # 1. 释放虚拟光路上的业务资源
+            if ref.usage == "data":
+                edge_data["avl_bandwidth"] += flow.rate
+
+            elif ref.usage == "recip":
+                edge_data["avl_key_rate"] += flow.kgr
+
+            else:
+                raise TopologyError(f"unknown lightpath usage: {ref.usage}")
+
+            # 2. 从 active_flow_ids 中删除该 flow
+            active_flow_ids = edge_data.setdefault("active_flows", set())
+            active_flow_ids.discard(flow_id)
+
+            # 3. 如果该 lightpath 已经空闲，并且是动态新建的，则拆除
+            if not active_flow_ids:
+                for u, v in zip(edge_data["route"][:-1], edge_data["route"][1:]):
+                    self.pt.graph[u.node][v.node]["wavelength_available"].append(edge_data["wavelength_used"])
+                    self.pt.graph[u.node][v.node]["wavelength_used"].remove(edge_data["wavelength_used"])
+                    logger.debug(f"Release resource on edge {u.node} - {v.node}: {self.pt.graph[u.node][v.node]}")
+
+                self.vt.graph.remove_edge(
+                    ref.src,
+                    ref.dst,
+                    key=ref.key,
+                )
+                logger.debug(f"Tear down lightpath {ref.src} - {ref.dst} - {ref.key}.")
+
+                self.stats.lightpath_removed()
+
         del self.active_flows[flow_id]
+
+        self.tracer.record(
+            "flow-removed",
+            self.current_time,
+            flow,
+        )
+
         logger.info("Flow removed id=%d", flow_id)
         return True
-
-    def reserve_backup_lightpaths(
-        self, flow_id: int, lightpaths: list
-    ) -> None:
-        # Backup resources are tracked separately because they reserve optical
-        # capacity without carrying the flow's bandwidth directly.
-        if flow_id not in self.active_flows:
-            raise SimulationError(f"cannot reserve backup for inactive flow {flow_id}")
-        self.mapped_backup_lightpaths[flow_id] = [
-            lightpath.id for lightpath in lightpaths
-        ]
-        logger.info(
-            "Reserved backup lightpaths for flow id=%d lightpaths=%s",
-            flow_id,
-            [lightpath.id for lightpath in lightpaths],
-        )
 
     def get_physical_topology(self) -> WDMPhysicalTopology:
         return self.pt
 
     def get_virtual_topology(self) -> VirtualTopology:
         return self.vt
-
-    # def create_candidate_wdm_lightpath(
-    #     self,
-    #     src: int,
-    #     dst: int,
-    #     links: list[int],
-    #     wavelengths: list[int],
-    #     *,
-    #     reserved: bool = False,
-    #     backup: bool = False,
-    # ):
-    #     return WDMLightPath(
-    #         id=-1,
-    #         src=src,
-    #         dst=dst,
-    #         links=list(links),
-    #         wavelengths=list(wavelengths),
-    #         reserved=reserved,
-    #         backup=backup,
-    #     )
 
     def get_algorithm(self):
         if self.algorithm is None:
