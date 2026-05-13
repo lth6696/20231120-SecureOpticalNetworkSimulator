@@ -1,570 +1,570 @@
-2026-05-11 23:18:00,205 - INFO - ========================= Start Running =========================
-2026-05-11 23:18:00,205 - INFO - ========================= Loading Physical Topology =========================
-2026-05-11 23:18:00,205 - INFO - Topology file: graphml\SixNode.graphml
-2026-05-11 23:18:00,276 - INFO - GraphML topology loaded: nodes=6 directed_links=16.
-2026-05-11 23:18:00,276 - INFO - ========================= Loading Virtual Topology =========================
-2026-05-11 23:18:00,276 - INFO - ========================= Initialize Control Plane =========================
-2026-05-11 23:18:00,276 - INFO - Auxiliary-Graph-Based Joint Data-and-Key Path Grooming Algorithm initialized with k=4
-2026-05-11 23:18:00,276 - INFO - Control plane bound to routing algorithm=AuxGJointDataRecipGrooming
-2026-05-11 23:18:00,276 - INFO - Algorithm selected: AuxGJointDataRecipGrooming
-2026-05-11 23:18:00,276 - INFO - ========================= Initialize Scheduler =========================
-2026-05-11 23:18:00,276 - INFO - Start generate traffic: 100 flows, 1.25 mean_arrival_time.
-2026-05-11 23:18:00,277 - INFO - Traffic generation completed with 200 scheduled events
-2026-05-11 23:18:00,277 - INFO - ============================== Start Simulation ==============================
-2026-05-11 23:18:00,277 - INFO - Simulation loop started with 200 scheduled events
-2026-05-11 23:18:00,277 - INFO - Flow arrival id=0 src=0 dst=1
-2026-05-11 23:18:00,277 - INFO - ================================================================================
-2026-05-11 23:18:00,277 - INFO - Algorithm handling flow id=0 src=0 dst=1 rate=95 security=0 kgr=0
-2026-05-11 23:18:00,279 - INFO - Flow 0 accepted.
-2026-05-11 23:18:00,279 - INFO - Flow arrival id=1 src=4 dst=3
-2026-05-11 23:18:00,279 - INFO - ================================================================================
-2026-05-11 23:18:00,279 - INFO - Algorithm handling flow id=1 src=4 dst=3 rate=5 security=1 kgr=1
-2026-05-11 23:18:00,281 - INFO - Flow 1 accepted.
-2026-05-11 23:18:00,281 - INFO - Flow departure id=0 src=0 dst=1
-2026-05-11 23:18:00,281 - INFO - Flow removed id=0
-2026-05-11 23:18:00,281 - INFO - Flow arrival id=2 src=1 dst=3
-2026-05-11 23:18:00,281 - INFO - ================================================================================
-2026-05-11 23:18:00,281 - INFO - Algorithm handling flow id=2 src=1 dst=3 rate=92 security=0 kgr=0
-2026-05-11 23:18:00,284 - INFO - Flow 2 accepted.
-2026-05-11 23:18:00,284 - INFO - Flow departure id=1 src=4 dst=3
-2026-05-11 23:18:00,284 - INFO - Flow removed id=1
-2026-05-11 23:18:00,284 - INFO - Flow departure id=2 src=1 dst=3
-2026-05-11 23:18:00,284 - INFO - Flow removed id=2
-2026-05-11 23:18:00,284 - INFO - Flow arrival id=3 src=3 dst=2
-2026-05-11 23:18:00,285 - INFO - ================================================================================
-2026-05-11 23:18:00,285 - INFO - Algorithm handling flow id=3 src=3 dst=2 rate=1 security=1 kgr=2
-2026-05-11 23:18:00,287 - INFO - Flow 3 accepted.
-2026-05-11 23:18:00,288 - INFO - Flow arrival id=4 src=2 dst=0
-2026-05-11 23:18:00,288 - INFO - ================================================================================
-2026-05-11 23:18:00,288 - INFO - Algorithm handling flow id=4 src=2 dst=0 rate=14 security=1 kgr=1
-2026-05-11 23:18:00,289 - INFO - Flow 4 accepted.
-2026-05-11 23:18:00,290 - INFO - Flow arrival id=5 src=2 dst=1
-2026-05-11 23:18:00,290 - INFO - ================================================================================
-2026-05-11 23:18:00,290 - INFO - Algorithm handling flow id=5 src=2 dst=1 rate=94 security=0 kgr=0
-2026-05-11 23:18:00,291 - INFO - Flow 5 accepted.
-2026-05-11 23:18:00,291 - INFO - Flow departure id=4 src=2 dst=0
-2026-05-11 23:18:00,291 - INFO - Flow removed id=4
-2026-05-11 23:18:00,291 - INFO - Flow departure id=3 src=3 dst=2
-2026-05-11 23:18:00,291 - INFO - Flow removed id=3
-2026-05-11 23:18:00,291 - INFO - Flow arrival id=6 src=0 dst=4
-2026-05-11 23:18:00,291 - INFO - ================================================================================
-2026-05-11 23:18:00,291 - INFO - Algorithm handling flow id=6 src=0 dst=4 rate=38 security=2 kgr=3
-2026-05-11 23:18:00,295 - INFO - Flow 6 accepted.
-2026-05-11 23:18:00,295 - INFO - Flow arrival id=7 src=4 dst=2
-2026-05-11 23:18:00,295 - INFO - ================================================================================
-2026-05-11 23:18:00,295 - INFO - Algorithm handling flow id=7 src=4 dst=2 rate=11 security=1 kgr=2
-2026-05-11 23:18:00,297 - INFO - Flow 7 accepted.
-2026-05-11 23:18:00,297 - INFO - Flow arrival id=8 src=2 dst=3
-2026-05-11 23:18:00,297 - INFO - ================================================================================
-2026-05-11 23:18:00,297 - INFO - Algorithm handling flow id=8 src=2 dst=3 rate=21 security=1 kgr=3
-2026-05-11 23:18:00,299 - INFO - Flow 8 accepted.
-2026-05-11 23:18:00,299 - INFO - Flow arrival id=9 src=4 dst=1
-2026-05-11 23:18:00,299 - INFO - ================================================================================
-2026-05-11 23:18:00,299 - INFO - Algorithm handling flow id=9 src=4 dst=1 rate=10 security=2 kgr=2
-2026-05-11 23:18:00,301 - INFO - Flow 9 accepted.
-2026-05-11 23:18:00,302 - INFO - Flow arrival id=10 src=1 dst=3
-2026-05-11 23:18:00,302 - INFO - ================================================================================
-2026-05-11 23:18:00,302 - INFO - Algorithm handling flow id=10 src=1 dst=3 rate=89 security=2 kgr=2
-2026-05-11 23:18:00,303 - INFO - Flow blocked id=10 src=1 dst=3 rate=89
-2026-05-11 23:18:00,303 - INFO - Flow arrival id=11 src=5 dst=1
-2026-05-11 23:18:00,303 - INFO - ================================================================================
-2026-05-11 23:18:00,303 - INFO - Algorithm handling flow id=11 src=5 dst=1 rate=41 security=0 kgr=0
-2026-05-11 23:18:00,304 - INFO - Flow 11 accepted.
-2026-05-11 23:18:00,304 - INFO - Flow arrival id=12 src=0 dst=3
-2026-05-11 23:18:00,304 - INFO - ================================================================================
-2026-05-11 23:18:00,304 - INFO - Algorithm handling flow id=12 src=0 dst=3 rate=41 security=2 kgr=2
-2026-05-11 23:18:00,307 - INFO - Flow 12 accepted.
-2026-05-11 23:18:00,307 - INFO - Flow departure id=11 src=5 dst=1
-2026-05-11 23:18:00,307 - INFO - Flow removed id=11
-2026-05-11 23:18:00,307 - INFO - Flow departure id=5 src=2 dst=1
-2026-05-11 23:18:00,307 - INFO - Flow removed id=5
-2026-05-11 23:18:00,307 - INFO - Flow departure id=6 src=0 dst=4
-2026-05-11 23:18:00,307 - INFO - Flow removed id=6
-2026-05-11 23:18:00,308 - INFO - Flow arrival id=13 src=2 dst=3
-2026-05-11 23:18:00,308 - INFO - ================================================================================
-2026-05-11 23:18:00,308 - INFO - Algorithm handling flow id=13 src=2 dst=3 rate=34 security=0 kgr=0
-2026-05-11 23:18:00,310 - INFO - Flow 13 accepted.
-2026-05-11 23:18:00,310 - INFO - Flow arrival id=14 src=4 dst=3
-2026-05-11 23:18:00,310 - INFO - ================================================================================
-2026-05-11 23:18:00,310 - INFO - Algorithm handling flow id=14 src=4 dst=3 rate=55 security=2 kgr=4
-2026-05-11 23:18:00,313 - INFO - Flow 14 accepted.
-2026-05-11 23:18:00,313 - INFO - Flow arrival id=15 src=0 dst=5
-2026-05-11 23:18:00,313 - INFO - ================================================================================
-2026-05-11 23:18:00,313 - INFO - Algorithm handling flow id=15 src=0 dst=5 rate=15 security=0 kgr=0
-2026-05-11 23:18:00,315 - INFO - Flow 15 accepted.
-2026-05-11 23:18:00,315 - INFO - Flow departure id=15 src=0 dst=5
-2026-05-11 23:18:00,315 - INFO - Flow removed id=15
-2026-05-11 23:18:00,315 - INFO - Flow arrival id=16 src=1 dst=0
-2026-05-11 23:18:00,315 - INFO - ================================================================================
-2026-05-11 23:18:00,315 - INFO - Algorithm handling flow id=16 src=1 dst=0 rate=50 security=0 kgr=0
-2026-05-11 23:18:00,317 - INFO - Flow 16 accepted.
-2026-05-11 23:18:00,317 - INFO - Flow departure id=14 src=4 dst=3
-2026-05-11 23:18:00,317 - INFO - Flow removed id=14
-2026-05-11 23:18:00,317 - INFO - Flow departure id=8 src=2 dst=3
-2026-05-11 23:18:00,317 - INFO - Flow removed id=8
-2026-05-11 23:18:00,317 - INFO - Flow arrival id=17 src=2 dst=5
-2026-05-11 23:18:00,317 - INFO - ================================================================================
-2026-05-11 23:18:00,317 - INFO - Algorithm handling flow id=17 src=2 dst=5 rate=88 security=0 kgr=0
-2026-05-11 23:18:00,320 - INFO - Flow 17 accepted.
-2026-05-11 23:18:00,321 - INFO - Flow departure id=7 src=4 dst=2
-2026-05-11 23:18:00,321 - INFO - Flow removed id=7
-2026-05-11 23:18:00,321 - INFO - Flow arrival id=18 src=4 dst=1
-2026-05-11 23:18:00,321 - INFO - ================================================================================
-2026-05-11 23:18:00,321 - INFO - Algorithm handling flow id=18 src=4 dst=1 rate=44 security=2 kgr=1
-2026-05-11 23:18:00,323 - INFO - Flow 18 accepted.
-2026-05-11 23:18:00,323 - INFO - Flow arrival id=19 src=1 dst=0
-2026-05-11 23:18:00,323 - INFO - ================================================================================
-2026-05-11 23:18:00,323 - INFO - Algorithm handling flow id=19 src=1 dst=0 rate=34 security=2 kgr=2
-2026-05-11 23:18:00,324 - INFO - Flow 19 accepted.
-2026-05-11 23:18:00,324 - INFO - Flow departure id=16 src=1 dst=0
-2026-05-11 23:18:00,324 - INFO - Flow removed id=16
-2026-05-11 23:18:00,325 - INFO - Flow departure id=13 src=2 dst=3
-2026-05-11 23:18:00,325 - INFO - Flow removed id=13
-2026-05-11 23:18:00,325 - INFO - Flow arrival id=20 src=0 dst=4
-2026-05-11 23:18:00,325 - INFO - ================================================================================
-2026-05-11 23:18:00,325 - INFO - Algorithm handling flow id=20 src=0 dst=4 rate=65 security=2 kgr=2
-2026-05-11 23:18:00,328 - INFO - Flow blocked id=20 src=0 dst=4 rate=65
-2026-05-11 23:18:00,328 - INFO - Flow arrival id=21 src=4 dst=5
-2026-05-11 23:18:00,328 - INFO - ================================================================================
-2026-05-11 23:18:00,328 - INFO - Algorithm handling flow id=21 src=4 dst=5 rate=1 security=2 kgr=3
-2026-05-11 23:18:00,330 - INFO - Flow 21 accepted.
-2026-05-11 23:18:00,330 - INFO - Flow arrival id=22 src=0 dst=4
-2026-05-11 23:18:00,330 - INFO - ================================================================================
-2026-05-11 23:18:00,330 - INFO - Algorithm handling flow id=22 src=0 dst=4 rate=31 security=1 kgr=1
-2026-05-11 23:18:00,334 - INFO - Flow blocked id=22 src=0 dst=4 rate=31
-2026-05-11 23:18:00,334 - INFO - Flow arrival id=23 src=3 dst=4
-2026-05-11 23:18:00,334 - INFO - ================================================================================
-2026-05-11 23:18:00,334 - INFO - Algorithm handling flow id=23 src=3 dst=4 rate=9 security=1 kgr=2
-2026-05-11 23:18:00,336 - INFO - Flow 23 accepted.
-2026-05-11 23:18:00,336 - INFO - Flow departure id=23 src=3 dst=4
-2026-05-11 23:18:00,336 - INFO - Flow removed id=23
-2026-05-11 23:18:00,337 - INFO - Flow departure id=18 src=4 dst=1
-2026-05-11 23:18:00,337 - INFO - Flow removed id=18
-2026-05-11 23:18:00,337 - INFO - Flow arrival id=24 src=3 dst=0
-2026-05-11 23:18:00,337 - INFO - ================================================================================
-2026-05-11 23:18:00,337 - INFO - Algorithm handling flow id=24 src=3 dst=0 rate=78 security=2 kgr=4
-2026-05-11 23:18:00,340 - INFO - Flow 24 accepted.
-2026-05-11 23:18:00,340 - INFO - Flow departure id=9 src=4 dst=1
-2026-05-11 23:18:00,340 - INFO - Flow removed id=9
-2026-05-11 23:18:00,340 - INFO - Flow arrival id=25 src=5 dst=4
-2026-05-11 23:18:00,340 - INFO - ================================================================================
-2026-05-11 23:18:00,340 - INFO - Algorithm handling flow id=25 src=5 dst=4 rate=92 security=0 kgr=0
-2026-05-11 23:18:00,341 - INFO - Flow 25 accepted.
-2026-05-11 23:18:00,341 - INFO - Flow departure id=24 src=3 dst=0
-2026-05-11 23:18:00,341 - INFO - Flow removed id=24
-2026-05-11 23:18:00,342 - INFO - Flow arrival id=26 src=4 dst=1
-2026-05-11 23:18:00,342 - INFO - ================================================================================
-2026-05-11 23:18:00,342 - INFO - Algorithm handling flow id=26 src=4 dst=1 rate=58 security=2 kgr=1
-2026-05-11 23:18:00,345 - INFO - Flow 26 accepted.
-2026-05-11 23:18:00,345 - INFO - Flow arrival id=27 src=0 dst=3
-2026-05-11 23:18:00,345 - INFO - ================================================================================
-2026-05-11 23:18:00,345 - INFO - Algorithm handling flow id=27 src=0 dst=3 rate=76 security=0 kgr=0
-2026-05-11 23:18:00,347 - INFO - Flow 27 accepted.
-2026-05-11 23:18:00,347 - INFO - Flow departure id=12 src=0 dst=3
-2026-05-11 23:18:00,348 - INFO - Flow removed id=12
-2026-05-11 23:18:00,348 - INFO - Flow arrival id=28 src=0 dst=3
-2026-05-11 23:18:00,348 - INFO - ================================================================================
-2026-05-11 23:18:00,348 - INFO - Algorithm handling flow id=28 src=0 dst=3 rate=5 security=0 kgr=0
-2026-05-11 23:18:00,349 - INFO - Flow 28 accepted.
-2026-05-11 23:18:00,349 - INFO - Flow departure id=28 src=0 dst=3
-2026-05-11 23:18:00,349 - INFO - Flow removed id=28
-2026-05-11 23:18:00,349 - INFO - Flow arrival id=29 src=0 dst=3
-2026-05-11 23:18:00,349 - INFO - ================================================================================
-2026-05-11 23:18:00,349 - INFO - Algorithm handling flow id=29 src=0 dst=3 rate=28 security=1 kgr=2
-2026-05-11 23:18:00,351 - INFO - Flow 29 accepted.
-2026-05-11 23:18:00,352 - INFO - Flow arrival id=30 src=5 dst=3
-2026-05-11 23:18:00,352 - INFO - ================================================================================
-2026-05-11 23:18:00,352 - INFO - Algorithm handling flow id=30 src=5 dst=3 rate=53 security=1 kgr=2
-2026-05-11 23:18:00,356 - INFO - Flow blocked id=30 src=5 dst=3 rate=53
-2026-05-11 23:18:00,356 - INFO - Flow arrival id=31 src=4 dst=1
-2026-05-11 23:18:00,356 - INFO - ================================================================================
-2026-05-11 23:18:00,356 - INFO - Algorithm handling flow id=31 src=4 dst=1 rate=94 security=1 kgr=1
-2026-05-11 23:18:00,364 - INFO - Flow blocked id=31 src=4 dst=1 rate=94
-2026-05-11 23:18:00,364 - INFO - Flow arrival id=32 src=4 dst=0
-2026-05-11 23:18:00,364 - INFO - ================================================================================
-2026-05-11 23:18:00,364 - INFO - Algorithm handling flow id=32 src=4 dst=0 rate=14 security=1 kgr=2
-2026-05-11 23:18:00,367 - INFO - Flow 32 accepted.
-2026-05-11 23:18:00,367 - INFO - Flow arrival id=33 src=3 dst=2
-2026-05-11 23:18:00,367 - INFO - ================================================================================
-2026-05-11 23:18:00,367 - INFO - Algorithm handling flow id=33 src=3 dst=2 rate=60 security=1 kgr=2
-2026-05-11 23:18:00,369 - INFO - Flow 33 accepted.
-2026-05-11 23:18:00,369 - INFO - Flow departure id=26 src=4 dst=1
-2026-05-11 23:18:00,369 - INFO - Flow removed id=26
-2026-05-11 23:18:00,369 - INFO - Flow departure id=29 src=0 dst=3
-2026-05-11 23:18:00,370 - INFO - Flow removed id=29
-2026-05-11 23:18:00,370 - INFO - Flow arrival id=34 src=0 dst=3
-2026-05-11 23:18:00,370 - INFO - ================================================================================
-2026-05-11 23:18:00,370 - INFO - Algorithm handling flow id=34 src=0 dst=3 rate=13 security=2 kgr=1
-2026-05-11 23:18:00,372 - INFO - Flow 34 accepted.
-2026-05-11 23:18:00,372 - INFO - Flow arrival id=35 src=3 dst=2
-2026-05-11 23:18:00,372 - INFO - ================================================================================
-2026-05-11 23:18:00,372 - INFO - Algorithm handling flow id=35 src=3 dst=2 rate=22 security=0 kgr=0
-2026-05-11 23:18:00,374 - INFO - Flow 35 accepted.
-2026-05-11 23:18:00,374 - INFO - Flow arrival id=36 src=3 dst=0
-2026-05-11 23:18:00,374 - INFO - ================================================================================
-2026-05-11 23:18:00,374 - INFO - Algorithm handling flow id=36 src=3 dst=0 rate=22 security=0 kgr=0
-2026-05-11 23:18:00,376 - INFO - Flow 36 accepted.
-2026-05-11 23:18:00,376 - INFO - Flow arrival id=37 src=2 dst=3
-2026-05-11 23:18:00,376 - INFO - ================================================================================
-2026-05-11 23:18:00,376 - INFO - Algorithm handling flow id=37 src=2 dst=3 rate=37 security=1 kgr=4
-2026-05-11 23:18:00,382 - INFO - Flow 37 accepted.
-2026-05-11 23:18:00,383 - INFO - Flow departure id=27 src=0 dst=3
-2026-05-11 23:18:00,383 - INFO - Flow removed id=27
-2026-05-11 23:18:00,383 - INFO - Flow departure id=32 src=4 dst=0
-2026-05-11 23:18:00,383 - INFO - Flow removed id=32
-2026-05-11 23:18:00,383 - INFO - Flow departure id=33 src=3 dst=2
-2026-05-11 23:18:00,383 - INFO - Flow removed id=33
-2026-05-11 23:18:00,383 - INFO - Flow departure id=25 src=5 dst=4
-2026-05-11 23:18:00,384 - INFO - Flow removed id=25
-2026-05-11 23:18:00,384 - INFO - Flow departure id=36 src=3 dst=0
-2026-05-11 23:18:00,384 - INFO - Flow removed id=36
-2026-05-11 23:18:00,384 - INFO - Flow departure id=19 src=1 dst=0
-2026-05-11 23:18:00,384 - INFO - Flow removed id=19
-2026-05-11 23:18:00,384 - INFO - Flow arrival id=38 src=4 dst=3
-2026-05-11 23:18:00,384 - INFO - ================================================================================
-2026-05-11 23:18:00,384 - INFO - Algorithm handling flow id=38 src=4 dst=3 rate=63 security=2 kgr=2
-2026-05-11 23:18:00,388 - INFO - Flow 38 accepted.
-2026-05-11 23:18:00,388 - INFO - Flow departure id=17 src=2 dst=5
-2026-05-11 23:18:00,388 - INFO - Flow removed id=17
-2026-05-11 23:18:00,388 - INFO - Flow departure id=21 src=4 dst=5
-2026-05-11 23:18:00,388 - INFO - Flow removed id=21
-2026-05-11 23:18:00,388 - INFO - Flow arrival id=39 src=1 dst=2
-2026-05-11 23:18:00,389 - INFO - ================================================================================
-2026-05-11 23:18:00,389 - INFO - Algorithm handling flow id=39 src=1 dst=2 rate=8 security=2 kgr=3
-2026-05-11 23:18:00,392 - INFO - Flow blocked id=39 src=1 dst=2 rate=8
-2026-05-11 23:18:00,392 - INFO - Flow arrival id=40 src=3 dst=4
-2026-05-11 23:18:00,392 - INFO - ================================================================================
-2026-05-11 23:18:00,392 - INFO - Algorithm handling flow id=40 src=3 dst=4 rate=21 security=2 kgr=1
-2026-05-11 23:18:00,394 - INFO - Flow 40 accepted.
-2026-05-11 23:18:00,394 - INFO - Flow arrival id=41 src=0 dst=3
-2026-05-11 23:18:00,394 - INFO - ================================================================================
-2026-05-11 23:18:00,394 - INFO - Algorithm handling flow id=41 src=0 dst=3 rate=87 security=0 kgr=0
-2026-05-11 23:18:00,398 - INFO - Flow 41 accepted.
-2026-05-11 23:18:00,398 - INFO - Flow arrival id=42 src=2 dst=3
-2026-05-11 23:18:00,398 - INFO - ================================================================================
-2026-05-11 23:18:00,398 - INFO - Algorithm handling flow id=42 src=2 dst=3 rate=75 security=0 kgr=0
-2026-05-11 23:18:00,400 - INFO - Flow blocked id=42 src=2 dst=3 rate=75
-2026-05-11 23:18:00,400 - INFO - Flow arrival id=43 src=3 dst=5
-2026-05-11 23:18:00,400 - INFO - ================================================================================
-2026-05-11 23:18:00,401 - INFO - Algorithm handling flow id=43 src=3 dst=5 rate=67 security=2 kgr=3
-2026-05-11 23:18:00,403 - INFO - Flow 43 accepted.
-2026-05-11 23:18:00,403 - INFO - Flow departure id=38 src=4 dst=3
-2026-05-11 23:18:00,403 - INFO - Flow removed id=38
-2026-05-11 23:18:00,403 - INFO - Flow departure id=41 src=0 dst=3
-2026-05-11 23:18:00,403 - INFO - Flow removed id=41
-2026-05-11 23:18:00,403 - INFO - Flow departure id=37 src=2 dst=3
-2026-05-11 23:18:00,403 - INFO - Flow removed id=37
-2026-05-11 23:18:00,404 - INFO - Flow arrival id=44 src=1 dst=2
-2026-05-11 23:18:00,404 - INFO - ================================================================================
-2026-05-11 23:18:00,404 - INFO - Algorithm handling flow id=44 src=1 dst=2 rate=51 security=1 kgr=2
-2026-05-11 23:18:00,405 - INFO - Flow 44 accepted.
-2026-05-11 23:18:00,406 - INFO - Flow arrival id=45 src=1 dst=5
-2026-05-11 23:18:00,406 - INFO - ================================================================================
-2026-05-11 23:18:00,406 - INFO - Algorithm handling flow id=45 src=1 dst=5 rate=2 security=0 kgr=0
-2026-05-11 23:18:00,408 - INFO - Flow 45 accepted.
-2026-05-11 23:18:00,408 - INFO - Flow departure id=34 src=0 dst=3
-2026-05-11 23:18:00,408 - INFO - Flow removed id=34
-2026-05-11 23:18:00,408 - INFO - Flow departure id=44 src=1 dst=2
-2026-05-11 23:18:00,408 - INFO - Flow removed id=44
-2026-05-11 23:18:00,408 - INFO - Flow arrival id=46 src=3 dst=4
-2026-05-11 23:18:00,408 - INFO - ================================================================================
-2026-05-11 23:18:00,409 - INFO - Algorithm handling flow id=46 src=3 dst=4 rate=65 security=0 kgr=0
-2026-05-11 23:18:00,412 - INFO - Flow 46 accepted.
-2026-05-11 23:18:00,412 - INFO - Flow arrival id=47 src=5 dst=4
-2026-05-11 23:18:00,412 - INFO - ================================================================================
-2026-05-11 23:18:00,412 - INFO - Algorithm handling flow id=47 src=5 dst=4 rate=48 security=0 kgr=0
-2026-05-11 23:18:00,414 - INFO - Flow 47 accepted.
-2026-05-11 23:18:00,415 - INFO - Flow departure id=46 src=3 dst=4
-2026-05-11 23:18:00,415 - INFO - Flow removed id=46
-2026-05-11 23:18:00,415 - INFO - Flow departure id=47 src=5 dst=4
-2026-05-11 23:18:00,415 - INFO - Flow removed id=47
-2026-05-11 23:18:00,415 - INFO - Flow departure id=43 src=3 dst=5
-2026-05-11 23:18:00,415 - INFO - Flow removed id=43
-2026-05-11 23:18:00,415 - INFO - Flow arrival id=48 src=2 dst=5
-2026-05-11 23:18:00,415 - INFO - ================================================================================
-2026-05-11 23:18:00,415 - INFO - Algorithm handling flow id=48 src=2 dst=5 rate=84 security=2 kgr=1
-2026-05-11 23:18:00,417 - INFO - Flow 48 accepted.
-2026-05-11 23:18:00,417 - INFO - Flow arrival id=49 src=3 dst=2
-2026-05-11 23:18:00,417 - INFO - ================================================================================
-2026-05-11 23:18:00,417 - INFO - Algorithm handling flow id=49 src=3 dst=2 rate=34 security=0 kgr=0
-2026-05-11 23:18:00,419 - INFO - Flow 49 accepted.
-2026-05-11 23:18:00,419 - INFO - Flow arrival id=50 src=0 dst=4
-2026-05-11 23:18:00,419 - INFO - ================================================================================
-2026-05-11 23:18:00,419 - INFO - Algorithm handling flow id=50 src=0 dst=4 rate=78 security=1 kgr=2
-2026-05-11 23:18:00,425 - INFO - Flow blocked id=50 src=0 dst=4 rate=78
-2026-05-11 23:18:00,426 - INFO - Flow arrival id=51 src=1 dst=2
-2026-05-11 23:18:00,426 - INFO - ================================================================================
-2026-05-11 23:18:00,426 - INFO - Algorithm handling flow id=51 src=1 dst=2 rate=63 security=2 kgr=3
-2026-05-11 23:18:00,428 - INFO - Flow 51 accepted.
-2026-05-11 23:18:00,428 - INFO - Flow arrival id=52 src=5 dst=2
-2026-05-11 23:18:00,428 - INFO - ================================================================================
-2026-05-11 23:18:00,428 - INFO - Algorithm handling flow id=52 src=5 dst=2 rate=6 security=1 kgr=1
-2026-05-11 23:18:00,430 - INFO - Flow 52 accepted.
-2026-05-11 23:18:00,431 - INFO - Flow arrival id=53 src=0 dst=5
-2026-05-11 23:18:00,431 - INFO - ================================================================================
-2026-05-11 23:18:00,431 - INFO - Algorithm handling flow id=53 src=0 dst=5 rate=57 security=2 kgr=4
-2026-05-11 23:18:00,433 - INFO - Flow 53 accepted.
-2026-05-11 23:18:00,433 - INFO - Flow arrival id=54 src=0 dst=4
-2026-05-11 23:18:00,433 - INFO - ================================================================================
-2026-05-11 23:18:00,433 - INFO - Algorithm handling flow id=54 src=0 dst=4 rate=70 security=0 kgr=0
-2026-05-11 23:18:00,447 - INFO - Flow blocked id=54 src=0 dst=4 rate=70
-2026-05-11 23:18:00,447 - INFO - Flow arrival id=55 src=2 dst=1
-2026-05-11 23:18:00,447 - INFO - ================================================================================
-2026-05-11 23:18:00,447 - INFO - Algorithm handling flow id=55 src=2 dst=1 rate=6 security=0 kgr=0
-2026-05-11 23:18:00,449 - INFO - Flow 55 accepted.
-2026-05-11 23:18:00,449 - INFO - Flow departure id=35 src=3 dst=2
-2026-05-11 23:18:00,449 - INFO - Flow removed id=35
-2026-05-11 23:18:00,449 - INFO - Flow departure id=55 src=2 dst=1
-2026-05-11 23:18:00,449 - INFO - Flow removed id=55
-2026-05-11 23:18:00,449 - INFO - Flow departure id=53 src=0 dst=5
-2026-05-11 23:18:00,449 - INFO - Flow removed id=53
-2026-05-11 23:18:00,449 - INFO - Flow arrival id=56 src=5 dst=3
-2026-05-11 23:18:00,449 - INFO - ================================================================================
-2026-05-11 23:18:00,449 - INFO - Algorithm handling flow id=56 src=5 dst=3 rate=46 security=0 kgr=0
-2026-05-11 23:18:00,451 - INFO - Flow 56 accepted.
-2026-05-11 23:18:00,451 - INFO - Flow departure id=40 src=3 dst=4
-2026-05-11 23:18:00,451 - INFO - Flow removed id=40
-2026-05-11 23:18:00,451 - INFO - Flow arrival id=57 src=1 dst=3
-2026-05-11 23:18:00,451 - INFO - ================================================================================
-2026-05-11 23:18:00,451 - INFO - Algorithm handling flow id=57 src=1 dst=3 rate=53 security=2 kgr=2
-2026-05-11 23:18:00,454 - INFO - Flow 57 accepted.
-2026-05-11 23:18:00,454 - INFO - Flow departure id=49 src=3 dst=2
-2026-05-11 23:18:00,454 - INFO - Flow removed id=49
-2026-05-11 23:18:00,454 - INFO - Flow departure id=48 src=2 dst=5
-2026-05-11 23:18:00,454 - INFO - Flow removed id=48
-2026-05-11 23:18:00,454 - INFO - Flow arrival id=58 src=1 dst=3
-2026-05-11 23:18:00,454 - INFO - ================================================================================
-2026-05-11 23:18:00,454 - INFO - Algorithm handling flow id=58 src=1 dst=3 rate=53 security=0 kgr=0
-2026-05-11 23:18:00,456 - INFO - Flow blocked id=58 src=1 dst=3 rate=53
-2026-05-11 23:18:00,456 - INFO - Flow departure id=52 src=5 dst=2
-2026-05-11 23:18:00,456 - INFO - Flow removed id=52
-2026-05-11 23:18:00,456 - INFO - Flow departure id=57 src=1 dst=3
-2026-05-11 23:18:00,456 - INFO - Flow removed id=57
-2026-05-11 23:18:00,456 - INFO - Flow arrival id=59 src=4 dst=3
-2026-05-11 23:18:00,456 - INFO - ================================================================================
-2026-05-11 23:18:00,456 - INFO - Algorithm handling flow id=59 src=4 dst=3 rate=86 security=1 kgr=2
-2026-05-11 23:18:00,458 - INFO - Flow 59 accepted.
-2026-05-11 23:18:00,458 - INFO - Flow departure id=45 src=1 dst=5
-2026-05-11 23:18:00,458 - INFO - Flow removed id=45
-2026-05-11 23:18:00,458 - INFO - Flow arrival id=60 src=5 dst=0
-2026-05-11 23:18:00,458 - INFO - ================================================================================
-2026-05-11 23:18:00,458 - INFO - Algorithm handling flow id=60 src=5 dst=0 rate=61 security=0 kgr=0
-2026-05-11 23:18:00,460 - INFO - Flow 60 accepted.
-2026-05-11 23:18:00,460 - INFO - Flow arrival id=61 src=5 dst=1
-2026-05-11 23:18:00,460 - INFO - ================================================================================
-2026-05-11 23:18:00,460 - INFO - Algorithm handling flow id=61 src=5 dst=1 rate=29 security=0 kgr=0
-2026-05-11 23:18:00,464 - INFO - Flow 61 accepted.
-2026-05-11 23:18:00,464 - INFO - Flow arrival id=62 src=1 dst=2
-2026-05-11 23:18:00,464 - INFO - ================================================================================
-2026-05-11 23:18:00,464 - INFO - Algorithm handling flow id=62 src=1 dst=2 rate=99 security=0 kgr=0
-2026-05-11 23:18:00,467 - INFO - Flow 62 accepted.
-2026-05-11 23:18:00,467 - INFO - Flow departure id=51 src=1 dst=2
-2026-05-11 23:18:00,467 - INFO - Flow removed id=51
-2026-05-11 23:18:00,467 - INFO - Flow arrival id=63 src=4 dst=0
-2026-05-11 23:18:00,467 - INFO - ================================================================================
-2026-05-11 23:18:00,467 - INFO - Algorithm handling flow id=63 src=4 dst=0 rate=43 security=2 kgr=1
-2026-05-11 23:18:00,472 - INFO - Flow 63 accepted.
-2026-05-11 23:18:00,472 - INFO - Flow departure id=60 src=5 dst=0
-2026-05-11 23:18:00,472 - INFO - Flow removed id=60
-2026-05-11 23:18:00,472 - INFO - Flow arrival id=64 src=1 dst=4
-2026-05-11 23:18:00,472 - INFO - ================================================================================
-2026-05-11 23:18:00,472 - INFO - Algorithm handling flow id=64 src=1 dst=4 rate=5 security=1 kgr=1
-2026-05-11 23:18:00,474 - INFO - Flow 64 accepted.
-2026-05-11 23:18:00,474 - INFO - Flow arrival id=65 src=2 dst=1
-2026-05-11 23:18:00,474 - INFO - ================================================================================
-2026-05-11 23:18:00,474 - INFO - Algorithm handling flow id=65 src=2 dst=1 rate=66 security=2 kgr=1
-2026-05-11 23:18:00,476 - INFO - Flow 65 accepted.
-2026-05-11 23:18:00,476 - INFO - Flow arrival id=66 src=3 dst=4
-2026-05-11 23:18:00,476 - INFO - ================================================================================
-2026-05-11 23:18:00,476 - INFO - Algorithm handling flow id=66 src=3 dst=4 rate=1 security=1 kgr=2
-2026-05-11 23:18:00,478 - INFO - Flow 66 accepted.
-2026-05-11 23:18:00,478 - INFO - Flow departure id=62 src=1 dst=2
-2026-05-11 23:18:00,478 - INFO - Flow removed id=62
-2026-05-11 23:18:00,478 - INFO - Flow departure id=66 src=3 dst=4
-2026-05-11 23:18:00,478 - INFO - Flow removed id=66
-2026-05-11 23:18:00,478 - INFO - Flow departure id=61 src=5 dst=1
-2026-05-11 23:18:00,478 - INFO - Flow removed id=61
-2026-05-11 23:18:00,478 - INFO - Flow departure id=65 src=2 dst=1
-2026-05-11 23:18:00,478 - INFO - Flow removed id=65
-2026-05-11 23:18:00,479 - INFO - Flow arrival id=67 src=0 dst=3
-2026-05-11 23:18:00,479 - INFO - ================================================================================
-2026-05-11 23:18:00,479 - INFO - Algorithm handling flow id=67 src=0 dst=3 rate=41 security=2 kgr=1
-2026-05-11 23:18:00,483 - INFO - Flow 67 accepted.
-2026-05-11 23:18:00,483 - INFO - Flow arrival id=68 src=1 dst=5
-2026-05-11 23:18:00,483 - INFO - ================================================================================
-2026-05-11 23:18:00,483 - INFO - Algorithm handling flow id=68 src=1 dst=5 rate=52 security=1 kgr=3
-2026-05-11 23:18:00,487 - INFO - Flow blocked id=68 src=1 dst=5 rate=52
-2026-05-11 23:18:00,487 - INFO - Flow arrival id=69 src=1 dst=2
-2026-05-11 23:18:00,487 - INFO - ================================================================================
-2026-05-11 23:18:00,487 - INFO - Algorithm handling flow id=69 src=1 dst=2 rate=96 security=2 kgr=2
-2026-05-11 23:18:00,489 - INFO - Flow 69 accepted.
-2026-05-11 23:18:00,489 - INFO - Flow arrival id=70 src=1 dst=5
-2026-05-11 23:18:00,489 - INFO - ================================================================================
-2026-05-11 23:18:00,489 - INFO - Algorithm handling flow id=70 src=1 dst=5 rate=37 security=1 kgr=2
-2026-05-11 23:18:00,491 - INFO - Flow blocked id=70 src=1 dst=5 rate=37
-2026-05-11 23:18:00,491 - INFO - Flow departure id=59 src=4 dst=3
-2026-05-11 23:18:00,491 - INFO - Flow removed id=59
-2026-05-11 23:18:00,491 - INFO - Flow arrival id=71 src=3 dst=4
-2026-05-11 23:18:00,491 - INFO - ================================================================================
-2026-05-11 23:18:00,491 - INFO - Algorithm handling flow id=71 src=3 dst=4 rate=57 security=1 kgr=2
-2026-05-11 23:18:00,494 - INFO - Flow 71 accepted.
-2026-05-11 23:18:00,494 - INFO - Flow departure id=63 src=4 dst=0
-2026-05-11 23:18:00,494 - INFO - Flow removed id=63
-2026-05-11 23:18:00,494 - INFO - Flow arrival id=72 src=5 dst=0
-2026-05-11 23:18:00,494 - INFO - ================================================================================
-2026-05-11 23:18:00,494 - INFO - Algorithm handling flow id=72 src=5 dst=0 rate=85 security=0 kgr=0
-2026-05-11 23:18:00,498 - INFO - Flow 72 accepted.
-2026-05-11 23:18:00,499 - INFO - Flow departure id=71 src=3 dst=4
-2026-05-11 23:18:00,499 - INFO - Flow removed id=71
-2026-05-11 23:18:00,499 - INFO - Flow arrival id=73 src=3 dst=1
-2026-05-11 23:18:00,499 - INFO - ================================================================================
-2026-05-11 23:18:00,499 - INFO - Algorithm handling flow id=73 src=3 dst=1 rate=97 security=0 kgr=0
-2026-05-11 23:18:00,502 - INFO - Flow 73 accepted.
-2026-05-11 23:18:00,502 - INFO - Flow arrival id=74 src=1 dst=5
-2026-05-11 23:18:00,502 - INFO - ================================================================================
-2026-05-11 23:18:00,502 - INFO - Algorithm handling flow id=74 src=1 dst=5 rate=6 security=0 kgr=0
-2026-05-11 23:18:00,507 - INFO - Flow 74 accepted.
-2026-05-11 23:18:00,507 - INFO - Flow arrival id=75 src=3 dst=0
-2026-05-11 23:18:00,507 - INFO - ================================================================================
-2026-05-11 23:18:00,507 - INFO - Algorithm handling flow id=75 src=3 dst=0 rate=54 security=1 kgr=2
-2026-05-11 23:18:00,510 - INFO - Flow 75 accepted.
-2026-05-11 23:18:00,511 - INFO - Flow arrival id=76 src=2 dst=3
-2026-05-11 23:18:00,511 - INFO - ================================================================================
-2026-05-11 23:18:00,511 - INFO - Algorithm handling flow id=76 src=2 dst=3 rate=89 security=2 kgr=1
-2026-05-11 23:18:00,515 - INFO - Flow 76 accepted.
-2026-05-11 23:18:00,515 - INFO - Flow departure id=74 src=1 dst=5
-2026-05-11 23:18:00,515 - INFO - Flow removed id=74
-2026-05-11 23:18:00,515 - INFO - Flow arrival id=77 src=5 dst=2
-2026-05-11 23:18:00,515 - INFO - ================================================================================
-2026-05-11 23:18:00,515 - INFO - Algorithm handling flow id=77 src=5 dst=2 rate=29 security=1 kgr=2
-2026-05-11 23:18:00,516 - INFO - Flow blocked id=77 src=5 dst=2 rate=29
-2026-05-11 23:18:00,516 - INFO - Flow arrival id=78 src=4 dst=2
-2026-05-11 23:18:00,516 - INFO - ================================================================================
-2026-05-11 23:18:00,516 - INFO - Algorithm handling flow id=78 src=4 dst=2 rate=16 security=0 kgr=0
-2026-05-11 23:18:00,517 - INFO - Flow blocked id=78 src=4 dst=2 rate=16
-2026-05-11 23:18:00,517 - INFO - Flow departure id=76 src=2 dst=3
-2026-05-11 23:18:00,517 - INFO - Flow removed id=76
-2026-05-11 23:18:00,517 - INFO - Flow arrival id=79 src=5 dst=0
-2026-05-11 23:18:00,517 - INFO - ================================================================================
-2026-05-11 23:18:00,517 - INFO - Algorithm handling flow id=79 src=5 dst=0 rate=77 security=2 kgr=3
-2026-05-11 23:18:00,518 - INFO - Flow blocked id=79 src=5 dst=0 rate=77
-2026-05-11 23:18:00,518 - INFO - Flow arrival id=80 src=5 dst=3
-2026-05-11 23:18:00,518 - INFO - ================================================================================
-2026-05-11 23:18:00,518 - INFO - Algorithm handling flow id=80 src=5 dst=3 rate=55 security=2 kgr=4
-2026-05-11 23:18:00,519 - INFO - Flow blocked id=80 src=5 dst=3 rate=55
-2026-05-11 23:18:00,519 - INFO - Flow departure id=56 src=5 dst=3
-2026-05-11 23:18:00,519 - INFO - Flow removed id=56
-2026-05-11 23:18:00,519 - INFO - Flow arrival id=81 src=4 dst=3
-2026-05-11 23:18:00,519 - INFO - ================================================================================
-2026-05-11 23:18:00,519 - INFO - Algorithm handling flow id=81 src=4 dst=3 rate=82 security=0 kgr=0
-2026-05-11 23:18:00,520 - INFO - Flow 81 accepted.
-2026-05-11 23:18:00,520 - INFO - Flow departure id=73 src=3 dst=1
-2026-05-11 23:18:00,520 - INFO - Flow removed id=73
-2026-05-11 23:18:00,520 - INFO - Flow arrival id=82 src=4 dst=5
-2026-05-11 23:18:00,520 - INFO - ================================================================================
-2026-05-11 23:18:00,520 - INFO - Algorithm handling flow id=82 src=4 dst=5 rate=57 security=1 kgr=1
-2026-05-11 23:18:00,522 - INFO - Flow blocked id=82 src=4 dst=5 rate=57
-2026-05-11 23:18:00,522 - INFO - Flow arrival id=83 src=1 dst=3
-2026-05-11 23:18:00,522 - INFO - ================================================================================
-2026-05-11 23:18:00,522 - INFO - Algorithm handling flow id=83 src=1 dst=3 rate=11 security=2 kgr=2
-2026-05-11 23:18:00,524 - INFO - Flow 83 accepted.
-2026-05-11 23:18:00,524 - INFO - Flow arrival id=84 src=2 dst=3
-2026-05-11 23:18:00,524 - INFO - ================================================================================
-2026-05-11 23:18:00,525 - INFO - Algorithm handling flow id=84 src=2 dst=3 rate=54 security=0 kgr=0
-2026-05-11 23:18:00,527 - INFO - Flow 84 accepted.
-2026-05-11 23:18:00,527 - INFO - Flow arrival id=85 src=3 dst=2
-2026-05-11 23:18:00,527 - INFO - ================================================================================
-2026-05-11 23:18:00,527 - INFO - Algorithm handling flow id=85 src=3 dst=2 rate=50 security=1 kgr=1
-2026-05-11 23:18:00,529 - INFO - Flow blocked id=85 src=3 dst=2 rate=50
-2026-05-11 23:18:00,529 - INFO - Flow arrival id=86 src=4 dst=5
-2026-05-11 23:18:00,529 - INFO - ================================================================================
-2026-05-11 23:18:00,529 - INFO - Algorithm handling flow id=86 src=4 dst=5 rate=39 security=1 kgr=4
-2026-05-11 23:18:00,531 - INFO - Flow blocked id=86 src=4 dst=5 rate=39
-2026-05-11 23:18:00,531 - INFO - Flow departure id=83 src=1 dst=3
-2026-05-11 23:18:00,531 - INFO - Flow removed id=83
-2026-05-11 23:18:00,531 - INFO - Flow arrival id=87 src=5 dst=1
-2026-05-11 23:18:00,531 - INFO - ================================================================================
-2026-05-11 23:18:00,531 - INFO - Algorithm handling flow id=87 src=5 dst=1 rate=78 security=2 kgr=2
-2026-05-11 23:18:00,534 - INFO - Flow blocked id=87 src=5 dst=1 rate=78
-2026-05-11 23:18:00,535 - INFO - Flow departure id=72 src=5 dst=0
-2026-05-11 23:18:00,535 - INFO - Flow removed id=72
-2026-05-11 23:18:00,535 - INFO - Flow departure id=81 src=4 dst=3
-2026-05-11 23:18:00,535 - INFO - Flow removed id=81
-2026-05-11 23:18:00,535 - INFO - Flow arrival id=88 src=1 dst=4
-2026-05-11 23:18:00,536 - INFO - ================================================================================
-2026-05-11 23:18:00,536 - INFO - Algorithm handling flow id=88 src=1 dst=4 rate=86 security=1 kgr=4
-2026-05-11 23:18:00,537 - INFO - Flow blocked id=88 src=1 dst=4 rate=86
-2026-05-11 23:18:00,538 - INFO - Flow arrival id=89 src=5 dst=1
-2026-05-11 23:18:00,538 - INFO - ================================================================================
-2026-05-11 23:18:00,538 - INFO - Algorithm handling flow id=89 src=5 dst=1 rate=69 security=2 kgr=1
-2026-05-11 23:18:00,540 - INFO - Flow blocked id=89 src=5 dst=1 rate=69
-2026-05-11 23:18:00,540 - INFO - Flow departure id=75 src=3 dst=0
-2026-05-11 23:18:00,540 - INFO - Flow removed id=75
-2026-05-11 23:18:00,540 - INFO - Flow arrival id=90 src=3 dst=4
-2026-05-11 23:18:00,541 - INFO - ================================================================================
-2026-05-11 23:18:00,541 - INFO - Algorithm handling flow id=90 src=3 dst=4 rate=55 security=2 kgr=2
-2026-05-11 23:18:00,545 - INFO - Flow 90 accepted.
-2026-05-11 23:18:00,547 - INFO - Flow arrival id=91 src=1 dst=0
-2026-05-11 23:18:00,547 - INFO - ================================================================================
-2026-05-11 23:18:00,547 - INFO - Algorithm handling flow id=91 src=1 dst=0 rate=59 security=0 kgr=0
-2026-05-11 23:18:00,548 - INFO - Flow blocked id=91 src=1 dst=0 rate=59
-2026-05-11 23:18:00,548 - INFO - Flow departure id=90 src=3 dst=4
-2026-05-11 23:18:00,548 - INFO - Flow removed id=90
-2026-05-11 23:18:00,548 - INFO - Flow departure id=67 src=0 dst=3
-2026-05-11 23:18:00,548 - INFO - Flow removed id=67
-2026-05-11 23:18:00,548 - INFO - Flow departure id=64 src=1 dst=4
-2026-05-11 23:18:00,548 - INFO - Flow removed id=64
-2026-05-11 23:18:00,548 - INFO - Flow arrival id=92 src=4 dst=5
-2026-05-11 23:18:00,548 - INFO - ================================================================================
-2026-05-11 23:18:00,548 - INFO - Algorithm handling flow id=92 src=4 dst=5 rate=33 security=1 kgr=1
-2026-05-11 23:18:00,550 - INFO - Flow 92 accepted.
-2026-05-11 23:18:00,550 - INFO - Flow arrival id=93 src=4 dst=3
-2026-05-11 23:18:00,550 - INFO - ================================================================================
-2026-05-11 23:18:00,550 - INFO - Algorithm handling flow id=93 src=4 dst=3 rate=29 security=1 kgr=1
-2026-05-11 23:18:00,552 - INFO - Flow 93 accepted.
-2026-05-11 23:18:00,552 - INFO - Flow arrival id=94 src=4 dst=0
-2026-05-11 23:18:00,552 - INFO - ================================================================================
-2026-05-11 23:18:00,552 - INFO - Algorithm handling flow id=94 src=4 dst=0 rate=26 security=0 kgr=0
-2026-05-11 23:18:00,554 - INFO - Flow 94 accepted.
-2026-05-11 23:18:00,554 - INFO - Flow arrival id=95 src=3 dst=5
-2026-05-11 23:18:00,554 - INFO - ================================================================================
-2026-05-11 23:18:00,554 - INFO - Algorithm handling flow id=95 src=3 dst=5 rate=15 security=2 kgr=2
-2026-05-11 23:18:00,556 - INFO - Flow 95 accepted.
-2026-05-11 23:18:00,556 - INFO - Flow departure id=94 src=4 dst=0
-2026-05-11 23:18:00,556 - INFO - Flow removed id=94
-2026-05-11 23:18:00,556 - INFO - Flow departure id=69 src=1 dst=2
-2026-05-11 23:18:00,556 - INFO - Flow removed id=69
-2026-05-11 23:18:00,556 - INFO - Flow departure id=95 src=3 dst=5
-2026-05-11 23:18:00,556 - INFO - Flow removed id=95
-2026-05-11 23:18:00,556 - INFO - Flow arrival id=96 src=1 dst=4
-2026-05-11 23:18:00,556 - INFO - ================================================================================
-2026-05-11 23:18:00,556 - INFO - Algorithm handling flow id=96 src=1 dst=4 rate=96 security=2 kgr=1
-2026-05-11 23:18:00,558 - INFO - Flow 96 accepted.
-2026-05-11 23:18:00,558 - INFO - Flow departure id=92 src=4 dst=5
-2026-05-11 23:18:00,558 - INFO - Flow removed id=92
-2026-05-11 23:18:00,558 - INFO - Flow departure id=84 src=2 dst=3
-2026-05-11 23:18:00,558 - INFO - Flow removed id=84
-2026-05-11 23:18:00,558 - INFO - Flow departure id=96 src=1 dst=4
-2026-05-11 23:18:00,558 - INFO - Flow removed id=96
-2026-05-11 23:18:00,558 - INFO - Flow arrival id=97 src=1 dst=0
-2026-05-11 23:18:00,558 - INFO - ================================================================================
-2026-05-11 23:18:00,558 - INFO - Algorithm handling flow id=97 src=1 dst=0 rate=40 security=0 kgr=0
-2026-05-11 23:18:00,562 - INFO - Flow 97 accepted.
-2026-05-11 23:18:00,562 - INFO - Flow departure id=97 src=1 dst=0
-2026-05-11 23:18:00,562 - INFO - Flow removed id=97
-2026-05-11 23:18:00,563 - INFO - Flow arrival id=98 src=5 dst=4
-2026-05-11 23:18:00,563 - INFO - ================================================================================
-2026-05-11 23:18:00,563 - INFO - Algorithm handling flow id=98 src=5 dst=4 rate=26 security=2 kgr=1
-2026-05-11 23:18:00,566 - INFO - Flow 98 accepted.
-2026-05-11 23:18:00,567 - INFO - Flow arrival id=99 src=5 dst=1
-2026-05-11 23:18:00,567 - INFO - ================================================================================
-2026-05-11 23:18:00,567 - INFO - Algorithm handling flow id=99 src=5 dst=1 rate=88 security=1 kgr=1
-2026-05-11 23:18:00,569 - INFO - Flow 99 accepted.
-2026-05-11 23:18:00,569 - INFO - Flow departure id=99 src=5 dst=1
-2026-05-11 23:18:00,569 - INFO - Flow removed id=99
-2026-05-11 23:18:00,569 - INFO - Flow departure id=98 src=5 dst=4
-2026-05-11 23:18:00,569 - INFO - Flow removed id=98
-2026-05-11 23:18:00,569 - INFO - Flow departure id=93 src=4 dst=3
-2026-05-11 23:18:00,569 - INFO - Flow removed id=93
-2026-05-11 23:18:00,569 - INFO - Simulation loop finished with summary={'arrivals': 100, 'accepted': 77, 'blocked': 23, 'blocking_rate': 0.23, 'arrivals_secure': 65, 'accepted_secure': 47, 'blocked_secure': 18, 'secure_blocking_rate': 0.27692307692307694, 'arrivals_unsecure': 35, 'accepted_unsecure': 30, 'blocked_unsecure': 5, 'unsecure_blocking_rate': 0.14285714285714285, 'security_exposure_total': 79, 'security_exposure_by_edge': {'0->1': 6, '0->2': 5, '0->5': 6, '1->0': 3, '1->2': 5, '2->0': 3, '2->1': 3, '2->3': 8, '3->2': 7, '3->4': 5, '3->5': 4, '4->3': 6, '4->5': 5, '5->0': 7, '5->4': 6}, 'expected_security_exposure': 4.9375, 'recip_channel_count_total': 112, 'recip_channel_count_by_edge': {'0->1': 7, '0->2': 7, '0->5': 7, '1->0': 3, '1->2': 10, '2->0': 9, '2->1': 3, '2->3': 12, '3->2': 8, '3->4': 6, '3->5': 7, '4->3': 12, '4->5': 5, '5->0': 9, '5->4': 7}, 'average_recip_channel_count_per_edge': 7.0}
-2026-05-11 23:18:00,569 - INFO - Simulation completed with summary={'arrivals': 100, 'accepted': 77, 'blocked': 23, 'blocking_rate': 0.23, 'arrivals_secure': 65, 'accepted_secure': 47, 'blocked_secure': 18, 'secure_blocking_rate': 0.27692307692307694, 'arrivals_unsecure': 35, 'accepted_unsecure': 30, 'blocked_unsecure': 5, 'unsecure_blocking_rate': 0.14285714285714285, 'security_exposure_total': 79, 'security_exposure_by_edge': {'0->1': 6, '0->2': 5, '0->5': 6, '1->0': 3, '1->2': 5, '2->0': 3, '2->1': 3, '2->3': 8, '3->2': 7, '3->4': 5, '3->5': 4, '4->3': 6, '4->5': 5, '5->0': 7, '5->4': 6}, 'expected_security_exposure': 4.9375, 'recip_channel_count_total': 112, 'recip_channel_count_by_edge': {'0->1': 7, '0->2': 7, '0->5': 7, '1->0': 3, '1->2': 10, '2->0': 9, '2->1': 3, '2->3': 12, '3->2': 8, '3->4': 6, '3->5': 7, '4->3': 12, '4->5': 5, '5->0': 9, '5->4': 7}, 'average_recip_channel_count_per_edge': 7.0}
+2026-05-13 19:11:02,824 - INFO - ========================= Start Running =========================
+2026-05-13 19:11:02,824 - INFO - ========================= Loading Physical Topology =========================
+2026-05-13 19:11:02,824 - INFO - Topology file: graphml\SixNode.graphml
+2026-05-13 19:11:02,929 - INFO - GraphML topology loaded: nodes=6 directed_links=16.
+2026-05-13 19:11:02,931 - INFO - ========================= Loading Virtual Topology =========================
+2026-05-13 19:11:02,931 - INFO - ========================= Initialize Control Plane =========================
+2026-05-13 19:11:02,931 - INFO - Auxiliary-Graph-Based Joint Data-and-Key Path Grooming Algorithm initialized with k=4
+2026-05-13 19:11:02,931 - INFO - Control plane bound to routing algorithm=AuxGJointDataRecipGrooming
+2026-05-13 19:11:02,931 - INFO - Algorithm selected: AuxGJointDataRecipGrooming
+2026-05-13 19:11:02,931 - INFO - ========================= Initialize Scheduler =========================
+2026-05-13 19:11:02,931 - INFO - Start generate traffic: 100 flows, 1.25 mean_arrival_time.
+2026-05-13 19:11:02,931 - INFO - Traffic generation completed with 200 scheduled events
+2026-05-13 19:11:02,931 - INFO - ============================== Start Simulation ==============================
+2026-05-13 19:11:02,931 - INFO - Simulation loop started with 200 scheduled events
+2026-05-13 19:11:02,932 - INFO - Flow arrival id=0 src=0 dst=1
+2026-05-13 19:11:02,932 - INFO - ================================================================================
+2026-05-13 19:11:02,932 - INFO - Algorithm handling flow id=0 src=0 dst=1 rate=95 security=0 kgr=0
+2026-05-13 19:11:02,934 - INFO - Flow 0 accepted.
+2026-05-13 19:11:02,935 - INFO - Flow arrival id=1 src=4 dst=3
+2026-05-13 19:11:02,935 - INFO - ================================================================================
+2026-05-13 19:11:02,935 - INFO - Algorithm handling flow id=1 src=4 dst=3 rate=5 security=1 kgr=1
+2026-05-13 19:11:02,937 - INFO - Flow 1 accepted.
+2026-05-13 19:11:02,937 - INFO - Flow departure id=0 src=0 dst=1
+2026-05-13 19:11:02,938 - INFO - Flow removed id=0
+2026-05-13 19:11:02,938 - INFO - Flow arrival id=2 src=1 dst=3
+2026-05-13 19:11:02,938 - INFO - ================================================================================
+2026-05-13 19:11:02,938 - INFO - Algorithm handling flow id=2 src=1 dst=3 rate=92 security=0 kgr=0
+2026-05-13 19:11:02,940 - INFO - Flow 2 accepted.
+2026-05-13 19:11:02,940 - INFO - Flow departure id=1 src=4 dst=3
+2026-05-13 19:11:02,940 - INFO - Flow removed id=1
+2026-05-13 19:11:02,940 - INFO - Flow departure id=2 src=1 dst=3
+2026-05-13 19:11:02,940 - INFO - Flow removed id=2
+2026-05-13 19:11:02,940 - INFO - Flow arrival id=3 src=3 dst=2
+2026-05-13 19:11:02,940 - INFO - ================================================================================
+2026-05-13 19:11:02,940 - INFO - Algorithm handling flow id=3 src=3 dst=2 rate=1 security=1 kgr=2
+2026-05-13 19:11:02,941 - INFO - Flow 3 accepted.
+2026-05-13 19:11:02,941 - INFO - Flow arrival id=4 src=2 dst=0
+2026-05-13 19:11:02,941 - INFO - ================================================================================
+2026-05-13 19:11:02,941 - INFO - Algorithm handling flow id=4 src=2 dst=0 rate=14 security=1 kgr=1
+2026-05-13 19:11:02,944 - INFO - Flow 4 accepted.
+2026-05-13 19:11:02,944 - INFO - Flow arrival id=5 src=2 dst=1
+2026-05-13 19:11:02,944 - INFO - ================================================================================
+2026-05-13 19:11:02,944 - INFO - Algorithm handling flow id=5 src=2 dst=1 rate=94 security=0 kgr=0
+2026-05-13 19:11:02,946 - INFO - Flow 5 accepted.
+2026-05-13 19:11:02,947 - INFO - Flow departure id=4 src=2 dst=0
+2026-05-13 19:11:02,947 - INFO - Flow removed id=4
+2026-05-13 19:11:02,947 - INFO - Flow departure id=3 src=3 dst=2
+2026-05-13 19:11:02,947 - INFO - Flow removed id=3
+2026-05-13 19:11:02,947 - INFO - Flow arrival id=6 src=0 dst=4
+2026-05-13 19:11:02,947 - INFO - ================================================================================
+2026-05-13 19:11:02,947 - INFO - Algorithm handling flow id=6 src=0 dst=4 rate=38 security=2 kgr=3
+2026-05-13 19:11:02,949 - INFO - Flow 6 accepted.
+2026-05-13 19:11:02,949 - INFO - Flow arrival id=7 src=4 dst=2
+2026-05-13 19:11:02,949 - INFO - ================================================================================
+2026-05-13 19:11:02,949 - INFO - Algorithm handling flow id=7 src=4 dst=2 rate=11 security=1 kgr=2
+2026-05-13 19:11:02,954 - INFO - Flow 7 accepted.
+2026-05-13 19:11:02,955 - INFO - Flow arrival id=8 src=2 dst=3
+2026-05-13 19:11:02,955 - INFO - ================================================================================
+2026-05-13 19:11:02,955 - INFO - Algorithm handling flow id=8 src=2 dst=3 rate=21 security=1 kgr=3
+2026-05-13 19:11:02,960 - INFO - Flow 8 accepted.
+2026-05-13 19:11:02,960 - INFO - Flow arrival id=9 src=4 dst=1
+2026-05-13 19:11:02,960 - INFO - ================================================================================
+2026-05-13 19:11:02,960 - INFO - Algorithm handling flow id=9 src=4 dst=1 rate=10 security=2 kgr=2
+2026-05-13 19:11:02,964 - INFO - Flow 9 accepted.
+2026-05-13 19:11:02,964 - INFO - Flow arrival id=10 src=1 dst=3
+2026-05-13 19:11:02,964 - INFO - ================================================================================
+2026-05-13 19:11:02,964 - INFO - Algorithm handling flow id=10 src=1 dst=3 rate=89 security=2 kgr=2
+2026-05-13 19:11:02,965 - INFO - Flow blocked id=10 src=1 dst=3 rate=89
+2026-05-13 19:11:02,965 - INFO - Flow arrival id=11 src=5 dst=1
+2026-05-13 19:11:02,965 - INFO - ================================================================================
+2026-05-13 19:11:02,965 - INFO - Algorithm handling flow id=11 src=5 dst=1 rate=41 security=0 kgr=0
+2026-05-13 19:11:02,969 - INFO - Flow 11 accepted.
+2026-05-13 19:11:02,969 - INFO - Flow arrival id=12 src=0 dst=3
+2026-05-13 19:11:02,969 - INFO - ================================================================================
+2026-05-13 19:11:02,969 - INFO - Algorithm handling flow id=12 src=0 dst=3 rate=41 security=2 kgr=2
+2026-05-13 19:11:02,975 - INFO - Flow 12 accepted.
+2026-05-13 19:11:02,975 - INFO - Flow departure id=11 src=5 dst=1
+2026-05-13 19:11:02,976 - INFO - Flow removed id=11
+2026-05-13 19:11:02,976 - INFO - Flow departure id=5 src=2 dst=1
+2026-05-13 19:11:02,976 - INFO - Flow removed id=5
+2026-05-13 19:11:02,976 - INFO - Flow departure id=6 src=0 dst=4
+2026-05-13 19:11:02,976 - INFO - Flow removed id=6
+2026-05-13 19:11:02,976 - INFO - Flow arrival id=13 src=2 dst=3
+2026-05-13 19:11:02,976 - INFO - ================================================================================
+2026-05-13 19:11:02,976 - INFO - Algorithm handling flow id=13 src=2 dst=3 rate=34 security=0 kgr=0
+2026-05-13 19:11:02,978 - INFO - Flow 13 accepted.
+2026-05-13 19:11:02,979 - INFO - Flow arrival id=14 src=4 dst=3
+2026-05-13 19:11:02,979 - INFO - ================================================================================
+2026-05-13 19:11:02,979 - INFO - Algorithm handling flow id=14 src=4 dst=3 rate=55 security=2 kgr=4
+2026-05-13 19:11:02,981 - INFO - Flow 14 accepted.
+2026-05-13 19:11:02,981 - INFO - Flow arrival id=15 src=0 dst=5
+2026-05-13 19:11:02,981 - INFO - ================================================================================
+2026-05-13 19:11:02,981 - INFO - Algorithm handling flow id=15 src=0 dst=5 rate=15 security=0 kgr=0
+2026-05-13 19:11:02,985 - INFO - Flow 15 accepted.
+2026-05-13 19:11:02,985 - INFO - Flow departure id=15 src=0 dst=5
+2026-05-13 19:11:02,985 - INFO - Flow removed id=15
+2026-05-13 19:11:02,985 - INFO - Flow arrival id=16 src=1 dst=0
+2026-05-13 19:11:02,985 - INFO - ================================================================================
+2026-05-13 19:11:02,985 - INFO - Algorithm handling flow id=16 src=1 dst=0 rate=50 security=0 kgr=0
+2026-05-13 19:11:02,989 - INFO - Flow 16 accepted.
+2026-05-13 19:11:02,989 - INFO - Flow departure id=14 src=4 dst=3
+2026-05-13 19:11:02,989 - INFO - Flow removed id=14
+2026-05-13 19:11:02,989 - INFO - Flow departure id=8 src=2 dst=3
+2026-05-13 19:11:02,989 - INFO - Flow removed id=8
+2026-05-13 19:11:02,989 - INFO - Flow arrival id=17 src=2 dst=5
+2026-05-13 19:11:02,989 - INFO - ================================================================================
+2026-05-13 19:11:02,989 - INFO - Algorithm handling flow id=17 src=2 dst=5 rate=88 security=0 kgr=0
+2026-05-13 19:11:02,992 - INFO - Flow 17 accepted.
+2026-05-13 19:11:02,992 - INFO - Flow departure id=7 src=4 dst=2
+2026-05-13 19:11:02,992 - INFO - Flow removed id=7
+2026-05-13 19:11:02,992 - INFO - Flow arrival id=18 src=4 dst=1
+2026-05-13 19:11:02,992 - INFO - ================================================================================
+2026-05-13 19:11:02,992 - INFO - Algorithm handling flow id=18 src=4 dst=1 rate=44 security=2 kgr=1
+2026-05-13 19:11:02,994 - INFO - Flow 18 accepted.
+2026-05-13 19:11:02,994 - INFO - Flow arrival id=19 src=1 dst=0
+2026-05-13 19:11:02,994 - INFO - ================================================================================
+2026-05-13 19:11:02,994 - INFO - Algorithm handling flow id=19 src=1 dst=0 rate=34 security=2 kgr=2
+2026-05-13 19:11:02,996 - INFO - Flow 19 accepted.
+2026-05-13 19:11:02,996 - INFO - Flow departure id=16 src=1 dst=0
+2026-05-13 19:11:02,996 - INFO - Flow removed id=16
+2026-05-13 19:11:02,996 - INFO - Flow departure id=13 src=2 dst=3
+2026-05-13 19:11:02,996 - INFO - Flow removed id=13
+2026-05-13 19:11:02,996 - INFO - Flow arrival id=20 src=0 dst=4
+2026-05-13 19:11:02,996 - INFO - ================================================================================
+2026-05-13 19:11:02,996 - INFO - Algorithm handling flow id=20 src=0 dst=4 rate=65 security=2 kgr=2
+2026-05-13 19:11:02,999 - INFO - Flow blocked id=20 src=0 dst=4 rate=65
+2026-05-13 19:11:02,999 - INFO - Flow arrival id=21 src=4 dst=5
+2026-05-13 19:11:03,000 - INFO - ================================================================================
+2026-05-13 19:11:03,000 - INFO - Algorithm handling flow id=21 src=4 dst=5 rate=1 security=2 kgr=3
+2026-05-13 19:11:03,002 - INFO - Flow 21 accepted.
+2026-05-13 19:11:03,002 - INFO - Flow arrival id=22 src=0 dst=4
+2026-05-13 19:11:03,002 - INFO - ================================================================================
+2026-05-13 19:11:03,002 - INFO - Algorithm handling flow id=22 src=0 dst=4 rate=31 security=1 kgr=1
+2026-05-13 19:11:03,005 - INFO - Flow blocked id=22 src=0 dst=4 rate=31
+2026-05-13 19:11:03,005 - INFO - Flow arrival id=23 src=3 dst=4
+2026-05-13 19:11:03,005 - INFO - ================================================================================
+2026-05-13 19:11:03,005 - INFO - Algorithm handling flow id=23 src=3 dst=4 rate=9 security=1 kgr=2
+2026-05-13 19:11:03,007 - INFO - Flow 23 accepted.
+2026-05-13 19:11:03,007 - INFO - Flow departure id=23 src=3 dst=4
+2026-05-13 19:11:03,007 - INFO - Flow removed id=23
+2026-05-13 19:11:03,007 - INFO - Flow departure id=18 src=4 dst=1
+2026-05-13 19:11:03,007 - INFO - Flow removed id=18
+2026-05-13 19:11:03,007 - INFO - Flow arrival id=24 src=3 dst=0
+2026-05-13 19:11:03,007 - INFO - ================================================================================
+2026-05-13 19:11:03,007 - INFO - Algorithm handling flow id=24 src=3 dst=0 rate=78 security=2 kgr=4
+2026-05-13 19:11:03,011 - INFO - Flow 24 accepted.
+2026-05-13 19:11:03,011 - INFO - Flow departure id=9 src=4 dst=1
+2026-05-13 19:11:03,011 - INFO - Flow removed id=9
+2026-05-13 19:11:03,011 - INFO - Flow arrival id=25 src=5 dst=4
+2026-05-13 19:11:03,011 - INFO - ================================================================================
+2026-05-13 19:11:03,011 - INFO - Algorithm handling flow id=25 src=5 dst=4 rate=92 security=0 kgr=0
+2026-05-13 19:11:03,012 - INFO - Flow 25 accepted.
+2026-05-13 19:11:03,012 - INFO - Flow departure id=24 src=3 dst=0
+2026-05-13 19:11:03,012 - INFO - Flow removed id=24
+2026-05-13 19:11:03,012 - INFO - Flow arrival id=26 src=4 dst=1
+2026-05-13 19:11:03,012 - INFO - ================================================================================
+2026-05-13 19:11:03,012 - INFO - Algorithm handling flow id=26 src=4 dst=1 rate=58 security=2 kgr=1
+2026-05-13 19:11:03,014 - INFO - Flow 26 accepted.
+2026-05-13 19:11:03,014 - INFO - Flow arrival id=27 src=0 dst=3
+2026-05-13 19:11:03,014 - INFO - ================================================================================
+2026-05-13 19:11:03,014 - INFO - Algorithm handling flow id=27 src=0 dst=3 rate=76 security=0 kgr=0
+2026-05-13 19:11:03,017 - INFO - Flow 27 accepted.
+2026-05-13 19:11:03,017 - INFO - Flow departure id=12 src=0 dst=3
+2026-05-13 19:11:03,017 - INFO - Flow removed id=12
+2026-05-13 19:11:03,017 - INFO - Flow arrival id=28 src=0 dst=3
+2026-05-13 19:11:03,017 - INFO - ================================================================================
+2026-05-13 19:11:03,017 - INFO - Algorithm handling flow id=28 src=0 dst=3 rate=5 security=0 kgr=0
+2026-05-13 19:11:03,018 - INFO - Flow 28 accepted.
+2026-05-13 19:11:03,019 - INFO - Flow departure id=28 src=0 dst=3
+2026-05-13 19:11:03,019 - INFO - Flow removed id=28
+2026-05-13 19:11:03,019 - INFO - Flow arrival id=29 src=0 dst=3
+2026-05-13 19:11:03,019 - INFO - ================================================================================
+2026-05-13 19:11:03,019 - INFO - Algorithm handling flow id=29 src=0 dst=3 rate=28 security=1 kgr=2
+2026-05-13 19:11:03,021 - INFO - Flow 29 accepted.
+2026-05-13 19:11:03,021 - INFO - Flow arrival id=30 src=5 dst=3
+2026-05-13 19:11:03,021 - INFO - ================================================================================
+2026-05-13 19:11:03,021 - INFO - Algorithm handling flow id=30 src=5 dst=3 rate=53 security=1 kgr=2
+2026-05-13 19:11:03,025 - INFO - Flow blocked id=30 src=5 dst=3 rate=53
+2026-05-13 19:11:03,025 - INFO - Flow arrival id=31 src=4 dst=1
+2026-05-13 19:11:03,025 - INFO - ================================================================================
+2026-05-13 19:11:03,025 - INFO - Algorithm handling flow id=31 src=4 dst=1 rate=94 security=1 kgr=1
+2026-05-13 19:11:03,033 - INFO - Flow blocked id=31 src=4 dst=1 rate=94
+2026-05-13 19:11:03,033 - INFO - Flow arrival id=32 src=4 dst=0
+2026-05-13 19:11:03,033 - INFO - ================================================================================
+2026-05-13 19:11:03,033 - INFO - Algorithm handling flow id=32 src=4 dst=0 rate=14 security=1 kgr=2
+2026-05-13 19:11:03,037 - INFO - Flow 32 accepted.
+2026-05-13 19:11:03,037 - INFO - Flow arrival id=33 src=3 dst=2
+2026-05-13 19:11:03,037 - INFO - ================================================================================
+2026-05-13 19:11:03,037 - INFO - Algorithm handling flow id=33 src=3 dst=2 rate=60 security=1 kgr=2
+2026-05-13 19:11:03,039 - INFO - Flow 33 accepted.
+2026-05-13 19:11:03,039 - INFO - Flow departure id=26 src=4 dst=1
+2026-05-13 19:11:03,039 - INFO - Flow removed id=26
+2026-05-13 19:11:03,039 - INFO - Flow departure id=29 src=0 dst=3
+2026-05-13 19:11:03,039 - INFO - Flow removed id=29
+2026-05-13 19:11:03,039 - INFO - Flow arrival id=34 src=0 dst=3
+2026-05-13 19:11:03,039 - INFO - ================================================================================
+2026-05-13 19:11:03,039 - INFO - Algorithm handling flow id=34 src=0 dst=3 rate=13 security=2 kgr=1
+2026-05-13 19:11:03,041 - INFO - Flow 34 accepted.
+2026-05-13 19:11:03,041 - INFO - Flow arrival id=35 src=3 dst=2
+2026-05-13 19:11:03,041 - INFO - ================================================================================
+2026-05-13 19:11:03,041 - INFO - Algorithm handling flow id=35 src=3 dst=2 rate=22 security=0 kgr=0
+2026-05-13 19:11:03,043 - INFO - Flow 35 accepted.
+2026-05-13 19:11:03,043 - INFO - Flow arrival id=36 src=3 dst=0
+2026-05-13 19:11:03,043 - INFO - ================================================================================
+2026-05-13 19:11:03,043 - INFO - Algorithm handling flow id=36 src=3 dst=0 rate=22 security=0 kgr=0
+2026-05-13 19:11:03,045 - INFO - Flow 36 accepted.
+2026-05-13 19:11:03,046 - INFO - Flow arrival id=37 src=2 dst=3
+2026-05-13 19:11:03,046 - INFO - ================================================================================
+2026-05-13 19:11:03,046 - INFO - Algorithm handling flow id=37 src=2 dst=3 rate=37 security=1 kgr=4
+2026-05-13 19:11:03,048 - INFO - Flow 37 accepted.
+2026-05-13 19:11:03,049 - INFO - Flow departure id=27 src=0 dst=3
+2026-05-13 19:11:03,049 - INFO - Flow removed id=27
+2026-05-13 19:11:03,049 - INFO - Flow departure id=32 src=4 dst=0
+2026-05-13 19:11:03,049 - INFO - Flow removed id=32
+2026-05-13 19:11:03,049 - INFO - Flow departure id=33 src=3 dst=2
+2026-05-13 19:11:03,049 - INFO - Flow removed id=33
+2026-05-13 19:11:03,049 - INFO - Flow departure id=25 src=5 dst=4
+2026-05-13 19:11:03,049 - INFO - Flow removed id=25
+2026-05-13 19:11:03,049 - INFO - Flow departure id=36 src=3 dst=0
+2026-05-13 19:11:03,049 - INFO - Flow removed id=36
+2026-05-13 19:11:03,049 - INFO - Flow departure id=19 src=1 dst=0
+2026-05-13 19:11:03,049 - INFO - Flow removed id=19
+2026-05-13 19:11:03,049 - INFO - Flow arrival id=38 src=4 dst=3
+2026-05-13 19:11:03,049 - INFO - ================================================================================
+2026-05-13 19:11:03,049 - INFO - Algorithm handling flow id=38 src=4 dst=3 rate=63 security=2 kgr=2
+2026-05-13 19:11:03,053 - INFO - Flow 38 accepted.
+2026-05-13 19:11:03,054 - INFO - Flow departure id=17 src=2 dst=5
+2026-05-13 19:11:03,054 - INFO - Flow removed id=17
+2026-05-13 19:11:03,054 - INFO - Flow departure id=21 src=4 dst=5
+2026-05-13 19:11:03,054 - INFO - Flow removed id=21
+2026-05-13 19:11:03,054 - INFO - Flow arrival id=39 src=1 dst=2
+2026-05-13 19:11:03,054 - INFO - ================================================================================
+2026-05-13 19:11:03,054 - INFO - Algorithm handling flow id=39 src=1 dst=2 rate=8 security=2 kgr=3
+2026-05-13 19:11:03,058 - INFO - Flow blocked id=39 src=1 dst=2 rate=8
+2026-05-13 19:11:03,058 - INFO - Flow arrival id=40 src=3 dst=4
+2026-05-13 19:11:03,058 - INFO - ================================================================================
+2026-05-13 19:11:03,058 - INFO - Algorithm handling flow id=40 src=3 dst=4 rate=21 security=2 kgr=1
+2026-05-13 19:11:03,060 - INFO - Flow 40 accepted.
+2026-05-13 19:11:03,060 - INFO - Flow arrival id=41 src=0 dst=3
+2026-05-13 19:11:03,060 - INFO - ================================================================================
+2026-05-13 19:11:03,060 - INFO - Algorithm handling flow id=41 src=0 dst=3 rate=87 security=0 kgr=0
+2026-05-13 19:11:03,062 - INFO - Flow 41 accepted.
+2026-05-13 19:11:03,062 - INFO - Flow arrival id=42 src=2 dst=3
+2026-05-13 19:11:03,062 - INFO - ================================================================================
+2026-05-13 19:11:03,062 - INFO - Algorithm handling flow id=42 src=2 dst=3 rate=75 security=0 kgr=0
+2026-05-13 19:11:03,063 - INFO - Flow blocked id=42 src=2 dst=3 rate=75
+2026-05-13 19:11:03,063 - INFO - Flow arrival id=43 src=3 dst=5
+2026-05-13 19:11:03,063 - INFO - ================================================================================
+2026-05-13 19:11:03,063 - INFO - Algorithm handling flow id=43 src=3 dst=5 rate=67 security=2 kgr=3
+2026-05-13 19:11:03,069 - INFO - Flow 43 accepted.
+2026-05-13 19:11:03,069 - INFO - Flow departure id=38 src=4 dst=3
+2026-05-13 19:11:03,069 - INFO - Flow removed id=38
+2026-05-13 19:11:03,069 - INFO - Flow departure id=41 src=0 dst=3
+2026-05-13 19:11:03,069 - INFO - Flow removed id=41
+2026-05-13 19:11:03,069 - INFO - Flow departure id=37 src=2 dst=3
+2026-05-13 19:11:03,069 - INFO - Flow removed id=37
+2026-05-13 19:11:03,069 - INFO - Flow arrival id=44 src=1 dst=2
+2026-05-13 19:11:03,069 - INFO - ================================================================================
+2026-05-13 19:11:03,069 - INFO - Algorithm handling flow id=44 src=1 dst=2 rate=51 security=1 kgr=2
+2026-05-13 19:11:03,072 - INFO - Flow 44 accepted.
+2026-05-13 19:11:03,072 - INFO - Flow arrival id=45 src=1 dst=5
+2026-05-13 19:11:03,072 - INFO - ================================================================================
+2026-05-13 19:11:03,072 - INFO - Algorithm handling flow id=45 src=1 dst=5 rate=2 security=0 kgr=0
+2026-05-13 19:11:03,075 - INFO - Flow 45 accepted.
+2026-05-13 19:11:03,076 - INFO - Flow departure id=34 src=0 dst=3
+2026-05-13 19:11:03,076 - INFO - Flow removed id=34
+2026-05-13 19:11:03,076 - INFO - Flow departure id=44 src=1 dst=2
+2026-05-13 19:11:03,076 - INFO - Flow removed id=44
+2026-05-13 19:11:03,076 - INFO - Flow arrival id=46 src=3 dst=4
+2026-05-13 19:11:03,076 - INFO - ================================================================================
+2026-05-13 19:11:03,076 - INFO - Algorithm handling flow id=46 src=3 dst=4 rate=65 security=0 kgr=0
+2026-05-13 19:11:03,078 - INFO - Flow 46 accepted.
+2026-05-13 19:11:03,078 - INFO - Flow arrival id=47 src=5 dst=4
+2026-05-13 19:11:03,078 - INFO - ================================================================================
+2026-05-13 19:11:03,078 - INFO - Algorithm handling flow id=47 src=5 dst=4 rate=48 security=0 kgr=0
+2026-05-13 19:11:03,080 - INFO - Flow 47 accepted.
+2026-05-13 19:11:03,081 - INFO - Flow departure id=46 src=3 dst=4
+2026-05-13 19:11:03,081 - INFO - Flow removed id=46
+2026-05-13 19:11:03,081 - INFO - Flow departure id=47 src=5 dst=4
+2026-05-13 19:11:03,081 - INFO - Flow removed id=47
+2026-05-13 19:11:03,081 - INFO - Flow departure id=43 src=3 dst=5
+2026-05-13 19:11:03,081 - INFO - Flow removed id=43
+2026-05-13 19:11:03,081 - INFO - Flow arrival id=48 src=2 dst=5
+2026-05-13 19:11:03,081 - INFO - ================================================================================
+2026-05-13 19:11:03,081 - INFO - Algorithm handling flow id=48 src=2 dst=5 rate=84 security=2 kgr=1
+2026-05-13 19:11:03,083 - INFO - Flow 48 accepted.
+2026-05-13 19:11:03,083 - INFO - Flow arrival id=49 src=3 dst=2
+2026-05-13 19:11:03,083 - INFO - ================================================================================
+2026-05-13 19:11:03,083 - INFO - Algorithm handling flow id=49 src=3 dst=2 rate=34 security=0 kgr=0
+2026-05-13 19:11:03,085 - INFO - Flow 49 accepted.
+2026-05-13 19:11:03,085 - INFO - Flow arrival id=50 src=0 dst=4
+2026-05-13 19:11:03,085 - INFO - ================================================================================
+2026-05-13 19:11:03,085 - INFO - Algorithm handling flow id=50 src=0 dst=4 rate=78 security=1 kgr=2
+2026-05-13 19:11:03,090 - INFO - Flow blocked id=50 src=0 dst=4 rate=78
+2026-05-13 19:11:03,090 - INFO - Flow arrival id=51 src=1 dst=2
+2026-05-13 19:11:03,090 - INFO - ================================================================================
+2026-05-13 19:11:03,090 - INFO - Algorithm handling flow id=51 src=1 dst=2 rate=63 security=2 kgr=3
+2026-05-13 19:11:03,092 - INFO - Flow 51 accepted.
+2026-05-13 19:11:03,092 - INFO - Flow arrival id=52 src=5 dst=2
+2026-05-13 19:11:03,092 - INFO - ================================================================================
+2026-05-13 19:11:03,092 - INFO - Algorithm handling flow id=52 src=5 dst=2 rate=6 security=1 kgr=1
+2026-05-13 19:11:03,094 - INFO - Flow 52 accepted.
+2026-05-13 19:11:03,094 - INFO - Flow arrival id=53 src=0 dst=5
+2026-05-13 19:11:03,094 - INFO - ================================================================================
+2026-05-13 19:11:03,094 - INFO - Algorithm handling flow id=53 src=0 dst=5 rate=57 security=2 kgr=4
+2026-05-13 19:11:03,097 - INFO - Flow 53 accepted.
+2026-05-13 19:11:03,097 - INFO - Flow arrival id=54 src=0 dst=4
+2026-05-13 19:11:03,097 - INFO - ================================================================================
+2026-05-13 19:11:03,097 - INFO - Algorithm handling flow id=54 src=0 dst=4 rate=70 security=0 kgr=0
+2026-05-13 19:11:03,123 - INFO - Flow blocked id=54 src=0 dst=4 rate=70
+2026-05-13 19:11:03,123 - INFO - Flow arrival id=55 src=2 dst=1
+2026-05-13 19:11:03,123 - INFO - ================================================================================
+2026-05-13 19:11:03,123 - INFO - Algorithm handling flow id=55 src=2 dst=1 rate=6 security=0 kgr=0
+2026-05-13 19:11:03,125 - INFO - Flow 55 accepted.
+2026-05-13 19:11:03,125 - INFO - Flow departure id=35 src=3 dst=2
+2026-05-13 19:11:03,126 - INFO - Flow removed id=35
+2026-05-13 19:11:03,126 - INFO - Flow departure id=55 src=2 dst=1
+2026-05-13 19:11:03,126 - INFO - Flow removed id=55
+2026-05-13 19:11:03,126 - INFO - Flow departure id=53 src=0 dst=5
+2026-05-13 19:11:03,126 - INFO - Flow removed id=53
+2026-05-13 19:11:03,126 - INFO - Flow arrival id=56 src=5 dst=3
+2026-05-13 19:11:03,126 - INFO - ================================================================================
+2026-05-13 19:11:03,126 - INFO - Algorithm handling flow id=56 src=5 dst=3 rate=46 security=0 kgr=0
+2026-05-13 19:11:03,128 - INFO - Flow 56 accepted.
+2026-05-13 19:11:03,128 - INFO - Flow departure id=40 src=3 dst=4
+2026-05-13 19:11:03,128 - INFO - Flow removed id=40
+2026-05-13 19:11:03,128 - INFO - Flow arrival id=57 src=1 dst=3
+2026-05-13 19:11:03,128 - INFO - ================================================================================
+2026-05-13 19:11:03,128 - INFO - Algorithm handling flow id=57 src=1 dst=3 rate=53 security=2 kgr=2
+2026-05-13 19:11:03,131 - INFO - Flow 57 accepted.
+2026-05-13 19:11:03,131 - INFO - Flow departure id=49 src=3 dst=2
+2026-05-13 19:11:03,131 - INFO - Flow removed id=49
+2026-05-13 19:11:03,131 - INFO - Flow departure id=48 src=2 dst=5
+2026-05-13 19:11:03,131 - INFO - Flow removed id=48
+2026-05-13 19:11:03,131 - INFO - Flow arrival id=58 src=1 dst=3
+2026-05-13 19:11:03,131 - INFO - ================================================================================
+2026-05-13 19:11:03,131 - INFO - Algorithm handling flow id=58 src=1 dst=3 rate=53 security=0 kgr=0
+2026-05-13 19:11:03,133 - INFO - Flow blocked id=58 src=1 dst=3 rate=53
+2026-05-13 19:11:03,134 - INFO - Flow departure id=52 src=5 dst=2
+2026-05-13 19:11:03,134 - INFO - Flow removed id=52
+2026-05-13 19:11:03,134 - INFO - Flow departure id=57 src=1 dst=3
+2026-05-13 19:11:03,134 - INFO - Flow removed id=57
+2026-05-13 19:11:03,134 - INFO - Flow arrival id=59 src=4 dst=3
+2026-05-13 19:11:03,134 - INFO - ================================================================================
+2026-05-13 19:11:03,134 - INFO - Algorithm handling flow id=59 src=4 dst=3 rate=86 security=1 kgr=2
+2026-05-13 19:11:03,136 - INFO - Flow 59 accepted.
+2026-05-13 19:11:03,136 - INFO - Flow departure id=45 src=1 dst=5
+2026-05-13 19:11:03,136 - INFO - Flow removed id=45
+2026-05-13 19:11:03,136 - INFO - Flow arrival id=60 src=5 dst=0
+2026-05-13 19:11:03,136 - INFO - ================================================================================
+2026-05-13 19:11:03,136 - INFO - Algorithm handling flow id=60 src=5 dst=0 rate=61 security=0 kgr=0
+2026-05-13 19:11:03,138 - INFO - Flow 60 accepted.
+2026-05-13 19:11:03,138 - INFO - Flow arrival id=61 src=5 dst=1
+2026-05-13 19:11:03,138 - INFO - ================================================================================
+2026-05-13 19:11:03,138 - INFO - Algorithm handling flow id=61 src=5 dst=1 rate=29 security=0 kgr=0
+2026-05-13 19:11:03,140 - INFO - Flow 61 accepted.
+2026-05-13 19:11:03,140 - INFO - Flow arrival id=62 src=1 dst=2
+2026-05-13 19:11:03,140 - INFO - ================================================================================
+2026-05-13 19:11:03,140 - INFO - Algorithm handling flow id=62 src=1 dst=2 rate=99 security=0 kgr=0
+2026-05-13 19:11:03,143 - INFO - Flow 62 accepted.
+2026-05-13 19:11:03,143 - INFO - Flow departure id=51 src=1 dst=2
+2026-05-13 19:11:03,143 - INFO - Flow removed id=51
+2026-05-13 19:11:03,143 - INFO - Flow arrival id=63 src=4 dst=0
+2026-05-13 19:11:03,143 - INFO - ================================================================================
+2026-05-13 19:11:03,143 - INFO - Algorithm handling flow id=63 src=4 dst=0 rate=43 security=2 kgr=1
+2026-05-13 19:11:03,147 - INFO - Flow 63 accepted.
+2026-05-13 19:11:03,147 - INFO - Flow departure id=60 src=5 dst=0
+2026-05-13 19:11:03,147 - INFO - Flow removed id=60
+2026-05-13 19:11:03,148 - INFO - Flow arrival id=64 src=1 dst=4
+2026-05-13 19:11:03,148 - INFO - ================================================================================
+2026-05-13 19:11:03,148 - INFO - Algorithm handling flow id=64 src=1 dst=4 rate=5 security=1 kgr=1
+2026-05-13 19:11:03,149 - INFO - Flow 64 accepted.
+2026-05-13 19:11:03,149 - INFO - Flow arrival id=65 src=2 dst=1
+2026-05-13 19:11:03,150 - INFO - ================================================================================
+2026-05-13 19:11:03,150 - INFO - Algorithm handling flow id=65 src=2 dst=1 rate=66 security=2 kgr=1
+2026-05-13 19:11:03,152 - INFO - Flow 65 accepted.
+2026-05-13 19:11:03,153 - INFO - Flow arrival id=66 src=3 dst=4
+2026-05-13 19:11:03,153 - INFO - ================================================================================
+2026-05-13 19:11:03,153 - INFO - Algorithm handling flow id=66 src=3 dst=4 rate=1 security=1 kgr=2
+2026-05-13 19:11:03,158 - INFO - Flow 66 accepted.
+2026-05-13 19:11:03,158 - INFO - Flow departure id=62 src=1 dst=2
+2026-05-13 19:11:03,158 - INFO - Flow removed id=62
+2026-05-13 19:11:03,158 - INFO - Flow departure id=66 src=3 dst=4
+2026-05-13 19:11:03,158 - INFO - Flow removed id=66
+2026-05-13 19:11:03,159 - INFO - Flow departure id=61 src=5 dst=1
+2026-05-13 19:11:03,159 - INFO - Flow removed id=61
+2026-05-13 19:11:03,159 - INFO - Flow departure id=65 src=2 dst=1
+2026-05-13 19:11:03,159 - INFO - Flow removed id=65
+2026-05-13 19:11:03,159 - INFO - Flow arrival id=67 src=0 dst=3
+2026-05-13 19:11:03,159 - INFO - ================================================================================
+2026-05-13 19:11:03,159 - INFO - Algorithm handling flow id=67 src=0 dst=3 rate=41 security=2 kgr=1
+2026-05-13 19:11:03,165 - INFO - Flow 67 accepted.
+2026-05-13 19:11:03,165 - INFO - Flow arrival id=68 src=1 dst=5
+2026-05-13 19:11:03,165 - INFO - ================================================================================
+2026-05-13 19:11:03,165 - INFO - Algorithm handling flow id=68 src=1 dst=5 rate=52 security=1 kgr=3
+2026-05-13 19:11:03,169 - INFO - Flow blocked id=68 src=1 dst=5 rate=52
+2026-05-13 19:11:03,169 - INFO - Flow arrival id=69 src=1 dst=2
+2026-05-13 19:11:03,169 - INFO - ================================================================================
+2026-05-13 19:11:03,169 - INFO - Algorithm handling flow id=69 src=1 dst=2 rate=96 security=2 kgr=2
+2026-05-13 19:11:03,170 - INFO - Flow 69 accepted.
+2026-05-13 19:11:03,170 - INFO - Flow arrival id=70 src=1 dst=5
+2026-05-13 19:11:03,170 - INFO - ================================================================================
+2026-05-13 19:11:03,170 - INFO - Algorithm handling flow id=70 src=1 dst=5 rate=37 security=1 kgr=2
+2026-05-13 19:11:03,173 - INFO - Flow blocked id=70 src=1 dst=5 rate=37
+2026-05-13 19:11:03,173 - INFO - Flow departure id=59 src=4 dst=3
+2026-05-13 19:11:03,173 - INFO - Flow removed id=59
+2026-05-13 19:11:03,173 - INFO - Flow arrival id=71 src=3 dst=4
+2026-05-13 19:11:03,173 - INFO - ================================================================================
+2026-05-13 19:11:03,173 - INFO - Algorithm handling flow id=71 src=3 dst=4 rate=57 security=1 kgr=2
+2026-05-13 19:11:03,176 - INFO - Flow 71 accepted.
+2026-05-13 19:11:03,176 - INFO - Flow departure id=63 src=4 dst=0
+2026-05-13 19:11:03,176 - INFO - Flow removed id=63
+2026-05-13 19:11:03,176 - INFO - Flow arrival id=72 src=5 dst=0
+2026-05-13 19:11:03,176 - INFO - ================================================================================
+2026-05-13 19:11:03,177 - INFO - Algorithm handling flow id=72 src=5 dst=0 rate=85 security=0 kgr=0
+2026-05-13 19:11:03,178 - INFO - Flow 72 accepted.
+2026-05-13 19:11:03,179 - INFO - Flow departure id=71 src=3 dst=4
+2026-05-13 19:11:03,179 - INFO - Flow removed id=71
+2026-05-13 19:11:03,179 - INFO - Flow arrival id=73 src=3 dst=1
+2026-05-13 19:11:03,179 - INFO - ================================================================================
+2026-05-13 19:11:03,179 - INFO - Algorithm handling flow id=73 src=3 dst=1 rate=97 security=0 kgr=0
+2026-05-13 19:11:03,180 - INFO - Flow 73 accepted.
+2026-05-13 19:11:03,180 - INFO - Flow arrival id=74 src=1 dst=5
+2026-05-13 19:11:03,180 - INFO - ================================================================================
+2026-05-13 19:11:03,180 - INFO - Algorithm handling flow id=74 src=1 dst=5 rate=6 security=0 kgr=0
+2026-05-13 19:11:03,182 - INFO - Flow 74 accepted.
+2026-05-13 19:11:03,183 - INFO - Flow arrival id=75 src=3 dst=0
+2026-05-13 19:11:03,183 - INFO - ================================================================================
+2026-05-13 19:11:03,183 - INFO - Algorithm handling flow id=75 src=3 dst=0 rate=54 security=1 kgr=2
+2026-05-13 19:11:03,185 - INFO - Flow 75 accepted.
+2026-05-13 19:11:03,185 - INFO - Flow arrival id=76 src=2 dst=3
+2026-05-13 19:11:03,185 - INFO - ================================================================================
+2026-05-13 19:11:03,185 - INFO - Algorithm handling flow id=76 src=2 dst=3 rate=89 security=2 kgr=1
+2026-05-13 19:11:03,188 - INFO - Flow 76 accepted.
+2026-05-13 19:11:03,188 - INFO - Flow departure id=74 src=1 dst=5
+2026-05-13 19:11:03,189 - INFO - Flow removed id=74
+2026-05-13 19:11:03,189 - INFO - Flow arrival id=77 src=5 dst=2
+2026-05-13 19:11:03,189 - INFO - ================================================================================
+2026-05-13 19:11:03,189 - INFO - Algorithm handling flow id=77 src=5 dst=2 rate=29 security=1 kgr=2
+2026-05-13 19:11:03,190 - INFO - Flow blocked id=77 src=5 dst=2 rate=29
+2026-05-13 19:11:03,190 - INFO - Flow arrival id=78 src=4 dst=2
+2026-05-13 19:11:03,190 - INFO - ================================================================================
+2026-05-13 19:11:03,190 - INFO - Algorithm handling flow id=78 src=4 dst=2 rate=16 security=0 kgr=0
+2026-05-13 19:11:03,190 - INFO - Flow blocked id=78 src=4 dst=2 rate=16
+2026-05-13 19:11:03,190 - INFO - Flow departure id=76 src=2 dst=3
+2026-05-13 19:11:03,190 - INFO - Flow removed id=76
+2026-05-13 19:11:03,190 - INFO - Flow arrival id=79 src=5 dst=0
+2026-05-13 19:11:03,190 - INFO - ================================================================================
+2026-05-13 19:11:03,190 - INFO - Algorithm handling flow id=79 src=5 dst=0 rate=77 security=2 kgr=3
+2026-05-13 19:11:03,192 - INFO - Flow blocked id=79 src=5 dst=0 rate=77
+2026-05-13 19:11:03,192 - INFO - Flow arrival id=80 src=5 dst=3
+2026-05-13 19:11:03,192 - INFO - ================================================================================
+2026-05-13 19:11:03,192 - INFO - Algorithm handling flow id=80 src=5 dst=3 rate=55 security=2 kgr=4
+2026-05-13 19:11:03,194 - INFO - Flow blocked id=80 src=5 dst=3 rate=55
+2026-05-13 19:11:03,194 - INFO - Flow departure id=56 src=5 dst=3
+2026-05-13 19:11:03,194 - INFO - Flow removed id=56
+2026-05-13 19:11:03,194 - INFO - Flow arrival id=81 src=4 dst=3
+2026-05-13 19:11:03,194 - INFO - ================================================================================
+2026-05-13 19:11:03,194 - INFO - Algorithm handling flow id=81 src=4 dst=3 rate=82 security=0 kgr=0
+2026-05-13 19:11:03,196 - INFO - Flow 81 accepted.
+2026-05-13 19:11:03,196 - INFO - Flow departure id=73 src=3 dst=1
+2026-05-13 19:11:03,197 - INFO - Flow removed id=73
+2026-05-13 19:11:03,197 - INFO - Flow arrival id=82 src=4 dst=5
+2026-05-13 19:11:03,197 - INFO - ================================================================================
+2026-05-13 19:11:03,197 - INFO - Algorithm handling flow id=82 src=4 dst=5 rate=57 security=1 kgr=1
+2026-05-13 19:11:03,199 - INFO - Flow blocked id=82 src=4 dst=5 rate=57
+2026-05-13 19:11:03,199 - INFO - Flow arrival id=83 src=1 dst=3
+2026-05-13 19:11:03,199 - INFO - ================================================================================
+2026-05-13 19:11:03,199 - INFO - Algorithm handling flow id=83 src=1 dst=3 rate=11 security=2 kgr=2
+2026-05-13 19:11:03,204 - INFO - Flow 83 accepted.
+2026-05-13 19:11:03,205 - INFO - Flow arrival id=84 src=2 dst=3
+2026-05-13 19:11:03,205 - INFO - ================================================================================
+2026-05-13 19:11:03,205 - INFO - Algorithm handling flow id=84 src=2 dst=3 rate=54 security=0 kgr=0
+2026-05-13 19:11:03,211 - INFO - Flow 84 accepted.
+2026-05-13 19:11:03,211 - INFO - Flow arrival id=85 src=3 dst=2
+2026-05-13 19:11:03,212 - INFO - ================================================================================
+2026-05-13 19:11:03,212 - INFO - Algorithm handling flow id=85 src=3 dst=2 rate=50 security=1 kgr=1
+2026-05-13 19:11:03,213 - INFO - Flow blocked id=85 src=3 dst=2 rate=50
+2026-05-13 19:11:03,213 - INFO - Flow arrival id=86 src=4 dst=5
+2026-05-13 19:11:03,213 - INFO - ================================================================================
+2026-05-13 19:11:03,213 - INFO - Algorithm handling flow id=86 src=4 dst=5 rate=39 security=1 kgr=4
+2026-05-13 19:11:03,215 - INFO - Flow blocked id=86 src=4 dst=5 rate=39
+2026-05-13 19:11:03,215 - INFO - Flow departure id=83 src=1 dst=3
+2026-05-13 19:11:03,216 - INFO - Flow removed id=83
+2026-05-13 19:11:03,216 - INFO - Flow arrival id=87 src=5 dst=1
+2026-05-13 19:11:03,216 - INFO - ================================================================================
+2026-05-13 19:11:03,216 - INFO - Algorithm handling flow id=87 src=5 dst=1 rate=78 security=2 kgr=2
+2026-05-13 19:11:03,217 - INFO - Flow blocked id=87 src=5 dst=1 rate=78
+2026-05-13 19:11:03,217 - INFO - Flow departure id=72 src=5 dst=0
+2026-05-13 19:11:03,217 - INFO - Flow removed id=72
+2026-05-13 19:11:03,217 - INFO - Flow departure id=81 src=4 dst=3
+2026-05-13 19:11:03,217 - INFO - Flow removed id=81
+2026-05-13 19:11:03,217 - INFO - Flow arrival id=88 src=1 dst=4
+2026-05-13 19:11:03,217 - INFO - ================================================================================
+2026-05-13 19:11:03,217 - INFO - Algorithm handling flow id=88 src=1 dst=4 rate=86 security=1 kgr=4
+2026-05-13 19:11:03,218 - INFO - Flow blocked id=88 src=1 dst=4 rate=86
+2026-05-13 19:11:03,218 - INFO - Flow arrival id=89 src=5 dst=1
+2026-05-13 19:11:03,218 - INFO - ================================================================================
+2026-05-13 19:11:03,218 - INFO - Algorithm handling flow id=89 src=5 dst=1 rate=69 security=2 kgr=1
+2026-05-13 19:11:03,219 - INFO - Flow blocked id=89 src=5 dst=1 rate=69
+2026-05-13 19:11:03,219 - INFO - Flow departure id=75 src=3 dst=0
+2026-05-13 19:11:03,219 - INFO - Flow removed id=75
+2026-05-13 19:11:03,219 - INFO - Flow arrival id=90 src=3 dst=4
+2026-05-13 19:11:03,219 - INFO - ================================================================================
+2026-05-13 19:11:03,219 - INFO - Algorithm handling flow id=90 src=3 dst=4 rate=55 security=2 kgr=2
+2026-05-13 19:11:03,222 - INFO - Flow 90 accepted.
+2026-05-13 19:11:03,222 - INFO - Flow arrival id=91 src=1 dst=0
+2026-05-13 19:11:03,223 - INFO - ================================================================================
+2026-05-13 19:11:03,223 - INFO - Algorithm handling flow id=91 src=1 dst=0 rate=59 security=0 kgr=0
+2026-05-13 19:11:03,224 - INFO - Flow blocked id=91 src=1 dst=0 rate=59
+2026-05-13 19:11:03,224 - INFO - Flow departure id=90 src=3 dst=4
+2026-05-13 19:11:03,224 - INFO - Flow removed id=90
+2026-05-13 19:11:03,224 - INFO - Flow departure id=67 src=0 dst=3
+2026-05-13 19:11:03,224 - INFO - Flow removed id=67
+2026-05-13 19:11:03,224 - INFO - Flow departure id=64 src=1 dst=4
+2026-05-13 19:11:03,224 - INFO - Flow removed id=64
+2026-05-13 19:11:03,224 - INFO - Flow arrival id=92 src=4 dst=5
+2026-05-13 19:11:03,224 - INFO - ================================================================================
+2026-05-13 19:11:03,224 - INFO - Algorithm handling flow id=92 src=4 dst=5 rate=33 security=1 kgr=1
+2026-05-13 19:11:03,226 - INFO - Flow 92 accepted.
+2026-05-13 19:11:03,226 - INFO - Flow arrival id=93 src=4 dst=3
+2026-05-13 19:11:03,226 - INFO - ================================================================================
+2026-05-13 19:11:03,226 - INFO - Algorithm handling flow id=93 src=4 dst=3 rate=29 security=1 kgr=1
+2026-05-13 19:11:03,228 - INFO - Flow 93 accepted.
+2026-05-13 19:11:03,228 - INFO - Flow arrival id=94 src=4 dst=0
+2026-05-13 19:11:03,228 - INFO - ================================================================================
+2026-05-13 19:11:03,228 - INFO - Algorithm handling flow id=94 src=4 dst=0 rate=26 security=0 kgr=0
+2026-05-13 19:11:03,230 - INFO - Flow 94 accepted.
+2026-05-13 19:11:03,230 - INFO - Flow arrival id=95 src=3 dst=5
+2026-05-13 19:11:03,230 - INFO - ================================================================================
+2026-05-13 19:11:03,230 - INFO - Algorithm handling flow id=95 src=3 dst=5 rate=15 security=2 kgr=2
+2026-05-13 19:11:03,232 - INFO - Flow 95 accepted.
+2026-05-13 19:11:03,232 - INFO - Flow departure id=94 src=4 dst=0
+2026-05-13 19:11:03,232 - INFO - Flow removed id=94
+2026-05-13 19:11:03,232 - INFO - Flow departure id=69 src=1 dst=2
+2026-05-13 19:11:03,232 - INFO - Flow removed id=69
+2026-05-13 19:11:03,232 - INFO - Flow departure id=95 src=3 dst=5
+2026-05-13 19:11:03,232 - INFO - Flow removed id=95
+2026-05-13 19:11:03,232 - INFO - Flow arrival id=96 src=1 dst=4
+2026-05-13 19:11:03,233 - INFO - ================================================================================
+2026-05-13 19:11:03,233 - INFO - Algorithm handling flow id=96 src=1 dst=4 rate=96 security=2 kgr=1
+2026-05-13 19:11:03,234 - INFO - Flow 96 accepted.
+2026-05-13 19:11:03,234 - INFO - Flow departure id=92 src=4 dst=5
+2026-05-13 19:11:03,234 - INFO - Flow removed id=92
+2026-05-13 19:11:03,234 - INFO - Flow departure id=84 src=2 dst=3
+2026-05-13 19:11:03,234 - INFO - Flow removed id=84
+2026-05-13 19:11:03,234 - INFO - Flow departure id=96 src=1 dst=4
+2026-05-13 19:11:03,234 - INFO - Flow removed id=96
+2026-05-13 19:11:03,234 - INFO - Flow arrival id=97 src=1 dst=0
+2026-05-13 19:11:03,234 - INFO - ================================================================================
+2026-05-13 19:11:03,234 - INFO - Algorithm handling flow id=97 src=1 dst=0 rate=40 security=0 kgr=0
+2026-05-13 19:11:03,236 - INFO - Flow 97 accepted.
+2026-05-13 19:11:03,236 - INFO - Flow departure id=97 src=1 dst=0
+2026-05-13 19:11:03,236 - INFO - Flow removed id=97
+2026-05-13 19:11:03,236 - INFO - Flow arrival id=98 src=5 dst=4
+2026-05-13 19:11:03,236 - INFO - ================================================================================
+2026-05-13 19:11:03,236 - INFO - Algorithm handling flow id=98 src=5 dst=4 rate=26 security=2 kgr=1
+2026-05-13 19:11:03,238 - INFO - Flow 98 accepted.
+2026-05-13 19:11:03,238 - INFO - Flow arrival id=99 src=5 dst=1
+2026-05-13 19:11:03,238 - INFO - ================================================================================
+2026-05-13 19:11:03,238 - INFO - Algorithm handling flow id=99 src=5 dst=1 rate=88 security=1 kgr=1
+2026-05-13 19:11:03,240 - INFO - Flow 99 accepted.
+2026-05-13 19:11:03,240 - INFO - Flow departure id=99 src=5 dst=1
+2026-05-13 19:11:03,240 - INFO - Flow removed id=99
+2026-05-13 19:11:03,240 - INFO - Flow departure id=98 src=5 dst=4
+2026-05-13 19:11:03,240 - INFO - Flow removed id=98
+2026-05-13 19:11:03,240 - INFO - Flow departure id=93 src=4 dst=3
+2026-05-13 19:11:03,240 - INFO - Flow removed id=93
+2026-05-13 19:11:03,240 - INFO - Simulation loop finished with summary={'arrivals': 100, 'accepted': 77, 'blocked': 23, 'blocking_rate': 0.23, 'arrivals_secure': 65, 'accepted_secure': 47, 'blocked_secure': 18, 'secure_blocking_rate': 0.27692307692307694, 'arrivals_unsecure': 35, 'accepted_unsecure': 30, 'blocked_unsecure': 5, 'unsecure_blocking_rate': 0.14285714285714285, 'security_exposure_total': 79, 'expected_security_exposure': 4.9375, 'recip_channel_count_total': 112, 'average_recip_channel_count_per_edge': 7.0, 'cost': {'total_security_cost': 728.0}}
+2026-05-13 19:11:03,240 - INFO - Simulation completed with summary={'arrivals': 100, 'accepted': 77, 'blocked': 23, 'blocking_rate': 0.23, 'arrivals_secure': 65, 'accepted_secure': 47, 'blocked_secure': 18, 'secure_blocking_rate': 0.27692307692307694, 'arrivals_unsecure': 35, 'accepted_unsecure': 30, 'blocked_unsecure': 5, 'unsecure_blocking_rate': 0.14285714285714285, 'security_exposure_total': 79, 'expected_security_exposure': 4.9375, 'recip_channel_count_total': 112, 'average_recip_channel_count_per_edge': 7.0, 'cost': {'total_security_cost': 728.0}}

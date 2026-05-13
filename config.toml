@@ -42,12 +42,8 @@ name = "JDRG"
 k = 4
 
 [costs]
-wavelength_cost = 2.0
-distance_cost = 0.03
-key_rate_cost = 1.2
-security_port_cost = 3.0
-logical_hop_tiebreak = 0.001
-physical_hop_tiebreak = 0.001
+channel = 2.0
+port = 3.0
 
 [outputs]
 directory = "outputs"

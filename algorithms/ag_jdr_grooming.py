@@ -189,7 +189,8 @@ class AuxGJointDataRecipGrooming(HeuristicAlgorithm):
                     route=aux_graph.edges[seg.src, seg.dst]["route"],
                     usage=aux_graph.edges[seg.src, seg.dst]["usage"],
                     kind="exist",
-                    layer="lightpath"
+                    layer="lightpath",
+                    dedicate=aux_graph.edges[seg.src, seg.dst]["dedicate"]
                 )
                 lightpaths.append(lp)
             else:
@@ -204,7 +205,8 @@ class AuxGJointDataRecipGrooming(HeuristicAlgorithm):
                     route=seg.route,
                     usage=usage,
                     kind="new",
-                    layer="lightpath"
+                    layer="lightpath",
+                    dedicate="False"
                 )
                 lightpaths.append(lp)
         return lightpaths

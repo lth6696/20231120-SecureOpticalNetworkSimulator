@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-import logging
 import tomllib
 from dataclasses import dataclass, fields, field
 from pathlib import Path
@@ -60,7 +59,10 @@ class TrafficConfig:
     call_types: list[CallTypeConfig] = field(default_factory=list)
 
 
-
+@dataclass(frozen=True, slots=True)
+class CostsConfig:
+    channel: int = 0
+    port: int = 0
 
 
 @dataclass(frozen=True, slots=True)
@@ -80,6 +82,7 @@ class SimulationConfig:
     traffic: TrafficConfig = TrafficConfig()
     resource: ResourceConfig = ResourceConfig()
     algorithm: AlgorithmConfig = AlgorithmConfig()
+    costs: CostsConfig = CostsConfig()
 
     trace_path: Path | None = None
 
@@ -100,6 +103,7 @@ def load_simulation_config(path: str | Path) -> SimulationConfig:
         traffic=_read_dataclass(TrafficConfig, raw_config.get("traffic", {})),
         # resource=_read_dataclass(ResourceConfig, raw_config.get("resource", {})),
         algorithm=_read_dataclass(AlgorithmConfig, raw_config.get("algorithm", {})),
+        costs=_read_dataclass(CostsConfig, raw_config.get("costs", {}))
     )
     return config
 
@@ -131,7 +135,7 @@ def _section_name(cls: type[Any]) -> str:
         TrafficConfig: "traffic",
         ResourceConfig: "resource",
         AlgorithmConfig: "algorithm",
-        # CostsConfig: "costs",
+        CostsConfig: "costs",
         # OutputsConfig: "outputs",
     }
     return mapping.get(cls, cls.__name__)

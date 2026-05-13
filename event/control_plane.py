@@ -89,7 +89,8 @@ class ControlPlane:
                             route=lightpath.route,
                             usage="data",
                             kind="exist",
-                            active_flows={flow.id}
+                            active_flows={flow.id},
+                            dedicate="False"
                         )
                         self.mapped_flow_lightpaths.setdefault(flow.id, []).append(
                             FlowLightpathRef(
@@ -143,7 +144,8 @@ class ControlPlane:
                             route=lightpath.route,
                             usage="recip",
                             kind="exist",
-                            active_flows={flow.id}
+                            active_flows={flow.id},
+                            dedicate=lightpath.dedicate
                         )
                         self.mapped_flow_lightpaths.setdefault(flow.id, []).append(
                             FlowLightpathRef(

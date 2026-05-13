@@ -285,7 +285,7 @@ class AuxGSecurityFirstGrooming(HeuristicAlgorithm):
 
         return hops
 
-    def _get_lightpath(self, aux_graph: nx.DiGraph, path: list[Segment], usage: str) -> list[Lightpath]:
+    def _get_lightpath(self, aux_graph: nx.DiGraph, path: list[Segment], usage: str, is_dedicate="False") -> list[Lightpath]:
         lightpaths: list[Lightpath] = []
         for seg in path:
             if seg.kind == "exist":
@@ -303,6 +303,7 @@ class AuxGSecurityFirstGrooming(HeuristicAlgorithm):
                         usage=edge_data["usage"],
                         kind="exist",
                         layer="lightpath",
+                        dedicate=edge_data["dedicate"]
                     )
                 )
             elif seg.kind == "new":
@@ -320,6 +321,7 @@ class AuxGSecurityFirstGrooming(HeuristicAlgorithm):
                         usage=usage,
                         kind="new",
                         layer="lightpath",
+                        dedicate=is_dedicate
                     )
                 )
             else:

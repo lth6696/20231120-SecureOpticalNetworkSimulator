@@ -44,7 +44,7 @@ class SimulationRunner:
 
 def build_runner(config: SimulationConfig) -> SimulationRunner:
     # 创建统计模块，用于记录业务到达、接受、阻塞、释放、资源利用率等仿真过程中的统计信息。
-    stats = StatsCollector()
+    stats = StatsCollector(c_h=config.costs.channel, c_p=config.costs.port)
     # 创建事件追踪器
     tracer = Tracer(path=config.trace_path)
 
@@ -88,4 +88,6 @@ def _create_algorithm(config: SimulationConfig) -> HeuristicAlgorithm:
         return AuxGJointDataRecipGrooming(k=config.algorithm.k)
     elif name == "sfg":
         return AuxGSecurityFirstGrooming(k=config.algorithm.k)
+    elif name == "cfg":
+        return AuxGCostFirstGrooming(k=config.algorithm.k, c_h=config.costs.channel, c_p=config.costs.port)
     raise ConfigurationError(f"unknown routing algorithm: {config.algorithm}")

@@ -40,6 +40,14 @@ class StatsCollector:
     recip_channel_count_by_edge: dict[tuple[int, int], int] = field(default_factory=dict)
     physical_edges: set[tuple[int, int]] = field(default_factory=set)
 
+    # Cost metric units in C_bar:
+    #   sum kappa = reciprocal-channel physical wavelength-link usage,
+    #   sum gamma = reciprocal lightpath usage.
+    cost_recip_wavelength_link_units: int = 0
+    cost_recip_lightpath_units: int = 0
+    c_h: float = 1.0
+    c_p: float = 1.0
+
     def observe_event(self, event: Event) -> None:
         if isinstance(event, FlowArrivalEvent):
             self.arrivals += 1
@@ -67,6 +75,8 @@ class StatsCollector:
 
         # 统计安全性
         self._update_security_metrics(lightpaths)
+        # 统计成本
+        self._update_cost_metrics(lightpaths)
 
         # self.physical_hops_accepted += physical_hops
         # self.virtual_hops_accepted += virtual_hops
@@ -116,19 +126,35 @@ class StatsCollector:
 
             # Uploaded security metrics.
             "security_exposure_total": total_security_exposure,
-            "security_exposure_by_edge": self._stringify_edge_dict(
-                self.security_exposure_by_edge
-            ),
+            # "security_exposure_by_edge": self._stringify_edge_dict(
+            #     self.security_exposure_by_edge
+            # ),
             "expected_security_exposure": (
                 total_security_exposure / edge_count if edge_count else 0.0
             ),
             "recip_channel_count_total": total_recip_channels,
-            "recip_channel_count_by_edge": self._stringify_edge_dict(
-                self.recip_channel_count_by_edge
-            ),
+            # "recip_channel_count_by_edge": self._stringify_edge_dict(
+            #     self.recip_channel_count_by_edge
+            # ),
             "average_recip_channel_count_per_edge": (
                 total_recip_channels / edge_count if edge_count else 0.0
             ),
+
+            # Uploaded cost metric C_bar.
+            "cost": {
+                # "c_h": self.c_h,
+                # "c_p": self.c_p,
+                # "recip_wavelength_link_units": self.cost_recip_wavelength_link_units,
+                # "recip_lightpath_units": self.cost_recip_lightpath_units,
+                "total_security_cost": self.c_h * self.cost_recip_wavelength_link_units + 2.0 * self.c_p * self.cost_recip_lightpath_units,
+                # "secure_service_count": self.accepted_secure,
+                # "average_secure_service_cost": average_secure_service_cost,
+                # "c_bar": average_secure_service_cost,
+            },
+            # Backward-compatible / easy-to-plot aliases.
+            # "total_security_cost": total_cost,
+            # "average_secure_service_cost": average_secure_service_cost,
+            # "c_bar": average_secure_service_cost,
         }
 
     def _update_security_metrics(self, lightpaths: dict[str, list[Any]]) -> None:
@@ -155,6 +181,18 @@ class StatsCollector:
                     self.security_exposure_by_edge.get(edge, 0)
                     + data_edge_counts[edge] * recip_edge_counts[edge]
             )
+
+    def _update_cost_metrics(self, lightpaths: dict[str, list[Any]]) -> None:
+        """Update the cost units in the uploaded C_bar formula.
+
+        The formula counts reciprocal-channel wavelength-link usage with kappa
+        and reciprocal lightpath usage with gamma. Therefore each accepted
+        secure request contributes the physical hops of its reciprocal paths
+        and the number of reciprocal lightpaths it uses.
+        """
+        for lightpath in lightpaths.get("recip", []) or []:
+            self.cost_recip_lightpath_units += 1
+            self.cost_recip_wavelength_link_units += len(lightpath.route)
 
     @staticmethod
     def _route_physical_edges(route: list[Any]) -> list[tuple[int, int]]:

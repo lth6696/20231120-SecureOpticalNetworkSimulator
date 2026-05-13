@@ -20,6 +20,7 @@ class Lightpath:
     route: []
     usage: str
     kind: str       # new, exist
+    dedicate: str
 
     layer: str = "lightpath"
 
@@ -42,6 +43,7 @@ class VirtualTopology:
      - usage: {data, recip}
      - kind: exist
      - active_flows: {}
+     - dedicate: {True, False}
     """
     graph: nx.MultiDiGraph = field(init=False)
 

@@ -60,7 +60,8 @@ class AuxiliaryGraph:
         "avl_bandwidth",
         "avl_key_rate",
         "route",
-        "usage"
+        "usage",
+        "dedicate"
     )
 
     REQUIRED_EDGE_ATTRS_AUX = (
@@ -71,7 +72,8 @@ class AuxiliaryGraph:
         "avl_bandwidth",
         "avl_key_rate",
         "route",
-        "usage"
+        "usage",
+        "dedicate"
     )
 
     def __init__(self):
@@ -121,7 +123,8 @@ class AuxiliaryGraph:
                     avl_bandwidth=data["max_bandwidth"],
                     avl_key_rate=data["max_key_rate"],
                     route=[(u, v)],
-                    usage=None
+                    usage=None,
+                    dedicate=None
                 )
                 logger.debug(f"AuxG adds edge {WavelengthNode(u, w)} - {WavelengthNode(v, w)} with {self.aux_graph.edges[WavelengthNode(u, w), WavelengthNode(v, w)]}.")
 
@@ -138,7 +141,8 @@ class AuxiliaryGraph:
                     avl_bandwidth=None,
                     avl_key_rate=None,
                     route=[],
-                    usage=None
+                    usage=None,
+                    dedicate=None
                 )
                 logger.debug(f"AuxG adds edge {node} - {WavelengthNode(node, w)} with {self.aux_graph.edges[node, WavelengthNode(node, w)]}.")
 
@@ -152,7 +156,8 @@ class AuxiliaryGraph:
                     avl_bandwidth=None,
                     avl_key_rate=None,
                     route=[],
-                    usage=None
+                    usage=None,
+                    dedicate=None
                 )
                 logger.debug(f"AuxG adds edge {WavelengthNode(node, w)} - {node} with {self.aux_graph.edges[WavelengthNode(node, w), node]}.")
 
@@ -184,7 +189,8 @@ class AuxiliaryGraph:
                 avl_bandwidth=None,
                 avl_key_rate=None,
                 route=[],
-                usage=None
+                usage=None,
+                dedicate=None
             )
             logger.debug(
                 f"AuxG adds edge {u} - {VirtualNode(u, w, u_id)} with {self.aux_graph.edges[u, VirtualNode(u, w, u_id)]}.")
@@ -199,7 +205,8 @@ class AuxiliaryGraph:
                 avl_bandwidth=None,
                 avl_key_rate=None,
                 route=[],
-                usage=None
+                usage=None,
+                dedicate=None
             )
             logger.debug(
                 f"AuxG adds edge {VirtualNode(v, w, v_id)} - {v} with {self.aux_graph.edges[VirtualNode(v, w, v_id), v]}.")
@@ -214,7 +221,8 @@ class AuxiliaryGraph:
                 avl_bandwidth=data["avl_bandwidth"],
                 avl_key_rate=data["avl_key_rate"],
                 route=data["route"],
-                usage=data["usage"]
+                usage=data["usage"],
+                dedicate=data["dedicate"]
             )
             logger.debug(
                 f"AuxG adds edge {VirtualNode(u, w, u_id)} - {VirtualNode(v, w, v_id)} with {self.aux_graph.edges[VirtualNode(u, w, u_id), VirtualNode(v, w, v_id)]}.")
