@@ -146,7 +146,7 @@ class StatsCollector:
                 # "c_p": self.c_p,
                 # "recip_wavelength_link_units": self.cost_recip_wavelength_link_units,
                 # "recip_lightpath_units": self.cost_recip_lightpath_units,
-                "total_security_cost": self.c_h * self.cost_recip_wavelength_link_units + 2.0 * self.c_p * self.cost_recip_lightpath_units,
+                "total_security_cost": (self.c_h * self.cost_recip_wavelength_link_units + 2.0 * self.c_p * self.cost_recip_lightpath_units) / self.accepted_secure,
                 # "secure_service_count": self.accepted_secure,
                 # "average_secure_service_cost": average_secure_service_cost,
                 # "c_bar": average_secure_service_cost,

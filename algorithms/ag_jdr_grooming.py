@@ -69,7 +69,7 @@ class AuxGJointDataRecipGrooming(HeuristicAlgorithm):
 
                 for hop in hops:
                     logger.debug(f"Hop: {hop}")
-                    sp = self._find_reciprocal_path_for_hop(ag, hops, hop, flow)
+                    sp = self._find_reciprocal_path_for_hop(ag, [*hops, *hops_recip], hop, flow)
                     logger.debug(f"Recip hop: {sp}")
                     if sp is None:
                         feasible = False
