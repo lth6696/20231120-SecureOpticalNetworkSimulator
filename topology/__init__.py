@@ -1,10 +1,9 @@
-from .physical import WDMPhysicalTopology, load_physical_topology
+from .physical import PhysicalTopology
 from .virtual import VirtualTopology, Lightpath
 
 __all__ = [
-    "WDMPhysicalTopology",
+    "PhysicalTopology",
     "VirtualTopology",
-    "load_physical_topology",
     "Lightpath"
 ]
 

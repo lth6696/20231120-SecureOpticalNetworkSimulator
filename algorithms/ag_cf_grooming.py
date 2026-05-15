@@ -7,11 +7,10 @@ from typing import Any
 
 import networkx as nx
 
-from event.control_plane import ControlPlane
-from event.flow import Flow
+from simulation.control_plane import ControlPlane
+from models.flow import Flow
 
 from .ag_sf_grooming import Segment, AuxGSecurityFirstGrooming
-from .base import HeuristicAlgorithm
 from .auxiliary_graph import AuxiliaryGraph
 
 logger = logging.getLogger(__name__)

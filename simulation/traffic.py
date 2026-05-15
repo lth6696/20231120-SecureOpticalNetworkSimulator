@@ -3,14 +3,12 @@ from __future__ import annotations
 import logging
 import random
 from dataclasses import dataclass
-from typing import TypeVar
 
-from .events import FlowArrivalEvent, FlowDepartureEvent
-from .flow import Flow
+from models.events import FlowArrivalEvent, FlowDepartureEvent
+from models.flow import Flow
 from .scheduler import EventScheduler
-from config import CallTypeConfig, TrafficConfig
+from models.config import CallTypeConfig, TrafficConfig
 
-T = TypeVar("T")
 logger = logging.getLogger(__name__)
 
 
@@ -44,16 +42,21 @@ class TrafficGenerator:
             inter_arrival = rng.expovariate(1.0 / mean_arrival_time)
             duration = rng.expovariate(1.0 / self.config.mean_holding_time)
             time += inter_arrival
-            sec = rng.randint(self.config.min_security_level, self.config.max_security_level)
+
+            # 新增属性
+            sec = rng.randint(self.config.attrs["min_security_level"], self.config.attrs["max_security_level"])
+            kgr = rng.randint(self.config.attrs["min_key_rate"], self.config.attrs["max_key_rate"]) if sec > 0 else 0
+
             flow = Flow(
                 id=flow_id,
                 src=pair[0],
                 dst=pair[1],
-                rate=rng.randint(self.config.min_bandwidth, self.config.max_bandwidth),
+                rate=call_type.rate,
                 duration=duration,
-                cos=call_type.cos,
-                sec=sec,
-                kgr=rng.randint(self.config.min_key_rate, self.config.max_key_rate) if sec > 0 else 0,
+                attrs={
+                    "sec": sec,
+                    "kgr": kgr
+                }
             )
             event_arrival = FlowArrivalEvent(time=time, flow=flow)
             event_depart = FlowDepartureEvent(time=time + duration, flow=flow)
@@ -71,7 +74,7 @@ def _weighted_mean_rate(call_types: list[CallTypeConfig]) -> float:
     return sum(item.rate * item.weight for item in call_types) / total_weight
 
 
-def _weighted_choice(rng: random.Random, items: list[T]) -> T:
+def _weighted_choice(rng: random.Random, items: list):
     total = sum(float(getattr(item, "weight")) for item in items)
     if total <= 0:
         raise ValueError("weights must sum to a positive value")

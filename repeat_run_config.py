@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-import ast
 import csv
 import math
 import os
@@ -34,8 +33,8 @@ patch_source_for_speed(PROJECT_DIR)
 
 # delayed imports after patching
 os.chdir(PROJECT_DIR)
-from config import load_simulation_config
-from runner import build_runner
+from models.config import load_simulation_config
+from simulation.runner import build_runner
 import random
 
 OUT_DIR = Path('data/')

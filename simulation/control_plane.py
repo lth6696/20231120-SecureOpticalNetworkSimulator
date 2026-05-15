@@ -4,13 +4,13 @@ import logging
 from dataclasses import dataclass, field
 from typing import Literal, Any
 
-from .events import Event, FlowArrivalEvent, FlowDepartureEvent
-from .flow import Flow
-from exceptions import SimulationError, TopologyError
-from stats import StatsCollector
-from topology.physical import WDMPhysicalTopology
-from topology.virtual import VirtualTopology, Lightpath
-from tracer import Tracer
+from models.events import Event, FlowArrivalEvent, FlowDepartureEvent
+from models.flow import Flow
+from models.exceptions import SimulationError, TopologyError
+from observability.stats import StatsCollector
+from topology.physical import PhysicalTopology
+from topology.virtual import VirtualTopology
+from algorithms.base import HeuristicAlgorithm, AlgInput, AlgOutput
 
 logger = logging.getLogger(__name__)
 
@@ -28,16 +28,17 @@ class FlowLightpathRef:
 
 @dataclass
 class ControlPlane:
-    pt: WDMPhysicalTopology
+    pt: PhysicalTopology
     vt: VirtualTopology
     stats: StatsCollector
-    tracer: Tracer
+
+    current_time: float = 0.0
+    algorithm: HeuristicAlgorithm | None = None
+
     active_flows: dict[int, Flow] = field(default_factory=dict)
     mapped_flow_lightpaths: dict[int, list[FlowLightpathRef]] = field(default_factory=dict)
-    algorithm: object | None = None
-    current_time: float = 0.0
 
-    def set_algorithm(self, algorithm: object) -> None:
+    def set_algorithm(self, algorithm: HeuristicAlgorithm) -> None:
         self.algorithm = algorithm
         logger.info(f"Control plane bound to routing algorithm=%s", type(algorithm).__name__)
 
@@ -45,18 +46,24 @@ class ControlPlane:
         # Arrivals are made visible to the algorithm before admission; departures
         # reclaim any working or backup resources still tied to the flow.
         self.current_time = event.time
-        logger.debug("Processing event type=%s time=%.6f", type(event).__name__, event.time)
+        logger.debug(f"{"*" * 50}")
+        logger.debug("Processing simulation type=%s time=%.6f", type(event).__name__, event.time)
         if isinstance(event, FlowArrivalEvent):
-            self.active_flows[event.flow.id] = event.flow
             logger.info(f"Flow arrival id={event.flow.id} src={event.flow.src} dst={event.flow.dst}")
-            self.get_algorithm().flow_arrival(event.flow)
+            self.active_flows[event.flow.id] = event.flow
+
+            alg_input = AlgInput(flow=event.flow, pt=self.pt, vt=self.vt)
+            alg_output = self.algorithm.flow_arrival(alg_input)
+
+            if alg_output.status:
+                self.accept_flow(event.flow.id, alg_output.routes)
+            else:
+                self.block_flow(event.flow.id)
         elif isinstance(event, FlowDepartureEvent):
-            if event.flow.id in self.active_flows:
-                logger.info(f"Flow departure id={event.flow.id} src={event.flow.src} dst={event.flow.dst}")
-                # self.get_algorithm().flow_departure(event.flow.id)
-                self.remove_flow(event.flow.id)
+            logger.info(f"Flow departure id={event.flow.id} src={event.flow.src} dst={event.flow.dst}")
+            self.remove_flow(event.flow.id)
         else:
-            raise SimulationError(f"unsupported event type: {type(event).__name__}")
+            raise SimulationError(f"unsupported simulation type: {type(event).__name__}")
 
     def accept_flow(self, flow_id: int, lightpaths: dict) -> bool:
         flow = self.active_flows.get(flow_id)
@@ -140,7 +147,7 @@ class ControlPlane:
                             max_bandwidth=0,
                             max_key_rate=lightpath.max_key_rate,
                             avl_bandwidth=0,
-                            avl_key_rate=lightpath.avl_key_rate - flow.kgr,
+                            avl_key_rate=lightpath.avl_key_rate - flow.attrs["kgr"],
                             route=lightpath.route,
                             usage="recip",
                             kind="exist",
@@ -167,7 +174,7 @@ class ControlPlane:
                     elif lightpath.kind == "exist":
                         for key, attr in self.vt.graph[lightpath.src][lightpath.dst].items():
                             if attr["route"] == lightpath.route and attr["usage"] == "recip":
-                                attr["avl_key_rate"] -= flow.kgr
+                                attr["avl_key_rate"] -= flow.attrs["kgr"]
                                 attr.setdefault("active_flows", set()).add(flow.id)
 
                                 self.mapped_flow_lightpaths.setdefault(flow.id, []).append(
@@ -190,13 +197,7 @@ class ControlPlane:
             lightpaths=lightpaths,
             physical_edges=self.pt.graph.edges()
         )
-        # self.tracer.record(
-        #     "flow-accepted",
-        #     self.current_time,
-        #     flow,
-        #     lightpaths=[lightpath.id for lightpath in lightpaths],
-        #     groomed=groomed,
-        # )
+
         logger.info(f"Flow {flow.id} accepted.")
         return True
 
@@ -206,7 +207,6 @@ class ControlPlane:
             logger.warning("Ignoring block for missing flow id=%d", flow_id)
             return False
         self.stats.block_flow(flow)
-        self.tracer.record("flow-blocked", self.current_time, flow)
         logger.info(
             "Flow blocked id=%d src=%d dst=%d rate=%d",
             flow.id,
@@ -251,7 +251,7 @@ class ControlPlane:
                 edge_data["avl_bandwidth"] += flow.rate
 
             elif ref.usage == "recip":
-                edge_data["avl_key_rate"] += flow.kgr
+                edge_data["avl_key_rate"] += flow.attrs["kgr"]
 
             else:
                 raise TopologyError(f"unknown lightpath usage: {ref.usage}")
@@ -274,26 +274,13 @@ class ControlPlane:
                 )
                 logger.debug(f"Tear down lightpath {ref.src} - {ref.dst} - {ref.key}.")
 
-                self.stats.lightpath_removed()
-
         del self.active_flows[flow_id]
-
-        self.tracer.record(
-            "flow-removed",
-            self.current_time,
-            flow,
-        )
 
         logger.info("Flow removed id=%d", flow_id)
         return True
 
-    def get_physical_topology(self) -> WDMPhysicalTopology:
+    def get_physical_topology(self) -> PhysicalTopology:
         return self.pt
 
     def get_virtual_topology(self) -> VirtualTopology:
         return self.vt
-
-    def get_algorithm(self):
-        if self.algorithm is None:
-            raise SimulationError("routing algorithm has not been installed")
-        return self.algorithm

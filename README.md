@@ -7,22 +7,46 @@
 ## 目录结构
 
 ```text
-wdm_sim/
-  algorithms/          # RWA / grooming 算法
-  topology/            # WDM 物理拓扑与虚拟拓扑
-  cli.py               # 命令行入口
-  config.py            # JSON / TOML / XML 配置读取
-  control_plane.py     # 控制平面
-  events.py            # 离散事件
-  flow.py              # Flow 模型
-  graph_algorithms.py  # Dijkstra 与 k shortest paths
-  runner.py            # SimulationRunner
-  scheduler.py         # heapq 事件队列
-  stats.py             # 统计指标
-  traffic.py           # traffic 随机生成
-examples/
-  config.json
-  topology.json
+models/
+  flow.py              # Flow, Event, LightpathId, ProvisioningPlan, RoutingDecision
+  ports.py               # RoutingAlgorithm, NetworkView, ResourceAllocator, Observer
+  events.py
+
+topology/
+  physical.py
+  virtual.py
+  snapshot.py            # NetworkSnapshot / NetworkView 实现
+
+resource/
+  allocator.py           # NetworkXResourceAllocator
+  allocation.py          # AllocationResult, ReleaseResult
+
+algorithms/
+  base.py
+  registry.py
+  aux_graph/
+    models.py
+    builder.py
+    view.py
+    constraints.py
+  ag_jdr_grooming.py
+  ag_sf_grooming.py
+  ag_cf_grooming.py
+
+event/
+  scheduler.py
+  traffic.py
+
+simulation/
+  control_plane.py
+  runner.py
+
+observability/
+  stats.py
+  tracer.py
+
+config.py
+main.py
 ```
 
 ## 安装依赖

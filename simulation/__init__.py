@@ -1,5 +1,5 @@
-from .events import Event, FlowArrivalEvent, FlowDepartureEvent
-from .flow import Flow
+from models.events import Event, FlowArrivalEvent, FlowDepartureEvent
+from models.flow import Flow
 from .scheduler import EventScheduler
 
 __all__ = [

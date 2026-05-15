@@ -7,11 +7,11 @@ from typing import Any
 
 import networkx as nx
 
-from event.control_plane import ControlPlane
-from event.flow import Flow
+from simulation.control_plane import ControlPlane
+from models.flow import Flow
 from topology import Lightpath
 
-from .auxiliary_graph import AuxiliaryGraph, VirtualNode, WavelengthNode
+from .auxiliary_graph import AuxiliaryGraph
 from .base import HeuristicAlgorithm
 
 logger = logging.getLogger(__name__)

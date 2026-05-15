@@ -4,7 +4,7 @@ import heapq
 import itertools
 from dataclasses import dataclass, field
 
-from .events import Event
+from models.events import Event
 
 
 @dataclass
@@ -14,12 +14,12 @@ class EventScheduler:
 
     def add_event(self, event: Event) -> None:
         if event.time < 0:
-            raise ValueError(f"event time must be non-negative, got {event.time}")
+            raise ValueError(f"simulation time must be non-negative, got {event.time}")
         heapq.heappush(self._heap, (event.time, next(self._sequence), event))
 
     def pop_event(self) -> Event:
         if not self._heap:
-            raise IndexError("cannot pop from an empty event scheduler")
+            raise IndexError("cannot pop from an empty simulation scheduler")
         return heapq.heappop(self._heap)[2]
 
     def __len__(self) -> int:

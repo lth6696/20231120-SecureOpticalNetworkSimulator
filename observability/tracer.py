@@ -5,7 +5,7 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any
 
-from event.flow import Flow
+from models.flow import Flow
 
 
 @dataclass
@@ -16,7 +16,7 @@ class Tracer:
     def record(self, event_type: str, time: float, flow: Flow, **details: Any) -> None:
         record = {
             "time": time,
-            "event": event_type,
+            "simulation": event_type,
             "flow_id": flow.id,
             "src": flow.src,
             "dst": flow.dst,

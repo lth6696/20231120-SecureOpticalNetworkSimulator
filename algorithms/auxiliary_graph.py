@@ -117,7 +117,7 @@ class AuxiliaryGraph:
                     WavelengthNode(u, w),
                     WavelengthNode(v, w),
                     layer="wavelength",
-                    wavelength_used=w,
+                    wavelength=w,
                     max_bandwidth=data["max_bandwidth"],
                     max_key_rate=data["max_key_rate"],
                     avl_bandwidth=data["max_bandwidth"],
@@ -171,13 +171,13 @@ class AuxiliaryGraph:
                 VirtualNode(u, w, u_id),
                 layer="lightpath"
             )
-            logger.debug(f"AuxG adds {VirtualNode(u, w, u_id)} node in wavelength layer.")
+            logger.debug(f"AuxG adds {VirtualNode(u, w, u_id)} node in lightpath layer.")
 
             self.aux_graph.add_node(
                 VirtualNode(v, w, v_id),
                 layer="lightpath"
             )
-            logger.debug(f"AuxG adds {VirtualNode(v, w, v_id)} node in wavelength layer.")
+            logger.debug(f"AuxG adds {VirtualNode(v, w, v_id)} node in lightpath layer.")
 
             self.aux_graph.add_edge(
                 u,
