@@ -1,5 +1,5 @@
 [logging]
-level = "DEBUG"
+level = "INFO"
 file = "Log"
 filemode = "w"
 format = "%(asctime)s - %(levelname)s - %(message)s"
@@ -7,10 +7,10 @@ encoding = "utf-8"
 console = false
 
 [topology]
-path = "graphml/SixNode.graphml"
+path = "graphml/Nsfnet.graphml"
 
 [topology.resource]
-wavelengths = 8
+wavelengths = 32
 max_bandwidth = 1000
 max_key_rate = 100
 
@@ -39,9 +39,9 @@ rate = 1000
 weight = 1
 
 [algorithm]
-name = "SFG"
-k = 4
+name = "CFG"
+k = 8
 
 [costs]
-channel = 2.0
-port = 3.0
+channel = 3.0
+port = 2.0

@@ -1,23 +1,20 @@
 from __future__ import annotations
 
 import logging
-from dataclasses import dataclass
-from itertools import islice
 from typing import Any
 
 import networkx as nx
 
-from simulation.control_plane import ControlPlane
 from models.flow import Flow
-
-from .ag_sf_grooming import Segment, AuxGSecurityFirstGrooming
+from topology import Lightpath
+from .ag_jdr_grooming import AuxGJointDataRecipGrooming
 from .auxiliary_graph import AuxiliaryGraph
+from .base import AlgOutput, AlgInput
 
 logger = logging.getLogger(__name__)
 
 
-@dataclass
-class AuxGCostFirstGrooming(AuxGSecurityFirstGrooming):
+class AuxGCostFirstGrooming(AuxGJointDataRecipGrooming):
     """
     Auxiliary-Graph-Based Cost-First2 Grooming Algorithm.
 
@@ -29,134 +26,99 @@ class AuxGCostFirstGrooming(AuxGSecurityFirstGrooming):
       5. 在 K 条候选数据路径中选择协商路径成本最低的可行方案。
     """
 
-    k: int
-    c_p: float = 0
-    c_h: float = 0
+    def __init__(self, k: int = 8, c_p: int = 0, c_h: int = 0):
+        super().__init__()
+        self.k = k
 
-    cp: ControlPlane | None = None
-    max_key_rate: float | None = None
+        self.c_p = c_p
+        self.c_h = c_h
 
-    def simulation_interface(self, cp: ControlPlane) -> None:
-        self.cp = cp
-        logger.info(
-            "Auxiliary-Graph-Based Cost First2 Grooming Algorithm initialized "
-            "with k=%s c_p=%s c_h=%s max_key_rate=%s",
-            self.k,
-            self.c_p,
-            self.c_h,
-            self.max_key_rate,
-        )
+        self.max_key_rate: float | None = None
 
-    def flow_arrival(self, flow: Flow) -> None:
-        assert self.cp is not None
-        logger.info("%s", "=" * 80)
-        logger.info(
-            "Algorithm handling flow id=%s src=%s dst=%s rate=%s security=%s kgr=%s",
-            flow.id,
-            flow.src,
-            flow.dst,
-            flow.rate,
-            flow.sec,
-            flow.kgr,
-        )
+        logger.info(f"Auxiliary-Graph-Based Cost First Grooming Algorithm initialized with k={self.k}")
 
-        pt = self.cp.get_physical_topology()
-        vt = self.cp.get_virtual_topology()
+    def flow_arrival(self, alg_input: AlgInput) -> AlgOutput:
+        pt = alg_input.pt
+        vt = alg_input.vt
+        flow = alg_input.flow
+        logger.info(f"Algorithm handling flow {flow}")
 
+        # 1. 构建当前时刻的辅助图。
         ag = AuxiliaryGraph()
         G_aux = ag.get_aux_graph(pt.graph, vt.graph)
 
         # 数据路径不能走协商光路，并且必须满足带宽约束。
-        work_graph = ag.get_sub_aux_graph(
-            blocked_edges_attr={"usage": "recip", "avl_bandwidth": flow.rate}
+        G_sub = ag.get_sub_aux_graph(
+            blocked_edges_attr={
+                "usage": "recip",
+                "avl_bandwidth": flow.rate
+            }
         )
 
-        try:
-            k_paths = [
-                list(path)
-                for path in islice(
-                    nx.shortest_simple_paths(work_graph, flow.src, flow.dst),
-                    self.k,
-                )
-            ]
-        except (nx.NetworkXNoPath, nx.NodeNotFound):
-            k_paths = []
-
-        if not k_paths:
-            self.cp.block_flow(flow.id)
-            return
+        paths = self._get_kpaths(G_sub, flow.src, flow.dst, self.k)
+        if not paths:
+            return AlgOutput()
 
         best_cost: float | None = None
-        best_data_segments: list[Segment] = []
-        best_recip_segments: list[Segment] = []
+        best_data_segments: list[Lightpath] = []
+        best_recip_segments: list[Lightpath] = []
 
-        for node_path in k_paths:
-            logger.debug("Candidate data node path: %s", node_path)
-            data_segments = self._turn_path_to_hops(node_path, G_aux)
-            if not data_segments:
-                continue
+        for path in paths:
+            logger.debug("Candidate data path: %s", path)
+
+            lightpaths_data = self._find_lightpaths(path, G_aux, "data")
 
             # 普通业务不需要协商路径，直接接受第一条可行数据路径。
-            if flow.sec <= 0:
-                lightpaths_path_data = self._get_lightpath(G_aux, data_segments, "data")
-                self.cp.accept_flow(flow.id, lightpaths={"data": lightpaths_path_data})
-                return
+            if flow.attrs["sec"] == 0:
+                return AlgOutput(status=True, routes={"data": lightpaths_data})
 
-            recip_segments = self._find_recip_paths_for_each_hop(
+            recip_segments = self._find_reciprocal_lightpath(
                 ag=ag,
-                data_segments=data_segments,
+                lightpaths=lightpaths_data,
                 flow=flow,
             )
             if not recip_segments:
                 continue
+            logger.debug(f"Candidate recip path is {recip_segments}")
 
             current_cost = self._calculate_recip_path_cost(G_aux, recip_segments, flow)
             logger.debug(
-                "Candidate cost-first2 solution cost=%s data=%s recip=%s",
-                current_cost,
-                data_segments,
-                recip_segments,
+                "Candidate CF solution cost=%s",
+                current_cost
             )
 
-            # todo add whether recip path is dedicate or shared
             if best_cost is None or current_cost < best_cost:
                 best_cost = current_cost
-                best_data_segments = data_segments
+                best_data_segments = lightpaths_data
                 best_recip_segments = recip_segments
 
         if best_data_segments and best_recip_segments:
-            lightpaths_path_data = self._get_lightpath(G_aux, best_data_segments, "data")
-            lightpaths_path_recip = self._get_lightpath(G_aux, best_recip_segments, "recip", "False" if flow.sec < 2 else "True")
-            self.cp.accept_flow(
-                flow.id,
-                lightpaths={"data": lightpaths_path_data, "recip": lightpaths_path_recip},
-            )
-            return
+            logger.info("Accepted data lightpaths: %s", best_data_segments)
+            logger.info("Accepted recip lightpaths: %s", best_recip_segments)
+            return AlgOutput(status=True, routes={"data": best_data_segments, "recip": best_recip_segments})
 
-        self.cp.block_flow(flow.id)
+        return AlgOutput()
 
-    def _find_recip_paths_for_each_hop(
+    def _find_reciprocal_lightpath(
         self,
         ag: AuxiliaryGraph,
-        data_segments: list[Segment],
+        lightpaths: list[Lightpath],
         flow: Flow,
-    ) -> list[Segment]:
-        """
-        为数据路径中的每个 lightpath hop 寻找一条 one-hop 协商路径。
+    ) -> list[Lightpath]:
+        blocked_edges = []
+        for lightpath in lightpaths:
+            blocked_edges.append((lightpath.src, lightpath.dst))
+            for u, v in self._get_node_pairs(lightpath.route):
+                blocked_edges.append((u, v))
 
-        cost_first2 与 security_first 的区别是：这里不强制 Se_ij = 0，
-        只过滤本业务数据路径已经占用的辅助图边、已有数据光路，以及密钥速率不足的边。
-        """
-        blocked_edges = set(self._resource_edges_from_segments(data_segments))
-        selected_recip_segments: list[Segment] = []
-
-        for data_hop in data_segments:
-            src = data_hop.src.node
-            dst = data_hop.dst.node
+        selected_recip_segments: list[Lightpath] = []
+        for lightpath in lightpaths:
+            src = lightpath.src
+            dst = lightpath.dst
 
             sub_graph = ag.get_sub_aux_graph(
                 blocked_edges=list(blocked_edges),
-                blocked_edges_attr={"usage": "data", "avl_key_rate": flow.kgr, "dedicate": "True"},
+                blocked_edges_attr={"usage": "data", "avl_key_rate": flow.attrs["kgr"], "dedicate": "True"},
             )
 
             try:
@@ -164,13 +126,13 @@ class AuxGCostFirstGrooming(AuxGSecurityFirstGrooming):
                     sub_graph,
                     src,
                     dst,
-                    # weight=lambda u, v, data: self._recip_edge_cost_weight(data),
+                    weight=lambda u, v, data: self._recip_edge_cost_weight(data),
                 )
             except (nx.NetworkXNoPath, nx.NodeNotFound):
                 logger.debug("No cost-first recip path for data hop %s -> %s", src, dst)
                 return []
 
-            sp_segments = self._turn_path_to_hops(sp_node_path, sub_graph)
+            sp_segments = self._find_lightpaths(sp_node_path, sub_graph, "recip")
             logger.debug("Cost-first recip path for hop %s -> %s: %s", src, dst, sp_segments)
 
             # 协商路径必须是一跳，即不能由多段 lightpath 经中间业务节点拼接。
@@ -178,27 +140,30 @@ class AuxGCostFirstGrooming(AuxGSecurityFirstGrooming):
                 return []
 
             selected_recip_segments.extend(sp_segments)
+
             # 避免同一业务内重复占用同一条新建波长链路或重复扣减同一条已有协商光路。
-            blocked_edges.update(self._resource_edges_from_segments(sp_segments))
+            blocked_edges.extend(self._resource_edges_from_segments(sp_segments))
 
         return selected_recip_segments
 
     def _calculate_recip_path_cost(
         self,
         aux_graph: nx.DiGraph,
-        recip_segments: list[Segment],
+        recip_segments: list[Lightpath],
         flow: Flow,
     ) -> float:
         """按照文档中的 c_2/c_1 思路计算候选协商路径成本。"""
         total_dedicated_cost = 0.0
+        max_key_rate = []
         for seg in recip_segments:
             physical_hops = len(self._segment_physical_edges(seg))
             # 对应一条协商 lightpath 的专有成本：2*c_p + c_h * 物理波长链路数。
             total_dedicated_cost += 2.0 * self.c_p + self.c_h * physical_hops
+            max_key_rate.append(seg.max_key_rate)
+        max_key_rate = min(max_key_rate)
 
-        if flow.sec == 1:
-            key_rate_capacity = self._get_max_key_rate(aux_graph)
-            factor = (flow.kgr / key_rate_capacity) if key_rate_capacity > 0 else flow.kgr
+        if flow.attrs["sec"] == 1:
+            factor = flow.attrs["kgr"] / max_key_rate if max_key_rate > 0 else flow.attrs["kgr"]
             return total_dedicated_cost * factor
 
         # flow.sec >= 2：高安全业务按专有成本计算。
@@ -210,12 +175,31 @@ class AuxGCostFirstGrooming(AuxGSecurityFirstGrooming):
             return 0.0
         return max(1.0, self.c_h * len(self._route_physical_edges(edge_data.get("route", []))))
 
-    def _get_max_key_rate(self, aux_graph: nx.DiGraph) -> float:
-        capacities = [
-            int(data.get("max_key_rate", 0) or 0)
-            for _u, _v, data in aux_graph.edges(data=True)
-        ]
-        return max(capacities)
+    @staticmethod
+    def _route_physical_edges(route: list[Any]) -> set[tuple[int, int]]:
+        """兼容 [(u, v)] 形式和 [WavelengthNode(...), ...] 形式的 route。"""
+        if not route:
+            return set()
 
-    def _physical_hops(self, segments: list[Segment]) -> int:
-        return sum(len(self._segment_physical_edges(seg)) for seg in segments)
+        # AuxiliaryGraph 中 wavelength edge 的 route 是 [(u, v)]。
+        if all(isinstance(item, tuple) and len(item) == 2 for item in route):
+            return {(int(u), int(v)) for u, v in route}
+
+        # VirtualTopology 中 lightpath 的 route 是 WavelengthNode 列表。
+        physical_edges: set[tuple[int, int]] = set()
+        for u, v in zip(route[:-1], route[1:]):
+            if hasattr(u, "node") and hasattr(v, "node"):
+                physical_edges.add((u.node, v.node))
+        return physical_edges
+
+    def _resource_edges_from_segments(self, segments: list[Lightpath]) -> list[tuple[Any, Any]]:
+        resource_edges: list[tuple[Any, Any]] = []
+        for seg in segments:
+            if seg.kind == "new":
+                resource_edges.extend(zip(seg.route[:-1], seg.route[1:]))
+            elif seg.kind == "exist":
+                resource_edges.append((seg.src, seg.dst))
+        return resource_edges
+
+    def _segment_physical_edges(self, seg: Lightpath) -> set[tuple[int, int]]:
+        return self._route_physical_edges(seg.route)

@@ -227,7 +227,7 @@ class ControlPlane:
         flow = self.active_flows.get(flow_id)
 
         if flow is None:
-            logger.warning("Ignoring removal for missing flow id=%d", flow_id)
+            # logger.warning("Ignoring removal for missing flow id=%d", flow_id)
             return False
 
         lightpath_refs = self.mapped_flow_lightpaths.pop(flow_id, [])
