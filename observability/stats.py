@@ -1,13 +1,16 @@
 from __future__ import annotations
 
+import logging
 from dataclasses import dataclass, field
 from typing import Any, Iterable
-from collections import Counter
+from collections import Counter, defaultdict
 
 from models.events import Event, FlowArrivalEvent
 from models.flow import Flow
 from models.config import SimulationConfig
 
+
+logger = logging.getLogger(__name__)
 
 class StatsCollector:
     
@@ -28,8 +31,8 @@ class StatsCollector:
         # self.grooming_count: int = 0
     
         # Security metrics
-        self.inband_trans_per_edge: dict[tuple[int, int], int] = {}
-        self.recip_channel_count_per_edge: dict[tuple[int, int], int] = {}
+        self.num_inband_transmission: dict[tuple[int, int], int] = {}
+        self.num_recip_channel_per_edge: dict[tuple[int, int], list] = defaultdict(list)
         self.physical_edges: set[tuple[int, int]] = set()
     
         # Cost metric
@@ -57,12 +60,16 @@ class StatsCollector:
         if physical_edges is not None:
             self.physical_edges.update((int(u), int(v)) for u, v in physical_edges)
 
+        logger.debug(f"Flow {flow}")
+        logger.debug(f"Paths have {lightpaths.keys()}.")
+        logger.debug(f"Already accepted {self.accepted}, including security {self.accepted_secure} and normal {self.accepted_unsecure}")
         # 统计阻塞率
         self.accepted += 1
-        if lightpaths.get("recip"):
+        if flow.attrs["sec"] > 0:
             self.accepted_secure += 1
         else:
             self.accepted_unsecure += 1
+        logger.debug(f"Now accept {self.accepted}, including security {self.accepted_secure} and normal {self.accepted_unsecure}")
 
         # 统计安全性
         self._update_security_metrics(lightpaths)
@@ -84,10 +91,21 @@ class StatsCollector:
         else:
             self.blocked_unsecure += 1
 
+    def remove_flow(self, flow: Flow, lightpaths: dict[str, list[Any]]):
+
+        for lightpath in lightpaths:
+            if lightpath.usage == "data":
+                continue
+            for edge in self._route_physical_edges(lightpath.route):
+                self.num_recip_channel_per_edge[edge].append(
+                        self.num_recip_channel_per_edge.get(edge, [0])[-1] - 1
+                )
+                logger.debug(f"The number of recip channels carried by {edge} link is {self.num_recip_channel_per_edge[edge]}.")
+
     def summary(self) -> dict[str, Any]:
         edge_count = len(self.physical_edges)
-        total_security_exposure = sum(self.inband_trans_per_edge.values())
-        total_recip_channels = sum(self.recip_channel_count_per_edge.values())
+        total_security_exposure = sum(self.num_inband_transmission.values())
+        total_security_cost = (self.c_h * self.cost_recip_channel + 2.0 * self.c_p * self.cost_recip_port)
 
         return {
             "arrivals": self.arrivals,
@@ -110,39 +128,23 @@ class StatsCollector:
             ),
 
             # Uploaded security metrics.
-            "security_exposure_total": total_security_exposure,
-            # "security_exposure_by_edge": self._stringify_edge_dict(
-            #     self.security_exposure_by_edge
-            # ),
-            "expected_security_exposure": (
+            "total_security_exposure": total_security_exposure,
+            "average_security_exposure": (
                 total_security_exposure / edge_count if edge_count else 0.0
             ),
-            "recip_channel_count_total": total_recip_channels,
-            # "recip_channel_count_by_edge": self._stringify_edge_dict(
-            #     self.recip_channel_count_by_edge
-            # ),
-            "average_recip_channel_count_per_edge": (
-                total_recip_channels / edge_count if edge_count else 0.0
-            ),
+            "average_num_recip_channels": self._mean_dictlist(self.num_recip_channel_per_edge),
 
             # Uploaded cost metric C_bar.
-            "cost": {
-                # "c_h": self.c_h,
-                # "c_p": self.c_p,
-                # "recip_wavelength_link_units": self.cost_recip_wavelength_link_units,
-                # "recip_lightpath_units": self.cost_recip_lightpath_units,
-                "total_security_cost": (self.c_h * self.cost_recip_channel + 2.0 * self.c_p * self.cost_recip_port) / self.accepted_secure,
-                # "secure_service_count": self.accepted_secure,
-                # "average_secure_service_cost": average_secure_service_cost,
-                # "c_bar": average_secure_service_cost,
-            },
+            "total_security_cost": total_security_cost,
+            "average_security_cost": total_security_cost / self.accepted_secure,
+
         }
 
     def _update_security_metrics(self, lightpaths: dict[str, list[Any]]) -> None:
         data_edge_counts: Counter[tuple[int, int]] = Counter()
         recip_edge_counts: Counter[tuple[int, int]] = Counter()
 
-        for lightpath in lightpaths.get("../data", []) or []:
+        for lightpath in lightpaths.get("data", []) or []:
             for edge in self._route_physical_edges(lightpath.route):
                 data_edge_counts[edge] += 1
                 self.physical_edges.add(edge)
@@ -151,17 +153,18 @@ class StatsCollector:
             for edge in self._route_physical_edges(lightpath.route):
                 recip_edge_counts[edge] += 1
                 self.physical_edges.add(edge)
-                self.recip_channel_count_per_edge[edge] = (
-                        self.recip_channel_count_per_edge.get(edge, 0) + 1
-                )
+
+                val = self.num_recip_channel_per_edge.get(edge, [0])[-1] + 1
+                self.num_recip_channel_per_edge[edge].append(val)
+                logger.debug(f"The number of recip channels carried by {edge} link is {self.num_recip_channel_per_edge[edge]}.")
 
         # S_eij for this request is (#recip wavelengths on eij) *
         # (#data wavelengths on eij). Accumulate it over accepted requests.
         for edge in set(data_edge_counts) & set(recip_edge_counts):
-            self.inband_trans_per_edge[edge] = (
-                    self.inband_trans_per_edge.get(edge, 0)
-                    + data_edge_counts[edge] * recip_edge_counts[edge]
+            self.num_inband_transmission[edge] = (
+                    self.num_inband_transmission.get(edge, 0) + 1
             )
+            logger.debug(f"The number of in-band transmission is {edge}: {self.num_inband_transmission[edge]}.")
 
     def _update_cost_metrics(self, lightpaths: dict[str, list[Any]]) -> None:
         """Update the cost units in the uploaded C_bar formula.
@@ -195,3 +198,13 @@ class StatsCollector:
     @staticmethod
     def _stringify_edge_dict(values: dict[tuple[int, int], int]) -> dict[str, int]:
         return {f"{u}->{v}": value for (u, v), value in sorted(values.items())}
+
+    @staticmethod
+    def _mean_dictlist(data: dict[Any, list]):
+        all_values = [
+            value
+            for values in data.values()
+            for value in values
+        ]
+
+        return sum(all_values) / len(all_values) if all_values else 0.0

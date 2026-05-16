@@ -1,5 +1,5 @@
 [logging]
-level = "INFO"
+level = "DEBUG"
 file = "Log"
 filemode = "w"
 format = "%(asctime)s - %(levelname)s - %(message)s"
@@ -39,7 +39,7 @@ rate = 1000
 weight = 1
 
 [algorithm]
-name = "JDRG"
+name = "SFG"
 k = 4
 
 [costs]

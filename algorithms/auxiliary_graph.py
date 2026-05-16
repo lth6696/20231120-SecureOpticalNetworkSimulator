@@ -12,12 +12,18 @@ class WavelengthNode:
     node: int
     wavelength: int
 
+    def __repr__(self):
+        return f"WavelengthNode {self.node}"
+
 
 @dataclass(slots=True, frozen=True)
 class VirtualNode:
     node: int
     wavelength: int
     key: int
+
+    def __repr__(self):
+        return f"VirtualNode {self.node}"
 
 
 class AuxiliaryGraph:
@@ -239,21 +245,32 @@ class AuxiliaryGraph:
         def filter_node(n):
             if n in blocked_nodes:
                 return False
+
+            node_data = self.aux_graph.nodes[n]
+            for key, value in blocked_nodes_attr.items():
+                if node_data.get(key) == value:
+                    return False
+
             return True
 
         def filter_edge(u, v):
             # 依赖两种方式，其一是指定节点，其二是指定属性
             if (u, v) in blocked_edges:
-                logging.debug(f"Filter edge {u} - {v}")
+                logging.debug(f"Filter {u, v} by node: {self.aux_graph.edges[u, v]}")
                 return False
+
+            edge_data = self.aux_graph.edges[u, v]
             for key, value in blocked_edges_attr.items():
-                if self.aux_graph.edges[u, v]["layer"] in {"wavelength", "lightpath"}:
-                    if key in {"avl_key_rate", "avl_bandwidth"} and self.aux_graph.edges[u, v][key] < value:
-                        logging.debug(f"Filter edge {u} - {v}")
+                actual = edge_data.get(key)
+
+                if key in {"avl_key_rate", "avl_bandwidth"}:
+                    if actual is not None and actual < value:
+                        logging.debug(f"Filter {u, v} by rate: {self.aux_graph.edges[u, v]}")
                         return False
-                elif self.aux_graph.edges[u, v][key] == value:
-                    logging.debug(f"Filter edge {u} - {v}")
-                    return False
+                else:
+                    if actual == value:
+                        logging.debug(f"Filter {u, v} by attr: {self.aux_graph.edges[u, v]}")
+                        return False
             return True
 
         sub_graph = nx.subgraph_view(

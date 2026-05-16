@@ -274,6 +274,8 @@ class ControlPlane:
                 )
                 logger.debug(f"Tear down lightpath {ref.src} - {ref.dst} - {ref.key}.")
 
+        self.stats.remove_flow(flow, lightpath_refs)
+
         del self.active_flows[flow_id]
 
         logger.info("Flow removed id=%d", flow_id)

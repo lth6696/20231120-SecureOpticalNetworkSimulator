@@ -68,8 +68,8 @@ class AuxGJointDataRecipGrooming(HeuristicAlgorithm):
     def _find_lightpaths(self, path: list, aux_graph: nx.DiGraph, usage: str) -> list[Lightpath]:
         lightpaths: list[Lightpath] = []
         route: list = []
-        max_bandwidth = 0
-        max_key_rate = 0
+        bandwidths = []
+        key_rates = []
 
         for u, v in self._get_node_pairs(path):
             edge_data = aux_graph.edges[u, v]
@@ -81,6 +81,8 @@ class AuxGJointDataRecipGrooming(HeuristicAlgorithm):
                 elif aux_graph.nodes[u]["layer"] == "wavelength":
                     src = route[0]
                     dst = u
+                    max_bandwidth = min(bandwidths)
+                    max_key_rate = min(key_rates)
                     lightpaths.append(
                         Lightpath(
                             src=src.node,
@@ -99,8 +101,8 @@ class AuxGJointDataRecipGrooming(HeuristicAlgorithm):
                     )
                     route = []
             elif layer == "wavelength":
-                max_bandwidth = edge_data["max_bandwidth"]
-                max_key_rate = edge_data["max_key_rate"]
+                bandwidths.append(edge_data["max_bandwidth"])
+                key_rates.append(edge_data["max_key_rate"])
                 route.append(v)
             elif layer == "lightpath":
                 lightpaths.append(

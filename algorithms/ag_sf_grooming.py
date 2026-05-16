@@ -7,12 +7,12 @@ from typing import Any
 
 import networkx as nx
 
-from simulation.control_plane import ControlPlane
 from models.flow import Flow
 from topology import Lightpath
 
 from .auxiliary_graph import AuxiliaryGraph
-from .base import HeuristicAlgorithm
+from .ag_jdr_grooming import AuxGJointDataRecipGrooming
+from .base import AlgInput, AlgOutput
 
 logger = logging.getLogger(__name__)
 
@@ -28,8 +28,7 @@ class Segment:
     route: list[Any]
 
 
-@dataclass
-class AuxGSecurityFirstGrooming(HeuristicAlgorithm):
+class AuxGSecurityFirstGrooming(AuxGJointDataRecipGrooming):
     """
     Auxiliary-Graph-Based Security-First Grooming Algorithm.
 
@@ -39,141 +38,106 @@ class AuxGSecurityFirstGrooming(HeuristicAlgorithm):
            若失败，则退化为 s-d 端到端协商路径，并按 NSe 权重选择较少占用的协商资源；
       - 2 及以上：高安全业务，只接受每个数据 hop 都有隔离协商光路的方案。
     """
+    def __init__(self, k: int = 8):
+        super().__init__(k)
+        self.k = k
 
-    k: int = 3
-    cp: ControlPlane | None = None
+        logger.info(f"Auxiliary-Graph-Based Security First Grooming Algorithm initialized with k=%s", self.k)
 
-    def simulation_interface(self, cp: ControlPlane) -> None:
-        self.cp = cp
-        logger.info("Auxiliary-Graph-Based Security First Grooming Algorithm initialized with k=%s", self.k)
-
-    def flow_arrival(self, flow: Flow) -> None:
-        assert self.cp is not None
-        logger.info("%s", "=" * 80)
-        logger.info(
-            "Algorithm handling flow id=%s src=%s dst=%s rate=%s security=%s kgr=%s",
-            flow.id,
-            flow.src,
-            flow.dst,
-            flow.rate,
-            flow.sec,
-            flow.kgr,
-        )
-
-        pt = self.cp.get_physical_topology()
-        vt = self.cp.get_virtual_topology()
+    def flow_arrival(self, alg_input: AlgInput) -> AlgOutput:
+        pt = alg_input.pt
+        vt = alg_input.vt
+        flow = alg_input.flow
+        logger.info(f"Algorithm handling flow {flow}")
 
         # 1. 构建当前时刻的辅助图。
         ag = AuxiliaryGraph()
         G_aux = ag.get_aux_graph(pt.graph, vt.graph)
 
         # 2. 数据路径不能走协商光路，并且必须满足带宽约束。
-        work_graph = ag.get_sub_aux_graph(
-            blocked_edges_attr={"usage": "recip", "avl_bandwidth": flow.rate}
+        G_sub = ag.get_sub_aux_graph(
+            blocked_edges_attr={
+                "usage": "recip",
+                "avl_bandwidth": flow.rate
+            }
         )
 
-        try:
-            k_paths = [
-                list(path)
-                for path in islice(
-                    nx.shortest_simple_paths(work_graph, flow.src, flow.dst),
-                    self.k,
-                )
-            ]
-        except (nx.NetworkXNoPath, nx.NodeNotFound):
-            k_paths = []
-
-        if not k_paths:
-            self.cp.block_flow(flow.id)
-            return
+        paths = self._get_kpaths(G_sub, flow.src, flow.dst, self.k)
+        if not paths:
+            return AlgOutput()
 
         # 3. Security-first：对每条候选数据路径，优先寻找满足安全约束的协商路径。
-        for node_path in k_paths:
-            logger.debug("Candidate data node path: %s", node_path)
-            data_segments = self._turn_path_to_hops(node_path, G_aux)
-            if not data_segments:
-                continue
+        for path in paths:
+            logger.debug("Candidate data node path: %s", path)
+
+            lightpaths_data = self._find_lightpaths(path, G_aux, "data")
 
             # 普通业务：数据路径可行即可接受。
-            if flow.sec <= 0:
-                lightpaths_path_data = self._get_lightpath(G_aux, data_segments, "data")
-                self.cp.accept_flow(flow.id, lightpaths={"data": lightpaths_path_data})
-                return
+            if flow.attrs["sec"] == 0:
+                return AlgOutput(status=True, routes={"data": lightpaths_data})
 
             # 高/中安全业务：先找逐 hop 隔离协商路径。
-            recip_segments = self._find_isolated_recip_paths_for_each_data_hop(
+            lightpaths_recip = self._find_reciprocal_lightpath_for_secure(
                 ag=ag,
-                aux_graph=G_aux,
-                data_segments=data_segments,
+                lightpaths=lightpaths_data,
                 flow=flow,
+                is_loose=False
             )
 
-            # 中安全业务：若逐 hop 隔离失败，允许退化为 s-d 端到端协商路径。
-            if not recip_segments and flow.sec == 1:
-                recip_segments = self._find_shared_end_to_end_recip_path(
+            # 中安全业务：若逐离失败，允许退化共路传输。
+            if (not lightpaths_recip) and (flow.attrs["sec"] == 1):
+                lightpaths_recip = self._find_reciprocal_lightpath_for_secure(
                     ag=ag,
-                    aux_graph=G_aux,
-                    data_segments=data_segments,
+                    lightpaths=lightpaths_data,
                     flow=flow,
+                    is_loose=True
                 )
 
-            if recip_segments:
-                lightpaths_path_data = self._get_lightpath(G_aux, data_segments, "data")
-                lightpaths_path_recip = self._get_lightpath(G_aux, recip_segments, "recip")
-                logger.debug("Accepted data lightpaths: %s", lightpaths_path_data)
-                logger.debug("Accepted recip lightpaths: %s", lightpaths_path_recip)
-                self.cp.accept_flow(
-                    flow.id,
-                    lightpaths={"data": lightpaths_path_data, "recip": lightpaths_path_recip},
-                )
-                return
+            if lightpaths_recip and lightpaths_data:
+                logger.info("Accepted data lightpaths: %s", lightpaths_data)
+                logger.info("Accepted recip lightpaths: %s", lightpaths_recip)
+                return AlgOutput(status=True, routes={"data": lightpaths_data, "recip": lightpaths_recip})
 
-        self.cp.block_flow(flow.id)
+        return AlgOutput()
 
-    def flow_departure(self, flow_id: int) -> None:
-        return None
-
-    def simulation_end(self) -> None:
-        return None
-
-    def _find_isolated_recip_paths_for_each_data_hop(
+    def _find_reciprocal_lightpath_for_secure(
         self,
         ag: AuxiliaryGraph,
-        aux_graph: nx.DiGraph,
-        data_segments: list[Segment],
+        lightpaths: [Lightpath],
         flow: Flow,
-    ) -> list[Segment]:
+        is_loose: False
+    ) -> [Lightpath]:
         """
-        为数据路径中的每个 lightpath hop 寻找一条 one-hop 协商路径。
+        为数据路径中的每个 lightpath 寻找一条 同端点的协商路径。
 
-        这里对应伪代码中的：
-          sub_G = AG with Se_ij = 0 and filter node and edges in P_w
-          sp = SPF(sub_G, hop.src, hop.dst) with minimum NSe_ij
-          if sp is not one-hop: fail
+        约束：
+         - 异路传输
+         - 协商路径分散承载
         """
-        blocked_edges = set(self._resource_edges_from_segments(data_segments))
-        blocked_nodes = set(self._resource_nodes_from_segments(data_segments))
+        blocked_edges = []
+        for lightpath in lightpaths:
+            blocked_edges.append((lightpath.src, lightpath.dst))
+            for u, v in self._get_node_pairs(lightpath.route):
+                blocked_edges.append((u, v))
 
-        # Se_ij = 0：协商路径不能经过任何已经承载数据光路的物理链路；
-        # 同时也不能经过本业务数据路径占用的物理链路。
-        forbidden_data_phy_edges = self._data_occupied_physical_edges(aux_graph)
-        for seg in data_segments:
-            forbidden_data_phy_edges.update(self._segment_physical_edges(seg))
-        blocked_edges.update(
-            self._aux_edges_intersecting_physical_edges(aux_graph, forbidden_data_phy_edges)
-        )
+        if not is_loose:
+            logger.debug(f"Disable In-band Transmission with req {flow.attrs["sec"]}.")
+            # 协商路径不能经过本业务数据路径占用的任何波长链路，即异路传输。
+            forbidden_data_phy_edges = self._data_occupied_physical_edges(ag.aux_graph)
+            for seg in lightpaths:
+                forbidden_data_phy_edges.update(self._segment_physical_edges(seg))
+            blocked_edges += self._aux_edges_intersecting_physical_edges(ag.aux_graph, forbidden_data_phy_edges)
 
-        ns_by_phy_edge = self._recip_channel_count_by_physical_edge(aux_graph)
-        selected_recip_segments: list[Segment] = []
+        ns_by_phy_edge = self._recip_channel_count_by_physical_edge(ag.aux_graph)
+        selected_recip_segments: list[Lightpath] = []
 
-        for data_hop in data_segments:
+        for data_hop in lightpaths:
             src = self._physical_endpoint(data_hop.src)
             dst = self._physical_endpoint(data_hop.dst)
 
             sub_graph = ag.get_sub_aux_graph(
-                blocked_nodes=list(blocked_nodes),
                 blocked_edges=list(blocked_edges),
-                blocked_edges_attr={"usage": "data", "avl_key_rate": flow.kgr},
+                blocked_edges_attr={"usage": "data", "avl_key_rate": flow.attrs["kgr"]},
             )
 
             try:
@@ -187,7 +151,7 @@ class AuxGSecurityFirstGrooming(HeuristicAlgorithm):
                 logger.debug("No isolated recip path for data hop %s -> %s", src, dst)
                 return []
 
-            sp_segments = self._turn_path_to_hops(sp_node_path, sub_graph)
+            sp_segments = self._find_lightpaths(sp_node_path, ag.aux_graph, "recip")
             logger.debug("Isolated recip path for hop %s -> %s: %s", src, dst, sp_segments)
 
             # 协商路径必须是一跳，即不经过中间 OEO/业务汇聚节点。
@@ -197,46 +161,9 @@ class AuxGSecurityFirstGrooming(HeuristicAlgorithm):
             selected_recip_segments.extend(sp_segments)
 
             # 避免同一业务内重复占用同一条新建波长资源；也避免重复扣减同一条已有协商光路。
-            blocked_edges.update(self._resource_edges_from_segments(sp_segments))
-            blocked_nodes.update(self._resource_nodes_from_segments(sp_segments))
+            blocked_edges.extend(self._resource_edges_from_segments(sp_segments))
 
         return selected_recip_segments
-
-    def _find_shared_end_to_end_recip_path(
-        self,
-        ag: AuxiliaryGraph,
-        aux_graph: nx.DiGraph,
-        data_segments: list[Segment],
-        flow: Flow,
-    ) -> list[Segment]:
-        """
-        中安全业务的 fallback：在不使用本业务数据路径资源的前提下，
-        寻找一条 s-d 端到端协商路径，并按 NSe 权重择优。
-        """
-        blocked_edges = set(self._resource_edges_from_segments(data_segments))
-        blocked_nodes = set(self._resource_nodes_from_segments(data_segments))
-        ns_by_phy_edge = self._recip_channel_count_by_physical_edge(aux_graph)
-
-        sub_graph = ag.get_sub_aux_graph(
-            blocked_nodes=list(blocked_nodes),
-            blocked_edges=list(blocked_edges),
-            blocked_edges_attr={"usage": "data", "avl_key_rate": flow.kgr},
-        )
-
-        try:
-            sp_node_path = nx.shortest_path(
-                sub_graph,
-                flow.src,
-                flow.dst,
-                weight=lambda u, v, data: self._security_edge_weight(data, ns_by_phy_edge),
-            )
-        except (nx.NetworkXNoPath, nx.NodeNotFound):
-            logger.debug("No shared end-to-end recip path for flow id=%s", flow.id)
-            return []
-
-        recip_segments = self._turn_path_to_hops(sp_node_path, sub_graph)
-        logger.debug("Shared end-to-end recip path: %s", recip_segments)
-        return recip_segments
 
     def _turn_path_to_hops(self, path: list[Any], aux_graph: nx.DiGraph) -> list[Segment]:
         """将辅助图节点路径转换成 accept_flow 可消费的 Segment 列表。"""
@@ -332,7 +259,7 @@ class AuxGSecurityFirstGrooming(HeuristicAlgorithm):
     def _physical_endpoint(node: Any) -> int:
         return node if isinstance(node, int) else node.node
 
-    def _resource_edges_from_segments(self, segments: list[Segment]) -> list[tuple[Any, Any]]:
+    def _resource_edges_from_segments(self, segments: list[Lightpath]) -> list[tuple[Any, Any]]:
         resource_edges: list[tuple[Any, Any]] = []
         for seg in segments:
             if seg.kind == "new":
@@ -340,15 +267,6 @@ class AuxGSecurityFirstGrooming(HeuristicAlgorithm):
             elif seg.kind == "exist":
                 resource_edges.append((seg.src, seg.dst))
         return resource_edges
-
-    def _resource_nodes_from_segments(self, segments: list[Segment]) -> list[Any]:
-        nodes: list[Any] = []
-        for seg in segments:
-            # 不屏蔽物理层源/宿节点，否则无法从 hop.src.node 到 hop.dst.node 寻路。
-            for node in [seg.src, seg.dst, *seg.route]:
-                if not isinstance(node, int):
-                    nodes.append(node)
-        return nodes
 
     def _data_occupied_physical_edges(self, aux_graph: nx.DiGraph) -> set[tuple[int, int]]:
         occupied: set[tuple[int, int]] = set()
