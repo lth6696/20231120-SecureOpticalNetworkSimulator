@@ -1,5 +1,5 @@
 [logging]
-level = "INFO"
+level = "WARNING"
 file = "Log"
 filemode = "w"
 format = "%(asctime)s - %(levelname)s - %(message)s"
@@ -15,7 +15,7 @@ max_bandwidth = 1000
 max_key_rate = 100
 
 [traffic]
-calls = 100
+calls = 1000
 load = 20
 mean_holding_time = 10.0
 seed = 42

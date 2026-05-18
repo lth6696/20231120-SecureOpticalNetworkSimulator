@@ -3,7 +3,6 @@ from __future__ import annotations
 import csv
 import math
 import os
-import shutil
 from dataclasses import replace
 from pathlib import Path
 from statistics import mean, stdev
@@ -27,9 +26,9 @@ import random
 OUT_DIR = Path('data/')
 OUT_DIR.mkdir(parents=True, exist_ok=True)
 
-LOADS = [x*2 for x in range(1, 11)]  # 10 points: 1..10
+LOADS = [x*5 for x in range(1, 11)]  # 10 points: 1..10
 print(LOADS)
-SEEDS = random.sample(range(1, 100), 10)  # 10 runs per load
+SEEDS = random.sample(range(1, 100), 1)  # 10 runs per load
 ALGORITHMS = {
     'ag_cf_grooming': 'CFG',
     'ag_sf_grooming': 'SFG',
@@ -49,7 +48,7 @@ for load in LOADS:
                 algorithm=replace(config.algorithm, name=alg_name),
             )
             runner = SimulationRunner()
-            runner.build(config)
+            runner.build(cfg)
             summary = runner.run()
             rows.append({
                 'topology': cfg.topology.path,
@@ -127,14 +126,4 @@ for metric, ylabel, filename in [
     fig.savefig(OUT_DIR / filename)
     plt.close(fig)
 
-# save the exact config used and a brief readme
-# shutil.copy2(CONFIG_PATH, OUT_DIR / 'config_used.toml')
-# readme = OUT_DIR / 'README.txt'
-# readme.write_text(
-#     'Based on uploaded config(4).toml.\n'
-#     'Loads: 1..10 (10 points).\n'
-#     'Seeds: 42..51 (10 runs per load).\n'
-#     'Error bars: standard deviation across 10 seeds.\n',
-#     encoding='utf-8'
-# )
 print('DONE', flush=True)

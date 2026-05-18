@@ -242,6 +242,9 @@ class AuxiliaryGraph:
             blocked_nodes_attr: dict = {},
             blocked_edges_attr: dict = {}
     ):
+        blocked_nodes = set(blocked_nodes or [])
+        blocked_edges = set(blocked_edges or [])
+
         def filter_node(n):
             if n in blocked_nodes:
                 return False
